@@ -1,0 +1,332 @@
+unit ManLro;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Fpadrao, Grids, Wwdbigrd, Wwdbgrid, hGrid, dxExEdtr, dxEdLib, dxEditor,
+  StdCtrls, ExtCtrls, Buttons, dxCntner, Menus, Db, Wwdatsrc, DBTables,
+  Wwquery, ImgList, RDprint, dxDBELib, dxColorEdit;
+
+type
+  TfmManLro = class(TfmPadrao)
+    CmpNfs: TwwQuery;
+    DsLib: TwwDataSource;
+    PaintBox: TPaintBox;
+    Label2: TLabel;
+    Bevel2: TBevel;
+    grNfs: ThGrid;
+    Label3: TLabel;
+    Bevel3: TBevel;
+    bEmitir: TSpeedButton;
+    Panel1: TPanel;
+    EdPsqSeqNfs: TdxColorEdit;
+    pnCodFor: TPanel;
+    dbLib: TdxDBGraphicEdit;
+    dxDBGraphicEdit1: TdxDBGraphicEdit;
+    bAtualizar: TBitBtn;
+    CmpNfsCODEMP: TIntegerField;
+    CmpNfsDTENFS: TDateTimeField;
+    CmpNfsSEQNFS: TIntegerField;
+    CmpNfsDTEFAT: TDateTimeField;
+    CmpNfsTOTIT1: TFloatField;
+    CmpNfsTOTGE1: TFloatField;
+    CmpNfsQTINFS: TIntegerField;
+    CmpNfsCODFOR: TIntegerField;
+    CmpNfsCODTIP: TIntegerField;
+    CmpNfsSITNFS: TStringField;
+    CmpNfsNOMFOR: TStringField;
+    CmpNf2: TwwQuery;
+    CmpNf2DESNF2: TStringField;
+    CmpNf2QTPNF2: TFloatField;
+    CmpNf2QTDNF2: TFloatField;
+    CmpNf2QTNNF2: TFloatField;
+    CmpNf2VLUNF2: TFloatField;
+    CmpNf2IPINF2: TFloatField;
+    CmpNf2ICMNF2: TFloatField;
+    CmpNf2TOTITE: TFloatField;
+    CmpNf2CODEMP: TIntegerField;
+    CmpNf2DTENFS: TDateTimeField;
+    CmpNf2SEQNFS: TIntegerField;
+    CmpNf2SEQNF2: TIntegerField;
+    CmpNf2CODCLP: TStringField;
+    CmpNf2CODGRU: TStringField;
+    CmpNf2CODSUB: TStringField;
+    CmpNf2CODPRO: TStringField;
+    CmpNf2NRONF2: TIntegerField;
+    CmpNf2OBSNF2: TStringField;
+    DsNf2: TwwDataSource;
+    grNf2: ThGrid;
+    CmpNf2CODITE: TStringField;
+    CmpNfsID_CMPNFS: TIntegerField;
+    UpdateSQL1: TUpdateSQL;
+    btnRetornar: TSpeedButton;
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure PaintBoxPaint(Sender: TObject);
+    procedure EdPsqSeqNfsKeyPress(Sender: TObject; var Key: Char);
+    procedure bEmitirClick(Sender: TObject);
+    procedure bAtualizarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormDestroy(Sender: TObject);
+    procedure DsLibDataChange(Sender: TObject; Field: TField);
+    procedure CmpNf2CODITEGetText(Sender: TField; var Text: string;
+      DisplayText: Boolean);
+    procedure FormCreate(Sender: TObject);
+    procedure btnRetornarClick(Sender: TObject);
+  private
+    {Private declarations}
+    sBase: string;
+  public
+    {Public declarations}
+    CodEmp: integer;
+    DteNfs: TDateTime;
+    SeqNfs: integer;
+  end;
+
+var
+  fmManLro: TfmManLro;
+
+implementation
+
+uses dxDemoUtils, Bbgeral, Bbfuncao, Bbmensag, ManGDB, ManPri, ManRo2;
+
+{$R *.DFM}
+
+procedure TfmManLro.FormCreate(Sender: TObject);
+begin
+  inherited;
+
+  sBase := ' Select CmpNfs.CodEmp,' +
+    '        CmpNfs.DteNfs,' +
+    '        CmpNfs.SeqNfs,' +
+    '        CmpNfs.DteFat,' +
+    '        CmpNfs.TotIt1,' +
+    '        CmpNfs.TotGe1,' +
+    '        CmpNfs.QtiNfs,' +
+    '        CmpNfs.CodFor,' +
+    '        CmpNfs.CodTip,' +
+    '        CmpNfs.SitNfs, cmpnfs.id_cmpnfs, ' +
+    '        FinFor.NomFor ' +
+    ' From CmpNfs LEFT JOIN FinFor ON (CmpNfs.CodFor = FinFor.CodFor)' +
+    ' Where CmpNfs.SitNfs = ' + QuotedStr('Aguardando Emissao de Nota Fiscal');
+
+end;
+
+procedure TfmManLro.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+
+  if key = 27 then
+    close;
+
+  if key = 115 then
+    bEmitir.OnClick(bEmitir);
+
+  if key = vk_f3 then
+    btnRetornar.OnClick(btnRetornar);
+
+end;
+
+procedure TfmManLro.FormShow(Sender: TObject);
+begin
+  inherited;
+  EdPsqSeqNfs.SetFocus;
+end;
+
+procedure TfmManLro.PaintBoxPaint(Sender: TObject);
+begin
+  inherited;
+  with Sender as TPaintBox do
+    FillGrayGradientRect(PaintBox.Canvas, PaintBox.ClientRect, PaintBox.Color);
+end;
+
+procedure TfmManLro.EdPsqSeqNfsKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if not (key in ['0'..'9']) then
+    key := #0;
+end;
+
+procedure TfmManLro.bEmitirClick(Sender: TObject);
+var
+  i: Integer;
+  Found: Integer;
+begin
+  inherited;
+  if Trim(UpperCase(GLibAce)) = 'SIM' then
+  begin
+
+    Found := -1;
+
+    for i := 0 to Screen.FormCount - 1 do
+    begin
+
+      if Screen.Forms[i] is TfmManRo2 then
+        Found := i;
+
+    end;
+
+    if Found >= 0 then
+    begin
+
+      fmManRo2.WindowState := wsNormal;
+      fmManRo2.BringToFront;
+
+    end
+    else
+    begin
+
+      if CmpNfsCodEmp.Value > 0 then
+      begin
+
+        CodEmp := CmpNfsCodEmp.Value;
+        DteNfs := CmpNfsDteNfs.Value;
+        SeqNfs := CmpNfsSeqNfs.Value;
+
+        with CmpNfs, SQL do
+        begin
+
+          Close;
+          Text := sBase +
+            ' and CmpNfs.CodEmp = :CodEmp' +
+            ' and CmpNfs.DteNfs = :DteNfs' +
+            ' and CmpNfs.SeqNfs = :SeqNfs';
+
+          with Params do
+          begin
+
+            Params[0].AsInteger := CodEmp;
+            Params[1].AsDateTime := DteNfs;
+            Params[2].AsInteger := SeqNfs;
+
+          end;
+
+          Open;
+
+        end;
+
+        if CmpNfsCodEmp.Value > 0 then
+        begin
+
+          fmManRo2 := TfmManRo2.Create(Self);
+          fmManRo2.Show;
+
+        end;
+      end;
+    end;
+
+  end
+  else
+    fmsgErro(GMensagem_0001, nil);
+end;
+
+procedure TfmManLro.bAtualizarClick(Sender: TObject);
+begin
+  inherited;
+  if Trim(EdPsqSeqNfs.Text) <> '' then
+  begin
+
+    with CmpNfs, SQL do
+    begin
+
+      Close;
+      Text := sBase +
+        ' and CmpNfs.SeqNfs = ' + QuotedStr(EdPsqSeqNfs.Text) +
+        ' Order by CmpNfs.DteNfs,CmpNfs.SeqNfs';
+      Open;
+
+    end;
+
+  end
+  else
+  begin
+
+    with CmpNfs, SQL do
+    begin
+
+      Close;
+      Text := sBase +
+        ' Order by CmpNfs.DteNfs,CmpNfs.SeqNfs';
+      Open;
+
+    end;
+  end;
+end;
+
+procedure TfmManLro.FormClose(Sender: TObject; var Action: TCloseAction);
+var
+  i: Integer;
+  Found: Integer;
+begin
+  inherited;
+
+  Found := -1;
+
+  for i := 0 to Screen.FormCount - 1 do
+  begin
+
+    if Screen.Forms[i] is TfmManRo2 then
+      Found := i;
+
+  end;
+
+  if Found >= 0 then
+    fmsgErro('Existem Emissões de Nota em Andamento. Por Favor Feche o Formulario.', nil)
+  else
+    Action := CaFree;
+
+end;
+
+procedure TfmManLro.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  fmManLro := nil;
+end;
+
+procedure TfmManLro.DsLibDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+  if CmpNfsCodFor.Value > 0 then
+    pnCodFor.Caption := ' Código do Fornecedor : ' + FNumZeros(IntToStr(CmpNfsCodFor.Value), 7)
+  else
+    pnCodFor.Caption := ' Código do Fornecedor : ';
+end;
+
+procedure TfmManLro.CmpNf2CODITEGetText(Sender: TField; var Text: string;
+  DisplayText: Boolean);
+begin
+  inherited;
+  if CmpNf2CodEmp.Value > 0 then
+    Text := CmpNf2CodGru.Value + '.' + CmpNf2CodSub.Value + '.' + CmpNf2CodPro.Value
+  else
+    Text := ' ';
+end;
+
+procedure TfmManLro.btnRetornarClick(Sender: TObject);
+begin
+  inherited;
+  //Nao Concluido
+
+  if cmpnfs.State = dsBrowse then
+    cmpnfs.Edit;
+
+  CmpNfsSITNFS.AsString := 'Nao Concluido';
+  cmpnfs.Post;
+
+  fmManGDB.dbMain.StartTransaction;
+
+  try
+    cmpnfs.ApplyUpdates;
+    fmManGDB.dbMain.Commit;
+  except
+    fmManGDB.dbMain.Rollback;
+  end;
+
+  cmpnfs.CommitUpdates;
+
+  bAtualizar.OnClick(bAtualizar);
+
+end;
+
+end.

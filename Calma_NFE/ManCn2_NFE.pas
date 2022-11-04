@@ -1,0 +1,1405 @@
+unit ManCn2_NFE;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, ExtCtrls, wwdbdatetimepicker, Mask, DBCtrls, hEdits, Buttons,
+  dxCntner, dxEditor, dxEdLib, dxDBELib, dxExEdtr, AlignEdit, Db, DBTables,
+  Wwquery, FShowPadrao, dxDBColorMemo, dxDBColorCurrencyEdit, dxDBColorEdit,
+  dxDBColorPickEdit;
+
+type
+  TfmManCn2_NFE = class(TfmShowPadrao)
+    PaintBox: TPaintBox;
+    EdFlgSai: TdxDBColorEdit;
+    Label52: TLabel;
+    EdFlgEnt: TdxDBColorEdit;
+    Label53: TLabel;
+    Label1: TLabel;
+    EdCodCf1: TdxDBColorEdit;
+    Label2: TLabel;
+    EdCodCf2: TdxDBColorEdit;
+    Label54: TLabel;
+    EdDesNat: TdxDBColorEdit;
+    Label51: TLabel;
+    EdInsSub: TdxDBColorEdit;
+    Label8: TLabel;
+    Label47: TLabel;
+    EdTotFrt: TdxDBColorCurrencyEdit;
+    Label48: TLabel;
+    EdTotSeg: TdxDBColorCurrencyEdit;
+    Label49: TLabel;
+    EdTotDes: TdxDBColorCurrencyEdit;
+    Label9: TLabel;
+    Label36: TLabel;
+    Label32: TLabel;
+    Label33: TLabel;
+    Label35: TLabel;
+    Label38: TLabel;
+    EdAltVol: TdxDBColorCurrencyEdit;
+    EdUfeTra: TdxDBColorEdit;
+    EdBaiTra: TdxDBColorEdit;
+    EdTenTra: TdxDBColorEdit;
+    EdCgcTra: TdxDBColorEdit;
+    EdNomTra: TdxDBColorEdit;
+    EdEndTra: TdxDBColorEdit;
+    EdCepTra: TdxDBColorEdit;
+    EdEspGer: TdxDBColorEdit;
+    Label39: TLabel;
+    Label3: TLabel;
+    Label41: TLabel;
+    Label40: TLabel;
+    EdMarGer: TdxDBColorEdit;
+    EdNroGer: TdxDBColorEdit;
+    Label37: TLabel;
+    EdInsTra: TdxDBColorEdit;
+    Label34: TLabel;
+    Label44: TLabel;
+    Label42: TLabel;
+    EdInfBrt: TdxDBColorCurrencyEdit;
+    EdPlcTra: TdxDBColorEdit;
+    EdCidTra: TdxDBColorEdit;
+    Label7: TLabel;
+    EdNumTra: TdxDBColorEdit;
+    Label56: TLabel;
+    EdTipFrt: TdxDBColorEdit;
+    EdInfLiq: TdxDBColorCurrencyEdit;
+    EdUfePlc: TdxDBColorEdit;
+    Label5: TLabel;
+    Label43: TLabel;
+    Label11: TLabel;
+    Label57: TLabel;
+    Label61: TLabel;
+    Label58: TLabel;
+    EdBaiCli: TdxDBColorEdit;
+    EdCgeCli: TdxDBColorEdit;
+    EdTeeCli: TdxDBColorEdit;
+    EdEneCli: TdxDBColorEdit;
+    Label62: TLabel;
+    Label59: TLabel;
+    EdCidCli: TdxDBColorEdit;
+    EdIneCli: TdxDBColorEdit;
+    Label60: TLabel;
+    EdUfeCli: TdxDBColorEdit;
+    Label4: TLabel;
+    EdCepCli: TdxDBColorEdit;
+    EdNumCli: TdxDBColorEdit;
+    Label6: TLabel;
+    bcontinuar: TBitBtn;
+    bretornar: TBitBtn;
+    Label125: TLabel;
+    EdId_FinUfe: TdxDBColorEdit;
+    pnId_FinUfe: TPanel;
+    Label126: TLabel;
+    EdId_FinCie: TdxDBColorEdit;
+    sbPsqCie: TSpeedButton;
+    pnNomCie: TPanel;
+    EdNomCie: TdxDBColorEdit;
+    EdRefCli: TdxDBColorEdit;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    EdBafCli: TdxDBColorEdit;
+    EdRffCli: TdxDBColorEdit;
+    EdTefCli: TdxDBColorEdit;
+    EdEnfCli: TdxDBColorEdit;
+    Label18: TLabel;
+    EdCifCli: TdxDBColorEdit;
+    Label20: TLabel;
+    EdUffCli: TdxDBColorEdit;
+    Label21: TLabel;
+    EdCefCli: TdxDBColorEdit;
+    EdNrfCli: TdxDBColorEdit;
+    Label22: TLabel;
+    Label23: TLabel;
+    EdId_FinUff: TdxDBColorEdit;
+    pnId_FinUff: TPanel;
+    Label24: TLabel;
+    EdId_FinCif: TdxDBColorEdit;
+    sbPsqCif: TSpeedButton;
+    pnNomCif: TPanel;
+    EdNomCif: TdxDBColorEdit;
+    Label10: TLabel;
+    EdRefTra: TdxDBColorEdit;
+    Label25: TLabel;
+    EdId_TraUfe: TdxDBColorEdit;
+    pnId_TraUfe: TPanel;
+    Label26: TLabel;
+    EdId_TraCie: TdxDBColorEdit;
+    sbTraCie: TSpeedButton;
+    EdNomCia: TdxDBColorEdit;
+    pnNomCia: TPanel;
+    Label17: TLabel;
+    EdCodTra: TdxDBColorEdit;
+    Label31: TLabel;
+    LbText: TLabel;
+    edLocEmb: TdxDBColorEdit;
+    Label19: TLabel;
+    EdUfEMB: TdxDBColorPickEdit;
+    Label89: TLabel;
+    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure bcontinuarClick(Sender: TObject);
+    procedure EdCgcTraExit(Sender: TObject);
+    procedure EdCgeCliExit(Sender: TObject);
+    procedure PaintBoxPaint(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure bRetornarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure EdCgeCliEnter(Sender: TObject);
+    procedure EdCodTraExit(Sender: TObject);
+    procedure EdCodTraKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EdCodTraKeyPress(Sender: TObject; var Key: Char);
+    procedure EdCodTraEnter(Sender: TObject);
+    procedure EdDesNatEnter(Sender: TObject);
+    procedure EdUfeTraExit(Sender: TObject);
+    procedure EdId_TraCieExit(Sender: TObject);
+    procedure EdId_TraCieKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EdId_FinCifExit(Sender: TObject);
+    procedure EdId_FinCifKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EdId_FinCieExit(Sender: TObject);
+    procedure EdId_FinCieKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EdUffCliExit(Sender: TObject);
+    procedure EdUfeCliExit(Sender: TObject);
+    procedure sbPsqCifClick(Sender: TObject);
+    procedure sbPsqCieClick(Sender: TObject);
+    procedure sbTraCieClick(Sender: TObject);
+  private
+    CodTra_Ant: integer;
+    UfeTra_Ant: string;
+    UffCli_Ant: string;
+    UfeCli_Ant: string;
+    Id_TraCie_Ant: integer;
+    Id_FinCif_Ant: integer;
+    Id_FinCie_Ant: integer;
+    {Private declarations}
+  public
+    Finalizar: string;
+    {Public declarations}
+  end;
+
+var
+  fmManCn2_NFE: TfmManCn2_NFE;
+
+implementation
+
+uses dxDemoUtils, Bbgeral, Bbmensag, Bbfuncao, ManGDB, AuxIni, AuxPsq, ManGr1_NFE;
+
+{$R *.DFM}
+
+procedure TfmManCn2_NFE.FormCreate(Sender: TObject);
+begin
+  inherited;
+
+  Finalizar := 'N';
+
+  fmManGr1_NFE.FatGer.Edit;
+
+end;
+
+procedure TfmManCn2_NFE.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+
+  if key = 27 then
+    bRetornar.OnClick(Sender);
+
+  if key = 123 then
+    bContinuar.OnClick(Sender);
+
+end;
+
+procedure TfmManCn2_NFE.bcontinuarClick(Sender: TObject);
+var
+  Id_EstPis: integer;
+  Id_EstCof: integer;
+begin
+
+  ActiveControl := nil;
+
+  fmManGr1_NFE.FatGerCodCf1.Value := Trim(fmManGr1_NFE.FatGerCodCf1.Value);
+  fmManGr1_NFE.FatGerCodCf2.Value := Trim(fmManGr1_NFE.FatGerCodCf2.Value);
+  fmManGr1_NFE.FatGerDesNat.Value := Trim(fmManGr1_NFE.FatGerDesNat.Value);
+  fmManGr1_NFE.FatGerInsSub.Value := Trim(fmManGr1_NFE.FatGerInsSub.Value);
+  fmManGr1_NFE.FatGerNomTra.Value := Trim(fmManGr1_NFE.FatGerNomTra.Value);
+  fmManGr1_NFE.FatGerCgcTra.Value := Trim(fmManGr1_NFE.FatGerCgcTra.Value);
+  fmManGr1_NFE.FatGerInsTra.Value := Trim(fmManGr1_NFE.FatGerInsTra.Value);
+  fmManGr1_NFE.FatGerTenTra.Value := Trim(fmManGr1_NFE.FatGerTenTra.Value);
+  fmManGr1_NFE.FatGerEndTra.Value := Trim(fmManGr1_NFE.FatGerEndTra.Value);
+  fmManGr1_NFE.FatGerRefTra.Value := Trim(fmManGr1_NFE.FatGerRefTra.Value);
+  fmManGr1_NFE.FatGerNumTra.Value := Trim(fmManGr1_NFE.FatGerNumTra.Value);
+  fmManGr1_NFE.FatGerBaiTra.Value := Trim(fmManGr1_NFE.FatGerBaiTra.Value);
+  fmManGr1_NFE.FatGerCidTra.Value := Trim(fmManGr1_NFE.FatGerCidTra.Value);
+  fmManGr1_NFE.FatGerUfeTra.Value := Trim(fmManGr1_NFE.FatGerUfeTra.Value);
+  fmManGr1_NFE.FatGerCepTra.Value := Trim(fmManGr1_NFE.FatGerCepTra.Value);
+  fmManGr1_NFE.FatGerNroGer.Value := Trim(fmManGr1_NFE.FatGerNroGer.Value);
+  fmManGr1_NFE.FatGerEspGer.Value := Trim(fmManGr1_NFE.FatGerEspGer.Value);
+  fmManGr1_NFE.FatGerMarGer.Value := Trim(fmManGr1_NFE.FatGerMarGer.Value);
+  fmManGr1_NFE.FatGerPlcTra.Value := Trim(fmManGr1_NFE.FatGerPlcTra.Value);
+  fmManGr1_NFE.FatGerUfePlc.Value := Trim(fmManGr1_NFE.FatGerUfePlc.Value);
+  fmManGr1_NFE.FatGerTefCli.Value := Trim(fmManGr1_NFE.FatGerTefCli.Value);
+  fmManGr1_NFE.FatGerEnfCli.Value := Trim(fmManGr1_NFE.FatGerEnfCli.Value);
+  fmManGr1_NFE.FatGerRffCli.Value := Trim(fmManGr1_NFE.FatGerRffCli.Value);
+  fmManGr1_NFE.FatGerNrfCli.Value := Trim(fmManGr1_NFE.FatGerNrfCli.Value);
+  fmManGr1_NFE.FatGerBafCli.Value := Trim(fmManGr1_NFE.FatGerBafCli.Value);
+  fmManGr1_NFE.FatGerCifCli.Value := Trim(fmManGr1_NFE.FatGerCifCli.Value);
+  fmManGr1_NFE.FatGerUffCli.Value := Trim(fmManGr1_NFE.FatGerUffCli.Value);
+  fmManGr1_NFE.FatGerCefCli.Value := Trim(fmManGr1_NFE.FatGerCefCli.Value);
+  fmManGr1_NFE.FatGerTenCli.Value := Trim(fmManGr1_NFE.FatGerTenCli.Value);
+  fmManGr1_NFE.FatGerEndCli.Value := Trim(fmManGr1_NFE.FatGerEndCli.Value);
+  fmManGr1_NFE.FatGerRefCli.Value := Trim(fmManGr1_NFE.FatGerRefCli.Value);
+  fmManGr1_NFE.FatGerNumCli.Value := Trim(fmManGr1_NFE.FatGerNumCli.Value);
+  fmManGr1_NFE.FatGerCgeCli.Value := Trim(fmManGr1_NFE.FatGerCgeCli.Value);
+  fmManGr1_NFE.FatGerIneCli.Value := Trim(fmManGr1_NFE.FatGerIneCli.Value);
+  fmManGr1_NFE.FatGerBaiCli.Value := Trim(fmManGr1_NFE.FatGerBaiCli.Value);
+  fmManGr1_NFE.FatGerCidCli.Value := Trim(fmManGr1_NFE.FatGerCidCli.Value);
+  fmManGr1_NFE.FatGerUfeCli.Value := Trim(fmManGr1_NFE.FatGerUfeCli.Value);
+  fmManGr1_NFE.FatGerCepCli.Value := Trim(fmManGr1_NFE.FatGerCepCli.Value);
+
+
+  if (Trim(fmManGr1_NFE.FatGerTenTra.Value) <> '') or
+    (Trim(fmManGr1_NFE.FatGerEndTra.Value) <> '') or
+    (Trim(fmManGr1_NFE.FatGerRefTra.Value) <> '') or
+    (Trim(fmManGr1_NFE.FatGerBaiTra.Value) <> '') or
+    (Trim(fmManGr1_NFE.FatGerCidTra.Value) <> '') or
+    (Trim(fmManGr1_NFE.FatGerUfeTra.Value) <> '') or
+    (Trim(fmManGr1_NFE.FatGerCepTra.Value) <> '') then
+  begin
+
+    if Trim(fmManGr1_NFE.FatGerUfeTra.Value) = '' then
+      fmsgErro('Campo de preenchimento obrigatório não informado.', EdUfeTra);
+
+    if fmManGr1_NFE.FatGerId_TraUfe.Value = 0 then
+      fmsgErro('Campo de preenchimento obrigatório não informado.', EdUfeTra);
+
+    if fmManGr1_NFE.FatGerId_TraCie.Value = 0 then
+      fmsgErro('Campo de preenchimento obrigatório não informado.', EdId_TraCie);
+
+  end;
+
+  if Trim(fmManGr1_NFE.FatGerBafCli.Value) = '' then
+    fmsgErro('Campo de preenchimento obrigatório não informado.', EdBafCli);
+
+  if Trim(fmManGr1_NFE.FatGerCifCli.Value) = '' then
+    fmsgErro('Campo de preenchimento obrigatório não informado.', EdCifCli);
+
+  if Trim(fmManGr1_NFE.FatGerNrfCli.Value) = '' then
+    fmsgErro('Campo de preenchimento obrigatório não informado.', EdNrfCli);
+
+  if fmManGr1_NFE.FatGerId_FinUff.Value = 0 then
+    fmsgErro('Campo de preenchimento obrigatório não informado.', EdUffCli);
+
+
+
+
+  if Trim(fmManGr1_NFE.FatGerCEPCLI.AsString) <> '' then
+  begin
+
+    if Trim(fmManGr1_NFE.FatGerBaiCli.AsString) = '' then
+      fmsgErro('Campo de preenchimento obrigatório não informado. Bairro de entrega.', EdBaiCli);
+
+    if Trim(fmManGr1_NFE.FatGerCidCli.AsString) = '' then
+      fmsgErro('Campo de preenchimento obrigatório não informado. Município de entrega.', EdCidCli);
+
+    if Trim(fmManGr1_NFE.FatGerNumCli.AsString) = '' then
+      fmsgErro('Campo de preenchimento obrigatório não informado. Nro do endereço de entrega.', EdNumCli);
+
+    if fmManGr1_NFE.FatGerId_FinUfe.AsInteger = 0 then
+      fmsgErro('Campo de preenchimento obrigatório não informado. Cód. UF de entrega.', EdId_FinUfe);
+
+    if fmManGr1_NFE.FatGerId_FinCie.AsInteger = 0 then
+      fmsgErro('Campo de preenchimento obrigatório não informado. Cód. munucipio de entrega.', EdId_FinCie);
+  end
+  else
+  begin
+     if MessageBox(handle,'Deseja realemnte emitir sem endereço de entrega.','Valida Entrega',MB_YESNO+MB_ICONEXCLAMATION) = IDNO then
+     begin
+       fmsgErro('Campo de preenchimento obrigatório não informado. CEP de entrega.', EdCepCli);
+       abort;
+     end;
+  end;
+
+
+
+  with fmManGr1_NFE.FatGer do
+  begin
+
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+    ;
+
+    try
+
+      ApplyUpdates; {Tenta aplicar as alterações}
+      ;
+
+      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+      ;
+
+    except
+
+      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+      ;
+
+      if fmManGr1_NFE.FatGer.State = dsBrowse then
+        fmManGr1_NFE.FatGer.Edit;
+
+      EdDesNat.SetFocus;
+
+      raise;
+
+    end;
+
+    CommitUpdates; {sucesso!, limpa o cache...}
+
+  end;
+
+  fmManGr1_NFE.FatGer.Close;
+  fmManGr1_NFE.FatGer.Open;
+
+  Finalizar := 'S';
+
+  Close;
+
+end;
+
+procedure TfmManCn2_NFE.FormShow(Sender: TObject);
+begin
+  inherited;
+
+  CodTra_Ant := fmManGr1_NFE.FatGerCodTra.Value;
+  UfeTra_Ant := fmManGr1_NFE.FatGerUfeTra.Value;
+  UffCli_Ant := fmManGr1_NFE.FatGerUffCli.Value;
+  UfeCli_Ant := fmManGr1_NFE.FatGerUfeCli.Value;
+
+  Id_TraCie_Ant := fmManGr1_NFE.FatGerId_TraCie.Value;
+  Id_FinCif_Ant := fmManGr1_NFE.FatGerId_FinCif.Value;
+  Id_FinCie_Ant := fmManGr1_NFE.FatGerId_FinCie.Value;
+
+  if fmManGr1_NFE.FatGerCodCf1.AsString[1] = '7' then
+  begin
+    edUfEmb.Enabled := True;
+    edLocEmb.Enabled := True;
+  end
+  else
+  begin
+    edUfEmb.Enabled := False;
+    edLocEmb.Enabled := False;
+  end;
+
+  if Trim(fmManGr1_NFE.FatGerUfeTra.Value) <> '' then
+  begin
+
+    if fmManGr1_NFE.FatGerId_TraUfe.Value = 0 then
+    begin
+
+      with fmManGr1_NFE.quSQL, SQL do
+      begin
+
+        Close;
+        Text := ' Select FinUfe.Id_FinUfe From FinUfe Where FinUfe.SigUfe = ' + QuotedStr(fmManGr1_NFE.FatGerUfeTra.Value);
+        Open;
+
+        if FieldbyName('Id_FinUfe').AsInteger > 0 then
+          fmManGr1_NFE.FatGerId_TraUfe.Value := FieldbyName('Id_FinUfe').AsInteger
+        else
+          fmManGr1_NFE.FatGerId_TraUfe.Clear;
+
+      end;
+    end;
+  end;
+
+  if Trim(fmManGr1_NFE.FatGerUffCli.Value) <> '' then
+  begin
+
+    if fmManGr1_NFE.FatGerId_FinUff.Value = 0 then
+    begin
+
+      with fmManGr1_NFE.quSQL, SQL do
+      begin
+
+        Close;
+        Text := ' Select FinUfe.Id_FinUfe From FinUfe Where FinUfe.SigUfe = ' + QuotedStr(fmManGr1_NFE.FatGerUffCli.Value);
+        Open;
+
+        if FieldbyName('Id_FinUfe').AsInteger > 0 then
+          fmManGr1_NFE.FatGerId_FinUff.Value := FieldbyName('Id_FinUfe').AsInteger
+        else
+          fmManGr1_NFE.FatGerId_FinUff.Clear;
+
+      end;
+    end;
+  end;
+
+  if Trim(fmManGr1_NFE.FatGerUfeCli.Value) <> '' then
+  begin
+
+    if fmManGr1_NFE.FatGerId_FinUfe.Value = 0 then
+    begin
+
+      with fmManGr1_NFE.quSQL, SQL do
+      begin
+
+        Close;
+        Text := ' Select FinUfe.Id_FinUfe From FinUfe Where FinUfe.SigUfe = ' + QuotedStr(fmManGr1_NFE.FatGerUfeCli.Value);
+        Open;
+
+        if FieldbyName('Id_FinUfe').AsInteger > 0 then
+          fmManGr1_NFE.FatGerId_FinUfe.Value := FieldbyName('Id_FinUfe').AsInteger
+        else
+          fmManGr1_NFE.FatGerId_FinUfe.Clear;
+
+      end;
+    end;
+  end;
+
+  if fmManGr1_NFE.FatGerId_TraUfe.Value > 0 then
+    pnId_TraUfe.Caption := IntToStr(fmManGr1_NFE.FatGerId_TraUfe.Value);
+  if fmManGr1_NFE.FatGerId_FinUff.Value > 0 then
+    pnId_FinUff.Caption := IntToStr(fmManGr1_NFE.FatGerId_FinUff.Value);
+  if fmManGr1_NFE.FatGerId_FinUfe.Value > 0 then
+    pnId_FinUfe.Caption := IntToStr(fmManGr1_NFE.FatGerId_FinUfe.Value);
+
+  if Id_TraCie_Ant > 0 then
+  begin
+
+    with fmManGr1_NFE.quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FinCie.NomCie,' +
+        '        FinCie.SigNfe ' +
+        ' From FinCie' +
+        ' Where FinCie.Id_FinCie = ' + QuotedStr(IntToStr(Id_TraCie_Ant));
+      Open;
+
+      pnNomCia.Caption := Trim(FieldbyName('NomCie').AsString) + ' IBGE: ' + Trim(FieldbyName('SigNFE').AsString);
+
+    end;
+  end;
+
+  if Id_FinCif_Ant > 0 then
+  begin
+
+    with fmManGr1_NFE.quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FinCie.NomCie,' +
+        '        FinCie.SigNfe ' +
+        ' From FinCie' +
+        ' Where FinCie.Id_FinCie = ' + QuotedStr(IntToStr(Id_FinCif_Ant));
+      Open;
+
+      pnNomCif.Caption := Trim(FieldbyName('NomCie').AsString) + ' IBGE: ' + Trim(FieldbyName('SigNFE').AsString);
+
+    end;
+  end;
+
+  if Id_FinCie_Ant > 0 then
+  begin
+
+    with fmManGr1_NFE.quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FinCie.NomCie,' +
+        '        FinCie.SigNfe ' +
+        ' From FinCie' +
+        ' Where FinCie.Id_FinCie = ' + QuotedStr(IntToStr(Id_FinCie_Ant));
+      Open;
+
+      pnNomCie.Caption := Trim(FieldbyName('NomCie').AsString) + ' IBGE: ' + Trim(FieldbyName('SigNFE').AsString);
+
+    end;
+  end;
+
+  fmManGr1_NFE.FatGer.Edit;
+
+  with fmManGr1_NFE.quSQL, SQL do
+  begin
+
+    Close;
+    Text := ' Select FatGe2.CodCfo,' +
+      '        Count(*) as QtdReg' +
+      ' From FatGe2' +
+      ' Where FatGe2.CodEmp = ' + QuotedStr(IntToStr(fmManGr1_NFE.FatGerCodEmp.Value)) +
+      '   and FatGe2.DteGer = ' + QuotedStr(fDateToSQL(fmManGr1_NFE.FatGerDteGer.Value)) +
+      '   and FatGe2.NumGer = ' + QuotedStr(IntToStr(fmManGr1_NFE.FatGerNumGer.Value)) +
+      ' Group by FatGe2.CodCfo' +
+      ' Order by Count(*) Desc';
+    Open;
+    First;
+
+  end;
+
+  if Trim(fmManGr1_NFE.quSQL.FieldbyName('CodCfo').AsString) <> '' then
+  begin
+
+    fmManGr1_NFE.FatGerCodCf1.Value := Trim(fmManGr1_NFE.quSQL.FieldbyName('CodCfo').AsString);
+
+    if not fmManGr1_NFE.quSQL.EOF then
+    begin
+
+      fmManGr1_NFE.quSQL.Next;
+
+      if Trim(fmManGr1_NFE.quSQL.FieldbyName('CodCfo').AsString) <> '' then
+      begin
+
+        if Trim(fmManGr1_NFE.quSQL.FieldbyName('CodCfo').AsString) <> fmManGr1_NFE.FatGerCodCf1.Value then
+          fmManGr1_NFE.FatGerCodCf2.Value := Trim(fmManGr1_NFE.quSQL.FieldbyName('CodCfo').AsString);
+
+        if not fmManGr1_NFE.quSQL.EOF then
+        begin
+
+          fmManGr1_NFE.quSQL.Next;
+
+          if Trim(fmManGr1_NFE.quSQL.FieldbyName('CodCfo').AsString) <> '' then
+          begin
+
+            if Trim(fmManGr1_NFE.quSQL.FieldbyName('CodCfo').AsString) <> fmManGr1_NFE.FatGerCodCf1.Value then
+            begin
+
+              if Trim(fmManGr1_NFE.quSQL.FieldbyName('CodCfo').AsString) <> fmManGr1_NFE.FatGerCodCf2.Value then
+                fmManGr1_NFE.FatGerCodCf2.Value := Trim(fmManGr1_NFE.FatGerCodCf2.Value) + '/' + Trim(fmManGr1_NFE.quSQL.FieldbyName('CodCfo').AsString);
+
+            end;
+          end;
+        end;
+      end;
+    end;
+  end;
+
+  fmManGr1_NFE.quSQL.Close;
+
+  if TrimLeft(TrimRight(fmManGr1_NFE.FatGerCgeCli.Value)) <> '' then
+  begin
+
+    if Length(TrimLeft(TrimRight(fmManGr1_NFE.FatGerCgeCli.Value))) > 11 then
+      fmManGr1_NFE.FatGerCgeCli.EditMask := '!99.999.999/9999\-99;0;'
+    else
+      fmManGr1_NFE.FatGerCgeCli.EditMask := '!999.999.999\-99;0;';
+
+  end
+  else
+    fmManGr1_NFE.FatGerCgeCli.EditMask := '';
+
+  if TrimLeft(TrimRight(fmManGr1_NFE.FatGerCgcTra.Value)) <> '' then
+  begin
+
+    if TrimLeft(TrimRight(fmManGr1_NFE.FatGerCgcTra.Value)) <> '' then
+      fmManGr1_NFE.FatGerCgcTra.EditMask := '!99.999.999/9999\-99;0;'
+    else
+      fmManGr1_NFE.FatGerCgcTra.EditMask := '';
+
+  end
+  else
+    fmManGr1_NFE.FatGerCgcTra.EditMask := '';
+
+  EdDesNat.SetFocus;
+
+end;
+
+procedure TfmManCn2_NFE.EdCgeCliExit(Sender: TObject);
+begin
+  if TrimLeft(TrimRight(fmManGr1_NFE.FatGerCgeCli.Value)) <> '' then
+  begin
+
+    if Length(TrimLeft(TrimRight(fmManGr1_NFE.FatGerCgeCli.Value))) > 11 then
+      fmManGr1_NFE.FatGerCgeCli.EditMask := '!99.999.999/9999\-99;0;'
+    else
+      fmManGr1_NFE.FatGerCgeCli.EditMask := '!999.999.999\-99;0;';
+
+  end
+  else
+    fmManGr1_NFE.FatGerCgeCli.EditMask := '';
+end;
+
+procedure TfmManCn2_NFE.PaintBoxPaint(Sender: TObject);
+begin
+  with Sender as TPaintBox do
+    FillGrayGradientRect(PaintBox.Canvas, PaintBox.ClientRect, PaintBox.Color);
+end;
+
+procedure TfmManCn2_NFE.EdCgcTraExit(Sender: TObject);
+begin
+  if TrimLeft(TrimRight(fmManGr1_NFE.FatGerCgcTra.Value)) <> '' then
+  begin
+
+    if TrimLeft(TrimRight(fmManGr1_NFE.FatGerCgcTra.Value)) <> '' then
+      fmManGr1_NFE.FatGerCgcTra.EditMask := '!99.999.999/9999\-99;0;'
+    else
+      fmManGr1_NFE.FatGerCgcTra.EditMask := '';
+
+  end
+  else
+    fmManGr1_NFE.FatGerCgcTra.EditMask := '';
+end;
+
+procedure TfmManCn2_NFE.bRetornarClick(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TfmManCn2_NFE.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGer.State <> dsBrowse then
+    fmManGr1_NFE.FatGer.CancelUpdates;
+end;
+
+procedure TfmManCn2_NFE.EdCgeCliEnter(Sender: TObject);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGerCgeCli.EditMask <> '' then
+    fmManGr1_NFE.FatGerCgeCli.EditMask := '';
+end;
+
+procedure TfmManCn2_NFE.EdCodTraExit(Sender: TObject);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGerCodTra.Value <> CodTra_Ant then
+  begin
+
+    CodTra_Ant := fmManGr1_NFE.FatGerCodTra.Value;
+
+    if fmManGr1_NFE.FatGerCodTra.Value > 0 then
+    begin
+
+      with fmManGr1_NFE.quSQL, SQL do
+      begin
+
+        Close;
+        Text :=
+          ' Select FinTra.NomTra,' +
+          '  FinTra.CgcTra,' +
+          '  FinTra.InsTra,' +
+          '  FinTra.CepTra,' +
+          '  FinTra.TenTra,' +
+          '  FinTra.EndTra,' +
+          '  FinTra.NumTra,' +
+          '  FinTra.RefTra,' +
+          '  FinTra.BaiTra,' +
+          '  FinTra.CidTra,' +
+          '  FinTra.SigUfe, ' +
+          '  FinTra.Id_FinCie,' +
+          '  FinTra.id_finufe ' +
+          ' From FinTra' +
+          '  Where FinTra.CodTra = ' + QuotedStr(IntToStr(CodTra_Ant));
+        Open;
+
+        fmManGr1_NFE.FatGerNomTra.AsString := Trim(FieldbyName('NomTra').AsString);
+        fmManGr1_NFE.FatGerCgcTra.AsString := Trim(FieldbyName('CgcTra').AsString);
+        fmManGr1_NFE.FatGerInsTra.AsString := Trim(FieldbyName('InsTra').AsString);
+        fmManGr1_NFE.FatGerTenTra.AsString := Trim(FieldbyName('TenTra').AsString);
+        fmManGr1_NFE.FatGerEndTra.AsString := Trim(FieldbyName('EndTra').AsString);
+        fmManGr1_NFE.FatGerNumTra.AsString := Trim(FieldbyName('NumTra').AsString);
+        fmManGr1_NFE.FatGerRefTra.AsString := Trim(FieldbyName('RefTra').AsString);
+        fmManGr1_NFE.FatGerBaiTra.AsString := Trim(FieldbyName('BaiTra').AsString);
+        fmManGr1_NFE.FatGerCidTra.AsString := Trim(FieldbyName('CidTra').AsString);
+        fmManGr1_NFE.FatGerUfeTra.AsString := Trim(FieldbyName('SigUfe').AsString);
+        fmManGr1_NFE.FatGerCepTra.AsString := Trim(FieldbyName('CepTra').AsString);
+
+        UfeTra_Ant := fmManGr1_NFE.FatGerUfeTra.Value;
+
+        if FieldbyName('Id_FinUfe').AsInteger > 0 then
+        begin
+
+          fmManGr1_NFE.FatGerId_TraUfe.Value := FieldbyName('Id_FinUfe').AsInteger;
+
+          pnId_TraUfe.Caption := IntToStr(fmManGr1_NFE.FatGerId_TraUfe.Value);
+
+        end;
+
+        if FieldbyName('Id_FinCie').AsInteger > 0 then
+        begin
+
+          fmManGr1_NFE.FatGerId_TraCie.Value := FieldbyName('Id_FinCie').AsInteger;
+
+          Id_TraCie_Ant := fmManGr1_NFE.FatGerId_TraCie.Value;
+
+          with fmManGr1_NFE.quSQL, SQL do
+          begin
+
+            Close;
+            Text := ' Select FinCie.NomCie,' +
+              '        FinCie.SigNfe ' +
+              ' From FinCie' +
+              ' Where FinCie.Id_FinCie = ' + QuotedStr(IntToStr(Id_TraCie_Ant));
+            Open;
+
+            pnNomCia.Caption := Trim(FieldbyName('NomCie').AsString) + ' IBGE: ' + Trim(FieldbyName('SigNFE').AsString);
+
+          end;
+        end;
+
+        EdNomTra.Text := fmManGr1_NFE.FatGerNomTra.Value;
+        EdCgcTra.Text := fmManGr1_NFE.FatGerCgcTra.Value;
+        EdInsTra.Text := fmManGr1_NFE.FatGerInsTra.Value;
+        EdTenTra.Text := fmManGr1_NFE.FatGerTenTra.Value;
+        EdEndTra.Text := fmManGr1_NFE.FatGerEndTra.Value;
+        EdNumTra.Text := fmManGr1_NFE.FatGerNumTra.Value;
+        EdRefTra.Text := fmManGr1_NFE.FatGerRefTra.Value;
+        EdBaiTra.Text := fmManGr1_NFE.FatGerBaiTra.Value;
+        EdCidTra.Text := fmManGr1_NFE.FatGerCidTra.Value;
+        EdUfeTra.Text := fmManGr1_NFE.FatGerUfeTra.Value;
+        EdCepTra.Text := fmManGr1_NFE.FatGerCepTra.Value;
+
+        if fmManGr1_NFE.FatGerId_TraCie.Value > 0 then
+          EdId_TraCie.Text := IntToStr(fmManGr1_NFE.FatGerId_TraCie.Value);
+
+      end;
+
+    end
+    else
+    begin
+
+      fmManGr1_NFE.FatGerNomTra.Clear;
+      fmManGr1_NFE.FatGerCgcTra.Clear;
+      fmManGr1_NFE.FatGerInsTra.Clear;
+      fmManGr1_NFE.FatGerTenTra.Clear;
+      fmManGr1_NFE.FatGerEndTra.Clear;
+      fmManGr1_NFE.FatGerRefTra.Clear;
+      fmManGr1_NFE.FatGerBaiTra.Clear;
+      fmManGr1_NFE.FatGerCidTra.Clear;
+      fmManGr1_NFE.FatGerUfeTra.Clear;
+      fmManGr1_NFE.FatGerCepTra.Clear;
+
+      Id_TraCie_Ant := fmManGr1_NFE.FatGerId_TraCie.Value;
+
+      pnId_TraUfe.Caption := '';
+
+      pnNomCia.Caption := '';
+
+    end;
+  end;
+end;
+
+procedure TfmManCn2_NFE.EdCodTraKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+  CodTra: integer;
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmAuxIni := TfmAuxIni.Create(Self);
+
+      fmAuxIni.TipoPesq := 'T';
+
+      fmAuxIni.ShowModal;
+
+      if fmAuxIni.CodTra > 0 then
+      begin
+
+        CodTra := fmAuxIni.CodTra;
+
+        fmManGr1_NFE.FatGerCodTra.Value := fmAuxIni.CodTra;
+
+        EdCodTra.Text := IntToStr(fmAuxIni.CodTra);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxIni);
+
+    end;
+
+    if CodTra > 0 then
+      EdCodTra.OnExit(Sender);
+
+  end;
+
+  if key = 113 then
+  begin {F2 - Inteligente}
+
+    try
+
+      fmAuxPsq := TfmAuxPsq.Create(Self);
+
+      fmAuxPsq.TipoPesq := 'T';
+
+      fmAuxPsq.ShowModal;
+
+      if fmAuxPsq.CodTra > 0 then
+      begin
+
+        CodTra := fmAuxPsq.CodTra;
+
+        fmManGr1_NFE.FatGerCodTra.Value := fmAuxPsq.CodTra;
+
+        EdCodTra.Text := IntToStr(fmAuxPsq.CodTra);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxPsq);
+
+    end;
+
+    if CodTra > 0 then
+      EdCodTra.OnExit(Sender);
+
+  end;
+end;
+
+procedure TfmManCn2_NFE.EdCodTraKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if not (key in ['0'..'9']) then
+    key := #0;
+end;
+
+procedure TfmManCn2_NFE.EdCodTraEnter(Sender: TObject);
+begin
+  inherited;
+  LbText.Caption := 'F1-Iniciais F2-Inteligente';
+end;
+
+procedure TfmManCn2_NFE.EdDesNatEnter(Sender: TObject);
+begin
+  inherited;
+  LbText.Caption := '';
+end;
+
+procedure TfmManCn2_NFE.EdUfeTraExit(Sender: TObject);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGerUfeTra.Value <> UfeTra_Ant then
+  begin
+
+    UfeTra_Ant := fmManGr1_NFE.FatGerUfeTra.Value;
+
+    fmManGr1_NFE.FatGerId_TraCie.Clear;
+
+    with fmManGr1_NFE.quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FinUfe.Id_FinUfe From FinUfe Where FinUfe.SigUfe = ' + QuotedStr(fmManGr1_NFE.FatGerUfeTra.Value);
+      Open;
+
+      if FieldbyName('Id_FinUfe').AsInteger > 0 then
+        fmManGr1_NFE.FatGerId_TraUfe.Value := FieldbyName('Id_FinUfe').AsInteger
+      else
+        fmManGr1_NFE.FatGerId_TraUfe.Clear;
+
+    end;
+
+    if fmManGr1_NFE.FatGerId_TraUfe.Value > 0 then
+      pnId_TraUfe.Caption := IntToStr(fmManGr1_NFE.FatGerId_TraUfe.Value);
+
+  end;
+end;
+
+procedure TfmManCn2_NFE.EdId_TraCieExit(Sender: TObject);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGerId_TraCie.Value <> Id_TraCie_Ant then
+  begin
+
+    Id_TraCie_Ant := fmManGr1_NFE.FatGerId_TraCie.Value;
+
+    with fmManGr1_NFE.quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FinCie.NomCie,' +
+        '        FinCie.SigNfe ' +
+        ' From FinCie' +
+        ' Where FinCie.Id_FinCie = ' + QuotedStr(IntToStr(Id_TraCie_Ant));
+      Open;
+
+      pnNomCia.Caption := Trim(FieldbyName('NomCie').AsString) + ' IBGE: ' + Trim(FieldbyName('SigNFE').AsString);
+
+    end;
+  end;
+end;
+
+procedure TfmManCn2_NFE.EdId_TraCieKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    if fmManGr1_NFE.FatGerId_TraUfe.Value > 0 then
+    begin
+
+      try
+
+        fmAuxIni := TfmAuxIni.Create(Self);
+
+        fmAuxIni.TipoPesq := 'Municipios';
+
+        fmAuxIni.Id_FinUfe := fmManGr1_NFE.FatGerId_TraUfe.Value;
+
+        fmAuxIni.ShowModal;
+
+        if fmAuxIni.Id_FinCie > 0 then
+        begin
+
+          fmManGr1_NFE.FatGerId_TraCie.Value := fmAuxIni.Id_FinCie;
+
+          pnNomCia.Caption := Trim(fmAuxIni.NomCie) + ' IBGE: ' + Trim(fmAuxIni.SigNFE);
+
+        end;
+
+      finally
+
+        FreeAndNil(fmAuxIni);
+
+      end;
+
+      EdId_TraCie.SetFocus;
+
+    end
+    else
+      fmsgErro('Código para UF da NFe não informado.', EdId_TraCie);
+
+  end;
+
+  if key = 113 then
+  begin {F2 - Inteligente}
+
+    if fmManGr1_NFE.FatGerId_TraUfe.Value > 0 then
+    begin
+
+      try
+
+        fmAuxPsq := TfmAuxPsq.Create(Self);
+
+        fmAuxPsq.TipoPesq := 'Municipios';
+
+        fmAuxPsq.Id_FinUfe := fmManGr1_NFE.FatGerId_TraUfe.Value;
+
+        fmAuxPsq.ShowModal;
+
+        if fmAuxPsq.Id_FinCie > 0 then
+        begin
+
+          fmManGr1_NFE.FatGerId_TraCie.Value := fmAuxPsq.Id_FinCie;
+
+          pnNomCia.Caption := Trim(fmAuxPsq.NomCie) + ' IBGE: ' + Trim(fmAuxPsq.SigNFE);
+
+        end;
+
+      finally
+
+        FreeAndNil(fmAuxPsq);
+
+      end;
+
+      EdId_TraCie.SetFocus;
+
+    end
+    else
+      fmsgErro('Código para UF da NFe não informado.', EdId_TraCie);
+
+  end;
+end;
+
+procedure TfmManCn2_NFE.EdId_FinCifExit(Sender: TObject);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGerId_FinCif.Value <> Id_FinCif_Ant then
+  begin
+
+    Id_FinCif_Ant := fmManGr1_NFE.FatGerId_FinCif.Value;
+
+    with fmManGr1_NFE.quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FinCie.NomCie,' +
+        '        FinCie.SigNfe ' +
+        ' From FinCie' +
+        ' Where FinCie.Id_FinCie = ' + QuotedStr(IntToStr(Id_FinCif_Ant));
+      Open;
+
+      pnNomCif.Caption := Trim(FieldbyName('NomCie').AsString) + ' IBGE: ' + Trim(FieldbyName('SigNFE').AsString);
+
+    end;
+  end;
+end;
+
+procedure TfmManCn2_NFE.EdId_FinCifKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    if fmManGr1_NFE.FatGerId_FinUff.Value > 0 then
+    begin
+
+      try
+
+        fmAuxIni := TfmAuxIni.Create(Self);
+
+        fmAuxIni.TipoPesq := 'Municipios';
+
+        fmAuxIni.Id_FinUfe := fmManGr1_NFE.FatGerId_FinUff.Value;
+
+        fmAuxIni.ShowModal;
+
+        if fmAuxIni.Id_FinCie > 0 then
+        begin
+
+          fmManGr1_NFE.FatGerId_FinCif.Value := fmAuxIni.Id_FinCie;
+
+          pnNomCif.Caption := Trim(fmAuxIni.NomCie) + ' IBGE: ' + Trim(fmAuxIni.SigNFE);
+
+        end;
+
+      finally
+
+        FreeAndNil(fmAuxIni);
+
+      end;
+
+      EdId_FinCif.SetFocus;
+
+    end
+    else
+      fmsgErro('Código para UF da NFe não informado.', EdId_FinCif);
+
+  end;
+
+  if key = 113 then
+  begin {F2 - Inteligente}
+
+    if fmManGr1_NFE.FatGerId_FinUff.Value > 0 then
+    begin
+
+      try
+
+        fmAuxPsq := TfmAuxPsq.Create(Self);
+
+        fmAuxPsq.TipoPesq := 'Municipios';
+
+        fmAuxPsq.Id_FinUfe := fmManGr1_NFE.FatGerId_FinUff.Value;
+
+        fmAuxPsq.ShowModal;
+
+        if fmAuxPsq.Id_FinCie > 0 then
+        begin
+
+          fmManGr1_NFE.FatGerId_FinCif.Value := fmAuxPsq.Id_FinCie;
+
+          pnNomCif.Caption := Trim(fmAuxPsq.NomCie) + ' IBGE: ' + Trim(fmAuxPsq.SigNFE);
+
+        end;
+
+      finally
+
+        FreeAndNil(fmAuxPsq);
+
+      end;
+
+      EdId_FinCif.SetFocus;
+
+    end
+    else
+      fmsgErro('Código para UF da NFe não informado.', EdId_FinCif);
+
+  end;
+end;
+
+procedure TfmManCn2_NFE.EdId_FinCieExit(Sender: TObject);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGerId_FinCie.Value <> Id_FinCie_Ant then
+  begin
+
+    Id_FinCie_Ant := fmManGr1_NFE.FatGerId_FinCie.Value;
+
+    with fmManGr1_NFE.quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FinCie.NomCie,' +
+        '        FinCie.SigNfe ' +
+        ' From FinCie' +
+        ' Where FinCie.Id_FinCie = ' + QuotedStr(IntToStr(Id_FinCie_Ant));
+      Open;
+
+      pnNomCie.Caption := Trim(FieldbyName('NomCie').AsString) + ' IBGE: ' + Trim(FieldbyName('SigNFE').AsString);
+
+    end;
+  end;
+end;
+
+procedure TfmManCn2_NFE.EdId_FinCieKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    if fmManGr1_NFE.FatGerId_FinUfe.Value > 0 then
+    begin
+
+      try
+
+        fmAuxIni := TfmAuxIni.Create(Self);
+
+        fmAuxIni.TipoPesq := 'Municipios';
+
+        fmAuxIni.Id_FinUfe := fmManGr1_NFE.FatGerId_FinUfe.Value;
+
+        fmAuxIni.ShowModal;
+
+        if fmAuxIni.Id_FinCie > 0 then
+        begin
+
+          fmManGr1_NFE.FatGerId_FinCie.Value := fmAuxIni.Id_FinCie;
+
+          pnNomCie.Caption := Trim(fmAuxIni.NomCie) + ' IBGE: ' + Trim(fmAuxIni.SigNFE);
+
+        end;
+
+      finally
+
+        FreeAndNil(fmAuxIni);
+
+      end;
+
+      EdId_FinCie.SetFocus;
+
+    end
+    else
+      fmsgErro('Código para UF da NFe não informado.', EdId_FinCie);
+
+  end;
+
+  if key = 113 then
+  begin {F2 - Inteligente}
+
+    if fmManGr1_NFE.FatGerId_FinUfe.Value > 0 then
+    begin
+
+      try
+
+        fmAuxPsq := TfmAuxPsq.Create(Self);
+
+        fmAuxPsq.TipoPesq := 'Municipios';
+
+        fmAuxPsq.Id_FinUfe := fmManGr1_NFE.FatGerId_FinUfe.Value;
+
+        fmAuxPsq.ShowModal;
+
+        if fmAuxPsq.Id_FinCie > 0 then
+        begin
+
+          fmManGr1_NFE.FatGerId_FinCie.Value := fmAuxPsq.Id_FinCie;
+
+          pnNomCie.Caption := Trim(fmAuxPsq.NomCie) + ' IBGE: ' + Trim(fmAuxPsq.SigNFE);
+
+        end;
+
+      finally
+
+        FreeAndNil(fmAuxPsq);
+
+      end;
+
+      EdId_FinCie.SetFocus;
+
+    end
+    else
+      fmsgErro('Código para UF da NFe não informado.', EdId_FinCie);
+
+  end;
+end;
+
+procedure TfmManCn2_NFE.EdUffCliExit(Sender: TObject);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGerUffCli.Value <> UffCli_Ant then
+  begin
+
+    UffCli_Ant := fmManGr1_NFE.FatGerUffCli.Value;
+
+    fmManGr1_NFE.FatGerId_FinCif.Clear;
+
+    with fmManGr1_NFE.quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FinUfe.Id_FinUfe From FinUfe Where FinUfe.SigUfe = ' + QuotedStr(fmManGr1_NFE.FatGerUffCli.Value);
+      Open;
+
+      if FieldbyName('Id_FinUfe').AsInteger > 0 then
+        fmManGr1_NFE.FatGerId_FinUff.Value := FieldbyName('Id_FinUfe').AsInteger
+      else
+        fmManGr1_NFE.FatGerId_FinUff.Clear;
+
+    end;
+
+    if fmManGr1_NFE.FatGerId_FinUff.Value > 0 then
+      pnId_FinUff.Caption := IntToStr(fmManGr1_NFE.FatGerId_FinUff.Value);
+
+  end;
+end;
+
+procedure TfmManCn2_NFE.EdUfeCliExit(Sender: TObject);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGerUfeCli.Value <> UfeCli_Ant then
+  begin
+
+    UfeCli_Ant := fmManGr1_NFE.FatGerUfeCli.Value;
+
+    fmManGr1_NFE.FatGerId_FinCie.Clear;
+
+    with fmManGr1_NFE.quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FinUfe.Id_FinUfe From FinUfe Where FinUfe.SigUfe = ' + QuotedStr(fmManGr1_NFE.FatGerUfeCli.Value);
+      Open;
+
+      if FieldbyName('Id_FinUfe').AsInteger > 0 then
+        fmManGr1_NFE.FatGerId_FinUfe.Value := FieldbyName('Id_FinUfe').AsInteger
+      else
+        fmManGr1_NFE.FatGerId_FinUfe.Clear;
+
+    end;
+
+    if fmManGr1_NFE.FatGerId_FinUfe.Value > 0 then
+      pnId_FinUfe.Caption := IntToStr(fmManGr1_NFE.FatGerId_FinUfe.Value);
+
+  end;
+end;
+
+procedure TfmManCn2_NFE.sbPsqCifClick(Sender: TObject);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGerId_FinUff.Value > 0 then
+  begin
+
+    try
+
+      fmAuxIni := TfmAuxIni.Create(Self);
+
+      fmAuxIni.TipoPesq := 'Municipios';
+
+      fmAuxIni.Id_FinUfe := fmManGr1_NFE.FatGerId_FinUff.Value;
+
+      fmAuxIni.ShowModal;
+
+      if fmAuxIni.Id_FinCie > 0 then
+      begin
+
+        fmManGr1_NFE.FatGerId_FinCif.Value := fmAuxIni.Id_FinCie;
+
+        pnNomCif.Caption := Trim(fmAuxIni.NomCie) + ' IBGE: ' + Trim(fmAuxIni.SigNFE);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxIni);
+
+    end;
+
+    EdId_FinCif.SetFocus;
+
+  end
+  else
+    fmsgErro('Código para UF da NFe não informado.', EdId_FinCif);
+
+end;
+
+procedure TfmManCn2_NFE.sbPsqCieClick(Sender: TObject);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGerId_FinUfe.Value > 0 then
+  begin
+
+    try
+
+      fmAuxIni := TfmAuxIni.Create(Self);
+
+      fmAuxIni.TipoPesq := 'Municipios';
+
+      fmAuxIni.Id_FinUfe := fmManGr1_NFE.FatGerId_FinUfe.Value;
+
+      fmAuxIni.ShowModal;
+
+      if fmAuxIni.Id_FinCie > 0 then
+      begin
+
+        fmManGr1_NFE.FatGerId_FinCie.Value := fmAuxIni.Id_FinCie;
+
+        pnNomCie.Caption := Trim(fmAuxIni.NomCie) + ' IBGE: ' + Trim(fmAuxIni.SigNFE);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxIni);
+
+    end;
+
+    EdId_FinCie.SetFocus;
+
+  end
+  else
+    fmsgErro('Código para UF da NFe não informado.', EdId_FinCie);
+
+end;
+
+procedure TfmManCn2_NFE.sbTraCieClick(Sender: TObject);
+begin
+  inherited;
+  if fmManGr1_NFE.FatGerId_TraUfe.Value > 0 then
+  begin
+
+    try
+
+      fmAuxIni := TfmAuxIni.Create(Self);
+
+      fmAuxIni.TipoPesq := 'Municipios';
+
+      fmAuxIni.Id_FinUfe := fmManGr1_NFE.FatGerId_TraUfe.Value;
+
+      fmAuxIni.ShowModal;
+
+      if fmAuxIni.Id_FinCie > 0 then
+      begin
+
+        fmManGr1_NFE.FatGerId_TraCie.Value := fmAuxIni.Id_FinCie;
+
+        pnNomCia.Caption := Trim(fmAuxIni.NomCie) + ' IBGE: ' + Trim(fmAuxIni.SigNFE);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxIni);
+
+    end;
+
+    EdId_TraCie.SetFocus;
+
+  end
+  else
+    fmsgErro('Código para UF da NFe não informado.', EdId_TraCie);
+
+end;
+
+end.
+

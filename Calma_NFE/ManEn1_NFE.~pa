@@ -1,0 +1,2014 @@
+unit ManEn1_NFE;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Fpadrao, ExtCtrls, StdCtrls, Wwdatsrc, Db, DBTables, Wwquery, dxExEdtr,
+  dxEdLib, dxDBELib, dxEditor, Buttons, dxCntner, AlignEdit, hGrid, Grids,
+  Wwdbigrd, Wwdbgrid, dxDBColorDateEdit, dxDBColorEdit,
+  dxDBColorCurrencyEdit, dxDBColorPickEdit;
+
+type
+  TfmManEn1_NFE = class(TfmPadrao)
+    PaintBox: TPaintBox;
+    FatDev: TwwQuery;
+    FatDv2: TwwQuery;
+    DsFatDv2: TDataSource;
+    DsFatDev: TDataSource;
+    quSql: TwwQuery;
+    LbText: TLabel;
+    Label22: TLabel;
+    UpFatDev: TUpdateSQL;
+    Panel1: TPanel;
+    EdNumNfs: TdxDBColorEdit;
+    EdNumRes: TdxDBColorEdit;
+    EdCodCli: TdxDBColorEdit;
+    EdCodEmp: TdxDBColorEdit;
+    EdCodVen: TdxDBColorEdit;
+    EdApeEmp: TdxDBColorEdit;
+    pnApeEmp: TPanel;
+    EdNomCli: TdxDBColorEdit;
+    pnNomCli: TPanel;
+    pnUfeDev: TPanel;
+    EdUfeDev: TdxDBColorEdit;
+    EdApeVen: TdxDBColorEdit;
+    pnApeVen: TPanel;
+    EdDteDev: TdxDBColorDateEdit;
+    pnCodEmp: TPanel;
+    pnCodCli: TPanel;
+    pnCodVen: TPanel;
+    Label13: TLabel;
+    Label4: TLabel;
+    Label1: TLabel;
+    Label8: TLabel;
+    Label29: TLabel;
+    Label2: TLabel;
+    Label54: TLabel;
+    PaintBox1: TPaintBox;
+    UpDv2: TUpdateSQL;
+    Label10: TLabel;
+    EdNfsCli: TdxDBColorEdit;
+    FatDv2DESDV2: TStringField;
+    FatDv2QTDDV2: TFloatField;
+    FatDv2ULTQTD: TFloatField;
+    FatDv2SLDDV2: TFloatField;
+    FatDv2CODITE: TStringField;
+    bPsqPfa: TSpeedButton;
+    EdCodPfa: TdxDBColorEdit;
+    Label5: TLabel;
+    EdDscPfa: TdxDBColorEdit;
+    pnDscPfa: TPanel;
+    Panel2: TPanel;
+    EdCodIte: TdxDBColorEdit;
+    EdDesLb2: TdxDBColorEdit;
+    EdQtpDv2: TdxDBColorCurrencyEdit;
+    EdQtdDv2: TdxDBColorCurrencyEdit;
+    EdUltQtd: TdxDBColorCurrencyEdit;
+    EdSldLb2: TdxDBColorCurrencyEdit;
+    Label20: TLabel;
+    pnQtdDev: TPanel;
+    EdQtdDev: TdxDBColorCurrencyEdit;
+    grFatDv21: TdxDBGraphicEdit;
+    grFatDv2: ThGrid;
+    grLabel1: TdxDBGraphicEdit;
+    grLabel2: TPanel;
+    Label32: TLabel;
+    Label3: TLabel;
+    Label15: TLabel;
+    Label7: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label38: TLabel;
+    Label9: TLabel;
+    pnBasIcm: TPanel;
+    pnTotFrt: TPanel;
+    pnTotSeg: TPanel;
+    pnTotIcm: TPanel;
+    pnBasSub: TPanel;
+    pnTotDes: TPanel;
+    EdTotDes: TdxDBColorCurrencyEdit;
+    EdBasSub: TdxDBColorCurrencyEdit;
+    EdTotIcm: TdxDBColorCurrencyEdit;
+    EdTotSeg: TdxDBColorCurrencyEdit;
+    Label39: TLabel;
+    Label16: TLabel;
+    Label34: TLabel;
+    Label40: TLabel;
+    Label35: TLabel;
+    pnTotSub: TPanel;
+    EdTotSub: TdxDBColorCurrencyEdit;
+    Label25: TLabel;
+    pnTotIpi: TPanel;
+    EdTotIpi: TdxDBColorCurrencyEdit;
+    Label27: TLabel;
+    pnTotGer: TPanel;
+    EdTotGer: TdxDBColorCurrencyEdit;
+    pnTotFat: TPanel;
+    EdTotFat: TdxDBColorCurrencyEdit;
+    Label36: TLabel;
+    Shape2: TShape;
+    Shape1: TShape;
+    Shape4: TShape;
+    Shape5: TShape;
+    EdBasIcm: TdxDBColorCurrencyEdit;
+    EdTotFrt: TdxDBColorCurrencyEdit;
+    FatDv2QTPDV2: TFloatField;
+    FatDv2QTDRMA: TFloatField;
+    EdQtdRma: TdxDBColorCurrencyEdit;
+    Label21: TLabel;
+    EdFlgDif: TdxDBColorEdit;
+    pnFlgDif: TPanel;
+    Label28: TLabel;
+    EdFlgFsc: TdxDBColorPickEdit;
+    EdSerNot: TdxDBColorEdit;
+    Label30: TLabel;
+    FatDv2CODEMP: TIntegerField;
+    FatDv2DTERES: TDateTimeField;
+    FatDv2NUMRES: TIntegerField;
+    FatDv2SEQLIB: TIntegerField;
+    FatDv2SEQFAT: TIntegerField;
+    FatDv2SEQDEV: TIntegerField;
+    FatDv2SEQDV2: TIntegerField;
+    FatDevCODEMP: TIntegerField;
+    FatDevDTERES: TDateTimeField;
+    FatDevNUMRES: TIntegerField;
+    FatDevSEQLIB: TIntegerField;
+    FatDevSEQFAT: TIntegerField;
+    FatDevSEQDEV: TIntegerField;
+    FatDevNUMNFS: TIntegerField;
+    FatDevDTEDEV: TDateTimeField;
+    FatDevHREDEV: TStringField;
+    FatDevUFEDEV: TStringField;
+    FatDevCODPFA: TStringField;
+    FatDevTIPPFA: TStringField;
+    FatDevDSCREG: TFloatField;
+    FatDevPERPIS: TFloatField;
+    FatDevPERCOF: TFloatField;
+    FatDevCODFIL: TIntegerField;
+    FatDevQTDNFS: TIntegerField;
+    FatDevNRONFS: TIntegerField;
+    FatDevNROSUF: TStringField;
+    FatDevFLGAVI: TStringField;
+    FatDevCGCCLI: TStringField;
+    FatDevINSCLI: TStringField;
+    FatDevCODCF1: TStringField;
+    FatDevCODCF2: TStringField;
+    FatDevFRTDEV: TStringField;
+    FatDevFLGENT: TStringField;
+    FatDevFLGSAI: TStringField;
+    FatDevDESNAT: TStringField;
+    FatDevINSSUB: TStringField;
+    FatDevTIPFRT: TStringField;
+    FatDevMARDEV: TStringField;
+    FatDevNRODEV: TStringField;
+    FatDevESPDEV: TStringField;
+    FatDevNOMTRA: TStringField;
+    FatDevCGCTRA: TStringField;
+    FatDevINSTRA: TStringField;
+    FatDevCEPTRA: TStringField;
+    FatDevTENTRA: TStringField;
+    FatDevENDTRA: TStringField;
+    FatDevREFTRA: TStringField;
+    FatDevNUMTRA: TStringField;
+    FatDevBAITRA: TStringField;
+    FatDevCIDTRA: TStringField;
+    FatDevUFETRA: TStringField;
+    FatDevPLCTRA: TStringField;
+    FatDevUFEPLC: TStringField;
+    FatDevCEPCLI: TStringField;
+    FatDevTENCLI: TStringField;
+    FatDevENDCLI: TStringField;
+    FatDevREFCLI: TStringField;
+    FatDevNUMCLI: TStringField;
+    FatDevBAICLI: TStringField;
+    FatDevCIDCLI: TStringField;
+    FatDevUFECLI: TStringField;
+    FatDevINECLI: TStringField;
+    FatDevCGECLI: TStringField;
+    FatDevTXFIPI: TStringField;
+    FatDevTXFICM: TStringField;
+    FatDevOBSDEV: TStringField;
+    FatDevQTDDEV: TIntegerField;
+    FatDevSEQITE: TIntegerField;
+    FatDevQTIDEV: TIntegerField;
+    FatDevLINDEV: TIntegerField;
+    FatDevQTDVOL: TIntegerField;
+    FatDevINFLIQ: TFloatField;
+    FatDevTOTLIQ: TFloatField;
+    FatDevINFBRT: TFloatField;
+    FatDevTOTBRT: TFloatField;
+    FatDevBASIPI: TFloatField;
+    FatDevTOTIPI: TFloatField;
+    FatDevBASICM: TFloatField;
+    FatDevTOTICM: TFloatField;
+    FatDevBASSUB: TFloatField;
+    FatDevTOTSUB: TFloatField;
+    FatDevTOTDEV: TFloatField;
+    FatDevTOTPIS: TFloatField;
+    FatDevTOTCOF: TFloatField;
+    FatDevTOTFRT: TFloatField;
+    FatDevTOTSEG: TFloatField;
+    FatDevTOTDES: TFloatField;
+    FatDevBSICMF: TFloatField;
+    FatDevBAICMF: TFloatField;
+    FatDevTOICMF: TFloatField;
+    FatDevBSICMS: TFloatField;
+    FatDevBAICMS: TFloatField;
+    FatDevTOICMS: TFloatField;
+    FatDevBSICMD: TFloatField;
+    FatDevBAICMD: TFloatField;
+    FatDevTOICMD: TFloatField;
+    FatDevBSIPIF: TFloatField;
+    FatDevBAIPIF: TFloatField;
+    FatDevTOIPIF: TFloatField;
+    FatDevBSIPIS: TFloatField;
+    FatDevBAIPIS: TFloatField;
+    FatDevTOIPIS: TFloatField;
+    FatDevBSIPID: TFloatField;
+    FatDevBAIPID: TFloatField;
+    FatDevTOIPID: TFloatField;
+    FatDevTOTGER: TFloatField;
+    FatDevBASCOM: TFloatField;
+    FatDevTOTCOM: TFloatField;
+    FatDevTOTDSR: TFloatField;
+    FatDevDESREG: TStringField;
+    FatDevCODUSU: TIntegerField;
+    FatDevATUEST: TStringField;
+    FatDevLANEST: TStringField;
+    FatDevINTFIN: TStringField;
+    FatDevCONSUM: TStringField;
+    FatDevFLGCTB: TStringField;
+    FatDevCODIPI: TStringField;
+    FatDevTIPIPI: TStringField;
+    FatDevTRBIPI: TStringField;
+    FatDevREDIPI: TFloatField;
+    FatDevBSCIPI: TFloatField;
+    FatDevCODICM: TStringField;
+    FatDevTIPICM: TStringField;
+    FatDevTRBICM: TStringField;
+    FatDevREDICM: TFloatField;
+    FatDevBSCICM: TFloatField;
+    FatDevINCREV: TFloatField;
+    FatDevINCFIN: TFloatField;
+    FatDevOBSMDV: TMemoField;
+    FatDevSEQREG: TStringField;
+    FatDevFLGDIF: TStringField;
+    FatDevFLGDEV: TStringField;
+    FatDevFLGATU: TStringField;
+    FatDevSITDEV: TStringField;
+    FatDevCODCLI: TIntegerField;
+    FatDevCODVEN: TIntegerField;
+    FatDevMODPFA: TStringField;
+    FatDevFLGNFS: TStringField;
+    FatDevHRCDEV: TStringField;
+    FatDevDTCDEV: TDateTimeField;
+    FatDevUSUCFT: TIntegerField;
+    FatDevOBSCFT: TMemoField;
+    FatDevFLGSIN: TStringField;
+    FatDevFLGFSC: TStringField;
+    FatDevSERNOT: TStringField;
+    FatDevMODDEV: TStringField;
+    FatDevOB1DEV: TStringField;
+    FatDevOB2DEV: TStringField;
+    FatDevOB3DEV: TStringField;
+    FatDevOB4DEV: TStringField;
+    FatDevOB5DEV: TStringField;
+    FatDevOB6DEV: TStringField;
+    FatDevOB7DEV: TStringField;
+    FatDevOB8DEV: TStringField;
+    FatDevFLGIMP: TStringField;
+    FatDevNOMENT: TStringField;
+    FatDevQTDDSE: TIntegerField;
+    FatDevSEQDSE: TIntegerField;
+    FatDevTOTDSE: TFloatField;
+    FatDevBASISS: TFloatField;
+    FatDevTOTISS: TFloatField;
+    FatDevTOTFAT: TFloatField;
+    FatDevFLGTOT: TStringField;
+    FatDevCODTCL: TIntegerField;
+    FatDevFLGENV: TStringField;
+    FatDevNFSCLI: TIntegerField;
+    FatDevCODTRA: TIntegerField;
+    FatDevCEFCLI: TStringField;
+    FatDevTEFCLI: TStringField;
+    FatDevENFCLI: TStringField;
+    FatDevRFFCLI: TStringField;
+    FatDevNRFCLI: TStringField;
+    FatDevBAFCLI: TStringField;
+    FatDevCIFCLI: TStringField;
+    FatDevUFFCLI: TStringField;
+    FatDevID_FINUFF: TIntegerField;
+    FatDevID_FINCIF: TIntegerField;
+    FatDevID_TRAUFE: TIntegerField;
+    FatDevID_TRACIE: TIntegerField;
+    FatDevID_FINUFE: TIntegerField;
+    FatDevID_FINCIE: TIntegerField;
+    FatDevID_ESTSIP: TIntegerField;
+    FatDevTRBPIS: TStringField;
+    FatDevNFEPIS: TStringField;
+    FatDevTRBCOF: TStringField;
+    FatDevNFECOF: TStringField;
+    FatDevFLGNOT: TStringField;
+    FatDevFLGNFE: TStringField;
+    FatDevENVNFE: TStringField;
+    FatDevSEQNFE: TStringField;
+    FatDevDTENFE: TDateTimeField;
+    FatDevRECNFE: TStringField;
+    FatDevPRONFE: TStringField;
+    FatDevLOTNFE: TIntegerField;
+    FatDevDTEPNF: TDateTimeField;
+    FatDevHREPNF: TStringField;
+    FatDevDOPNFE: TDateTimeField;
+    FatDevHRENFE: TStringField;
+    FatDevUSUNFE: TIntegerField;
+    FatDevIMPNFE: TStringField;
+    FatDevRETNFE: TStringField;
+    FatDevDTCNFE: TDateTimeField;
+    FatDevHRCNFE: TStringField;
+    FatDevPRCNFE: TStringField;
+    FatDevDTECNE: TDateTimeField;
+    FatDevHRECNE: TStringField;
+    FatDevARQNFE: TBlobField;
+    FatDevICMFRT: TFloatField;
+    FatDevICMSEG: TFloatField;
+    FatDevICMDES: TFloatField;
+    FatDevIPIFRT: TFloatField;
+    FatDevIPISEG: TFloatField;
+    FatDevIPIDES: TFloatField;
+    FatDevBASCAT: TFloatField;
+    FatDevTOTCAT: TFloatField;
+    pnNumRes: TPanel;
+    procedure SaiPadrao;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdNumNfsExit(Sender: TObject);
+    procedure EdNumNfsKeyPress(Sender: TObject; var Key: Char);
+    procedure Panel1Exit(Sender: TObject);
+    procedure PaintBox1Paint(Sender: TObject);
+    procedure PaintBoxPaint(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FatDevNewRecord(DataSet: TDataSet);
+    procedure EdCodPfaExit(Sender: TObject);
+    procedure EdCodPfaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure bPsqPfaClick(Sender: TObject);
+    procedure grFatDv2KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Panel2Exit(Sender: TObject);
+    procedure DsFatDv2DataChange(Sender: TObject; Field: TField);
+    procedure grFatDv2Enter(Sender: TObject);
+    procedure EdNumNfsEnter(Sender: TObject);
+    procedure EdCodPfaEnter(Sender: TObject);
+    procedure EdNumResExit(Sender: TObject);
+  private
+    DteRes: TDateTime;
+    CodEmp, NumRes, SeqLib, SeqFat, SeqDev, SeqDv2: integer;
+  public
+    sEnc, Finalizar: string;
+  end;
+
+var
+  fmManEn1_NFE: TfmManEn1_NFE;
+
+implementation
+
+uses dxDemoUtils, Bbgeral, Bbfuncao, Bbmensag, ManGDB, PsqEst, ManEno_NFE,
+  PsqPfa, AuxPsq, AuxIni, PsqGru, PsqSub, ManEn2_NFE;
+
+{$R *.DFM}
+
+procedure TfmManEn1_NFE.FormActivate(Sender: TObject);
+begin
+  inherited;
+  if sEnc = 'S' then
+  begin
+
+    if Trim(FatDevSitDev.Value) = 'Devolvido' then fMsg('Operação não pode ser realizada. Devolução com lançamentos já realizados.', 'E');
+
+    if Trim(FatDevSitDev.Value) = 'Faturando' then fMsg('Operação não pode ser realizada. Devolução em processo de faturamento.', 'E');
+
+    Finalizar := 'S';
+
+    Close;
+
+  end;
+end;
+
+procedure TfmManEn1_NFE.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  if Finalizar = 'N' then
+  begin
+
+    if fMsg('Deseja realmente abandonar a operação ?', 'O') then
+    begin
+
+      if FatDev.State <> dsBrowse then FatDev.CancelUpdates;
+      if FatDv2.State <> dsBrowse then FatDv2.CancelUpdates;
+
+      fmManEno_NFE.FatDev.Close;
+      fmManEno_NFE.FatDev.Open;
+
+      fmManEno_NFE.FatDv2.Close;
+      fmManEno_NFE.FatDv2.Open;
+
+      Action := CaFree;
+
+    end
+    else
+    begin
+
+      if FatDevSeqDev.Value = 0 then
+      begin
+
+        if FatDev.State = dsBrowse then FatDev.Insert;
+
+      end
+      else
+        grFatDv2.SetFocus;
+
+      Abort;
+
+    end;
+
+  end
+  else
+  begin
+
+    fmManEno_NFE.FatDev.Close;
+    fmManEno_NFE.FatDev.Open;
+
+    fmManEno_NFE.FatDv2.Close;
+    fmManEno_NFE.FatDv2.Open;
+
+    Action := CaFree;
+
+  end;
+end;
+
+procedure TfmManEn1_NFE.FormCreate(Sender: TObject);
+begin
+  inherited;
+
+  self.Top := 0;
+  self.Left := 0;
+  self.FatDev.Active := true;
+  self.FatDv2.Active := true;
+
+  sEnc := 'N';
+
+  Finalizar := 'N';
+
+end;
+
+procedure TfmManEn1_NFE.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  fmManEn1_NFE := nil;
+end;
+
+procedure TfmManEn1_NFE.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if key = 32 then
+  begin {Barra de Espaço}
+
+    CodEmp := FatDv2CodEmp.Value;
+    DteRes := FatDv2DteRes.Value;
+    NumRes := FatDv2NumRes.Value;
+    SeqLib := FatDv2SeqLib.Value;
+    SeqFat := FatDv2SeqFat.Value;
+    SeqDev := FatDv2SeqDev.Value;
+    SeqDv2 := FatDv2SeqDv2.Value;
+
+    FatDv2.Edit;
+
+    if FatDv2SldDv2.Value > 0 then
+    begin
+
+      if FatDv2UltQtd.Value > 0 then
+        FatDv2UltQtd.Value := fRound(FatDv2UltQtd.Value + FatDv2SldDv2.Value, 4)
+      else
+        FatDv2UltQtd.Value := FatDv2SldDv2.Value;
+
+    end
+    else
+      FatDv2UltQtd.Value := 0;
+
+    with FatDv2 do
+    begin
+
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+      try
+
+        ApplyUpdates; {Tenta aplicar as alterações};
+
+        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+      except
+
+        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+        if FatDv2.State <> dsBrowse then FatDv2.CancelUpdates;
+
+        FatDv2.Close;
+        FatDv2.Open;
+
+        FatDv2.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqFat;SeqDev;SeqDv2', VarArrayOf([CodEmp, DteRes, NumRes, SeqLib, SeqFat, SeqDev, SeqDv2]), [LoPartialKey]);
+
+        grFatDv2.SetFocus;
+
+        raise;
+
+      end;
+
+      CommitUpdates; {sucesso!, limpa o cache...}
+
+    end;
+
+    FatDv2.Close;
+    FatDv2.Open;
+
+    FatDev.Close;
+    FatDev.Open;
+
+    FatDv2.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqFat;SeqDev;SeqDv2', VarArrayOf([CodEmp, DteRes, NumRes, SeqLib, SeqFat, SeqDev, SeqDv2]), [LoPartialKey]);
+
+  end;
+
+  if key = 117 then
+  begin {F6 - Separar Tudo/Nao Separar}
+
+    CodEmp := FatDv2CodEmp.Value;
+    DteRes := FatDv2DteRes.Value;
+    NumRes := FatDv2NumRes.Value;
+    SeqLib := FatDv2SeqLib.Value;
+    SeqFat := FatDv2SeqFat.Value;
+    SeqDev := FatDv2SeqDev.Value;
+    SeqDv2 := FatDv2SeqDv2.Value;
+
+    if EdUltQtd.Enabled then
+    begin
+
+      FatDv2.CancelUpdates;
+
+      EdUltQtd.Enabled := False;
+
+      EdUltQtd.Font.Style := [fsBold];
+
+    end;
+
+    FatDev.Edit;
+
+    if FatDevFlgDev.Value = '*' then
+      FatDevFlgDev.Value := ' '
+    else
+      FatDevFlgDev.Value := '*';
+
+    with FatDev do
+    begin
+
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+      try
+
+        ApplyUpdates; {Tenta aplicar as alterações};
+
+        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+      except
+
+        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+        if FatDev.State <> dsBrowse then FatDev.CancelUpdates;
+
+        FatDev.Close;
+        FatDev.Open;
+
+        grFatDv2.SetFocus;
+
+        raise;
+
+      end;
+
+      CommitUpdates; {sucesso!, limpa o cache...}
+
+    end;
+
+    FatDev.Close;
+    FatDev.Open;
+
+    FatDv2.Close;
+    FatDv2.Open;
+
+    FatDv2.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqFat;SeqDev;SeqDv2', VarArrayOf([CodEmp, DteRes, NumRes, SeqLib, SeqFat, SeqDev, SeqDv2]), [LoPartialKey]);
+
+    grFatDv2.SetFocus;
+
+  end;
+
+  if key = 27 then
+  begin
+
+    if EdUltQtd.Enabled then
+    begin
+
+      if FatDv2.State <> dsBrowse then FatDv2.CancelUpdates;
+
+      EdUltQtd.Enabled := False;
+
+      EdUltQtd.Font.Style := [fsBold];
+
+      grFatDv2.SetFocus;
+
+    end
+    else
+      Close;
+
+  end;
+
+  if key = 123 then
+  begin {F12-Finalizar Pedido}
+
+    if FatDevQtiDev.Value > 0 then
+    begin
+
+      if FatDevTotDev.Value > 0 then
+      begin
+
+        if grFatDv2.Focused then
+        begin
+
+          try
+
+            fmmanen2_NFE := Tfmmanen2_NFE.Create(Self);
+            fmmanen2_NFE.ShowModal;
+
+          finally
+
+            FreeAndNil(fmmanen2_NFE);
+
+          end;
+
+          if Finalizar = 'S' then close;
+
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManEn1_NFE.EdNumNfsExit(Sender: TObject);
+var
+  Pergunta, BPedido: string;
+begin
+  inherited;
+  if (Tecla <> 'ESC') and (Tecla <> 'UP') then
+  begin
+    if FatDev.State <> dsBrowse then
+    begin
+      if FatDevNumNfs.Value > 0 then
+      begin
+        //verificando se tem mais de uma nota..
+        with quSql, SQL do
+        begin
+          Close;
+          Text := ' Select Count(*)as Conta ' +
+            ' From FatPed' +
+            ' Where FatPed.NroNfs = ' + QuotedStr(IntToStr(FatDevNumNfs.Value));
+          Open;
+          if FieldByName('Conta').value > 1 then
+          begin
+            ednumres.enabled := true;
+            EdNumRes.setfocus;
+            sysutils.abort;
+          end;
+
+        end;
+
+
+        //verificando se tem mais de uma nota..
+
+        with quSql, SQL do
+        begin
+
+          Close;
+          Text := ' Select FatPed.CodEmp,' +
+            '        FatPed.DteRes,' +
+            '        FatPed.NumRes,' +
+            '        FatPed.SeqLib,' +
+            '        FatPed.SeqFat,' +
+            '        FatPed.SitFat,' +
+            '        FatPed.UfeFat ' +
+            ' From FatPed' +
+            ' Where FatPed.NroNfs = ' + QuotedStr(IntToStr(FatDevNumNfs.Value)) + bpedido;
+          try
+            Open;
+          except
+            if bpedido <> '' then showmessage('Número de pedido inválido. Tente novamente.');
+            sysutils.abort;
+          end;
+
+        end;
+
+        if quSql.FieldbyName('NumRes').AsInteger > 0 then
+        begin
+
+          if Trim(quSQL.FieldbyName('SitFat').AsString) = 'Faturado' then
+          begin
+
+            FatDevUfeDev.Value := quSql.FieldbyName('UfeFat').AsString;
+            FatDevCodEmp.Value := quSql.FieldbyName('CodEmp').AsInteger;
+            FatDevNumRes.Value := quSql.FieldbyName('NumRes').AsInteger;
+            FatDevSeqLib.Value := quSql.FieldbyName('SeqLib').AsInteger;
+            FatDevSeqFat.Value := quSql.FieldbyName('SeqFat').AsInteger;
+            FatDevDteRes.Value := quSql.FieldbyName('DteRes').AsDateTime;
+
+            with quSQL, SQL do
+            begin
+
+              Close;
+              Text := ' Select Count(*) as QtdReg' +
+                ' From FatPe2' +
+                ' Where FatPe2.CodEmp = :CodEmp' +
+                '   and FatPe2.DteRes = :DteRes' +
+                '   and FatPe2.NumRes = :NumRes' +
+                '   and FatPe2.SeqLib = :SeqLib' +
+                '   and FatPe2.SeqFat = :SeqFat and FatPe2.QtdPe2 <> FatPe2.QtpPe2';
+
+              with Params do
+              begin
+
+                Params[0].AsInteger := FatDevCodEmp.Value;
+                Params[1].AsDateTime := FatDevDteRes.Value;
+                Params[2].AsInteger := FatDevNumRes.Value;
+                Params[3].AsInteger := FatDevSeqLib.Value;
+                Params[4].AsInteger := FatDevSeqFat.Value;
+
+              end;
+
+              Open;
+
+            end;
+
+            if quSQL.FieldbyName('QtdReg').AsInteger > 0 then
+            begin
+
+              pnNumRes.Caption := IntToStr(FatDevNumRes.Value);
+              pnCodEmp.Caption := IntToStr(FatDevCodEmp.Value);
+
+              with quSQL, SQL do
+              begin
+
+                Close;
+                Text := ' Select PedRes.UfeRes,' +
+                  '        PedRes.CodCli,' +
+                  '        PedRes.CodVen ' +
+                  ' From PedRes' +
+                  ' Where PedRes.CodEmp = :CodEmp' +
+                  '   and PedRes.DteRes = :DteRes' +
+                  '   and PedRes.NumRes = :NumRes';
+
+                with Params do
+                begin
+
+                  Params[0].AsInteger := FatDevCodEmp.Value;
+                  Params[1].AsDateTime := FatDevDteRes.Value;
+                  Params[2].AsInteger := FatDevNumRes.Value;
+
+                end;
+
+                Open;
+
+                FatDevCodCli.Value := FieldbyName('CodCli').AsInteger;
+                FatDevCodVen.Value := FieldbyName('CodVen').AsInteger;
+
+                pnUfeDev.Caption := FieldbyName('UfeRes').AsString;
+
+              end;
+
+              pnCodCli.Caption := IntToStr(FatDevCodCli.Value);
+              pnCodVen.Caption := IntToStr(FatDevCodVen.Value);
+
+              with quSQL, SQL do
+              begin
+
+                Close;
+                Text := ' Select GerEmp.ApeEmp From GerEmp Where GerEmp.CodEmp = ' + QuotedStr(IntToStr(FatDevCodEmp.Value));
+                Open;
+
+                pnApeEmp.Caption := FieldbyName('ApeEmp').AsString;
+
+              end;
+
+              with quSQL, SQL do
+              begin
+
+                Close;
+                Text := ' Select FinCli.NomCli From FinCli Where FinCli.CodCli = ' + QuotedStr(IntToStr(FatDevCodCli.Value));
+                Open;
+
+                pnNomCli.Caption := FieldbyName('NomCli').AsString;
+
+              end;
+
+              with quSQL, SQL do
+              begin
+
+                Close;
+                Text := ' Select FinVen.ApeVen From FinVen Where FinVen.CodVen = ' + QuotedStr(IntToStr(FatDevCodVen.Value));
+                Open;
+
+                pnApeVen.Caption := FieldbyName('ApeVen').AsString;
+
+              end;
+
+            end
+            else
+            begin
+
+              pnNumRes.Caption := '';
+              pnCodEmp.Caption := '';
+              pnCodCli.Caption := '';
+              pnCodVen.Caption := '';
+              pnNomCli.Caption := '';
+              pnUfeDev.Caption := '';
+              pnApeEmp.Caption := '';
+              pnNomCli.Caption := '';
+              pnApeVen.Caption := '';
+
+              fmsgErro('Nota fiscal informada com devolução já realizada.', EdNumNfs)
+
+            end;
+
+          end
+          else
+          begin
+
+            pnNumRes.Caption := '';
+            pnCodEmp.Caption := '';
+            pnCodCli.Caption := '';
+            pnCodVen.Caption := '';
+            pnNomCli.Caption := '';
+            pnUfeDev.Caption := '';
+            pnApeEmp.Caption := '';
+            pnNomCli.Caption := '';
+            pnApeVen.Caption := '';
+
+            if Trim(quSQL.FieldbyName('SitFat').AsString) = 'Em Aberto' then fmsgErro('Nota fiscal informada não confirmada.', EdNumNfs)
+
+            else if Trim(quSQL.FieldbyName('SitFat').AsString) = 'Cancelado' then fmsgErro('Nota fiscal informada cancelada.', EdNumNfs)
+
+            else if Trim(quSQL.FieldbyName('SitFat').AsString) = 'Devolvido' then fmsgErro('Nota fiscal informada já devolvida.', EdNumNfs);
+
+          end;
+
+        end
+        else
+        begin
+
+          pnNumRes.Caption := '';
+          pnCodEmp.Caption := '';
+          pnCodCli.Caption := '';
+          pnCodVen.Caption := '';
+          pnNomCli.Caption := '';
+          pnUfeDev.Caption := '';
+          pnApeEmp.Caption := '';
+          pnNomCli.Caption := '';
+          pnApeVen.Caption := '';
+
+          fmsgErro('Nota fiscal informada não localizada.', EdNumNfs);
+
+        end;
+
+      end
+      else
+      begin
+
+        pnNumRes.Caption := '';
+        pnCodEmp.Caption := '';
+        pnCodCli.Caption := '';
+        pnCodVen.Caption := '';
+        pnNomCli.Caption := '';
+        pnUfeDev.Caption := '';
+        pnApeEmp.Caption := '';
+        pnNomCli.Caption := '';
+        pnApeVen.Caption := '';
+
+        fmsgErro('Campo de preenchimento obrigátorio.', EdNumNfs);
+
+      end;
+    end;
+
+  end
+  else
+  begin
+
+    if Tecla = 'UP' then EdNumNfs.SetFocus
+
+  end;
+end;
+
+procedure TfmManEn1_NFE.EdNumNfsKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if not (key in ['0'..'9']) then key := #0;
+end;
+
+procedure TfmManEn1_NFE.Panel1Exit(Sender: TObject);
+var
+  SeqReg, Status: string;
+begin
+  inherited;
+
+  if FatDev.State <> dsBrowse then
+  begin
+
+    if FatDevDteDev.Value = 0 then fmsgErro('Campo de preenchimento obrigatório não informado.', EdDteDev);
+
+    if FatDevNfsCli.Value = 0 then FatDevNfsCli.Clear;
+
+    Status := 'dsEdit';
+
+    if FatDev.State = dsInsert then
+    begin
+
+      Status := 'dsInsert';
+
+
+      if FatDevNumNfs.Value = 0 then fmsgErro('Campo de preenchimento obrigatório não informado.', EdNumNfs);
+
+      Randomize;
+      SeqReg := copy(FormatDateTime('dd/mm/yyyy', Date), 1, 2) +
+        copy(FormatDateTime('dd/mm/yyyy', Date), 4, 2) +
+        copy(FormatDateTime('dd/mm/yyyy', Date), 7, 4) +
+        copy(TimeToStr(Time), 1, 2) +
+        copy(TimeToStr(Time), 4, 2) +
+        copy(TimeToStr(Time), 7, 2) +
+        FNumZeros(Trim(IntToStr(GUsu_Id)), 3) +
+        FNumZeros(Trim(IntToStr(Random(50000))), 5);
+
+      FatDevSeqReg.Value := SeqReg;
+
+    end
+    else
+      SeqReg := FatDevSeqReg.Value;
+
+    with FatDev do
+    begin
+
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+      try
+
+        ApplyUpdates; {Tenta aplicar as alterações};
+
+        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+      except
+
+        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+        if FatDev.State = dsBrowse then FatDev.Edit;
+
+        if EdNumNfs.Enabled then
+          EdNumNfs.SetFocus
+        else
+          EdDteDev.SetFocus;
+
+        raise;
+
+      end;
+
+      CommitUpdates; {sucesso!, limpa o cache...}
+
+    end;
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FatDev.CodEmp,' +
+        '        FatDev.DteRes,' +
+        '        FatDev.NumRes,' +
+        '        FatDev.SeqLib,' +
+        '        FatDev.SeqFat,' +
+        '        FatDev.SeqDev ' +
+        ' From FatDev' +
+        ' Where FatDev.SeqReg = ' + QuotedStr(SeqReg);
+      Open;
+
+    end;
+
+    FatDev.Close;
+    FatDev.Params[0].AsInteger := quSQL.FieldbyName('CodEmp').AsInteger;
+    FatDev.Params[1].AsDateTime := quSQL.FieldbyName('DteRes').AsDateTime;
+    FatDev.Params[2].AsInteger := quSQL.FieldbyName('NumRes').AsInteger;
+    FatDev.Params[3].AsInteger := quSQL.FieldbyName('SeqLib').AsInteger;
+    FatDev.Params[4].AsInteger := quSQL.FieldbyName('SeqFat').AsInteger;
+    FatDev.Params[5].AsInteger := quSQL.FieldbyName('SeqDev').AsInteger;
+    FatDev.Open;
+    FatDv2.Close;
+    FatDv2.Open;
+
+    if Status = 'dsInsert' then
+    begin
+
+      with fmManEno_NFE.FatDev, SQL do
+      begin
+
+        Close;
+        Text := fmManEno_NFE.sBase +
+          ' Where FatDev.CodEmp = :CodEmp' +
+          '   and FatDev.DteRes = :DteRes' +
+          '   and FatDev.NumRes = :NumRes' +
+          '   and FatDev.SeqLib = :SeqLib' +
+          '   and FatDev.SeqFat = :SeqFat' +
+          '   and FatDev.SeqDev = :SeqDev';
+
+        with Params do
+        begin
+
+          Params[0].AsInteger := FatDevCodEmp.Value;
+          Params[1].AsDateTime := FatDevDteRes.Value;
+          Params[2].AsInteger := FatDevNumRes.Value;
+          Params[3].AsInteger := FatDevSeqLib.Value;
+          Params[4].AsInteger := FatDevSeqFat.Value;
+          Params[5].AsInteger := FatDevSeqDev.Value;
+
+        end;
+
+        Open;
+
+      end;
+    end;
+
+    bPsqPfa.Enabled := False;
+
+    EdNumNfs.Enabled := False;
+    EdDteDev.Enabled := False;
+    EdNfsCli.Enabled := False;
+    EdFlgFsc.Enabled := False;
+    EdSerNot.Enabled := False;
+    EdCodPfa.Enabled := False;
+
+    EdNumNfs.Font.Style := [fsBold];
+    EdDteDev.Font.Style := [fsBold];
+    EdNfsCli.Font.Style := [fsBold];
+    EdFlgFsc.Font.Style := [fsBold];
+    EdSerNot.Font.Style := [fsBold];
+    EdCodPfa.Font.Style := [fsBold];
+
+    grFatDv2.SetFocus;
+
+  end;
+
+end;
+
+procedure TfmManEn1_NFE.PaintBoxPaint(Sender: TObject);
+begin
+  inherited;
+  with Sender as TPaintBox do FillGrayGradientRect(PaintBox.Canvas, PaintBox.ClientRect, PaintBox.Color);
+end;
+
+procedure TfmManEn1_NFE.PaintBox1Paint(Sender: TObject);
+begin
+  inherited;
+  with Sender as TPaintBox do
+    FillGrayGradientRect(PaintBox1.Canvas, PaintBox1.ClientRect, PaintBox1.Color);
+end;
+
+procedure TfmManEn1_NFE.FormShow(Sender: TObject);
+begin
+  inherited;
+  if fmManEno_NFE.CodEmp > 0 then
+  begin
+
+    FatDev.Close;
+    FatDev.Params[0].AsInteger := fmManEno_NFE.CodEmp;
+    FatDev.Params[1].AsDateTime := fmManEno_NFE.DteRes;
+    FatDev.Params[2].AsInteger := fmManEno_NFE.NumRes;
+    FatDev.Params[3].AsInteger := fmManEno_NFE.SeqLib;
+    FatDev.Params[4].AsInteger := fmManEno_NFE.SeqFat;
+    FatDev.Params[5].AsInteger := fmManEno_NFE.SeqDev;
+    FatDev.Open;
+
+    FatDv2.Close;
+    FatDv2.Open;
+
+    pnUfeDev.Caption := FatDevUfeDev.Value;
+
+    pnCodEmp.Caption := IntToStr(FatDevCodEmp.Value);
+    pnCodCli.Caption := IntToStr(FatDevCodCli.Value);
+    pnCodVen.Caption := IntToStr(FatDevCodVen.Value);
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select GerEmp.ApeEmp From GerEmp Where GerEmp.CodEmp = ' + QuotedStr(IntToStr(FatDevCodEmp.Value));
+      Open;
+
+      pnApeEmp.Caption := FieldbyName('ApeEmp').AsString;
+
+    end;
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FinVen.ApeVen From FinVen Where FinVen.CodVen = ' + QuotedStr(IntToStr(FatDevCodVen.Value));
+      Open;
+
+      pnApeVen.Caption := FieldbyName('ApeVen').AsString;
+
+    end;
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FinCli.NomCli From FinCli Where FinCli.CodCli = ' + QuotedStr(IntToStr(FatDevCodCli.Value));
+      Open;
+
+      pnNomCli.Caption := FieldbyName('NomCli').AsString;
+
+    end;
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select EstPfa.DscPfa From EstPfa Where EstPfa.CodPfa = ' + QuotedStr(FatDevCodPfa.Value) + ' and EstPfa.TipPfa = ' + QuotedStr(FatDevTipPfa.Value);
+      Open;
+
+      pnDscPfa.Caption := FieldbyName('DscPfa').AsString;
+
+    end;
+
+    if (Trim(FatDevSitDev.Value) <> 'Nao Concluido') and (Trim(FatDevSitDev.Value) <> 'Processo de Alteracao') then
+      sEnc := 'S'
+    else
+    begin
+
+      FatDev.Edit;
+
+      EdDteDev.Enabled := True;
+      EdFlgFsc.Enabled := True;
+      EdSerNot.Enabled := True;
+      EdNfsCli.Enabled := True;
+
+      EdDteDev.Font.Style := [];
+      EdFlgFsc.Font.Style := [];
+      EdSerNot.Font.Style := [];
+      EdNfsCli.Font.Style := [];
+
+      EdDteDev.Date := FatDevDteDev.Value;
+
+      EdDteDev.SetFocus;
+
+    end;
+
+  end
+  else
+  begin
+
+    LbText.Caption := '';
+
+    FatDev.Insert;
+
+    EdNumNfs.SetFocus;
+
+  end;
+end;
+
+procedure TfmManEn1_NFE.FatDevNewRecord(DataSet: TDataSet);
+begin
+  inherited;
+
+  FatDev.DisableControls;
+
+  FatDevSeqIte.Value := 0;
+  FatDevQtiDev.Value := 0;
+  FatDevLinDev.Value := 0;
+  FatDevQtdVol.Value := 0;
+  FatDevInfLiq.Value := 0;
+  FatDevTotLiq.Value := 0;
+  FatDevInfBrt.Value := 0;
+  FatDevTotBrt.Value := 0;
+  FatDevBasIpi.Value := 0;
+  FatDevTotIpi.Value := 0;
+  FatDevBasIcm.Value := 0;
+  FatDevTotIcm.Value := 0;
+  FatDevBasSub.Value := 0;
+  FatDevTotSub.Value := 0;
+  FatDevTotDev.Value := 0;
+  FatDevTotPis.Value := 0;
+  FatDevTotCof.Value := 0;
+  FatDevTotFrt.Value := 0;
+  FatDevTotSeg.Value := 0;
+  FatDevTotDes.Value := 0;
+  FatDevBsIcmf.Value := 0;
+  FatDevBaIcmf.Value := 0;
+  FatDevToIcmf.Value := 0;
+  FatDevBsIcms.Value := 0;
+  FatDevBaIcms.Value := 0;
+  FatDevToIcms.Value := 0;
+  FatDevBsIcmd.Value := 0;
+  FatDevBaIcmd.Value := 0;
+  FatDevToIcmd.Value := 0;
+  FatDevBsIpif.Value := 0;
+  FatDevBaIpif.Value := 0;
+  FatDevToIpif.Value := 0;
+  FatDevBsIpis.Value := 0;
+  FatDevBaIpis.Value := 0;
+  FatDevToIpis.Value := 0;
+  FatDevBsIpid.Value := 0;
+  FatDevBaIpid.Value := 0;
+  FatDevToIpid.Value := 0;
+  FatDevTotGer.Value := 0;
+  FatDevBasCom.Value := 0;
+  FatDevTotCom.Value := 0;
+  FatDevTotFat.Value := 0;
+  FatDevTotDsr.Value := 0;
+  FatDevQtdNfs.Value := 0;
+  FatDevDscReg.Value := 0;
+  FatDevSeqDev.Value := 1;
+  FatDevQtdDev.Value := 1;
+  FatDevQtdDse.Value := 1;
+  FatDevSeqDse.Value := 1;
+  FatDevFlgSai.Value := ' ';
+  FatDevFlgEnt.Value := 'X';
+  FatDevSerNot.Value := '2';
+  FatDevDteDev.Value := Date;
+  FatDevFlgFsc.Value := 'Sim';
+  FatDevFlgSin.Value := 'Sim';
+  FatDevCodUsu.Value := GUsu_Id;
+  FatDevTipPfa.Value := 'Entrada';
+  FatDevSitDev.Value := 'Nao Concluido';
+  FatDevHreDev.Value := TimeToStr(Time);
+
+  EdSerNot.Text := '2';
+  EdFlgFsc.Text := 'Sim';
+
+  EdDteDev.Date := Date;
+
+  FatDv2.Close;
+  FatDv2.Open;
+
+  bPsqPfa.Enabled := True;
+
+  EdNumNfs.Enabled := True;
+  EdDteDev.Enabled := True;
+  EdNfsCli.Enabled := True;
+  EdFlgFsc.Enabled := True;
+  EdSerNot.Enabled := True;
+  EdCodPfa.Enabled := True;
+
+  EdNumNfs.Font.Style := [];
+  EdDteDev.Font.Style := [];
+  EdNfsCli.Font.Style := [];
+  EdFlgFsc.Font.Style := [];
+  EdSerNot.Font.Style := [];
+  EdCodPfa.Font.Style := [];
+
+  pnNumRes.Caption := '';
+  pnCodEmp.Caption := '';
+  pnCodCli.Caption := '';
+  pnCodVen.Caption := '';
+  pnNomCli.Caption := '';
+  pnUfeDev.Caption := '';
+  pnApeEmp.Caption := '';
+  pnNomCli.Caption := '';
+  pnApeVen.Caption := '';
+
+  EdNumNfs.SetFocus;
+
+end;
+
+procedure TfmManEn1_NFE.EdCodPfaExit(Sender: TObject);
+var
+  saida: boolean;
+begin
+  inherited;
+  if (Tecla <> 'ESC') and (Tecla <> 'UP') then
+  begin
+
+    if (not EdNumNfs.Focused) and (not EdDteDev.Focused) then
+      saida := True
+    else
+      saida := False;
+
+    if saida then SaiPadrao;
+
+  end;
+end;
+
+procedure TfmManEn1_NFE.EdCodPfaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+var
+  LocPfa: string;
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    if FatDevUfeDev.Value = 'EX' then
+      LocPfa := 'Importacao ou Exportacao'
+    else
+    begin
+
+      if FatDevUfeDev.Value <> GUfeEmp then
+        LocPfa := 'Outros Estados'
+      else
+        LocPfa := 'Mesmo Estado'
+
+    end;
+
+    try
+
+      fmPsqPfa := TfmPsqPfa.Create(Self);
+
+      with fmPsqPfa.EstPfa, SQL do
+      begin
+
+        Close;
+        Text := ' Select EstPfa.CodPfa,' +
+          '        EstPfa.TipPfa,' +
+          '        EstPfa.DscPfa,' +
+          '        EstPfa.DsrPfa,' +
+          '        EstPfa.CodCf1,' +
+          '        EstPfa.CodCf2,' +
+          '        EstPfa.IntFin,' +
+          '        EstPfa.AtuEst,' +
+          '        EstPfa.ConSum,' +
+          '        EstPfa.ModPfa' +
+          ' From EstPfa' +
+          ' Where EstPfa.TipPfa = :TipPfa' +
+          '   and EstPfa.LocPfa = :LocPfa' +
+          '   and EstPfa.ModPfa = :ModPfa' +
+          ' Order by EstPfa.DscPfa';
+
+        with Params do
+        begin
+
+          Params[0].AsString := FatDevTipPfa.Value;
+          Params[1].AsString := LocPfa;
+          Params[2].AsString := 'Devolucoes';
+
+        end;
+
+        Open;
+
+      end;
+
+      fmPsqPfa.ShowModal;
+
+      if Trim(fmPsqPfa.CodPfa) <> '' then
+      begin
+
+        FatDevCodPfa.Value := fmPsqPfa.CodPfa;
+
+        pnDscPfa.Caption := fmPsqPfa.NomPfa;
+
+        EdCodPfa.Text := FatDevCodPfa.Value;
+
+      end;
+
+    finally
+
+      FreeAndNil(fmPsqPfa);
+
+    end;
+
+    if Trim(FatDevCodPfa.Value) <> '' then
+      SaiPadrao
+    else
+      EdCodPfa.SetFocus;
+
+  end;
+
+  if key = 113 then
+  begin {F2 - Inteligente}
+
+    if FatDevUfeDev.Value = 'EX' then
+      LocPfa := 'Importacao ou Exportacao'
+    else
+    begin
+
+      if FatDevUfeDev.Value <> GUfeEmp then
+        LocPfa := 'Outros Estados'
+      else
+        LocPfa := 'Mesmo Estado'
+
+    end;
+
+    try
+
+      fmAuxPsq := TfmAuxPsq.Create(Self);
+
+      fmAuxPsq.TipoPesq := 'P';
+
+      fmAuxPsq.LocPfa := LocPfa;
+      fmAuxPsq.TipPfa := FatDevTipPfa.Value;
+      fmAuxPsq.ModPfa := 'Devolucoes';
+
+      fmAuxPsq.ShowModal;
+
+      if Trim(fmAuxPsq.CodPfa) <> '' then
+      begin
+
+        FatDevCodPfa.Value := fmAuxPsq.CodPfa;
+
+        pnDscPfa.Caption := fmAuxPsq.NomPfa;
+
+        EdCodPfa.Text := FatDevCodPfa.Value;
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxPsq);
+
+    end;
+
+    if Trim(FatDevCodPfa.Value) <> '' then
+      SaiPadrao
+    else
+      EdCodPfa.SetFocus;
+
+  end;
+end;
+
+procedure TfmManEn1_NFE.bPsqPfaClick(Sender: TObject);
+var
+  LocPfa: string;
+begin
+  inherited;
+  if EdCodPfa.Enabled then
+  begin
+
+    if FatDevUfeDev.Value = 'EX' then
+      LocPfa := 'Importacao ou Exportacao'
+    else
+    begin
+
+      if FatDevUfeDev.Value <> GUfeEmp then
+        LocPfa := 'Outros Estados'
+      else
+        LocPfa := 'Mesmo Estado'
+
+    end;
+
+    try
+
+      fmPsqPfa := TfmPsqPfa.Create(Self);
+
+      with fmPsqPfa.EstPfa, SQL do
+      begin
+
+        Close;
+        Text := ' Select EstPfa.CodPfa,' +
+          '        EstPfa.TipPfa,' +
+          '        EstPfa.DscPfa,' +
+          '        EstPfa.DsrPfa,' +
+          '        EstPfa.CodCf1,' +
+          '        EstPfa.CodCf2,' +
+          '        EstPfa.IntFin,' +
+          '        EstPfa.AtuEst,' +
+          '        EstPfa.ConSum,' +
+          '        EstPfa.ModPfa' +
+          ' From EstPfa' +
+          ' Where EstPfa.TipPfa = :TipPfa' +
+          '   and EstPfa.LocPfa = :LocPfa' +
+          '   and EstPfa.ModPfa = :ModPfa' +
+          ' Order by EstPfa.DscPfa';
+
+        with Params do
+        begin
+
+          Params[0].AsString := FatDevTipPfa.Value;
+          Params[1].AsString := LocPfa;
+          Params[2].AsString := 'Devolucoes';
+
+        end;
+
+        Open;
+
+      end;
+
+      fmPsqPfa.ShowModal;
+
+      if Trim(fmPsqPfa.CodPfa) <> '' then
+      begin
+
+        FatDevCodPfa.Value := fmPsqPfa.CodPfa;
+
+        pnDscPfa.Caption := fmPsqPfa.NomPfa;
+
+        EdCodPfa.Text := FatDevCodPfa.Value;
+
+      end;
+
+    finally
+
+      FreeAndNil(fmPsqPfa);
+
+    end;
+
+    if Trim(FatDevCodPfa.Value) <> '' then
+      SaiPadrao
+    else
+      EdCodPfa.SetFocus;
+
+  end;
+end;
+
+procedure TfmManEn1_NFE.grFatDv2KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if key = 13 then
+  begin {Tecla - ENTER}
+
+    EdUltQtd.Enabled := True;
+    EdQtdRma.Enabled := True;
+
+    EdUltQtd.Font.Style := [];
+    EdQtdRma.Font.Style := [];
+
+    EdUltQtd.SetFocus;
+
+  end;
+end;
+
+procedure TfmManEn1_NFE.Panel2Exit(Sender: TObject);
+var
+  SeqDv2: integer;
+begin
+  inherited;
+  if FatDv2.State <> dsBrowse then
+  begin
+
+    if FatDv2UltQtd.Value <= fRound(FatDv2SldDv2.Value + FatDv2QtdDv2.Value, 4) then
+    begin
+
+      SeqDv2 := FatDv2SeqDv2.Value;
+
+      with FatDv2 do
+      begin
+
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+        try
+
+          ApplyUpdates; {Tenta aplicar as alterações};
+
+          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+        except
+
+          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+          if FatDv2.State = dsBrowse then FatDv2.Edit;
+
+          EdUltQtd.SetFocus;
+
+          raise;
+
+        end;
+
+        CommitUpdates; {sucesso!, limpa o cache...}
+
+      end;
+
+      FatDv2.Close;
+      FatDv2.Open;
+
+      FatDv2.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqFat;SeqDev;SeqDv2', VarArrayOf([FatDv2CodEmp.Value, FatDv2DteRes.Value, FatDv2NumRes.Value, FatDv2SeqLib.Value, FatDv2SeqFat.Value, FatDv2SeqDev.Value, SeqDv2]), [LoPartialKey]);
+
+      FatDev.Close;
+      FatDev.Open;
+
+      FatDv2.Next;
+
+      EdUltQtd.Enabled := False;
+      EdQtdRma.Enabled := False;
+
+      EdUltQtd.Font.Style := [fsBold];
+      EdQtdRma.Font.Style := [fsBold];
+
+      grFatDv2.SetFocus;
+
+    end
+    else
+      fmsgErro('Quantidade informada maior que o saldo a devolver.', EdUltQtd);
+
+  end
+  else
+  begin
+
+    EdUltQtd.Enabled := False;
+    EdQtdRma.Enabled := False;
+
+    EdUltQtd.Font.Style := [fsBold];
+    EdQtdRma.Font.Style := [fsBold];
+
+    grFatDv2.SetFocus;
+
+  end;
+end;
+
+procedure TfmManEn1_NFE.SaiPadrao;
+var
+  LocPfa, vcodicm: string;
+begin
+  inherited;
+  if FatDev.State <> dsBrowse then
+  begin
+
+    if Trim(FatDevCodPfa.Value) <> '' then
+    begin
+
+      if FatDevUfeDev.Value = 'EX' then
+        LocPfa := 'Importacao ou Exportacao'
+      else
+      begin
+
+        if FatDevUfeDev.Value <> GUfeEmp then
+          LocPfa := 'Outros Estados'
+        else
+          LocPfa := 'Mesmo Estado'
+
+      end;
+
+      with quSql, SQL do
+      begin
+
+        Close;
+        Text := ' Select EstPfa.DscPfa, EstPfa.modpfa, EstPfa.ATUEST, EstPfa.INTFIN, EstPfa.codicm' +
+          ' From EstPfa' +
+          ' Where EstPfa.TipPfa = :TipPfa' +
+          '   and EstPfa.CodPfa = :CodPfa' +
+          '   and EstPfa.LocPfa = :LocPfa' +
+          '   and EstPfa.ModPfa = :ModPfa';
+
+        with Params do
+        begin
+
+          Params[0].AsString := FatDevTipPfa.Value;
+          Params[1].AsString := FatDevCodPfa.Value;
+          Params[2].AsString := LocPfa;
+          Params[3].AsString := 'Devolucoes';
+
+        end;
+
+        Open;
+
+      end;
+
+      vcodicm := '';
+      VCODICM := quSql.FieldbyName('CODICM').AsString;
+
+      if ((vcodicm = '') or (vcodicm = '0')) then
+        fmsgErro('Padrão de Faturamento Informado Sem regra de ICMS', EdCodPfa);
+
+      if Trim(quSql.FieldbyName('DscPfa').AsString) <> '' then
+      begin
+
+        pnDscPfa.Caption := quSql.FieldbyName('DscPfa').AsString;
+
+        EdSerNot.SetFocus;
+
+      end
+      else
+      begin
+
+        pnDscPfa.Caption := '';
+
+        fmsgErro('Padrão de faturamento informado não localizado.', EdCodPfa);
+
+      end;
+
+    end
+    else
+    begin
+
+      pnDscPfa.Caption := '';
+
+      fmsgErro('Campo de preenchimento obrigatório.', EdCodPfa);
+
+    end;
+  end;
+end;
+
+procedure TfmManEn1_NFE.DsFatDv2DataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+
+  if FatDevFlgDif.Value = 'Sim' then
+    pnFlgDif.Color := clRed
+  else
+    pnFlgDif.Color := clLime;
+
+  if FatDevQtdDev.Value > 0 then
+    pnQtdDev.Caption := IntToStr(FatDevQtdDev.Value)
+  else
+    pnQtdDev.Caption := '0';
+
+  pnBasIcm.Caption := FormatFloat('###,###,##0.00', FatDevBasIcm.Value);
+  pnTotIcm.Caption := FormatFloat('###,###,##0.00', FatDevTotIcm.Value);
+  pnBasSub.Caption := FormatFloat('###,###,##0.00', FatDevBasSub.Value);
+  pnTotSub.Caption := FormatFloat('###,###,##0.00', FatDevTotSub.Value);
+  pnTotFat.Caption := FormatFloat('###,###,##0.00', FatDevTotDev.Value);
+  pnTotFrt.Caption := FormatFloat('###,###,##0.00', FatDevTotFrt.Value);
+  pnTotSeg.Caption := FormatFloat('###,###,##0.00', FatDevTotSeg.Value);
+  pnTotDes.Caption := FormatFloat('###,###,##0.00', FatDevTotDes.Value);
+  pnTotIpi.Caption := FormatFloat('###,###,##0.00', FatDevTotIpi.Value);
+  pnTotGer.Caption := FormatFloat('###,###,##0.00', FatDevTotGer.Value);
+
+end;
+
+procedure TfmManEn1_NFE.grFatDv2Enter(Sender: TObject);
+begin
+  inherited;
+  LbText.Caption := 'Enter-Informar Qtde a separar  Barra de Espaço-Sep saldo/Nao sep  F6-Sep tudo/Nao sep';
+end;
+
+procedure TfmManEn1_NFE.EdNumNfsEnter(Sender: TObject);
+begin
+  inherited;
+  LbText.Caption := '';
+end;
+
+procedure TfmManEn1_NFE.EdCodPfaEnter(Sender: TObject);
+begin
+  inherited;
+  LbText.Caption := 'F1-Iniciais F2-Inteligente';
+end;
+
+procedure TfmManEn1_NFE.EdNumResExit(Sender: TObject);
+var
+  Pergunta, BPedido: string;
+begin
+  inherited;
+  if (Tecla <> 'ESC') and (Tecla <> 'UP') then
+  begin
+    if FatDev.State <> dsBrowse then
+    begin
+      if FatDevNumNfs.Value > 0 then
+      begin
+        with quSql, SQL do
+        begin
+
+          bpedido := 'AND fatped.numres = ' + quotedstr(ednumres.text);
+
+          Close;
+          Text := ' Select FatPed.CodEmp,' +
+            '        FatPed.DteRes,' +
+            '        FatPed.NumRes,' +
+            '        FatPed.SeqLib,' +
+            '        FatPed.SeqFat,' +
+            '        FatPed.SitFat,' +
+            '        FatPed.UfeFat ' +
+            ' From FatPed' +
+            ' Where FatPed.NroNfs = ' + QuotedStr(IntToStr(FatDevNumNfs.Value)) + bpedido;
+          try
+            Open;
+          except
+            pnNumRes.Caption := '';
+            pnCodEmp.Caption := '';
+            pnCodCli.Caption := '';
+            pnCodVen.Caption := '';
+            pnNomCli.Caption := '';
+            pnUfeDev.Caption := '';
+            pnApeEmp.Caption := '';
+            pnNomCli.Caption := '';
+            pnApeVen.Caption := '';
+            ednumres.text := '';
+            ednumres.enabled := false;
+
+            fmsgErro('Nota fiscal informada não localizada.', EdNumNfs);
+
+            sysutils.abort;
+          end;
+          if isempty then
+          begin
+            pnNumRes.Caption := '';
+            pnCodEmp.Caption := '';
+            pnCodCli.Caption := '';
+            pnCodVen.Caption := '';
+            pnNomCli.Caption := '';
+            pnUfeDev.Caption := '';
+            pnApeEmp.Caption := '';
+            pnNomCli.Caption := '';
+            pnApeVen.Caption := '';
+            ednumres.text := '';
+            ednumres.enabled := false;
+
+            fmsgErro('Nota fiscal informada não localizada.', EdNumNfs);
+            SYSUTILS.ABORT;
+          end
+        end;
+
+        if quSql.FieldbyName('NumRes').AsInteger > 0 then
+        begin
+
+          if Trim(quSQL.FieldbyName('SitFat').AsString) = 'Faturado' then
+          begin
+
+            FatDevUfeDev.Value := quSql.FieldbyName('UfeFat').AsString;
+            FatDevCodEmp.Value := quSql.FieldbyName('CodEmp').AsInteger;
+            FatDevNumRes.Value := quSql.FieldbyName('NumRes').AsInteger;
+            FatDevSeqLib.Value := quSql.FieldbyName('SeqLib').AsInteger;
+            FatDevSeqFat.Value := quSql.FieldbyName('SeqFat').AsInteger;
+            FatDevDteRes.Value := quSql.FieldbyName('DteRes').AsDateTime;
+
+            with quSQL, SQL do
+            begin
+
+              Close;
+              Text := ' Select Count(*) as QtdReg' +
+                ' From FatPe2' +
+                ' Where FatPe2.CodEmp = :CodEmp' +
+                '   and FatPe2.DteRes = :DteRes' +
+                '   and FatPe2.NumRes = :NumRes' +
+                '   and FatPe2.SeqLib = :SeqLib' +
+                '   and FatPe2.SeqFat = :SeqFat and FatPe2.QtdPe2 <> FatPe2.QtpPe2';
+
+              with Params do
+              begin
+
+                Params[0].AsInteger := FatDevCodEmp.Value;
+                Params[1].AsDateTime := FatDevDteRes.Value;
+                Params[2].AsInteger := FatDevNumRes.Value;
+                Params[3].AsInteger := FatDevSeqLib.Value;
+                Params[4].AsInteger := FatDevSeqFat.Value;
+
+              end;
+
+              Open;
+
+            end;
+
+            if quSQL.FieldbyName('QtdReg').AsInteger > 0 then
+            begin
+
+              pnNumRes.Caption := IntToStr(FatDevNumRes.Value);
+              pnCodEmp.Caption := IntToStr(FatDevCodEmp.Value);
+
+              with quSQL, SQL do
+              begin
+
+                Close;
+                Text := ' Select PedRes.UfeRes,' +
+                  '        PedRes.CodCli,' +
+                  '        PedRes.CodVen ' +
+                  ' From PedRes' +
+                  ' Where PedRes.CodEmp = :CodEmp' +
+                  '   and PedRes.DteRes = :DteRes' +
+                  '   and PedRes.NumRes = :NumRes';
+
+                with Params do
+                begin
+
+                  Params[0].AsInteger := FatDevCodEmp.Value;
+                  Params[1].AsDateTime := FatDevDteRes.Value;
+                  Params[2].AsInteger := FatDevNumRes.Value;
+
+                end;
+
+                Open;
+
+                FatDevCodCli.Value := FieldbyName('CodCli').AsInteger;
+                FatDevCodVen.Value := FieldbyName('CodVen').AsInteger;
+
+                pnUfeDev.Caption := FieldbyName('UfeRes').AsString;
+
+              end;
+
+              pnCodCli.Caption := IntToStr(FatDevCodCli.Value);
+              pnCodVen.Caption := IntToStr(FatDevCodVen.Value);
+
+              with quSQL, SQL do
+              begin
+
+                Close;
+                Text := ' Select GerEmp.ApeEmp From GerEmp Where GerEmp.CodEmp = ' + QuotedStr(IntToStr(FatDevCodEmp.Value));
+                Open;
+
+                pnApeEmp.Caption := FieldbyName('ApeEmp').AsString;
+
+              end;
+
+              with quSQL, SQL do
+              begin
+
+                Close;
+                Text := ' Select FinCli.NomCli From FinCli Where FinCli.CodCli = ' + QuotedStr(IntToStr(FatDevCodCli.Value));
+                Open;
+
+                pnNomCli.Caption := FieldbyName('NomCli').AsString;
+
+              end;
+
+              with quSQL, SQL do
+              begin
+
+                Close;
+                Text := ' Select FinVen.ApeVen From FinVen Where FinVen.CodVen = ' + QuotedStr(IntToStr(FatDevCodVen.Value));
+                Open;
+
+                pnApeVen.Caption := FieldbyName('ApeVen').AsString;
+
+              end;
+
+            end
+            else
+            begin
+
+              pnNumRes.Caption := '';
+              pnCodEmp.Caption := '';
+              pnCodCli.Caption := '';
+              pnCodVen.Caption := '';
+              pnNomCli.Caption := '';
+              pnUfeDev.Caption := '';
+              pnApeEmp.Caption := '';
+              pnNomCli.Caption := '';
+              pnApeVen.Caption := '';
+
+              fmsgErro('Nota fiscal informada com devolução já realizada.', EdNumNfs)
+
+            end;
+
+          end
+          else
+          begin
+
+            pnNumRes.Caption := '';
+            pnCodEmp.Caption := '';
+            pnCodCli.Caption := '';
+            pnCodVen.Caption := '';
+            pnNomCli.Caption := '';
+            pnUfeDev.Caption := '';
+            pnApeEmp.Caption := '';
+            pnNomCli.Caption := '';
+            pnApeVen.Caption := '';
+
+            if Trim(quSQL.FieldbyName('SitFat').AsString) = 'Em Aberto' then fmsgErro('Nota fiscal informada não confirmada.', EdNumNfs)
+
+            else if Trim(quSQL.FieldbyName('SitFat').AsString) = 'Cancelado' then fmsgErro('Nota fiscal informada cancelada.', EdNumNfs)
+
+            else if Trim(quSQL.FieldbyName('SitFat').AsString) = 'Devolvido' then fmsgErro('Nota fiscal informada já devolvida.', EdNumNfs);
+
+          end;
+
+        end
+        else
+        begin
+
+          pnNumRes.Caption := '';
+          pnCodEmp.Caption := '';
+          pnCodCli.Caption := '';
+          pnCodVen.Caption := '';
+          pnNomCli.Caption := '';
+          pnUfeDev.Caption := '';
+          pnApeEmp.Caption := '';
+          pnNomCli.Caption := '';
+          pnApeVen.Caption := '';
+
+          fmsgErro('Nota fiscal informada não localizada.', EdNumNfs);
+
+        end;
+
+      end
+      else
+      begin
+
+        pnNumRes.Caption := '';
+        pnCodEmp.Caption := '';
+        pnCodCli.Caption := '';
+        pnCodVen.Caption := '';
+        pnNomCli.Caption := '';
+        pnUfeDev.Caption := '';
+        pnApeEmp.Caption := '';
+        pnNomCli.Caption := '';
+        pnApeVen.Caption := '';
+
+        fmsgErro('Campo de preenchimento obrigátorio.', EdNumNfs);
+
+      end;
+    end;
+
+  end
+  else
+  begin
+
+    if Tecla = 'UP' then EdNumNfs.SetFocus
+
+  end;
+
+end;
+
+end.

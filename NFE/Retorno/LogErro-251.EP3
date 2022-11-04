@@ -1,0 +1,30 @@
+Falha na validação dos dados da nota 251
+TAG:<det nItem="2"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="3"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="4"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="5"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="6"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="7"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="8"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="9"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="10"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="11"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="12"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="13"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="14"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="15"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="16"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="17"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="18"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="19"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="20"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="21"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="22"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="23"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="24"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="25"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="26"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="27"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="28"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+'' viola a restrição pattern de '[123567][0-9]([0-9][1-9]|[1-9][0-9])'.
+Falha da análise do elemento '{http://www.portalfiscal.inf.br/nfe}CFOP' com valor ''.

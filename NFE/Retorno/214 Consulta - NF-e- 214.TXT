@@ -1,0 +1,10 @@
+Identificador : 35100708982270000157550010000002145754671660
+Ambiente : 2
+Versão Aplicativo : SP_NFE_PL_005e
+Status Código : 100
+Status Descrição : Autorizado o uso da NF-e
+UF : SP
+Chave Acesso : 35100708982270000157550010000002145754671660
+Recebimento : 20/7/2010 16:30:07
+Protocolo : 135100023430132
+Digest Value : 9IchedoR6ygcBAvGHaHJlYBqh7k=

@@ -1,0 +1,305 @@
+unit Controle_NFE;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Fpadrao, Grids, Wwdbigrd, Wwdbgrid, hGrid, dxExEdtr, dxEdLib, dxEditor,
+  StdCtrls, ExtCtrls, Buttons, dxCntner, Menus, Db, Wwdatsrc, DBTables,
+  Wwquery, ImgList, dxDBELib, dxColorEdit, ComCtrls, ToolWin;
+
+type
+  TfmControle_NFE = class(TfmPadrao)
+    q_local: TwwQuery;
+    ds_local: TwwDataSource;
+    q_localNRONFS: TIntegerField;
+    q_localVTIPO: TStringField;
+    q_localDTENFE: TDateTimeField;
+    q_localNUMRES: TIntegerField;
+    q_localCGCCLI: TStringField;
+    q_localNOMENT: TStringField;
+    q_localTOTFAT: TFloatField;
+    q_localFLGNFE: TStringField;
+    q_localSEQNFE: TStringField;
+    q_localSITFAT: TStringField;
+    q_localCODEMP: TIntegerField;
+    q_localRETNFE: TStringField;
+    barra: TToolBar;
+    Atualizar: TSpeedButton;
+    bIncluir: TSpeedButton;
+    ToolButton1: TToolButton;
+    PageControl1: TPageControl;
+    ts_dados: TTabSheet;
+    grid: ThGrid;
+    pnMensag: TPanel;
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure AtualizarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure bIncluirClick(Sender: TObject);
+  private
+    {Private declarations}
+    xCodEmp, xNronfs, xNumres: integer;
+    xvtipo: string;
+    xRoboNfe, xRoboReq, xRoboResp, xRoboBackup: string;
+  public
+    {Public declarations}
+  end;
+
+var
+  fmControle_NFE: TfmControle_NFE;
+
+implementation
+
+uses dxDemoUtils, Bbgeral, Bbfuncao, Bbmensag, ManGDB, ManPri;
+
+{$R *.DFM}
+
+procedure TfmControle_NFE.FormCreate(Sender: TObject);
+begin
+  inherited;
+  //vou fazer a pesquisa depois, por enquanto fica o texto padrão do q_local
+  //sBase := self.q_local.SQL.Text:
+  self.q_local.Active := true;
+  self.Top := 0;
+  self.Left := 0;
+  xRoboNfe := 'C:\EMERION\NFE';
+  xRoboReq := 'C:\EMERION\REQ';
+  xRoboResp := 'C:\EMERION\RESP';
+  xRoboBackup := 'C:\EMERION\BACKUP\NFE';
+end;
+
+procedure TfmControle_NFE.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  Action := CaFree;
+end;
+
+procedure TfmControle_NFE.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  fmControle_NFE := nil;
+end;
+
+procedure TfmControle_NFE.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if key = 27 then close;
+end;
+
+procedure TfmControle_NFE.FormShow(Sender: TObject);
+begin
+  inherited;
+  self.grid.SetFocus;
+end;
+
+procedure TfmControle_NFE.AtualizarClick(Sender: TObject);
+begin
+  inherited;
+  //Atualizar a tela
+  xCodEmp := self.q_local.fieldbyname('CodEmp').Value;
+  xnronfs := self.q_local.fieldbyname('nronfs').Value;
+  xvtipo := self.q_local.fieldbyname('vtipo').Value;
+  xnumres := self.q_local.fieldbyname('numres').Value;
+  self.q_local.Active := false;
+  self.q_local.Active := true;
+  if not self.q_local.Locate('CodEmp;NroNfs;Vtipo;NumRes', VarArrayOf([xCodEmp, xNroNfs, xVtipo, xNumRes]), [LoPartialKey]) then
+    self.q_local.First;
+  self.grid.SetFocus;
+end;
+
+
+procedure TfmControle_NFE.bIncluirClick(Sender: TObject);
+var continua: boolean;
+begin
+  inherited;
+  continua := true;
+
+  //xRoboNfe := 'C:\EMERION\NFE' ;
+  //xRoboReq := 'C:\EMERION\REQ' ;
+  //xRoboResp:= 'C:\EMERION\RESP' ;
+  //xRoboBackup := 'C:\EMERION\BACKUP\NFE' ;
+
+  if continua then
+  try
+    //      if not directoryExists(xRoboNfe) then CreateDir(xRoboNfe);
+    //      if not directoryExists(xRoboReq) then CreateDir(xRoboReq);
+    //      if not directoryExists(xRoboResp) then CreateDir(xRoboResp);
+    //      if not directoryExists(xRoboBackuo) then CreateDir(xRoboBackuo);
+  except
+    begin
+      continua := false;
+      fmsgErro('Erro na criação dos diretórios para envio da NF-e, verifique!', nil);
+    end;
+  end;
+  if continua then
+  begin
+
+  end;
+  {
+      Application.ProcessMessages;
+      fmManPri.Enabled := False;
+      fmControle_NFE.Enabled:=False;
+      pnMensag.Caption := 'Aguarde. Verificando status do serviço.';
+      pnMensag.Visible := True;
+
+      ArqRe1 := xRoboReq + '\INTPOS.TMP';
+      ArqRe2 := xRoboReq + '\INTPOS.001';
+      ArqRs1 := xRoboResp + '\INTPOS.STS';
+      ArqRs2 := xRoboResp + '\INTPOS.001';
+      DeleteFile(ArqRe1);
+      DeleteFile(ArqRe2);
+      DeleteFile(ArqRs1);
+      DeleteFile(ArqRs2);
+
+
+                               AssignFile(ArqEnv,ArqRe1);
+
+                               Rewrite(ArqEnv);
+
+                               Writeln(ArqEnv,'EM01' +
+                                              UfeEmp +
+                                              FatGerSeqNFe.Value);
+
+                               CloseFile(ArqEnv);
+
+                               movefile(PChar(ArqRe1),PChar(ArqRe2));
+
+
+
+                               SeqEnc := 0;
+
+                               while SeqEnc = 0 do begin
+
+                                     while not FileExists(ArqRs2) do Application.ProcessMessages;
+
+                                     if FileExists(ArqRs2) then begin
+
+                                        sleep(1000);
+
+                                        ArqRet := TStringList.Create;
+
+                                        ArqRet.LoadFromFile(ArqRs2);
+
+                                        if pos('EMRESP',ArqRet[0]) = 0 then
+                                           SeqEnc := 3
+                                        else
+                                           begin
+
+                                           if pos(FatGerSeqNFe.Value,ArqRet[0]) > 0 then SeqEnc := 1;
+
+                                        end;
+
+                                        FreeAndNil(ArqRet);
+
+                                        if SeqEnc = 3 then DeleteFile(ArqRs2);
+
+                                     end;
+                               end;
+
+                               if FileExists(ArqRs2) then begin
+
+                                  Application.ProcessMessages;
+
+                                  CopyFile(Pchar(ArqRs2),Pchar(ArqRs2), SeqRet);
+
+                                  // Cria-se um Handle //
+
+                                  Handle := CreateFile(PChar(ArqRs2),GENERIC_WRITE,0,0,OPEN_ALWAYS,FILE_FLAG_NO_BUFFERING,0);
+
+                                  // Descarrega o arquivo com essa função //
+
+                                  FlushFileBuffers(Handle);
+
+                                  // Fecha o Handle //
+
+                                  CloseHandle(Handle);
+
+                                  // Informações para Salva de Backup do INTPOS.001//
+
+                                  CopyFile(Pchar(ArqRs2),Pchar(ExtractFilePath(Application.ExeName)+'INTPOS.001'), SeqRet);
+
+                                  { Cria-se um Handle }
+
+  //                                Handle := CreateFile('INTPOS.001',GENERIC_WRITE,0,0,OPEN_ALWAYS,FILE_FLAG_NO_BUFFERING,0);
+
+                                  { Descarrega o arquivo com essa função }
+
+  //                                FlushFileBuffers(Handle);
+
+                                  { Fecha o Handle }
+
+  //                                CloseHandle(Handle);
+
+                                  // Informações para Salva de Backup do INTTMP.001//
+
+  //                                CopyFile(Pchar(ArqRs2),Pchar(ExtractFilePath(Application.ExeName)+'INTTMP.001'), SeqRet);
+
+                                  // Cria-se um Handle //
+
+  //                                Handle := CreateFile(PChar('INTTMP.001'),GENERIC_WRITE,0,0,OPEN_ALWAYS,FILE_FLAG_NO_BUFFERING,0);
+
+                                  // Descarrega o arquivo com essa função //
+
+  //                                FlushFileBuffers(Handle);
+
+                                  // Fecha o Handle //
+
+  {                                CloseHandle(Handle);
+
+                                  FlgRej := 'N';
+
+                                  ArqRet := TStringList.Create;
+
+                                  ArqRet.LoadFromFile(ArqRs2);
+
+                                  for SeqLin := 0 to ArqRet.Count - 1 do begin
+
+                                      Application.ProcessMessages;
+
+                                      LinArq := ArqRet[SeqLin];
+
+                                      if pos('EMRESP',LinArq) > 0 then begin
+
+                                         if pos('System.Reflection',LinArq) > 0 then begin
+
+                                            FlgRej := 'S';
+
+                                            MSGNFE := 'Serviço inativo ou inoperante. Tente novamente.';
+
+                                            break;
+
+                                            end
+                                         else
+                                            begin
+
+                                            if pos('Erros:',LinArq) > 0 then FlgRej := 'S';
+
+                                            if pos('Rejeição',LinArq) > 0 then FlgRej := 'S';
+
+                                            MSGNFE := copy(LinArq,pos('<xMotivo>',LinArq)+9,pos('</xMotivo>',LinArq) - (pos('<xMotivo>',LinArq)+9));
+
+                                         end;
+                                      end;
+                                  end;
+
+                                  FreeAndNil(ArqRet);
+
+                                  if FlgRej = 'N' then begin
+
+                                     if Trim( MSGNFE ) <> '' then begin
+
+                                        pnMensag.Caption := MSGNFE;
+
+                                        Application.ProcessMessages;
+
+                                        sleep(3000);  // aguardando 3 Segundos ... Exibindo mensagens para o cliente na tela //
+
+                                     end;
+
+  }
+end;
+
+end.

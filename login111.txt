@@ -1,0 +1,2 @@
+;faziaafins##201.0.212.247/30500:/rede/_wgdad/interbase/fazia_002.fdb @@Servidor Fazia Materiais        ***192.168.5.100:/opt/firebird/security.fdb***
+

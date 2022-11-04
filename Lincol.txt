@@ -1,0 +1,193 @@
+Inicio        =003,000  #salto# Sim
+
+Saida         =001,083  #00002# Sim {E}
+Entrada       =000,101  #00003# Sim {E}
+NotaCab       =000,120  #00001# Sim {E}
+
+NatOper       =004,001  #00004# Sim {N}
+Cfop          =000,038  #00005# Sim {N}
+InscEstSubTrib=000,060  #00007# Sim {N}
+
+Nome          =003,001  #00008# Sim {N}
+Cnpj          =000,081  #00009# Sim {N}
+DataEmis      =000,118  #00010# Sim {N}
+
+Endereco      =002,001  #00011# Sim {N}
+Bairro        =000,069  #00012# Sim {N}
+Cep           =000,100  #00013# Sim {N}
+DataSai       =000,000  #00014# Sim {N}
+
+Cidade        =002,001  #00015# Sim {N}
+Fone          =000,048  #00016# Sim {N}
+Uf            =000,073  #00017# Sim {N}
+InscEst       =000,081  #00018# Sim {N}
+HoraSai       =000,000  #00019# Sim {N}
+
+Numero_A      =004,019  #00131# Sim {C}
+Valor_A       =000,044  #00151# Sim {C}
+Venc_A        =000,059  #00141# Sim {C}
+
+Numero_B      =000,078  #00132# Sim {C}
+Valor_B       =000,105  #00152# Sim {C}
+Venc_B        =000,119  #00142# Sim {C}
+
+Numero_C      =001,019  #00133# Sim {C}
+Valor_C       =000,044  #00153# Sim {C}
+Venc_C        =000,059  #00143# Sim {C}
+
+Numero_D      =000,078  #00134# Sim {C}
+Valor_D       =000,105  #00154# Sim {C}
+Venc_D        =000,119  #00144# Sim {C}
+
+Numero_E      =001,019  #00135# Sim {C}
+Valor_E       =000,044  #00155# Sim {C}
+Venc_E        =000,059  #00145# Sim {C}
+
+Numero_F      =000,078  #00136# Sim {C}
+Valor_F       =000,105  #00156# Sim {C}
+Venc_F        =000,119  #00146# Sim {C}
+
+Numero_G      =001,019  #00137# Sim {C}
+Valor_G       =000,044  #00157# Sim {C}
+Venc_G        =000,059  #00147# Sim {C}
+
+Numero_H      =000,078  #00138# Sim {C}
+Valor_H       =000,105  #00158# Sim {C}
+Venc_H        =000,119  #00148# Sim {C}
+
+Cobranca_1    =001,001  #00038# Sim {C}
+Cobranca_2    =000,080  #00039# Sim {C}
+
+SaltoIni      =003,000  #salto# Sim
+
+Produto       =002,001  #00040017# Sim item {C}
+Descr         =000,015  #00041057# Sim item {C}
+CodCfop       =000,065  #00209005# Sim item {C}
+ClassFisc     =000,071  #00042010# Sim item {C}
+ST1           =000,080  #00043001# Sim item {C}
+ST2           =000,081  #00044002# Sim item {C}
+Unidade       =000,083  #00045003# Sim item {C}
+Qtde          =000,085  #00046012# Sim item {C}
+Unit          =000,096  #00047012# Sim item {C}
+Total         =000,108  #00048012# Sim item {C}
+AlIcms        =000,120  #00049003# Sim item {C}
+AlIpi         =000,122  #00050003# Sim item {C}
+ValIpi        =000,127  #00051010# Nao item {C}
+Descr2        =001,001  #00052070# Nao item {C}
+Descr3        =001,001  #00128070# Sim item {C}
+DesDesc       =001,001  #00126070# Sim item {C}
+ValDesc       =000,108  #00127012# Sim item {C}
+TextIpi       =000,001  #00053070# Nao item {C}
+TextIcm       =000,001  #00054070# Nao item {C} (19)
+
+Entrega_1     =002,001  #00055# Sim {C}
+Entrega_2     =001,001  #00056# Sim {C}
+
+SaltoFim      =002,000  #salto# Sim
+
+BaseIcms      =001,001  #00057# Sim {N}
+ValIcms       =000,027  #00058# Sim {N}
+BaseIcmsSub   =000,054  #00059# Sim {N}
+ValIcmsSub    =000,082  #00060# Sim {N}
+TotalProds    =000,110  #00061# Sim {N}
+
+Frete         =002,001  #00062# Sim {N}
+Seguro        =000,027  #00063# Sim {N}
+Outras        =000,054  #00064# Sim {N}
+TotalIpi      =000,082  #00065# Sim {N}
+TotalNota     =000,110  #00066# Sim {N}
+
+NomeTransp    =003,001  #00067# Sim {N}
+FretePc       =000,077  #00068# Sim {N}
+Placa         =000,084  #00069# Sim {N}
+UFPlaca       =000,100  #00070# Sim {N}
+CnpjTransp    =000,106  #00071# Sim {N}
+
+EndTransp     =002,001  #00072# Sim {N}
+CidTransp     =000,062  #00073# Sim {N}
+UFTransp      =000,100  #00074# Sim {N}
+InscTransp    =000,106  #00075# Sim {N}
+
+QtdeVol       =002,006  #00076# Sim {N}
+Especie       =000,021  #00077# Sim {N}
+Marca         =000,042  #00078# Sim {N}
+Numero        =000,062  #00079# Sim {N}
+PesBruto      =000,091  #00080# Sim {N}
+PesLiq        =000,112  #00081# Sim {N}
+
+Obs1          =003,001  #00187# Sim {C}
+Obs2          =001,001  #00188# Sim {C}
+Obs3          =001,001  #00189# Sim {C}
+Obs4          =001,001  #00190# Sim {C}
+Obs5          =001,001  #00191# Sim {C}
+Obs6          =001,001  #00192# Sim {C}
+Obs7          =001,001  #00193# Sim {C}
+Obs8          =001,001  #00194# Sim {C}
+
+NroFormulario =001,105  #00210# Sim {E}
+
+NotaRod2      =006,122  #00097# Sim {E}
+
+Final         =004,000  #salto# Sim
+
+
+
+
+
+
+
+Cfop2         =000,112  #00006# Nao {N}
+
+Serie         =000,176  #00211# Nao {N}
+
+NossoPed      =002,027  #00120# Nao {N}
+
+SeuPed        =000,042  #00119# Nao {N}
+
+Vend          =000,059  #00118# Nao {N}
+
+SaltoSer      =003,000  #salto# Nao {N}
+
+CodServ01     =000,002  #00161014# Nao {N}
+DesServ01     =001,012  #00165070# Nao {N}
+UndServ01     =000,072  #00169003# Nao {N}
+QtdServ01     =000,071  #00173008# Nao {N}
+VluServ01     =000,087  #00177012# Nao {N}
+TotServ01     =000,104  #00181012# Nao {N}
+
+CodServ02     =000,002  #00162014# Nao {N}
+DesServ02     =001,012  #00166070# Nao {N}
+UndServ02     =000,072  #00170003# Nao {N}
+QtdServ02     =000,071  #00174008# Nao {N}
+VluServ02     =000,087  #00178012# Nao {N}
+TotServ02     =000,104  #00182012# Nao {N}
+
+TotalISS      =000,116  #00185# Nao {N}
+
+CodServ03     =000,002  #00163014# Nao {N}
+DesServ03     =001,012  #00167070# Nao {N}
+UndServ03     =000,072  #00171003# Nao {N}
+QtdServ03     =000,071  #00175008# Nao {N}
+VluServ03     =000,087  #00179012# Nao {N}
+TotServ03     =000,104  #00183012# Nao {N}
+
+CodServ04     =000,002  #00164014# Nao {N}
+DesServ04     =001,012  #00168070# Nao {N}
+UndServ04     =000,072  #00172003# Nao {N}
+QtdServ04     =000,071  #00176008# Nao {N}
+VluServ04     =000,087  #00180012# Nao {N}
+TotServ04     =000,104  #00184012# Nao {N}
+
+TotServico    =000,116  #00186# Nao {N}
+
+NotaRod1      =001,045  #00097# Nao {E}
+
+
+CodClassFiscA =001,006  #00088# Nao {N}
+CodClassFiscB =001,006  #00089# Nao {N}
+CodClassFiscC =001,006  #00090# Nao {N}
+CodClassFiscD =001,006  #00091# Nao {N}
+CodClassFiscE =001,006  #00092# Nao {N}
+CodClassFiscF =001,006  #00093# Nao {N}
+
+Vend          =001,022  #00096# Nao {N}

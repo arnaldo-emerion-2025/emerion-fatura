@@ -1,0 +1,5 @@
+Falha na validação dos dados da nota 195
+TAG:<dest> ID:E02-E03/CNPJ-CPF(CNPJ/CPF) - Nenhum valor informado.
+TAG:<dest> ID:E04/xNome(Razão Social ou Nome) - Nenhum valor informado.
+Element '{http://www.portalfiscal.inf.br/nfe}xNome' is unexpected according to content model of parent element '{http://www.portalfiscal.inf.br/nfe}dest'.
+Expecting: {http://www.portalfiscal.inf.br/nfe}CNPJ, {http://www.portalfiscal.inf.br/nfe}CPF.

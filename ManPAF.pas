@@ -1,0 +1,70 @@
+unit ManPAF;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Db, DBTables;
+
+type
+  TfmManPAF = class(TDataModule)
+    dbPAF: TDatabase;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+
+  public
+    { Public declarations }
+
+    procedure ConexaoPaf;
+  end;
+
+var
+  fmManPAF: TfmManPAF;
+
+implementation
+
+uses ManGDB, Bbfuncao;
+
+{$R *.DFM}
+
+procedure TfmManPAF.ConexaoPaf;
+begin
+  if Session.IsAlias('PAF') then
+  begin
+    dbPAF.Connected := False;
+    dbPAF.AliasName := 'PAF';
+    dbPAF.Params.Clear;
+    dbPAF.LoginPrompt := False;
+
+    dbPAF.Params.Add('BLOBS TO CACHE=-1');
+
+    //if Trim(GDirAce) <> '' then
+      //dbIMR.Params.Add('SERVER NAME=' + GDirAce);
+
+    dbPAF.Params.Add('USER NAME=SYSDBA');
+    //dbPAF.Params.Add('PASSWORD=' + 'ibsade20');
+    dbPAF.Params.Add('PASSWORD=' + GuIdHal);
+
+    dbPAF.Connected := True;
+
+  end;
+end;
+
+procedure TfmManPAF.DataModuleCreate(Sender: TObject);
+begin
+
+  if fmManGDB.BuscaSimples('LOJPAR', 'INTPAF', ' 1=1 ') = 'S' then
+  begin
+    VerificaAliasIMR;
+
+    if Session.IsAlias('PAF') then
+    begin
+      fmManPaf.ConexaoPaf;
+    end;
+  end;
+
+  ConexaoPAF;
+end;
+
+end.

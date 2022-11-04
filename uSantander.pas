@@ -1,0 +1,212 @@
+unit uSantander;
+
+interface
+
+
+uses
+   Windows, Messages, SysUtils, Classes, Graphics, Controls, Dialogs, StdCtrls,
+  ExtCtrls;
+
+//Funções para o Banco Santander
+   function getCodBar(): String;
+   function StrZero(numero, digitos: Integer): string;
+   function modulo11(composicao: String): Integer;
+   function Modulo10(cData: string): Integer;
+   function getCodBar_LinhaDigitavel(cConv, cCart, cBanco, cAgencia, cConta, cDigCC, cNroDoc: string; nValor: Extended; dVencto: TDateTime): TStringList;
+
+const
+   codigoBanco = '033';
+
+implementation
+
+function getCodBar_LinhaDigitavel(cConv, cCart, cBanco, cAgencia, cConta, cDigCC, cNroDoc{NossoNumero}: string; nValor: Extended; dVencto: TDateTime): TStringList;
+var
+   s, RN, NN, CB, _cfator, _cCart: String;
+   nExtToInt: Variant;
+   blvalorfinal, bldocnufinal: string;
+   dvcb, dvnn, dv: Integer;
+begin
+
+  Result := TStringList.Create;
+
+  s  := '';
+  NN := '';
+  CB := '';
+
+  nExtToInt := dVencto - StrToDate('07/10/97');
+
+  _cfator := StrZero(nExtToInt, 4);
+
+  _cCart := cCart;
+
+  bldocnufinal := '0000' + cNroDoc;
+
+  nExtToInt := strtoint(floattostr(nValor * 100));
+  blvalorfinal := StrZero(nExtToInt, 10);
+
+  //-------- Definicao do NOSSO NUMERO
+  //s := cAgencia + cConta + cDigCC + _cCart + bldocnufinal; //ALTEREI AQUI TINHA O cDigCC
+  dvnn := modulo10(bldocnufinal); // digito verifacador Agencia + Conta + Carteira + Nosso Num
+  NN := bldocnufinal;
+
+  //-------- Definicao do CODIGO DE BARRAS
+  s := cBanco + 'X' + _cfator + blvalorfinal + '9' + cConv + NN + Trim(IntToStr(dvnn)) + '0' + cCart;
+       //_cCart + bldocnufinal + Trim(IntToStr(dvnn)) + cAgencia + cConta + cDigCC + '000';
+  dvcb := modulo11(s);
+  CB := Copy(s, 1, 4) + Trim(IntToStr(dvcb)) + Copy(s, 6, Length(s));
+
+  //-------- Definicao da LINHA DIGITAVEL (Representacao Numerica)
+  //	Campo 1			Campo 2			Campo 3			Campo 4		Campo 5
+  //	AAABC.CCDDX		DDDDD.DDFFFY	FGGGG.GGHHHZ	K			UUUUVVVVVVVVVV
+
+  // 	CAMPO 1:
+  //	01,03 003 - Banco = '033'
+  //	04,04 001 = Codigo da moeda, sempre 9
+  //	05,05 001 = Fixo '9'
+  //	06,09 004 = Codigo do Beneficiario  (Pegar Informacao Cobranca - Convenio)
+  //	10,10 001 = DAC que amarra o campo, calculado pelo Modulo 10 da String do campo
+  s := '033' + '9' + '9' + Copy(cConv, 1, 4);
+  dv := modulo10(s);
+  RN := s + '.' + Trim(IntToStr(dv)) + '  ';
+
+  // 	CAMPO 2:
+  //	11,13 003 - Restante do Codigo do Beneficiario Padrao Santander
+  //	14,20 007 = 7 primeiros campos do NN
+  //	21,21 001 = DAC que amarra o campo, calculado pelo Modulo 10 da String do campo
+  s := Copy(cConv, 5, 3) + Copy(bldocnufinal, 1, 7);
+  dv := modulo10(s);
+  RN := RN + s + '.' + Trim(IntToStr(dv)) + '  ';
+
+  // 	CAMPO 3:
+  //	22,27 006 = Restante do NN com DV
+  //  28,28 001 = IOF - Somente para seguradoras(Se 7% informar 7, limitada a 9)-Demais usar 0
+  //  29,31 003 = Tipo de Modalidade Carteira 101(Simples) 102 (Simples SEM Registro) 201(Penhor)
+  //  32,32 001 = Digito verificador
+  s := Copy(bldocnufinal, 8, 5) + IntToStr(dvnn) + '0' + cCart;
+  dv := modulo10(s);
+  RN := RN + s + '.' + Trim(IntToStr(dv)) + '  ';
+
+  // 	CAMPO 4:
+  //	     K = DAC do Codigo de Barras
+  RN := RN + Trim(IntToStr(dvcb)) + '  ';
+
+  // 	CAMPO 5:
+  //	      UUUU = Fator de Vencimento
+  //	VVVVVVVVVV = Valor do Titulo
+  nExtToInt := (nValor * 100);
+  RN := RN + _cfator + StrZero(nExtToInt, 15 - Length(_cfator));
+
+
+  Result.Add(CB);                  //Codigo de Barras
+  Result.Add(RN);                  //Linha Digitavel
+  Result.Add(NN);                  //Nosso Numero
+  Result.Add(Trim(IntToStr(dvnn)));//Digito Verificador Nosso Número
+
+end;
+
+function StrZero(numero, digitos: Integer): string;
+var
+  i: Integer;
+begin
+  Result := IntToStr(numero);
+  for i := Length(Result) to digitos - 1 do
+    Result := '0' + Result;
+end;
+
+function getCodBar(): String;
+var
+   codBarOriginal : String;
+begin
+   (*Composicao
+
+   001,003 - Identificacao do Banco = '033'
+   004,004 - Codigo da moeda = '9'
+   005,005 - DV do codigo de barras
+   006,009 - Fator de vencimento
+   010,019 - Valor nominal
+   020,020 - fixo = '9'
+   021,027 - Codigo do beneficiario padrao SAntander
+   028,032 - fixo = '00000'
+   033,040 - Nosso numero com dv
+   041,041 - IOF - Seguradoras(Se 7% informar 7, limitado a 9) Demais clientes usar 0
+   042,044 - 101: Cobrança Simples Rapida COM Registro
+             102: Cobrança Simples SEM Registro
+             201: Penhor Rapida COM Registro
+
+   *)
+end;
+
+function modulo11(composicao: String): Integer;
+var
+   I, tamanho, aux, subTotal, totalizador, verificador: Integer;
+   invertido: String;
+begin
+   //Pega Tamanho total do vetor recebido, da forma Atual deve ser "45"
+   tamanho := length(composicao);
+
+   invertido := '';
+
+   //Inverte o Vetor Recebido
+   for I := 0 to tamanho - 1 do
+      begin
+         invertido := invertido + Copy(composicao,tamanho - I,1);
+      end;
+
+   //Remove a posicao 5
+   invertido := Copy(invertido,1,39) + Copy(invertido,41, tamanho - 6);
+
+   aux := 2;
+   totalizador := 0;
+
+   //Executa a Multiplicação do Vetor por seus respectivos Pesos
+   for I := 1 to length(invertido) do
+      begin
+         subTotal := aux * StrToInt(Copy(invertido, I, 1));
+         totalizador := totalizador + subTotal;
+
+         if aux = 9 then
+            aux := 2
+         else
+            Inc(aux)
+      end;
+
+   //Multiplica o Total por 10
+   totalizador := totalizador * 10;
+
+   //Executa o Módulo 11 e paga o "Resto"
+   verificador := totalizador mod 11;
+
+   result := verificador;
+end;
+
+function Modulo10(cData: string): Integer;
+var
+  L, D, P: Integer;
+  B: Boolean;
+begin
+  L := Length(cData);
+  B := True;
+  D := 0;
+
+  while L > 0 do
+  begin
+    P := StrToInt(Copy(cData, L, 1));
+    if B then
+      P := P * 2;
+
+    if P > 9 then
+      P := P - 9;
+
+    D := D + P;
+    L := L - 1;
+    B := not B;
+
+  end;
+
+  D := 10 - (D mod 10);
+  if D = 10 then
+    D := 0;
+  Result := D;
+end;
+
+end.

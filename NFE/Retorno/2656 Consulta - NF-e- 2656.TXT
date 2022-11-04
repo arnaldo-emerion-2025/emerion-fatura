@@ -1,0 +1,10 @@
+Identificador : 
+Ambiente : 2
+Versão Aplicativo : SP_NFE_PL_005e
+Status Código : 217
+Status Descrição : Rejeição: NF-e não consta na base de dados da SEFAZ
+UF : SP
+Chave Acesso : 
+Recebimento : 
+Protocolo : 
+Digest Value : 

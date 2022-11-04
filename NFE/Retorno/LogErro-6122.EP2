@@ -1,0 +1,4 @@
+WebService Consulta Status serviço:
+- Inativo ou Inoperante tente novamente.
+- <?xml version="1.0"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><SOAP-ENV:Body><nfeStatusServicoNF xmlns="http://www.por - URL:https://homologacao.nfe.fazenda.sp.gov.br/nfeweb/services/nfestatusservico.asmx - SOAPAction:http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico/nfeStatusServicoNF

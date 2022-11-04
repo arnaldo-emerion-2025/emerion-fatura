@@ -1,0 +1,4759 @@
+inherited fmManPfa_GERAL: TfmManPfa_GERAL
+  Left = 423
+  Top = 82
+  Caption = 'Padrões de faturamento'
+  ClientHeight = 620
+  ClientWidth = 752
+  Color = 15788249
+  Position = poDesigned
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label19: TLabel
+    Left = 9
+    Top = 777
+    Width = 124
+    Height = 13
+    Caption = 'Situação tributária do IPI:'
+    Color = clBtnFace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    Transparent = True
+    Visible = False
+  end
+  object Label20: TLabel
+    Left = 242
+    Top = 776
+    Width = 7
+    Height = 16
+    Caption = '*'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Visible = False
+  end
+  object Label41: TLabel
+    Left = 304
+    Top = 776
+    Width = 7
+    Height = 16
+    Caption = '*'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Visible = False
+  end
+  object pcPfa: TPageControl
+    Left = 0
+    Top = 1
+    Width = 914
+    Height = 624
+    ActivePage = pcPag2
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Style = tsButtons
+    TabOrder = 0
+    TabWidth = 124
+    object pcPag1: TTabSheet
+      Caption = '&Visualizar'
+      OnShow = pcPag1Show
+      object Shape3: TShape
+        Left = 0
+        Top = 132
+        Width = 249
+        Height = 18
+        Brush.Color = 14789952
+        Pen.Color = 11764252
+        Shape = stRoundRect
+      end
+      object Shape1: TShape
+        Left = 0
+        Top = 0
+        Width = 249
+        Height = 18
+        Brush.Color = 14789952
+        Pen.Color = 11764252
+        Shape = stRoundRect
+      end
+      object Label8: TLabel
+        Left = 4
+        Top = 2
+        Width = 154
+        Height = 13
+        Caption = 'Informações para pesquisa'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Shape2: TShape
+        Left = 250
+        Top = 7
+        Width = 495
+        Height = 3
+        Brush.Color = 11106843
+        Pen.Color = 14789952
+      end
+      object Label24: TLabel
+        Left = 4
+        Top = 134
+        Width = 122
+        Height = 13
+        Caption = 'Padrões selecionados'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Shape4: TShape
+        Left = 250
+        Top = 140
+        Width = 496
+        Height = 3
+        Brush.Color = 11106843
+        Pen.Color = 14789952
+      end
+      object Shape11: TShape
+        Left = 0
+        Top = 543
+        Width = 747
+        Height = 20
+        Brush.Color = 14789952
+        Pen.Color = 11764252
+        Shape = stRoundRect
+      end
+      object Label25: TLabel
+        Left = 4
+        Top = 546
+        Width = 253
+        Height = 13
+        Caption = 'Crtl+'#39'I'#39'-Incluir Ctrl+'#39'E'#39'-Excluir Ctrl+'#39'S'#39'-Salvar'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label1: TLabel
+        Left = 1
+        Top = 24
+        Width = 41
+        Height = 13
+        Caption = 'Código:'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label4: TLabel
+        Left = 1
+        Top = 47
+        Width = 100
+        Height = 13
+        Caption = 'Tipo de operação:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label26: TLabel
+        Left = 1
+        Top = 70
+        Width = 109
+        Height = 13
+        Caption = 'Descrição consulta:'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label45: TLabel
+        Left = 1
+        Top = 93
+        Width = 118
+        Height = 13
+        Caption = 'Tipo de classificação:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label60: TLabel
+        Left = 245
+        Top = 48
+        Width = 40
+        Height = 13
+        Caption = 'Status:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object bbPesquisa: TBitBtn
+        Left = 329
+        Top = 94
+        Width = 180
+        Height = 43
+        Caption = '&Selecionar'
+        Default = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 8
+        OnClick = bbPesquisaClick
+        Glyph.Data = {
+          36080000424D3608000000000000360400002800000020000000200000000100
+          0800000000000004000000000000000000000001000000000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000C0DCC000F0CA
+          A600CCFFFF0099FFFF0066FFFF0033FFFF00FFCCFF00CCCCFF0099CCFF0066CC
+          FF0033CCFF0000CCFF00FF99FF00CC99FF009999FF006699FF003399FF000099
+          FF00FF66FF00CC66FF009966FF006666FF003366FF000066FF00FF33FF00CC33
+          FF009933FF006633FF003333FF000033FF00CC00FF009900FF006600FF003300
+          FF00FFFFCC00CCFFCC0099FFCC0066FFCC0066FFCC0033FFCC0000FFCC00FFCC
+          CC00CCCCCC0099CCCC0066CCCC0033CCCC0000CCCC00FF99CC00CC99CC009999
+          CC006699CC003399CC000099CC00FF66CC00CC66CC009966CC006666CC003366
+          CC000066CC00FF33CC00CC33CC009933CC006633CC003333CC000033CC00FF00
+          CC00CC00CC009900CC006600CC003300CC000000CC00FFFF9900CCFF990099FF
+          990066FF990033FF990000FF9900FFCC9900CCCC990099CC990066CC990033CC
+          990000CC9900FF999900CC99990099999900669999003399990000999900FF66
+          9900CC66990099669900666699003366990000669900FF339900CC3399009933
+          9900663399003333990000339900FF009900CC00990099009900660099003300
+          990000009900FFFF6600CCFF660099FF660066FF660033FF660000FF6600FFCC
+          6600CCCC660099CC660066CC660033CC660000CC6600FF996600CC9966009999
+          6600669966003399660000996600FF666600CC66660099666600666666003366
+          660000666600FF336600CC33660099336600663366003333660000336600FF00
+          6600CC00660099006600660066003300660000006600FFFF3300CCFF330099FF
+          330066FF330033FF330000FF3300FFCC3300CCCC330099CC330066CC330033CC
+          330000CC3300FF993300CC99330099993300669933003399330000993300FF66
+          3300CC66330099663300666633003366330000663300FF333300CC3333009933
+          3300663333003333330000333300FF003300CC00330099003300660033003300
+          330000003300CCFF000099FF000066FF000033FF0000FFCC0000CCCC000099CC
+          000066CC000033CC000000CC0000FF990000CC99000099990000669900003399
+          000000990000FF660000CC66000099660000666600000066000033660000FF33
+          0000CC33000099330000663300003333000000330000CC000000990000006600
+          0000330000000000DD000000BB000000AA000000880000007700000055000000
+          44000000220000DD000000BB000000AA00000088000000770000005500000044
+          000000220000DDDDDD0055555500777777007777770044444400222222001111
+          110077000000550000004400000022000000F0FBFF00A4A0A000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00323232323232
+          323232000000000000000000EDEDED3232323232323232323232323232323232
+          00000031313131FF5CFF5C5C000000EDEDED3232323232323232323232320000
+          31313131313131FF5CFF5C5C5C5C5C0000EDEDED323232323232323232005C5C
+          31313131313131FF5CFF5C5C5C5C5C5C5C00EDEDED32323232323232005C5C5C
+          31313131313131FF5CFF5C5C5C5C5C5C5C5C00EDEDED3232323232005C5C5C5C
+          3131310000000000000000005C5C5C5C5C5C5C00EDEDED323232005C5C5C5C5C
+          000000FFFFFFFFFFFFFFFFFF0000005C5C5C5C5C00EDED323232005C5C5C0000
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00005C5C5C00EDEDED3232005C5C00FFFF
+          FFFF00000000000000000000FFFFFFFFFF005C5C00EDEDED3232005C00FFFFFF
+          00005B5B5B5B5B5B5B5B5B5B000000FFFFFF005C00EDEDEDED320000FFFFFF00
+          5B5B5B5B5B5B5B5B5B5B5B5B5B5B5B00FFFFFF0000EDEDEDED3200FFFFFF0087
+          5B5B5B5B5B5B5B5B5BFFFFFF5B5B5B5B00FFFFFF00EDEDEDED3200FFFF005C5B
+          875B5B5B5B5B5B5B5B5B5B5BFF5B5B875B00FFFF00EDEDED323200FFFF005C5C
+          5B8787315B5B5B5B5B5B5B5BFF87875B5C00FFFF00EDEDED323200FFFF005C5C
+          5C5B31FF3187878787878787875B5C5C5C00FFFF00EDED32323200FFFFFF005C
+          5C5C5C315B5B5B5B5B5B5B5B5B5CF75B00FFFFFF00ED323232323200FFFFFF00
+          5C5C5C5C5C5C5C5C5C5C5C5C5C5C5C00FFFFFF00323232323232323200FFFFFF
+          0000005C5C5C5C5C5C5C5C5C5C0000FFFFFF003232323232323232323200FFFF
+          FFFFFF00000000000000000000FFFFFFFF00EDED323232323232323232320000
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00005D00EDED3232323232323232323232
+          000000FFFFFFFFFFFFFFFFFFFF00000707075D00EDED32323232323232323232
+          3232320000000000000000000007FFFF0707070000EDED323232323232323232
+          323232323232323232323232320007FFFF0700000000EDED3232323232323232
+          323232323232323232323232323200000000F100000000EDED32323232323232
+          32323232323232323232323232323200F0EDF0F100000000EDED323232323232
+          3232323232323232323232323232323200F0EDF0F100000000ED323232323232
+          323232323232323232323232323232323200F0EDF0F100000000323232323232
+          32323232323232323232323232323232323200F0EDF0F1000000323232323232
+          3232323232323232323232323232323232323200F0EDF0F10000323232323232
+          323232323232323232323232323232323232323200F0EDF0F100323232323232
+          3232323232323232323232323232323232323232320000000032323232323232
+          3232323232323232323232323232323232323232323232323232}
+      end
+      object rgOrdem: TRadioGroup
+        Left = 525
+        Top = 17
+        Width = 109
+        Height = 121
+        Caption = ' Exibido Por '
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ItemIndex = 0
+        Items.Strings = (
+          'Código'
+          'Descrição')
+        ParentFont = False
+        TabOrder = 5
+      end
+      object rgBusca: TRadioGroup
+        Left = 637
+        Top = 17
+        Width = 110
+        Height = 121
+        Caption = ' Tipo de Busca '
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ItemIndex = 0
+        Items.Strings = (
+          'Iniciais'
+          'Inteligente')
+        ParentFont = False
+        TabOrder = 6
+      end
+      object Panel1: TPanel
+        Left = 0
+        Top = 152
+        Width = 746
+        Height = 389
+        BevelOuter = bvNone
+        Color = 14789952
+        TabOrder = 7
+        object grPfa: ThGrid
+          Tag = 1
+          Left = 1
+          Top = 1
+          Width = 744
+          Height = 386
+          Selected.Strings = (
+            'CODPFA'#9'17'#9'Código'
+            'DSCPFA'#9'58'#9'Descrição'
+            'TIPPFA'#9'8'#9'Tipo'
+            'LOCPFA'#9'25'#9'Origem/Destino'
+            'CODCF1'#9'10'#9'C F O P         '
+            'ALIQPIS'#9'10'#9'ALIQPIS'
+            'ALIQCOF'#9'10'#9'ALIQCOF'
+            'CSTPIS'#9'2'#9'CSTPIS'
+            'CSTCOF'#9'2'#9'CSTCOF'
+            'SOMAR_FRETE_NA_BASE_COFINS'#9'10'#9'SOMAR_FRETE_NA_BASE_COFINS'
+            'SOMAR_FRETE_NA_BASE_PIS'#9'10'#9'SOMAR_FRETE_NA_BASE_PIS')
+          IniAttributes.Delimiter = ';;'
+          TitleColor = clBtnFace
+          FixedCols = 0
+          ShowHorzScrollBar = True
+          ShowVertScrollBar = False
+          BorderStyle = bsNone
+          Color = 16577773
+          DataSource = DsPfa
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          KeyOptions = []
+          Options = [dgTitles, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap]
+          ParentFont = False
+          TabOrder = 0
+          TitleAlignment = taLeftJustify
+          TitleFont.Charset = ANSI_CHARSET
+          TitleFont.Color = clBlack
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = [fsBold]
+          TitleLines = 2
+          TitleButtons = False
+          IndicatorColor = icYellow
+          CorDeFoco = clInfoBk
+        end
+      end
+      object EdPsqCodPfa: TdxColorEdit
+        Left = 133
+        Top = 20
+        Width = 101
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 0
+        CharCase = ecUpperCase
+        MaxLength = 15
+        CorDeFoco = clInfoBk
+        StoredValues = 2
+      end
+      object EdPsqDscPfa: TdxColorEdit
+        Left = 133
+        Top = 66
+        Width = 372
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 3
+        CharCase = ecUpperCase
+        MaxLength = 100
+        CorDeFoco = clInfoBk
+        StoredValues = 2
+      end
+      object EdPsqTipPfa: TdxColorPickEdit
+        Left = 133
+        Top = 43
+        Width = 101
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 1
+        HideSelection = False
+        MaxLength = 7
+        DropDownListStyle = True
+        Items.Strings = (
+          'Saida'
+          'Entrada'
+          'Todos')
+        CorDeFoco = clInfoBk
+        StoredValues = 2
+      end
+      object edTipClass: TdxColorPickEdit
+        Left = 133
+        Top = 89
+        Width = 172
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 4
+        HideSelection = False
+        MaxLength = 6
+        DropDownListStyle = True
+        Items.Strings = (
+          ''
+          'RMA'
+          'Vales'
+          'Trocas'
+          'Vendas'
+          'Compras'
+          'Consumo'
+          'Retornos'
+          'Servicos'
+          'Remessas'
+          'Anulacoes'
+          'Aquisicoes'
+          'Importacao'
+          'Devolucoes'
+          'Complemento'
+          'Transferencias'
+          'Industrializacoes'
+          'Importacao direta'
+          'Outros')
+        CorDeFoco = clInfoBk
+        StoredValues = 2
+      end
+      object edPsqStatus: TdxColorPickEdit
+        Left = 289
+        Top = 44
+        Width = 120
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 2
+        HideSelection = False
+        DropDownListStyle = True
+        Items.Strings = (
+          ''
+          'Ativo '
+          'Inativo')
+        CorDeFoco = clInfoBk
+      end
+    end
+    object pcPag2: TTabSheet
+      Caption = '&Identificação'
+      OnShow = pcPag2Show
+      object Shape8: TShape
+        Left = 4
+        Top = 451
+        Width = 140
+        Height = 18
+        Brush.Color = 14789952
+        Pen.Color = 11764252
+        Shape = stRoundRect
+      end
+      object Shape6: TShape
+        Left = 255
+        Top = 7
+        Width = 653
+        Height = 3
+        Brush.Color = 11106843
+        Pen.Color = 14789952
+      end
+      object Shape5: TShape
+        Left = 0
+        Top = 0
+        Width = 249
+        Height = 18
+        Brush.Color = 14789952
+        Pen.Color = 11764252
+        Shape = stRoundRect
+      end
+      object Label27: TLabel
+        Left = 4
+        Top = 2
+        Width = 129
+        Height = 13
+        Caption = 'Informações principais'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label28: TLabel
+        Left = 12
+        Top = 24
+        Width = 37
+        Height = 13
+        Caption = 'Código:'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label29: TLabel
+        Left = 273
+        Top = 24
+        Width = 87
+        Height = 13
+        Caption = 'Tipo de operação:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label30: TLabel
+        Left = 12
+        Top = 47
+        Width = 130
+        Height = 13
+        Caption = 'Descrição consulta interna:'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label32: TLabel
+        Left = 12
+        Top = 93
+        Width = 130
+        Height = 13
+        Caption = 'Código fiscal da operação :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label36: TLabel
+        Left = 433
+        Top = 93
+        Width = 81
+        Height = 13
+        Caption = 'Origem/Destino :'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label21: TLabel
+        Left = 29
+        Top = 453
+        Width = 77
+        Height = 13
+        Caption = 'BC do IPI (%)'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label22: TLabel
+        Left = 5
+        Top = 474
+        Width = 33
+        Height = 13
+        Caption = 'Frete :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label23: TLabel
+        Left = 5
+        Top = 498
+        Width = 41
+        Height = 13
+        Caption = 'Seguro :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label40: TLabel
+        Left = 5
+        Top = 522
+        Width = 89
+        Height = 13
+        Caption = 'Outras Despesas :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label11: TLabel
+        Left = 12
+        Top = 70
+        Width = 126
+        Height = 13
+        Caption = 'Descrição para impressão:'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label10: TLabel
+        Left = 433
+        Top = 70
+        Width = 101
+        Height = 13
+        Caption = 'Tipo de classificação:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Shape7: TShape
+        Left = 153
+        Top = 451
+        Width = 140
+        Height = 18
+        Brush.Color = 14789952
+        Pen.Color = 11764252
+        Shape = stRoundRect
+      end
+      object Label2: TLabel
+        Left = 187
+        Top = 453
+        Width = 63
+        Height = 13
+        Caption = 'BC do ICMS'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label44: TLabel
+        Left = 154
+        Top = 566
+        Width = 49
+        Height = 13
+        Caption = 'Incide Ipi?'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        WordWrap = True
+      end
+      object Label12: TLabel
+        Left = 5
+        Top = 546
+        Width = 67
+        Height = 13
+        Caption = 'Desconto Inc.'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label3: TLabel
+        Left = 154
+        Top = 474
+        Width = 33
+        Height = 13
+        Caption = 'Frete :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label6: TLabel
+        Left = 154
+        Top = 498
+        Width = 41
+        Height = 13
+        Caption = 'Seguro :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label9: TLabel
+        Left = 154
+        Top = 522
+        Width = 89
+        Height = 13
+        Caption = 'Outras Despesas :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label31: TLabel
+        Left = 154
+        Top = 544
+        Width = 67
+        Height = 13
+        Caption = 'Desconto Inc.'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Shape9: TShape
+        Left = 302
+        Top = 451
+        Width = 140
+        Height = 18
+        Brush.Color = 14789952
+        Pen.Color = 11764252
+        Shape = stRoundRect
+      end
+      object Label33: TLabel
+        Left = 325
+        Top = 453
+        Width = 88
+        Height = 13
+        Caption = 'BC do ICMS - ST'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label39: TLabel
+        Left = 303
+        Top = 566
+        Width = 49
+        Height = 13
+        Caption = 'Incide Ipi?'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        WordWrap = True
+      end
+      object Label42: TLabel
+        Left = 303
+        Top = 474
+        Width = 33
+        Height = 13
+        Caption = 'Frete :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label43: TLabel
+        Left = 303
+        Top = 498
+        Width = 41
+        Height = 13
+        Caption = 'Seguro :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label46: TLabel
+        Left = 303
+        Top = 522
+        Width = 89
+        Height = 13
+        Caption = 'Outras Despesas :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label47: TLabel
+        Left = 303
+        Top = 544
+        Width = 67
+        Height = 13
+        Caption = 'Desconto Inc.'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Shape10: TShape
+        Left = 450
+        Top = 451
+        Width = 140
+        Height = 18
+        Brush.Color = 14789952
+        Pen.Color = 11764252
+        Shape = stRoundRect
+      end
+      object Shape12: TShape
+        Left = 599
+        Top = 451
+        Width = 143
+        Height = 18
+        Brush.Color = 14789952
+        Pen.Color = 11764252
+        Shape = stRoundRect
+      end
+      object Label48: TLabel
+        Left = 451
+        Top = 474
+        Width = 33
+        Height = 13
+        Caption = 'Frete :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label49: TLabel
+        Left = 451
+        Top = 498
+        Width = 41
+        Height = 13
+        Caption = 'Seguro :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label50: TLabel
+        Left = 451
+        Top = 522
+        Width = 89
+        Height = 13
+        Caption = 'Outras Despesas :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label51: TLabel
+        Left = 451
+        Top = 544
+        Width = 67
+        Height = 13
+        Caption = 'Desconto Inc.'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label52: TLabel
+        Left = 451
+        Top = 566
+        Width = 49
+        Height = 13
+        Caption = 'Incide Ipi?'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        WordWrap = True
+      end
+      object Label53: TLabel
+        Left = 601
+        Top = 474
+        Width = 33
+        Height = 13
+        Caption = 'Frete :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label54: TLabel
+        Left = 601
+        Top = 498
+        Width = 41
+        Height = 13
+        Caption = 'Seguro :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label55: TLabel
+        Left = 601
+        Top = 522
+        Width = 89
+        Height = 13
+        Caption = 'Outras Despesas :'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label56: TLabel
+        Left = 601
+        Top = 544
+        Width = 67
+        Height = 13
+        Caption = 'Desconto Inc.'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label57: TLabel
+        Left = 601
+        Top = 566
+        Width = 49
+        Height = 13
+        Caption = 'Incide Ipi?'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        WordWrap = True
+      end
+      object Label58: TLabel
+        Left = 470
+        Top = 453
+        Width = 93
+        Height = 13
+        Caption = 'BC do ICMS - PIS'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object Label59: TLabel
+        Left = 617
+        Top = 453
+        Width = 114
+        Height = 13
+        Caption = 'BC do ICMS - COFINS'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object EdTipPfa: TdxDBColorPickEdit
+        Left = 388
+        Top = 20
+        Width = 187
+        Color = 16577773
+        Enabled = False
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 1
+        OnExit = EdTipPfaExit
+        DataField = 'TIPPFA'
+        DataSource = DsPfa
+        ReadOnly = False
+        DropDownListStyle = True
+        Items.Strings = (
+          'Saida'
+          'Entrada')
+        CorDeFoco = clInfoBk
+        StoredValues = 64
+      end
+      object EdDscPfa: TdxDBColorEdit
+        Left = 165
+        Top = 43
+        Width = 571
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 2
+        CharCase = ecUpperCase
+        DataField = 'DSCPFA'
+        DataSource = DsPfa
+        CorDeFoco = clInfoBk
+      end
+      object EdCodPfa: TdxDBColorEdit
+        Left = 165
+        Top = 20
+        Width = 101
+        Color = 16577773
+        Enabled = False
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 0
+        CharCase = ecUpperCase
+        DataField = 'CODPFA'
+        DataSource = DsPfa
+        CorDeFoco = clInfoBk
+      end
+      object EdCodCf1: TdxDBColorEdit
+        Left = 165
+        Top = 89
+        Width = 78
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 5
+        OnExit = EdCodCf1Exit
+        OnKeyPress = EdCodCf1KeyPress
+        CharCase = ecUpperCase
+        DataField = 'CODCF1'
+        DataSource = DsPfa
+        CorDeFoco = clInfoBk
+      end
+      object EdLocPfa: TdxDBColorPickEdit
+        Left = 548
+        Top = 89
+        Width = 188
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 6
+        OnExit = EdLocPfaExit
+        DataField = 'LOCPFA'
+        DataSource = DsPfa
+        MaxLength = 24
+        ReadOnly = False
+        DropDownListStyle = True
+        Items.Strings = (
+          'Mesmo Estado'
+          'Outros Estados'
+          'Importacao ou Exportacao')
+        CorDeFoco = clInfoBk
+        StoredValues = 66
+      end
+      object EdFrtIpi: TdxDBColorCurrencyEdit
+        Left = 95
+        Top = 470
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 12
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'FRTIPI'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object EdSegIpi: TdxDBColorCurrencyEdit
+        Left = 95
+        Top = 494
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 13
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'SEGIPI'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object EdDesIpi: TdxDBColorCurrencyEdit
+        Left = 95
+        Top = 518
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 14
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'DESIPI'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object EdDsrPfa: TdxDBColorEdit
+        Left = 165
+        Top = 66
+        Width = 224
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 3
+        CharCase = ecUpperCase
+        DataField = 'DSRPFA'
+        DataSource = DsPfa
+        CorDeFoco = clInfoBk
+      end
+      object EdModPfa: TdxDBColorPickEdit
+        Left = 548
+        Top = 66
+        Width = 188
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 4
+        OnExit = EdLocPfaExit
+        DataField = 'MODPFA'
+        DataSource = DsPfa
+        MaxLength = 24
+        ReadOnly = False
+        DropDownListStyle = True
+        Items.Strings = (
+          'RMA'
+          'Vendas'
+          'Compras'
+          'Retornos'
+          'Remessas'
+          'Importacao'
+          'Devolucoes'
+          'Complemento'
+          'Transferencias'
+          'Ajuste'
+          'Outros')
+        CorDeFoco = clInfoBk
+        StoredValues = 66
+      end
+      object GroupBox1: TGroupBox
+        Left = 3
+        Top = 304
+        Width = 740
+        Height = 71
+        Caption = 'Tributa PIS'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 10
+        object Label5: TLabel
+          Left = 9
+          Top = 44
+          Width = 126
+          Height = 13
+          Caption = 'Situação tributária do PIS:'
+          Color = clBtnFace
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+          Transparent = True
+        end
+        object Label17: TLabel
+          Left = 9
+          Top = 20
+          Width = 121
+          Height = 13
+          Caption = 'Tributar PIS por produto:'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label37: TLabel
+          Left = 257
+          Top = 20
+          Width = 54
+          Height = 13
+          Caption = '%Aliquota:'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object CbNomPis: TdxDBColorLookupEdit
+          Left = 252
+          Top = 40
+          Width = 484
+          Color = 16577773
+          DragMode = dmAutomatic
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 3
+          TabStop = False
+          DataField = 'CSTPIS'
+          DataSource = DsPfa
+          ReadOnly = False
+          DropDownWidth = 430
+          ListFieldName = 'NOMPIS'
+          KeyFieldName = 'SIGNFE'
+          ListSource = dsEstPis
+          LookupKeyValue = '01'
+          CorDeFoco = clInfoBk
+          StoredValues = 64
+        end
+        object edCSTPIS: TdxDBColorEdit
+          Left = 161
+          Top = 40
+          Width = 50
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 2
+          Alignment = taRightJustify
+          CharCase = ecUpperCase
+          DataField = 'CSTPIS'
+          DataSource = DsPfa
+          ReadOnly = False
+          CorDeFoco = clInfoBk
+          StoredValues = 65
+        end
+        object EdTrbPis: TdxDBColorPickEdit
+          Left = 161
+          Top = 16
+          Width = 78
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 0
+          Alignment = taCenter
+          DataField = 'TRBPIS'
+          DataSource = DsPfa
+          ReadOnly = False
+          OnChange = EdTrbPisChange
+          DropDownListStyle = True
+          Items.Strings = (
+            'Sim'
+            'Nao')
+          CorDeFoco = clInfoBk
+          StoredValues = 65
+        end
+        object edAliquotaPis: TdxDBColorCurrencyEdit
+          Left = 315
+          Top = 16
+          Width = 68
+          Hint = 'Quantidade Pedida para o Item'
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14065456
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 1
+          Alignment = taRightJustify
+          AutoSize = False
+          DataField = 'ALIQPIS'
+          DataSource = DsPfa
+          DisplayFormat = '0.00'
+          Nullable = False
+          UseThousandSeparator = True
+          CorDeFoco = clInfoBk
+          Height = 24
+          StoredValues = 1
+        end
+        object DBCheckBox1: TDBCheckBox
+          Left = 560
+          Top = 23
+          Width = 177
+          Height = 17
+          TabStop = False
+          Caption = 'Somar Frete na Base de Calculo'
+          DataField = 'SOMAR_FRETE_NA_BASE_PIS'
+          DataSource = DsPfa
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 4
+          ValueChecked = '1'
+          ValueUnchecked = '0'
+          OnClick = ckStatusClick
+        end
+      end
+      object GroupBox2: TGroupBox
+        Left = 3
+        Top = 232
+        Width = 740
+        Height = 71
+        Caption = 'ICMS'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 9
+        object Label14: TLabel
+          Left = 9
+          Top = 45
+          Width = 95
+          Height = 13
+          Caption = 'Texto fiscal (ICMS):'
+          Color = clBtnFace
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+          Transparent = True
+        end
+        object Label15: TLabel
+          Left = 9
+          Top = 22
+          Width = 76
+          Height = 13
+          Caption = 'Regra de ICMS:'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object EdTxfIcm: TdxDBColorEdit
+          Left = 161
+          Top = 41
+          Width = 78
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 2
+          CharCase = ecUpperCase
+          DataField = 'TXFICM'
+          DataSource = DsPfa
+          CorDeFoco = clInfoBk
+        end
+        object CbNomTxfIcm: TdxDBColorLookupEdit
+          Left = 252
+          Top = 41
+          Width = 484
+          Color = 16577773
+          DragMode = dmAutomatic
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 3
+          TabStop = False
+          DataField = 'TXFICM'
+          DataSource = DsPfa
+          ReadOnly = False
+          DropDownWidth = 430
+          ListFieldName = 'DSRTXF;CodTxf'
+          KeyFieldName = 'CODTXF'
+          ListSource = DsIcm
+          LookupKeyValue = 'XXX'
+          CorDeFoco = clInfoBk
+          StoredValues = 64
+        end
+        object co: TdxDBColorEdit
+          Left = 161
+          Top = 18
+          Width = 78
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 0
+          CharCase = ecUpperCase
+          DataField = 'CODICM'
+          DataSource = DsPfa
+          CorDeFoco = clInfoBk
+        end
+        object CbNomIcm: TdxDBColorLookupEdit
+          Left = 252
+          Top = 18
+          Width = 484
+          Color = 16577773
+          DragMode = dmAutomatic
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 1
+          TabStop = False
+          DataField = 'CODICM'
+          DataSource = DsPfa
+          ReadOnly = False
+          DropDownWidth = 430
+          ListFieldName = 'NOMICM;CODICM'
+          KeyFieldName = 'CODICM'
+          ListSource = DsEstIcm
+          LookupKeyValue = '1010101011'
+          CorDeFoco = clInfoBk
+          StoredValues = 64
+        end
+      end
+      object GroupBox3: TGroupBox
+        Left = 3
+        Top = 164
+        Width = 740
+        Height = 67
+        Caption = 'IPI'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 8
+        object Label13: TLabel
+          Left = 9
+          Top = 40
+          Width = 84
+          Height = 13
+          Caption = 'Texto fiscal (IPI):'
+          Color = clBtnFace
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+          Transparent = True
+        end
+        object Label16: TLabel
+          Left = 9
+          Top = 17
+          Width = 65
+          Height = 13
+          Caption = 'Regra de IPI:'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object EdTxfIpi: TdxDBColorEdit
+          Left = 161
+          Top = 36
+          Width = 78
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 2
+          CharCase = ecUpperCase
+          DataField = 'TXFIPI'
+          DataSource = DsPfa
+          CorDeFoco = clInfoBk
+        end
+        object CbNomTxfIpi: TdxDBColorLookupEdit
+          Left = 252
+          Top = 36
+          Width = 484
+          Color = 16577773
+          DragMode = dmAutomatic
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 3
+          TabStop = False
+          DataField = 'TXFIPI'
+          DataSource = DsPfa
+          ReadOnly = False
+          DropDownWidth = 430
+          ListFieldName = 'DSRTXF;CODTXF'
+          KeyFieldName = 'CODTXF'
+          ListSource = DsIpi
+          LookupKeyValue = Null
+          CorDeFoco = clInfoBk
+          StoredValues = 64
+        end
+        object EdCodIpi: TdxDBColorEdit
+          Left = 161
+          Top = 13
+          Width = 78
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 0
+          CharCase = ecUpperCase
+          DataField = 'CODIPI'
+          DataSource = DsPfa
+          CorDeFoco = clInfoBk
+        end
+        object CbNomIpi: TdxDBColorLookupEdit
+          Left = 252
+          Top = 13
+          Width = 484
+          Color = 16577773
+          DragMode = dmAutomatic
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 1
+          TabStop = False
+          DataField = 'CODIPI'
+          DataSource = DsPfa
+          ReadOnly = False
+          DropDownWidth = 430
+          ListFieldName = 'NOMIPI;CODIPI'
+          KeyFieldName = 'CODIPI'
+          ListSource = DsEstIpi
+          LookupKeyValue = Null
+          CorDeFoco = clInfoBk
+          StoredValues = 64
+        end
+      end
+      object GroupBox4: TGroupBox
+        Left = 3
+        Top = 376
+        Width = 740
+        Height = 71
+        Caption = 'Tributa COFINS'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 11
+        object Label7: TLabel
+          Left = 9
+          Top = 43
+          Width = 148
+          Height = 13
+          Caption = 'Situação tributária do COFINS:'
+          Color = clBtnFace
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+          Transparent = True
+        end
+        object Label18: TLabel
+          Left = 9
+          Top = 19
+          Width = 143
+          Height = 13
+          Caption = 'Tributar COFINS por produto:'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label35: TLabel
+          Left = 257
+          Top = 19
+          Width = 54
+          Height = 13
+          Caption = '%Aliquota:'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object CbNomCof: TdxDBColorLookupEdit
+          Left = 252
+          Top = 38
+          Width = 484
+          Color = 16577773
+          DragMode = dmAutomatic
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 3
+          TabStop = False
+          DataField = 'CSTCOF'
+          DataSource = DsPfa
+          ReadOnly = False
+          DropDownWidth = 430
+          ListFieldName = 'NOMCOF'
+          KeyFieldName = 'SIGNFE'
+          ListSource = DsEstCof
+          LookupKeyValue = '01'
+          CorDeFoco = clInfoBk
+          StoredValues = 64
+        end
+        object edCSTCOF: TdxDBColorEdit
+          Left = 161
+          Top = 38
+          Width = 50
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 2
+          Alignment = taRightJustify
+          CharCase = ecUpperCase
+          DataField = 'CSTCOF'
+          DataSource = DsPfa
+          ReadOnly = False
+          CorDeFoco = clInfoBk
+          StoredValues = 65
+        end
+        object EdTrbCof: TdxDBColorPickEdit
+          Left = 161
+          Top = 14
+          Width = 78
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 0
+          Alignment = taCenter
+          DataField = 'TRBCOF'
+          DataSource = DsPfa
+          ReadOnly = False
+          OnChange = EdTrbCofChange
+          DropDownListStyle = True
+          Items.Strings = (
+            'Sim'
+            'Nao')
+          CorDeFoco = clInfoBk
+          StoredValues = 65
+        end
+        object edAliquotaCof: TdxDBColorCurrencyEdit
+          Left = 315
+          Top = 14
+          Width = 68
+          Hint = 'Quantidade Pedida para o Item'
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14065456
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 1
+          Alignment = taRightJustify
+          AutoSize = False
+          DataField = 'ALIQCOF'
+          DataSource = DsPfa
+          DisplayFormat = '0.00'
+          Nullable = False
+          UseThousandSeparator = True
+          CorDeFoco = clInfoBk
+          Height = 24
+          StoredValues = 1
+        end
+        object DBCheckBox2: TDBCheckBox
+          Left = 560
+          Top = 15
+          Width = 177
+          Height = 17
+          TabStop = False
+          Caption = 'Somar Frete na Base de Calculo'
+          DataField = 'SOMAR_FRETE_NA_BASE_COFINS'
+          DataSource = DsPfa
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 4
+          ValueChecked = '1'
+          ValueUnchecked = '0'
+          OnClick = ckStatusClick
+        end
+      end
+      object GroupBox5: TGroupBox
+        Left = 3
+        Top = 117
+        Width = 740
+        Height = 45
+        Caption = 'Comportamento'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 7
+        object Label34: TLabel
+          Left = 9
+          Top = 19
+          Width = 121
+          Height = 13
+          Caption = 'Integra com o financeiro:'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label38: TLabel
+          Left = 279
+          Top = 17
+          Width = 84
+          Height = 13
+          Caption = 'Atualiza estoque:'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object EdIntFin: TdxDBColorPickEdit
+          Left = 161
+          Top = 15
+          Width = 78
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 0
+          DataField = 'INTFIN'
+          DataSource = DsPfa
+          ReadOnly = False
+          DropDownListStyle = True
+          Items.Strings = (
+            'Sim'
+            'Nao')
+          CorDeFoco = clInfoBk
+          StoredValues = 64
+        end
+        object EdAtuEst: TdxDBColorPickEdit
+          Left = 378
+          Top = 13
+          Width = 78
+          Color = 16577773
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Style.BorderColor = 14789952
+          Style.BorderStyle = xbsSingle
+          Style.ButtonStyle = btsSimple
+          Style.ButtonTransparence = ebtInactive
+          Style.HotTrack = True
+          Style.Shadow = True
+          TabOrder = 1
+          DataField = 'ATUEST'
+          DataSource = DsPfa
+          ReadOnly = False
+          DropDownListStyle = True
+          Items.Strings = (
+            'Sim'
+            'Nao')
+          CorDeFoco = clInfoBk
+          StoredValues = 64
+        end
+      end
+      object EdFrtIcm: TdxDBColorCurrencyEdit
+        Left = 244
+        Top = 470
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 15
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'FRTICM'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object EdSegIcm: TdxDBColorCurrencyEdit
+        Left = 244
+        Top = 494
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 16
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'SEGICM'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object EdDesIcm: TdxDBColorCurrencyEdit
+        Left = 244
+        Top = 518
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 17
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'DESICM'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object EdConSum: TdxDBColorPickEdit
+        Left = 244
+        Top = 566
+        Width = 50
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 18
+        DataField = 'CONSUM'
+        DataSource = DsPfa
+        ReadOnly = False
+        DropDownListStyle = True
+        Items.Strings = (
+          'Sim'
+          'Nao')
+        CorDeFoco = clInfoBk
+        StoredValues = 68
+      end
+      object dxDBColorCurrencyEdit1: TdxDBColorCurrencyEdit
+        Left = 95
+        Top = 542
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 19
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'DSCIPI'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        MaxValue = 100
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 17
+      end
+      object dxDBColorCurrencyEdit2: TdxDBColorCurrencyEdit
+        Left = 244
+        Top = 542
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 20
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'DSCICM'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        MaxValue = 100
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 17
+      end
+      object dxDBColorCurrencyEdit4: TdxDBColorCurrencyEdit
+        Left = 393
+        Top = 494
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 21
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'SEGSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object dxDBColorCurrencyEdit5: TdxDBColorCurrencyEdit
+        Left = 393
+        Top = 518
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 22
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'DESSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object dxDBColorPickEdit1: TdxDBColorPickEdit
+        Left = 393
+        Top = 566
+        Width = 50
+        Color = 16577773
+        Enabled = False
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 23
+        DataField = 'CONSUMST'
+        DataSource = DsPfa
+        ReadOnly = False
+        DropDownListStyle = True
+        Items.Strings = (
+          'Sim'
+          'Nao')
+        CorDeFoco = clInfoBk
+        StoredValues = 68
+      end
+      object dxDBColorCurrencyEdit6: TdxDBColorCurrencyEdit
+        Left = 393
+        Top = 542
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 24
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'DSCSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        MaxValue = 100
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 17
+      end
+      object dxDBColorCurrencyEdit3: TdxDBColorCurrencyEdit
+        Left = 393
+        Top = 470
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 25
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'FRTSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object dxDBColorPickEdit2: TdxDBColorPickEdit
+        Left = 541
+        Top = 566
+        Width = 50
+        Color = 16577773
+        Enabled = False
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 26
+        DataField = 'CONSUMST'
+        DataSource = DsPfa
+        ReadOnly = False
+        DropDownListStyle = True
+        Items.Strings = (
+          'Sim'
+          'Nao')
+        CorDeFoco = clInfoBk
+        StoredValues = 68
+      end
+      object dxDBColorCurrencyEdit7: TdxDBColorCurrencyEdit
+        Left = 541
+        Top = 542
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 27
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'DSCSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        MaxValue = 100
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 17
+      end
+      object dxDBColorCurrencyEdit8: TdxDBColorCurrencyEdit
+        Left = 541
+        Top = 518
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 28
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'DESSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object dxDBColorCurrencyEdit9: TdxDBColorCurrencyEdit
+        Left = 541
+        Top = 494
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 29
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'SEGSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object dxDBColorCurrencyEdit10: TdxDBColorCurrencyEdit
+        Left = 541
+        Top = 470
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 30
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'FRTSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object dxDBColorPickEdit3: TdxDBColorPickEdit
+        Left = 691
+        Top = 566
+        Width = 50
+        Color = 16577773
+        Enabled = False
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14789952
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 31
+        DataField = 'CONSUMST'
+        DataSource = DsPfa
+        ReadOnly = False
+        DropDownListStyle = True
+        Items.Strings = (
+          'Sim'
+          'Nao')
+        CorDeFoco = clInfoBk
+        StoredValues = 68
+      end
+      object dxDBColorCurrencyEdit11: TdxDBColorCurrencyEdit
+        Left = 691
+        Top = 542
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 32
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'DSCSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        MaxValue = 100
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 17
+      end
+      object dxDBColorCurrencyEdit12: TdxDBColorCurrencyEdit
+        Left = 691
+        Top = 518
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 33
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'DESSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object dxDBColorCurrencyEdit13: TdxDBColorCurrencyEdit
+        Left = 691
+        Top = 494
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 34
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'SEGSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object dxDBColorCurrencyEdit14: TdxDBColorCurrencyEdit
+        Left = 691
+        Top = 470
+        Width = 50
+        Hint = 'Quantidade Pedida para o Item'
+        Color = 16577773
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Style.BorderColor = 14065456
+        Style.BorderStyle = xbsSingle
+        Style.ButtonStyle = btsSimple
+        Style.ButtonTransparence = ebtInactive
+        Style.HotTrack = True
+        Style.Shadow = True
+        TabOrder = 35
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'FRTSUB'
+        DataSource = DsPfa
+        DisplayFormat = '0.00'
+        Nullable = False
+        UseThousandSeparator = True
+        CorDeFoco = clInfoBk
+        Height = 24
+        StoredValues = 1
+      end
+      object ckStatus: TDBCheckBox
+        Left = 676
+        Top = 23
+        Width = 61
+        Height = 17
+        TabStop = False
+        Caption = 'Ativo'
+        DataField = 'FLGATIVO'
+        DataSource = DsPfa
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 36
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+        OnClick = ckStatusClick
+      end
+    end
+  end
+  object nvPfa: ThDBNavigator
+    Left = 380
+    Top = 1
+    Width = 389
+    Height = 31
+    BevelOuter = bvNone
+    Caption = ' '
+    Color = 15788249
+    TabOrder = 1
+    OnImprime = nvPfaImprime
+    BeforeSalva = nvPfaBeforeSalva
+    DataSource = DsPfa
+    BaseAtualizar = 'TxfIpiTxfIcmEstIcmEstIpiEstSip'
+    UsaAppend = True
+    Salvar = False
+  end
+  object EdId_EstSip: TdxDBColorEdit
+    Left = 161
+    Top = 773
+    Width = 78
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 2
+    Visible = False
+    Alignment = taRightJustify
+    CharCase = ecUpperCase
+    DataField = 'ID_ESTSIP'
+    DataSource = DsPfa
+    CorDeFoco = clInfoBk
+    StoredValues = 1
+  end
+  object CbNomSip: TdxDBColorLookupEdit
+    Left = 312
+    Top = 773
+    Width = 424
+    Color = 16577773
+    DragMode = dmAutomatic
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 3
+    TabStop = False
+    Visible = False
+    DataField = 'ID_ESTSIP'
+    DataSource = DsPfa
+    ReadOnly = False
+    DropDownWidth = 430
+    ListFieldName = 'NOMSIP'
+    KeyFieldName = 'ID_ESTSIP'
+    ListSource = dsEstSip
+    LookupKeyValue = 11
+    CorDeFoco = clInfoBk
+    StoredValues = 64
+  end
+  object dxDBColorEdit1: TdxDBColorEdit
+    Left = 252
+    Top = 773
+    Width = 50
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 4
+    Visible = False
+    Alignment = taRightJustify
+    CharCase = ecUpperCase
+    DataField = 'SIGNFE'
+    DataSource = dsEstSip
+    ReadOnly = True
+    CorDeFoco = clInfoBk
+    StoredValues = 65
+  end
+  object EstPfa: TwwQuery
+    Active = True
+    CachedUpdates = True
+    AfterOpen = EstPfaAfterOpen
+    AfterScroll = EstPfaAfterScroll
+    OnNewRecord = EstPfaNewRecord
+    DatabaseName = 'ISade'
+    SessionName = 'Default'
+    SQL.Strings = (
+      'Select * From EstPfa '
+      '   WHERE CODPFA = '#39'5.102'#39
+      'Order by CodPfa')
+    UpdateObject = UpPfa
+    ControlType.Strings = (
+      'INTFIN;CheckBox;Sim;Nao'
+      'GERLIV;CheckBox;Sim;Nao'
+      'ATUEST;CheckBox;Sim;Nao')
+    ValidateWithMask = True
+    Left = 1
+    Top = 624
+    object EstPfaCODPFA: TStringField
+      DisplayLabel = 'Código'
+      DisplayWidth = 17
+      FieldName = 'CODPFA'
+      Origin = 'ISADE.PEDPFA.CODPFA'
+      FixedChar = True
+      Size = 15
+    end
+    object EstPfaDSCPFA: TStringField
+      DisplayLabel = 'Descrição'
+      DisplayWidth = 58
+      FieldName = 'DSCPFA'
+      Origin = 'ISADE.ESTPFA.DSCPFA'
+      FixedChar = True
+      Size = 100
+    end
+    object EstPfaTIPPFA: TStringField
+      DisplayLabel = 'Tipo'
+      DisplayWidth = 8
+      FieldName = 'TIPPFA'
+      Origin = 'ISADE.PEDPFA.TIPPFA'
+      FixedChar = True
+      Size = 7
+    end
+    object EstPfaLOCPFA: TStringField
+      DisplayLabel = 'Origem/Destino'
+      DisplayWidth = 25
+      FieldName = 'LOCPFA'
+      Origin = 'ISADE.PEDPFA.LOCPFA'
+      FixedChar = True
+      Size = 24
+    end
+    object EstPfaCODCF1: TStringField
+      DisplayLabel = 'C F O P         '
+      DisplayWidth = 10
+      FieldName = 'CODCF1'
+      Origin = 'ISADE.PEDPFA.CODCF1'
+      FixedChar = True
+      Size = 10
+    end
+    object EstPfaALIQPIS: TFloatField
+      DisplayWidth = 10
+      FieldName = 'ALIQPIS'
+      Origin = 'ISADE.ESTPFA.ALIQPIS'
+    end
+    object EstPfaALIQCOF: TFloatField
+      DisplayWidth = 10
+      FieldName = 'ALIQCOF'
+      Origin = 'ISADE.ESTPFA.ALIQCOF'
+    end
+    object EstPfaCSTPIS: TStringField
+      DisplayWidth = 2
+      FieldName = 'CSTPIS'
+      Origin = 'ISADE.ESTPFA.CSTPIS'
+      FixedChar = True
+      Size = 2
+    end
+    object EstPfaCSTCOF: TStringField
+      DisplayWidth = 2
+      FieldName = 'CSTCOF'
+      Origin = 'ISADE.ESTPFA.CSTCOF'
+      FixedChar = True
+      Size = 2
+    end
+    object EstPfaNROPFA: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'NROPFA'
+      Origin = 'ISADE.ESTPFA.NROPFA'
+      Visible = False
+    end
+    object EstPfaID_ESTSIP: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'ID_ESTSIP'
+      Origin = 'ISADE.ESTPFA.ID_ESTSIP'
+      Visible = False
+    end
+    object EstPfaINTFIN: TStringField
+      Alignment = taCenter
+      DisplayLabel = 'Financeiro'
+      DisplayWidth = 10
+      FieldName = 'INTFIN'
+      Origin = 'ISADE.PEDPFA.INTFIN'
+      Visible = False
+      FixedChar = True
+      Size = 3
+    end
+    object EstPfaATUEST: TStringField
+      Alignment = taCenter
+      DisplayLabel = '  Estoque'
+      DisplayWidth = 10
+      FieldName = 'ATUEST'
+      Origin = 'ISADE.PEDPFA.ATUEST'
+      Visible = False
+      FixedChar = True
+      Size = 3
+    end
+    object EstPfaCODCF2: TStringField
+      DisplayLabel = 'CFOP2'
+      DisplayWidth = 5
+      FieldName = 'CODCF2'
+      Origin = 'ISADE.PEDPFA.CODCF2'
+      Visible = False
+      FixedChar = True
+      Size = 10
+    end
+    object EstPfaGERLIV: TStringField
+      Alignment = taCenter
+      DisplayLabel = 'Livros Fiscais'
+      DisplayWidth = 3
+      FieldName = 'GERLIV'
+      Origin = 'ISADE.PEDPFA.GERLIV'
+      Visible = False
+      FixedChar = True
+      Size = 3
+    end
+    object EstPfaFRTICM: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'FRTICM'
+      Origin = 'ISADE.PEDPFA.FRTICM'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaICMFRT: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'ICMFRT'
+      Origin = 'ISADE.PEDPFA.ICMFRT'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaSEGICM: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'SEGICM'
+      Origin = 'ISADE.PEDPFA.SEGICM'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaICMSEG: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'ICMSEG'
+      Origin = 'ISADE.PEDPFA.ICMSEG'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaDESICM: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'DESICM'
+      Origin = 'ISADE.PEDPFA.DESICM'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaICMDES: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'ICMDES'
+      Origin = 'ISADE.PEDPFA.ICMDES'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaFRTIPI: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'FRTIPI'
+      Origin = 'ISADE.PEDPFA.FRTIPI'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaIPIFRT: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'IPIFRT'
+      Origin = 'ISADE.PEDPFA.IPIFRT'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaSEGIPI: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'SEGIPI'
+      Origin = 'ISADE.PEDPFA.SEGIPI'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaIPISEG: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'IPISEG'
+      Origin = 'ISADE.PEDPFA.IPISEG'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaDESIPI: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'DESIPI'
+      Origin = 'ISADE.PEDPFA.DESIPI'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaIPIDES: TFloatField
+      DisplayLabel = ' '
+      FieldName = 'IPIDES'
+      Origin = 'ISADE.PEDPFA.IPIDES'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object EstPfaCONSUM: TStringField
+      Alignment = taCenter
+      FieldName = 'CONSUM'
+      Origin = 'ISADE.PEDPFA.CONSUM'
+      Visible = False
+      FixedChar = True
+      Size = 3
+    end
+    object EstPfaDSRPFA: TStringField
+      FieldName = 'DSRPFA'
+      Origin = 'ISADE.ESTPFA.DSRPFA'
+      Visible = False
+      FixedChar = True
+      Size = 30
+    end
+    object EstPfaTXFICM: TStringField
+      FieldName = 'TXFICM'
+      Origin = 'ISADE.ESTPFA.TXFICM'
+      Visible = False
+      FixedChar = True
+      Size = 30
+    end
+    object EstPfaTXFIPI: TStringField
+      FieldName = 'TXFIPI'
+      Origin = 'ISADE.ESTPFA.TXFIPI'
+      Visible = False
+      FixedChar = True
+      Size = 30
+    end
+    object EstPfaMODPFA: TStringField
+      DisplayWidth = 20
+      FieldName = 'MODPFA'
+      Origin = 'ISADE.ESTPFA.MODPFA'
+      Visible = False
+      FixedChar = True
+    end
+    object EstPfaCODIPI: TStringField
+      FieldName = 'CODIPI'
+      Origin = 'ISADE.ESTPFA.CODIPI'
+      Visible = False
+      FixedChar = True
+      Size = 30
+    end
+    object EstPfaTIPIPI: TStringField
+      FieldName = 'TIPIPI'
+      Origin = 'ISADE.ESTPFA.TIPIPI'
+      Visible = False
+      FixedChar = True
+      Size = 7
+    end
+    object EstPfaCODICM: TStringField
+      FieldName = 'CODICM'
+      Origin = 'ISADE.ESTPFA.CODICM'
+      Visible = False
+      FixedChar = True
+    end
+    object EstPfaTIPICM: TStringField
+      FieldName = 'TIPICM'
+      Origin = 'ISADE.ESTPFA.TIPICM'
+      Visible = False
+      FixedChar = True
+      Size = 7
+    end
+    object EstPfaTRBPIS: TStringField
+      DisplayWidth = 3
+      FieldName = 'TRBPIS'
+      Origin = 'ISADE.ESTPFA.TRBPIS'
+      Visible = False
+      FixedChar = True
+      Size = 3
+    end
+    object EstPfaTRBCOF: TStringField
+      DisplayWidth = 3
+      FieldName = 'TRBCOF'
+      Origin = 'ISADE.ESTPFA.TRBCOF'
+      Visible = False
+      FixedChar = True
+      Size = 3
+    end
+    object EstPfaID_ESTPIS: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'ID_ESTPIS'
+      Origin = 'ISADE.ESTPFA.ID_ESTPIS'
+      Visible = False
+    end
+    object EstPfaID_ESTCOF: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'ID_ESTCOF'
+      Origin = 'ISADE.ESTPFA.ID_ESTCOF'
+      Visible = False
+    end
+    object EstPfasignfePis: TStringField
+      FieldKind = fkLookup
+      FieldName = 'signfePis'
+      LookupDataSet = EstPis
+      LookupKeyFields = 'ID_ESTPIS'
+      LookupResultField = 'SIGNFE'
+      KeyFields = 'ID_ESTPIS'
+      Visible = False
+      Size = 2
+      Lookup = True
+    end
+    object EstPfasignfeCof: TStringField
+      FieldKind = fkLookup
+      FieldName = 'signfeCof'
+      LookupDataSet = EstCof
+      LookupKeyFields = 'ID_ESTCOF'
+      LookupResultField = 'SIGNFE'
+      KeyFields = 'ID_ESTCOF'
+      Visible = False
+      Size = 2
+      Lookup = True
+    end
+    object EstPfasignfeSip: TStringField
+      FieldKind = fkLookup
+      FieldName = 'signfeSip'
+      LookupDataSet = EstSip
+      LookupKeyFields = 'ID_ESTSIP'
+      LookupResultField = 'SIGNFE'
+      KeyFields = 'ID_ESTSIP'
+      Visible = False
+      Size = 2
+      Lookup = True
+    end
+    object EstPfaCONSUMST: TFloatField
+      FieldName = 'CONSUMST'
+      Origin = 'ISADE.ESTPFA.CONSUMST'
+      Visible = False
+    end
+    object EstPfaDSCICM: TFloatField
+      FieldName = 'DSCICM'
+      Origin = 'ISADE.ESTPFA.DSCICM'
+      Visible = False
+    end
+    object EstPfaDSCIPI: TFloatField
+      FieldName = 'DSCIPI'
+      Origin = 'ISADE.ESTPFA.DSCIPI'
+      Visible = False
+    end
+    object EstPfaFRTSUB: TFloatField
+      FieldName = 'FRTSUB'
+      Origin = 'ISADE.ESTPFA.FRTSUB'
+      Visible = False
+    end
+    object EstPfaSEGSUB: TFloatField
+      FieldName = 'SEGSUB'
+      Origin = 'ISADE.ESTPFA.SEGSUB'
+      Visible = False
+    end
+    object EstPfaDESSUB: TFloatField
+      FieldName = 'DESSUB'
+      Origin = 'ISADE.ESTPFA.DESSUB'
+      Visible = False
+    end
+    object EstPfaDSCSUB: TFloatField
+      FieldName = 'DSCSUB'
+      Origin = 'ISADE.ESTPFA.DSCSUB'
+      Visible = False
+    end
+    object EstPfaID_ESTICM: TIntegerField
+      FieldName = 'ID_ESTICM'
+      Origin = 'ISADE.ESTPFA.ID_ESTICM'
+      Visible = False
+    end
+    object EstPfaID_ESTIPI: TIntegerField
+      FieldName = 'ID_ESTIPI'
+      Origin = 'ISADE.ESTPFA.ID_ESTIPI'
+      Visible = False
+    end
+    object EstPfaFRTPIS: TFloatField
+      FieldName = 'FRTPIS'
+      Origin = 'ISADE.ESTPFA.FRTPIS'
+      Visible = False
+    end
+    object EstPfaSEGPIS: TFloatField
+      FieldName = 'SEGPIS'
+      Origin = 'ISADE.ESTPFA.SEGPIS'
+      Visible = False
+    end
+    object EstPfaDESPIS: TFloatField
+      FieldName = 'DESPIS'
+      Origin = 'ISADE.ESTPFA.DESPIS'
+      Visible = False
+    end
+    object EstPfaDSCPIS: TFloatField
+      FieldName = 'DSCPIS'
+      Origin = 'ISADE.ESTPFA.DSCPIS'
+      Visible = False
+    end
+    object EstPfaCONSUMPIS: TFloatField
+      FieldName = 'CONSUMPIS'
+      Origin = 'ISADE.ESTPFA.CONSUMPIS'
+      Visible = False
+    end
+    object EstPfaFRTCOF: TFloatField
+      FieldName = 'FRTCOF'
+      Origin = 'ISADE.ESTPFA.FRTCOF'
+      Visible = False
+    end
+    object EstPfaSEGCOF: TFloatField
+      FieldName = 'SEGCOF'
+      Origin = 'ISADE.ESTPFA.SEGCOF'
+      Visible = False
+    end
+    object EstPfaDESCOF: TFloatField
+      FieldName = 'DESCOF'
+      Origin = 'ISADE.ESTPFA.DESCOF'
+      Visible = False
+    end
+    object EstPfaDSCCOF: TFloatField
+      FieldName = 'DSCCOF'
+      Origin = 'ISADE.ESTPFA.DSCCOF'
+      Visible = False
+    end
+    object EstPfaCONSUMCOF: TFloatField
+      FieldName = 'CONSUMCOF'
+      Origin = 'ISADE.ESTPFA.CONSUMCOF'
+      Visible = False
+    end
+    object EstPfaFLGATIVO: TSmallintField
+      FieldName = 'FLGATIVO'
+      Origin = 'ISADE.ESTPFA.FLGATIVO'
+      Visible = False
+    end
+    object EstPfaSOMAR_FRETE_NA_BASE_COFINS: TSmallintField
+      FieldName = 'SOMAR_FRETE_NA_BASE_COFINS'
+      Origin = 'ISADE.ESTPFA.SOMAR_FRETE_NA_BASE_COFINS'
+    end
+    object EstPfaSOMAR_FRETE_NA_BASE_PIS: TSmallintField
+      FieldName = 'SOMAR_FRETE_NA_BASE_PIS'
+      Origin = 'ISADE.ESTPFA.SOMAR_FRETE_NA_BASE_PIS'
+    end
+  end
+  object DsPfa: TwwDataSource
+    AutoEdit = False
+    DataSet = EstPfa
+    OnDataChange = DsPfaDataChange
+    Left = 29
+    Top = 626
+  end
+  object UpPfa: TUpdateSQL
+    ModifySQL.Strings = (
+      'update EstPfa'
+      'set'
+      '  DSCPFA = :DSCPFA,'
+      '  DSRPFA = :DSRPFA,'
+      '  INTFIN = :INTFIN,'
+      '  GERLIV = :GERLIV,'
+      '  ATUEST = :ATUEST,'
+      '  CONSUM = :CONSUM,'
+      '  LOCPFA = :LOCPFA,'
+      '  CODCF1 = :CODCF1,'
+      '  CODCF2 = :CODCF2,'
+      '  FRTICM = :FRTICM,'
+      '  ICMFRT = :ICMFRT,'
+      '  SEGICM = :SEGICM,'
+      '  ICMSEG = :ICMSEG,'
+      '  DESICM = :DESICM,'
+      '  ICMDES = :ICMDES,'
+      '  FRTIPI = :FRTIPI,'
+      '  IPIFRT = :IPIFRT,'
+      '  SEGIPI = :SEGIPI,'
+      '  IPISEG = :IPISEG,'
+      '  DESIPI = :DESIPI,'
+      '  IPIDES = :IPIDES,'
+      '  TXFICM = :TXFICM,'
+      '  TXFIPI = :TXFIPI,'
+      '  CODIPI = :CODIPI,'
+      '  TIPIPI = :TIPIPI,'
+      '  CODICM = :CODICM,'
+      '  TIPICM = :TIPICM,'
+      '  MODPFA = :MODPFA,'
+      '  NROPFA = :NROPFA,'
+      '  TRBPIS = :TRBPIS,'
+      '  TRBCOF = :TRBCOF,'
+      '  ID_ESTPIS = :ID_ESTPIS,'
+      '  ID_ESTCOF = :ID_ESTCOF,'
+      '  ID_ESTSIP = :ID_ESTSIP,'
+      '  ALIQPIS = :ALIQPIS,'
+      '  ALIQCOF = :ALIQCOF,'
+      '  CSTPIS = :CSTPIS,'
+      '  CSTCOF = :CSTCOF,'
+      '  DSCICM = :DSCICM,'
+      '  DSCIPI = :DSCIPI,'
+      '  FRTSUB = :FRTSUB,'
+      '  SEGSUB = :SEGSUB,'
+      '  DESSUB = :DESSUB,'
+      '  DSCSUB = :DSCSUB,'
+      '  CONSUMST = :CONSUMST,'
+      '  ID_ESTICM = :ID_ESTICM,'
+      '  ID_ESTIPI = :ID_ESTIPI,'
+      '  FRTPIS = :FRTPIS,'
+      '  SEGPIS = :SEGPIS,'
+      '  DESPIS = :DESPIS,'
+      '  DSCPIS = :DSCPIS,'
+      '  CONSUMPIS = :CONSUMPIS,'
+      '  FRTCOF = :FRTCOF,'
+      '  SEGCOF = :SEGCOF,'
+      '  DESCOF = :DESCOF,'
+      '  DSCCOF = :DSCCOF,'
+      '  CONSUMCOF = :CONSUMCOF,'
+      '  FLGATIVO = :FLGATIVO,'
+      '  somar_frete_na_base_pis = :somar_frete_na_base_pis,'
+      '  somar_frete_na_base_cofins = :somar_frete_na_base_cofins'
+      'where'
+      '  CODPFA = :OLD_CODPFA and'
+      '  TIPPFA = :OLD_TIPPFA'
+      ' ')
+    InsertSQL.Strings = (
+      'insert into EstPfa'
+      
+        '  (CODPFA, TIPPFA, DSCPFA, DSRPFA, INTFIN, GERLIV, ATUEST, CONSU' +
+        'M, LOCPFA, '
+      
+        '   CODCF1, CODCF2, FRTICM, ICMFRT, SEGICM, ICMSEG, DESICM, ICMDE' +
+        'S, FRTIPI, '
+      
+        '   IPIFRT, SEGIPI, IPISEG, DESIPI, IPIDES, TXFICM, TXFIPI, CODIP' +
+        'I, TIPIPI, '
+      
+        '   CODICM, TIPICM, MODPFA, NROPFA, TRBPIS, TRBCOF, ID_ESTPIS, ID' +
+        '_ESTCOF, '
+      
+        '   ID_ESTSIP, ALIQPIS, ALIQCOF, CSTPIS, CSTCOF, DSCICM, DSCIPI, ' +
+        'FRTSUB, '
+      
+        '   SEGSUB, DESSUB, DSCSUB, CONSUMST, ID_ESTICM, ID_ESTIPI, FRTPI' +
+        'S, SEGPIS, '
+      
+        '   DESPIS, DSCPIS, CONSUMPIS, FRTCOF, SEGCOF, DESCOF, DSCCOF, CO' +
+        'NSUMCOF, '
+      '   FLGATIVO,somar_frete_na_base_pis, somar_frete_na_base_cofins)'
+      'values'
+      
+        '  (:CODPFA, :TIPPFA, :DSCPFA, :DSRPFA, :INTFIN, :GERLIV, :ATUEST' +
+        ', :CONSUM, '
+      
+        '   :LOCPFA, :CODCF1, :CODCF2, :FRTICM, :ICMFRT, :SEGICM, :ICMSEG' +
+        ', :DESICM, '
+      
+        '   :ICMDES, :FRTIPI, :IPIFRT, :SEGIPI, :IPISEG, :DESIPI, :IPIDES' +
+        ', :TXFICM, '
+      
+        '   :TXFIPI, :CODIPI, :TIPIPI, :CODICM, :TIPICM, :MODPFA, :NROPFA' +
+        ', :TRBPIS, '
+      
+        '   :TRBCOF, :ID_ESTPIS, :ID_ESTCOF, :ID_ESTSIP, :ALIQPIS, :ALIQC' +
+        'OF, :CSTPIS, '
+      
+        '   :CSTCOF, :DSCICM, :DSCIPI, :FRTSUB, :SEGSUB, :DESSUB, :DSCSUB' +
+        ', :CONSUMST, '
+      
+        '   :ID_ESTICM, :ID_ESTIPI, :FRTPIS, :SEGPIS, :DESPIS, :DSCPIS, :' +
+        'CONSUMPIS, '
+      
+        '   :FRTCOF, :SEGCOF, :DESCOF, :DSCCOF, :CONSUMCOF, :FLGATIVO, :s' +
+        'omar_frete_na_base_pis,'
+      '   :somar_frete_na_base_cofins)'
+      ' ')
+    DeleteSQL.Strings = (
+      'delete from EstPfa'
+      'where'
+      '  CODPFA = :OLD_CODPFA and'
+      '  TIPPFA = :OLD_TIPPFA')
+    Left = 29
+    Top = 654
+  end
+  object quSql: TwwQuery
+    Tag = 1
+    DatabaseName = 'ISade'
+    UniDirectional = True
+    ValidateWithMask = True
+    Left = 1
+    Top = 654
+  end
+  object FinTCl: TwwQuery
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'Select *  From FinTCl')
+    ValidateWithMask = True
+    Left = 1
+    Top = 710
+    object FinTClNOMTCL: TStringField
+      DisplayLabel = 'Descrição'
+      DisplayWidth = 40
+      FieldName = 'NOMTCL'
+      Origin = 'ISADE.FINTCL.NOMTCL'
+      FixedChar = True
+      Size = 40
+    end
+    object FinTClCODTCL: TIntegerField
+      DisplayLabel = 'Código'
+      DisplayWidth = 10
+      FieldName = 'CODTCL'
+      Origin = 'ISADE.FINTCL.CODTCL'
+    end
+  end
+  object TxfIpi: TwwQuery
+    CachedUpdates = True
+    OnNewRecord = EstPfaNewRecord
+    DatabaseName = 'ISade'
+    SessionName = 'Default'
+    SQL.Strings = (
+      'Select * From EstTxf'
+      'Where TipTxf = '#39'Ipi'#39
+      'Order by CodTxf')
+    ControlType.Strings = (
+      'INTFIN;CheckBox;Sim;Nao'
+      'GERLIV;CheckBox;Sim;Nao'
+      'ATUEST;CheckBox;Sim;Nao')
+    ValidateWithMask = True
+    Left = 66
+    Top = 626
+    object TxfIpiCODTXF: TStringField
+      FieldName = 'CODTXF'
+      Origin = 'ISADE.ESTTXF.CODTXF'
+      FixedChar = True
+      Size = 30
+    end
+    object TxfIpiTIPTXF: TStringField
+      FieldName = 'TIPTXF'
+      Origin = 'ISADE.ESTTXF.TIPTXF'
+      FixedChar = True
+      Size = 4
+    end
+    object TxfIpiDSRTXF: TStringField
+      FieldName = 'DSRTXF'
+      Origin = 'ISADE.ESTTXF.DSRTXF'
+      FixedChar = True
+      Size = 50
+    end
+    object TxfIpiDSCTXF: TMemoField
+      FieldName = 'DSCTXF'
+      Origin = 'ISADE.ESTTXF.DSCTXF'
+      BlobType = ftMemo
+      Size = 300
+    end
+  end
+  object DsIpi: TwwDataSource
+    AutoEdit = False
+    DataSet = TxfIpi
+    Left = 94
+    Top = 626
+  end
+  object DsIcm: TwwDataSource
+    AutoEdit = False
+    DataSet = TxfIcm
+    Left = 94
+    Top = 654
+  end
+  object TxfIcm: TwwQuery
+    CachedUpdates = True
+    OnNewRecord = EstPfaNewRecord
+    DatabaseName = 'ISade'
+    SessionName = 'Default'
+    SQL.Strings = (
+      'Select * From EstTxf'
+      'Where TipTxf = '#39'Icms'#39
+      'Order by CodTxf')
+    ControlType.Strings = (
+      'INTFIN;CheckBox;Sim;Nao'
+      'GERLIV;CheckBox;Sim;Nao'
+      'ATUEST;CheckBox;Sim;Nao')
+    ValidateWithMask = True
+    Left = 66
+    Top = 654
+    object StringField1: TStringField
+      FieldName = 'CODTXF'
+      Origin = 'ISADE.ESTTXF.CODTXF'
+      FixedChar = True
+      Size = 30
+    end
+    object StringField2: TStringField
+      FieldName = 'TIPTXF'
+      Origin = 'ISADE.ESTTXF.TIPTXF'
+      FixedChar = True
+      Size = 4
+    end
+    object StringField3: TStringField
+      FieldName = 'DSRTXF'
+      Origin = 'ISADE.ESTTXF.DSRTXF'
+      FixedChar = True
+      Size = 50
+    end
+    object TxfIcmDSCTXF: TMemoField
+      FieldName = 'DSCTXF'
+      Origin = 'ISADE.ESTTXF.DSCTXF'
+      BlobType = ftMemo
+      Size = 300
+    end
+  end
+  object EstIcm: TwwQuery
+    CachedUpdates = True
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'Select * From EstIcm '
+      'Where TipIcm = :TipIcm'
+      'Order by CodIcm')
+    ValidateWithMask = True
+    Left = 66
+    Top = 682
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'TipIcm'
+        ParamType = ptInput
+      end>
+    object EstIcmCODICM: TStringField
+      FieldName = 'CODICM'
+      Origin = 'ISADE.ESTICM.CODICM'
+      FixedChar = True
+    end
+    object EstIcmTIPICM: TStringField
+      FieldName = 'TIPICM'
+      Origin = 'ISADE.ESTICM.TIPICM'
+      FixedChar = True
+      Size = 7
+    end
+    object EstIcmNOMICM: TStringField
+      FieldName = 'NOMICM'
+      Origin = 'ISADE.ESTICM.NOMICM'
+      FixedChar = True
+      Size = 100
+    end
+    object EstIcmTRBICM: TStringField
+      FieldName = 'TRBICM'
+      Origin = 'ISADE.ESTICM.TRBICM'
+      FixedChar = True
+      Size = 3
+    end
+    object EstIcmPERICM: TFloatField
+      FieldName = 'PERICM'
+      Origin = 'ISADE.ESTICM.PERICM'
+    end
+    object EstIcmREDICM: TFloatField
+      FieldName = 'REDICM'
+      Origin = 'ISADE.ESTICM.REDICM'
+    end
+    object EstIcmRECICM: TFloatField
+      FieldName = 'RECICM'
+      Origin = 'ISADE.ESTICM.RECICM'
+    end
+    object EstIcmBASICM: TFloatField
+      FieldName = 'BASICM'
+      Origin = 'ISADE.ESTICM.BASICM'
+    end
+    object EstIcmINCFIN: TFloatField
+      FieldName = 'INCFIN'
+      Origin = 'ISADE.ESTICM.INCFIN'
+    end
+    object EstIcmINCREV: TFloatField
+      FieldName = 'INCREV'
+      Origin = 'ISADE.ESTICM.INCREV'
+    end
+    object EstIcmITECON: TStringField
+      FieldName = 'ITECON'
+      Origin = 'ISADE.ESTICM.ITECON'
+      FixedChar = True
+      Size = 3
+    end
+    object EstIcmCODST1: TStringField
+      FieldName = 'CODST1'
+      Origin = 'ISADE.ESTICM.CODST1'
+      FixedChar = True
+      Size = 1
+    end
+    object EstIcmCODST2: TStringField
+      FieldName = 'CODST2'
+      Origin = 'ISADE.ESTICM.CODST2'
+      FixedChar = True
+      Size = 3
+    end
+    object EstIcmUFEMITENTE: TStringField
+      FieldName = 'UFEMITENTE'
+      Origin = 'ISADE.ESTICM.UFEMITENTE'
+      FixedChar = True
+      Size = 2
+    end
+    object EstIcmCODREGTRIB: TIntegerField
+      FieldName = 'CODREGTRIB'
+      Origin = 'ISADE.ESTICM.CODREGTRIB'
+    end
+    object EstIcmID_ESTICM: TIntegerField
+      FieldName = 'ID_ESTICM'
+      Origin = 'ISADE.ESTICM.ID_ESTICM'
+    end
+  end
+  object EstIpi: TwwQuery
+    CachedUpdates = True
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'Select * From EstIpi'
+      'Where TipIpi = :TipIpi'
+      'Order by CodIpi')
+    ValidateWithMask = True
+    Left = 66
+    Top = 710
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'TipIpi'
+        ParamType = ptInput
+      end>
+    object EstIpiCODIPI: TStringField
+      FieldName = 'CODIPI'
+      Origin = 'ISADE.ESTIPI.CODIPI'
+      FixedChar = True
+      Size = 30
+    end
+    object EstIpiTIPIPI: TStringField
+      FieldName = 'TIPIPI'
+      Origin = 'ISADE.ESTIPI.TIPIPI'
+      FixedChar = True
+      Size = 7
+    end
+    object EstIpiNOMIPI: TStringField
+      FieldName = 'NOMIPI'
+      Origin = 'ISADE.ESTIPI.NOMIPI'
+      FixedChar = True
+      Size = 100
+    end
+    object EstIpiREGIPI: TStringField
+      FieldName = 'REGIPI'
+      Origin = 'ISADE.ESTIPI.REGIPI'
+      FixedChar = True
+      Size = 3
+    end
+    object EstIpiTRBIPI: TStringField
+      FieldName = 'TRBIPI'
+      Origin = 'ISADE.ESTIPI.TRBIPI'
+      FixedChar = True
+      Size = 3
+    end
+    object EstIpiPERIPI: TFloatField
+      FieldName = 'PERIPI'
+      Origin = 'ISADE.ESTIPI.PERIPI'
+    end
+    object EstIpiREDIPI: TFloatField
+      FieldName = 'REDIPI'
+      Origin = 'ISADE.ESTIPI.REDIPI'
+    end
+    object EstIpiRECIPI: TFloatField
+      FieldName = 'RECIPI'
+      Origin = 'ISADE.ESTIPI.RECIPI'
+    end
+    object EstIpiBASIPI: TFloatField
+      FieldName = 'BASIPI'
+      Origin = 'ISADE.ESTIPI.BASIPI'
+    end
+    object EstIpiCLSIPI: TStringField
+      FieldName = 'CLSIPI'
+      Origin = 'ISADE.ESTIPI.CLSIPI'
+      FixedChar = True
+      Size = 30
+    end
+    object EstIpiPERIMP: TFloatField
+      FieldName = 'PERIMP'
+      Origin = 'ISADE.ESTIPI.PERIMP'
+    end
+    object EstIpiCODTXF: TStringField
+      FieldName = 'CODTXF'
+      Origin = 'ISADE.ESTIPI.CODTXF'
+      FixedChar = True
+      Size = 30
+    end
+    object EstIpiID_ESTNCM: TIntegerField
+      FieldName = 'ID_ESTNCM'
+      Origin = 'ISADE.ESTIPI.ID_ESTNCM'
+    end
+  end
+  object DsEstIpi: TwwDataSource
+    DataSet = EstIpi
+    Left = 94
+    Top = 710
+  end
+  object DsEstIcm: TwwDataSource
+    DataSet = EstIcm
+    Left = 94
+    Top = 682
+  end
+  object DsReport: TppDBPipeline
+    DataSource = DsPfa
+    UserName = 'DsReport'
+    Left = 29
+    Top = 682
+  end
+  object ppReport: TppReport
+    AutoStop = False
+    DataPipeline = DsReport
+    PrinterSetup.BinName = 'Default'
+    PrinterSetup.DocumentName = 'Ficha de Clientes'
+    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PrinterName = 'Default'
+    PrinterSetup.mmMarginBottom = 6350
+    PrinterSetup.mmMarginLeft = 6350
+    PrinterSetup.mmMarginRight = 6350
+    PrinterSetup.mmMarginTop = 6350
+    PrinterSetup.mmPaperHeight = 297000
+    PrinterSetup.mmPaperWidth = 210000
+    Template.FileName = 
+      'C:\_WGSYS\Emerion\Fatura\DualComp\Nota Fiscal\Relatorios\RManPfa' +
+      '.rtm'
+    Units = utMillimeters
+    UserName = 'Report'
+    DeviceType = 'Screen'
+    Left = 1
+    Top = 682
+    Version = '5.0'
+    mmColumnWidth = 197300
+    object ppHeaderBand3: TppHeaderBand
+      mmBottomOffset = 0
+      mmHeight = 7144
+      mmPrintPosition = 0
+      object ppLabel50: TppLabel
+        UserName = 'QrTitulo1'
+        Caption = 'Padrões de Faturamento'
+        Color = clNavy
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 4318
+        mmLeft = 529
+        mmTop = 1323
+        mmWidth = 43688
+        BandType = 0
+      end
+      object ppLabel1: TppLabel
+        UserName = 'Label7'
+        Caption = 'Emitido Em    :   '
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 102129
+        mmTop = 1323
+        mmWidth = 21519
+        BandType = 0
+      end
+      object ppSystemVariable2: TppSystemVariable
+        UserName = 'SystemVariable2'
+        VarType = vtDateTime
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 124354
+        mmTop = 1323
+        mmWidth = 30427
+        BandType = 0
+      end
+      object ppLabel14: TppLabel
+        UserName = 'Label14'
+        Caption = 'Página No.   '
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 155575
+        mmTop = 1323
+        mmWidth = 16228
+        BandType = 0
+      end
+      object ppSystemVariable3: TppSystemVariable
+        UserName = 'SystemVariable3'
+        VarType = vtPageNo
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 172509
+        mmTop = 1323
+        mmWidth = 1588
+        BandType = 0
+      end
+    end
+    object dbReport: TppDetailBand
+      mmBottomOffset = 0
+      mmHeight = 112977
+      mmPrintPosition = 0
+      object ppLabel64: TppLabel
+        UserName = 'Label64'
+        AutoSize = False
+        Caption = 'Padrão de Faturamento'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 529
+        mmTop = 3175
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppCodCli: TppDBText
+        UserName = 'CodCli'
+        DataField = 'CODPFA'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 41804
+        mmTop = 3175
+        mmWidth = 20638
+        BandType = 4
+      end
+      object ppNomCli: TppDBText
+        UserName = 'NomCli'
+        DataField = 'DSCPFA'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 63236
+        mmTop = 3175
+        mmWidth = 116946
+        BandType = 4
+      end
+      object ppLabel58: TppLabel
+        UserName = 'Label58'
+        AutoSize = False
+        Caption = 'Código fiscal da operação'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 529
+        mmTop = 21167
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppLabel71: TppLabel
+        UserName = 'Label71'
+        AutoSize = False
+        Caption = 'Tipo de operação'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 529
+        mmTop = 16140
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppLabel73: TppLabel
+        UserName = 'Label73'
+        AutoSize = False
+        Caption = 'Integrar com o financeiro ?'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 529
+        mmTop = 25929
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppLabel78: TppLabel
+        UserName = 'Label78'
+        AutoSize = False
+        Caption = 'Atualizar estoque ? '
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 529
+        mmTop = 30692
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppLabel139: TppLabel
+        UserName = 'Label139'
+        AutoSize = False
+        Caption = 'Para consumidor final ?'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 529
+        mmTop = 35454
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppApeCli: TppDBText
+        UserName = 'ApeCli'
+        DataField = 'TIPPFA'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 41804
+        mmTop = 16140
+        mmWidth = 56886
+        BandType = 4
+      end
+      object ppCgcCli: TppDBText
+        UserName = 'DBText6'
+        DataField = 'CODCF1'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 41804
+        mmTop = 21167
+        mmWidth = 20638
+        BandType = 4
+      end
+      object ppLabel22: TppLabel
+        UserName = 'Label4'
+        AutoSize = False
+        Caption = 'Origem/Destino'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 529
+        mmTop = 40217
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppIntFin: TppDBText
+        UserName = 'IntFin'
+        DataField = 'INTFIN'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 41804
+        mmTop = 25929
+        mmWidth = 20638
+        BandType = 4
+      end
+      object ppAtuEst: TppDBText
+        UserName = 'IntFin1'
+        DataField = 'ATUEST'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 41804
+        mmTop = 30692
+        mmWidth = 20638
+        BandType = 4
+      end
+      object ppConSum: TppDBText
+        UserName = 'IntFin2'
+        DataField = 'CONSUM'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 41804
+        mmTop = 35454
+        mmWidth = 20638
+        BandType = 4
+      end
+      object ppLocPfa: TppDBText
+        UserName = 'LocPfa'
+        DataField = 'LOCPFA'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 41804
+        mmTop = 40217
+        mmWidth = 97896
+        BandType = 4
+      end
+      object ppLabel2: TppLabel
+        UserName = 'Label1'
+        AutoSize = False
+        Caption = 'Regra de IPI'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 529
+        mmTop = 50271
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppCodIpi: TppDBText
+        UserName = 'CodCli1'
+        DataField = 'CODIPI'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 41804
+        mmTop = 50271
+        mmWidth = 29369
+        BandType = 4
+      end
+      object ppLabel3: TppLabel
+        UserName = 'Label3'
+        AutoSize = False
+        Caption = 'Regra de ICMS'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 529
+        mmTop = 55033
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppCodIcm: TppDBText
+        UserName = 'CodIcm'
+        DataField = 'CODICM'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 41804
+        mmTop = 55033
+        mmWidth = 29369
+        BandType = 4
+      end
+      object ppLabel4: TppLabel
+        UserName = 'Label5'
+        AutoSize = False
+        Caption = 'Texto Fiscal (IPI)'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 529
+        mmTop = 62442
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppLabel5: TppLabel
+        UserName = 'Label6'
+        AutoSize = False
+        Caption = 'Texto Fiscal (ICMS)'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 529
+        mmTop = 67204
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppTxfIcm: TppDBText
+        UserName = 'CodIcm1'
+        DataField = 'TXFICM'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 41804
+        mmTop = 67204
+        mmWidth = 29369
+        BandType = 4
+      end
+      object ppTxfIpi: TppDBText
+        UserName = 'TxfIpi'
+        DataField = 'TXFIPI'
+        DataPipeline = DsReport
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 41804
+        mmTop = 62442
+        mmWidth = 29369
+        BandType = 4
+      end
+      object ppLabel6: TppLabel
+        UserName = 'Label8'
+        AutoSize = False
+        Caption = 'Base de calculo de ICMS'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 529
+        mmTop = 80433
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppLabel7: TppLabel
+        UserName = 'Label9'
+        AutoSize = False
+        Caption = '*%) Frete'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 529
+        mmTop = 86254
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppLabel8: TppLabel
+        UserName = 'Label10'
+        AutoSize = False
+        Caption = '(%) Seguro'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 529
+        mmTop = 91017
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppLabel9: TppLabel
+        UserName = 'Label101'
+        AutoSize = False
+        Caption = '(%) Outras Despesas'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 529
+        mmTop = 95779
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppIcmFrt: TppDBText
+        UserName = 'CodCli2'
+        Alignment = taRightJustify
+        DataField = 'ICMFRT'
+        DataPipeline = DsReport
+        DisplayFormat = '###,###,##0.00'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 41804
+        mmTop = 86254
+        mmWidth = 20638
+        BandType = 4
+      end
+      object ppIcmSeg: TppDBText
+        UserName = 'IcmSeg'
+        Alignment = taRightJustify
+        DataField = 'ICMSEG'
+        DataPipeline = DsReport
+        DisplayFormat = '###,###,##0.00'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 41804
+        mmTop = 91017
+        mmWidth = 20638
+        BandType = 4
+      end
+      object ppIcmDes: TppDBText
+        UserName = 'IcmDes'
+        Alignment = taRightJustify
+        DataField = 'ICMDES'
+        DataPipeline = DsReport
+        DisplayFormat = '###,###,##0.00'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 41804
+        mmTop = 95779
+        mmWidth = 20638
+        BandType = 4
+      end
+      object ppLabel10: TppLabel
+        UserName = 'Label102'
+        AutoSize = False
+        Caption = 'Base de calculo de IPI'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 83873
+        mmTop = 80433
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppLabel11: TppLabel
+        UserName = 'Label11'
+        AutoSize = False
+        Caption = '(%) Frete'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 83873
+        mmTop = 86254
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppLabel12: TppLabel
+        UserName = 'Label103'
+        AutoSize = False
+        Caption = '(%) Seguro'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 83873
+        mmTop = 91017
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppLabel13: TppLabel
+        UserName = 'Label13'
+        AutoSize = False
+        Caption = '(%) Outras Despesas'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3440
+        mmLeft = 83873
+        mmTop = 95779
+        mmWidth = 40217
+        BandType = 4
+      end
+      object ppIpiDes: TppDBText
+        UserName = 'IcmDes1'
+        Alignment = taRightJustify
+        DataField = 'IPIDES'
+        DataPipeline = DsReport
+        DisplayFormat = '###,###,##0.00'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 125148
+        mmTop = 95779
+        mmWidth = 20638
+        BandType = 4
+      end
+      object ppIpiSeg: TppDBText
+        UserName = 'IcmSeg1'
+        Alignment = taRightJustify
+        DataField = 'IPISEG'
+        DataPipeline = DsReport
+        DisplayFormat = '###,###,##0.00'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 125148
+        mmTop = 91017
+        mmWidth = 20638
+        BandType = 4
+      end
+      object ppIpiFrt: TppDBText
+        UserName = 'IpiFrt'
+        Alignment = taRightJustify
+        DataField = 'IPIFRT'
+        DataPipeline = DsReport
+        DisplayFormat = '###,###,##0.00'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Tahoma'
+        Font.Size = 8
+        Font.Style = []
+        Transparent = True
+        mmHeight = 3387
+        mmLeft = 125148
+        mmTop = 86254
+        mmWidth = 20638
+        BandType = 4
+      end
+    end
+  end
+  object EstPis: TwwQuery
+    Active = True
+    CachedUpdates = True
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'Select * From EstPis'
+      'Order by EstPis.Id_EstPis')
+    ValidateWithMask = True
+    Left = 66
+    Top = 738
+    object EstPisID_ESTPIS: TIntegerField
+      FieldName = 'ID_ESTPIS'
+      Origin = 'ISADE.ESTPIS.ID_ESTPIS'
+    end
+    object EstPisNOMPIS: TStringField
+      FieldName = 'NOMPIS'
+      Origin = 'ISADE.ESTPIS.NOMPIS'
+      Size = 100
+    end
+    object EstPisSIGNFE: TStringField
+      FieldName = 'SIGNFE'
+      Origin = 'ISADE.ESTPIS.SIGNFE'
+      Size = 2
+    end
+  end
+  object dsEstPis: TwwDataSource
+    DataSet = EstPis
+    Left = 94
+    Top = 738
+  end
+  object EstCof: TwwQuery
+    Active = True
+    CachedUpdates = True
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'Select * From EstCof'
+      'Order by EstCof.Id_EstCof')
+    ValidateWithMask = True
+    Left = 66
+    Top = 766
+    object EstCofID_ESTCOF: TIntegerField
+      FieldName = 'ID_ESTCOF'
+      Origin = 'ISADE.ESTCOF.ID_ESTCOF'
+    end
+    object EstCofSIGNFE: TStringField
+      FieldName = 'SIGNFE'
+      Origin = 'ISADE.ESTCOF.SIGNFE'
+      Size = 2
+    end
+    object EstCofNOMCOF: TStringField
+      FieldName = 'NOMCOF'
+      Origin = 'ISADE.ESTCOF.NOMCOF'
+      Size = 250
+    end
+  end
+  object DsEstCof: TwwDataSource
+    DataSet = EstCof
+    Left = 94
+    Top = 766
+  end
+  object EstSip: TwwQuery
+    Active = True
+    CachedUpdates = True
+    DatabaseName = 'ISade'
+    SessionName = 'Default'
+    SQL.Strings = (
+      'Select * From EstSip'
+      'Where EstSip.TipSip = :TipSip'
+      'Order by EstSip.Id_EstSip')
+    ControlType.Strings = (
+      'INTFIN;CheckBox;Sim;Nao'
+      'GERLIV;CheckBox;Sim;Nao'
+      'PISCOF;CheckBox;Sim;Nao'
+      'ATUEST;CheckBox;Sim;Nao')
+    ValidateWithMask = True
+    Left = 66
+    Top = 794
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'TipSip'
+        ParamType = ptInput
+      end>
+    object EstSipID_ESTSIP: TIntegerField
+      FieldName = 'ID_ESTSIP'
+      Origin = 'ISADE.ESTSIP.ID_ESTSIP'
+    end
+    object EstSipNOMSIP: TStringField
+      FieldName = 'NOMSIP'
+      Origin = 'ISADE.ESTSIP.NOMSIP'
+      Size = 200
+    end
+    object EstSipTIPSIP: TStringField
+      FieldName = 'TIPSIP'
+      Origin = 'ISADE.ESTSIP.TIPSIP'
+      Size = 8
+    end
+    object EstSipSIGNFE: TStringField
+      FieldName = 'SIGNFE'
+      Origin = 'ISADE.ESTSIP.SIGNFE'
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object dsEstSip: TwwDataSource
+    AutoEdit = False
+    DataSet = EstSip
+    Left = 94
+    Top = 794
+  end
+end

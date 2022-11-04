@@ -1,0 +1,2977 @@
+unit ManGr1_NFE;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Fpadrao, Grids, Wwdbigrd, Wwdbgrid, hGrid, dxExEdtr, dxEdLib, dxEditor,
+  StdCtrls, ExtCtrls, Buttons, dxCntner, Menus, Db, Wwdatsrc, DBTables,
+  Wwquery, dxColorPickEdit, dxColorCurrencyEdit, dxColorEdit,
+  dxColorDateEdit, dxDBELib, dxDBColorCurrencyEdit, dxDBColorPickEdit,
+  dxfProgressBar, dxDBColorEdit, inifiles, IdComponent, IdTCPConnection,
+  IdTCPClient, IdMessageClient, IdSMTP, IdBaseComponent, IdMessage;
+
+type
+  TfmManGr1_NFE = class(TfmPadrao)
+    FatGe2: TwwQuery;
+    DsFatGe2: TwwDataSource;
+    DsFatGer: TwwDataSource;
+    PaintBox: TPaintBox;
+    grFatGe2: ThGrid;
+    quSql: TwwQuery;
+    UpFatGer: TUpdateSQL;
+    grFatGe21: TdxDBGraphicEdit;
+    pnMensag: TPanel;
+    pnCliente: TPanel;
+    pnCodCli: TLabel;
+    benviar: TSpeedButton;
+    pnDesGe2: TPanel;
+    Label3: TLabel;
+    FatGe2DESGE2: TStringField;
+    FatGe2OBSGE2: TStringField;
+    FatGe2QTPGE2: TFloatField;
+    FatGe2VLUGE2: TFloatField;
+    FatGe2IPIGE2: TFloatField;
+    FatGe2ICMGE2: TFloatField;
+    FatGe2TOTIPI: TFloatField;
+    FatGe2CODCFO: TStringField;
+    FatGe2CLSIPI: TStringField;
+    FatGe2CODUND: TStringField;
+    FatGe2CODITE: TStringField;
+    quSQL1: TwwQuery;
+    FatGe2TOTITE: TFloatField;
+    FatGer: TwwQuery;
+    FatGerCODEMP: TIntegerField;
+    FatGerDTEGER: TDateTimeField;
+    FatGerUFEGER: TStringField;
+    FatGerNRONFS: TIntegerField;
+    FatGerCODPFA: TStringField;
+    FatGerTIPPFA: TStringField;
+    FatGerCODCF1: TStringField;
+    FatGerCODCF2: TStringField;
+    FatGerCODCLI: TIntegerField;
+    FatGerFLGSAI: TStringField;
+    FatGerFLGENT: TStringField;
+    FatGerTIPFRT: TStringField;
+    FatGerESPGER: TStringField;
+    FatGerMARGER: TStringField;
+    FatGerINTFIN: TStringField;
+    FatGerDESNAT: TStringField;
+    FatGerINSSUB: TStringField;
+    FatGerCODTRA: TIntegerField;
+    FatGerNOMTRA: TStringField;
+    FatGerCGCTRA: TStringField;
+    FatGerINSTRA: TStringField;
+    FatGerTENTRA: TStringField;
+    FatGerENDTRA: TStringField;
+    FatGerREFTRA: TStringField;
+    FatGerNUMTRA: TStringField;
+    FatGerBAITRA: TStringField;
+    FatGerCIDTRA: TStringField;
+    FatGerUFETRA: TStringField;
+    FatGerCEPTRA: TStringField;
+    FatGerNROGER: TStringField;
+    FatGerPLCTRA: TStringField;
+    FatGerUFEPLC: TStringField;
+    FatGerCEFCLI: TStringField;
+    FatGerTEFCLI: TStringField;
+    FatGerENFCLI: TStringField;
+    FatGerRFFCLI: TStringField;
+    FatGerNRFCLI: TStringField;
+    FatGerBAFCLI: TStringField;
+    FatGerCIFCLI: TStringField;
+    FatGerUFFCLI: TStringField;
+    FatGerCEPCLI: TStringField;
+    FatGerTENCLI: TStringField;
+    FatGerENDCLI: TStringField;
+    FatGerREFCLI: TStringField;
+    FatGerNUMCLI: TStringField;
+    FatGerBAICLI: TStringField;
+    FatGerCIDCLI: TStringField;
+    FatGerUFECLI: TStringField;
+    FatGerCGECLI: TStringField;
+    FatGerINECLI: TStringField;
+    FatGerINFLIQ: TFloatField;
+    FatGerINFBRT: TFloatField;
+    FatGerALTVOL: TIntegerField;
+    FatGerRETNFE: TStringField;
+    FatGerLOTNFE: TIntegerField;
+    FatGerENVNFE: TStringField;
+    FatGerSEQNFE: TStringField;
+    FatGerDTENFE: TDateTimeField;
+    FatGerRECNFE: TStringField;
+    FatGerPRONFE: TStringField;
+    FatGerDOPNFE: TDateTimeField;
+    FatGerHRENFE: TStringField;
+    FatGerUSUNFE: TIntegerField;
+    FatGerDTEPNF: TDateTimeField;
+    FatGerHREPNF: TStringField;
+    FatGerIMPNFE: TStringField;
+    FatGerNFEPIS: TStringField;
+    FatGerNFECOF: TStringField;
+    FatGerFLGATU: TStringField;
+    FatGerID_FINUFF: TIntegerField;
+    FatGerID_FINCIF: TIntegerField;
+    FatGerID_FINUFE: TIntegerField;
+    FatGerID_FINCIE: TIntegerField;
+    FatGerID_TRAUFE: TIntegerField;
+    FatGerID_TRACIE: TIntegerField;
+    FatGerTRBPIS: TStringField;
+    FatGerPERPIS: TFloatField;
+    FatGerTRBCOF: TStringField;
+    FatGerPERCOF: TFloatField;
+    FatGerTOTIT1: TFloatField;
+    FatGerTOTDSR: TFloatField;
+    FatGerTOTFRT: TFloatField;
+    FatGerTOTSEG: TFloatField;
+    FatGerTOTDES: TFloatField;
+    FatGerTOTIP1: TFloatField;
+    FatGerTOTPIS: TFloatField;
+    FatGerTOTCOF: TFloatField;
+    FatGerBASIC1: TFloatField;
+    FatGerTOTIC1: TFloatField;
+    FatGerBASSU1: TFloatField;
+    FatGerTOTSU1: TFloatField;
+    FatGerTOTGE1: TFloatField;
+    FatGerMODPFA: TStringField;
+    FatGerNOMCLI: TStringField;
+    FatArq: TwwQuery;
+    wwQuery1: TwwQuery;
+    UpFatArq: TUpdateSQL;
+    FatArqARQNFE: TBlobField;
+    FatArqFLGATU: TStringField;
+    FatGerNUMGER: TIntegerField;
+    FatGerDTEFAT: TDateTimeField;
+    FatGerHREFAT: TStringField;
+    FatArqCODEMP: TIntegerField;
+    FatArqDTEGER: TDateTimeField;
+    FatArqNUMGER: TIntegerField;
+    FatGerNFSCOM: TIntegerField;
+    FatGerSEQCOM: TStringField;
+    FatGerDTECOM: TDateTimeField;
+    FatGerID_ESTSIP: TIntegerField;
+    FatGerEM1CLI: TStringField;
+    Label4: TLabel;
+    FatGe2NCMGE2: TStringField;
+    FatGe2CODEMP: TIntegerField;
+    FatGe2DTEGER: TDateTimeField;
+    FatGe2NUMGER: TIntegerField;
+    FatGe2SEQGE2: TIntegerField;
+    FatGe2CODST1: TStringField;
+    FatGe2CODST2: TStringField;
+    FatGe2NROGE2: TIntegerField;
+    pnalterar: TPanel;
+    pnCodIte: TLabel;
+    pnQtdIte: TLabel;
+    pnTotIte: TLabel;
+    pnIcmIte: TLabel;
+    pnIpiIte: TLabel;
+    pnTotIpi: TLabel;
+    pnVlqIte: TLabel;
+    EdCodCfo: TdxDBColorEdit;
+    EdClsIpi: TdxDBColorEdit;
+    EdCodSt1: TdxDBColorEdit;
+    EdCodSt2: TdxDBColorEdit;
+    EdCodUnd: TdxDBColorEdit;
+    FatGerQTIGER: TIntegerField;
+    UpFatGe2: TUpdateSQL;
+    FatGerSITGER: TStringField;
+    FatGerFLGNFE: TStringField;
+    FatGerCEPCLI_1: TStringField;
+    FatGerBASSU1_1: TFloatField;
+    FatGerTOTSU1_1: TFloatField;
+    pn_erro: TPanel;
+    memo_erro: TMemo;
+    bt_erro: TButton;
+    FatArqNFETH: TSmallintField;
+    Memo1: TMemo;
+    CorpoMail: TMemo;
+    Button1: TButton;
+    IdMessage1: TIdMessage;
+    IdSMTP1: TIdSMTP;
+    QUSQL2: TwwQuery;
+    FatGerLOCEMB: TStringField;
+    FatGerUFEMB: TStringField;
+    FatGerTOTIMPII: TFloatField;
+    BTNLIB: TButton;
+    AlteraNFe: TSpeedButton;
+    FatGerOB1GER: TStringField;
+    FatGerOB2GER: TStringField;
+    FatGerOB3GER: TStringField;
+    FatGerOB4GER: TStringField;
+    FatGerOB5GER: TStringField;
+    FatGerOB6GER: TStringField;
+    FatGerOB7GER: TStringField;
+    FatGerOB8GER: TStringField;
+    FatGerLIBERA_RESP: TStringField;
+    FatGerFLGDENEGADA: TStringField;
+    ContDPOEC: TSpeedButton;
+    DPECSEFAZ: TSpeedButton;
+    FatGerENVDPEC: TStringField;
+    FatGerUSUDPEC: TIntegerField;
+    Panel1: TPanel;
+    Label2: TLabel;
+    pnQtdReg1: TPanel;
+    pnQtdReg: TPanel;
+    pnTotReg1: TPanel;
+    pnTotReg: TLabel;
+    pnProgressbar: TPanel;
+    Label1: TLabel;
+    EdPsqNroNfs: TdxColorEdit;
+    bAtualizar: TBitBtn;
+    Panel2: TPanel;
+    grFatGer: ThGrid;
+    ImprimeDPEC: TSpeedButton;
+    FatGerJUSTDPEC: TStringField;
+    FatGerPROTDPEC: TStringField;
+    procedure CountRegistros;
+    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure DsFatGerDataChange(Sender: TObject; Field: TField);
+    procedure PaintBoxPaint(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure EdPsqNumResKeyPress(Sender: TObject; var Key: Char);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DsFatGe2DataChange(Sender: TObject; Field: TField);
+    procedure benviarClick(Sender: TObject);
+    procedure bAtualizarClick(Sender: TObject);
+    procedure FatGe2NCMGE2GetText(Sender: TField; var Text: string;
+      DisplayText: Boolean);
+    procedure pnalterarExit(Sender: TObject);
+    procedure EdCodCfoKeyPress(Sender: TObject; var Key: Char);
+    procedure EdCodSt1Enter(Sender: TObject);
+    procedure EdCodSt1Exit(Sender: TObject);
+    procedure EdCodSt1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EdCodSt2Exit(Sender: TObject);
+    procedure EdCodSt2KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EdCodUndExit(Sender: TObject);
+    procedure EdCodUndKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure grFatGe2KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure bt_erroClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure AlteraNFeClick(Sender: TObject);
+    procedure ContDPOECClick(Sender: TObject);
+    procedure DPECSEFAZClick(Sender: TObject);
+    procedure grFatGerDrawDataCell(Sender: TObject; const Rect: TRect;
+      Field: TField; State: TGridDrawState);
+    procedure FatGerAfterScroll(DataSet: TDataSet);
+    procedure ImprimeDPECClick(Sender: TObject);
+  private
+    CodEmp: integer;
+    DteGer: TDateTime;
+    NumGer: integer;
+    eAssunto, eAnexo, ePara, eUsuario, eSenha, eHost, EProtocolo, ePDF: string;
+    eAutomatico, ei, eposicao, ehomologacao, Eporta: integer;
+    ecorpo: string;
+    {Private declarations}
+
+    procedure EnvioNFe(TipoEnvio: integer = 3);
+  public
+    {Public declarations}
+    sBase, sFiltro, sOrdem: string;
+  end;
+
+var
+  fmManGr1_NFE: TfmManGr1_NFE;
+  sArqBackup: string;
+
+implementation
+
+uses dxDemoUtils, FileCtrl, Bbgeral, Bbfuncao, Bbmensag, ManGDB, ManPri,
+  ManCn2_NFE, ManE02_NFE, PsqSt1, PsqSt2, PsqUnd, ManEditNfe, MsgUser;
+
+{$R *.DFM}
+
+procedure FindReplace(const Enc, subs: string; var Texto: TMemo);
+var
+  ifr, Posicaofr: Integer;
+  Linhafr: string;
+begin
+
+  for ifr := 0 to Texto.Lines.count - 1 do
+  begin
+    Linhafr := Texto.Lines[ifr];
+    repeat
+      Posicaofr := Pos(Enc, Linhafr);
+      if Posicaofr > 0 then
+      begin
+        Delete(Linhafr, Posicaofr, Length(Enc));
+        Insert(Subs, Linhafr, Posicaofr);
+        Texto.Lines[ifr] := Linhafr;
+      end;
+    until Posicaofr = 0;
+  end;
+end;
+
+function Executa(Arquivo: string; Estado: Integer): Integer;
+var
+  Programa: array[0..512] of char;
+  CurDir: array[0..255] of char;
+  WorkDir: string;
+  StartupInfo: TStartupInfo;
+  ProcessInfo: TProcessInformation;
+begin
+  StrPCopy(Programa, Arquivo);
+  GetDir(0, WorkDir);
+  StrPCopy(CurDir, WorkDir);
+  FillChar(StartupInfo, Sizeof(StartupInfo), #0);
+  StartupInfo.cb := sizeof(StartupInfo);
+  StartupInfo.dwFlags := STARTF_USESHOWWINDOW;
+  StartupInfo.wShowWindow := Estado;
+  if not CreateProcess(nil, Programa, nil, nil, false, CREATE_NEW_CONSOLE or NORMAL_PRIORITY_CLASS, nil, nil, StartupInfo, ProcessInfo) then
+    Result := -1
+  else
+  begin
+    WaitForSingleObject(ProcessInfo.hProcess, Infinite);
+    //GetExitCodeProcess (ProcessInfo.hProcess, Result);
+  end;
+end;
+
+procedure TfmManGr1_NFE.FormCreate(Sender: TObject);
+begin
+  inherited;
+
+  sBase := ' Select FatGer.CodEmp,' +
+    ' FatGer.SitGer,' +
+    ' FatGer.FlgNFE,' +
+    ' FatGer.EnvNFE,' +
+    ' FatGer.DteGer,' +
+    ' FatGer.NumGer,' +
+    ' FatGer.QtiGer,' +
+    ' FatGer.UfeGer,' +
+    ' FatGer.DteFat,' +
+    ' FatGer.HreFat,' +
+    ' FatGer.NfsCom,' +
+    ' FatGer.SeqCom,' +
+    ' FatGer.DteCom,' +
+    ' FatGer.NroNfs,' +
+    ' FatGer.CodPfa,' +
+    ' FatGer.TipPfa,' +
+    ' FatGer.CodCf1,' +
+    ' FatGer.CodCf2,' +
+    ' FatGer.CodCli,' +
+    ' FatGer.FlgSai,' +
+    ' FatGer.FlgEnt,' +
+    ' FatGer.TipFrt,' +
+    ' FatGer.EspGer,' +
+    ' FatGer.MarGer,' +
+    ' FatGer.IntFin,' +
+    ' FatGer.DesNat,' +
+    ' FatGer.InsSub,' +
+    ' FatGer.CodTra,' +
+    ' FatGer.NomTra,' +
+    ' FatGer.CgcTra,' +
+    ' FatGer.InsTra,' +
+    ' FatGer.TenTra,' +
+    ' FatGer.EndTra,' +
+    ' FatGer.RefTra,' +
+    ' FatGer.NumTra,' +
+    ' FatGer.BaiTra,' +
+    ' FatGer.CidTra,' +
+    ' FatGer.UfeTra,' +
+    ' FatGer.CepTra,' +
+    ' FatGer.NroGer,' +
+    ' FatGer.PlcTra,' +
+    ' FatGer.UfePlc,' +
+    ' FatGer.CefCli,' +
+    ' FatGer.TefCli,' +
+    ' FatGer.EnfCli,' +
+    ' FatGer.RffCli,' +
+    ' FatGer.NrfCli,' +
+    ' FatGer.BafCli,' +
+    ' FatGer.CifCli,' +
+    ' FatGer.UffCli,' +
+    ' FatGer.CepCli,' +
+    ' FatGer.TenCli,' +
+    ' FatGer.EndCli,' +
+    ' FatGer.RefCli,' +
+    ' FatGer.NumCli,' +
+    ' FatGer.BaiCli,' +
+    ' FatGer.CidCli,' +
+    ' FatGer.UfeCli,' +
+    ' FatGer.CepCli,' +
+    ' FatGer.CgeCli,' +
+    ' FatGer.IneCli,' +
+    ' FatGer.InfLiq,' +
+    ' FatGer.InfBrt,' +
+    ' FatGer.AltVol,' +
+    ' FatGer.LotNfe,' +
+    ' FatGer.SeqNfe,' +
+    ' FatGer.DteNfe,' +
+    ' FatGer.RecNfe,' +
+    ' FatGer.ProNfe,' +
+    ' FatGer.DopNfe,' +
+    ' FatGer.HreNfe,' +
+    ' FatGer.UsuNfe,' +
+    ' FatGer.DtePnf,' +
+    ' FatGer.HrePnf,' +
+    ' FatGer.ImpNfe,' +
+    ' FatGer.RetNfe,' +
+    ' FatGer.NfePis,' +
+    ' FatGer.NfeCof,' +
+    ' FatGer.FlgAtu,' +
+    ' FatGer.Id_FinUff,' +
+    ' FatGer.Id_FinCif,' +
+    ' FatGer.Id_FinUfe,' +
+    ' FatGer.Id_FinCie,' +
+    ' FatGer.Id_TraUfe,' +
+    ' FatGer.Id_TraCie,' +
+    ' FatGer.TrbPis,' +
+    ' FatGer.PerPis,' +
+    ' FatGer.TrbCof,' +
+    ' FatGer.PerCof,' +
+    ' FatGer.TotIt1,' +
+    ' FatGer.TotDsr,' +
+    ' FatGer.TotFrt,' +
+    ' FatGer.TotSeg,' +
+    ' FatGer.TotDes,' +
+    ' FatGer.TotIp1,' +
+    ' FatGer.TotPis,' +
+    ' FatGer.TotCof,' +
+    ' FatGer.BasIc1,' +
+    ' FatGer.TotIc1,' +
+    ' FatGer.BasSu1,' +
+    ' FatGer.TotSu1,' +
+    ' FatGer.BasSu1,' +
+    ' FatGer.TotSu1,' +
+    ' FatGer.TotGe1,' +
+    ' FatGer.Ob1Ger,' +
+    ' FatGer.Ob2Ger,' +
+    ' FatGer.Ob3Ger,' +
+    ' FatGer.Ob4Ger,' +
+    ' FatGer.Ob5Ger,' +
+    ' FatGer.Ob6Ger,' +
+    ' FatGer.Ob7Ger,' +
+    ' FatGer.Ob8Ger,' +
+    ' FatGer.ModPfa,' +
+    ' FatGer.LocEmb,' +
+    ' FatGer.UFEmb,' +
+    ' FatGer.Id_EstSip,' +
+    ' FinCli.NomCli,' +
+    ' FinCli.Em1Cli,' +
+    ' FatGer.TOTIMPII, ' +
+    ' FatGer.LIBERA_RESP, ' +
+    ' FatGer.FlgDenegada,FatGer.ENVDPEC,FatGer.USUDPEC,FatGer.JustDPEC,FatGer.ProtDPEC ' +
+    ' From FatGer ' +
+    ' LEFT JOIN FinCli ON (FatGer.CodCli = FinCli.CodCli)';
+
+  sFiltro := ' Where FatGer.SitGer = ' + Quotedstr('Faturado') +
+    ' and FatGer.FlgNFE = ' + Quotedstr('Sim') +
+    ' and FatGer.EnvNFE = ' + Quotedstr('Nao');
+
+  sOrdem := ' Order by FatGer.NroNfs';
+
+end;
+
+procedure TfmManGr1_NFE.FormShow(Sender: TObject);
+var
+  ArqEnviado: TStringList;
+  Nome_ArqIni: string;
+  SeqLin: integer;
+  Linha: string;
+begin
+  inherited;
+
+  Nome_ArqIni := ExtractFilePath(Application.ExeName) + 'config.ini';
+
+  if FileExists(Nome_ArqIni) then
+  begin
+
+    try
+
+      ArqEnviado := TStringList.Create;
+
+      ArqEnviado.LoadFromFile(Nome_ArqIni);
+
+      for SeqLin := 0 to ArqEnviado.Count - 1 do
+      begin
+
+        Linha := Trim(ArqEnviado[SeqLin]);
+
+        if Trim(copy(Linha, 7, Length(Linha) - 6)) <> '' then
+        begin
+
+          if pos('[EM11]', Linha) > 0 then
+            sArqBackup := Trim(copy(Linha, 7, Length(Linha) - 6));
+
+        end;
+      end;
+
+      if Trim(sArqBackup) = '' then sArqBackup := 'C:\EMERION\BACKUP\NFE\';
+
+    finally
+
+      FreeAndNil(ArqEnviado);
+
+    end;
+  end;
+
+  with FatGer, SQL do
+  begin
+
+    Close;
+    Text := sBase + sFiltro + sOrdem;
+    Open;
+
+  end;
+
+  CountRegistros;
+
+  EdPsqNroNfs.SetFocus;
+
+end;
+
+procedure TfmManGr1_NFE.DsFatGerDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+
+  Label3.Caption := Trim(FatGerRETNFE.Value);
+  Label4.Caption := Trim(FatGerEM1CLI.Value);
+
+  if FatGerCodCli.Value > 0 then
+    pnCodCli.Caption := IntToStr(FatGerCodCli.Value)
+  else
+    pnCodCli.Caption := '';
+
+end;
+
+procedure TfmManGr1_NFE.PaintBoxPaint(Sender: TObject);
+begin
+  inherited;
+  with Sender as TPaintBox do FillGrayGradientRect(PaintBox.Canvas, PaintBox.ClientRect, PaintBox.Color);
+end;
+
+procedure TfmManGr1_NFE.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  fmManGr1_NFE := nil;
+end;
+
+procedure TfmManGr1_NFE.EdPsqNumResKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if not (key in ['0'..'9']) then key := #0;
+end;
+
+procedure TfmManGr1_NFE.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  Action := CaFree;
+end;
+
+procedure TfmManGr1_NFE.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = 27 then
+  begin
+
+    if pnalterar.Visible then
+    begin
+
+      if FatGe2.State <> dsBrowse then FatGe2.CancelUpdates;
+
+      batualizar.Enabled := True;
+
+      benviar.Enabled := True;
+
+      pnalterar.Visible := False;
+
+      grFatGe2.SetFocus;
+
+    end
+    else
+      close;
+
+  end;
+end;
+
+procedure TfmManGr1_NFE.DsFatGe2DataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+
+  if Trim(FatGe2ObsGe2.Value) <> '' then
+    pnDesGe2.Caption := ' ' + FatGe2DesGe2.Value + ' ' + FatGe2ObsGe2.Value
+  else
+    pnDesGe2.Caption := ' ' + FatGe2DesGe2.Value;
+
+  pnCodIte.Caption := Trim(FatGe2CodIte.Value);
+  pnQtdIte.Caption := FormatFloat('###,###,##0.0000', FatGe2QtpGe2.Value);
+  pnVlqIte.Caption := FormatFloat('###,###,##0.0000', FatGe2VluGe2.Value);
+  pnTotIte.Caption := FormatFloat('###,###,##0.00', FatGe2TotIte.Value);
+  pnIcmIte.Caption := FormatFloat('##0', FatGe2IcmGe2.Value);
+  pnIpiIte.Caption := FormatFloat('##0', FatGe2IpiGe2.Value);
+  pnTotIpi.Caption := FormatFloat('###,###,##0.00', FatGe2TotIpi.Value);
+
+end;
+
+procedure TfmManGr1_NFE.benviarClick(Sender: TObject);
+begin
+  //Envio normal para Sefaz
+  EnvioNFe;
+end;
+
+procedure TfmManGr1_NFE.CountRegistros;
+begin
+
+  with quSQL, SQL do
+  begin
+
+    Close;
+    Text := ' Select Sum(FatGer.TotGe1) as TotReg,' +
+      '        Count(*) as QtdReg' +
+      ' From FatGer LEFT JOIN FinCli ON (FatGer.CodCli = FinCli.CodCli)' +
+      ' Where FatGer.SitGer = ' + Quotedstr('Faturado') +
+      '   and FatGer.FlgNFE = ' + Quotedstr('Sim') +
+      '   and FatGer.EnvNFE = ' + Quotedstr('Nao');
+
+    if CodEmp > 0 then
+      Text := Text + ' and FatGer.CodEmp = ' + QuotedStr(IntToStr(CodEmp)) +
+        ' and FatGer.DteGer = ' + QuotedStr(fDateToSQL(DteGer)) +
+        ' and FatGer.NumGer = ' + QuotedStr(IntToStr(NumGer));
+
+    Open;
+
+    if FieldbyName('QtdReg').AsInteger > 0 then
+    begin
+
+      pnQtdReg.Caption := IntToStr(FieldbyName('QtdReg').AsInteger) + ' Nota(s)';
+
+      pnTotReg.Caption := FormatFloat('###,###,##0.00', FieldbyName('TotReg').AsFloat) + ' ';
+
+    end
+    else
+    begin
+
+      pnQtdReg.Caption := '0 Nota(s)';
+
+      pnTotReg.Caption := '0' + decimalseparator + '00 ';
+
+    end;
+  end;
+
+  CodEmp := 0;
+  NumGer := 0;
+
+end;
+
+procedure TfmManGr1_NFE.bAtualizarClick(Sender: TObject);
+begin
+  inherited;
+  if Trim(EdPsqNroNfs.Text) <> '' then
+  begin
+
+    with FatGer, SQL do
+    begin
+
+      Close;
+      Text := sBase + sFiltro +
+        ' and FatGer.NroNfs = ' + QuotedStr(EdPsqNroNfs.Text);
+      Open;
+
+    end;
+
+  end
+  else
+  begin
+
+    with FatGer, SQL do
+    begin
+
+      Close;
+      Text := sBase + sFiltro + sOrdem;
+      Open;
+
+    end;
+  end;
+
+  CountRegistros;
+
+end;
+
+procedure TfmManGr1_NFE.FatGe2NCMGE2GetText(Sender: TField; var Text: string;
+  DisplayText: Boolean);
+begin
+  inherited;
+  Text := Trim(FatGe2ClsIpi.Value);
+end;
+
+procedure TfmManGr1_NFE.pnalterarExit(Sender: TObject);
+var
+  NroGe2: integer;
+begin
+  inherited;
+  if FatGe2.State <> dsBrowse then
+  begin
+
+    if Trim(FatGe2ClsIpi.Value) <> '' then
+    begin
+
+      if Length(Trim(fLimpaStr(FatGe2ClsIpi.Value))) <> 8 then
+        fmsgErro('Conteudo invalido.', EdClsIpi)
+      else
+      begin
+
+        if fCaracIgual(fLimpaStr(FatGe2ClsIpi.Value)) then fmsgErro('Conteudo invalido.', EdClsIpi);
+
+      end;
+    end;
+
+    FatGe2CodCfo.Value := Trim(FatGe2CodCfo.Value);
+    FatGe2ClsIpi.Value := Trim(FatGe2ClsIpi.Value);
+
+    if Trim(FatGe2CodCfo.Value) = '' then fmsgErro('Campo de preenchimento obrigatório não informado.', EdCodCfo);
+    if Trim(FatGe2CodSt1.Value) = '' then fmsgErro('Campo de preenchimento obrigatório não informado.', EdCodSt1);
+    if Trim(FatGe2CodSt2.Value) = '' then fmsgErro('Campo de preenchimento obrigatório não informado.', EdCodSt2);
+    if Trim(FatGe2CodUnd.Value) = '' then fmsgErro('Campo de preenchimento obrigatório não informado.', EdCodUnd);
+
+    NroGe2 := FatGe2NroGe2.Value;
+
+    with FatGe2 do
+    begin
+
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+      try
+
+        ApplyUpdates; {Tenta aplicar as alterações};
+
+        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+      except
+
+        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+        if FatGe2.State = dsBrowse then FatGe2.Edit;
+
+        EdCodCfo.SetFocus;
+
+        raise;
+
+      end;
+
+      CommitUpdates; {sucesso!, limpa o cache...}
+
+    end;
+
+    FatGe2.Close;
+    FatGe2.Open;
+
+    FatGer.Close;
+    FatGer.Open;
+
+    FatGe2.Locate('CodEmp;DteGer;NumGer;NroGe2', VarArrayOf([FatGe2CodEmp.Value, FatGe2DteGer.Value, FatGe2NumGer.Value, NroGe2]), [LoPartialKey]);
+
+    if FatGe2NroGe2.Value < FatGerQtiGer.Value then
+    begin
+
+      FatGe2.Next;
+
+      FatGe2.Edit;
+
+      FatGe2CodCfo.Value := Trim(FatGe2CodCfo.Value);
+      FatGe2ClsIpi.Value := Trim(FatGe2ClsIpi.Value);
+      FatGe2CodSt1.Value := Trim(FatGe2CodSt1.Value);
+      FatGe2CodSt2.Value := Trim(FatGe2CodSt2.Value);
+      FatGe2CodUnd.Value := Trim(FatGe2CodUnd.Value);
+
+      EdCodCfo.Text := Trim(FatGe2CodCfo.Value);
+      EdClsIpi.Text := Trim(FatGe2ClsIpi.Value);
+      EdCodSt1.Text := Trim(FatGe2CodSt1.Value);
+      EdCodSt2.Text := Trim(FatGe2CodSt2.Value);
+      EdCodUnd.Text := Trim(FatGe2CodUnd.Value);
+
+      EdCodCfo.SetFocus;
+
+    end
+    else
+    begin
+
+      batualizar.Enabled := True;
+
+      benviar.Enabled := True;
+
+      pnalterar.visible := False;
+
+    end;
+  end;
+end;
+
+procedure TfmManGr1_NFE.EdCodCfoKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if (not (key in ['0'..'9'])) and (not (key in ['.'])) then key := #0;
+end;
+
+procedure TfmManGr1_NFE.EdCodSt1Enter(Sender: TObject);
+begin
+  inherited;
+  Label4.Caption := 'F1-Iniciais';
+end;
+
+procedure TfmManGr1_NFE.EdCodSt1Exit(Sender: TObject);
+begin
+  inherited;
+  if Trim(FatGe2CodSt1.Value) <> '' then
+  begin
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select Count(*) as QtdReg From EstSt1 Where EstSt1.CodSt1 = ' + QuotedStr(FatGe2CodSt1.Value);
+      Open;
+
+      if FieldbyName('QtdReg').AsInteger = 0 then fmsgErro('Situação tributária informada não localizada.', EdCodSt1);
+
+    end;
+  end;
+end;
+
+procedure TfmManGr1_NFE.EdCodSt1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmPsqSt1 := TfmPsqSt1.Create(Self);
+      fmPsqSt1.ShowModal;
+
+      if Trim(fmPsqSt1.CodSt1) <> '' then FatGe2CodSt1.Value := fmPsqSt1.CodSt1;
+
+    finally
+
+      FreeAndNil(fmPsqSt1);
+
+    end;
+
+    EdCodSt1.SetFocus;
+
+  end;
+end;
+
+procedure TfmManGr1_NFE.EdCodSt2Exit(Sender: TObject);
+begin
+  inherited;
+  if Trim(FatGe2CodSt2.Value) <> '' then
+  begin
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select Count(*) as QtdReg From EstSt2 Where EstSt2.CodSt2 = ' + QuotedStr(FatGe2CodSt2.Value);
+      Open;
+
+      if FieldbyName('QtdReg').AsInteger = 0 then fmsgErro('Situação tributária informada não localizada.', EdCodSt2);
+
+    end;
+  end;
+end;
+
+procedure TfmManGr1_NFE.EdCodSt2KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmPsqSt2 := TfmPsqSt2.Create(Self);
+      fmPsqSt2.ShowModal;
+
+      if Trim(fmPsqSt2.CodSt2) <> '' then FatGe2CodSt2.Value := fmPsqSt2.CodSt2;
+
+    finally
+
+      FreeAndNil(fmPsqSt2);
+
+    end;
+
+    EdCodSt2.SetFocus;
+
+  end;
+end;
+
+procedure TfmManGr1_NFE.EdCodUndExit(Sender: TObject);
+begin
+  inherited;
+  if Trim(FatGe2CodUnd.Value) <> '' then
+  begin
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select Count(*) as QtdReg From EstUnd Where EstUnd.CodUnd = ' + QuotedStr(FatGe2CodUnd.Value);
+      Open;
+
+      if FieldbyName('QtdReg').AsInteger = 0 then fmsgErro('Unidade de medida informada não localizada.', EdCodUnd);
+
+    end;
+  end;
+end;
+
+procedure TfmManGr1_NFE.EdCodUndKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmPsqUnd := TfmPsqUnd.Create(Self);
+      fmPsqUnd.ShowModal;
+
+      if Trim(fmPsqUnd.CodUnd) <> '' then FatGe2CodUnd.Value := fmPsqUnd.CodUnd;
+
+    finally
+
+      FreeAndNil(fmPsqUnd);
+
+    end;
+
+    EdCodUnd.SetFocus;
+
+  end;
+end;
+
+procedure TfmManGr1_NFE.grFatGe2KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+  NroGe2: integer;
+begin
+  inherited;
+  if key = 32 then
+  begin
+
+    if not pnalterar.Visible then
+    begin
+
+      if FatGe2CodEmp.Value > 0 then
+      begin
+
+        CodEmp := FatGe2CodEmp.Value;
+        DteGer := FatGe2DteGer.Value;
+        NumGer := FatGe2NumGer.Value;
+        NroGe2 := FatGe2NroGe2.Value;
+
+        with FatGer, SQL do
+        begin
+
+          Close;
+          Text := sBase + ' Where FatGer.CodEmp = ' + QuotedStr(IntToStr(CodEmp)) +
+            '   and FatGer.DteGer = ' + QuotedStr(fDateToSQL(DteGer)) +
+            '   and FatGer.NumGer = ' + QuotedStr(IntToStr(NumGer));
+          Open;
+
+        end;
+
+        CountRegistros;
+
+        if FatGerCodEmp.Value > 0 then
+        begin
+
+          FatGe2.Locate('CodEmp;DteGer;NumGer;NroGe2', VarArrayOf([FatGe2CodEmp.Value, FatGe2DteGer.Value, FatGe2NumGer.Value, NroGe2]), [LoPartialKey]);
+
+          bAtualizar.Enabled := False;
+
+          benviar.Enabled := False;
+
+          pnalterar.Visible := True;
+
+          FatGe2.Edit;
+
+          FatGe2CodCfo.Value := Trim(FatGe2CodCfo.Value);
+          FatGe2ClsIpi.Value := Trim(FatGe2ClsIpi.Value);
+          FatGe2CodSt1.Value := Trim(FatGe2CodSt1.Value);
+          FatGe2CodSt2.Value := Trim(FatGe2CodSt2.Value);
+          FatGe2CodUnd.Value := Trim(FatGe2CodUnd.Value);
+
+          EdCodCfo.Text := Trim(FatGe2CodCfo.Value);
+          EdClsIpi.Text := Trim(FatGe2ClsIpi.Value);
+          EdCodSt1.Text := Trim(FatGe2CodSt1.Value);
+          EdCodSt2.Text := Trim(FatGe2CodSt2.Value);
+          EdCodUnd.Text := Trim(FatGe2CodUnd.Value);
+
+          EdCodCfo.SetFocus;
+
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManGr1_NFE.bt_erroClick(Sender: TObject);
+begin
+  inherited;
+  pn_erro.Visible := false;
+  pn_erro.SendToBack;
+  fmManPri.Enabled := True;
+  fmManGr1_nfe.Enabled := True;
+  pnMensag.Visible := False;
+end;
+
+procedure TfmManGr1_NFE.Button1Click(Sender: TObject);
+var xAnexo: Integer;
+  newtext: tidtext;
+  p: TidMessageParts;
+begin
+  idmessage1.clear;
+
+  IdSMTP1.host := ehost;
+  idsmtp1.Password := eSenha;
+  idsmtp1.UserID := eUsuario;
+  idsmtp1.Port := Eporta;
+  idmessage1.From.Address := eUsuario;
+  IdMessage1.Recipients.EMailAddresses := ePara;
+  IdMessage1.Priority := mpHigh;
+  IdMessage1.Subject := eAssunto;
+  IdMessage1.ContentType := 'text/html';
+  IdMessage1.Body.text := corpomail.lines.text;
+  IdMessage1.IsEncoded := True;
+  IdMessage1.ReceiptRecipient.Text := IdMessage1.From.Text; // Auto Resposta
+  TIdAttachment.create(idmessage1.MessageParts, TFileName(eAnexo));
+  if FileExists(ePDF) then
+    TIdAttachment.create(idmessage1.MessageParts, TFileName(ePDF));
+
+  IdSMTP1.Connect;
+  try
+    IdSMTP1.Send(IdMessage1);
+    Application.MessageBox('Email enviado com sucesso!', 'Confirmação', MB_ICONINFORMATION + MB_OK);
+  except
+    Showmessage('Não foi possível enviar o e-mail para o cliente.');
+  end;
+  IdSMTP1.Disconnect;
+  corpomail.Lines.text := memo1.lines.text;
+
+end;
+
+procedure TfmManGr1_NFE.AlteraNFeClick(Sender: TObject);
+var
+  ALT_VISU: string;
+begin
+  inherited;
+  ALT_VISU := 'VISU';
+
+  if FatGerLIBERA_RESP.AsString <> 'S' then
+  begin
+    {if messagebox(Handle, Pchar('Deseja alterar dados da NF?' + #13 + #10
+       + 'Se optar por NÃO irá apenas visualizar a NFe.'), 'Visualizar ou alterar NFe.',
+       MB_YESNO + MB_ICONQUESTION + MB_NOFOCUS) = IDYes then
+       begin
+          ALT_VISU := 'ALT';
+       end;}
+
+
+    if ConfirmaAlteracaoNFe then
+    begin
+      ALT_VISU := 'ALT';
+    end
+    else
+      ALT_VISU := 'VISU';
+  end
+  else
+  begin
+    ALT_VISU := 'ALT';
+  end;
+
+  try
+    FrmEditNfe := TFrmEditNfe.Create(Self);
+    FrmEditNfe.ShowModal(FatGerCODEMP.AsString, 'FG', FatGerNRONFS.AsString, FatGerDTEGER.AsDateTime, ALT_VISU, FatGerNUMGER.AsString);
+  finally
+    FreeAndNil(FrmEditNfe);
+  end;
+end;
+
+procedure TfmManGr1_NFE.EnvioNFe(TipoEnvio: integer);
+var
+  IniFile, chave, CaminhoLeitura, CaminhoRetorno, CaminhoPDF, VNumNota, TLinha: string;
+  TArquivo: TextFile;
+  i: integer;
+  ini: Tinifile;
+
+  SeqEnc: integer;
+  LinArq: string;
+  LinPro: string;
+  DscPro: string;
+  SeqLin: integer;
+  ArqRe1: string;
+  ArqRe2: string;
+  ArqRs1: string;
+  ArqRs2: string;
+  FlgRej: string;
+  MSGNFE: string;
+  MSGANT: string;
+  RECNFE: string;
+  PRONFE: string;
+  DTENFE: string;
+  HRENFE: string;
+  DTEPNF: string;
+  HREPNF: string;
+  ArqEnv: TextFile;
+  ArqRet: TStringList;
+  SeqRet: Boolean;
+  Handle: LongInt;
+  ApeEmp: string;
+  NomEmp: string;
+  EndEmp: string;
+  NumEmp: string;
+  RefEmp: string;
+  BaiEmp: string;
+  CidEmp: string;
+  UfeEmp: string;
+  CepEmp: string;
+  FonEmp: string;
+  CgcEmp: string;
+  CpfEmp: string;
+  InsEmp: string;
+  InsSub: string;
+  CgcTra: string;
+  CpfTra: string;
+  InsTra: string;
+  ApeTra: string;
+  NomTra: string;
+  EndTra: string;
+  NumTra: string;
+  RefTra: string;
+  BaiTra: string;
+  CidTra: string;
+  UfeTra: string;
+  DesNat: string;
+  EmaCli: string;
+  CgcCli: string;
+  CpfCli: string;
+  InsCli: string;
+  LOCEMB: string;
+  UFEMB: string;
+  NomCli: string;
+  EndCli: string;
+  NumCli: string;
+  RefCli: string;
+  BaiCli: string;
+  CidCli: string;
+  UfeCli: string;
+  CepCli: string;
+  FonCli: string;
+  CodPro: string;
+  ClsIpi: string;
+  DesPro: string;
+  CodCfo: string;
+  CodUnd: string;
+  CodSt1: string;
+  CodSt2: string;
+  QtdPro: string;
+  VluPro: string;
+  TotPro: string;
+  EspFat: string;
+  MarFat: string;
+  PesLiq: string;
+  PesBrt: string;
+  TipNCM: string;
+  NroSuf: string;
+  BasIcm: string;
+  RedIcm: string;
+  PerIcm: string;
+  TotIcm: string;
+  TrbPis: string;
+  PerPis: string;
+  BasPis: string;
+  TotPis: string;
+  TrbCof: string;
+  PerCof: string;
+  BasCof: string;
+  TotCof: string;
+  NroDoc: string;
+  TrbIpi: string;
+  BasIpi: string;
+  PerIpi: string;
+  TotIpi: string;
+  TotDsr: string;
+  VLRIMPII: string;
+  VLRBCII: string;
+  VLRDESPATU: string;
+  VLRIOF: string;
+  BasSub: string;
+  IcmSub: string;
+  MrgSub: string;
+  TotSub: string;
+  DteCom: string;
+  SeqCom: string;
+  NfePis: string;
+  NfeCof: string;
+  TotFrt: string;
+  TotSeg: string;
+  TotDes: string;
+  TipFrt: string;
+  ObsFat: string;
+  TipCnd: string;
+  TipNot: string;
+  NomArq: string;
+  sNumeroNF: string;
+  NroPais_Cli: string;
+  NomPais_Cli: string;
+  NroPais_Emp: string;
+  NomPais_Emp: string;
+  Finalizar: string;
+  Id_EmpCie: string;
+  Id_CliNfe: string;
+  Id_EstSip: string;
+  CSTIPI: string;
+  Finalidade: string;
+  NroReg: integer;
+  Id_FinPai: integer;
+  Id_EmpUfe: integer;
+  Id_FinUfe: integer;
+  Id_FinCie: integer;
+  Id_CliUfe: integer;
+  Id_CliCie: integer;
+  bolCFOP: Boolean;
+  chaveN, strAux, nrofat, cEAN, cEANTrib: string;
+  TDAnfe: TextFile;
+  SN, IMPREF: boolean; //Simples Nacional
+  msgJust: string;
+  dtCont: TDatetime;
+begin
+  inherited;
+  if FatGerCodEmp.Value > 0 then
+  begin
+    CodEmp := FatGerCodEmp.Value;
+    DteGer := FatGerDteGer.Value;
+    NumGer := FatGerNumGer.Value;
+    with FatGer, SQL do
+    begin
+      Close;
+      Text := sBase + ' Where FatGer.CodEmp = ' + QuotedStr(IntToStr(CodEmp)) +
+        '   and FatGer.DteGer = ' + QuotedStr(fDateToSQL(DteGer)) +
+        '   and FatGer.NumGer = ' + QuotedStr(IntToStr(NumGer));
+      Open;
+    end;
+    //Verificando se vai imprimir referencia.
+    quSql.active := false;
+    qusql.sql.text := 'Select IMPREF from FATPAR';
+    quSql.active := true;
+    if qusql.fieldbyname('IMPREF').asString = 'Sim' then
+      IMPREF := True
+    else
+      Impref := false;
+
+    //verificando se é simples nacional
+    qusql.active := false;
+    qusql.sql.text := 'Select GEREMP.TIPEMP from GEREMP where codemp = ' + QuotedStr(FatGerCODEMP.asstring);
+    qusql.open;
+
+    if (Trim(qusql.fieldbyname('TIPEMP').AsString) = 'Simples Nacional') then
+      sn := true
+    else
+      sn := false;
+
+    CountRegistros;
+    if FatGerCodEmp.Value > 0 then
+    begin
+      begin
+        if fMsg('Confirma envio para emissão da NFe ?', 'O') then
+        begin
+          Finalizar := 'N';
+          try
+            fmManCn2_NFE := TfmManCn2_NFE.Create(Self);
+            fmManCn2_NFE.ShowModal;
+            Finalizar := fmManCn2_NFE.Finalizar;
+          finally
+            FreeAndNil(fmManCn2_NFE);
+          end;
+
+          if Finalizar = 'S' then
+          begin
+            with quSQL, SQL do
+            begin
+              Close;
+              Text := ' Select GerEmp.ApeEmp,' +
+                ' GerEmp.NomEmp,' +
+                ' GerEmp.CgcEmp,' +
+                ' GerEmp.InsEmp,' +
+                ' GerEmp.CepEmp,' +
+                ' GerEmp.TenEmp,' +
+                ' GerEmp.EndEmp,' +
+                ' GerEmp.NumEmp,' +
+                ' GerEmp.RefEmp,' +
+                ' GerEmp.BaiEmp,' +
+                ' GerEmp.SigUfe,' +
+                ' GerEmp.PrtEmp,' +
+                ' GerEmp.FonEmp,' +
+                ' GerEmp.Id_FinUfe,' +
+                ' GerEmp.Id_FinCie,' +
+                ' GerEmp.Id_FinPai ' +
+                ' From GerEmp' +
+                ' Where GerEmp.CodEmp = ' + QuotedStr(IntToStr(FatGerCodEmp.Value));
+              Open;
+              ApeEmp := fLimpaAcentos(FieldbyName('ApeEmp').AsString);
+              NomEmp := fLimpaAcentos(FieldbyName('NomEmp').AsString);
+              if FieldbyName('TenEmp').AsString <> '' then
+                EndEmp := Trim(FieldbyName('TenEmp').AsString) + ' ' + FieldbyName('EndEmp').AsString
+              else
+                EndEmp := FieldbyName('EndEmp').AsString;
+              EndEmp := fLimpaAcentos(EndEmp);
+              NumEmp := fLimpaAcentos(FieldbyName('NumEmp').AsString);
+              RefEmp := fLimpaAcentos(FieldbyName('RefEmp').AsString);
+              BaiEmp := fLimpaAcentos(FieldbyName('BaiEmp').AsString);
+              UfeEmp := fLimpaAcentos(FieldbyName('SigUfe').AsString);
+              CepEmp := FieldbyName('CepEmp').AsString;
+              if Length(Trim(FieldbyName('CgcEmp').AsString)) = 11 then
+                CpfEmp := FieldbyName('CgcEmp').AsString
+              else
+                CgcEmp := FieldbyName('CgcEmp').AsString;
+              Id_EmpUfe := FieldbyName('Id_FinUfe').AsInteger;
+              Id_FinCie := FieldbyName('Id_FinCie').AsInteger;
+              if Trim(fLimpaStr(FieldbyName('PrtEmp').AsString)) <> '' then
+                FonEmp := Trim(fLimpaStr(FieldbyName('PrtEmp').AsString)) + Trim(fLimpaStr(FieldbyName('FonEmp').AsString))
+              else
+                FonEmp := Trim(fLimpaStr(FieldbyName('FonEmp').AsString));
+              InsEmp := fLimpaStr(FieldbyName('InsEmp').AsString);
+              NomEmp := copy(Trim(NomEmp), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(NomEmp), 1, 60)));
+              ApeEmp := copy(Trim(ApeEmp), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(ApeEmp), 1, 60)));
+              EndEmp := copy(Trim(EndEmp), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(EndEmp), 1, 60)));
+              NumEmp := copy(Trim(NumEmp), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(NumEmp), 1, 60)));
+              RefEmp := copy(Trim(RefEmp), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(RefEmp), 1, 60)));
+              BaiEmp := copy(Trim(BaiEmp), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(BaiEmp), 1, 60)));
+              UfeEmp := copy(Trim(UfeEmp), 1, 02) + fReplicate(' ', 02 - Length(copy(Trim(UfeEmp), 1, 02)));
+              InsEmp := copy(Trim(InsEmp), 1, 14) + fReplicate(' ', 14 - Length(copy(Trim(InsEmp), 1, 14)));
+              CgcEmp := fReplicate('0', 14 - Length(copy(Trim(CgcEmp), 1, 14))) + copy(Trim(CgcEmp), 1, 14);
+              CpfEmp := fReplicate('0', 14 - Length(copy(Trim(CpfEmp), 1, 14))) + copy(Trim(CpfEmp), 1, 14);
+              CepEmp := fReplicate('0', 08 - Length(copy(Trim(CepEmp), 1, 08))) + copy(Trim(CepEmp), 1, 08);
+              FonEmp := fReplicate('0', 10 - Length(copy(Trim(FonEmp), 1, 10))) + copy(Trim(FonEmp), 1, 10);
+              Id_FinPai := FieldbyName('Id_FinPai').AsInteger;
+            end; //with
+            if Id_EmpUfe > 0 then
+            begin
+              if Id_FinCie > 0 then
+              begin
+                if Id_FinPai > 0 then
+                begin
+                  NroPais_Emp := fNumZeros(IntToStr(Id_FinPai), 4);
+                  with quSQL, SQL do
+                  begin
+                    Close;
+                    Text := ' Select FinPai.NomPai From FinPai Where FinPai.Id_FinPai = ' + QuotedStr(IntToStr(Id_FinPai));
+                    Open;
+                    NomPais_Emp := fLimpaAcentos(FieldbyName('NomPai').AsString);
+                    NomPais_Emp := copy(Trim(NomPais_Emp), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(NomPais_Emp), 1, 60)));
+                  end;
+                  NfePis := fLimpaStr(Trim(FatGerNfePis.Value));
+                  NfeCof := fLimpaStr(Trim(FatGerNfeCof.Value));
+                  if FatGerId_EstSip.Value > 0 then
+                  begin
+                    with quSQL, SQL do
+                    begin
+                      Close;
+                      Text := ' Select EstSip.SigNfe' +
+                        ' From EstSip' +
+                        ' Where EstSip.Id_EstSip = ' + QuotedStr(IntToStr(FatGerId_EstSip.Value));
+                      Open;
+                      Id_EstSip := FieldbyName('SigNfe').AsString;
+                    end;
+                  end
+                  else
+                  begin
+                    if Trim(FatGerTipPfa.Value) = 'Saida' then
+                    begin
+                      if FatGerTotIp1.Value > 0 then
+                        Id_EstSip := '50'
+                      else
+                        Id_EstSip := '99';
+
+                    end
+                    else
+                      Id_EstSip := '49';
+                  end;
+                  with quSQL, SQL do
+                  begin
+                    Close;
+                    Text := ' Select FinCli.NomCli,' +
+                      ' FinCli.CgcCli,' +
+                      ' FinCli.InsCli,' +
+                      ' FinCli.NroSuf,' +
+                      ' FinCli.Pt1Cli,' +
+                      ' FinCli.Fo1Cli,' +
+                      ' FinCli.Em1Cli,' +
+                      ' FinCli.Id_FinPai' +
+                      ' From FinCli' +
+                      ' Where FinCli.CodCli = ' + QuotedStr(IntToStr(FatGerCodCli.Value));
+                    Open;
+
+                    NomCli := fLimpaAcentos(FieldbyName('NomCli').AsString);
+                    NroSuf := fLimpaAcentos(fLimpaStr(FieldbyName('NroSuf').AsString));
+                    EmaCli := Trim(FieldbyName('Em1Cli').AsString);
+                    EmaCli := copy(EmaCli, 1, 60) + fReplicate(' ', 60 - Length(copy(EmaCli, 1, 60)));
+
+                    if Length(Trim(FieldbyName('CgcCli').AsString)) = 11 then
+                      CpfCli := FieldbyName('CgcCli').AsString
+                    else
+                      CgcCli := FieldbyName('CgcCli').AsString;
+
+                    InsCli := fLimpaStr(FieldbyName('InsCli').AsString);
+                    CgcCli := copy(Trim(CgcCli), 1, 14) + fReplicate(' ', 14 - Length(copy(Trim(CgcCli), 1, 14)));
+                    CpfCli := copy(Trim(CpfCli), 1, 14) + fReplicate(' ', 14 - Length(copy(Trim(CpfCli), 1, 14)));
+                    InsCli := copy(Trim(InsCli), 1, 14) + fReplicate(' ', 14 - Length(copy(Trim(InsCli), 1, 14)));
+
+                    if Trim(fLimpaStr(FieldbyName('Pt1Cli').AsString)) <> '' then
+                      FonCli := Trim(fLimpaStr(FieldbyName('Pt1Cli').AsString)) + Trim(fLimpaStr(FieldbyName('Fo1Cli').AsString))
+                    else
+                      FonCli := Trim(fLimpaStr(FieldbyName('Fo1Cli').AsString));
+
+                    FonCli := fRemoverEspaco(FonCli);
+                    NomCli := copy(Trim(NomCli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(NomCli), 1, 60)));
+                    NroSuf := copy(Trim(NroSuf), 1, 09) + fReplicate(' ', 09 - Length(copy(Trim(NroSuf), 1, 09)));
+                    FonCli := fReplicate('0', 10 - Length(copy(Trim(FonCli), 1, 10))) + copy(Trim(FonCli), 1, 10);
+                    Id_FinPai := FieldbyName('Id_FinPai').AsInteger;
+                  end;
+
+                  if Id_FinPai = 0 then fmsgErro('Código do Pais para emissão de NFe não informado no cadastro do Cliente.', nil);
+
+                  if Id_FinPai > 0 then
+                  begin
+                    NroPais_Cli := fNumZeros(IntToStr(Id_FinPai), 4);
+                    Id_CliUfe := FatGerId_FinUff.Value;
+                    Id_CliCie := FatGerId_FinCif.Value;
+
+                    with quSQL, SQL do
+                    begin
+                      Close;
+                      Text := ' Select FinPai.NomPai From FinPai Where FinPai.Id_FinPai = ' + QuotedStr(IntToStr(Id_FinPai));
+                      Open;
+                      NomPais_Cli := fLimpaAcentos(FieldbyName('NomPai').AsString);
+                      NomPais_Cli := copy(Trim(NomPais_Cli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(NomPais_Cli), 1, 60)));
+                    end;
+
+                    with quSQL, SQL do
+                    begin
+                      Close;
+                      Text := ' Select FinCie.NomCie,' +
+                        '        FinCie.SigNfe ' +
+                        ' From FinCie' +
+                        ' Where FinCie.Id_FinCie = ' + QuotedStr(IntToStr(Id_CliCie));
+                      Open;
+                      Id_CliNfe := IntToStr(Id_CliUfe) + FieldbyName('SigNfe').AsString;
+                      CidCli := fLimpaAcentos(FieldbyName('NomCie').AsString);
+                      CidCli := copy(Trim(CidCli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(CidCli), 1, 60)));
+                    end;
+
+                    if Trim(FatGerSeqNFe.AsString) = '' then
+                    begin
+                      FatGer.Edit;
+                      FatGerFlgAtu.AsString := 'F';
+                      FatGerSeqNFe.AsString := fMontaChaveAcessoNFe(Id_EmpUfe, FatGerDteFat.AsDateTime, CgcEmp, 55, 1, FatGerNroNfs.AsInteger, 1);
+
+                      with FatGer do
+                      begin
+                        fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+                        try
+                          ApplyUpdates; {Tenta aplicar as alterações};
+                          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                        except
+                          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                          if FatGer.State <> dsBrowse then FatGer.CancelUpdates;
+                          FatGer.Close;
+                          FatGer.Open;
+                          grFatGer.SetFocus;
+                          raise;
+                        end;
+                        CommitUpdates; {sucesso!, limpa o cache...}
+                      end;
+                      FatGer.Close;
+                      FatGer.Open;
+                    end;
+
+                    try
+                      Application.ProcessMessages;
+                      fmManPri.Enabled := False;
+                      fmManGr1_NFE.Enabled := False;
+                      pnMensag.Visible := True;
+                      pnMensag.Caption := 'Aguarde. Verificando status do serviço.';
+                      ArqRe1 := ExtractFilePath(Application.exename) + '\INTPOS.TMP';
+                      DeleteFile(ArqRe1);
+                      AssignFile(ArqEnv, ArqRe1);
+                      Rewrite(ArqEnv);
+
+                      Writeln(ArqEnv, 'EM0201' +
+                        UfeEmp +
+                        FatGerSeqNFe.AsString);
+
+                      CloseFile(ArqEnv);
+                      movefile(PChar(ArqRe1), PChar(ArqRe2));
+
+                      SeqEnc := 0;
+                      FlgRej := 'N';
+                      // FlgArq := 'N';
+
+                      if FlgRej = 'N' then
+                      begin
+                        pnMensag.Caption := MSGNFE;
+                        Application.ProcessMessages;
+
+                        {if Trim(FatGerRecNFe.AsString) = '' then
+                        begin}
+                        pnMensag.Caption := 'Aguarde. Enviando informações da nota.';
+                        AssignFile(ArqEnv, ArqRe1);
+                        Rewrite(ArqEnv);
+
+                        Writeln(ArqEnv, 'EM0201' +
+                          UfeEmp +
+                          FatGerSeqNFe.AsString +
+                          fNumZeros(IntToStr(FatGerLotNfe.AsInteger), 9));
+
+
+                        //Para CONTIGENCIA DPEC JUSTIFICATIVA
+                        if TipoEnvio = 4 then
+                        begin
+                          dtCont := Now;
+                          msgJust := FatGerJustDPEC.AsString;
+
+                          if JustificativaContigencia(FormatDateTime('yyyy-mm-dd hh:MM:ss', dtCont), msgJust) = mrCancel then
+                            Abort;
+
+                          msgJust := trim(fLimpaAcentos(msgJust));
+                          msgJust := msgJust + Replicate(' ', 255 - length(msgJust));
+
+                          Writeln(ArqEnv, 'EM1201' + //6
+                            FormatDateTime('yyyy-mm-dd hh:MM:ss', dtCont) + //19
+                            copy(msgJust, 1, 255)); //255
+
+
+                          FatGer.Edit;
+                          FatGerFlgAtu.AsString := 'F';
+                          FatGerJustDPEC.AsString := Trim(msgJust);
+
+                          with FatGer do
+                          begin
+                            fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+                            try
+                              ApplyUpdates; {Tenta aplicar as alterações};
+                              fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                            except
+                              fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+                              if FatGer.State <> dsBrowse then FatGer.CancelUpdates;
+                              FatGer.Close;
+                              FatGer.Open;
+
+                              raise;
+                            end;
+
+                            CommitUpdates; {sucesso!, limpa o cache...}
+                          end;
+                        end;
+
+                        chave := FatGerSeqNFe.AsString;
+
+                        with quSQL, SQL do
+                        begin
+                          Close;
+                          Text := ' Select FinCie.NomCie,' +
+                            ' FinCie.SigNfe ' +
+                            ' From FinCie' +
+                            ' Where FinCie.Id_FinCie = ' + QuotedStr(IntToStr(Id_FinCie));
+                          Open;
+                          Id_EmpCie := IntToStr(Id_EmpUfe) + FieldbyName('SigNfe').AsString;
+                          CidEmp := fLimpaAcentos(FieldbyName('NomCie').AsString);
+                          CidEmp := copy(Trim(CidEmp), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(CidEmp), 1, 60)));
+                        end;
+
+                        DesNat := fLimpaAcentos(FatGerDesNat.Value);
+                        DesNat := copy(Trim(DesNat), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(DesNat), 1, 60)));
+                        TipCnd := '0';
+
+                        if FatGerIntFin.Value = 'Nao' then
+                          TipCnd := '2'
+                        else
+                        begin
+                          with quSQL, SQL do
+                          begin
+                            Close;
+                            Text := ' Select Sum(FatGe3.PraGe3) as QtdReg' +
+                              ' From FatGe3' +
+                              ' Where FatGe3.CodEmp = ' + QuotedStr(IntToStr(FatGerCodEmp.Value)) +
+                              '   and FatGe3.DteGer = ' + QuotedStr(fDateToSQL(FatGerDteGer.Value)) +
+                              '   and FatGe3.NumGer = ' + QuotedStr(IntToStr(FatGerNumGer.Value));
+                            Open;
+                            if FieldbyName('QtdReg').AsInteger > 0 then TipCnd := '1';
+                          end;
+                        end;
+
+                        Finalidade := '1';
+
+                        with quSql, SQL do
+                        begin
+                          Close;
+                          Text := ' Select EstPfa.ModPfa' +
+                            ' From EstPfa' +
+                            ' Where EstPfa.CodPfa = ' + QuotedStr(FatGerCodPfa.Value) +
+                            '   and EstPfa.TipPfa = ' + QuotedStr(FatGerTipPfa.Value);
+                          Open;
+                          if not (fatger.State in [dsedit]) then fatger.edit;
+                          FatGerMODPFA.value := quSQL.FieldbyName('ModPfa').AsString;
+                        end;
+
+                        if Trim(FatGerModPfa.AsString) = 'Complemento' then Finalidade := '2';
+
+                        if Trim(FatGerTipPfa.AsString) = 'Saida' then TipNot := '1'
+                        else TipNot := '0';
+
+                        if Trim(FatGerModPfa.AsString) = 'Complemento' then
+                        begin
+                          if FatGerDteCom.Value > 0 then
+                            DteCom := copy(FormatDateTime('dd/mm/yyyy', FatGerDteCom.Value), 9, 2) +
+                              copy(FormatDateTime('dd/mm/yyyy', FatGerDteCom.Value), 4, 2)
+                          else
+                            DteCom := '0000';
+                          SeqCom := fLimpaAcentos(fLimpaStr(FatGerSeqCom.Value));
+                          SeqCom := Trim(SeqCom) + fReplicate(' ', 44 - Length(Trim(SeqCom)));
+
+                          Writeln(ArqEnv, 'EM0202' + // Uso interno do sistema
+                            IntToStr(Id_EmpUfe) + // Código da UF do emitente do documento fiscal
+                            copy(FatGerSeqNFE.Value, 35, 09) + // Código númerico que compõe a chave de acesso
+                            DesNat + // Descrição da natureza de operação
+                            TipCnd + // Indicador da forma de pagamento 0-Pagamento à vista 1-Pagamento à prazo 2-Outros
+                            '55' + // Código do Modelo do documento fiscal
+                            '1' + // Série do documento fiscal
+                            fNumZeros(IntToStr(FatGerNroNfs.Value), 9) + // Número do documento fiscal
+                            copy(FormatDateTime('dd/mm/yyyy', FatGerDteFat.Value), 7, 4) + '-' + // Data de emissão do documento fiscal
+                            copy(FormatDateTime('dd/mm/yyyy', FatGerDteFat.Value), 4, 2) + '-' +
+                            copy(FormatDateTime('dd/mm/yyyy', FatGerDteFat.Value), 1, 2) +
+                            '0000-00-00' + // Data de saida ou entrada da Mercadoria/Produto
+                            TipNot + // Tipo do documento fiscal
+                            Id_EmpCie + // Código do Municipio de Ocorrência do Fato Gerador
+                            '1' + // Formato de Impressao do DANFE
+                            '1' + // Forma de emissão da NF-e
+                            copy(FatGerSeqNFE.Value, 44, 1) + // Digito verificador da Chave de Acesso da NF-e
+                            '2' + // Identificação do Ambiente
+                            Finalidade + // Finalidade de emissão da NF-e
+                            '0' + // Processo de emissão da NF-e
+                            'EMERION FATURA      ' + // Versão do processo de emissão da NF-e
+                            IntToStr(Id_EmpUfe) + // Código do emitente do documento fiscal
+                            DteCom + // Data de emissão do documento fiscal
+                            CgcEmp + // CNPJ do emitente
+                            '01' + // Modelo
+                            '0' + // Serie
+                            fNumZeros(IntToStr(FatGerNfsCom.Value), 9) + // Número do documento fiscal
+                            SeqCom); // Chave de acesso da NFe
+
+                        end
+                        else
+                        begin
+                          Writeln(ArqEnv, 'EM0202' + // Uso interno do sistema
+                            IntToStr(Id_EmpUfe) + // Código da UF do emitente do documento fiscal
+                            copy(FatGerSeqNFE.Value, 35, 09) + // Código númerico que compõe a chave de acesso
+                            DesNat + // Descrição da natureza de operação
+                            TipCnd + // Indicador da forma de pagamento 0-Pagamento à vista 1-Pagamento à prazo 2-Outros
+                            '55' + // Código do Modelo do documento fiscal
+                            '1' + // Série do documento fiscal
+                            fNumZeros(IntToStr(FatGerNroNfs.Value), 9) + // Número do documento fiscal
+                            copy(FormatDateTime('dd/mm/yyyy', FatGerDteFat.Value), 7, 4) + '-' + // Data de emissão do documento fiscal
+                            copy(FormatDateTime('dd/mm/yyyy', FatGerDteFat.Value), 4, 2) + '-' +
+                            copy(FormatDateTime('dd/mm/yyyy', FatGerDteFat.Value), 1, 2) +
+                            '0000-00-00' + // Data de saida ou entrada da Mercadoria/Produto
+                            TipNot + // Tipo do documento fiscal
+                            Id_EmpCie + // Código do Municipio de Ocorrência do Fato Gerador
+                            '1' + // Formato de Impressao do DANFE
+                            '1' + // Forma de emissão da NF-e
+                            copy(FatGerSeqNFE.Value, 44, 1) + // Digito verificador da Chave de Acesso da NF-e
+                            '2' + // Identificação do Ambiente
+                            Finalidade + // Finalidade de emissão da NF-e
+                            '0' + // Processo de emissão da NF-e
+                            'EMERION FATURA      ' + // Versão do processo de emissão da NF-e
+                            '  ' + // Código do emitente do documento fiscal
+                            '    ' + // Data de emissão do documento fiscal
+                            '              ' + // CNPJ do emitente
+                            '  ' + // Modelo
+                            ' ' + // Serie
+                            '         ' + // Número do documento fiscal
+                            fReplicate(' ', 44));
+                        end; // Chave de acesso da NFe
+                        VNumNota := FatGerNroNfs.AsString;
+
+                        //if Trim(FatGerRecNFe.Value) = '' then
+                        Writeln(ArqEnv, 'EM0203' + // Uso interno do sistema
+                          CgcEmp + // CNPJ do emitente
+                          CpfEmp + // CPF do emitente
+                          NomEmp + // Razão social ou Nome do emitente
+                          ApeEmp + // Nome fantasia
+                          EndEmp + // Logradouro
+                          NumEmp + // Número
+                          RefEmp + // Complemento
+                          BaiEmp + // Bairro
+                          Id_EmpCie + // Código do municipio
+                          CidEmp + // Nome do municipio
+                          UfeEmp + // Sigla da UF
+                          CepEmp + // Código do CEP
+                          NroPais_Emp + // Código do País
+                          NomPais_Emp + // Nome do País
+                          FonEmp + // Telefone
+                          InsEmp + // IE
+                          copy(Trim(FatGERINSSUB.AsString), 1, 18) + fReplicate(' ', 18 - Length(copy(Trim(FatGERINSSUB.AsString), 1, 18))) + // IE do Substituto tributário
+                          '       '); // CNAE Fiscal
+
+                        if FatGerTefCli.Value <> '' then
+                          EndCli := Trim(FatGerTefCli.Value) + ' ' + FatGerEnfCli.Value
+                        else
+                          EndCli := FatGerEnfCli.Value;
+
+                        EndCli := fLimpaAcentos(EndCli);
+                        NumCli := fLimpaAcentos(FatGerNrfCli.Value);
+                        RefCli := fLimpaAcentos(FatGerRffCli.Value);
+                        BaiCli := fLimpaAcentos(FatGerBafCli.Value);
+                        UfeCli := fLimpaAcentos(FatGerUfeCli.Value);
+                        CepCli := FatGerCefCli.Value;
+                        EndCli := copy(Trim(EndCli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(EndCli), 1, 60)));
+                        NumCli := copy(Trim(NumCli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(NumCli), 1, 60)));
+                        RefCli := copy(Trim(RefCli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(RefCli), 1, 60)));
+                        BaiCli := copy(Trim(BaiCli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(BaiCli), 1, 60)));
+                        UfeCli := copy(Trim(UfeCli), 1, 02) + fReplicate(' ', 02 - Length(copy(Trim(UfeCli), 1, 02)));
+                        CepCli := fReplicate('0', 08 - Length(copy(Trim(CepCli), 1, 08))) + copy(Trim(CepCli), 1, 08);
+                        Writeln(ArqEnv, 'EM0204' + // Uso interno do sistema
+                          CgcCli + // CNPJ do destinatario
+                          CpfCli + // CPF do destinatario
+                          NomCli + // Razão social ou nome do destinatario
+                          EndCli + // Logradouro
+                          NumCli + // Número
+                          RefCli + // Complemento
+                          BaiCli + // Bairro
+                          Id_CliNfe + // Código do Municipio
+                          CidCli + // Nome do Municipio
+                          UfeCli + // Sigla da UF
+                          CepCli + // Código do Cep
+                          NroPais_Cli + // Código do País
+                          NomPais_Cli + // Nome do País
+                          FonCli + // Telefone
+                          InsCli + // IE
+                          NroSuf); // Inscrição SUFRAMA
+                        if (Trim(FatGerCepCli.Value) <> Trim(FatGerCefCli.Value)) or
+                          (Trim(FatGerTenCli.Value) <> Trim(FatGerTefCli.Value)) or
+                          (Trim(FatGerEndCli.Value) <> Trim(FatGerEnfCli.Value)) or
+                          (Trim(FatGerRefCli.Value) <> Trim(FatGerRffCli.Value)) or
+                          (Trim(FatGerNumCli.Value) <> Trim(FatGerNrfCli.Value)) or
+                          (Trim(FatGerBaiCli.Value) <> Trim(FatGerBafCli.Value)) or
+                          (Trim(FatGerCidCli.Value) <> Trim(FatGerCifCli.Value)) or
+                          (Trim(FatGerUfeCli.Value) <> Trim(FatGerUffCli.Value)) then
+                        begin
+                          if Trim(FatGerCgeCli.Value) <> '' then
+                            CgcCli := copy(Trim(FatGerCgeCli.Value), 1, 14) + fReplicate(' ', 14 - Length(copy(Trim(FatGerCgeCli.Value), 1, 14)));
+                          if FatGerTenCli.Value <> '' then
+                            EndCli := Trim(FatGerTenCli.Value) + ' ' + FatGerEndCli.Value
+                          else
+                            EndCli := FatGerEndCli.Value;
+                          EndCli := fLimpaAcentos(EndCli);
+                          NumCli := fLimpaAcentos(FatGerNumCli.Value);
+                          RefCli := fLimpaAcentos(FatGerRefCli.Value);
+                          BaiCli := fLimpaAcentos(FatGerBaiCli.Value);
+                          UfeCli := fLimpaAcentos(FatGerUfeCli.Value);
+                          EndCli := copy(Trim(EndCli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(EndCli), 1, 60)));
+                          NumCli := copy(Trim(NumCli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(NumCli), 1, 60)));
+                          RefCli := copy(Trim(RefCli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(RefCli), 1, 60)));
+                          BaiCli := copy(Trim(BaiCli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(BaiCli), 1, 60)));
+                          UfeCli := copy(Trim(UfeCli), 1, 02) + fReplicate(' ', 02 - Length(copy(Trim(UfeCli), 1, 02)));
+                          CepCli := fReplicate('0', 08 - Length(copy(Trim(CepCli), 1, 08))) + copy(Trim(CepCli), 1, 08);
+                          Id_FinUfe := FatGerId_FinUfe.Value;
+                          Id_FinCie := FatGerId_FinCie.Value;
+                          with quSQL, SQL do
+                          begin
+                            Close;
+                            Text := ' Select FinCie.NomCie,' +
+                              '        FinCie.SigNfe ' +
+                              ' From FinCie' +
+                              ' Where FinCie.Id_FinCie = ' + QuotedStr(IntToStr(Id_FinCie));
+                            Open;
+                            Id_CliNfe := IntToStr(Id_FinUfe) + FieldbyName('SigNfe').AsString;
+                            CidCli := fLimpaAcentos(FieldbyName('NomCie').AsString);
+                            CidCli := copy(Trim(CidCli), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(CidCli), 1, 60)));
+                          end;
+                          Writeln(ArqEnv, 'EM0205' + // Uso interno do sistema
+                            CgcCli + // CNPJ do destinatario
+                            EndCli + // Logradouro
+                            NumCli + // Número
+                            RefCli + // Complemento
+                            BaiCli + // Bairro
+                            Id_CliNfe + // Código do Municipio
+                            CidCli + // Nome do Municipio
+                            UfeCli); // Sigla da UF
+
+                        end; //if Varios Trim
+                        TrbPis := Trim(FatGerTrbPis.Value);
+                        TrbCof := Trim(FatGerTrbCof.Value);
+                        TrbPis := copy(Trim(TrbPis), 1, 03) + fReplicate(' ', 03 - Length(copy(Trim(TrbPis), 1, 03)));
+                        TrbCof := copy(Trim(TrbCof), 1, 03) + fReplicate(' ', 03 - Length(copy(Trim(TrbCof), 1, 03)));
+                        PerPis := fSubstDecimal(FormatFloat('##0.00', FatGerPerPis.Value), 05);
+                        PerCof := fSubstDecimal(FormatFloat('##0.00', FatGerPerCof.Value), 05);
+                        with quSQL, SQL do
+                        begin
+                          Close;
+                          Text := ' Select FatGe2.NroGe2,' +
+                            ' (Select CBAPRO from ESTPRO where CODCLP = fatGe2.codclp and CODGRU = fatGe2.codgru and codsub = fatGe2.codsub and codpro = fatGe2.codpro)as cEANTRIB, ' +
+                            ' (Select CBAEMB from ESTPRO where CODCLP = fatGe2.codclp and CODGRU = fatGe2.codgru and codsub = fatGe2.codsub and codpro = fatGe2.codpro)as cEAN, ' +
+
+                          ' FatGe2.CodClp,' +
+                            ' FatGe2.CodGru,' +
+                            ' FatGe2.CodSub,' +
+                            ' FatGe2.CodPro,' +
+                            ' FatGe2.REFGE2,' +
+                            ' FatGe2.DesGe2,' +
+                            ' FatGe2.ObsGe2,' +
+                            ' FatGe2.ClsIpi,' +
+                            ' FatGe2.CodCfo,' +
+                            ' FatGe2.CodSt1,' +
+                            ' FatGe2.CodSt2,' +
+                            ' FatGe2.CodUnd,' +
+                            ' FatGe2.QtpGe2,' +
+                            ' FatGe2.VluGe2,' +
+                            ' FatGe2.TotIte,' +
+                            ' FatGe2.IcmGe2,' +
+                            ' FatGe2.BscIcm,' +
+                            ' FatGe2.RedIcm,' +
+                            ' FatGe2.BasIcm,' +
+                            ' FatGe2.TotIcm,' +
+                            ' FatGe2.cstIpi,' +
+                            ' FatGe2.IpiGe2,' +
+                            ' FatGe2.TrbIpi,' +
+                            ' FatGe2.BscIpi,' +
+                            ' FatGe2.RedIpi,' +
+                            ' FatGe2.BasIpi,' +
+                            ' FatGe2.TotIpi,' +
+                            ' FatGe2.IcmSub,' +
+                            ' FatGe2.MrgSub,' +
+                            ' FatGe2.BaseSb,' +
+                            ' FatGe2.BasSub,' +
+                            ' FatGe2.TotSub,' +
+                            ' FatGe2.TotDsr,' +
+                            ' FatGe2.TotFrt,' +
+                            ' FatGe2.TotSeg,' +
+                            ' FatGe2.TotDes,' +
+                            ' FatGe2.TotPis,' +
+                            ' FatGe2.TotCof, ' +
+                            ' FatGe2.BAIPIS, ' +
+                            ' FatGe2.id_fatge2, ' +
+                            ' FatGe2.VLRBCII, ' +
+                            ' FatGe2.VLRIMPII, ' +
+                            ' FatGe2.VLRDESPATU, ' +
+                            ' FatGe2.VLRIOF ' +
+                            ' From FatGe2' +
+                            ' Where FatGe2.CodEmp = ' + QuotedStr(IntToStr(FatGerCodEmp.Value)) +
+                            '   and FatGe2.DteGer = ' + QuotedStr(fDateToSQL(FatGerDteGer.Value)) +
+                            '   and FatGe2.NumGer = ' + QuotedStr(IntToStr(FatGerNumGer.Value)) +
+                            ' Order by FatGe2.NroGe2';
+                          Open;
+                          First;
+                        end;
+                        while not quSQL.EOF do
+                        begin
+                          //Não verifica mais o código de referencia. Pois os dados para sintegra, sped, NF paulista devem ser chaves.
+                          //Verificando se vai imprimir o codigo ou a referencia
+                          {if impref then
+                            codpro := quSQL.FieldbyName('REFGE2').AsString
+                          else }
+                          CodPro := quSQL.FieldbyName('CodClp').AsString +
+                            quSQL.FieldbyName('CodGru').AsString +
+                            quSQL.FieldbyName('CodSub').AsString +
+                            quSQL.FieldbyName('CodPro').AsString;
+
+
+                          cEAN := quSQL.FieldbyName('cEAN').AsString;
+                          cEANTrib := quSQL.FieldbyName('cEANTrib').AsString;
+                          cEAN := copy(Trim(cEAN), 1, 14) + fReplicate(' ', 14 - Length(copy(Trim(cEAN), 1, 14)));
+                          cEANTrib := copy(Trim(cEANTrib), 1, 14) + fReplicate(' ', 14 - Length(copy(Trim(cEANTrib), 1, 14)));
+
+                          if Trim(CodPro) = '8888888888888' then CodPro := 'CFOP' + fLimpaStr(quSQL.FieldbyName('CodCfo').AsString);
+                          if Trim(CodPro) = '9999999999999' then CodPro := 'CFOP' + fLimpaStr(quSQL.FieldbyName('CodCfo').AsString);
+                          DesPro := AllTrim(fLimpaAcentos(quSQL.FieldbyName('DesGe2').AsString {+ ' ' + quSQL.FieldbyName('ObsGe2').AsString}));
+                          DesPro := copy(DesPro, 1, 120);
+                          ClsIpi := Trim(fLimpaStr(quSQL.FieldbyName('ClsIpi').AsString));
+                          CodCfo := Trim(fLimpaStr(quSQL.FieldbyName('CodCfo').AsString));
+                          if Trim(ClsIpi) = '00000000' then ClsIpi := '';
+                          CodUnd := Trim(quSQL.FieldbyName('CodUnd').AsString);
+                          CodSt1 := Trim(quSQL.FieldbyName('CodSt1').AsString);
+                          CodSt2 := Trim(quSQL.FieldbyName('CodSt2').AsString);
+                          CSTIPI := Trim(quSQL.FieldbyName('CSTIPI').AsString);
+                          TrbIpi := Trim(quSQL.FieldbyName('TrbIpi').AsString);
+                          QtdPro := fSubstDecimal(FormatFloat('########0.0000', quSQL.FieldbyName('QtpGe2').AsFloat), 15);
+                          VluPro := fSubstDecimal(FormatFloat('########0.0000', quSQL.FieldbyName('VluGe2').AsFloat), 15);
+                          TotPro := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotIte').AsFloat), 15);
+                          BasIcm := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('BasIcm').AsFloat), 15);
+                          RedIcm := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('RedIcm').AsFloat), 15);
+                          PerIcm := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('IcmGe2').AsFloat), 05);
+                          TotIcm := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotIcm').AsFloat), 15);
+                          BasIpi := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('BasIpi').AsFloat), 15);
+                          PerIpi := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('IpiGe2').AsFloat), 05);
+                          TotIpi := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotIpi').AsFloat), 15);
+                          MrgSub := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('MrgSub').AsFloat), 05);
+                          IcmSub := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('IcmSub').AsFloat), 05);
+                          BasSub := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('BasSub').AsFloat), 15);
+                          TotSub := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotSub').AsFloat), 15);
+                          TotDsr := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotDsr').AsFloat), 15);
+                          TotFrt := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotFrt').AsFloat), 15);
+                          TotSeg := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotSeg').AsFloat), 15);
+                          TotDes := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotDes').AsFloat), 15);
+                          BasPis := fSubstDecimal(FormatFloat('########0.00', (quSQL.FieldbyName('BAIPIS').AsFloat)), 15);
+                          BasCof := fSubstDecimal(FormatFloat('########0.00', (quSQL.FieldbyName('BAIPIS').AsFloat)), 15);
+                          TotPis := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotPis').AsFloat), 15);
+                          TotCof := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotCof').AsFloat), 15);
+
+                          VLRBCII := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('VLRBCII').AsFloat), 15);
+                          VLRIMPII := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('VLRIMPII').AsFloat), 15);
+
+                          VLRDESPATU := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('VLRDESPATU').AsFloat), 15);
+                          VLRIOF := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('VLRIOF').AsFloat), 15);
+
+
+                          TipNCM := '';
+                          if Trim(FatGerModPfa.Value) = 'Complemento' then CodUnd := 'R$';
+                          CodPro := copy(Trim(CodPro), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(CodPro), 1, 60)));
+                          CodCfo := copy(Trim(CodCfo), 1, 04) + fReplicate(' ', 04 - Length(copy(Trim(CodCfo), 1, 04)));
+                          CodUnd := copy(Trim(CodUnd), 1, 06) + fReplicate(' ', 06 - Length(copy(Trim(CodUnd), 1, 06)));
+                          TrbIpi := copy(Trim(TrbIpi), 1, 03) + fReplicate(' ', 03 - Length(copy(Trim(TrbIpi), 1, 03)));
+                          CodSt1 := fReplicate('0', 01 - Length(copy(Trim(CodSt1), 1, 01))) + copy(Trim(CodSt1), 1, 01);
+                          //-------Simples nacional
+                          if sn then
+                            CodSt2 := fReplicate('0', 03 - Length(copy(Trim(CodSt2), 1, 03))) + copy(Trim(CodSt2), 1, 03)
+                          else
+                            CodSt2 := fReplicate('0', 02 - Length(copy(Trim(CodSt2), 1, 02))) + copy(Trim(CodSt2), 1, 02);
+                          //                          CodSt2 := fReplicate('0', 02 - Length(copy(Trim(CodSt2), 1, 02))) + copy(Trim(CodSt2), 1, 02);
+                          ClsIpi := fReplicate('0', 08 - Length(copy(Trim(ClsIpi), 1, 08))) + copy(Trim(ClsIpi), 1, 08);
+                          DesPro := copy(Trim(DesPro), 1, 120) + fReplicate(' ', 120 - Length(copy(Trim(DesPro), 1, 120)));
+
+
+
+                          Writeln(ArqEnv, 'EM0206' + // Uso interno do sistema
+                            '00' + // Tipo de operação
+                            fNumZeros(IntToStr(quSQL.FieldbyName('NroGe2').AsInteger), 3) + // Nro. do item
+                            CodPro + // Código do Produto ou serviço
+                            cEAN + // GTIN
+                            DesPro + // Descrição do produto ou serviço
+                            ClsIpi + // Código NCM
+                            '   ' + // EX_TIPI
+                            '  ' + // Gênero do produto ou serviço
+                            CodCfo + // Código fiscal da operação
+                            CodUnd + // Unidade comercial
+                            QtdPro + // Quantidade comercial
+                            VluPro + // Valor unitário de comercialização
+                            TotPro + // Valor Total Bruto dos Produtos ou Serviços
+                            CEANTRIB + // GTIN
+                            CodUnd + // Unidade Tributavel
+                            QtdPro + // Quantidade Tributavel
+                            VluPro + // Valor Unitário de tributação
+                            TotFrt + // Valor Total do Frete
+                            TotSeg + // Valor Total do Seguro
+                            TOTDES + // Valor de Outras Despesas
+                            TotDsr + // Valor do Desconto
+                            VLRBCII + // Valor Base de Calculo para Importação
+                            VLRIMPII + // Valor do imposto de importação
+                            VLRDESPATU + // Valor de Despesas Aduneiras
+                            VLRIOF); // Valor de IOF
+
+                          //========================== THIAGO OBS DO ITEM
+                          strAux := '';
+                          if Trim(quSQL.FieldbyName('REFGE2').AsString) <> '' then
+                            strAux := strAux + 'Ref: ' + quSQL.FieldbyName('REFGE2').AsString + ' ';
+
+                          strAux := strAux + Trim(quSQL.FieldbyName('ObsGe2').AsString);
+
+                          // descricao de DI
+                          qusql1.Active := false;
+                          quSQL1.sql.Text := 'Select DESIMP from estpro where ' + #13 +
+                            ' CodCLP = ' + QuotedStr(qusql.fieldbyname('CODCLP').asstring) +
+                            ' and CODGRU = ' + QuotedStr(qusql.fieldbyname('CODGRU').asstring) +
+                            ' and CODSUB = ' + QuotedStr(qusql.fieldbyname('CODSUB').asstring) +
+                            ' and CODPRO = ' + QuotedStr(qusql.fieldbyname('CODPRO').asstring);
+
+                          quSQL1.Active := true;
+
+                          strAux := strAux + ' - ' + Trim(qusql1.fieldbyname('DESIMP').asstring);
+                          strAux := copy(Trim(strAux), 1, 500) + fReplicate(' ', 500 - Length(copy(Trim(strAux), 1, 500)));
+                          strAux := StringReplace(StringReplace(strAux, #13, ' ', [rfReplaceAll, rfIgnoreCase]), #10, '', [rfReplaceAll, rfIgnoreCase]);
+                          // descricao de DI
+                          Writeln(ArqENV, 'EM1206' + StrAux);
+
+                          //========================== THIAGO OBS DO ITEM
+                          //========================== Inserindo os dados da DI
+                          Qusql1.active := false;
+                          qusql1.sql.text := 'Select id_DI, NUMDI, DATADI, LOCALDESEMB, UFDESEMB, DATADESEMB, CODEXPORT from DI where  ID_CMPNF2 = ' + quotedstr(qusql.fieldbyname('ID_FATGE2').asstring);
+                          qusql1.active := true;
+                          if qusql1.IsEmpty = false then
+                          begin
+                            qusql1.First;
+                            while not qusql1.eof do
+                            begin
+                              strAux := copy(Trim(qusql1.fieldbyname('numdi').asstring), 1, 10) + fReplicate(' ', 10 - Length(copy(Trim(qusql1.fieldbyname('numdi').asstring), 1, 10))) +
+                                formatdatetime('dd/mm/yyyy', qusql1.fieldbyname('datadi').asdatetime) +
+                                copy(Trim(qusql1.fieldbyname('LOCALDESEMB').asstring), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(qusql1.fieldbyname('LOCALDESEMB').asstring), 1, 60))) +
+                                copy(Trim(qusql1.fieldbyname('UFDESEMB').asstring), 1, 2) + fReplicate(' ', 2 - Length(copy(Trim(qusql1.fieldbyname('UFDESEMB').asstring), 1, 2))) +
+                                formatdatetime('dd/mm/yyyy', qusql1.fieldbyname('datadesemb').asdatetime) +
+                                copy(Trim(qusql1.fieldbyname('CODEXPORT').asstring), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(qusql1.fieldbyname('CODEXPORT').asstring), 1, 60)));
+                              Writeln(ArqENV, 'EM1207' + StrAux);
+
+                              qusql2.active := false;
+                              qusql2.sql.text := 'Select  NSEQADIC, CODFAB, VDESCDI, NADICAO from DIDET where ID_DI = ' + QuotedStr(qusql1.fieldbyname('id_DI').asstring);
+                              qusql2.active := true;
+                              if qusql2.IsEmpty = false then
+                                while not qusql2.eof do
+                                begin
+                                  strAux := copy(Trim(qusql2.fieldbyname('NSEQADIC').asstring), 1, 3) +
+                                    fReplicate(' ', 3 - Length(copy(Trim(qusql2.fieldbyname('NSEQADIC').asstring), 1, 3))) +
+                                    copy(Trim(qusql2.fieldbyname('NADICAO').asstring), 1, 3) +
+                                    fReplicate(' ', 3 - Length(copy(Trim(qusql2.fieldbyname('NADICAO').asstring), 1, 3))) +
+                                    copy(Trim(qusql2.fieldbyname('CODFAB').asstring), 1, 60) +
+                                    fReplicate(' ', 60 - Length(copy(Trim(qusql2.fieldbyname('CODFAB').asstring), 1, 60))) +
+                                    fSubstDecimal(FormatFloat('########0.00', quSQL2.FieldbyName('VDESCDI').AsFloat), 15);
+                                  Writeln(ArqENV, 'EM1208' + StrAux);
+                                  qusql2.next;
+                                end;
+
+                              qusql1.next;
+                            end;
+                          end;
+
+                          //==============================Detalhes da DI
+
+                          //========================== Inserindo os dados da DI
+
+
+                          {if Trim(FatGerModPfa.Value) = 'Complemento' then
+                             begin
+                                BasIcm := fSubstDecimal(FormatFloat('########0.00', FatGerBasIc1.Value), 15);
+                                TotIcm := fSubstDecimal(FormatFloat('########0.00', FatGerTotIc1.Value), 15);
+                                BasSub := fSubstDecimal(FormatFloat('########0.00', FatGerBasSu1.Value), 15);
+                                TotSub := fSubstDecimal(FormatFloat('########0.00', FatGerTotSu1.Value), 15);
+                                Writeln(ArqEnv, 'EM0207' + // Uso interno do sistema
+                                   '01' + // Tipo de operação
+                                   fNumZeros(IntToStr(quSQL.FieldbyName('NroGe2').AsInteger), 3) + // Nro. do item
+                                   CodSt1 + // Origem da mercadoria
+                                   CodSt2 + // Grupo de CST
+                                   '3' + // Modalidade de determinação da BC do ICMS ST
+                                   '           0.00' + // Percential de redução de BC do ICMS
+                                   BasIcm + // Valor da BC do ICMS
+                                   PerIcm + // Aliquota do imposto
+                                   TotIcm + // Valor do ICMS
+                                   BasSub + // Valor da BC do ICMS ST
+                                   ' 0.00' + // Aliquota do imposto do ICMS ST
+                                   ' 0.00' + // Percentual da Margem de valor Adicionado do ICMS ST
+                                   TotSub) // Valor do ICMS ST
+                             end
+                          else}
+                          Writeln(ArqEnv, 'EM0207' + // Uso interno do sistema  1/6
+                            '01' + // Tipo de operação  7/2
+                            fNumZeros(IntToStr(quSQL.FieldbyName('NroGe2').AsInteger), 3) + // Nro. do item 9/3
+                            CodSt1 + // Origem da mercadoria 12/1
+                            CodSt2 + // Grupo de CST         13/2|3
+                            '3' + // Modalidade de determinação da BC do ICMS ST 15/1
+                            RedIcm + // Percential de redução de BC do ICMS 16/15
+                            BasIcm + // Valor da BC do ICMS 31/15
+                            PerIcm + // Aliquota do imposto 46/15
+                            TotIcm + // Valor do ICMS       61/15
+                            BasSub + // Valor da BC do ICMS ST  76/15
+                            IcmSub + // Aliquota do imposto do ICMS ST 81/5
+                            MrgSub + // Percentual da Margem de valor Adicionado do ICMS ST  86/5
+                            TotSub); // Valor do ICMS ST
+
+
+                          if Trim(FatGerModPfa.Value) = 'Complemento' then
+                          begin
+                            if FatGerTotIp1.Value > 0 then TrbIpi := 'Sim';
+                            TotIpi := fSubstDecimal(FormatFloat('########0.00', FatGerTotIp1.Value), 15);
+                            Writeln(ArqEnv, 'EM0208' + // Uso interno do sistema
+                              '01' + // Tipo de operação
+                              fNumZeros(IntToStr(quSQL.FieldbyName('NroGe2').AsInteger), 3) + // Nro. do item
+                              TrbIpi + // IPI tributado
+                              '           0.00' + // Valor da BC do IPI
+                              ' 0.00' + // Aliquota do imposto
+                              TotIpi + // Valor do IPI
+                              Id_EstSip); // Situação tributária do IPI
+                          end
+                          else
+                            Writeln(ArqEnv, 'EM0208' + // Uso interno do sistema
+                              '01' + // Tipo de operação
+                              fNumZeros(IntToStr(quSQL.FieldbyName('NroGe2').AsInteger), 3) + // Nro. do item
+                              TrbIpi + // IPI tributado
+                              BasIpi + // Valor da BC do IPI
+                              PerIpi + // Aliquota do imposto
+                              TotIpi + // Valor do IPI
+                              CSTIPI); // Situação tributária do IPI
+                          Writeln(ArqEnv, 'EM0209' + // Uso interno do sistema
+                            '01' + // Tipo de operação
+                            fNumZeros(IntToStr(quSQL.FieldbyName('NroGe2').AsInteger), 3) + // Nro. do item
+                            NfePis + // Situação Tributaria do PIS
+                            TrbPis + // PIS tributado
+                            BasPis + // BC PIS
+                            PerPis + // Percentual do PIS
+                            TotPis + // Valor do PIS
+                            NfeCof + // Situação Tributaria do COFINS
+                            TrbCof + // COFINS tributado
+                            BasCof + // BC COFINS
+                            PerCof + // Percentual do COFINS
+                            TotCof); // Valor do COFINS
+                          Application.ProcessMessages;
+                          quSQL.Next;
+                        end; //while
+                        Writeln(ArqEnv, 'EM0210' + // Uso interno do sistema
+                          fSubstDecimal(FormatFloat('########0.00', FatGerBasIc1.Value), 15) + // Base de Calculo do ICMS
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotIc1.Value), 15) + // Valor Total do ICMS
+                          fSubstDecimal(FormatFloat('########0.00', FatGerBasSu1.Value), 15) + // Base de Calculo do ICMS ST
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotSu1.Value), 15) + // Valor Total do ICMS ST
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotIt1.Value), 15) + // Valor Total dos produtos e serviços
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotFrt.Value), 15) + // Valor Total do Frete
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotSeg.Value), 15) + // Valor Total do Seguro
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotDsr.Value), 15) + // Valor Total do Desconto
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotImpII.Value), 15) + // Valor Total do II
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotIp1.Value), 15) + // Valor Total do IPI
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotPis.Value), 15) + // Valor Total do PIS
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotCof.Value), 15) + // Valor Total do COFINS
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotDes.Value), 15) + // Outras Despesas Acessórias
+                          fSubstDecimal(FormatFloat('########0.00', FatGerTotGe1.Value), 15)); // Valor Total da NFe
+
+                        TipFrt := FatGerTipFrt.Value;
+
+                        if Length(Trim(FatGerCgcTra.Value)) = 11 then
+                          CpfTra := FatGerCgcTra.Value
+                        else
+                          CgcTra := FatGerCgcTra.Value;
+                        Id_FinUfe := FatGerId_TraUfe.Value;
+                        Id_FinCie := FatGerId_TraCie.Value;
+                        InsTra := fLimpaStr(FatGerInsTra.Value);
+                        NomTra := fLimpaAcentos(FatGerNomTra.Value);
+                        if Trim(FatGerTenTra.Value) <> '' then
+                          EndTra := Trim(FatGerTenTra.Value) + ' ' + FatGerEndTra.Value
+                        else
+                          EndTra := FatGerEndTra.Value;
+                        EndTra := fLimpaAcentos(EndTra);
+                        NumTra := fLimpaAcentos(FatGerNumTra.Value);
+                        RefTra := fLimpaAcentos(FatGerRefTra.Value);
+                        BaiTra := fLimpaAcentos(FatGerBaiTra.Value);
+                        UfeTra := fLimpaAcentos(FatGerUfeTra.Value);
+                        CgcTra := fReplicate('0', 14 - Length(copy(Trim(CgcTra), 1, 14))) + copy(Trim(CgcTra), 1, 14);
+                        CpfTra := fReplicate('0', 14 - Length(copy(Trim(CpfTra), 1, 14))) + copy(Trim(CpfTra), 1, 14);
+                        NomTra := copy(Trim(NomTra), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(NomTra), 1, 60)));
+                        ApeTra := copy(Trim(ApeTra), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(ApeTra), 1, 60)));
+                        EndTra := copy(Trim(EndTra), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(EndTra), 1, 60)));
+                        NumTra := copy(Trim(NumTra), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(NumTra), 1, 60)));
+                        RefTra := copy(Trim(RefTra), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(RefTra), 1, 60)));
+                        BaiTra := copy(Trim(BaiTra), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(BaiTra), 1, 60)));
+                        UfeTra := copy(Trim(UfeTra), 1, 02) + fReplicate(' ', 02 - Length(copy(Trim(UfeTra), 1, 02)));
+                        InsTra := copy(Trim(InsTra), 1, 14) + fReplicate(' ', 14 - Length(copy(Trim(InsTra), 1, 14)));
+                        with quSQL, SQL do
+                        begin
+                          Close;
+                          Text := ' Select FinCie.NomCie,' +
+                            '        FinCie.SigNfe ' +
+                            ' From FinCie' +
+                            ' Where FinCie.Id_FinCie = ' + QuotedStr(IntToStr(Id_FinCie));
+                          Open;
+                          CidTra := fLimpaAcentos(FieldbyName('NomCie').AsString);
+                          CidTra := copy(Trim(CidTra), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(CidTra), 1, 60)));
+                        end;
+                        PesLiq := fSubstDecimal(FormatFloat('########0.000', FatGerInfLiq.Value), 15);
+                        PesBrt := fSubstDecimal(FormatFloat('########0.000', FatGerInfBrt.Value), 15);
+
+                        EspFat := fLimpaAcentos(FatGerEspGer.Value);
+                        MarFat := fLimpaAcentos(FatGerMarGer.Value);
+
+                        MarFat := copy(Trim(MarFat), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(MarFat), 1, 60)));
+                        EspFat := copy(Trim(EspFat), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(EspFat), 1, 60)));
+                        nrofat := FatGERNROGER.AsString;
+                        NROFat := copy(Trim(NROFat), 1, 10) + fReplicate(' ', 10 - Length(copy(Trim(nroFat), 1, 60)));
+
+                        Writeln(ArqEnv, 'EM0211' + // Uso interno do sistema
+                          TipFrt + // Modalidade do Frete
+                          CgcTra + // CNPJ
+                          CpfTra + // CPF
+                          NomTra + // Razão social ou nome
+                          InsTra + // IE
+                          EndTra + // Endereço completo
+                          CidTra + // Nome do Municipio
+                          UfeTra + // Sigla da UF
+                          fNumZeros(IntToStr(FatGerAltVol.Value), 15) + // Quantidade de volumes
+                          EspFat + // Especie dos volumes transportados
+                          MarFat + // Marca dos volumes transportados
+                          PesLiq + // Peso Liquido (em Kg)
+                          PesBrt +
+                          NROFAT
+                          ); // Peso Bruto (em Kg)
+
+                        if FatGerUFECLI.AsString = 'EX' then
+                        begin
+                          LOCEMB := fLimpaAcentos(FatgerLOCEMB.AsString);
+                          LOCEMB := copy(Trim(LOCEMB), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(LOCEMB), 1, 60)));
+                          UFEMB := Trim(FatgerUFEMB.AsString);
+
+                          Writeln(ArqEnv, 'EM1211' +
+                            UFEMB + //UF do Embarque
+                            LOCEMB); //Local de Embarque
+                        end;
+
+                        if FatGerIntFin.Value = 'Sim' then
+                        begin
+                          NroDoc := fSubstDecimal(IntToStr(FatGerNroNfs.Value), 60);
+                          Writeln(ArqEnv, 'EM0212' + // Uso interno do sistema
+                            NroDoc + // Número da fatura
+                            fSubstDecimal(FormatFloat('########0.00', FatGerTotGe1.Value), 15) + // Valor Original
+                            '           0.00' + // Valor do desconto
+                            fSubstDecimal(FormatFloat('########0.00', FatGerTotGe1.Value), 15)); // Valor Original
+                          with quSQL, SQL do
+                          begin
+                            Close;
+                            Text := ' Select FatGe3.NroGe3,' +
+                              '        FatGe3.DtvGe3,' +
+                              '        FatGe3.VlpGe3 ' +
+                              ' From FatGe3' +
+                              ' Where FatGe3.CodEmp = ' + QuotedStr(IntToStr(FatGerCodEmp.Value)) +
+                              '   and FatGe3.DteGer = ' + QuotedStr(fDateToSQL(FatGerDteGer.Value)) +
+                              '   and FatGe3.NumGer = ' + QuotedStr(IntToStr(FatGerNumGer.Value)) +
+                              ' Order by FatGe3.NroGe3';
+                            Open;
+                            First;
+                          end;
+                          while not quSQL.EOF do
+                          begin
+                            NroDoc := IntToStr(FatGerNroNfs.Value) + '-' + fNumZeros(IntToStr(quSQL.FieldbyName('NroGe3').AsInteger), 2);
+                            NroDoc := copy(Trim(NroDoc), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(NroDoc), 1, 60)));
+                            Writeln(ArqEnv, 'EM0213' + // Uso interno do sistema
+                              NroDoc + // Número da fatura
+                              copy(FormatDateTime('dd/mm/yyyy', quSQL.FieldbyName('DtvGe3').AsDateTime), 7, 4) + '-' + // Data de vencimento
+                              copy(FormatDateTime('dd/mm/yyyy', quSQL.FieldbyName('DtvGe3').AsDateTime), 4, 2) + '-' +
+                              copy(FormatDateTime('dd/mm/yyyy', quSQL.FieldbyName('DtvGe3').AsDateTime), 1, 2) +
+                              fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('VlpGe3').AsFloat), 15)); // Valor da duplicata
+                            Application.ProcessMessages;
+                            quSQL.Next;
+                          end;
+                        end; //if FatGerIntFin.Value = 'Sim' then
+
+                        ObsFat := '';
+
+                        if Trim(fLimpaAcentos(FatGerOb1Ger.Value)) <> '' then
+                          ObsFat := ObsFat + AllTrim(fLimpaAcentos(FatGerOb1Ger.Value));
+
+                        if Trim(fLimpaAcentos(FatGerOb2Ger.Value)) <> '' then
+                          ObsFat := ObsFat + AllTrim(fLimpaAcentos(FatGerOb2Ger.Value));
+
+                        if Trim(fLimpaAcentos(FatGerOb3Ger.Value)) <> '' then
+                          ObsFat := ObsFat + AllTrim(fLimpaAcentos(FatGerOb3Ger.Value));
+
+                        if Trim(fLimpaAcentos(FatGerOb4Ger.Value)) <> '' then
+                          ObsFat := ObsFat + AllTrim(fLimpaAcentos(FatGerOb4Ger.Value));
+
+                        if Trim(fLimpaAcentos(FatGerOb5Ger.Value)) <> '' then
+                          ObsFat := ObsFat + AllTrim(fLimpaAcentos(FatGerOb5Ger.Value));
+
+                        if Trim(fLimpaAcentos(FatGerOb6Ger.Value)) <> '' then
+                          ObsFat := ObsFat + AllTrim(fLimpaAcentos(FatGerOb6Ger.Value));
+
+                        if Trim(fLimpaAcentos(FatGerOb7Ger.Value)) <> '' then
+                          ObsFat := ObsFat + AllTrim(fLimpaAcentos(FatGerOb7Ger.Value));
+
+                        if Trim(fLimpaAcentos(FatGerOb8Ger.Value)) <> '' then
+                          ObsFat := ObsFat + AllTrim(fLimpaAcentos(FatGerOb8Ger.Value));
+
+                        ObsFat := copy(ObsFat, 1, 2000);
+
+                        ObsFat := copy(Trim(ObsFat), 1, 2000) + fReplicate(' ', 2000 - Length(copy(Trim(ObsFat), 1, 2000)));
+                        Writeln(ArqEnv, 'EM0214' + // Uso interno do sistema
+                          ObsFat); // Informações adicionais de interesse do Fisco
+                        CloseFile(ArqEnv);
+                        //   movefile(PChar(ArqRe1),PChar(ArqRe2));
+
+/////////////////////////////=================================Thiago
+//Chamando o NFeEmerion
+
+                        if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
+                        begin
+                          if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO then
+                          begin
+                            Abort;
+                          end;
+                        end;
+
+                        IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
+                        if not FileExists(inifile) then
+                        begin
+                          showmessage('Erro. Não foi possível localizar o arquivo de configuração da NF-e.');
+                          fmManPri.Enabled := True;
+                          fmManGr1_NFE.Enabled := True;
+                          pnMensag.Visible := False;
+                          sysutils.abort;
+                        end;
+
+                        ini := TIniFile.create(IniFile);
+                        try
+                          CaminhoPDF := ini.ReadString('Geral', 'PathDANFE', '');
+                          CaminhoLeitura := ini.ReadString('Geral', 'PathLeitura', '');
+                          CaminhoRetorno := ini.ReadString('Geral', 'PathRetorno', '');
+                        finally
+                          ini.free;
+                        end;
+
+
+                        ReescreveChaveEnviada(Chave);
+
+                        if TipoEnvio = 3 then
+                        begin
+                          if FINALIDADE = '2' then
+                            CopyFile(Pchar(ArqRe1), Pchar(CaminhoLeitura + '\CPNOTA' + VNumNota + '.txt'), SeqRet)
+                          else
+                            CopyFile(Pchar(ArqRe1), Pchar(CaminhoLeitura + '\EVNOTA' + VNumNota + '.txt'), SeqRet);
+
+                          if FINALIDADE = '2' then
+                          begin
+                            if sn then
+                              Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe COMPLEMENTOSN ' + vnumnota, SW_NORMAL)
+                            else
+                              Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe COMPLEMENTO ' + vnumnota, SW_NORMAL);
+                          end
+                          else
+                          begin
+                            if sn then
+                              Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe ENVIASN ' + vnumnota, SW_NORMAL)
+                            else
+                              Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe ENVIA ' + vnumnota, SW_NORMAL);
+                          end;
+                        end
+                        else if TipoEnvio = 4 then
+                        begin
+
+                          if FINALIDADE = '2' then
+                            CopyFile(Pchar(ArqRe1), Pchar(CaminhoLeitura + '\DPEC' + VNumNota + '.txt'), SeqRet)
+                          else
+                            CopyFile(Pchar(ArqRe1), Pchar(CaminhoLeitura + '\DPEC' + VNumNota + '.txt'), SeqRet);
+
+                          if FINALIDADE = '2' then
+                          begin
+                            if sn then
+                              Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe DPEC ' + vnumnota, SW_NORMAL)
+                            else
+                              Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe DPEC ' + vnumnota, SW_NORMAL);
+                          end
+                          else
+                          begin
+                            if sn then
+                              Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe DPEC ' + vnumnota, SW_NORMAL)
+                            else
+                              Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe DPEC ' + vnumnota, SW_NORMAL);
+                          end;
+                        end;
+
+
+                        //Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe ENVIA ' + vnumnota, SW_NORMAL);
+
+
+                        if (Chave <> RecuperaChaveEnviando.Chave) then
+                        begin
+                          if trim(RecuperaChaveEnviando.Chave) <> '' then
+                            Chave := RecuperaChaveEnviando.Chave;
+                        end;
+
+
+                        FatGer.edit;
+
+                        FatGerFLGATU.value := 'F';
+
+                        FatGerSeqNfe.AsString := Chave;
+
+                        with FatGer do
+                        begin
+                          fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                          try
+                            ApplyUpdates; {Tenta aplicar as alterações};
+                            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                          except
+                            fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                            if FatGer.State <> dsBrowse then FatGer.CancelUpdates;
+                            {FatGer.Close;
+                            FatGer.Open;}
+                            //grFatGer.SetFocus;
+                            raise;
+                          end;
+                          CommitUpdates; {sucesso!, limpa o cache...}
+                        end;
+
+                        if FileExists(CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + chave + '.xml') then
+                        begin
+
+                          FatGer.edit;
+
+                          FatGerFLGATU.value := 'F';
+
+                          FatGerSeqNfe.AsString := Chave;
+
+                          if TipoEnvio = 3 then
+                          begin
+                            FatGerENVNFE.AsString := 'Sim';
+                            FatGerUSUNFE.AsInteger := GUsu_Id;
+                          end
+                          else if TipoEnvio = 4 then
+                          begin
+                            FatGerENVDPEC.AsString := 'S';
+                            FatGerUSUDPEC.AsInteger := GUsu_Id;
+                            FatGerProtDPEC.AsString := RetornaProtocoloDPEC;
+                          end;
+
+                          if RecuperaChaveEnviando.Denegada = 'S' then
+                          begin
+
+                            MessageBox(Handle, 'Nota fiscal será cancelada por ter sido denegada do SeFaz.', 'Envio NFe', MB_OK + MB_ICONINFORMATION);
+                            FatGerSitGer.AsString := 'Cancelado';
+                            FatGerFlgDenegada.AsString := 'S';
+
+                            with FatGer do
+                            begin
+                              fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                              try
+                                ApplyUpdates; {Tenta aplicar as alterações};
+                                fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                              except
+                                fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                                if FatGer.State <> dsBrowse then FatGer.CancelUpdates;
+                                FatGer.Close;
+                                FatGer.Open;
+                                grFatGer.SetFocus;
+                                raise;
+                              end;
+                              CommitUpdates; {sucesso!, limpa o cache...}
+                            end;
+
+                          end
+                          else
+                          begin
+
+                            AssignFile(TArquivo, (CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + chave + '.xml'));
+                            Reset(TArquivo);
+                            ReadLn(TArquivo, TLinha);
+
+                            repeat
+                              Application.ProcessMessages;
+                              if pos('<nProt>', TLinha) > 0 then
+                              begin
+                                FatGerPRONFE.Value := (copy(TLinha, pos('<nProt>', TLinha) + Length('<nProt>'), 15));
+                                eprotocolo := (copy(TLinha, pos('<nProt>', TLinha) + Length('<nProt>'), 15));
+                              end;
+
+                              if pos('<xMotivo>', TLinha) > 0 then FatGerRETNFE.Value := (copy(TLinha, pos('<xMotivo>', TLinha) + Length('<xMotivo>'), pos('</xMotivo>', TLinha) - (pos('<xMotivo>', TLinha) + Length('<xMotivo>'))));
+
+                              if pos('<dhRecbto>', TLinha) > 0 then
+                              begin
+                                FatGerDTEPNF.value := strtodate(copy(TLinha, pos('<dhRecbto>', TLinha) + Length('<dhRecbto>') + 8, 2) + '/' + copy(TLinha, pos('<dhRecbto>', TLinha) + Length('<dhRecbto>') + 5, 2) + '/' + copy(TLinha, pos('<dhRecbto>', TLinha) + Length('<dhRecbto>'), 4));
+                                FatGerDTENFE.Value := strtodate(copy(TLinha, pos('<dhRecbto>', TLinha) + Length('<dhRecbto>') + 8, 2) + '/' + copy(TLinha, pos('<dhRecbto>', TLinha) + Length('<dhRecbto>') + 5, 2) + '/' + copy(TLinha, pos('<dhRecbto>', TLinha) + Length('<dhRecbto>'), 4));
+                              end;
+
+                              if pos('<dhRecbto>', TLinha) > 0 then FatGerHREPNF.Value := (copy(TLinha, pos('<dhRecbto>', TLinha) + Length('<dhRecbto>') + 11, 8));
+
+                              if pos('infNFe versao="2.00" Id="', TLinha) > 0 then
+                              begin
+                                FatGerSEQNFE.Value := (copy(TLinha, pos('infNFe versao="2.00" Id="NFe', TLinha) + Length('infNFe versao="2.00" Id="NFe'), 44));
+                                chaven := (copy(TLinha, pos('infNFe versao="2.00" Id="NFe', TLinha) + Length('infNFe versao="2.00" Id="NFe'), 44));
+                              end;
+
+                              ReadLn(TArquivo, TLinha);
+
+                            until EOF(Tarquivo);
+
+                            CloseFile(TArquivo);
+                            movefile(pchar(CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + Chave + '.xml'), pchar(CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + chaveN + '.xml'));
+                            chave := chaven;
+                            FatGer.Post;
+                            fatGer.ApplyUpdates; //Tenta aplicar as alterações
+
+                            FatArq.Active := false;
+                            FatArq.Params[0].AsInteger := FatGerCodEmp.AsInteger;
+                            FatArq.Params[1].AsDateTime := FatGerDteGer.AsDateTime;
+                            FatArq.Params[2].AsInteger := FatGerNumGer.AsInteger;
+                            FatArq.Open;
+                            FatArq.Edit;
+                            FatArqFlgAtu.Value := 'F';
+                            TBlobField(FatArq.FieldByName('ArqNfe')).LoadFromFile(CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + chave + '.xml');
+
+                            FatArqNFETH.VALUE := 1;
+                            FatArq.Post;
+                            FatArq.ApplyUpdates;
+                            FatArq.Close;
+
+                            ////============================== Mandando E-mail Para o Cliente ==== ////
+
+                            ini := TIniFile.create(IniFile);
+                            try
+                              ehost := ini.ReadString('E-mail', 'host', '');
+                              eusuario := ini.ReadString('E-mail', 'usuario', '');
+                              esenha := ini.ReadString('E-mail', 'senha', '');
+                              eAutomatico := ini.ReadInteger('E-mail', 'automatico', 0);
+                              ehomologacao := ini.ReadInteger('WebService', 'Ambiente', 1);
+                              ePORta := ini.ReadInteger('E-mail', 'PortaSMTP', 25);
+                            finally
+                              ini.free;
+                            end;
+
+                            if eAutomatico = 1 then
+                            begin
+                              if ehomologacao = 1 then
+                                epara := 'fernanda@emerion.com.br'
+                              else
+                                ePara := FatgerEm1Cli.Value;
+
+                              sNumeroNF := copy(fNumZeros(IntToStr(FatGErNroNfs.Value), 9), 1, 3) + '.' +
+                                copy(fNumZeros(IntToStr(FatGerNroNfs.Value), 9), 4, 3) + '.' +
+                                copy(fNumZeros(IntToStr(FatGerNroNfs.Value), 9), 7, 3);
+                              eAssunto := 'NF-e: ' + sNumeroNF + ' ' + UpperCase(Trim(NomEmp));
+
+                              FindReplace('#PROTOCOLO#', eProtocolo, corpomail);
+                              FindReplace('#SERIE#', '1', corpomail);
+                              FindReplace('#EMITENTE#', trim(NomEmp), corpomail);
+                              FindReplace('#NUMERONOTA#', SNumeroNF, corpomail);
+
+                              eanexo := CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + chave + '.xml';
+                              ePDF := CaminhoPDF + '\' + chave + '.pdf';
+
+                              button1.Click;
+
+                              // Email Para a Transportadora
+                              if FatGERCODTRA.IsNull = false then
+                              begin
+                                quSql.Active := false;
+                                quSql.SQL.text := 'Select EMATRA from FINTRA where codtra = ' + QuotedStr(FatGERCODTRA.asstring);
+                                quSql.open;
+                                if fmManPri.ValidaEMail(pchar(quSql.FieldByName('EMATRA').AsString)) then
+                                begin
+                                  if ehomologacao = 1 then
+                                    epara := 'fernanda@emerion.com.br'
+                                  else
+                                    ePara := quSql.FieldByName('EMATRA').asstring;
+
+                                  sNumeroNF := copy(fNumZeros(IntToStr(FatGErNroNfs.Value), 9), 1, 3) + '.' +
+                                    copy(fNumZeros(IntToStr(FatGERNroNfs.Value), 9), 4, 3) + '.' +
+                                    copy(fNumZeros(IntToStr(FatGERNroNfs.Value), 9), 7, 3);
+                                  eAssunto := nomemp + ' NF-e: ' + sNumeroNF + ' ' + UpperCase(Trim(NomEmp));
+
+                                  FindReplace('#PROTOCOLO#', eProtocolo, corpomail);
+                                  FindReplace('#SERIE#', '1', corpomail);
+                                  FindReplace('#EMITENTE#', trim(NomEmp), corpomail);
+                                  FindReplace('#NUMERONOTA#', SNumeroNF, corpomail);
+
+                                  eanexo := CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + chave + '.xml';
+                                  button1.Click;
+                                end;
+                              end; // Email Para a Transportadora
+                            end; //mandando e-mail
+                            ////============================== Mandando E-mail Para o Cliente ==== ////
+
+
+                              ///////=========================================================
+                            //Danfe
+                            if (FatGerEnvNfe.AsString = 'Sim') or (FatGerEnvDPEC.AsString = 'Sim') then
+                            begin
+                              if fMsg('Confirma impressão da DANFE ?', 'O') then
+                              begin
+                                AssignFile(TDANFE, CaminhoLeitura + '\' + 'DANFE' + VNumNota + '.txt');
+                                Rewrite(TDANFE);
+                                WriteLn(TDANFE, CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + chaveN + '.xml');
+                                CloseFile(TDANFE);
+
+                                if (Trim(GNFeEnvia) = '') or (Trim(GNFeEnvia) = 'EXE') or (Trim(GNFeEnvia) = 'DEFAUT') then
+                                  Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe DANFE ' + vnumnota, SW_NORMAL)
+                                else
+                                  AbreNfe(PChar('DANFE'), pChar(vnumnota));
+
+
+                                if fMsg('DANFE impressa corretamente ?', 'O') then
+                                begin
+                                  FatGer.Edit;
+                                  FatGerFlgAtu.AsString := 'F';
+                                  FatGerImpNFe.AsString := 'Sim';
+
+                                  with FatGer do
+                                  begin
+                                    fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                                    try
+                                      ApplyUpdates; {Tenta aplicar as alterações};
+                                      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                                    except
+                                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                                      if FatGer.State <> dsBrowse then FatGer.CancelUpdates;
+                                      FatGer.Close;
+                                      FatGer.Open;
+                                      grFatGer.SetFocus;
+                                      raise;
+                                    end;
+
+                                    CommitUpdates; {sucesso!, limpa o cache...}
+
+                                  end;
+                                end;
+                              end; //if fMsg('Confirma impressão da DANFE ?','O') then
+                            end; //if FatGerEnvNfe.Value = 'Sim' then
+                            bAtualizar.Click;
+                            ////////=========================================================
+                          end; // else //if FileExists(CaminhoRetorno+'\'+VNumNota+' - NF-e- Retorno.xml') then
+
+                          if FileExists(CaminhoRetorno + '\LogErro-CP' + VNumNota + '.txt') then
+                          begin
+                            pn_erro.visible := true;
+                            pn_erro.BringToFront;
+                            memo_erro.Font.Color := clBlack;
+                            memo_erro.Lines.Clear;
+                            memo_erro.Lines.LoadFromFile(CaminhoRetorno + '\LogErro-CP' + VNumNota + '.txt');
+                            i := 1;
+                            repeat
+                              i := i + 1;
+                            until not FileExists(CaminhoRetorno + '\LogErro-' + VNumNota + '.EP' + inttostr(i));
+                            MoveFile(pchar(CaminhoRetorno + '\LogErro-CP' + VNumNota + '.txt'), pchar(CaminhoRetorno + '\LogErro-CP' + VNumNota + '.EP' + inttostr(i)));
+                          end
+                          else if FileExists(CaminhoRetorno + '\LogErro-' + VNumNota + '.txt') then
+                          begin
+                            pn_erro.visible := true;
+                            pn_erro.BringToFront;
+                            memo_erro.Font.Color := clBlack;
+                            memo_erro.Lines.Clear;
+                            memo_erro.Lines.LoadFromFile(CaminhoRetorno + '\LogErro-' + VNumNota + '.txt');
+                            i := 1;
+                            repeat
+                              i := i + 1;
+                            until not FileExists(CaminhoRetorno + '\LogErro-' + VNumNota + '.EP' + inttostr(i));
+                            MoveFile(pchar(CaminhoRetorno + '\LogErro-' + VNumNota + '.txt'), pchar(CaminhoRetorno + '\LogErro-' + VNumNota + '.EP' + inttostr(i)));
+                          end; //                                   else showmessage('//If FileExists');
+
+
+                          fmManPri.Enabled := True;
+                          fmManGr1_NFE.Enabled := True;
+                          pnMensag.Visible := False;
+                        end // Flagrej');
+                        else
+                        begin
+                          pn_erro.visible := true;
+                          pn_erro.BringToFront;
+                          memo_erro.Font.Color := clBlack;
+                          memo_erro.Lines.Clear;
+                          memo_erro.Lines.LoadFromFile(CaminhoRetorno + '\LogErro-' + VNumNota + '.txt');
+                          i := 1;
+                          repeat
+                            i := i + 1;
+                          until not FileExists(CaminhoRetorno + '\LogErro-' + VNumNota + '.EP' + inttostr(i));
+                          MoveFile(pchar(CaminhoRetorno + '\LogErro-' + VNumNota + '.txt'), pchar(CaminhoRetorno + '\LogErro-' + VNumNota + '.EP' + inttostr(i)));
+
+
+                          {fmManPri.Enabled := True;
+                          fmManGr1_NFE.Enabled := True;
+                          pnMensag.Visible := False;
+                          fmsgErro('Código da UF para emissão de NFe não informado no cadastro da empresa.', nil);}
+                        end;
+                        {end //                          if Id_FinPai > 0 then');
+                        else
+                        begin
+                          fmManPri.Enabled := True;
+                          fmManGr1_NFE.Enabled := True;
+                          pnMensag.Visible := False;
+                          fmsgErro('Código da UF para emissão de NFe não informado no cadastro da empresa.', nil);
+                        end; }//Removido... Dá muito erro e não tem utilizade
+                      end;
+                    finally
+                      fmManPri.Enabled := True;
+                      fmManGr1_NFE.Enabled := True;
+                      pnMensag.Visible := False;
+                    end;
+                  end; // else showmessage(';//  if FatGerId_EstSip.Value > 0 then');
+                end; // else showmessage(';//      if Id_FinPai > 0 then');
+              end; // else showmessage('; //   if Id_FinCie > 0 then');
+            end; // else showmessage(';//  if Id_EmpUfe > 0 then');
+          end; // else showmessage(';//              if Finalizar = S then');
+        end; // else showmessage('; //    if fMsg(Confirma envio para emissão da NFe ?,O) then');
+      end; // else showmessage(';//     if FatGerId_FatGer.Value > 0 then');
+    end; //else showmessage(';//  if FatGerId_FatGer.Value > 0 then');
+    fmManPri.Enabled := True;
+    fmManGr1_NFE.Enabled := True;
+    pnMensag.Visible := False;
+  end;
+  bAtualizar.Click;
+end;
+
+procedure TfmManGr1_NFE.ContDPOECClick(Sender: TObject);
+begin
+  inherited;
+  //Envio Contigencia DEPC
+  LimpaProtocoloDPEC;
+  EnvioNFe(4);
+end;
+
+procedure TfmManGr1_NFE.DPECSEFAZClick(Sender: TObject);
+var
+  Vnumnota, IniFile, CaminhoLeitura, CaminhoRetorno, chaveN: string;
+  ini: Tinifile;
+  TDPECN: TextFile;
+  NroReg: integer;
+  DscPro, sNumeroNF, NomEmp: string;
+  strNfe: string;
+begin
+  inherited;
+
+  VNumNota := Trim(FatGernroNfs.AsString);
+
+  if FatGerENVDPEC.AsString = 'S' then
+  begin
+    if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
+    begin
+      if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO then
+      begin
+        Abort;
+      end;
+    end;
+
+    IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
+
+    Ini := TIniFile.Create(IniFile);
+    try
+      CaminhoLeitura := Ini.ReadString('Geral', 'PathLeitura', '');
+      CaminhoRetorno := Ini.ReadString('Geral', 'PathRetorno', '');
+    finally
+      Ini.Free;
+    end;
+
+    if FatGerCodEmp.Value > 0 then
+    begin
+
+      if fMsg('Realemnte deseja enviar NFe-DPEC para Sefaz?', 'O') then
+      begin
+        AssignFile(TDPECN, CaminhoLeitura + '\' + 'DEPCSEFAZ' + VNumNota + '.txt');
+        Rewrite(TDPECN);
+        WriteLn(TDPECN, CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + RecuperaChaveEnviando.Chave + '.xml');
+        CloseFile(TDPECN);
+
+        LimpaDPECSEFAZ;
+        Executa(ExtractFilePath(Application.exename) + 'NFeEmerion2.exe DPECSEFAZ ' + vnumnota, SW_NORMAL);
+
+        strNfe := '';
+        AssignFile(TDPECN, CaminhoLeitura + '\' + 'DEPCSEFAZ' + VNumNota + '.txt');
+        Reset(TDPECN);
+        readln(TDPECN, strNfe);
+        CloseFile(TDPECN);
+
+
+        if ConfirmaEnvioDPECSEFAZ = 'S' then
+        begin
+
+
+          FatArq.Active := false;
+          FatArq.Params[0].AsInteger := FatGerCodEmp.AsInteger;
+          FatArq.Params[1].AsDateTime := FatGerDteGer.AsDateTime;
+          FatArq.Params[2].AsInteger := FatGerNumGer.AsInteger;
+          FatArq.Open;
+          FatArq.Edit;
+          FatArqFlgAtu.Value := 'F';
+          TBlobField(FatArq.FieldByName('ArqNfe')).LoadFromFile(CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + RecuperaChaveEnviando.Chave + '.xml');
+
+          FatArqNFETH.AsInteger := 1;
+          FatArq.Post;
+          FatArq.ApplyUpdates;
+          FatArq.Close;
+
+          FatGer.Edit;
+          FatGerFLGATU.AsString := 'F';
+          FatGerUSUNFE.AsInteger := GUsu_Id;
+          FatGerENVNFE.AsString := 'Sim';
+          FatGerSeqNfe.AsString := RecuperaChaveEnviando.Chave;
+
+          with FatGer do
+          begin
+
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+            try
+
+              ApplyUpdates; {Tenta aplicar as alterações};
+
+              fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+            except
+
+              fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+              if FatGer.State <> dsBrowse then FatGer.CancelUpdates;
+
+              bAtualizar.Click;
+
+              grFatGer.SetFocus;
+
+              raise;
+
+            end;
+
+            CommitUpdates; {sucesso!, limpa o cache...}
+
+          end;
+          bAtualizar.Click;
+        end
+        else
+        begin
+          Messagebox(Handle, 'Houve falha no envio do DPEC para o SeFaz falhou. Tente novamente.', 'DPEC -> SeFaz', mb_ok);
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManGr1_NFE.grFatGerDrawDataCell(Sender: TObject;
+  const Rect: TRect; Field: TField; State: TGridDrawState);
+begin
+  inherited;
+
+  if FatGerENVDPEC.AsString = 'S' then
+  begin
+    if gdSelected in State then
+    begin
+      grFatGer.Canvas.Brush.Color := clMaroon;
+      grFatGer.Canvas.FillRect(Rect);
+      grFatGer.DefaultDrawDataCell(Rect, Field, State);
+    end
+    else
+    begin
+      grFatGer.Canvas.Brush.Color := clRed;
+      grFatGer.Canvas.Font.Color := clBlack;
+      grFatGer.Canvas.FillRect(Rect);
+      grFatGer.DefaultDrawDataCell(Rect, Field, State);
+    end;
+  end;
+end;
+
+procedure TfmManGr1_NFE.ImprimeDPECClick(Sender: TObject);
+var
+  Vnumnota, IniFile, CaminhoLeitura, CaminhoRetorno, chaveN: string;
+  ini: Tinifile;
+  TDAnfe: TextFile;
+  NroReg: integer;
+  DscPro, sNumeroNF, NomEmp: string;
+begin
+  inherited;
+
+  if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
+  begin
+    if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO then
+    begin
+      Abort;
+    end;
+  end;
+
+  IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
+
+  Ini := TIniFile.Create(IniFile);
+  try
+    CaminhoLeitura := Ini.ReadString('Geral', 'PathLeitura', '');
+    CaminhoRetorno := Ini.ReadString('Geral', 'PathRetorno', '');
+  finally
+    Ini.Free;
+  end;
+
+  if FatGerCodEmp.Value > 0 then
+  begin
+    CodEmp := FatGerCodEmp.AsInteger;
+    DteGer := FatGerDteGer.AsDateTime;
+    NumGer := FatGerNumGer.AsInteger;
+
+    vnumnota := FatGERNRONFS.AsString;
+    chaven := FatGERSEQNFE.AsString;
+
+    {with FatGer, SQL do
+    begin
+      Close;
+      Text := sBase +
+        ' and FatGer.CodEmp = ' + QuotedStr(IntToStr(CodEmp)) +
+        ' and FatGer.DteGer = ' + QuotedStr(fDateToSQL(DteGer)) +
+        ' and FatGer.NumGer = ' + QuotedStr(IntToStr(NumGer));
+      Open;
+      vnumnota := FatGERNRONFS.AsString;
+      chaven := FatGERSEQNFE.AsString;
+
+    end;}
+
+    if FatGerCodEmp.Value > 0 then
+    begin
+      if fMsg('Confirma impressão da DANFE ?', 'O') then
+      begin
+        AssignFile(TDANFE, CaminhoLeitura + '\' + 'DANFE' + VNumNota + '.txt');
+        Rewrite(TDANFE);
+        WriteLn(TDANFE, CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + chaveN + '.xml');
+
+        if FatGerProtDPEC.AsString <> '' then
+        begin
+          WriteLn(TDANFE, Trim(FatGerProtDPEC.AsString));
+        end;
+
+        CloseFile(TDANFE);
+
+        if (Trim(GNFeEnvia) = '') or (Trim(GNFeEnvia) = 'EXE') or (Trim(GNFeEnvia) = 'DEFAUT') then
+          Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe DANFE ' + vnumnota, SW_NORMAL)
+        else
+          AbreNfe(PChar('DANFE'), pChar(vnumnota));
+
+        if FatGerImpNFe.Value <> 'Sim' then
+        begin
+
+          (*if fMsg('DANFE impressa corretamente ?', 'O') then
+          begin
+
+            FatGer.Edit;
+
+            FatGerFlgAtu.AsString := 'F';
+            FatGerImpNFe.AsString := 'Sim';
+
+            with FatGer do
+            begin
+
+              fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+              try
+
+                ApplyUpdates; {Tenta aplicar as alterações};
+
+                fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+              except
+
+                fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+                if FatGer.State <> dsBrowse then FatGer.CancelUpdates;
+
+                FatGer.Close;
+                FatGer.Open;
+
+                grFatGer.SetFocus;
+
+                raise;
+
+              end;
+
+              CommitUpdates; {sucesso!, limpa o cache...}
+
+            end;
+          end;*)
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManGr1_NFE.FatGerAfterScroll(DataSet: TDataSet);
+begin
+  inherited;
+
+  bEnviar.Enabled := FatGerENVDPEC.AsString <> 'S';
+  AlteraNFe.Enabled := FatGerENVDPEC.AsString <> 'S';
+  ContDPOEC.Enabled := FatGerENVDPEC.AsString <> 'S';
+  DPECSEFAZ.Enabled := FatGerENVDPEC.AsString = 'S';
+  ImprimeDPEC.Enabled := FatGerENVDPEC.AsString = 'S';
+
+end;
+
+end.
+

@@ -1,0 +1,2470 @@
+unit ManRom;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Fpadrao, Grids, Wwdbigrd, Wwdbgrid, hGrid, dxExEdtr, dxEdLib, dxEditor,
+  StdCtrls, ExtCtrls, Buttons, dxCntner, Menus, Db, Wwdatsrc, DBTables,
+  Wwquery, ImgList, dxDBELib, ppDB, ppDBPipe, ppBands, ppClass, ppStrtch,
+  ppMemo, ppCtrls, ppVar, ppPrnabl, ppCache, ppComm, ppRelatv, ppProd, ppReport,
+  dxColorCurrencyEdit, dxColorEdit, dxColorDateEdit, dxDBColorCurrencyEdit,
+  dxDBColorEdit, dxfProgressBar;
+
+type
+  TfmManRom = class(TfmPadrao)
+    DsNfs: TwwDataSource;
+    PaintBox: TPaintBox;
+    Label16: TLabel;
+    Label17: TLabel;
+    EdPsqDteNfs1: TdxColorDateEdit;
+    EdPsqSeqNfs: TdxColorEdit;
+    Label18: TLabel;
+    EdPsqDteNfs2: TdxColorDateEdit;
+    Label25: TLabel;
+    EdPsqTotGer1: TdxColorCurrencyEdit;
+    Label19: TLabel;
+    EdPsqTotGer2: TdxColorCurrencyEdit;
+    Label26: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    EdPsqCodPfa: TdxColorEdit;
+    EdPsqCodFor: TdxColorEdit;
+    EdPsqCodEmp: TdxColorEdit;
+    bPsqEmp: TSpeedButton;
+    bPsqFor: TSpeedButton;
+    bPsqPfa: TSpeedButton;
+    EdPsqNomPfa: TdxColorEdit;
+    EdPsqNomFor: TdxColorEdit;
+    EdPsqApeEmp: TdxColorEdit;
+    bSelecionar: TBitBtn;
+    Label10: TLabel;
+    Bevel1: TBevel;
+    Label2: TLabel;
+    Bevel2: TBevel;
+    grNfs: ThGrid;
+    Label3: TLabel;
+    Bevel3: TBevel;
+    quSql: TwwQuery;
+    bExcluir: TSpeedButton;
+    bEditar: TSpeedButton;
+    bIncluir: TSpeedButton;
+    bImprimir: TSpeedButton;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label12: TLabel;
+    pnHreNfs: TPanel;
+    CmpNf2: TwwQuery;
+    pnSitNfs: TPanel;
+    rgStatus: TRadioGroup;
+    grNf2: ThGrid;
+    DsNf2: TwwDataSource;
+    dbRes: TdxDBGraphicEdit;
+    dxDBGraphicEdit1: TdxDBGraphicEdit;
+    Label11: TLabel;
+    EdPsqNroNfs: TdxColorEdit;
+    CmpNfsCODEMP: TIntegerField;
+    CmpNfsDTENFS: TDateTimeField;
+    CmpNfsSEQNFS: TIntegerField;
+    CmpNfsDTEFAT: TDateTimeField;
+    CmpNfsHREFAT: TStringField;
+    CmpNfsUFENFS: TStringField;
+    CmpNfsCODPFA: TStringField;
+    CmpNfsTIPPFA: TStringField;
+    CmpNfsMODPFA: TStringField;
+    CmpNfsCODFOR: TIntegerField;
+    CmpNfsPERPIS: TFloatField;
+    CmpNfsPERCOF: TFloatField;
+    CmpNfsCODFIL: TIntegerField;
+    CmpNfsQTDNFS: TIntegerField;
+    CmpNfsNRONFS: TIntegerField;
+    CmpNfsCGCFOR: TStringField;
+    CmpNfsINSFOR: TStringField;
+    CmpNfsCODCF1: TStringField;
+    CmpNfsCODCF2: TStringField;
+    CmpNfsFRTNFS: TStringField;
+    CmpNfsFLGENT: TStringField;
+    CmpNfsFLGSAI: TStringField;
+    CmpNfsDESNAT: TStringField;
+    CmpNfsINSSUB: TStringField;
+    CmpNfsTIPFRT: TStringField;
+    CmpNfsMARNFS: TStringField;
+    CmpNfsNUMNFS: TStringField;
+    CmpNfsESPNFS: TStringField;
+    CmpNfsNOMTRA: TStringField;
+    CmpNfsCGCTRA: TStringField;
+    CmpNfsINSTRA: TStringField;
+    CmpNfsCEPTRA: TStringField;
+    CmpNfsTENTRA: TStringField;
+    CmpNfsENDTRA: TStringField;
+    CmpNfsREFTRA: TStringField;
+    CmpNfsNUMTRA: TStringField;
+    CmpNfsBAITRA: TStringField;
+    CmpNfsCIDTRA: TStringField;
+    CmpNfsUFETRA: TStringField;
+    CmpNfsPLCTRA: TStringField;
+    CmpNfsPRTTRA: TStringField;
+    CmpNfsFONTRA: TStringField;
+    CmpNfsUFEPLC: TStringField;
+    CmpNfsCEPFOR: TStringField;
+    CmpNfsTENFOR: TStringField;
+    CmpNfsENDFOR: TStringField;
+    CmpNfsREFFOR: TStringField;
+    CmpNfsNUMFOR: TStringField;
+    CmpNfsBAIFOR: TStringField;
+    CmpNfsCIDFOR: TStringField;
+    CmpNfsUFEFOR: TStringField;
+    CmpNfsTXFIPI: TStringField;
+    CmpNfsTXFICM: TStringField;
+    CmpNfsOBSNFS: TStringField;
+    CmpNfsSEQITE: TIntegerField;
+    CmpNfsQTINFS: TIntegerField;
+    CmpNfsLINNFS: TIntegerField;
+    CmpNfsQTDVOL: TIntegerField;
+    CmpNfsALTVOL: TIntegerField;
+    CmpNfsINFLIQ: TFloatField;
+    CmpNfsTOTLIQ: TFloatField;
+    CmpNfsINFBRT: TFloatField;
+    CmpNfsTOTBRT: TFloatField;
+    CmpNfsBASIPI: TFloatField;
+    CmpNfsTOTIPI: TFloatField;
+    CmpNfsBASICM: TFloatField;
+    CmpNfsTOTICM: TFloatField;
+    CmpNfsBASSUB: TFloatField;
+    CmpNfsTOTSUB: TFloatField;
+    CmpNfsTOTITE: TFloatField;
+    CmpNfsTOTGER: TFloatField;
+    CmpNfsTOTPIS: TFloatField;
+    CmpNfsTOTCOF: TFloatField;
+    CmpNfsTOTFRT: TFloatField;
+    CmpNfsTOTSEG: TFloatField;
+    CmpNfsTOTDES: TFloatField;
+    CmpNfsICMFRT: TFloatField;
+    CmpNfsBSICMF: TFloatField;
+    CmpNfsBAICMF: TFloatField;
+    CmpNfsTOICMF: TFloatField;
+    CmpNfsICMSEG: TFloatField;
+    CmpNfsBSICMS: TFloatField;
+    CmpNfsBAICMS: TFloatField;
+    CmpNfsTOICMS: TFloatField;
+    CmpNfsICMDES: TFloatField;
+    CmpNfsBSICMD: TFloatField;
+    CmpNfsBAICMD: TFloatField;
+    CmpNfsTOICMD: TFloatField;
+    CmpNfsIPIFRT: TFloatField;
+    CmpNfsBSIPIF: TFloatField;
+    CmpNfsBAIPIF: TFloatField;
+    CmpNfsTOIPIF: TFloatField;
+    CmpNfsIPISEG: TFloatField;
+    CmpNfsBSIPIS: TFloatField;
+    CmpNfsBAIPIS: TFloatField;
+    CmpNfsTOIPIS: TFloatField;
+    CmpNfsIPIDES: TFloatField;
+    CmpNfsBSIPID: TFloatField;
+    CmpNfsBAIPID: TFloatField;
+    CmpNfsTOIPID: TFloatField;
+    CmpNfsBASIP1: TFloatField;
+    CmpNfsTOTIP1: TFloatField;
+    CmpNfsBASIC1: TFloatField;
+    CmpNfsTOTIC1: TFloatField;
+    CmpNfsBASSU1: TFloatField;
+    CmpNfsTOTSU1: TFloatField;
+    CmpNfsTOTIT1: TFloatField;
+    CmpNfsTOTGE1: TFloatField;
+    CmpNfsCODUSU: TIntegerField;
+    CmpNfsHRCNFS: TStringField;
+    CmpNfsDTCNFS: TDateTimeField;
+    CmpNfsUSCNFS: TIntegerField;
+    CmpNfsOBCNFS: TStringField;
+    CmpNfsATUEST: TStringField;
+    CmpNfsLANEST: TStringField;
+    CmpNfsINTFIN: TStringField;
+    CmpNfsCONSUM: TStringField;
+    CmpNfsFLGCTB: TStringField;
+    CmpNfsCODIPI: TStringField;
+    CmpNfsTIPIPI: TStringField;
+    CmpNfsTRBIPI: TStringField;
+    CmpNfsREDIPI: TFloatField;
+    CmpNfsBSCIPI: TFloatField;
+    CmpNfsCODICM: TStringField;
+    CmpNfsTIPICM: TStringField;
+    CmpNfsTRBICM: TStringField;
+    CmpNfsREDICM: TFloatField;
+    CmpNfsBSCICM: TFloatField;
+    CmpNfsINCREV: TFloatField;
+    CmpNfsINCFIN: TFloatField;
+    CmpNfsNROCOL: TStringField;
+    CmpNfsSEQOPE: TStringField;
+    CmpNfsSITNFS: TStringField;
+    CmpNfsFLGNFS: TStringField;
+    CmpNfsFLGATU: TStringField;
+    CmpNfsNOMFOR: TStringField;
+    CmpNfsAPEFOR: TStringField;
+    CmpNfs: TwwQuery;
+    UpNfs: TUpdateSQL;
+    CmpNf2DESNF2: TStringField;
+    CmpNf2QTPNF2: TFloatField;
+    CmpNf2QTDNF2: TFloatField;
+    CmpNf2VLUNF2: TFloatField;
+    CmpNf2IPINF2: TFloatField;
+    CmpNf2ICMNF2: TFloatField;
+    CmpNf2TOTITE: TFloatField;
+    p1Report: TppReport;
+    ppHeaderBand3: TppHeaderBand;
+    ppApeEmp: TppLabel;
+    ppNomEmp: TppLabel;
+    ppEndEmp: TppLabel;
+    ppRefEmp: TppLabel;
+    ppTitulo: TppLabel;
+    ppSystemVariable2: TppSystemVariable;
+    ppLabel1: TppLabel;
+    ppLabel6: TppLabel;
+    ppLabel7: TppLabel;
+    ppLabel9: TppLabel;
+    ppImagem: TppImage;
+    ppLabel2: TppLabel;
+    ppLabel4: TppLabel;
+    ppLabel8: TppLabel;
+    ppLabel25: TppLabel;
+    ppLabel26: TppLabel;
+    ppLabel27: TppLabel;
+    ppLabel28: TppLabel;
+    ppLabel29: TppLabel;
+    ppLabel30: TppLabel;
+    ppLabel31: TppLabel;
+    ppLabel32: TppLabel;
+    ppLabel33: TppLabel;
+    ppLabel63: TppLabel;
+    ppSystemVariable1: TppSystemVariable;
+    ppLabel11: TppLabel;
+    ppCgcEmp: TppLabel;
+    ppLabel37: TppLabel;
+    ppInsEmp: TppLabel;
+    ppLabel45: TppLabel;
+    ppLabel46: TppLabel;
+    ppLabel10: TppLabel;
+    ppLine1: TppLine;
+    ppLabel12: TppLabel;
+    ppLine3: TppLine;
+    ppLine4: TppLine;
+    ppLabel13: TppLabel;
+    ppLabel14: TppLabel;
+    ppLine5: TppLine;
+    ppLine2: TppLine;
+    ppLabel36: TppLabel;
+    ppLabel38: TppLabel;
+    ppLine8: TppLine;
+    ppLabel15: TppLabel;
+    ppLine6: TppLine;
+    p1CodFor: TppLabel;
+    p1NomFor: TppLabel;
+    p1EndFor: TppLabel;
+    p1BaiFor: TppLabel;
+    p1FonFor: TppLabel;
+    p1NomUsu: TppLabel;
+    p1FaxFor: TppLabel;
+    p1CidFor: TppLabel;
+    p1SigUfe: TppLabel;
+    dbReport: TppDetailBand;
+    ppQtpNf2: TppDBText;
+    ppCodUnd: TppDBText;
+    ppVlqNf2: TppDBText;
+    ppTotIte: TppDBText;
+    p1Memo: TppMemo;
+    ppIcmNf2: TppDBText;
+    ppIpiNf2: TppDBText;
+    ppSummaryBand1: TppSummaryBand;
+    ppLine7: TppLine;
+    ppLabel35: TppLabel;
+    ppGroup1: TppGroup;
+    ppGroupHeaderBand1: TppGroupHeaderBand;
+    ppGroupFooterBand1: TppGroupFooterBand;
+    ppLabel16: TppLabel;
+    p1TotIte: TppLabel;
+    ppLabel65: TppLabel;
+    p1TotGer: TppLabel;
+    DsReport: TppDBPipeline;
+    CmpNfsFONFOR: TStringField;
+    CmpNfsLOGUSU: TStringField;
+    CmpNfsFAXFOR: TStringField;
+    pnDadosNota: TPanel;
+    Label15: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    EdCodCfo: TdxDBColorEdit;
+    EdUfeFat: TdxDBColorEdit;
+    EdFlgSin: TdxDBCheckEdit;
+    pnImpostos: TPanel;
+    Label14: TLabel;
+    EdIcmNf2: TdxDBColorCurrencyEdit;
+    CmpNfsCODTIP: TIntegerField;
+    CmpNfsFLGENV: TStringField;
+    UpNf2: TUpdateSQL;
+    CmpNfsFLGSIN: TStringField;
+    CmpNfsDESREG: TStringField;
+    CmpNfsOB1NFS: TStringField;
+    CmpNfsOB2NFS: TStringField;
+    CmpNfsOB3NFS: TStringField;
+    CmpNfsOB4NFS: TStringField;
+    CmpNfsOB5NFS: TStringField;
+    CmpNfsOB6NFS: TStringField;
+    CmpNfsOB7NFS: TStringField;
+    CmpNfsOB8NFS: TStringField;
+    CmpNfsFLGIMP: TStringField;
+    CmpNfsNOMENT: TStringField;
+    bFinalizar: TSpeedButton;
+    CmpNfsDTFNFS: TDateTimeField;
+    CmpNfsHRFNFS: TStringField;
+    CmpNfsUSFNFS: TIntegerField;
+    CmpNf2QTNNF2: TFloatField;
+    pnCodIte: TPanel;
+    CmpNf2CODEMP: TIntegerField;
+    CmpNf2DTENFS: TDateTimeField;
+    CmpNf2SEQNFS: TIntegerField;
+    CmpNf2SEQNF2: TIntegerField;
+    CmpNf2CODCLP: TStringField;
+    CmpNf2CODGRU: TStringField;
+    CmpNf2CODSUB: TStringField;
+    CmpNf2CODPRO: TStringField;
+    CmpNf2NRONF2: TIntegerField;
+    CmpNf2OBSNF2: TStringField;
+    Label1: TLabel;
+    EdIpiNf2: TdxDBColorCurrencyEdit;
+    CmpNfsOBFNFS: TStringField;
+    CmpNfsCODTFO: TIntegerField;
+    SaveDialog: TSaveDialog;
+    PopupMenu1: TPopupMenu;
+    mmGerar: TMenuItem;
+    pnSequenc: TPanel;
+    lbSequenc: TLabel;
+    ProgressBar: TdxfProgressBar;
+    CmpNfsFLGNFE: TStringField;
+    CmpNfsCEFFOR: TStringField;
+    CmpNfsTEFFOR: TStringField;
+    CmpNfsENFFOR: TStringField;
+    CmpNfsRFFFOR: TStringField;
+    CmpNfsNRFFOR: TStringField;
+    CmpNfsBAFFOR: TStringField;
+    CmpNfsCIFFOR: TStringField;
+    CmpNfsUFFFOR: TStringField;
+    CmpNfsID_FINUFF: TIntegerField;
+    CmpNfsID_FINCIF: TIntegerField;
+    CmpNfsID_FINUFE: TIntegerField;
+    CmpNfsID_FINCIE: TIntegerField;
+    CmpNfsCODTRA: TIntegerField;
+    CmpNfsID_TRAUFE: TIntegerField;
+    CmpNfsID_TRACIE: TIntegerField;
+    CmpNfsCGEFOR: TStringField;
+    CmpNfsINEFOR: TStringField;
+    CmpNfsID_ESTSIP: TIntegerField;
+    CmpNfsID_CMPNFS: TIntegerField;
+    CmpNfsTRBPIS: TStringField;
+    CmpNfsNFEPIS: TStringField;
+    CmpNfsTRBCOF: TStringField;
+    CmpNfsNFECOF: TStringField;
+    CmpNfsENVNFE: TStringField;
+    CmpNfsSEQNFE: TStringField;
+    CmpNfsDTENFE: TDateTimeField;
+    CmpNfsRECNFE: TStringField;
+    CmpNfsPRONFE: TStringField;
+    CmpNfsLOTNFE: TIntegerField;
+    CmpNfsDTEPNF: TDateTimeField;
+    CmpNfsHREPNF: TStringField;
+    CmpNfsDOPNFE: TDateTimeField;
+    CmpNfsHRENFE: TStringField;
+    CmpNfsUSUNFE: TIntegerField;
+    CmpNfsIMPNFE: TStringField;
+    CmpNfsRETNFE: TStringField;
+    CmpNfsDTECNE: TDateTimeField;
+    CmpNfsHRECNE: TStringField;
+    CmpNfsARQNFE: TBlobField;
+    CmpNfsDTCNFE: TDateTimeField;
+    CmpNfsHRCNFE: TStringField;
+    CmpNfsPRCNFE: TStringField;
+    CmpNfsNROPDI: TStringField;
+    CmpNfsDTEPDI: TDateTimeField;
+    CmpNfsLOCPDI: TStringField;
+    CmpNfsUFEPDI: TStringField;
+    CmpNfsDTEADU: TDateTimeField;
+    CmpNfsEXPPDI: TStringField;
+    CmpNfsFLGUSA: TStringField;
+    CmpNfsFLGEMI: TStringField;
+    CmpNfsNFETH: TIntegerField;
+    CmpNfsDTECAN: TDateTimeField;
+    CmpNfsNFETHCANC: TIntegerField;
+    CmpNfsARQNFECANC: TBlobField;
+    CmpNfsHRECAN: TStringField;
+    CmpNfsUSUCAN: TIntegerField;
+    CmpNfsQTDENT: TIntegerField;
+    CmpNfsDTECOM: TDateTimeField;
+    CmpNfsHRECOM: TStringField;
+    CmpNfsSEQCOM: TStringField;
+    CmpNfsNFSCOM: TIntegerField;
+    CmpNfsUFECOM: TStringField;
+    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure bPsqForClick(Sender: TObject);
+    procedure bPsqPfaClick(Sender: TObject);
+    procedure bPsqEmpClick(Sender: TObject);
+    procedure EdPsqSeqNfsExit(Sender: TObject);
+    procedure bSelecionarClick(Sender: TObject);
+    procedure EdPsqCodEmpExit(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdPsqCodEmpKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdPsqCodForKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdPsqCodPfaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure PaintBoxPaint(Sender: TObject);
+    procedure EdPsqSeqNfsKeyPress(Sender: TObject; var Key: Char);
+    procedure EdPsqCodPfaExit(Sender: TObject);
+    procedure bEditarClick(Sender: TObject);
+    procedure bIncluirClick(Sender: TObject);
+    procedure bExcluirClick(Sender: TObject);
+    procedure bImprimirClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure EdPsqNroNfsExit(Sender: TObject);
+    procedure ppHeaderBand3BeforePrint(Sender: TObject);
+    procedure dbReportBeforePrint(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure EdPsqCodForExit(Sender: TObject);
+    procedure pnDadosNotaExit(Sender: TObject);
+    procedure pnImpostosExit(Sender: TObject);
+    procedure grNfsKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure grNf2KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DsNfsDataChange(Sender: TObject; Field: TField);
+    procedure bFinalizarClick(Sender: TObject);
+    procedure DsNf2DataChange(Sender: TObject; Field: TField);
+    procedure ppGroupFooterBand1BeforePrint(Sender: TObject);
+    procedure mmGerarClick(Sender: TObject);
+  private
+    {Private declarations}
+    psaida: string;
+    Permissao: string;
+  public
+    {Public declarations}
+    DteNfs: TDateTime;
+    CodEmp, SeqNfs, SeqNf2: integer;
+    sBase, sFiltro, sOrdem: string;
+  end;
+
+var
+  fmManRom: TfmManRom;
+
+implementation
+
+uses dxDemoUtils, Bbgeral, Bbacesso, Bbfuncao, Bbmensag, ManGDB, PsqEmp,
+  PsqPfa, ManPri, AuxPsq, ManRo1, ManCnf, AuxIni, Fpreview, ManFro,
+  PsqCro, PsqFro, UNTObsRMN;
+
+{$R *.DFM}
+
+procedure TfmManRom.FormCreate(Sender: TObject);
+begin
+  inherited;
+
+  EdPsqDteNfs1.Date := Date;
+  EdPsqDteNfs2.Date := Date;
+
+  CmpNfs.Close;
+  CmpNfs.Params[0].AsDateTime := Date;
+  CmpNfs.Open;
+
+  psaida := 'Nao';
+
+  sBase := ' Select CmpNfs.*,' +
+    '        FinFor.NomFor,' +
+    '        GerUsu.LogUsu,' +
+    '        TextoOcor(''' + '(' + ''',FinFor.PrfFor,''' + ')' + ''',''' + ' ' + ''',FinFor.FaxFor,''' + '' + ''',''' + '' + ''') as FaxFor,' +
+    '        TextoOcor(''' + '(' + ''',FinFor.PrtFor,''' + ')' + ''',''' + ' ' + ''',FinFor.FonFor,''' + '' + ''',''' + '' + ''') as FonFor,' +
+    '        TextoOcor(IntStrZeros(CmpNfs.CodFor,5),''' + '-' + ''',FinFor.ApeFor,''' + '' + ''',''' + '' + ''',''' + '' + ''',''' + '' + ''') as ApeFor' +
+    ' From CmpNfs LEFT JOIN FinFor ON (CmpNfs.CodFor = FinFor.CodFor)' +
+    '             LEFT JOIN GerUsu ON (CmpNfs.CodUsu = GerUsu.CodUsu)';
+
+end;
+
+procedure TfmManRom.bSelecionarClick(Sender: TObject);
+begin
+
+  ActiveControl := nil;
+
+  if GFlgAce <> 'Sim' then
+  begin
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select FLGDEL,SEQIMP from GerPar';
+      Open;
+
+      if Trim(FieldbyName('FLGDEL').AsString) = '*' then
+      begin
+
+        GFlgAce := 'Sim';
+
+        if FieldbyName('SEQIMP').AsInteger > 0 then
+          GEmpLog := FieldbyName('SEQIMP').AsInteger;
+
+      end
+      else
+      begin
+
+        GEmpLog := 0;
+        GFlgAce := 'Nao';
+
+      end;
+    end;
+  end;
+
+  sFiltro := '';
+
+  sOrdem := ' Order by CmpNfs.DteNfs,CmpNfs.SeqNfs';
+
+  case rgStatus.Itemindex of
+    0: sFiltro := ' Where CmpNfs.SitNfs = ' + QuotedStr('Nao Concluido');
+    1: sFiltro := ' Where CmpNfs.SitNfs = ' + QuotedStr('Processo de Alteracao');
+    2: sFiltro := ' Where CmpNfs.SitNfs = ' + QuotedStr('Aguardando Emissao de Nota Fiscal');
+    3: sFiltro := ' Where CmpNfs.SitNfs = ' + QuotedStr('Concluido');
+    4: sFiltro := ' Where CmpNfs.SitNfs = ' + QuotedStr('Cancelado');
+    5: sFiltro := ' Where CmpNfs.SitNfs = ' + QuotedStr('Recebido');
+    6: sFiltro := ' Where CmpNfs.SitNfs = ' + QuotedStr('Recebido Parcialmente');
+    7: sFiltro := ' Where CmpNfs.SitNfs = ' + QuotedStr('Saldo Nao Atendido');
+  end;
+
+  if Trim(EdPsqSeqNfs.Text) <> '' then
+  begin
+
+    if pos('Where', sFiltro) > 0 then
+      sFiltro := sFiltro + ' and CmpNfs.SeqNfs = ' + QuotedStr(EdPsqSeqNfs.Text)
+    else
+      sFiltro := ' Where CmpNfs.SeqNfs = ' + QuotedStr(EdPsqSeqNfs.Text);
+
+  end;
+
+  if Trim(EdPsqNroNfs.Text) <> '' then
+  begin
+
+    if pos('Where', sFiltro) > 0 then
+      sFiltro := sFiltro + ' and CmpNfs.NroNfs = ' + QuotedStr(EdPsqNroNfs.Text)
+    else
+      sFiltro := ' Where CmpNfs.NroNfs = ' + QuotedStr(EdPsqNroNfs.Text);
+
+  end;
+
+  if Trim(EdPsqCodEmp.Text) <> '' then
+  begin
+
+    if pos('Where', sFiltro) > 0 then
+      sFiltro := sFiltro + ' and CmpNfs.CodEmp = ' + QuotedStr(EdPsqCodEmp.Text)
+    else
+      sFiltro := ' Where CmpNfs.CodEmp = ' + QuotedStr(EdPsqCodEmp.Text);
+
+  end;
+
+  if Trim(EdPsqCodFor.Text) <> '' then
+  begin
+
+    if pos('Where', sFiltro) > 0 then
+      sFiltro := sFiltro + ' and CmpNfs.CodFor = ' + QuotedStr(EdPsqCodFor.Text)
+    else
+      sFiltro := ' Where CmpNfs.CodFor = ' + QuotedStr(EdPsqCodFor.Text);
+
+  end;
+
+  if Trim(EdPsqCodPfa.Text) <> '' then
+  begin
+
+    if pos('Where', sFiltro) > 0 then
+      sFiltro := sFiltro + ' and CmpNfs.CodPfa = ' + QuotedStr(EdPsqCodPfa.Text)
+    else
+      sFiltro := ' Where CmpNfs.CodPfa = ' + QuotedStr(EdPsqCodPfa.Text);
+
+  end;
+
+  if Trim(fLimpaStr(EdPsqDteNfs1.Text)) <> '' then
+  begin
+
+    if pos('Where', sFiltro) > 0 then
+      sFiltro := sFiltro + ' and CmpNfs.DteNfs >= ' + QuotedStr(fDateToSQL(EdPsqDteNfs1.Date))
+    else
+      sFiltro := ' Where CmpNfs.DteNfs >= ' + QuotedStr(fDateToSQL(EdPsqDteNfs1.Date));
+
+  end;
+
+  if Trim(fLimpaStr(EdPsqDteNfs2.Text)) <> '' then
+  begin
+
+    if pos('Where', sFiltro) > 0 then
+      sFiltro := sFiltro + ' and CmpNfs.DteNfs <= ' + QuotedStr(fDateToSQL(EdPsqDteNfs2.Date))
+    else
+      sFiltro := ' Where CmpNfs.DteNfs <= ' + QuotedStr(fDateToSQL(EdPsqDteNfs2.Date));
+
+  end;
+
+  if EdPsqTotGer1.Value > 0 then
+  begin
+
+    if pos('Where', sFiltro) > 0 then
+      sFiltro := sFiltro + ' and CmpNfs.TotGer >= ' + QuotedStr(fConvertValor(EdPsqTotGer1.Text))
+    else
+      sFiltro := ' Where CmpNfs.TotGer >= ' + QuotedStr(fConvertValor(EdPsqTotGer1.Text));
+
+  end;
+
+  if EdPsqTotGer2.Value > 0 then
+  begin
+
+    if pos('Where', sFiltro) > 0 then
+      sFiltro := sFiltro + ' and CmpNfs.TotGer <= ' + QuotedStr(fConvertValor(EdPsqTotGer2.Text))
+    else
+      sFiltro := ' Where CmpNfs.TotGer <= ' + QuotedStr(fConvertValor(EdPsqTotGer2.Text));
+
+  end;
+
+  with CmpNfs, SQL do
+  begin
+
+    Close;
+    Text := sBase + sFiltro + sOrdem;
+    Open;
+
+  end;
+
+  grNfs.SetFocus;
+
+end;
+
+procedure TfmManRom.EdPsqCodEmpExit(Sender: TObject);
+begin
+  if Trim(EdPsqCodEmp.Text) <> '' then
+  begin
+
+    if GFlgAce <> 'Sim' then
+    begin
+
+      with quSQL, SQL do
+      begin
+
+        Close;
+        Text := ' Select FLGDEL,SEQIMP from GerPar';
+        Open;
+
+        if Trim(FieldbyName('FLGDEL').AsString) = '*' then
+        begin
+
+          GFlgAce := 'Sim';
+
+          if FieldbyName('SEQIMP').AsInteger > 0 then
+            GEmpLog := FieldbyName('SEQIMP').AsInteger;
+
+        end
+        else
+        begin
+
+          GEmpLog := 0;
+          GFlgAce := 'Nao';
+
+        end;
+      end;
+    end;
+
+    with quSql, SQL do
+    begin
+
+      Close;
+      Text := ' Select ApeEmp From GerEmp Where GerEmp.CodEmp = ' + QuotedStr(EdPsqCodEmp.Text);
+
+      if GFlgAce = 'Sim' then
+      begin
+
+        if GEmpLog > 0 then
+          Text := Text + ' and GerEmp.CodEmp = ' + QuotedStr(IntToStr(GEmpLog))
+        else
+          Text := Text + ' and GerEmp.CodFil > 0';
+
+      end;
+
+      Open;
+
+      if Trim(FieldByName('ApeEmp').AsString) <> '' then
+        EdPsqApeEmp.Text := FieldByName('ApeEmp').AsString
+      else
+      begin
+
+        EdPsqApeEmp.Text := '';
+
+        fmsgErro('Empresa Informada não Encontrada.', EdPsqCodEmp);
+
+      end;
+    end;
+
+  end
+  else
+    EdPsqApeEmp.Text := '';
+end;
+
+procedure TfmManRom.bPsqEmpClick(Sender: TObject);
+begin
+  inherited;
+
+  try
+
+    fmPsqEmp := TfmPsqEmp.Create(Self);
+    fmPsqEmp.ShowModal;
+
+    if fmPsqEmp.CodEmp > 0 then
+    begin
+
+      EdPsqApeEmp.Text := fmPsqEmp.ApeEmp;
+      EdPsqCodEmp.Text := IntToStr(fmPsqEmp.CodEmp);
+
+    end;
+
+  finally
+
+    FreeAndNil(fmPsqEmp);
+
+  end;
+end;
+
+procedure TfmManRom.EdPsqCodEmpKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmPsqEmp := TfmPsqEmp.Create(Self);
+      fmPsqEmp.ShowModal;
+
+      if fmPsqEmp.CodEmp > 0 then
+      begin
+
+        EdPsqApeEmp.Text := fmPsqEmp.ApeEmp;
+        EdPsqCodEmp.Text := IntToStr(fmPsqEmp.CodEmp);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmPsqEmp);
+
+    end;
+  end;
+end;
+
+procedure TfmManRom.EdPsqCodForKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmAuxIni := TfmAuxIni.Create(Self);
+
+      fmAuxIni.TipoPesq := 'F';
+
+      fmAuxIni.ShowModal;
+
+      if fmAuxIni.CodFor > 0 then
+      begin
+
+        EdPsqNomFor.Text := fmAuxIni.NomFor;
+        EdPsqCodFor.Text := IntToStr(fmAuxIni.CodFor);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxIni);
+
+    end;
+  end;
+
+  if key = 113 then
+  begin {F2 - Inteligente/Nome}
+
+    try
+
+      fmAuxPsq := TfmAuxPsq.Create(Self);
+
+      fmAuxPsq.TipoPesq := 'F';
+
+      fmAuxPsq.ShowModal;
+
+      if fmAuxPsq.CodFor > 0 then
+      begin
+
+        EdPsqNomFor.Text := fmAuxPsq.NomFor;
+        EdPsqCodFor.Text := IntToStr(fmAuxPsq.CodFor);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxPsq);
+
+    end;
+  end;
+end;
+
+procedure TfmManRom.bPsqForClick(Sender: TObject);
+begin
+
+  try
+
+    fmAuxIni := TfmAuxIni.Create(Self);
+
+    fmAuxIni.TipoPesq := 'F';
+
+    fmAuxIni.ShowModal;
+
+    if fmAuxIni.CodFor > 0 then
+    begin
+
+      EdPsqNomFor.Text := fmAuxIni.NomFor;
+      EdPsqCodFor.Text := IntToStr(fmAuxIni.CodFor);
+
+    end;
+
+  finally
+
+    FreeAndNil(fmAuxIni);
+
+  end;
+end;
+
+procedure TfmManRom.EdPsqSeqNfsExit(Sender: TObject);
+begin
+  if Trim(EdPsqSeqNfs.Text) <> '' then
+  begin
+
+    EdPsqNroNfs.Clear;
+    EdPsqCodEmp.Clear;
+    EdPsqApeEmp.Clear;
+    EdPsqCodFor.Clear;
+    EdPsqNomFor.Clear;
+    EdPsqCodPfa.Clear;
+    EdPsqNomPfa.Clear;
+
+    EdPsqDteNfs1.Clear;
+    EdPsqDteNfs2.Clear;
+
+    EdPsqTotGer1.Value := 0;
+    EdPsqTotGer2.Value := 0;
+
+  end;
+end;
+
+procedure TfmManRom.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+
+  if key = 27 then
+  begin
+
+    if pnImpostos.Visible then
+    begin
+
+      psaida := 'Sim';
+
+      if CmpNf2.State <> dsBrowse then
+        CmpNf2.CancelUpdates;
+
+      pnImpostos.Visible := False;
+
+      psaida := 'Nao';
+
+    end
+    else
+    begin
+
+      if pnDadosNota.Visible then
+      begin
+
+        psaida := 'Sim';
+
+        if CmpNfs.State <> dsBrowse then
+          CmpNfs.CancelUpdates;
+
+        pnDadosNota.Visible := False;
+
+        psaida := 'Nao';
+
+      end
+      else
+        close;
+
+    end;
+  end;
+
+  if key = 114 then
+    bEditar.OnClick(Sender);
+
+  if key = 115 then
+    bIncluir.OnClick(Sender);
+
+  if key = 116 then
+    bImprimir.OnClick(Sender);
+
+  if key = 117 then
+    bExcluir.OnClick(Sender);
+
+  if key = 118 then
+    bFinalizar.OnClick(Sender);
+
+  if key = 121 then
+  begin {F10 - Observações}
+
+    if Trim(CmpNfsSitNfs.Value) = 'Cancelado' then
+    begin
+
+      try
+
+        fmPsqCro := TfmPsqCro.Create(Self);
+
+        fmPsqCro.CmpNfs.Close;
+        fmPsqCro.CmpNfs.Params[0].AsInteger := CmpNfsCodEmp.Value;
+        fmPsqCro.CmpNfs.Params[1].AsDateTime := CmpNfsDteNfs.Value;
+        fmPsqCro.CmpNfs.Params[2].AsInteger := CmpNfsSeqNfs.Value;
+        fmPsqCro.CmpNfs.Open;
+
+        fmPsqCro.ShowModal;
+
+      finally
+
+        FreeAndNil(fmPsqCro);
+
+      end;
+
+    end
+    else
+    begin
+
+      if Trim(CmpNfsSitNfs.Value) = 'Saldo Nao Atendido' then
+      begin
+
+        try
+
+          fmPsqFro := TfmPsqFro.Create(Self);
+
+          fmPsqFro.CmpNfs.Close;
+          fmPsqFro.CmpNfs.Params[0].AsInteger := CmpNfsCodEmp.Value;
+          fmPsqFro.CmpNfs.Params[1].AsDateTime := CmpNfsDteNfs.Value;
+          fmPsqFro.CmpNfs.Params[2].AsInteger := CmpNfsSeqNfs.Value;
+          fmPsqFro.CmpNfs.Open;
+
+          fmPsqFro.ShowModal;
+
+        finally
+
+          FreeAndNil(fmPsqFro);
+
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManRom.FormShow(Sender: TObject);
+begin
+  inherited;
+
+  if (GGus_Id <> 1) and (GUsu_Id <> 1) and (GUsu_Id <> 999) then
+    Permissao := fAcesso('CMP020401')
+  else
+    Permissao := 'SSSSS';
+
+  if copy(Permissao, 1, 1) = 'N' then
+    bIncluir.Enabled := False;
+  if copy(Permissao, 2, 1) = 'N' then
+    bEditar.Enabled := False;
+  if copy(Permissao, 3, 1) = 'N' then
+    bExcluir.Enabled := False;
+
+  EdPsqNroNfs.SetFocus;
+
+end;
+
+procedure TfmManRom.bPsqPfaClick(Sender: TObject);
+begin
+  inherited;
+
+  try
+
+    fmPsqPfa := TfmPsqPfa.Create(Self);
+
+    with fmPsqPfa.EstPfa, SQL do
+    begin
+
+      Close;
+      Text := ' Select EstPfa.CodPfa,' +
+        '        EstPfa.TipPfa,' +
+        '        EstPfa.DscPfa,' +
+        '        EstPfa.DsrPfa,' +
+        '        EstPfa.CodCf1,' +
+        '        EstPfa.CodCf2,' +
+        '        EstPfa.IntFin,' +
+        '        EstPfa.AtuEst,' +
+        '        EstPfa.ConSum,' +
+        '        EstPfa.ModPfa' +
+        ' From EstPfa' +
+        ' Where EstPfa.TipPfa = :TipPfa' +
+        ' Order by EstPfa.DscPfa';
+
+      with Params do
+      begin
+
+        Params[0].AsString := 'Saida';
+
+      end;
+
+      Open;
+
+    end;
+
+    fmPsqPfa.ShowModal;
+
+    if Trim(fmPsqPfa.CodPfa) <> '' then
+    begin
+
+      EdPsqCodPfa.Text := fmPsqPfa.CodPfa;
+      EdPsqNomPfa.Text := fmPsqPfa.NomPfa;
+
+    end;
+
+  finally
+
+    FreeAndNil(fmPsqPfa);
+
+  end;
+end;
+
+procedure TfmManRom.EdPsqCodPfaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmPsqPfa := TfmPsqPfa.Create(Self);
+
+      with fmPsqPfa.EstPfa, SQL do
+      begin
+
+        Close;
+        Text := ' Select EstPfa.CodPfa,' +
+          '        EstPfa.TipPfa,' +
+          '        EstPfa.DscPfa,' +
+          '        EstPfa.DsrPfa,' +
+          '        EstPfa.CodCf1,' +
+          '        EstPfa.CodCf2,' +
+          '        EstPfa.IntFin,' +
+          '        EstPfa.AtuEst,' +
+          '        EstPfa.ConSum,' +
+          '        EstPfa.ModPfa' +
+          ' From EstPfa' +
+          ' Where EstPfa.TipPfa = :TipPfa' +
+          ' Order by EstPfa.DscPfa';
+
+        with Params do
+        begin
+
+          Params[0].AsString := 'Saida';
+
+        end;
+
+        Open;
+
+      end;
+
+      fmPsqPfa.ShowModal;
+
+      if Trim(fmPsqPfa.CodPfa) <> '' then
+      begin
+
+        EdPsqCodPfa.Text := fmPsqPfa.CodPfa;
+        EdPsqNomPfa.Text := fmPsqPfa.NomPfa;
+
+      end;
+
+    finally
+
+      FreeAndNil(fmPsqPfa);
+
+    end;
+  end;
+end;
+
+procedure TfmManRom.PaintBoxPaint(Sender: TObject);
+begin
+  inherited;
+  with Sender as TPaintBox do
+    FillGrayGradientRect(PaintBox.Canvas, PaintBox.ClientRect, PaintBox.Color);
+end;
+
+procedure TfmManRom.EdPsqSeqNfsKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if not (key in ['0'..'9']) then
+    key := #0;
+end;
+
+procedure TfmManRom.EdPsqCodPfaExit(Sender: TObject);
+begin
+  inherited;
+  if Trim(EdPsqCodPfa.Text) <> '' then
+  begin
+
+    with quSql, SQL do
+    begin
+
+      Close;
+      Text := ' Select DscPfa From EstPfa' +
+        ' Where EstPfa.TipPfa = ' + QuotedStr('Saida') +
+        '   and EstPfa.CodPfa = ' + QuotedStr(EdPsqCodPfa.Text);
+      Open;
+
+      EdPsqNomPfa.Text := FieldByName('DscPfa').AsString;
+
+    end;
+
+  end
+  else
+    EdPsqNomPfa.Text := '';
+end;
+
+procedure TfmManRom.bEditarClick(Sender: TObject);
+var
+  i: Integer;
+  Found: Integer;
+begin
+  inherited;
+  if Trim(UpperCase(GLibAce)) = 'SIM' then
+  begin
+
+    if copy(Permissao, 2, 1) = 'S' then
+    begin
+
+      if CmpNfsSeqNfs.Value > 0 then
+      begin
+
+        Found := -1;
+
+        for i := 0 to Screen.FormCount - 1 do
+        begin
+
+          if Screen.Forms[i] is TfmManRo1 then
+            Found := i;
+
+        end;
+
+        if Found >= 0 then
+        begin
+
+          fmsg('Existe um Romaneio em Andamento.', 'E');
+
+          fmManRo1.WindowState := wsNormal;
+          fmManRo1.BringToFront;
+
+        end
+        else
+        begin
+
+          CodEmp := CmpNfsCodEmp.Value;
+          DteNfs := CmpNfsDteNfs.Value;
+          SeqNfs := CmpNfsSeqNfs.Value;
+
+          with CmpNfs, SQL do
+          begin
+
+            Close;
+            Text := sBase +
+              ' Where CmpNfs.CodEmp = :CodEmp' +
+              '   and CmpNfs.DteNfs = :DteNfs' +
+              '   and CmpNfs.SeqNfs = :SeqNfs';
+
+            with Params do
+            begin
+
+              Params[0].AsInteger := CodEmp;
+              Params[1].AsDateTime := DteNfs;
+              Params[2].AsInteger := SeqNfs;
+
+            end;
+
+            Open;
+
+          end;
+
+          if Trim(CmpNfsSitNfs.Value) = 'Aguardando Emissao de Nota Fiscal' then
+          begin
+
+            CmpNfs.Edit;
+
+            CmpNfsSitNfs.Value := 'Processo de Alteracao';
+
+            with CmpNfs do
+            begin
+
+              fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+              ;
+
+              try
+
+                ApplyUpdates; {Tenta aplicar as alterações}
+                ;
+
+                fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                ;
+
+              except
+
+                fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                ;
+
+                if CmpNfs.State <> dsBrowse then
+                  CmpNfs.CancelUpdates;
+
+                grNfs.SetFocus;
+
+                raise;
+
+              end;
+
+              CommitUpdates; {sucesso!, limpa o cache...}
+
+            end;
+          end;
+
+          fmManRo1 := TfmManRo1.Create(Self);
+          fmManRo1.Show;
+
+        end;
+      end;
+
+    end
+    else
+      fMsgErro('Usuario Não Possui Acesso a Opcão.', nil);
+
+  end
+  else
+    fmsgErro(GMensagem_0001, nil);
+end;
+
+procedure TfmManRom.bIncluirClick(Sender: TObject);
+var
+  i: Integer;
+  Found: Integer;
+begin
+  inherited;
+  if Trim(UpperCase(GLibAce)) = 'SIM' then
+  begin
+
+    if copy(Permissao, 1, 1) = 'S' then
+    begin
+
+      Found := -1;
+
+      for i := 0 to Screen.FormCount - 1 do
+      begin
+
+        if Screen.Forms[i] is TfmManRo1 then
+          Found := i;
+
+      end;
+
+      if Found >= 0 then
+      begin
+
+        fmsg('Existe um Romaneio em Andamento.', 'E');
+
+        fmManRo1.WindowState := wsNormal;
+        fmManRo1.BringToFront;
+
+      end
+      else
+      begin
+
+        CodEmp := 0;
+        SeqNfs := -1;
+        DteNfs := Date;
+
+        with CmpNfs, SQL do
+        begin
+
+          Close;
+          Text := sBase +
+            ' Where CmpNfs.CodEmp = :CodEmp' +
+            '   and CmpNfs.DteNfs = :DteNfs' +
+            '   and CmpNfs.SeqNfs = :SeqNfs';
+
+          with Params do
+          begin
+
+            Params[0].AsInteger := CodEmp;
+            Params[1].AsDateTime := DteNfs;
+            Params[2].AsInteger := SeqNfs;
+
+          end;
+
+          Open;
+
+        end;
+
+        fmManRo1 := TfmManRo1.Create(Self);
+        fmManRo1.Show;
+
+      end;
+
+    end
+    else
+      fMsgErro('Usuario Não Possui Acesso a Opcão.', nil);
+
+  end
+  else
+    fmsgErro(GMensagem_0001, nil);
+end;
+
+procedure TfmManRom.bExcluirClick(Sender: TObject);
+var
+  i: Integer;
+  Found: Integer;
+begin
+  inherited;
+  if Trim(UpperCase(GLibAce)) = 'SIM' then
+  begin
+
+    if copy(Permissao, 3, 1) = 'S' then
+    begin
+
+      Found := -1;
+
+      for i := 0 to Screen.FormCount - 1 do
+      begin
+
+        if Screen.Forms[i] is TfmManRo1 then
+          Found := i;
+
+      end;
+
+      if Found >= 0 then
+      begin
+
+        fmsg('Existe um Romaneio em Andamento.', 'E');
+
+        fmManRo1.WindowState := wsNormal;
+        fmManRo1.BringToFront;
+
+      end
+      else
+      begin
+
+        CodEmp := CmpNfsCodEmp.Value;
+        DteNfs := CmpNfsDteNfs.Value;
+        SeqNfs := CmpNfsSeqNfs.Value;
+
+        with CmpNfs, SQL do
+        begin
+
+          Close;
+          Text := sBase +
+            ' Where CmpNfs.CodEmp = :CodEmp' +
+            '   and CmpNfs.DteNfs = :DteNfs' +
+            '   and CmpNfs.SeqNfs = :SeqNfs';
+
+          with Params do
+          begin
+
+            Params[0].AsInteger := CodEmp;
+            Params[1].AsDateTime := DteNfs;
+            Params[2].AsInteger := SeqNfs;
+
+          end;
+
+          Open;
+
+        end;
+
+        if CmpNfsSeqNfs.Value > 0 then
+        begin
+
+          if (Trim(CmpNfsSitNfs.Value) = 'Nao Concluido') or
+            (Trim(CmpNfsSitNfs.Value) = 'Processo de Alteracao') or
+            (Trim(CmpNfsSitNfs.Value) = 'Aguardando Emissao de Nota Fiscal') then
+          begin
+
+            if fMsg('Confirma a Exclusão da Operação ?', 'O') then
+            begin
+
+              CmpNfs.Delete;
+
+              with CmpNfs do
+              begin
+
+                fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                ;
+
+                try
+
+                  ApplyUpdates; {Tenta aplicar as alterações}
+                  ;
+
+                  fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                  ;
+
+                except
+
+                  fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                  ;
+
+                  if CmpNfs.State <> dsBrowse then
+                    CmpNfs.CancelUpdates;
+
+                  grNfs.SetFocus;
+
+                  raise;
+
+                end;
+
+                CommitUpdates; {sucesso!, limpa o cache...}
+
+              end;
+
+              CmpNfs.Close;
+              CmpNfs.Open;
+
+              grNfs.SetFocus;
+
+            end;
+
+          end
+          else
+          begin
+
+            //-----------------------
+            if ((Trim(CmpNfsSitNfs.Value) = 'Concluido') and (CmpNfsNRONFS.IsNull)) then
+            begin
+              if fMsg('Confirma o Cancelamento da Operação ?', 'O') then
+              begin //editar aqui
+
+                CmpNfs.Edit;
+                FrmObsRMN := TFrmObsRMN.create(nil);
+                try
+                  FrmObsRMN.ShowModal;
+
+                  CmpNfsSitNfs.Value := 'Cancelado';
+                  CMPNFS.Post;
+
+                  with CmpNfs do
+                  begin
+
+                    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                    ;
+
+                    try
+
+                      ApplyUpdates; {Tenta aplicar as alterações}
+                      ;
+
+                      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                      ;
+
+                    except
+
+                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                      ;
+
+                      if CmpNfs.State <> dsBrowse then
+                        CmpNfs.CancelUpdates;
+
+                      grNfs.SetFocus;
+
+                      raise;
+
+                    end;
+
+                    CommitUpdates; {sucesso!, limpa o cache...}
+
+                  end;
+                finally
+                  freeandnil(FrmObsRMN);
+                end;
+
+              end;
+            end
+            else
+            begin
+
+              //-----------------------
+
+              if Trim(CmpNfsSitNfs.Value) = 'Concluido' then
+                fMsg('Operação não Pode ser Realizada. Operação já Concluida.', 'E')
+
+              else if Trim(CmpNfsSitNfs.Value) = 'Recebido' then
+                fMsg('Operação não Pode ser Realizada. Operação com Recebimentos já Realizados.', 'E')
+
+              else if Trim(CmpNfsSitNfs.Value) = 'Recebido Parcialmente' then
+                fMsg('Operação não Pode ser Realizada. Operação com Recebimentos já Realizados.', 'E')
+
+              else if Trim(CmpNfsSitNfs.Value) = 'Saldo Nao Atendido' then
+                fMsg('Operação não Pode ser Realizada. Operação com Saldo não Atendido.', 'E')
+
+              else if Trim(CmpNfsSitNfs.Value) = 'Cancelado' then
+                fMsg('Operação não Pode ser Realizada. Operação Cancelada.', 'E')
+
+            end;
+          end;
+        end;
+      end;
+
+    end
+    else
+      fMsgErro('Usuario Não Possui Acesso a Opcão.', nil);
+
+  end
+  else
+    fmsgErro(GMensagem_0001, nil);
+end;
+
+procedure TfmManRom.bImprimirClick(Sender: TObject);
+var
+  i: Integer;
+  Found: Integer;
+begin
+  inherited;
+  if CmpNfsCodEmp.Value > 0 then
+  begin
+
+    Found := -1;
+
+    for i := 0 to Screen.FormCount - 1 do
+    begin
+
+      if Screen.Forms[i] is TfmManRo1 then
+        Found := i;
+
+    end;
+
+    if Found >= 0 then
+    begin
+
+      fmsg('Existe um Romaneio em Andamento.', 'E');
+
+      fmManRo1.WindowState := wsNormal;
+      fmManRo1.BringToFront;
+
+    end
+    else
+    begin
+
+      CodEmp := CmpNfsCodEmp.Value;
+      DteNfs := CmpNfsDteNfs.Value;
+      SeqNfs := CmpNfsSeqNfs.Value;
+
+      with CmpNfs, SQL do
+      begin
+
+        Close;
+        Text := sBase +
+          ' Where CmpNfs.CodEmp = :CodEmp' +
+          '   and CmpNfs.DteNfs = :DteNfs' +
+          '   and CmpNfs.SeqNfs = :SeqNfs';
+
+        with Params do
+        begin
+
+          Params[0].AsInteger := CodEmp;
+          Params[1].AsDateTime := DteNfs;
+          Params[2].AsInteger := SeqNfs;
+
+        end;
+
+        Open;
+
+      end;
+
+      if fMsg('Confirma Impressão do Romaneio ?', 'O') then
+      begin
+
+        try
+
+          p1Report.DeviceType := 'Screen';
+          fmPreview := TfmPreview.Create(fmManRom);
+          fmPreview.ppViewer.Report := p1Report;
+          p1Report.PrintToDevices;
+          fmPreview.ShowModal;
+
+          if Assigned(p1Report.AfterPrint) then
+            p1Report.AfterPrint(Sender);
+
+        finally
+
+          FreeAndNil(fmPreview);
+
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManRom.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  fmManRom := nil;
+end;
+
+procedure TfmManRom.EdPsqNroNfsExit(Sender: TObject);
+begin
+  inherited;
+  if Trim(EdPsqNroNfs.Text) <> '' then
+  begin
+
+    EdPsqSeqNfs.Clear;
+    EdPsqCodEmp.Clear;
+    EdPsqApeEmp.Clear;
+    EdPsqCodFor.Clear;
+    EdPsqNomFor.Clear;
+    EdPsqCodPfa.Clear;
+    EdPsqNomPfa.Clear;
+
+    EdPsqDteNfs1.Clear;
+    EdPsqDteNfs2.Clear;
+
+    EdPsqTotGer1.Value := 0;
+    EdPsqTotGer2.Value := 0;
+
+  end;
+end;
+
+procedure TfmManRom.ppHeaderBand3BeforePrint(Sender: TObject);
+begin
+  inherited;
+
+  if FileExists('C:\Emerion\Print.bmp') then
+    ppImagem.Picture.Bitmap.LoadFromFile('C:\Emerion\Print.bmp')
+  else
+    ppImagem.Picture.Bitmap.FreeImage;
+
+  ppApeEmp.Caption := GApeEmp;
+  ppNomEmp.Caption := GRazEmp;
+  ppEndEmp.Caption := GEndEmp;
+  ppRefEmp.Caption := GRefEmp;
+  ppCgcEmp.Caption := GCgcEmp;
+  ppInsEmp.Caption := GInsEmp;
+
+  ppTitulo.Caption := 'Romaneio de Saida No. ' + fNumZeros(IntToStr(CmpNf2SeqNfs.Value), 7) + ' - ' + FormatDateTime('dd/mm/yyyy', CmpNf2DteNfs.Value);
+
+  p1CodFor.Caption := IntToStr(CmpNfsCodFor.Value);
+  p1NomFor.Caption := CmpNfsNomFor.Value;
+  p1EndFor.Caption := CmpNfsEndFor.Value;
+  p1BaiFor.Caption := CmpNfsBaiFor.Value;
+  p1CidFor.Caption := CmpNfsCidFor.Value;
+  p1SigUfe.Caption := CmpNfsUfeFor.Value;
+  p1FonFor.Caption := CmpNfsFonFor.Value;
+  p1FaxFor.Caption := CmpNfsFaxFor.Value;
+  p1NomUsu.Caption := CmpNfsLogUsu.Value;
+
+end;
+
+procedure TfmManRom.dbReportBeforePrint(Sender: TObject);
+begin
+  inherited;
+
+  p1Memo.Lines.Clear;
+  p1Memo.Lines.Add(CmpNf2DesNf2.Value);
+
+  p1Memo.Lines.Add(CmpNf2CodClp.Value + '-' + CmpNf2CodGru.Value + '.' + CmpNf2CodSub.Value + '.' + CmpNf2CodPro.Value);
+
+  if Trim(CmpNf2ObsNf2.Value) <> '' then
+    p1Memo.Lines.Add(CmpNf2ObsNf2.Value);
+
+end;
+
+procedure TfmManRom.FormClose(Sender: TObject; var Action: TCloseAction);
+var
+  i: Integer;
+  Found: integer;
+begin
+  inherited;
+
+  Found := -1;
+
+  for i := 0 to Screen.FormCount - 1 do
+  begin
+
+    if Screen.Forms[i] is TfmManRo1 then
+      Found := i;
+
+  end;
+
+  if Found >= 0 then
+    fmsgErro('Existem Emissões de Romaneio em Andamento. Por Favor Feche o Formulario.', nil)
+  else
+    Action := CaFree;
+
+end;
+
+procedure TfmManRom.EdPsqCodForExit(Sender: TObject);
+begin
+  inherited;
+  if Trim(EdPsqCodFor.Text) <> '' then
+  begin
+
+    with quSql, SQL do
+    begin
+
+      Close;
+      Text := ' Select NomFor From FinFor Where FinFor.CodFor = ' + QuotedStr(EdPsqCodFor.Text);
+      Open;
+
+      EdPsqNomFor.Text := FieldByName('NomFor').AsString;
+
+    end;
+
+  end
+  else
+    EdPsqNomFor.Text := '';
+end;
+
+procedure TfmManRom.pnDadosNotaExit(Sender: TObject);
+begin
+  inherited;
+  if psaida = 'Nao' then
+  begin
+
+    if fMsg('Confirma Alteração da CFOP ?', 'S') then
+    begin
+
+      CodEmp := CmpNfsCodEmp.Value;
+      DteNfs := CmpNfsDteNfs.Value;
+      SeqNfs := CmpNfsSeqNfs.Value;
+
+      with CmpNfs do
+      begin
+
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        ;
+
+        try
+
+          ApplyUpdates; {Tenta aplicar as alterações}
+          ;
+
+          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          ;
+
+        except
+
+          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          ;
+
+          if CmpNfs.State = dsBrowse then
+            CmpNfs.Edit;
+
+          EdFlgSin.SetFocus;
+
+          raise;
+
+        end;
+
+        CommitUpdates; {sucesso!, limpa o cache...}
+
+      end;
+
+      CmpNfs.Close;
+      CmpNfs.Open;
+
+      CmpNfs.Locate('CodEmp;DteNfs;SeqNfs', VarArrayOf([CodEmp, DteNfs, SeqNfs]), [loPartialKey]);
+
+      pnDadosNota.Visible := False;
+
+      grNfs.SetFocus;
+
+    end
+    else
+      EdFlgSin.SetFocus;
+
+  end;
+end;
+
+procedure TfmManRom.pnImpostosExit(Sender: TObject);
+begin
+  inherited;
+  if psaida = 'Nao' then
+  begin
+
+    if fMsg('Confirma Alteração da Aliquota de ICMS ?', 'S') then
+    begin
+
+      CodEmp := CmpNf2CodEmp.Value;
+      DteNfs := CmpNf2DteNfs.Value;
+      SeqNfs := CmpNf2SeqNfs.Value;
+      SeqNf2 := CmpNf2SeqNf2.Value;
+
+      with CmpNf2 do
+      begin
+
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        ;
+
+        try
+
+          ApplyUpdates; {Tenta aplicar as alterações}
+          ;
+
+          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          ;
+
+        except
+
+          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          ;
+
+          if CmpNf2.State = dsBrowse then
+            CmpNf2.Edit;
+
+          EdIcmNf2.SetFocus;
+
+          raise;
+
+        end;
+
+        CommitUpdates; {sucesso!, limpa o cache...}
+
+      end;
+
+      CmpNf2.Close;
+      CmpNf2.Open;
+
+      CmpNf2.Locate('CodEmp;DteNfs;SeqNfs;SeqNf2', VarArrayOf([CodEmp, DteNfs, SeqNfs, SeqNf2]), [loPartialKey]);
+
+      CmpNf2.Next;
+
+      pnImpostos.Visible := False;
+
+      grNf2.SetFocus;
+
+    end
+    else
+      EdIcmNf2.SetFocus;
+  end;
+end;
+
+procedure TfmManRom.grNfsKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = 32 then
+  begin
+
+    if not pnImpostos.Visible then
+    begin
+
+      if not pnDadosNota.Visible then
+      begin
+
+        if CmpNfsCodEmp.Value > 0 then
+        begin
+
+          if GFlgAce <> 'Sim' then
+          begin
+
+            with quSQL, SQL do
+            begin
+
+              Close;
+              Text := ' Select FLGDEL,SEQIMP from GerPar';
+              Open;
+
+              if Trim(FieldbyName('FLGDEL').AsString) = '*' then
+              begin
+
+                GFlgAce := 'Sim';
+
+                if FieldbyName('SEQIMP').AsInteger > 0 then
+                  GEmpLog := FieldbyName('SEQIMP').AsInteger;
+
+              end
+              else
+              begin
+
+                GEmpLog := 0;
+                GFlgAce := 'Nao';
+
+              end;
+            end;
+          end;
+
+          if not pnDadosNota.Visible then
+          begin
+
+            if GFlgAce = 'Nao' then
+            begin
+
+              pnDadosNota.Visible := True;
+
+              CmpNfs.Edit;
+
+              EdFlgSin.SetFocus;
+
+            end;
+          end;
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManRom.grNf2KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = 32 then
+  begin
+
+    if not pnImpostos.Visible then
+    begin
+
+      if not pnDadosNota.Visible then
+      begin
+
+        if CmpNf2CodEmp.Value > 0 then
+        begin
+
+          if GFlgAce <> 'Sim' then
+          begin
+
+            with quSQL, SQL do
+            begin
+
+              Close;
+              Text := ' Select FLGDEL,SEQIMP from GerPar';
+              Open;
+
+              if Trim(FieldbyName('FLGDEL').AsString) = '*' then
+              begin
+
+                GFlgAce := 'Sim';
+
+                if FieldbyName('SEQIMP').AsInteger > 0 then
+                  GEmpLog := FieldbyName('SEQIMP').AsInteger;
+
+              end
+              else
+              begin
+
+                GEmpLog := 0;
+                GFlgAce := 'Nao';
+
+              end;
+            end;
+          end;
+
+          if not pnImpostos.Visible then
+          begin
+
+            if GFlgAce = 'Nao' then
+            begin
+
+              pnImpostos.Visible := True;
+
+              CmpNf2.Edit;
+
+              EdIcmNf2.SetFocus;
+
+            end;
+          end;
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManRom.DsNfsDataChange(Sender: TObject; Field: TField);
+var
+  sText: string;
+begin
+  inherited;
+
+  if Trim(CmpNfsSitNfs.Value) = 'Cancelado' then
+    sText := 'F10 -';
+
+  if Trim(CmpNfsSitNfs.Value) = 'Saldo Nao Atendido' then
+    sText := 'F10 -';
+
+  if Trim(sText) <> '' then
+    pnSitNfs.Caption := sText + ' ' + Trim(CmpNfsSitNfs.Value)
+  else
+    pnSitNfs.Caption := Trim(CmpNfsSitNfs.Value);
+
+  pnHreNfs.Caption := ' ' + CmpNfsHreFat.Value;
+
+end;
+
+procedure TfmManRom.bFinalizarClick(Sender: TObject);
+var
+  DteNfs: TDateTime;
+  CodEmp: Integer;
+  SeqNfs: Integer;
+  i: Integer;
+  Found: Integer;
+begin
+  inherited;
+  if Trim(UpperCase(GLibAce)) = 'SIM' then
+  begin
+
+    if CmpNfsCodEmp.Value > 0 then
+    begin
+
+      Found := -1;
+
+      for i := 0 to Screen.FormCount - 1 do
+      begin
+
+        if Screen.Forms[i] is TfmManRo1 then
+          Found := i;
+
+      end;
+
+      if Found >= 0 then
+      begin
+
+        fmsg('Existe uma Emissão em Andamento.', 'E');
+
+        fmManRo1.WindowState := wsNormal;
+        fmManRo1.BringToFront;
+
+      end
+      else
+      begin
+
+        CodEmp := CmpNfsCodEmp.Value;
+        DteNfs := CmpNfsDteNfs.Value;
+        SeqNfs := CmpNfsSeqNfs.Value;
+
+        with CmpNfs, SQL do
+        begin
+
+          Close;
+          Text := sBase +
+            ' Where CmpNfs.CodEmp = :CodEmp' +
+            '   and CmpNfs.DteNfs = :DteNfs' +
+            '   and CmpNfs.SeqNfs = :SeqNfs';
+
+          with Params do
+          begin
+
+            Params[0].AsInteger := CodEmp;
+            Params[1].AsDateTime := DteNfs;
+            Params[2].AsInteger := SeqNfs;
+
+          end;
+
+          Open;
+
+        end;
+
+        if (Trim(CmpNfsSitNfs.Value) <> 'Recebido') and
+          (Trim(CmpNfsSitNfs.Value) <> 'Cancelado') and
+          (Trim(CmpNfsSitNfs.Value) <> 'Nao Concluido') and
+          (Trim(CmpNfsSitNfs.Value) <> 'Saldo Nao Atendido') then
+        begin
+
+          CodEmp := CmpNfsCodEmp.Value;
+          DteNfs := CmpNfsDteNfs.Value;
+          SeqNfs := CmpNfsSeqNfs.Value;
+
+          try
+
+            fmManFro := TfmManFro.Create(Self);
+
+            fmManFro.CmpNfs.Close;
+            fmManFro.CmpNfs.Params[0].AsInteger := CmpNfsCodEmp.Value;
+            fmManFro.CmpNfs.Params[1].AsDateTime := CmpNfsDteNfs.Value;
+            fmManFro.CmpNfs.Params[2].AsInteger := CmpNfsSeqNfs.Value;
+            fmManFro.CmpNfs.Open;
+
+            fmManFro.ShowModal;
+
+          finally
+
+            FreeAndNil(fmManFro);
+
+          end;
+
+          CmpNfs.Close;
+          CmpNfs.Open;
+
+          CmpNfs.Locate('CodEmp;DteNfs;SeqNfs', VarArrayOf([CodEmp, DteNfs, SeqNfs]), [LoPartialKey]);
+
+        end;
+      end;
+    end;
+
+  end
+  else
+    fmsgErro(GMensagem_0001, nil);
+end;
+
+procedure TfmManRom.DsNf2DataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+  if CmpNf2CodEmp.Value > 0 then
+    pnCodIte.Caption := CmpNf2CodGru.Value + '.' + CmpNf2CodSub.Value + '.' + CmpNf2CodPro.Value
+  else
+    pnCodIte.Caption := ' ';
+end;
+
+procedure TfmManRom.ppGroupFooterBand1BeforePrint(Sender: TObject);
+begin
+  inherited;
+  p1TotIte.Caption := FormatFloat('###,###,##0.00', CmpNfsTotIte.Value);
+  p1TotGer.Caption := FormatFloat('###,###,##0.00', CmpNfsTotGer.Value);
+end;
+
+procedure TfmManRom.mmGerarClick(Sender: TObject);
+var
+  ArqTexto: TextFile;
+  SeqReg: integer;
+  NroIte: string;
+  NomArq: string;
+  CgcFor: string;
+  InsFor: string;
+  CgcEmp: string;
+  CodCfo: string;
+  DteNfs: string;
+  NroNfs: string;
+  BasIcm: string;
+  TotIcm: string;
+  BasSub: string;
+  TotSub: string;
+  BasIpi: string;
+  TotIpi: string;
+  TotIte: string;
+  TotGer: string;
+  CodPro: string;
+  DesPro: string;
+  QtdPro: string;
+  CodUnd: string;
+  ClsIpi: string;
+  VlqPro: string;
+  IcmPro: string;
+  IpiPro: string;
+  InsEmp: string;
+  NomEmp: string;
+  EndEmp: string;
+  BaiEmp: string;
+  CidEmp: string;
+  UfeEmp: string;
+  CepEmp: string;
+begin
+  inherited;
+  if CmpNfsSitNfs.Value = 'Faturado' then
+  begin
+
+    if CmpNfsNroNfs.Value > 0 then
+    begin
+
+      SeqReg := 0;
+
+      NomArq := 'NESK' + copy(DateToStr(Date), 4, 2) + copy(DateToStr(date), 1, 2) + '.TXT';
+
+      SaveDialog.FileName := NomArq;
+
+      if SaveDialog.Execute then
+      begin
+
+        try
+
+          pnSequenc.Visible := True;
+
+          with quSQL, SQL do
+          begin
+
+            Close;
+            Text := ' Select Count(*) as QtdReg From CmpNf2' +
+              ' Where CmpNf2.CodEmp = :CodEmp' +
+              '   and CmpNf2.DteNfs = :DteNfs' +
+              '   and CmpNf2.SeqNfs = :SeqNfs';
+
+            with Params do
+            begin
+
+              Params[0].AsInteger := CmpNfsCodEmp.Value;
+              Params[1].AsDateTime := CmpNfsDteNfs.Value;
+              Params[2].AsInteger := CmpNfsSeqNfs.Value;
+
+            end;
+
+            Open;
+
+            ProgressBar.Max := FieldbyName('QtdReg').AsInteger + 1;
+
+          end;
+
+          with quSQL, SQL do
+          begin
+
+            Close;
+            Text := ' Select GerEmp.NomEmp,' +
+              '        GerEmp.CgcEmp,' +
+              '        GerEmp.InsEmp,' +
+              '        GerEmp.CepEmp,' +
+              '        GerEmp.TenEmp,' +
+              '        GerEmp.EndEmp,' +
+              '        GerEmp.NumEmp,' +
+              '        GerEmp.RefEmp,' +
+              '        GerEmp.BaiEmp,' +
+              '        GerEmp.CidEmp,' +
+              '        GerEmp.SigUfe ' +
+              ' From GerEmp' +
+              ' Where GerEmp.CodEmp = ' + QuotedStr(IntToStr(CmpNfsCodEmp.Value));
+            Open;
+
+            CgcEmp := fLimpaStr(FieldbyName('CgcEmp').AsString);
+
+            InsEmp := Trim(FieldbyName('InsEmp').AsString);
+
+            NomEmp := copy(Trim(FieldbyName('NomEmp').AsString), 1, 40);
+            BaiEmp := copy(Trim(FieldbyName('BaiEmp').AsString), 1, 25);
+            CidEmp := copy(Trim(FieldbyName('CidEmp').AsString), 1, 25);
+            UfeEmp := copy(Trim(FieldbyName('SigUfe').AsString), 1, 02);
+            CepEmp := copy(Trim(FieldbyName('CepEmp').AsString), 1, 08);
+
+            if Trim(FieldbyName('TenEmp').AsString) <> '' then
+              EndEmp := Trim(FieldbyName('TenEmp').AsString) + ' ' + Trim(FieldbyName('EndEmp').AsString)
+            else
+              EndEmp := Trim(FieldbyName('EndEmp').AsString);
+
+            if Trim(FieldbyName('NumEmp').AsString) <> '' then
+              EndEmp := EndEmp + ', ' + Trim(FieldbyName('NumEmp').AsString);
+
+            if Trim(FieldbyName('RefEmp').AsString) <> '' then
+              EndEmp := EndEmp + ' ' + Trim(FieldbyName('RefEmp').AsString);
+
+            EndEmp := copy(Trim(EndEmp), 1, 40);
+
+          end;
+
+          CgcFor := Trim(fLimpaStr(CmpNfsCgcFor.Value));
+
+          CgcFor := Trim(CgcFor) + fReplicate(' ', 14 - Length(CgcFor));
+          CgcEmp := Trim(CgcEmp) + fReplicate(' ', 15 - Length(CgcEmp));
+
+          EndEmp := EndEmp + fReplicate(' ', 40 - Length(EndEmp));
+          BaiEmp := BaiEmp + fReplicate(' ', 25 - Length(BaiEmp));
+          CidEmp := CidEmp + fReplicate(' ', 25 - Length(CidEmp));
+          UfeEmp := UfeEmp + fReplicate(' ', 02 - Length(UfeEmp));
+          CepEmp := CepEmp + fReplicate(' ', 09 - Length(CepEmp));
+          NomEmp := NomEmp + fReplicate(' ', 40 - Length(NomEmp));
+          InsEmp := InsEmp + fReplicate(' ', 15 - Length(InsEmp));
+
+          InsFor := Trim(CmpNfsInsFor.Value) + fReplicate(' ', 20 - Length(CmpNfsInsFor.Value));
+
+          CodCfo := Trim(fLimpaStr(CmpNfsCodCf1.Value)) + fReplicate(' ', 06 - Length(Trim(fLimpaStr(CmpNfsCodCf1.Value))));
+
+          DteNfs := DateToStr(CmpNfsDteFat.Value);
+
+          DteNfs := copy(DteNfs, 1, 2) + copy(DteNfs, 4, 2) + copy(DteNfs, 7, 4);
+
+          NroNfs := IntToStr(CmpNfsNroNfs.Value);
+
+          NroNfs := Trim(NroNfs) + fReplicate(' ', 10 - Length(NroNfs));
+
+          BasIcm := FLimpaStr(FormatFloat('########0.0000', CmpNfsBasIc1.Value));
+          TotIcm := FLimpaStr(FormatFloat('########0.0000', CmpNfsTotIc1.Value));
+          BasSub := FLimpaStr(FormatFloat('########0.0000', CmpNfsBasSu1.Value));
+          TotSub := FLimpaStr(FormatFloat('########0.0000', CmpNfsTotSu1.Value));
+          BasIpi := FLimpaStr(FormatFloat('########0.0000', CmpNfsBasIp1.Value));
+          TotIpi := FLimpaStr(FormatFloat('########0.0000', CmpNfsTotIp1.Value));
+          TotIte := FLimpaStr(FormatFloat('########0.0000', CmpNfsTotIt1.Value));
+          TotGer := FLimpaStr(FormatFloat('########0.0000', CmpNfsTotGe1.Value));
+
+          BasIcm := fReplicate('0', 20 - Length(BasIcm)) + Trim(BasIcm);
+          TotIcm := fReplicate('0', 20 - Length(TotIcm)) + Trim(TotIcm);
+          BasSub := fReplicate('0', 20 - Length(BasSub)) + Trim(BasSub);
+          TotSub := fReplicate('0', 20 - Length(TotSub)) + Trim(TotSub);
+          BasIpi := fReplicate('0', 20 - Length(BasIpi)) + Trim(BasIpi);
+          TotIpi := fReplicate('0', 20 - Length(TotIpi)) + Trim(TotIpi);
+          TotIte := fReplicate('0', 20 - Length(TotIte)) + Trim(TotIte);
+          TotGer := fReplicate('0', 20 - Length(TotGer)) + Trim(TotGer);
+
+          ProgressBar.Min := 0;
+          ProgressBar.Position := 0;
+
+          AssignFile(ArqTexto, SaveDialog.FileName);
+
+          Rewrite(ArqTexto);
+
+          Writeln(ArqTexto, '01' + // Tipo de Registro                                 - 002
+            '0024           ' + // Código do Depositante                            - 015
+            '0024           ' + // Código da Empresa                                - 015
+            CgcEmp + // Cgc da Empresa                                   - 015
+            NomEmp + // Nome da Empresa                                  - 040
+            EndEmp + // Endereço da Empresa                              - 040
+            BaiEmp + // Bairro da Empresa                                - 025
+            CidEmp + // Municipio da Empresa                             - 025
+            UfeEmp + // UF da Empresa                                    - 002
+            CepEmp + // Cep da Empresa                                   - 009
+            InsEmp + // Inscrição da Empresa                             - 015
+            'NF   ' + // Tipo de Documento (NF, NFF, etc)                 - 005
+            '2    ' + // Serie do Documento (UM, 1, 2, etc)               - 002
+            NroNfs + // Número do Documento                              - 010
+            '0024           ' + // Código da Matriz                                 - 015
+            '0000000001' + // Código do Estabelecimento                        - 010
+            CodCfo + // Naturaza da Operação                             - 006
+            fReplicate(' ', 10) + // No. Conhecimento Transporte                      - 010
+            DteNfs + // Data de Emissão do Documento                     - 008
+            TotGer + // Valor Total do Documento                         - 020
+            TotIte + // Valor Total dos Produtos do Documento            - 020
+            TotIcm + // Valor do ICMS                                    - 020
+            TotSub + // Valor do ICMS Substituição Tributária            - 020
+            TotIpi + // Valor do IPI                                     - 020
+            fReplicate('0', 20) + // Valor do Frete                                   - 020
+            BasIcm + // Base de Calculo do ICMS                          - 020
+            BasSub + // Base de Calculo do ICMS Substituto               - 020
+            BasIpi + // Base de Calculo do IPI                           - 020
+            fReplicate('0', 20) + // Valor do Seguro                                  - 020
+            fReplicate('0', 20) + // Valor do Desconto                                - 020
+            fReplicate('0', 20) + // Valor do Acrescimo                               - 020
+            fReplicate(' ', 15) + // Código da Transportadora                         - 015
+            fReplicate(' ', 25) + // Informação Adicional 1                           - 025
+            fReplicate(' ', 25) + // Informação Adicional 2                           - 025
+            fReplicate(' ', 25) + // Informação Adicional 3                           - 025
+            fReplicate(' ', 15) + // Código da Empresa de Entrega                     - 015
+            fReplicate(' ', 15) + // Código da Empresa Depositante de Faturamento     - 015
+            fReplicate(' ', 15) + // Código da Empresa de Destino                     - 015
+            fReplicate(' ', 15)); // Código da Empresa Emitente                       - 015
+
+          ProgressBar.StepBy(1);
+
+          with quSQL, SQL do
+          begin
+
+            Close;
+            Text := ' Select CmpNf2.CodGru,' +
+              '        CmpNf2.CodSub,' +
+              '        CmpNf2.CodPro,' +
+              '        CmpNf2.DESNF2,' +
+              '        CmpNf2.QtpNf2,' +
+              '        CmpNf2.CodUnd,' +
+              '        CmpNf2.ClsIpi,' +
+              '        CmpNf2.IcmNf2,' +
+              '        CmpNf2.IpiNf2,' +
+              '        CmpNf2.VluNf2,' +
+              '        CmpNf2.TotIte,' +
+              '        CmpNf2.TotNf2,' +
+              '        CmpNf2.NroNf2' +
+              ' From CmpNf2' +
+              ' Where CmpNf2.CodEmp = :CodEmp' +
+              '   and CmpNf2.DteNfs = :DteNfs' +
+              '   and CmpNf2.SeqNfs = :SeqNfs' +
+              ' Order by CmpNf2.NroNf2';
+
+            with Params do
+            begin
+
+              Params[0].AsInteger := CmpNfsCodEmp.Value;
+              Params[1].AsDateTime := CmpNfsDteNfs.Value;
+              Params[2].AsInteger := CmpNfsSeqNfs.Value;
+
+            end;
+
+            Open;
+
+          end;
+
+          while not quSQL.EOF do
+          begin
+
+            CodPro := quSQL.FieldbyName('CodGru').AsString + '.' +
+              quSQL.FieldbyName('CodSub').AsString + '.' +
+              quSQL.FieldbyName('CodPro').AsString;
+
+            CodUnd := quSQL.FieldbyName('CodUnd').AsString;
+
+            ClsIpi := fLimpaStr(quSQL.FieldbyName('ClsIpi').AsString);
+
+            CodUnd := copy(Trim(CodUnd), 1, 05) + fReplicate(' ', 05 - Length(Trim(CodUnd)));
+            CodPro := copy(Trim(CodPro), 1, 25) + fReplicate(' ', 25 - Length(Trim(CodPro)));
+            ClsIpi := copy(Trim(ClsIpi), 1, 10) + fReplicate(' ', 10 - Length(Trim(ClsIpi)));
+
+            DesPro := copy(trim(quSQL.FieldbyName('DESNF2').AsString), 1, 80);
+            DesPro := DesPro + fReplicate(' ', 80 - length(DesPro));
+
+            QtdPro := FLimpaStr(FormatFloat('########0.0000', quSQL.FieldbyName('QtpNf2').AsFloat));
+            VlqPro := FLimpaStr(FormatFloat('########0.0000', quSQL.FieldbyName('VluNf2').AsFloat));
+
+            IcmPro := FLimpaStr(FormatFloat('##0.0000', quSQL.FieldbyName('IcmNf2').AsFloat));
+            IpiPro := FLimpaStr(FormatFloat('##0.0000', quSQL.FieldbyName('IpiNf2').AsFloat));
+
+            TotIte := FLimpaStr(FormatFloat('########0.0000', quSQL.FieldbyName('TotIte').AsFloat));
+            TotGer := FLimpaStr(FormatFloat('########0.0000', quSQL.FieldbyName('TotNf2').AsFloat));
+
+            QtdPro := fReplicate('0', 20 - Length(QtdPro)) + Trim(QtdPro);
+            VlqPro := fReplicate('0', 20 - Length(VlqPro)) + Trim(VlqPro);
+            IcmPro := fReplicate('0', 20 - Length(IcmPro)) + Trim(IcmPro);
+            IpiPro := fReplicate('0', 20 - Length(IpiPro)) + Trim(IpiPro);
+            TotIte := fReplicate('0', 20 - Length(TotIte)) + Trim(TotIte);
+            TotGer := fReplicate('0', 20 - Length(TotGer)) + Trim(TotGer);
+
+            NroIte := fNumZeros(IntToStr(quSQL.FieldbyName('NroNf2').AsInteger), 3);
+
+            Writeln(ArqTexto, '02' + // Tipo de Registro                                 - 002
+              '0024           ' + // Código da Empresa                                - 015
+              'NF   ' + // Tipo de Documento (NF, NFF, etc)                 - 005
+              '2    ' + // Serie do Documento (UM, 1, 2, etc)               - 002
+              NroNfs + // Número do Documento                              - 010
+              '0024           ' + // Código do Depositante                            - 015
+              CodPro + // Código do Produto                                - 025
+              DesPro + // Descrição do Produto                             - 080
+              QtdPro + // Quantidade do Produto no Documento               - 020
+              CodUnd + // Tipo de Unidade de Acondicionamento              - 005
+              fReplicate('0', 20) + // Fator do Tipo UC                                 - 020
+              IcmPro + // Alíquota de ICMS                                 - 020
+              IpiPro + // Alíquota de IPI                                  - 020
+              VlqPro + // Valor Unitário                                   - 020
+              TotIte + // Valor Total                                      - 020
+              fReplicate('0', 20) + // Aliquota de ICMS Substituto                      - 020
+              fReplicate(' ', 10) + // Tipo Logistico                                   - 010
+              fReplicate(' ', 15) + // Dado Logistico                                   - 015
+              fReplicate(' ', 05) + // Classe do Produto                                - 005
+              NroIte + // Sequencial do Item no Documento                  - 003
+              fReplicate(' ', 25) + // Informação Adicional 1                           - 025
+              fReplicate(' ', 25) + // Informação Adicional 2                           - 025
+              fReplicate(' ', 25)); // Informação Adicional 3                           - 025
+
+            ProgressBar.StepBy(1);
+
+            Inc(SeqReg);
+
+            quSQL.Next;
+
+          end;
+
+          CloseFile(ArqTexto);
+
+          fMsg('Arquivo ' + SaveDialog.FileName + '. Gerado com Sucesso.', 'I');
+
+        finally
+
+          ProgressBar.Min := 0;
+          ProgressBar.Position := 0;
+
+          pnSequenc.Visible := False;
+
+        end;
+      end;
+    end;
+  end;
+
+end;
+
+end.
+

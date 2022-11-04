@@ -1,0 +1,1 @@
+;diversos##201.6.184.243:/rede/_wgdad/interbase/newimports.fdb @@Servidor Diversos        ***192.168.5.100:/opt/firebird/security.fdb***

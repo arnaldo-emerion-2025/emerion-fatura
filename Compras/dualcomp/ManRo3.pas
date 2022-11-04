@@ -1,0 +1,316 @@
+unit ManRo3;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, ExtCtrls, wwdbdatetimepicker, Mask, DBCtrls, hEdits, Buttons,
+  dxCntner, dxEditor, dxEdLib, dxDBELib, dxExEdtr, AlignEdit, Db, DBTables,
+  Wwquery, FShowPadrao, dxDBColorMemo, dxDBColorCurrencyEdit, dxDBColorEdit;
+
+type
+  TfmManRo3 = class(TfmShowPadrao)
+    PaintBox: TPaintBox;
+    Label10: TLabel;
+    Bevel1: TBevel;
+    EdFlgSai: TdxDBColorEdit;
+    Label52: TLabel;
+    EdFlgEnt: TdxDBColorEdit;
+    Label53: TLabel;
+    Label1: TLabel;
+    EdCodCf1: TdxDBColorEdit;
+    Label2: TLabel;
+    EdCodCf2: TdxDBColorEdit;
+    Label54: TLabel;
+    EdDesNat: TdxDBColorEdit;
+    Label51: TLabel;
+    EdInsSub: TdxDBColorEdit;
+    Label8: TLabel;
+    Bevel2: TBevel;
+    Label47: TLabel;
+    EdTotFrt: TdxDBColorCurrencyEdit;
+    Label48: TLabel;
+    EdTotSeg: TdxDBColorCurrencyEdit;
+    Label49: TLabel;
+    EdTotDes: TdxDBColorCurrencyEdit;
+    Label9: TLabel;
+    Bevel3: TBevel;
+    Label31: TLabel;
+    Label36: TLabel;
+    Label32: TLabel;
+    Label33: TLabel;
+    Label35: TLabel;
+    Label38: TLabel;
+    EdAltVol: TdxDBColorCurrencyEdit;
+    EdUfeTra: TdxDBColorEdit;
+    EdBaiTra: TdxDBColorEdit;
+    EdTenTra: TdxDBColorEdit;
+    EdCgcTra: TdxDBColorEdit;
+    EdNomTra: TdxDBColorEdit;
+    EdEndTra: TdxDBColorEdit;
+    EdCepTra: TdxDBColorEdit;
+    EdEspNfs: TdxDBColorEdit;
+    Label39: TLabel;
+    Label3: TLabel;
+    Label41: TLabel;
+    Label40: TLabel;
+    EdMarNfs: TdxDBColorEdit;
+    EdNumNfs: TdxDBColorEdit;
+    Label37: TLabel;
+    EdInsTra: TdxDBColorEdit;
+    Label34: TLabel;
+    Label44: TLabel;
+    Label42: TLabel;
+    EdInfBrt: TdxDBColorCurrencyEdit;
+    EdPlcTra: TdxDBColorEdit;
+    EdCidTra: TdxDBColorEdit;
+    Label7: TLabel;
+    EdNumTra: TdxDBColorEdit;
+    Label56: TLabel;
+    EdTipFrt: TdxDBColorEdit;
+    EdInfLiq: TdxDBColorCurrencyEdit;
+    EdUfePlc: TdxDBColorEdit;
+    Label5: TLabel;
+    Label43: TLabel;
+    Label11: TLabel;
+    Bevel4: TBevel;
+    Label57: TLabel;
+    Label61: TLabel;
+    Label58: TLabel;
+    EdBaiFor: TdxDBColorEdit;
+    EdCgeFor: TdxDBColorEdit;
+    EdTenFor: TdxDBColorEdit;
+    EdEndFor: TdxDBColorEdit;
+    Label62: TLabel;
+    Label59: TLabel;
+    EdCidFor: TdxDBColorEdit;
+    EdIneFor: TdxDBColorEdit;
+    Label60: TLabel;
+    EdUfeFor: TdxDBColorEdit;
+    Label4: TLabel;
+    EdCepFor: TdxDBColorEdit;
+    EdNumFor: TdxDBColorEdit;
+    Label6: TLabel;
+    bcontinuar: TBitBtn;
+    bretornar: TBitBtn;
+    Label12: TLabel;
+    EdNomEnt: TdxDBColorEdit;
+    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure bcontinuarClick(Sender: TObject);
+    procedure EdCgcTraExit(Sender: TObject);
+    procedure EdCgeForExit(Sender: TObject);
+    procedure PaintBoxPaint(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdCgeForKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdCgeForMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure bRetornarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    {Private declarations}
+  public
+    {Public declarations}
+  end;
+
+var
+  fmManRo3: TfmManRo3;
+
+implementation
+
+uses dxDemoUtils, Bbgeral, Bbmensag, ManGDB, ManRo2, ManRo4;
+
+{$R *.DFM}
+
+procedure TfmManRo3.FormCreate(Sender: TObject);
+begin
+  inherited;
+
+  fmManRo2.CmpNfs.Edit;
+
+end;
+
+procedure TfmManRo3.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+
+  if key = 27 then
+    bRetornar.OnClick(Sender);
+
+  if key = 123 then
+    bContinuar.OnClick(Sender);
+
+end;
+
+procedure TfmManRo3.bcontinuarClick(Sender: TObject);
+begin
+
+  ActiveControl := nil;
+
+  with fmManRo2.CmpNfs do
+  begin
+
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+    ;
+
+    try
+
+      ApplyUpdates; {Tenta aplicar as alterações}
+      ;
+
+      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+      ;
+
+    except
+
+      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+      ;
+
+      if fmManRo2.CmpNfs.State = dsBrowse then
+        fmManRo2.CmpNfs.Edit;
+
+      EdDesNat.SetFocus;
+
+      raise;
+
+    end;
+
+    CommitUpdates; {sucesso!, limpa o cache...}
+
+  end;
+
+  fmManRo2.CmpNfs.Close;
+  fmManRo2.CmpNfs.Open;
+
+  fmManRo2.pnBasIc1.Caption := FormatFloat('###,###,##0.00', fmManRo2.CmpNfsBasIc1.Value);
+  fmManRo2.pnTotIc1.Caption := FormatFloat('###,###,##0.00', fmManRo2.CmpNfsTotIc1.Value);
+  fmManRo2.pnBasSu1.Caption := FormatFloat('###,###,##0.00', fmManRo2.CmpNfsBasSu1.Value);
+  fmManRo2.pnTotSu1.Caption := FormatFloat('###,###,##0.00', fmManRo2.CmpNfsTotSu1.Value);
+  fmManRo2.pnTotIt1.Caption := FormatFloat('###,###,##0.00', fmManRo2.CmpNfsTotIt1.Value);
+  fmManRo2.pnTotFrt.Caption := FormatFloat('###,###,##0.00', fmManRo2.CmpNfsTotFrt.Value);
+  fmManRo2.pnTotSeg.Caption := FormatFloat('###,###,##0.00', fmManRo2.CmpNfsTotSeg.Value);
+  fmManRo2.pnTotDes.Caption := FormatFloat('###,###,##0.00', fmManRo2.CmpNfsTotDes.Value);
+  fmManRo2.pnTotIp1.Caption := FormatFloat('###,###,##0.00', fmManRo2.CmpNfsTotIp1.Value);
+  fmManRo2.pnTotGe1.Caption := FormatFloat('###,###,##0.00', fmManRo2.CmpNfsTotGe1.Value);
+
+  try
+
+    fmManRo4 := TfmManRo4.Create(Self);
+
+    fmManRo4.ShowModal;
+
+  finally
+
+    FreeAndNil(fmManRo4);
+
+  end;
+
+  if fmManRo2.Finalizar = 'S' then
+    Close
+  else
+  begin
+
+    fmManRo2.CmpNfs.Edit;
+
+    EdDesNat.SetFocus;
+
+  end;
+end;
+
+procedure TfmManRo3.FormShow(Sender: TObject);
+begin
+  inherited;
+
+  fmManRo2.CmpNfs.Edit;
+
+  //   if fmManRo2.CmpNfsInfBrt.Value = 0 then fmManRo2.CmpNfsInfBrt.Value := fmManRo2.CmpNfsTotBrt.Value;
+  //   if fmManRo2.CmpNfsInfLiq.Value = 0 then fmManRo2.CmpNfsInfLiq.Value := fmManRo2.CmpNfsTotLiq.Value;
+
+  if TrimLeft(TrimRight(fmManRo2.CmpNfsCgcFor.Value)) <> '' then
+  begin
+
+    if Length(TrimLeft(TrimRight(fmManRo2.CmpNfsCgcFor.Value))) > 11 then
+      fmManRo2.CmpNfsCgcFor.EditMask := '!99.999.999/9999\-99;0;'
+    else
+      fmManRo2.CmpNfsCgcFor.EditMask := '!999.999.999\-99;0;';
+
+  end
+  else
+    fmManRo2.CmpNfsCgcFor.EditMask := '';
+
+  if TrimLeft(TrimRight(fmManRo2.CmpNfsCgcTra.Value)) <> '' then
+  begin
+
+    if TrimLeft(TrimRight(fmManRo2.CmpNfsCgcTra.Value)) <> '' then
+      fmManRo2.CmpNfsCgcTra.EditMask := '!99.999.999/9999\-99;0;'
+    else
+      fmManRo2.CmpNfsCgcTra.EditMask := '';
+
+  end
+  else
+    fmManRo2.CmpNfsCgcTra.EditMask := '';
+
+  EdDesNat.SetFocus;
+
+end;
+
+procedure TfmManRo3.EdCgeForMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  if fmManRo2.CmpNfsCgcFor.EditMask <> '' then
+    fmManRo2.CmpNfsCgcFor.EditMask := '';
+end;
+
+procedure TfmManRo3.EdCgeForKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if fmManRo2.CmpNfsCgcFor.EditMask <> '' then
+    fmManRo2.CmpNfsCgcFor.EditMask := '';
+end;
+
+procedure TfmManRo3.EdCgeForExit(Sender: TObject);
+begin
+  if TrimLeft(TrimRight(fmManRo2.CmpNfsCgcFor.Value)) <> '' then
+  begin
+
+    if Length(TrimLeft(TrimRight(fmManRo2.CmpNfsCgcFor.Value))) > 11 then
+      fmManRo2.CmpNfsCgcFor.EditMask := '!99.999.999/9999\-99;0;'
+    else
+      fmManRo2.CmpNfsCgcFor.EditMask := '!999.999.999\-99;0;';
+
+  end
+  else
+    fmManRo2.CmpNfsCgcFor.EditMask := '';
+end;
+
+procedure TfmManRo3.PaintBoxPaint(Sender: TObject);
+begin
+  with Sender as TPaintBox do
+    FillGrayGradientRect(PaintBox.Canvas, PaintBox.ClientRect, PaintBox.Color);
+end;
+
+procedure TfmManRo3.EdCgcTraExit(Sender: TObject);
+begin
+  if TrimLeft(TrimRight(fmManRo2.CmpNfsCgcTra.Value)) <> '' then
+  begin
+
+    if TrimLeft(TrimRight(fmManRo2.CmpNfsCgcTra.Value)) <> '' then
+      fmManRo2.CmpNfsCgcTra.EditMask := '!99.999.999/9999\-99;0;'
+    else
+      fmManRo2.CmpNfsCgcTra.EditMask := '';
+
+  end
+  else
+    fmManRo2.CmpNfsCgcTra.EditMask := '';
+end;
+
+procedure TfmManRo3.bRetornarClick(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TfmManRo3.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  if fmManRo2.CmpNfs.State <> dsBrowse then
+    fmManRo2.CmpNfs.CancelUpdates;
+end;
+
+end.

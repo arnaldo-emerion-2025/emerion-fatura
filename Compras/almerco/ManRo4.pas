@@ -1,0 +1,711 @@
+unit ManRo4;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  DBTables, Db, Wwdatsrc, Wwquery, DBFlEdit, StdCtrls, Mask, DBCtrls,
+  hEdits, Grids, Wwdbigrd, Wwdbgrid, hGrid, hNavigator, ExtCtrls, Buttons,
+  wwdblook, dxfPictureButton, dxCntner, dxEditor, dxExEdtr, dxDBEdtr, dxDBELib,
+  dxEdLib, AlignEdit, FShowpadrao, dxDBColorDateEdit, dxDBColorEdit,
+  dxDBColorCurrencyEdit;
+
+type
+  TfmManRo4 = class(TfmShowPadrao)
+    PaintBox: TPaintBox;
+    Label10: TLabel;
+    Label8: TLabel;
+    EdOb8Nfs: TdxDBColorEdit;
+    EdOb7Nfs: TdxDBColorEdit;
+    EdOb6Nfs: TdxDBColorEdit;
+    EdOb5Nfs: TdxDBColorEdit;
+    EdOb4Nfs: TdxDBColorEdit;
+    EdOb3Nfs: TdxDBColorEdit;
+    EdOb2Nfs: TdxDBColorEdit;
+    quSql1: TwwQuery;
+    quSql2: TwwQuery;
+    EdOb1Nfs: TdxDBColorEdit;
+    bretornar: TBitBtn;
+    bcontinuar: TBitBtn;
+    procedure FormShow(Sender: TObject);
+    procedure bContinuarClick(Sender: TObject);
+    procedure bRetornarClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure PaintBoxPaint(Sender: TObject);
+    procedure EdPraPe3KeyPress(Sender: TObject; var Key: Char);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    {Private declarations}
+  public
+    {Public declarations}
+  end;
+
+var
+  fmManRo4: TfmManRo4;
+
+implementation
+
+uses dxDemoUtils, BbMensag, Bbgeral, Bbfuncao, ManGDB, ManRo2, ManIro;
+
+{$R *.DFM}
+
+procedure TfmManRo4.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+
+  if key = 27 then bRetornar.OnClick(Sender);
+
+  if key = 123 then bContinuar.OnClick(Sender);
+
+end;
+
+procedure TfmManRo4.FormShow(Sender: TObject);
+var
+DscTxf : string;
+SeqLin,SeqEnc : Integer;
+ObsNfs,Ob1Nfs,Ob2Nfs,Ob3Nfs,Ob4Nfs,Ob5Nfs,Ob6Nfs,Ob7Nfs,Ob8Nfs,sCaractere : string;
+begin
+  inherited;
+
+  fmManRo2.CmpNfs.Edit;
+
+  SeqLin := 1;
+
+  if Trim( fmManRo2.CmpNfsOb1Nfs.Value) = '' then begin
+
+     Ob1Nfs := '';
+     Ob2Nfs := '';
+     Ob3Nfs := '';
+     Ob4Nfs := '';
+     Ob5Nfs := '';
+     Ob6Nfs := '';
+     Ob7Nfs := '';
+     Ob8Nfs := '';
+
+     with quSQL1,SQL do begin
+
+          Close;
+          Text := ' Select Distinct CmpNf2.CodTxf'+
+                  ' From CmpNf2'+
+                  ' Where CmpNf2.Id_CmpNfs = :Id_CmpNfs';
+
+          with Params do begin
+
+               Params[0].AsInteger := fmManRo2.CmpNfsId_CmpNfs.Value;
+
+          end;
+
+          Open;
+          First;
+
+     end;
+
+     while not quSQL1.EOF do begin
+
+           if Trim( quSQL1.FieldbyName('CodTxf').AsString ) <> '' then begin
+
+              with quSQL2,SQL do begin
+
+                   Text := ' Select Distinct CmpNf2.ClsIpi'+
+                           ' From CmpNf2'+
+                           ' Where CmpNf2.Id_CmpNfs = :Id_CmpNfs'+
+                           '   and CmpNf2.CodTxf    = :CodTxf';
+
+                   with Params do begin
+
+                        Params[0].AsInteger := fmManRo2.CmpNfsId_CmpNfs.Value;
+                        Params[1].AsString  := quSQL1.FieldbyName('CodTxf').AsString;
+
+                   end;
+
+                   Open;
+
+              end;
+
+              if Trim( quSQL2.FieldbyName('ClsIpi').AsString ) <> '' then begin
+
+                 sCaractere := ' ';
+
+                 while not quSQL2.EOF do begin
+
+                       if SeqLin = 1 then begin
+
+                          if (80 - Length(Ob1Nfs)) < (Length(Trim(quSQL2.FieldbyName('ClsIpi').AsString)) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob1Nfs) = '' then
+                                Ob1Nfs := Trim(quSQL2.FieldbyName('ClsIpi').AsString)
+                             else
+                                Ob1Nfs := Ob1Nfs+ sCaractere +Trim(quSQL2.FieldbyName('ClsIpi').AsString);
+
+                          end;
+                       end;
+
+                       if SeqLin = 2 then begin
+
+                          if (80 - Length(Ob2Nfs)) < (Length(Trim(quSQL2.FieldbyName('ClsIpi').AsString)) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob2Nfs) = '' then
+                                Ob2Nfs := Trim(quSQL2.FieldbyName('ClsIpi').AsString)
+                             else
+                                Ob2Nfs := Ob2Nfs+ sCaractere +Trim(quSQL2.FieldbyName('ClsIpi').AsString);
+
+                          end;
+                       end;
+
+                       if SeqLin = 3 then begin
+
+                          if (80 - Length(Ob3Nfs)) < (Length(Trim(quSQL2.FieldbyName('ClsIpi').AsString)) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob3Nfs) = '' then
+                                Ob3Nfs := Trim(quSQL2.FieldbyName('ClsIpi').AsString)
+                             else
+                                Ob3Nfs := Ob3Nfs+ sCaractere +Trim(quSQL2.FieldbyName('ClsIpi').AsString);
+
+                          end;
+                       end;
+
+                       if SeqLin = 4 then begin
+
+                          if (80 - Length(Ob4Nfs)) < (Length(Trim(quSQL2.FieldbyName('ClsIpi').AsString)) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob4Nfs) = '' then
+                                Ob4Nfs := Trim(quSQL2.FieldbyName('ClsIpi').AsString)
+                             else
+                                Ob4Nfs := Ob4Nfs+ sCaractere +Trim(quSQL2.FieldbyName('ClsIpi').AsString);
+
+                          end;
+                       end;
+
+                       if SeqLin = 5 then begin
+
+                          if (80 - Length(Ob5Nfs)) < (Length(Trim(quSQL2.FieldbyName('ClsIpi').AsString)) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob5Nfs) = '' then
+                                Ob5Nfs := Trim(quSQL2.FieldbyName('ClsIpi').AsString)
+                             else
+                                Ob5Nfs := Ob5Nfs+ sCaractere +Trim(quSQL2.FieldbyName('ClsIpi').AsString);
+
+                          end;
+                       end;
+
+                       if SeqLin = 6 then begin
+
+                          if (80 - Length(Ob6Nfs)) < (Length(Trim(quSQL2.FieldbyName('ClsIpi').AsString)) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob6Nfs) = '' then
+                                Ob6Nfs := Trim(quSQL2.FieldbyName('ClsIpi').AsString)
+                             else
+                                Ob6Nfs := Ob6Nfs+ sCaractere +Trim(quSQL2.FieldbyName('ClsIpi').AsString);
+
+                          end;
+                       end;
+
+                       if SeqLin = 7 then begin
+
+                          if (80 - Length(Ob7Nfs)) < (Length(Trim(quSQL2.FieldbyName('ClsIpi').AsString)) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob7Nfs) = '' then
+                                Ob7Nfs := Trim(quSQL2.FieldbyName('ClsIpi').AsString)
+                             else
+                                Ob7Nfs := Ob7Nfs+ sCaractere +Trim(quSQL2.FieldbyName('ClsIpi').AsString);
+                                
+                          end;
+                       end;
+
+                       if SeqLin = 8 then begin
+
+                          if (80 - Length(Ob8Nfs)) < (Length(Trim(quSQL2.FieldbyName('ClsIpi').AsString)) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob8Nfs) = '' then
+                                Ob8Nfs := Trim(quSQL2.FieldbyName('ClsIpi').AsString)
+                             else
+                                Ob8Nfs := Ob8Nfs+ sCaractere +Trim(quSQL2.FieldbyName('ClsIpi').AsString);
+                                
+                          end;
+                       end;
+
+                       quSQL2.Next;
+
+                       sCaractere := '/';
+
+                 end;
+
+                 if SeqLin = 1 then Ob1Nfs := Ob1Nfs+' ';
+                 if SeqLin = 2 then Ob2Nfs := Ob2Nfs+' ';
+                 if SeqLin = 3 then Ob3Nfs := Ob3Nfs+' ';
+                 if SeqLin = 4 then Ob4Nfs := Ob4Nfs+' ';
+                 if SeqLin = 5 then Ob5Nfs := Ob5Nfs+' ';
+                 if SeqLin = 6 then Ob6Nfs := Ob6Nfs+' ';
+                 if SeqLin = 7 then Ob7Nfs := Ob7Nfs+' ';
+                 if SeqLin = 8 then Ob8Nfs := Ob8Nfs+' ';
+
+                 with quSQL2,SQL do begin
+
+                      Text := ' Select EstTxf.DscTxf'+
+                              ' From EstTxf'+
+                              ' Where EstTxf.CodTxf = :CodTxf';
+
+                      with Params do begin
+
+                           Params[0].AsString := quSQL1.FieldbyName('CodTxf').AsString;
+
+                      end;
+
+                      Open;
+
+                      DscTxf := Trim( FieldbyName('DscTxf').AsString );
+
+                 end;
+
+                 SeqEnc := 1;
+                 
+                 while SeqEnc = 1 do begin
+
+                       if pos(' ',DscTxf) > 0 then
+                          ObsNfs := copy(DscTxf,1,(pos(' ',DscTxf)-1))
+                       else
+                          ObsNfs := DscTxf;
+
+                       if SeqLin = 1 then begin
+
+                          if (80 - Length(Ob1Nfs)) < (Length(ObsNfs) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob1Nfs) = '' then
+                                Ob1Nfs := ObsNfs
+                             else
+                                Ob1Nfs := Ob1Nfs+ ' ' +ObsNfs;
+                                
+                          end;
+                       end;
+
+                       if SeqLin = 2 then begin
+
+                          if (80 - Length(Ob2Nfs)) < (Length(ObsNfs) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob2Nfs) = '' then
+                                Ob2Nfs := ObsNfs
+                             else
+                                Ob2Nfs := Ob2Nfs+ ' ' +ObsNfs;
+
+                          end;
+                       end;
+
+                       if SeqLin = 3 then begin
+
+                          if (80 - Length(Ob3Nfs)) < (Length(ObsNfs) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob3Nfs) = '' then
+                                Ob3Nfs := ObsNfs
+                             else
+                                Ob3Nfs := Ob3Nfs+ ' ' +ObsNfs;
+
+                          end;
+                       end;
+
+                       if SeqLin = 4 then begin
+
+                          if (80 - Length(Ob4Nfs)) < (Length(ObsNfs) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob4Nfs) = '' then
+                                Ob4Nfs := ObsNfs
+                             else
+                                Ob4Nfs := Ob4Nfs+ ' ' +ObsNfs;
+                                
+                          end;
+                       end;
+
+                       if SeqLin = 5 then begin
+
+                          if (80 - Length(Ob5Nfs)) < (Length(ObsNfs) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob5Nfs) = '' then
+                                Ob5Nfs := ObsNfs
+                             else
+                                Ob5Nfs := Ob5Nfs+ ' ' +ObsNfs;
+                                
+                          end;
+                       end;
+
+                       if SeqLin = 6 then begin
+
+                          if (80 - Length(Ob6Nfs)) < (Length(ObsNfs) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob6Nfs) = '' then
+                                Ob6Nfs := ObsNfs
+                             else
+                                Ob6Nfs := Ob6Nfs+ ' ' +ObsNfs;
+
+                          end;
+                       end;
+
+                       if SeqLin = 7 then begin
+
+                          if (80 - Length(Ob7Nfs)) < (Length(ObsNfs) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob7Nfs) = '' then
+                                Ob7Nfs := ObsNfs
+                             else
+                                Ob7Nfs := Ob7Nfs+ ' ' +ObsNfs;
+
+                          end;
+                       end;
+
+                       if SeqLin = 8 then begin
+
+                          if (80 - Length(Ob8Nfs)) < (Length(ObsNfs) + 1) then
+                             Inc(SeqLin)
+                          else
+                             begin
+
+                             if Trim(Ob8Nfs) = '' then
+                                Ob8Nfs := ObsNfs
+                             else
+                                Ob8Nfs := Ob8Nfs+ ' ' +ObsNfs;
+
+                          end;
+                       end;
+
+                       if pos(' ',DscTxf) > 0 then
+                          DscTxf := copy(DscTxf,(pos(' ',DscTxf)+ 1),(Length(DscTxf) - pos(' ',DscTxf)))
+                       else
+                          SeqEnc := 0;
+
+                 end;
+              end;
+           end;
+
+           quSQL1.Next;
+
+     end;
+
+     DscTxf := '';
+
+     if Trim(fmManRo2.CmpNfsTxfIcm.Value) <> '' then begin
+
+        with fmManRo2.quSQL,SQL do begin
+
+             Close;
+             Text := ' Select EstTxf.DscTxf From EstTxf Where EstTxf.CodTxf = '+ QuotedStr(fmManRo2.CmpNfsTxfIcm.Value);
+             Open;
+
+             if Trim(DscTxf) <> '' then
+                DscTxf := DscTxf + ' ' +Trim(FieldbyName('DscTxf').AsString)
+             else
+                DscTxf := Trim(FieldbyName('DscTxf').AsString);
+
+        end;
+     end;
+
+     if Trim(fmManRo2.CmpNfsTxfIpi.Value) <> '' then begin
+
+        with fmManRo2.quSQL,SQL do begin
+
+             Close;
+             Text := ' Select EstTxf.DscTxf From EstTxf Where EstTxf.CodTxf = '+ QuotedStr(fmManRo2.CmpNfsTxfIpi.Value);
+             Open;
+
+             if Trim(DscTxf) <> '' then
+                DscTxf := DscTxf + ' ' +Trim(FieldbyName('DscTxf').AsString)
+             else
+                DscTxf := Trim(FieldbyName('DscTxf').AsString);
+
+        end;
+     end;
+
+     if Trim( DscTxf ) <> '' then begin
+
+        SeqEnc := 1;
+
+        while SeqEnc = 1 do begin
+
+              if pos(' ',DscTxf) > 0 then
+                 ObsNfs := copy(DscTxf,1,(pos(' ',DscTxf)-1))
+              else
+                 ObsNfs := DscTxf;
+
+              if SeqLin = 1 then begin
+
+                 if (80 - Length(Ob1Nfs)) < (Length(ObsNfs) + 1) then
+                    Inc(SeqLin)
+                 else
+                    begin
+
+                    if Trim(Ob1Nfs) = '' then
+                       Ob1Nfs := ObsNfs
+                    else
+                       Ob1Nfs := Ob1Nfs+ ' ' +ObsNfs;
+                                
+                 end;
+              end;
+
+              if SeqLin = 2 then begin
+
+                 if (80 - Length(Ob2Nfs)) < (Length(ObsNfs) + 1) then
+                    Inc(SeqLin)
+                 else
+                    begin
+
+                    if Trim(Ob2Nfs) = '' then
+                       Ob2Nfs := ObsNfs
+                    else
+                       Ob2Nfs := Ob2Nfs+ ' ' +ObsNfs;
+
+                 end;
+              end;
+
+              if SeqLin = 3 then begin
+
+                 if (80 - Length(Ob3Nfs)) < (Length(ObsNfs) + 1) then
+                    Inc(SeqLin)
+                 else
+                    begin
+
+                    if Trim(Ob3Nfs) = '' then
+                       Ob3Nfs := ObsNfs
+                    else
+                       Ob3Nfs := Ob3Nfs+ ' ' +ObsNfs;
+
+                 end;
+              end;
+
+              if SeqLin = 4 then begin
+
+                 if (80 - Length(Ob4Nfs)) < (Length(ObsNfs) + 1) then
+                    Inc(SeqLin)
+                 else
+                    begin
+
+                    if Trim(Ob4Nfs) = '' then
+                       Ob4Nfs := ObsNfs
+                    else
+                       Ob4Nfs := Ob4Nfs+ ' ' +ObsNfs;
+                                
+                 end;
+              end;
+
+              if SeqLin = 5 then begin
+
+                 if (80 - Length(Ob5Nfs)) < (Length(ObsNfs) + 1) then
+                    Inc(SeqLin)
+                 else
+                    begin
+
+                    if Trim(Ob5Nfs) = '' then
+                       Ob5Nfs := ObsNfs
+                    else
+                       Ob5Nfs := Ob5Nfs+ ' ' +ObsNfs;
+                                
+                 end;
+              end;
+
+              if SeqLin = 6 then begin
+
+                 if (80 - Length(Ob6Nfs)) < (Length(ObsNfs) + 1) then
+                    Inc(SeqLin)
+                 else
+                    begin
+
+                    if Trim(Ob6Nfs) = '' then
+                       Ob6Nfs := ObsNfs
+                    else
+                       Ob6Nfs := Ob6Nfs+ ' ' +ObsNfs;
+
+                 end;
+              end;
+
+              if SeqLin = 7 then begin
+
+                 if (80 - Length(Ob7Nfs)) < (Length(ObsNfs) + 1) then
+                    Inc(SeqLin)
+                 else
+                    begin
+
+                    if Trim(Ob7Nfs) = '' then
+                       Ob7Nfs := ObsNfs
+                    else
+                       Ob7Nfs := Ob7Nfs+ ' ' +ObsNfs;
+                                
+                 end;
+              end;
+
+              if SeqLin = 8 then begin
+
+                 if (80 - Length(Ob8Nfs)) < (Length(ObsNfs) + 1) then
+                    Inc(SeqLin)
+                 else
+                    begin
+
+                    if Trim(Ob8Nfs) = '' then
+                       Ob8Nfs := ObsNfs
+                    else
+                       Ob8Nfs := Ob8Nfs+ ' ' +ObsNfs;
+                                
+                 end;
+              end;
+
+              if pos(' ',DscTxf) > 0 then
+                 DscTxf := copy(DscTxf,(pos(' ',DscTxf)+ 1),(Length(DscTxf) - pos(' ',DscTxf)))
+              else
+                 SeqEnc := 0;
+
+        end;
+     end;
+
+     fmManRo2.CmpNfsOb1Nfs.Value := Ob1Nfs;
+     fmManRo2.CmpNfsOb2Nfs.Value := Ob2Nfs;
+     fmManRo2.CmpNfsOb3Nfs.Value := Ob3Nfs;
+     fmManRo2.CmpNfsOb4Nfs.Value := Ob4Nfs;
+     fmManRo2.CmpNfsOb5Nfs.Value := Ob5Nfs;
+     fmManRo2.CmpNfsOb6Nfs.Value := Ob6Nfs;
+     fmManRo2.CmpNfsOb7Nfs.Value := Ob7Nfs;
+     fmManRo2.CmpNfsOb8Nfs.Value := Ob8Nfs;
+
+     EdOb1Nfs.Text := fmManRo2.CmpNfsOb1Nfs.Value;
+     EdOb2Nfs.Text := fmManRo2.CmpNfsOb2Nfs.Value;
+     EdOb3Nfs.Text := fmManRo2.CmpNfsOb3Nfs.Value;
+     EdOb4Nfs.Text := fmManRo2.CmpNfsOb4Nfs.Value;
+     EdOb5Nfs.Text := fmManRo2.CmpNfsOb5Nfs.Value;
+     EdOb6Nfs.Text := fmManRo2.CmpNfsOb6Nfs.Value;
+     EdOb7Nfs.Text := fmManRo2.CmpNfsOb7Nfs.Value;
+     EdOb8Nfs.Text := fmManRo2.CmpNfsOb8Nfs.Value;
+
+  end;
+
+  EdOb1Nfs.SetFocus;
+
+end;
+
+procedure TfmManRo4.bRetornarClick(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TfmManRo4.bContinuarClick(Sender: TObject);
+begin
+
+  ActiveControl := nil;
+  
+  fmManRo2.CmpNfsOb1Nfs.Value := Trim(fmManRo2.CmpNfsOb1Nfs.Value);
+  fmManRo2.CmpNfsOb2Nfs.Value := Trim(fmManRo2.CmpNfsOb2Nfs.Value);
+  fmManRo2.CmpNfsOb3Nfs.Value := Trim(fmManRo2.CmpNfsOb3Nfs.Value);
+  fmManRo2.CmpNfsOb4Nfs.Value := Trim(fmManRo2.CmpNfsOb4Nfs.Value);
+  fmManRo2.CmpNfsOb5Nfs.Value := Trim(fmManRo2.CmpNfsOb5Nfs.Value);
+  fmManRo2.CmpNfsOb6Nfs.Value := Trim(fmManRo2.CmpNfsOb6Nfs.Value);
+  fmManRo2.CmpNfsOb7Nfs.Value := Trim(fmManRo2.CmpNfsOb7Nfs.Value);
+  fmManRo2.CmpNfsOb8Nfs.Value := Trim(fmManRo2.CmpNfsOb8Nfs.Value);
+
+  with fmManRo2.CmpNfs do begin
+
+       fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+       try
+
+          ApplyUpdates; {Tenta aplicar as alterações};
+
+          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+       except
+
+          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+          if fmManRo2.CmpNfs.State = dsBrowse then fmManRo2.CmpNfs.Edit;
+
+          EdOb1Nfs.SetFocus;
+
+          raise;
+
+       end;
+
+       CommitUpdates; {sucesso!, limpa o cache...}
+
+  end;
+
+  fmManRo2.CmpNfs.Close;
+  fmManRo2.CmpNfs.Open;
+
+  try
+
+     fmManIro := TfmManIro.Create(Self);
+     fmManIro.ShowModal;
+
+  finally
+
+     FreeAndNil(fmManIro);
+
+  end;
+
+  if fmManRo2.Finalizar = 'S' then
+     Close
+  else
+     begin
+
+     fmManRo2.CmpNfs.Edit;
+
+     EdOb1Nfs.SetFocus;
+
+  end;
+end;
+
+procedure TfmManRo4.PaintBoxPaint(Sender: TObject);
+begin
+  with Sender as TPaintBox do
+       FillGrayGradientRect(PaintBox.Canvas, PaintBox.ClientRect, PaintBox.Color);
+end;
+
+procedure TfmManRo4.EdPraPe3KeyPress(Sender: TObject; var Key: Char);
+begin
+  if not ( key in [ '0'..'9' ] ) then key := #0;
+end;
+
+procedure TfmManRo4.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  if fmManRo2.CmpNfs.State <> dsBrowse then fmManRo2.CmpNfs.CancelUpdates;
+end;
+
+end.

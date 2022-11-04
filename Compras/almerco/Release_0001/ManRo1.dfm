@@ -1,0 +1,4564 @@
+inherited fmManRo1: TfmManRo1
+  Left = 0
+  Caption = 'Emissão de romaneio'
+  ClientHeight = 482
+  ClientWidth = 786
+  Position = poDesigned
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PaintBox: TPaintBox
+    Left = 0
+    Top = 0
+    Width = 786
+    Height = 482
+    Align = alClient
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    OnPaint = PaintBoxPaint
+  end
+  object LbText: TLabel
+    Left = 3
+    Top = 444
+    Width = 159
+    Height = 16
+    Caption = 'F1-Iniciais F2-Inteligente'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object Label8: TLabel
+    Left = 635
+    Top = 464
+    Width = 149
+    Height = 16
+    Caption = 'F12-Continuar ESC-Sair'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object Shape1: TShape
+    Left = 4
+    Top = 360
+    Width = 780
+    Height = 1
+  end
+  object Shape2: TShape
+    Left = 3
+    Top = 360
+    Width = 1
+    Height = 85
+  end
+  object Shape3: TShape
+    Left = 784
+    Top = 361
+    Width = 0
+    Height = 83
+  end
+  object Shape4: TShape
+    Left = 4
+    Top = 444
+    Width = 780
+    Height = 1
+  end
+  object Shape5: TShape
+    Left = 783
+    Top = 360
+    Width = 1
+    Height = 85
+  end
+  object grPe21: TdxDBGraphicEdit
+    Left = 3
+    Top = 137
+    Width = 780
+    Color = 16577773
+    Enabled = False
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Haettenschweiler'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Style.BorderColor = clBlack
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 2
+    TabStop = False
+    DblClickActivate = False
+    Stretch = True
+    ToolbarLayout.Buttons = []
+    ToolbarLayout.IsPopupMenu = False
+    ToolbarPosStored = False
+    Height = 151
+  end
+  object grLabel1: TdxDBGraphicEdit
+    Left = 3
+    Top = 99
+    Width = 780
+    Color = 16577773
+    Enabled = False
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Haettenschweiler'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Style.BorderColor = clBlack
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 1
+    TabStop = False
+    DblClickActivate = False
+    Stretch = True
+    ToolbarLayout.Buttons = []
+    ToolbarLayout.IsPopupMenu = False
+    ToolbarPosStored = False
+    Height = 38
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 786
+    Height = 99
+    BevelOuter = bvNone
+    TabOrder = 0
+    OnExit = Panel1Exit
+    object PaintBox1: TPaintBox
+      Left = 0
+      Top = 0
+      Width = 786
+      Height = 509
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      OnPaint = PaintBox1Paint
+    end
+    object Label29: TLabel
+      Left = 4
+      Top = 6
+      Width = 98
+      Height = 14
+      Caption = 'Nro. da operação:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label1: TLabel
+      Left = 4
+      Top = 30
+      Width = 50
+      Height = 14
+      Caption = 'Empresa:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label2: TLabel
+      Left = 460
+      Top = 30
+      Width = 46
+      Height = 14
+      Caption = 'Emissão:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label4: TLabel
+      Left = 4
+      Top = 54
+      Width = 66
+      Height = 14
+      Caption = 'Fornecedor:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label16: TLabel
+      Left = 596
+      Top = 54
+      Width = 45
+      Height = 14
+      Caption = 'Destino:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label12: TLabel
+      Left = 691
+      Top = 54
+      Width = 33
+      Height = 14
+      Caption = 'Frete:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label5: TLabel
+      Left = 4
+      Top = 78
+      Width = 131
+      Height = 14
+      Caption = 'Padrao de faturamento:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object bpsqFor: TSpeedButton
+      Left = 248
+      Top = 51
+      Width = 25
+      Height = 22
+      Hint = 'Pesquisar Fornecedores Existentes'
+      Flat = True
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000C40E0000C40E00000000000000000000C0CFD0C0CFD0
+        C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+        CFD0C0CFD0C0CFD0C0CFD000007F000000000000C0CFD0C0CFD0C0CFD0C0CFD0
+        C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD000007F0000FFFF00
+        FF00007F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+        CFD0C0CFD000007F0000FFFF00FF0000FF00007F000000C0CFD0C0CFD0C0CFD0
+        C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F0000FFBFB8BF0000FF0000
+        7F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F
+        787FBFB8BFFFF8FF0000FF00007F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0
+        C0CFD07F787F000000000000000000BFB8BFFFF8FFBFB8BF7F787F000000C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F7F7800FFF800BFB8BF7F78007F
+        78000000007F787F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F
+        7F7800FFF800BFB8BFFFF800BFB8BF7F78007F7800000000C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD07F787FFFF800FFF8FFFFF800BFB8BFFFF800BF
+        B8BF7F7800000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F
+        FFF8FFFFF800FFF8FFFFF800BFB8BFFFF800BFB8BF000000C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD07F787FFFF800FFF8FFFFF800FFF8FFFFF800BF
+        B8BFFFF800000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F
+        BFB8BFFFF800FFF8FFFFF800BFB8BFFFF8007F7800000000C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787FBFB8BFFFF800FFF8FFFFF8007F
+        7800000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0
+        C0CFD07F787F7F787F7F787F7F787F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+        CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0}
+      OnClick = bpsqForClick
+    end
+    object bpsqEmp: TSpeedButton
+      Left = 248
+      Top = 27
+      Width = 25
+      Height = 22
+      Hint = 'Pesquisar Empresas Existentes'
+      Flat = True
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000C40E0000C40E00000000000000000000C0CFD0C0CFD0
+        C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+        CFD0C0CFD0C0CFD0C0CFD000007F000000000000C0CFD0C0CFD0C0CFD0C0CFD0
+        C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD000007F0000FFFF00
+        FF00007F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+        CFD0C0CFD000007F0000FFFF00FF0000FF00007F000000C0CFD0C0CFD0C0CFD0
+        C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F0000FFBFB8BF0000FF0000
+        7F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F
+        787FBFB8BFFFF8FF0000FF00007F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0
+        C0CFD07F787F000000000000000000BFB8BFFFF8FFBFB8BF7F787F000000C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F7F7800FFF800BFB8BF7F78007F
+        78000000007F787F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F
+        7F7800FFF800BFB8BFFFF800BFB8BF7F78007F7800000000C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD07F787FFFF800FFF8FFFFF800BFB8BFFFF800BF
+        B8BF7F7800000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F
+        FFF8FFFFF800FFF8FFFFF800BFB8BFFFF800BFB8BF000000C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD07F787FFFF800FFF8FFFFF800FFF8FFFFF800BF
+        B8BFFFF800000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F
+        BFB8BFFFF800FFF8FFFFF800BFB8BFFFF8007F7800000000C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787FBFB8BFFFF800FFF8FFFFF8007F
+        7800000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0
+        C0CFD07F787F7F787F7F787F7F787F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+        CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0}
+      OnClick = bpsqEmpClick
+    end
+    object bpsqPfa: TSpeedButton
+      Left = 248
+      Top = 75
+      Width = 25
+      Height = 22
+      Hint = 'Pesquisar Padrões de Faturamento Existentes'
+      Flat = True
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000C40E0000C40E00000000000000000000C0CFD0C0CFD0
+        C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+        CFD0C0CFD0C0CFD0C0CFD000007F000000000000C0CFD0C0CFD0C0CFD0C0CFD0
+        C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD000007F0000FFFF00
+        FF00007F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+        CFD0C0CFD000007F0000FFFF00FF0000FF00007F000000C0CFD0C0CFD0C0CFD0
+        C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F0000FFBFB8BF0000FF0000
+        7F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F
+        787FBFB8BFFFF8FF0000FF00007F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0
+        C0CFD07F787F000000000000000000BFB8BFFFF8FFBFB8BF7F787F000000C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F7F7800FFF800BFB8BF7F78007F
+        78000000007F787F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F
+        7F7800FFF800BFB8BFFFF800BFB8BF7F78007F7800000000C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD07F787FFFF800FFF8FFFFF800BFB8BFFFF800BF
+        B8BF7F7800000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F
+        FFF8FFFFF800FFF8FFFFF800BFB8BFFFF800BFB8BF000000C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD07F787FFFF800FFF8FFFFF800FFF8FFFFF800BF
+        B8BFFFF800000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787F
+        BFB8BFFFF800FFF8FFFFF800BFB8BFFFF8007F7800000000C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F787FBFB8BFFFF800FFF8FFFFF8007F
+        7800000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0
+        C0CFD07F787F7F787F7F787F7F787F000000C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+        D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+        CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0}
+      OnClick = bpsqPfaClick
+    end
+    object Label52: TLabel
+      Left = 275
+      Top = 6
+      Width = 105
+      Height = 14
+      Caption = 'Região operacional:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label17: TLabel
+      Left = 418
+      Top = 6
+      Width = 126
+      Height = 14
+      Caption = 'No. pedido de compra:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label46: TLabel
+      Left = 655
+      Top = 6
+      Width = 56
+      Height = 14
+      Caption = '(%) Desc:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label7: TLabel
+      Left = 629
+      Top = 78
+      Width = 66
+      Height = 14
+      Caption = 'Cotação R$:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label9: TLabel
+      Left = 611
+      Top = 30
+      Width = 75
+      Height = 14
+      Caption = 'Tipo de nota:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object EdId_CmpNfs: TdxDBColorEdit
+      Left = 139
+      Top = 2
+      Width = 108
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 0
+      Alignment = taRightJustify
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'ID_CMPNFS'
+      DataSource = DsNfs
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdUfeNfs: TdxDBColorEdit
+      Left = 643
+      Top = 50
+      Width = 43
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtNone
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 13
+      Alignment = taLeftJustify
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'UFENFS'
+      DataSource = DsNfs
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdApeEmp: TdxDBColorEdit
+      Left = 273
+      Top = 26
+      Width = 185
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtNone
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 6
+      Alignment = taLeftJustify
+      AutoSize = False
+      CharCase = ecUpperCase
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdNomPfa: TdxDBColorEdit
+      Left = 273
+      Top = 74
+      Width = 353
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtNone
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 17
+      Alignment = taLeftJustify
+      AutoSize = False
+      CharCase = ecUpperCase
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnId_CmpNfs: TPanel
+      Left = 141
+      Top = 5
+      Width = 99
+      Height = 13
+      Alignment = taRightJustify
+      BevelOuter = bvNone
+      Caption = '0'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+    end
+    object EdCodEmp: TdxDBColorEdit
+      Left = 139
+      Top = 26
+      Width = 108
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 5
+      OnEnter = EdCodEmpEnter
+      OnExit = EdCodEmpExit
+      OnKeyDown = EdCodEmpKeyDown
+      OnKeyPress = EdCodEmpKeyPress
+      Alignment = taRightJustify
+      CharCase = ecUpperCase
+      DataField = 'CODEMP'
+      DataSource = DsNfs
+      CorDeFoco = clInfoBk
+      StoredValues = 1
+    end
+    object pnApeEmp: TPanel
+      Left = 277
+      Top = 29
+      Width = 177
+      Height = 14
+      Alignment = taLeftJustify
+      BevelOuter = bvNone
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clNavy
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 7
+    end
+    object EdDteFat: TdxDBColorDateEdit
+      Left = 508
+      Top = 26
+      Width = 100
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 8
+      OnEnter = EdCodTipEnter
+      Alignment = taCenter
+      DataField = 'DTEFAT'
+      DataSource = DsNfs
+      PopupBorder = pbFlat
+      DateButtons = []
+      SaveTime = False
+      CorDeFoco = clInfoBk
+      StoredValues = 1
+    end
+    object pnUfeNfs: TPanel
+      Left = 645
+      Top = 54
+      Width = 37
+      Height = 14
+      BevelOuter = bvNone
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 14
+    end
+    object EdFrtNfs: TdxDBColorPickEdit
+      Left = 726
+      Top = 50
+      Width = 57
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14065456
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 15
+      OnEnter = EdCodTipEnter
+      AutoSize = False
+      DataField = 'FRTNFS'
+      DataSource = DsNfs
+      ReadOnly = False
+      ImmediateDropDown = False
+      DropDownListStyle = True
+      Items.Strings = (
+        'CIF'
+        'FOB')
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 64
+    end
+    object EdCodPfa: TdxDBColorEdit
+      Left = 139
+      Top = 74
+      Width = 108
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 16
+      OnEnter = EdCodForEnter
+      OnExit = EdCodPfaExit
+      OnKeyDown = EdCodPfaKeyDown
+      Alignment = taRightJustify
+      CharCase = ecUpperCase
+      DataField = 'CODPFA'
+      DataSource = DsNfs
+      CorDeFoco = clInfoBk
+      StoredValues = 1
+    end
+    object pnNomPfa: TPanel
+      Left = 277
+      Top = 77
+      Width = 345
+      Height = 14
+      Alignment = taLeftJustify
+      BevelOuter = bvNone
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clNavy
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 18
+    end
+    object EdCodFor: TdxDBColorEdit
+      Left = 139
+      Top = 50
+      Width = 108
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 10
+      OnEnter = EdCodForEnter
+      OnExit = EdCodForExit
+      OnKeyDown = EdCodForKeyDown
+      OnKeyPress = EdCodEmpKeyPress
+      Alignment = taRightJustify
+      CharCase = ecUpperCase
+      DataField = 'CODFOR'
+      DataSource = DsNfs
+      CorDeFoco = clInfoBk
+      StoredValues = 1
+    end
+    object EdNomFor: TdxDBColorEdit
+      Left = 273
+      Top = 50
+      Width = 320
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtNone
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 11
+      Alignment = taLeftJustify
+      AutoSize = False
+      CharCase = ecUpperCase
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnNomFor: TPanel
+      Left = 277
+      Top = 53
+      Width = 312
+      Height = 14
+      Alignment = taLeftJustify
+      BevelOuter = bvNone
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 12
+    end
+    object EdCodTip: TdxDBColorCurrencyEdit
+      Left = 383
+      Top = 2
+      Width = 32
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 2
+      OnEnter = EdCodTipEnter
+      OnExit = EdCodTipExit
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'CODTIP'
+      DataSource = DsNfs
+      MaxLength = 1
+      DecimalPlaces = 0
+      DisplayFormat = '0'
+      MaxValue = 3
+      MinValue = 1
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 51
+    end
+    object EdId_CmpPed: TdxDBColorEdit
+      Left = 546
+      Top = 2
+      Width = 104
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 3
+      OnEnter = EdCodTipEnter
+      OnExit = EdId_CmpPedExit
+      Alignment = taRightJustify
+      CharCase = ecUpperCase
+      DataField = 'ID_CMPPED'
+      DataSource = DsNfs
+      CorDeFoco = clInfoBk
+      StoredValues = 1
+    end
+    object EdDscPed: TdxDBColorCurrencyEdit
+      Left = 713
+      Top = 2
+      Width = 70
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 4
+      OnEnter = EdCodTipEnter
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'DSCPED'
+      DataSource = DsNfs
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdValTmo: TdxDBColorCurrencyEdit
+      Left = 697
+      Top = 74
+      Width = 86
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 19
+      OnEnter = EdCodTipEnter
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'VALTMO'
+      DataSource = DsNfs
+      DecimalPlaces = 4
+      DisplayFormat = '###,###,##0.0000'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdTipPfa: TdxDBColorPickEdit
+      Left = 688
+      Top = 26
+      Width = 96
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14065456
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 9
+      AutoSize = False
+      DataField = 'TIPPFA'
+      DataSource = DsNfs
+      ReadOnly = False
+      ImmediateDropDown = False
+      DropDownListStyle = True
+      Items.Strings = (
+        'Saida'
+        'Entrada')
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 64
+    end
+  end
+  object Panel4: TPanel
+    Left = 5
+    Top = 361
+    Width = 778
+    Height = 83
+    BevelOuter = bvNone
+    TabOrder = 3
+    OnExit = Panel4Exit
+    object Label28: TLabel
+      Left = 4
+      Top = 2
+      Width = 132
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Base de cálculo do ICMS'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label38: TLabel
+      Left = 60
+      Top = 42
+      Width = 76
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Valor do frete'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label33: TLabel
+      Left = 192
+      Top = 2
+      Width = 76
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Valor do ICMS'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label39: TLabel
+      Left = 182
+      Top = 42
+      Width = 86
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Valor do seguro'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label34: TLabel
+      Left = 275
+      Top = 2
+      Width = 200
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Base de cálculo do ICMS substituição'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label40: TLabel
+      Left = 329
+      Top = 42
+      Width = 146
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Outras despesas acessórias'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label35: TLabel
+      Left = 482
+      Top = 2
+      Width = 144
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Valor do ICMS substituição'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label41: TLabel
+      Left = 533
+      Top = 42
+      Width = 93
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Valor total do IPI'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label36: TLabel
+      Left = 643
+      Top = 2
+      Width = 132
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Valor total dos produtos'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object Label42: TLabel
+      Left = 673
+      Top = 42
+      Width = 102
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Valor total da nota'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object EdTotFrt: TdxDBColorCurrencyEdit
+      Left = 0
+      Top = 58
+      Width = 137
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 11
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'TOTFRT'
+      DataSource = DsNfs
+      DisplayFormat = '###,###,##0.00'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdBasIc1: TdxDBColorCurrencyEdit
+      Left = 0
+      Top = 18
+      Width = 137
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 0
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'BASIC1'
+      DataSource = DsNfs
+      DisplayFormat = '###,###,##0.00'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnBasIc1: TPanel
+      Left = 2
+      Top = 22
+      Width = 129
+      Height = 14
+      Alignment = taRightJustify
+      BevelOuter = bvNone
+      Caption = '0,00'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+    end
+    object pnTotFrt: TPanel
+      Left = 2
+      Top = 62
+      Width = 129
+      Height = 14
+      Alignment = taRightJustify
+      BevelOuter = bvNone
+      Caption = '0,00'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 10
+    end
+    object EdTotIc1: TdxDBColorCurrencyEdit
+      Left = 138
+      Top = 18
+      Width = 132
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 2
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'TOTIC1'
+      DataSource = DsNfs
+      DisplayFormat = '###,###,##0.00'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnTotIc1: TPanel
+      Left = 140
+      Top = 22
+      Width = 124
+      Height = 14
+      Alignment = taRightJustify
+      BevelOuter = bvNone
+      Caption = '0,00'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 3
+    end
+    object EdTotSeg: TdxDBColorCurrencyEdit
+      Left = 138
+      Top = 58
+      Width = 132
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 12
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'TOTSEG'
+      DataSource = DsNfs
+      DisplayFormat = '###,###,##0.00'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnTotSeg: TPanel
+      Left = 140
+      Top = 62
+      Width = 124
+      Height = 14
+      Alignment = taRightJustify
+      BevelOuter = bvNone
+      Caption = '0,00'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 13
+    end
+    object EdBasSu1: TdxDBColorCurrencyEdit
+      Left = 271
+      Top = 18
+      Width = 206
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 4
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'BASSU1'
+      DataSource = DsNfs
+      DisplayFormat = '###,###,##0.00'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnBasSu1: TPanel
+      Left = 273
+      Top = 22
+      Width = 198
+      Height = 14
+      Alignment = taRightJustify
+      BevelOuter = bvNone
+      Caption = '0,00'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 5
+    end
+    object EdTotDes: TdxDBColorCurrencyEdit
+      Left = 271
+      Top = 57
+      Width = 206
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 14
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'TOTDES'
+      DataSource = DsNfs
+      DisplayFormat = '###,###,##0.00'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnTotDes: TPanel
+      Left = 273
+      Top = 61
+      Width = 199
+      Height = 14
+      Alignment = taRightJustify
+      BevelOuter = bvNone
+      Caption = '0,00'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 15
+    end
+    object EdTotSu1: TdxDBColorCurrencyEdit
+      Left = 478
+      Top = 18
+      Width = 152
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 6
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'TOTSU1'
+      DataSource = DsNfs
+      DisplayFormat = '###,###,##0.00'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnTotSu1: TPanel
+      Left = 480
+      Top = 22
+      Width = 144
+      Height = 14
+      Alignment = taRightJustify
+      BevelOuter = bvNone
+      Caption = '0,00'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 7
+    end
+    object EdTotIp1: TdxDBColorCurrencyEdit
+      Left = 478
+      Top = 57
+      Width = 152
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 16
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'TOTIP1'
+      DataSource = DsNfs
+      DisplayFormat = '###,###,##0.00'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnTotIp1: TPanel
+      Left = 480
+      Top = 61
+      Width = 144
+      Height = 14
+      Alignment = taRightJustify
+      BevelOuter = bvNone
+      Caption = '0,00'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 17
+    end
+    object EdTotIt1: TdxDBColorCurrencyEdit
+      Left = 631
+      Top = 18
+      Width = 146
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 8
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'TOTIT1'
+      DataSource = DsNfs
+      DisplayFormat = '###,###,##0.00'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnTotIt1: TPanel
+      Left = 633
+      Top = 22
+      Width = 138
+      Height = 14
+      Alignment = taRightJustify
+      BevelOuter = bvNone
+      Caption = '0,00'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 9
+    end
+    object EdTotGe1: TdxDBColorCurrencyEdit
+      Left = 631
+      Top = 57
+      Width = 146
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14789952
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 18
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'TOTGE1'
+      DataSource = DsNfs
+      DisplayFormat = '###,###,##0.00'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnTotGe1: TPanel
+      Left = 633
+      Top = 61
+      Width = 138
+      Height = 14
+      Alignment = taRightJustify
+      BevelOuter = bvNone
+      Caption = '0,00'
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 19
+    end
+  end
+  object grLabel2: TPanel
+    Left = 5
+    Top = 101
+    Width = 774
+    Height = 32
+    Alignment = taLeftJustify
+    BevelOuter = bvNone
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 4
+    object Label32: TLabel
+      Left = 2
+      Top = 8
+      Width = 81
+      Height = 14
+      Caption = 'Nosso código'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label10: TLabel
+      Left = 226
+      Top = 8
+      Width = 27
+      Height = 14
+      Caption = 'NCM'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label15: TLabel
+      Left = 614
+      Top = 8
+      Width = 32
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'ICMS'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label21: TLabel
+      Left = 416
+      Top = 8
+      Width = 71
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Quantidade'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label22: TLabel
+      Left = 526
+      Top = 8
+      Width = 48
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Unitário'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label25: TLabel
+      Left = 588
+      Top = 8
+      Width = 18
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'IPI'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label26: TLabel
+      Left = 710
+      Top = 8
+      Width = 64
+      Height = 14
+      Caption = 'Total Item'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label24: TLabel
+      Left = 301
+      Top = 8
+      Width = 23
+      Height = 14
+      Caption = 'ST1'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label27: TLabel
+      Left = 335
+      Top = 8
+      Width = 23
+      Height = 14
+      Caption = 'ST2'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label50: TLabel
+      Left = 167
+      Top = 8
+      Width = 31
+      Height = 14
+      Caption = 'CFOP'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label3: TLabel
+      Left = 372
+      Top = 8
+      Width = 16
+      Height = 14
+      Caption = 'UN'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label6: TLabel
+      Left = 674
+      Top = 8
+      Width = 10
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'II'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+  end
+  object grNf2: ThGrid
+    Left = 5
+    Top = 139
+    Width = 774
+    Height = 145
+    Selected.Strings = (
+      'CODCLP'#9'2'#9' '
+      'CODGRU'#9'5'#9' '
+      'CODSUB'#9'6'#9' '
+      'CODPRO'#9'7'#9' '
+      'CODCFO'#9'7'#9' '
+      'CLSIPI'#9'12'#9' '
+      'CODST1'#9'4'#9' '
+      'CODST2'#9'4'#9' '
+      'CODUND'#9'5'#9' '
+      'QTPNF2'#9'12'#9' '
+      'VLUNF2'#9'12'#9' '
+      'IPINF2'#9'4'#9' '
+      'ICMNF2'#9'5'#9' '
+      'IMPNF2'#9'5'#9' '
+      'TOTNF2'#9'12'#9' ')
+    IniAttributes.Delimiter = ';;'
+    TitleColor = clBtnFace
+    FixedCols = 0
+    ShowHorzScrollBar = True
+    ShowVertScrollBar = False
+    BorderStyle = bsNone
+    Color = 16577773
+    DataSource = DsNf2
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBackground
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    KeyOptions = []
+    Options = [dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap]
+    ParentFont = False
+    TabOrder = 5
+    TitleAlignment = taLeftJustify
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clBackground
+    TitleFont.Height = -20
+    TitleFont.Name = 'Haettenschweiler'
+    TitleFont.Style = []
+    TitleLines = 2
+    TitleButtons = False
+    OnDrawDataCell = grNf2DrawDataCell
+    OnEnter = grNf2Enter
+    OnKeyDown = grNf2KeyDown
+    IndicatorColor = icYellow
+    CorDeFoco = clInfoBk
+  end
+  object Panel3: TPanel
+    Left = 4
+    Top = 288
+    Width = 778
+    Height = 70
+    BevelOuter = bvNone
+    TabOrder = 6
+    OnExit = Panel3Exit
+    object Label44: TLabel
+      Left = 674
+      Top = 51
+      Width = 36
+      Height = 14
+      Caption = 'Itens:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object EdNroNf2: TdxDBColorCurrencyEdit
+      Left = 712
+      Top = 47
+      Width = 67
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 19
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'NRONF2'
+      DataSource = DsNf2
+      DecimalPlaces = 0
+      DisplayFormat = '###0'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdCodGru: TdxDBColorEdit
+      Left = 21
+      Top = -1
+      Width = 37
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 1
+      OnEnter = EdCodGruEnter
+      OnExit = EdCodGruExit
+      OnKeyDown = EdCodGruKeyDown
+      OnKeyPress = EdCodEmpKeyPress
+      Alignment = taCenter
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'CODGRU'
+      DataSource = DsNf2
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdCodSub: TdxDBColorEdit
+      Left = 57
+      Top = -1
+      Width = 50
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 2
+      OnEnter = EdCodSubEnter
+      OnExit = EdCodSubExit
+      OnKeyDown = EdCodSubKeyDown
+      OnKeyPress = EdCodEmpKeyPress
+      Alignment = taCenter
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'CODSUB'
+      DataSource = DsNf2
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdCodPro: TdxDBColorEdit
+      Left = 106
+      Top = -1
+      Width = 51
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 3
+      OnEnter = EdCodSubEnter
+      OnExit = EdCodProExit
+      OnKeyDown = EdCodProKeyDown
+      Alignment = taCenter
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'CODPRO'
+      DataSource = DsNf2
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdQtpNf2: TdxDBColorCurrencyEdit
+      Left = 400
+      Top = -1
+      Width = 93
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 9
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'QTPNF2'
+      DataSource = DsNf2
+      DecimalPlaces = 4
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdVluNf2: TdxDBColorCurrencyEdit
+      Left = 492
+      Top = -1
+      Width = 89
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 10
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'VLUNF2'
+      DataSource = DsNf2
+      DecimalPlaces = 4
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdIpiNf2: TdxDBColorCurrencyEdit
+      Left = 580
+      Top = -1
+      Width = 33
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 11
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'IPINF2'
+      DataSource = DsNf2
+      DecimalPlaces = 4
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdIcmNf2: TdxDBColorCurrencyEdit
+      Left = 612
+      Top = -1
+      Width = 40
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 12
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'ICMNF2'
+      DataSource = DsNf2
+      DecimalPlaces = 4
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdCodSt1: TdxDBColorEdit
+      Left = 298
+      Top = -1
+      Width = 33
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 6
+      OnEnter = EdCodEmpEnter
+      OnKeyDown = EdCodSt1KeyDown
+      OnKeyPress = EdCodEmpKeyPress
+      Alignment = taCenter
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'CODST1'
+      DataSource = DsNf2
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdCodSt2: TdxDBColorEdit
+      Left = 330
+      Top = -1
+      Width = 34
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 7
+      OnEnter = EdCodEmpEnter
+      OnKeyDown = EdCodSt2KeyDown
+      OnKeyPress = EdCodEmpKeyPress
+      Alignment = taCenter
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'CODST2'
+      DataSource = DsNf2
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdTotNf2: TdxDBColorCurrencyEdit
+      Left = 690
+      Top = -1
+      Width = 89
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 14
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'TOTNF2'
+      DataSource = DsNf2
+      DisplayFormat = '###,###,##0.00'
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdCodCfo: TdxDBColorEdit
+      Left = 156
+      Top = -1
+      Width = 54
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 4
+      OnEnter = EdCodTipEnter
+      OnKeyPress = EdCodCfoKeyPress
+      Alignment = taCenter
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'CODCFO'
+      DataSource = DsNf2
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdClsIpi: TdxDBColorEdit
+      Left = 209
+      Top = -1
+      Width = 90
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 5
+      OnEnter = EdCodTipEnter
+      OnKeyPress = EdCodCfoKeyPress
+      Alignment = taLeftJustify
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'CLSIPI'
+      DataSource = DsNf2
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdCodUnd: TdxDBColorEdit
+      Left = 363
+      Top = -1
+      Width = 38
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 8
+      OnEnter = EdCodEmpEnter
+      OnKeyDown = EdCodUndKeyDown
+      Alignment = taCenter
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'CODUND'
+      DataSource = DsNf2
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object EdCodClp: TdxDBColorEdit
+      Left = -1
+      Top = -1
+      Width = 23
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 0
+      OnEnter = EdCodClpEnter
+      OnExit = EdCodClpExit
+      OnKeyDown = EdCodClpKeyDown
+      OnKeyPress = EdCodEmpKeyPress
+      Alignment = taCenter
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'CODCLP'
+      DataSource = DsNf2
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnNroNf2: TPanel
+      Left = 714
+      Top = 50
+      Width = 61
+      Height = 14
+      BevelOuter = bvNone
+      Caption = '000/000'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 20
+    end
+    object EdObsNf2: TdxDBColorEdit
+      Left = -1
+      Top = 47
+      Width = 614
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtNone
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 17
+      Alignment = taLeftJustify
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'OBSNF2'
+      DataSource = DsNf2
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnObsNf2: TPanel
+      Left = 2
+      Top = 51
+      Width = 607
+      Height = 14
+      Alignment = taLeftJustify
+      BevelOuter = bvNone
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clNavy
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 18
+    end
+    object EdDesNf2: TdxDBColorEdit
+      Left = -1
+      Top = 23
+      Width = 614
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtNone
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 15
+      Alignment = taLeftJustify
+      AutoSize = False
+      CharCase = ecUpperCase
+      DataField = 'DESNF2'
+      DataSource = DsNf2
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+    object pnDesNf2: TPanel
+      Left = 2
+      Top = 26
+      Width = 607
+      Height = 14
+      Alignment = taLeftJustify
+      BevelOuter = bvNone
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clNavy
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 16
+    end
+    object EdImpNf2: TdxDBColorCurrencyEdit
+      Left = 651
+      Top = -1
+      Width = 40
+      Color = 16577773
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = 14859373
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 13
+      Alignment = taRightJustify
+      AutoSize = False
+      DataField = 'IMPNF2'
+      DataSource = DsNf2
+      DecimalPlaces = 4
+      Nullable = False
+      UseThousandSeparator = True
+      CorDeFoco = clInfoBk
+      Height = 24
+      StoredValues = 1
+    end
+  end
+  object CmpNfs: TwwQuery
+    Active = True
+    CachedUpdates = True
+    OnNewRecord = CmpNfsNewRecord
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'Select * From CmpNfs'
+      'Where CmpNfs.Id_CmpNfs = :Id_CmpNfs')
+    UpdateObject = UpNfs
+    ValidateWithMask = True
+    Left = 6
+    Top = 171
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'Id_CmpNfs'
+        ParamType = ptInput
+      end>
+    object CmpNfsID_CMPNFS: TIntegerField
+      FieldName = 'ID_CMPNFS'
+      Origin = 'ISADE.CMPNFS.ID_CMPNFS'
+    end
+    object CmpNfsCODEMP: TIntegerField
+      FieldName = 'CODEMP'
+      Origin = 'ISADE.CMPNFS.CODEMP'
+    end
+    object CmpNfsDTEFAT: TDateTimeField
+      DisplayWidth = 10
+      FieldName = 'DTEFAT'
+      Origin = 'ISADE.CMPNFS.DTEFAT'
+      EditMask = '!99/99/9999;1;_'
+    end
+    object CmpNfsCODTIP: TIntegerField
+      FieldName = 'CODTIP'
+      Origin = 'ISADE.CMPNFS.CODTIP'
+    end
+    object CmpNfsHREFAT: TStringField
+      FieldName = 'HREFAT'
+      Origin = 'ISADE.CMPNFS.HREFAT'
+      FixedChar = True
+      Size = 8
+    end
+    object CmpNfsUFENFS: TStringField
+      FieldName = 'UFENFS'
+      Origin = 'ISADE.CMPNFS.UFENFS'
+      FixedChar = True
+      Size = 2
+    end
+    object CmpNfsCODPFA: TStringField
+      FieldName = 'CODPFA'
+      Origin = 'ISADE.CMPNFS.CODPFA'
+      Size = 15
+    end
+    object CmpNfsTIPPFA: TStringField
+      FieldName = 'TIPPFA'
+      Origin = 'ISADE.CMPNFS.TIPPFA'
+      Size = 7
+    end
+    object CmpNfsMODPFA: TStringField
+      FieldName = 'MODPFA'
+      Origin = 'ISADE.CMPNFS.MODPFA'
+    end
+    object CmpNfsCODFOR: TIntegerField
+      FieldName = 'CODFOR'
+      Origin = 'ISADE.CMPNFS.CODFOR'
+    end
+    object CmpNfsPERPIS: TFloatField
+      FieldName = 'PERPIS'
+      Origin = 'ISADE.CMPNFS.PERPIS'
+    end
+    object CmpNfsPERCOF: TFloatField
+      FieldName = 'PERCOF'
+      Origin = 'ISADE.CMPNFS.PERCOF'
+    end
+    object CmpNfsCODFIL: TIntegerField
+      FieldName = 'CODFIL'
+      Origin = 'ISADE.CMPNFS.CODFIL'
+    end
+    object CmpNfsQTDNOT: TIntegerField
+      FieldName = 'QTDNOT'
+      Origin = 'ISADE.CMPNFS.QTDNOT'
+    end
+    object CmpNfsNRONOT: TIntegerField
+      FieldName = 'NRONOT'
+      Origin = 'ISADE.CMPNFS.NRONOT'
+    end
+    object CmpNfsQTDNFS: TIntegerField
+      FieldName = 'QTDNFS'
+      Origin = 'ISADE.CMPNFS.QTDNFS'
+    end
+    object CmpNfsNRONFS: TIntegerField
+      FieldName = 'NRONFS'
+      Origin = 'ISADE.CMPNFS.NRONFS'
+    end
+    object CmpNfsCGCFOR: TStringField
+      FieldName = 'CGCFOR'
+      Origin = 'ISADE.CMPNFS.CGCFOR'
+      FixedChar = True
+      Size = 18
+    end
+    object CmpNfsINSFOR: TStringField
+      FieldName = 'INSFOR'
+      Origin = 'ISADE.CMPNFS.INSFOR'
+      FixedChar = True
+      Size = 18
+    end
+    object CmpNfsCODCF1: TStringField
+      FieldName = 'CODCF1'
+      Origin = 'ISADE.CMPNFS.CODCF1'
+      Size = 15
+    end
+    object CmpNfsCODCF2: TStringField
+      FieldName = 'CODCF2'
+      Origin = 'ISADE.CMPNFS.CODCF2'
+      Size = 15
+    end
+    object CmpNfsFRTNFS: TStringField
+      FieldName = 'FRTNFS'
+      Origin = 'ISADE.CMPNFS.FRTNFS'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsFLGENT: TStringField
+      FieldName = 'FLGENT'
+      Origin = 'ISADE.CMPNFS.FLGENT'
+      FixedChar = True
+      Size = 1
+    end
+    object CmpNfsFLGSAI: TStringField
+      FieldName = 'FLGSAI'
+      Origin = 'ISADE.CMPNFS.FLGSAI'
+      FixedChar = True
+      Size = 1
+    end
+    object CmpNfsDESNAT: TStringField
+      FieldName = 'DESNAT'
+      Origin = 'ISADE.CMPNFS.DESNAT'
+      Size = 100
+    end
+    object CmpNfsINSSUB: TStringField
+      FieldName = 'INSSUB'
+      Origin = 'ISADE.CMPNFS.INSSUB'
+      Size = 18
+    end
+    object CmpNfsTIPFRT: TStringField
+      FieldName = 'TIPFRT'
+      Origin = 'ISADE.CMPNFS.TIPFRT'
+      FixedChar = True
+      Size = 1
+    end
+    object CmpNfsMARNFS: TStringField
+      FieldName = 'MARNFS'
+      Origin = 'ISADE.CMPNFS.MARNFS'
+      Size = 15
+    end
+    object CmpNfsNUMNFS: TStringField
+      FieldName = 'NUMNFS'
+      Origin = 'ISADE.CMPNFS.NUMNFS'
+      Size = 15
+    end
+    object CmpNfsESPNFS: TStringField
+      FieldName = 'ESPNFS'
+      Origin = 'ISADE.CMPNFS.ESPNFS'
+      Size = 15
+    end
+    object CmpNfsNOMTRA: TStringField
+      FieldName = 'NOMTRA'
+      Origin = 'ISADE.CMPNFS.NOMTRA'
+      Size = 70
+    end
+    object CmpNfsCGCTRA: TStringField
+      FieldName = 'CGCTRA'
+      Origin = 'ISADE.CMPNFS.CGCTRA'
+      Size = 18
+    end
+    object CmpNfsINSTRA: TStringField
+      FieldName = 'INSTRA'
+      Origin = 'ISADE.CMPNFS.INSTRA'
+      Size = 18
+    end
+    object CmpNfsCEPTRA: TStringField
+      FieldName = 'CEPTRA'
+      Origin = 'ISADE.CMPNFS.CEPTRA'
+      EditMask = '99999\-999;0;_'
+      FixedChar = True
+      Size = 8
+    end
+    object CmpNfsTENTRA: TStringField
+      FieldName = 'TENTRA'
+      Origin = 'ISADE.CMPNFS.TENTRA'
+      Size = 10
+    end
+    object CmpNfsENDTRA: TStringField
+      FieldName = 'ENDTRA'
+      Origin = 'ISADE.CMPNFS.ENDTRA'
+      Size = 40
+    end
+    object CmpNfsREFTRA: TStringField
+      FieldName = 'REFTRA'
+      Origin = 'ISADE.CMPNFS.REFTRA'
+      Size = 40
+    end
+    object CmpNfsNUMTRA: TStringField
+      FieldName = 'NUMTRA'
+      Origin = 'ISADE.CMPNFS.NUMTRA'
+      Size = 10
+    end
+    object CmpNfsBAITRA: TStringField
+      FieldName = 'BAITRA'
+      Origin = 'ISADE.CMPNFS.BAITRA'
+    end
+    object CmpNfsCIDTRA: TStringField
+      FieldName = 'CIDTRA'
+      Origin = 'ISADE.CMPNFS.CIDTRA'
+    end
+    object CmpNfsUFETRA: TStringField
+      FieldName = 'UFETRA'
+      Origin = 'ISADE.CMPNFS.UFETRA'
+      FixedChar = True
+      Size = 2
+    end
+    object CmpNfsPLCTRA: TStringField
+      FieldName = 'PLCTRA'
+      Origin = 'ISADE.CMPNFS.PLCTRA'
+      Size = 7
+    end
+    object CmpNfsPRTTRA: TStringField
+      FieldName = 'PRTTRA'
+      Origin = 'ISADE.CMPNFS.PRTTRA'
+      Size = 4
+    end
+    object CmpNfsFONTRA: TStringField
+      FieldName = 'FONTRA'
+      Origin = 'ISADE.CMPNFS.FONTRA'
+    end
+    object CmpNfsUFEPLC: TStringField
+      FieldName = 'UFEPLC'
+      Origin = 'ISADE.CMPNFS.UFEPLC'
+      FixedChar = True
+      Size = 2
+    end
+    object CmpNfsNOMENT: TStringField
+      FieldName = 'NOMENT'
+      Origin = 'ISADE.CMPNFS.NOMENT'
+      Size = 70
+    end
+    object CmpNfsCEPFOR: TStringField
+      FieldName = 'CEPFOR'
+      Origin = 'ISADE.CMPNFS.CEPFOR'
+      EditMask = '99999\-999;0;_'
+      FixedChar = True
+      Size = 8
+    end
+    object CmpNfsTENFOR: TStringField
+      FieldName = 'TENFOR'
+      Origin = 'ISADE.CMPNFS.TENFOR'
+      Size = 10
+    end
+    object CmpNfsENDFOR: TStringField
+      FieldName = 'ENDFOR'
+      Origin = 'ISADE.CMPNFS.ENDFOR'
+      Size = 70
+    end
+    object CmpNfsREFFOR: TStringField
+      FieldName = 'REFFOR'
+      Origin = 'ISADE.CMPNFS.REFFOR'
+      Size = 40
+    end
+    object CmpNfsNUMFOR: TStringField
+      FieldName = 'NUMFOR'
+      Origin = 'ISADE.CMPNFS.NUMFOR'
+      Size = 10
+    end
+    object CmpNfsBAIFOR: TStringField
+      FieldName = 'BAIFOR'
+      Origin = 'ISADE.CMPNFS.BAIFOR'
+    end
+    object CmpNfsCIDFOR: TStringField
+      FieldName = 'CIDFOR'
+      Origin = 'ISADE.CMPNFS.CIDFOR'
+    end
+    object CmpNfsUFEFOR: TStringField
+      FieldName = 'UFEFOR'
+      Origin = 'ISADE.CMPNFS.UFEFOR'
+      FixedChar = True
+      Size = 2
+    end
+    object CmpNfsOB1NFS: TStringField
+      FieldName = 'OB1NFS'
+      Origin = 'ISADE.CMPNFS.OB1NFS'
+      Size = 80
+    end
+    object CmpNfsOB2NFS: TStringField
+      FieldName = 'OB2NFS'
+      Origin = 'ISADE.CMPNFS.OB2NFS'
+      Size = 80
+    end
+    object CmpNfsOB3NFS: TStringField
+      FieldName = 'OB3NFS'
+      Origin = 'ISADE.CMPNFS.OB3NFS'
+      Size = 80
+    end
+    object CmpNfsOB4NFS: TStringField
+      FieldName = 'OB4NFS'
+      Origin = 'ISADE.CMPNFS.OB4NFS'
+      Size = 80
+    end
+    object CmpNfsOB5NFS: TStringField
+      FieldName = 'OB5NFS'
+      Origin = 'ISADE.CMPNFS.OB5NFS'
+      Size = 80
+    end
+    object CmpNfsOB6NFS: TStringField
+      FieldName = 'OB6NFS'
+      Origin = 'ISADE.CMPNFS.OB6NFS'
+      Size = 80
+    end
+    object CmpNfsOB7NFS: TStringField
+      FieldName = 'OB7NFS'
+      Origin = 'ISADE.CMPNFS.OB7NFS'
+      Size = 80
+    end
+    object CmpNfsOB8NFS: TStringField
+      FieldName = 'OB8NFS'
+      Origin = 'ISADE.CMPNFS.OB8NFS'
+      Size = 80
+    end
+    object CmpNfsQTINFS: TIntegerField
+      FieldName = 'QTINFS'
+      Origin = 'ISADE.CMPNFS.QTINFS'
+    end
+    object CmpNfsLINNFS: TIntegerField
+      FieldName = 'LINNFS'
+      Origin = 'ISADE.CMPNFS.LINNFS'
+    end
+    object CmpNfsQTDVOL: TIntegerField
+      FieldName = 'QTDVOL'
+      Origin = 'ISADE.CMPNFS.QTDVOL'
+    end
+    object CmpNfsALTVOL: TIntegerField
+      FieldName = 'ALTVOL'
+      Origin = 'ISADE.CMPNFS.ALTVOL'
+    end
+    object CmpNfsINFLIQ: TFloatField
+      FieldName = 'INFLIQ'
+      Origin = 'ISADE.CMPNFS.INFLIQ'
+    end
+    object CmpNfsTOTLIQ: TFloatField
+      FieldName = 'TOTLIQ'
+      Origin = 'ISADE.CMPNFS.TOTLIQ'
+    end
+    object CmpNfsINFBRT: TFloatField
+      FieldName = 'INFBRT'
+      Origin = 'ISADE.CMPNFS.INFBRT'
+    end
+    object CmpNfsTOTBRT: TFloatField
+      FieldName = 'TOTBRT'
+      Origin = 'ISADE.CMPNFS.TOTBRT'
+    end
+    object CmpNfsBASIPI: TFloatField
+      FieldName = 'BASIPI'
+      Origin = 'ISADE.CMPNFS.BASIPI'
+    end
+    object CmpNfsTOTIPI: TFloatField
+      FieldName = 'TOTIPI'
+      Origin = 'ISADE.CMPNFS.TOTIPI'
+    end
+    object CmpNfsBASICM: TFloatField
+      FieldName = 'BASICM'
+      Origin = 'ISADE.CMPNFS.BASICM'
+    end
+    object CmpNfsTOTICM: TFloatField
+      FieldName = 'TOTICM'
+      Origin = 'ISADE.CMPNFS.TOTICM'
+    end
+    object CmpNfsBASSUB: TFloatField
+      FieldName = 'BASSUB'
+      Origin = 'ISADE.CMPNFS.BASSUB'
+    end
+    object CmpNfsTOTSUB: TFloatField
+      FieldName = 'TOTSUB'
+      Origin = 'ISADE.CMPNFS.TOTSUB'
+    end
+    object CmpNfsTOTITE: TFloatField
+      FieldName = 'TOTITE'
+      Origin = 'ISADE.CMPNFS.TOTITE'
+      DisplayFormat = '###,###,##0.00'
+    end
+    object CmpNfsTOTGER: TFloatField
+      FieldName = 'TOTGER'
+      Origin = 'ISADE.CMPNFS.TOTGER'
+    end
+    object CmpNfsTOTPIS: TFloatField
+      FieldName = 'TOTPIS'
+      Origin = 'ISADE.CMPNFS.TOTPIS'
+      DisplayFormat = '###,###,##0.00'
+    end
+    object CmpNfsTOTCOF: TFloatField
+      FieldName = 'TOTCOF'
+      Origin = 'ISADE.CMPNFS.TOTCOF'
+      DisplayFormat = '###,###,##0.00'
+    end
+    object CmpNfsTOTFRT: TFloatField
+      FieldName = 'TOTFRT'
+      Origin = 'ISADE.CMPNFS.TOTFRT'
+    end
+    object CmpNfsTOTSEG: TFloatField
+      FieldName = 'TOTSEG'
+      Origin = 'ISADE.CMPNFS.TOTSEG'
+    end
+    object CmpNfsTOTDES: TFloatField
+      FieldName = 'TOTDES'
+      Origin = 'ISADE.CMPNFS.TOTDES'
+    end
+    object CmpNfsBSICMF: TFloatField
+      FieldName = 'BSICMF'
+      Origin = 'ISADE.CMPNFS.BSICMF'
+    end
+    object CmpNfsBAICMF: TFloatField
+      FieldName = 'BAICMF'
+      Origin = 'ISADE.CMPNFS.BAICMF'
+    end
+    object CmpNfsTOICMF: TFloatField
+      FieldName = 'TOICMF'
+      Origin = 'ISADE.CMPNFS.TOICMF'
+    end
+    object CmpNfsBSICMS: TFloatField
+      FieldName = 'BSICMS'
+      Origin = 'ISADE.CMPNFS.BSICMS'
+    end
+    object CmpNfsBAICMS: TFloatField
+      FieldName = 'BAICMS'
+      Origin = 'ISADE.CMPNFS.BAICMS'
+    end
+    object CmpNfsTOICMS: TFloatField
+      FieldName = 'TOICMS'
+      Origin = 'ISADE.CMPNFS.TOICMS'
+    end
+    object CmpNfsBSICMD: TFloatField
+      FieldName = 'BSICMD'
+      Origin = 'ISADE.CMPNFS.BSICMD'
+    end
+    object CmpNfsBAICMD: TFloatField
+      FieldName = 'BAICMD'
+      Origin = 'ISADE.CMPNFS.BAICMD'
+    end
+    object CmpNfsTOICMD: TFloatField
+      FieldName = 'TOICMD'
+      Origin = 'ISADE.CMPNFS.TOICMD'
+    end
+    object CmpNfsBSIPIF: TFloatField
+      FieldName = 'BSIPIF'
+      Origin = 'ISADE.CMPNFS.BSIPIF'
+    end
+    object CmpNfsBAIPIF: TFloatField
+      FieldName = 'BAIPIF'
+      Origin = 'ISADE.CMPNFS.BAIPIF'
+    end
+    object CmpNfsTOIPIF: TFloatField
+      FieldName = 'TOIPIF'
+      Origin = 'ISADE.CMPNFS.TOIPIF'
+    end
+    object CmpNfsBSIPIS: TFloatField
+      FieldName = 'BSIPIS'
+      Origin = 'ISADE.CMPNFS.BSIPIS'
+    end
+    object CmpNfsBAIPIS: TFloatField
+      FieldName = 'BAIPIS'
+      Origin = 'ISADE.CMPNFS.BAIPIS'
+    end
+    object CmpNfsTOIPIS: TFloatField
+      FieldName = 'TOIPIS'
+      Origin = 'ISADE.CMPNFS.TOIPIS'
+    end
+    object CmpNfsBSIPID: TFloatField
+      FieldName = 'BSIPID'
+      Origin = 'ISADE.CMPNFS.BSIPID'
+    end
+    object CmpNfsBAIPID: TFloatField
+      FieldName = 'BAIPID'
+      Origin = 'ISADE.CMPNFS.BAIPID'
+    end
+    object CmpNfsTOIPID: TFloatField
+      FieldName = 'TOIPID'
+      Origin = 'ISADE.CMPNFS.TOIPID'
+    end
+    object CmpNfsBASIP1: TFloatField
+      FieldName = 'BASIP1'
+      Origin = 'ISADE.CMPNFS.BASIP1'
+    end
+    object CmpNfsTOTIP1: TFloatField
+      FieldName = 'TOTIP1'
+      Origin = 'ISADE.CMPNFS.TOTIP1'
+    end
+    object CmpNfsBASIC1: TFloatField
+      FieldName = 'BASIC1'
+      Origin = 'ISADE.CMPNFS.BASIC1'
+    end
+    object CmpNfsTOTIC1: TFloatField
+      FieldName = 'TOTIC1'
+      Origin = 'ISADE.CMPNFS.TOTIC1'
+    end
+    object CmpNfsBASSU1: TFloatField
+      FieldName = 'BASSU1'
+      Origin = 'ISADE.CMPNFS.BASSU1'
+    end
+    object CmpNfsTOTSU1: TFloatField
+      FieldName = 'TOTSU1'
+      Origin = 'ISADE.CMPNFS.TOTSU1'
+    end
+    object CmpNfsTOTIT1: TFloatField
+      FieldName = 'TOTIT1'
+      Origin = 'ISADE.CMPNFS.TOTIT1'
+    end
+    object CmpNfsTOTGE1: TFloatField
+      FieldName = 'TOTGE1'
+      Origin = 'ISADE.CMPNFS.TOTGE1'
+    end
+    object CmpNfsCODUSU: TIntegerField
+      FieldName = 'CODUSU'
+      Origin = 'ISADE.CMPNFS.CODUSU'
+    end
+    object CmpNfsHRCNFS: TStringField
+      FieldName = 'HRCNFS'
+      Origin = 'ISADE.CMPNFS.HRCNFS'
+      FixedChar = True
+      Size = 8
+    end
+    object CmpNfsDTCNFS: TDateTimeField
+      FieldName = 'DTCNFS'
+      Origin = 'ISADE.CMPNFS.DTCNFS'
+    end
+    object CmpNfsUSCNFS: TIntegerField
+      FieldName = 'USCNFS'
+      Origin = 'ISADE.CMPNFS.USCNFS'
+    end
+    object CmpNfsOBCNF1: TStringField
+      FieldName = 'OBCNF1'
+      Origin = 'ISADE.CMPNFS.OBCNF1'
+      Size = 80
+    end
+    object CmpNfsOBCNF2: TStringField
+      FieldName = 'OBCNF2'
+      Origin = 'ISADE.CMPNFS.OBCNF2'
+      Size = 80
+    end
+    object CmpNfsOBCNF3: TStringField
+      FieldName = 'OBCNF3'
+      Origin = 'ISADE.CMPNFS.OBCNF3'
+      Size = 80
+    end
+    object CmpNfsDTFNFS: TDateTimeField
+      FieldName = 'DTFNFS'
+      Origin = 'ISADE.CMPNFS.DTFNFS'
+    end
+    object CmpNfsHRFNFS: TStringField
+      FieldName = 'HRFNFS'
+      Origin = 'ISADE.CMPNFS.HRFNFS'
+      FixedChar = True
+      Size = 8
+    end
+    object CmpNfsOBFNF1: TStringField
+      FieldName = 'OBFNF1'
+      Origin = 'ISADE.CMPNFS.OBFNF1'
+      Size = 80
+    end
+    object CmpNfsOBFNF2: TStringField
+      FieldName = 'OBFNF2'
+      Origin = 'ISADE.CMPNFS.OBFNF2'
+      Size = 80
+    end
+    object CmpNfsOBFNF3: TStringField
+      FieldName = 'OBFNF3'
+      Origin = 'ISADE.CMPNFS.OBFNF3'
+      Size = 80
+    end
+    object CmpNfsUSFNFS: TIntegerField
+      FieldName = 'USFNFS'
+      Origin = 'ISADE.CMPNFS.USFNFS'
+    end
+    object CmpNfsATUEST: TStringField
+      FieldName = 'ATUEST'
+      Origin = 'ISADE.CMPNFS.ATUEST'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsLANEST: TStringField
+      FieldName = 'LANEST'
+      Origin = 'ISADE.CMPNFS.LANEST'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsINTFIN: TStringField
+      FieldName = 'INTFIN'
+      Origin = 'ISADE.CMPNFS.INTFIN'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsCONSUM: TStringField
+      FieldName = 'CONSUM'
+      Origin = 'ISADE.CMPNFS.CONSUM'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsFLGSIN: TStringField
+      FieldName = 'FLGSIN'
+      Origin = 'ISADE.CMPNFS.FLGSIN'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsFLGCTB: TStringField
+      FieldName = 'FLGCTB'
+      Origin = 'ISADE.CMPNFS.FLGCTB'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsCODIPI: TStringField
+      FieldName = 'CODIPI'
+      Origin = 'ISADE.CMPNFS.CODIPI'
+      Size = 30
+    end
+    object CmpNfsTIPIPI: TStringField
+      FieldName = 'TIPIPI'
+      Origin = 'ISADE.CMPNFS.TIPIPI'
+      Size = 7
+    end
+    object CmpNfsTRBIPI: TStringField
+      FieldName = 'TRBIPI'
+      Origin = 'ISADE.CMPNFS.TRBIPI'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsREDIPI: TFloatField
+      FieldName = 'REDIPI'
+      Origin = 'ISADE.CMPNFS.REDIPI'
+    end
+    object CmpNfsBSCIPI: TFloatField
+      FieldName = 'BSCIPI'
+      Origin = 'ISADE.CMPNFS.BSCIPI'
+    end
+    object CmpNfsCODICM: TStringField
+      FieldName = 'CODICM'
+      Origin = 'ISADE.CMPNFS.CODICM'
+    end
+    object CmpNfsTIPICM: TStringField
+      FieldName = 'TIPICM'
+      Origin = 'ISADE.CMPNFS.TIPICM'
+      Size = 7
+    end
+    object CmpNfsTRBICM: TStringField
+      FieldName = 'TRBICM'
+      Origin = 'ISADE.CMPNFS.TRBICM'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsREDICM: TFloatField
+      FieldName = 'REDICM'
+      Origin = 'ISADE.CMPNFS.REDICM'
+    end
+    object CmpNfsBSCICM: TFloatField
+      FieldName = 'BSCICM'
+      Origin = 'ISADE.CMPNFS.BSCICM'
+    end
+    object CmpNfsINCREV: TFloatField
+      FieldName = 'INCREV'
+      Origin = 'ISADE.CMPNFS.INCREV'
+    end
+    object CmpNfsINCFIN: TFloatField
+      FieldName = 'INCFIN'
+      Origin = 'ISADE.CMPNFS.INCFIN'
+    end
+    object CmpNfsNROCOL: TStringField
+      FieldName = 'NROCOL'
+      Origin = 'ISADE.CMPNFS.NROCOL'
+    end
+    object CmpNfsTRBPIS: TStringField
+      FieldName = 'TRBPIS'
+      Origin = 'ISADE.CMPNFS.TRBPIS'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsTRBCOF: TStringField
+      FieldName = 'TRBCOF'
+      Origin = 'ISADE.CMPNFS.TRBCOF'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsFLGENV: TStringField
+      FieldName = 'FLGENV'
+      Origin = 'ISADE.CMPNFS.FLGENV'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsFLGIMP: TStringField
+      FieldName = 'FLGIMP'
+      Origin = 'ISADE.CMPNFS.FLGIMP'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsFLGATU: TStringField
+      FieldName = 'FLGATU'
+      Origin = 'ISADE.CMPNFS.FLGATU'
+      FixedChar = True
+      Size = 1
+    end
+    object CmpNfsSEQNFS: TStringField
+      FieldName = 'SEQNFS'
+      Origin = 'ISADE.CMPNFS.SEQNFS'
+      FixedChar = True
+      Size = 22
+    end
+    object CmpNfsSITNFS: TStringField
+      FieldName = 'SITNFS'
+      Origin = 'ISADE.CMPNFS.SITNFS'
+      Size = 45
+    end
+    object CmpNfsSERNOT: TStringField
+      FieldName = 'SERNOT'
+      Origin = 'ISADE.CMPNFS.SERNOT'
+      Size = 10
+    end
+    object CmpNfsSERSEL: TStringField
+      FieldName = 'SERSEL'
+      Origin = 'ISADE.CMPNFS.SERSEL'
+      Size = 10
+    end
+    object CmpNfsFLGSEG: TStringField
+      FieldName = 'FLGSEG'
+      Origin = 'ISADE.CMPNFS.FLGSEG'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsSEQINI: TIntegerField
+      FieldName = 'SEQINI'
+      Origin = 'ISADE.CMPNFS.SEQINI'
+    end
+    object CmpNfsSEQFIN: TIntegerField
+      FieldName = 'SEQFIN'
+      Origin = 'ISADE.CMPNFS.SEQFIN'
+    end
+    object CmpNfsCODTRA: TIntegerField
+      FieldName = 'CODTRA'
+      Origin = 'ISADE.CMPNFS.CODTRA'
+    end
+    object CmpNfsTXFICM: TStringField
+      FieldName = 'TXFICM'
+      Origin = 'ISADE.CMPNFS.TXFICM'
+      Size = 30
+    end
+    object CmpNfsTXFIPI: TStringField
+      FieldName = 'TXFIPI'
+      Origin = 'ISADE.CMPNFS.TXFIPI'
+      Size = 30
+    end
+    object CmpNfsFLGNFS: TStringField
+      FieldName = 'FLGNFS'
+      Origin = 'ISADE.CMPNFS.FLGNFS'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsVALTMO: TFloatField
+      FieldName = 'VALTMO'
+      Origin = 'ISADE.CMPNFS.VALTMO'
+      DisplayFormat = '###,###,##0.0000'
+    end
+    object CmpNfsID_CMPPED: TIntegerField
+      FieldName = 'ID_CMPPED'
+      Origin = 'ISADE.CMPNFS.ID_CMPPED'
+    end
+    object CmpNfsOB1OPE: TStringField
+      FieldName = 'OB1OPE'
+      Origin = 'ISADE.CMPNFS.OB1OPE'
+      Size = 80
+    end
+    object CmpNfsOB2OPE: TStringField
+      FieldName = 'OB2OPE'
+      Origin = 'ISADE.CMPNFS.OB2OPE'
+      Size = 80
+    end
+    object CmpNfsOB3OPE: TStringField
+      FieldName = 'OB3OPE'
+      Origin = 'ISADE.CMPNFS.OB3OPE'
+      Size = 80
+    end
+    object CmpNfsOB4OPE: TStringField
+      FieldName = 'OB4OPE'
+      Origin = 'ISADE.CMPNFS.OB4OPE'
+      Size = 80
+    end
+    object CmpNfsOB5OPE: TStringField
+      FieldName = 'OB5OPE'
+      Origin = 'ISADE.CMPNFS.OB5OPE'
+      Size = 80
+    end
+    object CmpNfsCEFFOR: TStringField
+      FieldName = 'CEFFOR'
+      Origin = 'ISADE.CMPNFS.CEFFOR'
+      EditMask = '99999\-999;0;_'
+      Size = 8
+    end
+    object CmpNfsTEFFOR: TStringField
+      FieldName = 'TEFFOR'
+      Origin = 'ISADE.CMPNFS.TEFFOR'
+      Size = 10
+    end
+    object CmpNfsENFFOR: TStringField
+      FieldName = 'ENFFOR'
+      Origin = 'ISADE.CMPNFS.ENFFOR'
+      Size = 70
+    end
+    object CmpNfsRFFFOR: TStringField
+      FieldName = 'RFFFOR'
+      Origin = 'ISADE.CMPNFS.RFFFOR'
+      Size = 40
+    end
+    object CmpNfsNRFFOR: TStringField
+      FieldName = 'NRFFOR'
+      Origin = 'ISADE.CMPNFS.NRFFOR'
+      Size = 10
+    end
+    object CmpNfsBAFFOR: TStringField
+      FieldName = 'BAFFOR'
+      Origin = 'ISADE.CMPNFS.BAFFOR'
+    end
+    object CmpNfsCIFFOR: TStringField
+      FieldName = 'CIFFOR'
+      Origin = 'ISADE.CMPNFS.CIFFOR'
+    end
+    object CmpNfsID_FINUFF: TIntegerField
+      FieldName = 'ID_FINUFF'
+      Origin = 'ISADE.CMPNFS.ID_FINUFF'
+    end
+    object CmpNfsID_FINCIF: TIntegerField
+      FieldName = 'ID_FINCIF'
+      Origin = 'ISADE.CMPNFS.ID_FINCIF'
+    end
+    object CmpNfsID_TRAUFE: TIntegerField
+      FieldName = 'ID_TRAUFE'
+      Origin = 'ISADE.CMPNFS.ID_TRAUFE'
+    end
+    object CmpNfsID_TRACIE: TIntegerField
+      FieldName = 'ID_TRACIE'
+      Origin = 'ISADE.CMPNFS.ID_TRACIE'
+    end
+    object CmpNfsID_FINUFE: TIntegerField
+      FieldName = 'ID_FINUFE'
+      Origin = 'ISADE.CMPNFS.ID_FINUFE'
+    end
+    object CmpNfsID_FINCIE: TIntegerField
+      FieldName = 'ID_FINCIE'
+      Origin = 'ISADE.CMPNFS.ID_FINCIE'
+    end
+    object CmpNfsNFEPIS: TStringField
+      FieldName = 'NFEPIS'
+      Origin = 'ISADE.CMPNFS.NFEPIS'
+      FixedChar = True
+      Size = 2
+    end
+    object CmpNfsNFECOF: TStringField
+      FieldName = 'NFECOF'
+      Origin = 'ISADE.CMPNFS.NFECOF'
+      FixedChar = True
+      Size = 2
+    end
+    object CmpNfsFLGNFE: TStringField
+      FieldName = 'FLGNFE'
+      Origin = 'ISADE.CMPNFS.FLGNFE'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsENVNFE: TStringField
+      FieldName = 'ENVNFE'
+      Origin = 'ISADE.CMPNFS.ENVNFE'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsSEQNFE: TStringField
+      FieldName = 'SEQNFE'
+      Origin = 'ISADE.CMPNFS.SEQNFE'
+      FixedChar = True
+      Size = 44
+    end
+    object CmpNfsDTENFE: TDateTimeField
+      FieldName = 'DTENFE'
+      Origin = 'ISADE.CMPNFS.DTENFE'
+    end
+    object CmpNfsRECNFE: TStringField
+      FieldName = 'RECNFE'
+      Origin = 'ISADE.CMPNFS.RECNFE'
+      FixedChar = True
+      Size = 15
+    end
+    object CmpNfsPRONFE: TStringField
+      FieldName = 'PRONFE'
+      Origin = 'ISADE.CMPNFS.PRONFE'
+      FixedChar = True
+      Size = 15
+    end
+    object CmpNfsLOTNFE: TIntegerField
+      FieldName = 'LOTNFE'
+      Origin = 'ISADE.CMPNFS.LOTNFE'
+    end
+    object CmpNfsDTEPNF: TDateTimeField
+      FieldName = 'DTEPNF'
+      Origin = 'ISADE.CMPNFS.DTEPNF'
+    end
+    object CmpNfsHREPNF: TStringField
+      FieldName = 'HREPNF'
+      Origin = 'ISADE.CMPNFS.HREPNF'
+      FixedChar = True
+      Size = 8
+    end
+    object CmpNfsDOPNFE: TDateTimeField
+      FieldName = 'DOPNFE'
+      Origin = 'ISADE.CMPNFS.DOPNFE'
+    end
+    object CmpNfsHRENFE: TStringField
+      FieldName = 'HRENFE'
+      Origin = 'ISADE.CMPNFS.HRENFE'
+      FixedChar = True
+      Size = 8
+    end
+    object CmpNfsUSUNFE: TIntegerField
+      FieldName = 'USUNFE'
+      Origin = 'ISADE.CMPNFS.USUNFE'
+    end
+    object CmpNfsIMPNFE: TStringField
+      FieldName = 'IMPNFE'
+      Origin = 'ISADE.CMPNFS.IMPNFE'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNfsRETNFE: TStringField
+      FieldName = 'RETNFE'
+      Origin = 'ISADE.CMPNFS.RETNFE'
+      Size = 100
+    end
+    object CmpNfsDTECNE: TDateTimeField
+      FieldName = 'DTECNE'
+      Origin = 'ISADE.CMPNFS.DTECNE'
+    end
+    object CmpNfsHRECNE: TStringField
+      FieldName = 'HRECNE'
+      Origin = 'ISADE.CMPNFS.HRECNE'
+      FixedChar = True
+      Size = 8
+    end
+    object CmpNfsARQNFE: TBlobField
+      FieldName = 'ARQNFE'
+      Origin = 'ISADE.CMPNFS.ARQNFE'
+      BlobType = ftBlob
+      Size = 1
+    end
+    object CmpNfsDTCNFE: TDateTimeField
+      FieldName = 'DTCNFE'
+      Origin = 'ISADE.CMPNFS.DTCNFE'
+    end
+    object CmpNfsHRCNFE: TStringField
+      FieldName = 'HRCNFE'
+      Origin = 'ISADE.CMPNFS.HRCNFE'
+      FixedChar = True
+      Size = 8
+    end
+    object CmpNfsPRCNFE: TStringField
+      FieldName = 'PRCNFE'
+      Origin = 'ISADE.CMPNFS.PRCNFE'
+      FixedChar = True
+      Size = 15
+    end
+    object CmpNfsUFFFOR: TStringField
+      FieldName = 'UFFFOR'
+      Origin = 'ISADE.CMPNFS.UFFFOR'
+      FixedChar = True
+      Size = 2
+    end
+    object CmpNfsCGEFOR: TStringField
+      FieldName = 'CGEFOR'
+      Origin = 'ISADE.CMPNFS.CGEFOR'
+      FixedChar = True
+      Size = 18
+    end
+    object CmpNfsINEFOR: TStringField
+      FieldName = 'INEFOR'
+      Origin = 'ISADE.CMPNFS.INEFOR'
+      FixedChar = True
+      Size = 18
+    end
+    object CmpNfsDSCPED: TFloatField
+      FieldName = 'DSCPED'
+      Origin = 'ISADE.CMPNFS.DSCPED'
+      DisplayFormat = '###,###,##0.00'
+    end
+    object CmpNfsBASIMP: TFloatField
+      FieldName = 'BASIMP'
+      Origin = 'ISADE.CMPNFS.BASIMP'
+      DisplayFormat = '###,###,##0.00'
+    end
+    object CmpNfsTOTIMP: TFloatField
+      FieldName = 'TOTIMP'
+      Origin = 'ISADE.CMPNFS.TOTIMP'
+      DisplayFormat = '###,###,##0.00'
+    end
+    object CmpNfsBASPIS: TFloatField
+      FieldName = 'BASPIS'
+      Origin = 'ISADE.CMPNFS.BASPIS'
+    end
+    object CmpNfsBASCOF: TFloatField
+      FieldName = 'BASCOF'
+      Origin = 'ISADE.CMPNFS.BASCOF'
+    end
+    object CmpNfsNROPDI: TStringField
+      FieldName = 'NROPDI'
+      Origin = 'ISADE.CMPNFS.ID_CMPNFS'
+      FixedChar = True
+      Size = 10
+    end
+    object CmpNfsDTEPDI: TDateTimeField
+      DisplayWidth = 10
+      FieldName = 'DTEPDI'
+      Origin = 'ISADE.CMPNFS.ID_CMPNFS'
+      EditMask = '!99/99/9999;1;_'
+    end
+    object CmpNfsLOCPDI: TStringField
+      FieldName = 'LOCPDI'
+      Origin = 'ISADE.CMPNFS.ID_CMPNFS'
+      Size = 60
+    end
+    object CmpNfsUFEPDI: TStringField
+      FieldName = 'UFEPDI'
+      Origin = 'ISADE.CMPNFS.ID_CMPNFS'
+      FixedChar = True
+      Size = 2
+    end
+    object CmpNfsDTEADU: TDateTimeField
+      DisplayWidth = 10
+      FieldName = 'DTEADU'
+      Origin = 'ISADE.CMPNFS.ID_CMPNFS'
+      EditMask = '!99/99/9999;1;_'
+    end
+    object CmpNfsEXPPDI: TStringField
+      FieldName = 'EXPPDI'
+      Origin = 'ISADE.CMPNFS.ID_CMPNFS'
+      Size = 60
+    end
+    object CmpNfsTOTNFS: TFloatField
+      FieldName = 'TOTNFS'
+      Origin = 'ISADE.CMPNFS.TOTNFS'
+    end
+  end
+  object CmpNf2: TwwQuery
+    Active = True
+    CachedUpdates = True
+    OnNewRecord = CmpNf2NewRecord
+    DatabaseName = 'ISade'
+    DataSource = DsNfs
+    SQL.Strings = (
+      'Select * From CmpNf2'
+      'Where CmpNf2.Id_CmpNfs = :Id_CmpNfs'
+      'Order by CmpNf2.NroNf2')
+    UpdateObject = UpNf2
+    ValidateWithMask = True
+    Left = 6
+    Top = 199
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'ID_CMPNFS'
+        ParamType = ptUnknown
+      end>
+    object CmpNf2CODCLP: TStringField
+      Alignment = taCenter
+      DisplayLabel = ' '
+      DisplayWidth = 2
+      FieldName = 'CODCLP'
+      Origin = 'ISADE.FATGE2.CODCLP'
+      FixedChar = True
+      Size = 1
+    end
+    object CmpNf2CODGRU: TStringField
+      Alignment = taCenter
+      DisplayLabel = ' '
+      DisplayWidth = 5
+      FieldName = 'CODGRU'
+      Origin = 'ISADE.FATGE2.CODGRU'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNf2CODSUB: TStringField
+      Alignment = taCenter
+      DisplayLabel = ' '
+      DisplayWidth = 6
+      FieldName = 'CODSUB'
+      Origin = 'ISADE.FATGE2.CODSUB'
+      FixedChar = True
+      Size = 4
+    end
+    object CmpNf2CODPRO: TStringField
+      Alignment = taCenter
+      DisplayLabel = ' '
+      DisplayWidth = 7
+      FieldName = 'CODPRO'
+      Origin = 'ISADE.FATGE2.CODPRO'
+      FixedChar = True
+      Size = 5
+    end
+    object CmpNf2CODCFO: TStringField
+      Alignment = taCenter
+      DisplayLabel = ' '
+      DisplayWidth = 7
+      FieldName = 'CODCFO'
+      Origin = 'ISADE.CMPNF2.CODCFO'
+      Size = 10
+    end
+    object CmpNf2CLSIPI: TStringField
+      DisplayLabel = ' '
+      DisplayWidth = 12
+      FieldName = 'CLSIPI'
+      Origin = 'ISADE.CMPNF2.CLSIPI'
+      Size = 10
+    end
+    object CmpNf2CODST1: TStringField
+      Alignment = taCenter
+      DisplayLabel = ' '
+      DisplayWidth = 4
+      FieldName = 'CODST1'
+      Origin = 'ISADE.CMPNF2.CODST1'
+      FixedChar = True
+      Size = 1
+    end
+    object CmpNf2CODST2: TStringField
+      Alignment = taCenter
+      DisplayLabel = ' '
+      DisplayWidth = 4
+      FieldName = 'CODST2'
+      Origin = 'ISADE.CMPNF2.CODST2'
+      FixedChar = True
+      Size = 2
+    end
+    object CmpNf2CODUND: TStringField
+      Alignment = taCenter
+      DisplayLabel = ' '
+      DisplayWidth = 5
+      FieldName = 'CODUND'
+      Origin = 'ISADE.CMPNF2.CODUND'
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNf2QTPNF2: TFloatField
+      DisplayLabel = ' '
+      DisplayWidth = 12
+      FieldName = 'QTPNF2'
+      Origin = 'ISADE.CMPNF2.QTPNF2'
+      DisplayFormat = '###,###,##0'
+      Precision = 2
+    end
+    object CmpNf2VLUNF2: TFloatField
+      DisplayLabel = ' '
+      DisplayWidth = 12
+      FieldName = 'VLUNF2'
+      Origin = 'ISADE.CMPNF2.VLUNF2'
+      DisplayFormat = '###,###,###0.0000'
+      Precision = 4
+    end
+    object CmpNf2IPINF2: TFloatField
+      DisplayLabel = ' '
+      DisplayWidth = 4
+      FieldName = 'IPINF2'
+      Origin = 'ISADE.CMPNF2.IPINF2'
+      DisplayFormat = '##0'
+      Precision = 2
+    end
+    object CmpNf2ICMNF2: TFloatField
+      DisplayLabel = ' '
+      DisplayWidth = 5
+      FieldName = 'ICMNF2'
+      Origin = 'ISADE.CMPNF2.ICMNF2'
+      DisplayFormat = '##0'
+      Precision = 2
+    end
+    object CmpNf2IMPNF2: TFloatField
+      DisplayLabel = ' '
+      DisplayWidth = 5
+      FieldName = 'IMPNF2'
+      Origin = 'ISADE.CMPNF2.IMPNF2'
+      DisplayFormat = '##0'
+    end
+    object CmpNf2TOTNF2: TFloatField
+      DisplayLabel = ' '
+      DisplayWidth = 12
+      FieldName = 'TOTNF2'
+      Origin = 'ISADE.CMPNF2.TOTNF2'
+      DisplayFormat = '###,###,##0.00'
+    end
+    object CmpNf2TOTITE: TFloatField
+      DisplayLabel = ' '
+      DisplayWidth = 17
+      FieldName = 'TOTITE'
+      Origin = 'ISADE.CMPNF2.TOTITE'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object CmpNf2ID_CMPNF2: TIntegerField
+      FieldName = 'ID_CMPNF2'
+      Origin = 'ISADE.CMPNF2.ID_CMPNF2'
+      Visible = False
+    end
+    object CmpNf2ID_CMPNFS: TIntegerField
+      FieldName = 'ID_CMPNFS'
+      Origin = 'ISADE.CMPNF2.ID_CMPNFS'
+      Visible = False
+    end
+    object CmpNf2CODEIT: TIntegerField
+      FieldName = 'CODEIT'
+      Origin = 'ISADE.CMPNF2.CODEIT'
+      Visible = False
+    end
+    object CmpNf2CODTAM: TStringField
+      FieldName = 'CODTAM'
+      Origin = 'ISADE.CMPNF2.CODTAM'
+      Visible = False
+      Size = 10
+    end
+    object CmpNf2CODCOR: TStringField
+      FieldName = 'CODCOR'
+      Origin = 'ISADE.CMPNF2.CODCOR'
+      Visible = False
+      Size = 10
+    end
+    object CmpNf2DESNF2: TStringField
+      FieldName = 'DESNF2'
+      Origin = 'ISADE.CMPNF2.DESNF2'
+      Visible = False
+      Size = 70
+    end
+    object CmpNf2OBSNF2: TStringField
+      FieldName = 'OBSNF2'
+      Origin = 'ISADE.CMPNF2.OBSNF2'
+      Visible = False
+      Size = 70
+    end
+    object CmpNf2REFNF2: TStringField
+      FieldName = 'REFNF2'
+      Origin = 'ISADE.CMPNF2.REFNF2'
+      Visible = False
+    end
+    object CmpNf2QTINFE: TIntegerField
+      FieldName = 'QTINFE'
+      Origin = 'ISADE.CMPNF2.QTINFE'
+      Visible = False
+    end
+    object CmpNf2LIQNF2: TFloatField
+      FieldName = 'LIQNF2'
+      Origin = 'ISADE.CMPNF2.LIQNF2'
+      Visible = False
+    end
+    object CmpNf2BRTNF2: TFloatField
+      FieldName = 'BRTNF2'
+      Origin = 'ISADE.CMPNF2.BRTNF2'
+      Visible = False
+    end
+    object CmpNf2LINNF2: TIntegerField
+      FieldName = 'LINNF2'
+      Origin = 'ISADE.CMPNF2.LINNF2'
+      Visible = False
+    end
+    object CmpNf2QTNNF2: TFloatField
+      FieldName = 'QTNNF2'
+      Origin = 'ISADE.CMPNF2.QTNNF2'
+      Visible = False
+    end
+    object CmpNf2QTDNF2: TFloatField
+      FieldName = 'QTDNF2'
+      Origin = 'ISADE.CMPNF2.QTDNF2'
+      Visible = False
+    end
+    object CmpNf2SLDNF2: TFloatField
+      FieldName = 'SLDNF2'
+      Origin = 'ISADE.CMPNF2.SLDNF2'
+      Visible = False
+    end
+    object CmpNf2CODTXF: TStringField
+      FieldName = 'CODTXF'
+      Origin = 'ISADE.CMPNF2.CODTXF'
+      Visible = False
+      Size = 30
+    end
+    object CmpNf2BASIPI: TFloatField
+      FieldName = 'BASIPI'
+      Origin = 'ISADE.CMPNF2.BASIPI'
+      Visible = False
+    end
+    object CmpNf2TOTIPI: TFloatField
+      FieldName = 'TOTIPI'
+      Origin = 'ISADE.CMPNF2.TOTIPI'
+      Visible = False
+    end
+    object CmpNf2BASICM: TFloatField
+      FieldName = 'BASICM'
+      Origin = 'ISADE.CMPNF2.BASICM'
+      Visible = False
+    end
+    object CmpNf2TOTICM: TFloatField
+      FieldName = 'TOTICM'
+      Origin = 'ISADE.CMPNF2.TOTICM'
+      Visible = False
+    end
+    object CmpNf2BASSUB: TFloatField
+      FieldName = 'BASSUB'
+      Origin = 'ISADE.CMPNF2.BASSUB'
+      Visible = False
+    end
+    object CmpNf2TOTSUB: TFloatField
+      FieldName = 'TOTSUB'
+      Origin = 'ISADE.CMPNF2.TOTSUB'
+      Visible = False
+    end
+    object CmpNf2TOTPIS: TFloatField
+      FieldName = 'TOTPIS'
+      Origin = 'ISADE.CMPNF2.TOTPIS'
+      Visible = False
+    end
+    object CmpNf2TOTCOF: TFloatField
+      FieldName = 'TOTCOF'
+      Origin = 'ISADE.CMPNF2.TOTCOF'
+      Visible = False
+    end
+    object CmpNf2TOTLIQ: TFloatField
+      FieldName = 'TOTLIQ'
+      Origin = 'ISADE.CMPNF2.TOTLIQ'
+      Visible = False
+      DisplayFormat = '###,###,##0.0000'
+    end
+    object CmpNf2TOTBRT: TFloatField
+      FieldName = 'TOTBRT'
+      Origin = 'ISADE.CMPNF2.TOTBRT'
+      Visible = False
+    end
+    object CmpNf2CODSTR: TStringField
+      FieldName = 'CODSTR'
+      Origin = 'ISADE.CMPNF2.CODSTR'
+      Visible = False
+    end
+    object CmpNf2TIPSTR: TStringField
+      FieldName = 'TIPSTR'
+      Origin = 'ISADE.CMPNF2.TIPSTR'
+      Visible = False
+      Size = 7
+    end
+    object CmpNf2TRBSUB: TStringField
+      FieldName = 'TRBSUB'
+      Origin = 'ISADE.CMPNF2.TRBSUB'
+      Visible = False
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNf2ICMSUB: TFloatField
+      FieldName = 'ICMSUB'
+      Origin = 'ISADE.CMPNF2.ICMSUB'
+      Visible = False
+    end
+    object CmpNf2MRGSUB: TFloatField
+      FieldName = 'MRGSUB'
+      Origin = 'ISADE.CMPNF2.MRGSUB'
+      Visible = False
+    end
+    object CmpNf2BASESB: TFloatField
+      FieldName = 'BASESB'
+      Origin = 'ISADE.CMPNF2.BASESB'
+      Visible = False
+    end
+    object CmpNf2REGIPI: TStringField
+      FieldName = 'REGIPI'
+      Origin = 'ISADE.CMPNF2.REGIPI'
+      Visible = False
+      Size = 30
+    end
+    object CmpNf2TIPIPI: TStringField
+      FieldName = 'TIPIPI'
+      Origin = 'ISADE.CMPNF2.TIPIPI'
+      Visible = False
+      Size = 7
+    end
+    object CmpNf2TRBIPI: TStringField
+      FieldName = 'TRBIPI'
+      Origin = 'ISADE.CMPNF2.TRBIPI'
+      Visible = False
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNf2REDIPI: TFloatField
+      FieldName = 'REDIPI'
+      Origin = 'ISADE.CMPNF2.REDIPI'
+      Visible = False
+    end
+    object CmpNf2BSCIPI: TFloatField
+      FieldName = 'BSCIPI'
+      Origin = 'ISADE.CMPNF2.BSCIPI'
+      Visible = False
+    end
+    object CmpNf2REGICM: TStringField
+      FieldName = 'REGICM'
+      Origin = 'ISADE.CMPNF2.REGICM'
+      Visible = False
+    end
+    object CmpNf2TIPICM: TStringField
+      FieldName = 'TIPICM'
+      Origin = 'ISADE.CMPNF2.TIPICM'
+      Visible = False
+      Size = 7
+    end
+    object CmpNf2TRBICM: TStringField
+      FieldName = 'TRBICM'
+      Origin = 'ISADE.CMPNF2.TRBICM'
+      Visible = False
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNf2REDICM: TFloatField
+      FieldName = 'REDICM'
+      Origin = 'ISADE.CMPNF2.REDICM'
+      Visible = False
+    end
+    object CmpNf2BSCICM: TFloatField
+      FieldName = 'BSCICM'
+      Origin = 'ISADE.CMPNF2.BSCICM'
+      Visible = False
+    end
+    object CmpNf2INCREV: TFloatField
+      FieldName = 'INCREV'
+      Origin = 'ISADE.CMPNF2.INCREV'
+      Visible = False
+    end
+    object CmpNf2INCFIN: TFloatField
+      FieldName = 'INCFIN'
+      Origin = 'ISADE.CMPNF2.INCFIN'
+      Visible = False
+    end
+    object CmpNf2FLGENT: TStringField
+      FieldName = 'FLGENT'
+      Origin = 'ISADE.CMPNF2.FLGENT'
+      Visible = False
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNf2NRONFS: TIntegerField
+      FieldName = 'NRONFS'
+      Origin = 'ISADE.CMPNF2.NRONFS'
+      Visible = False
+    end
+    object CmpNf2FLGATU: TStringField
+      FieldName = 'FLGATU'
+      Origin = 'ISADE.CMPNF2.FLGATU'
+      Visible = False
+      FixedChar = True
+      Size = 1
+    end
+    object CmpNf2NRONF2: TIntegerField
+      FieldName = 'NRONF2'
+      Origin = 'ISADE.CMPNF2.NRONF2'
+      Visible = False
+    end
+    object CmpNf2ID_CMPNFG: TIntegerField
+      FieldName = 'ID_CMPNFG'
+      Origin = 'ISADE.CMPNF2.ID_CMPNFG'
+      Visible = False
+    end
+    object CmpNf2ID_CMPNF3: TIntegerField
+      FieldName = 'ID_CMPNF3'
+      Origin = 'ISADE.CMPNF2.ID_CMPNF3'
+      Visible = False
+    end
+    object CmpNf2NRONOT: TIntegerField
+      FieldName = 'NRONOT'
+      Origin = 'ISADE.CMPNF2.NRONOT'
+      Visible = False
+    end
+    object CmpNf2VALNF2: TFloatField
+      DisplayWidth = 10
+      FieldName = 'VALNF2'
+      Origin = 'ISADE.CMPNF2.VALNF2'
+      Visible = False
+    end
+    object CmpNf2FLGINT: TStringField
+      DisplayWidth = 3
+      FieldName = 'FLGINT'
+      Origin = 'ISADE.CMPNF2.FLGINT'
+      Visible = False
+      FixedChar = True
+      Size = 3
+    end
+    object CmpNf2PRODEP: TStringField
+      DisplayWidth = 18
+      FieldName = 'PRODEP'
+      Origin = 'ISADE.CMPNF2.PRODEP'
+      Visible = False
+      FixedChar = True
+      Size = 18
+    end
+    object CmpNf2TOTFRT: TFloatField
+      DisplayWidth = 10
+      FieldName = 'TOTFRT'
+      Origin = 'ISADE.CMPNF2.TOTFRT'
+      Visible = False
+    end
+    object CmpNf2TOTSEG: TFloatField
+      DisplayWidth = 10
+      FieldName = 'TOTSEG'
+      Origin = 'ISADE.CMPNF2.TOTSEG'
+      Visible = False
+    end
+    object CmpNf2TOTDES: TFloatField
+      DisplayWidth = 10
+      FieldName = 'TOTDES'
+      Origin = 'ISADE.CMPNF2.TOTDES'
+      Visible = False
+    end
+    object CmpNf2BAICMF: TFloatField
+      DisplayWidth = 10
+      FieldName = 'BAICMF'
+      Origin = 'ISADE.CMPNF2.BAICMF'
+      Visible = False
+    end
+    object CmpNf2TOICMF: TFloatField
+      DisplayWidth = 10
+      FieldName = 'TOICMF'
+      Origin = 'ISADE.CMPNF2.TOICMF'
+      Visible = False
+    end
+    object CmpNf2BAICMS: TFloatField
+      DisplayWidth = 10
+      FieldName = 'BAICMS'
+      Origin = 'ISADE.CMPNF2.BAICMS'
+      Visible = False
+    end
+    object CmpNf2TOICMS: TFloatField
+      DisplayWidth = 10
+      FieldName = 'TOICMS'
+      Origin = 'ISADE.CMPNF2.TOICMS'
+      Visible = False
+    end
+    object CmpNf2BAICMD: TFloatField
+      DisplayWidth = 10
+      FieldName = 'BAICMD'
+      Origin = 'ISADE.CMPNF2.BAICMD'
+      Visible = False
+    end
+    object CmpNf2TOICMD: TFloatField
+      DisplayWidth = 10
+      FieldName = 'TOICMD'
+      Origin = 'ISADE.CMPNF2.TOICMD'
+      Visible = False
+    end
+    object CmpNf2BAIPIF: TFloatField
+      DisplayWidth = 10
+      FieldName = 'BAIPIF'
+      Origin = 'ISADE.CMPNF2.BAIPIF'
+      Visible = False
+    end
+    object CmpNf2TOIPIF: TFloatField
+      DisplayWidth = 10
+      FieldName = 'TOIPIF'
+      Origin = 'ISADE.CMPNF2.TOIPIF'
+      Visible = False
+    end
+    object CmpNf2BAIPIS: TFloatField
+      DisplayWidth = 10
+      FieldName = 'BAIPIS'
+      Origin = 'ISADE.CMPNF2.BAIPIS'
+      Visible = False
+    end
+    object CmpNf2TOIPIS: TFloatField
+      DisplayWidth = 10
+      FieldName = 'TOIPIS'
+      Origin = 'ISADE.CMPNF2.TOIPIS'
+      Visible = False
+    end
+    object CmpNf2BAIPID: TFloatField
+      DisplayWidth = 10
+      FieldName = 'BAIPID'
+      Origin = 'ISADE.CMPNF2.BAIPID'
+      Visible = False
+    end
+    object CmpNf2TOIPID: TFloatField
+      DisplayWidth = 10
+      FieldName = 'TOIPID'
+      Origin = 'ISADE.CMPNF2.TOIPID'
+      Visible = False
+    end
+    object CmpNf2BASIMP: TFloatField
+      DisplayWidth = 10
+      FieldName = 'BASIMP'
+      Origin = 'ISADE.CMPNF2.BASIMP'
+      Visible = False
+    end
+    object CmpNf2TOTIMP: TFloatField
+      DisplayWidth = 10
+      FieldName = 'TOTIMP'
+      Origin = 'ISADE.CMPNF2.TOTIMP'
+      Visible = False
+    end
+    object CmpNf2BASPIS: TFloatField
+      DisplayWidth = 10
+      FieldName = 'BASPIS'
+      Origin = 'ISADE.CMPNF2.BASPIS'
+      Visible = False
+    end
+    object CmpNf2BASCOF: TFloatField
+      DisplayWidth = 10
+      FieldName = 'BASCOF'
+      Origin = 'ISADE.CMPNF2.BASCOF'
+      Visible = False
+    end
+    object CmpNf2NROADI: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'NROADI'
+      Origin = 'ISADE.CMPNF2.ID_CMPNF2'
+      Visible = False
+    end
+    object CmpNf2SEQADI: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'SEQADI'
+      Origin = 'ISADE.CMPNF2.ID_CMPNF2'
+      Visible = False
+    end
+    object CmpNf2FABADI: TStringField
+      DisplayWidth = 60
+      FieldName = 'FABADI'
+      Origin = 'ISADE.CMPNF2.ID_CMPNF2'
+      Visible = False
+      Size = 60
+    end
+    object CmpNf2DSCADI: TFloatField
+      DisplayWidth = 10
+      FieldName = 'DSCADI'
+      Origin = 'ISADE.CMPNF2.ID_CMPNF2'
+      Visible = False
+      DisplayFormat = '###,###,##0.00'
+    end
+  end
+  object UpNfs: TUpdateSQL
+    ModifySQL.Strings = (
+      'update CmpNfs'
+      'set'
+      '  CODEMP = :CODEMP,'
+      '  CODTIP = :CODTIP,'
+      '  DTEFAT = :DTEFAT,'
+      '  HREFAT = :HREFAT,'
+      '  UFENFS = :UFENFS,'
+      '  CODPFA = :CODPFA,'
+      '  TIPPFA = :TIPPFA,'
+      '  MODPFA = :MODPFA,'
+      '  CODFOR = :CODFOR,'
+      '  CODFIL = :CODFIL,'
+      '  NRONOT = :NRONOT,'
+      '  NRONFS = :NRONFS,'
+      '  CGCFOR = :CGCFOR,'
+      '  INSFOR = :INSFOR,'
+      '  CODCF1 = :CODCF1,'
+      '  CODCF2 = :CODCF2,'
+      '  FRTNFS = :FRTNFS,'
+      '  FLGENT = :FLGENT,'
+      '  FLGSAI = :FLGSAI,'
+      '  DESNAT = :DESNAT,'
+      '  INSSUB = :INSSUB,'
+      '  TIPFRT = :TIPFRT,'
+      '  MARNFS = :MARNFS,'
+      '  NUMNFS = :NUMNFS,'
+      '  ESPNFS = :ESPNFS,'
+      '  NOMTRA = :NOMTRA,'
+      '  CGCTRA = :CGCTRA,'
+      '  INSTRA = :INSTRA,'
+      '  CEPTRA = :CEPTRA,'
+      '  TENTRA = :TENTRA,'
+      '  ENDTRA = :ENDTRA,'
+      '  REFTRA = :REFTRA,'
+      '  NUMTRA = :NUMTRA,'
+      '  BAITRA = :BAITRA,'
+      '  CIDTRA = :CIDTRA,'
+      '  UFETRA = :UFETRA,'
+      '  PLCTRA = :PLCTRA,'
+      '  PRTTRA = :PRTTRA,'
+      '  FONTRA = :FONTRA,'
+      '  UFEPLC = :UFEPLC,'
+      '  NOMENT = :NOMENT,'
+      '  CEPFOR = :CEPFOR,'
+      '  TENFOR = :TENFOR,'
+      '  ENDFOR = :ENDFOR,'
+      '  REFFOR = :REFFOR,'
+      '  NUMFOR = :NUMFOR,'
+      '  BAIFOR = :BAIFOR,'
+      '  CIDFOR = :CIDFOR,'
+      '  UFEFOR = :UFEFOR,'
+      '  OB1NFS = :OB1NFS,'
+      '  OB2NFS = :OB2NFS,'
+      '  OB3NFS = :OB3NFS,'
+      '  OB4NFS = :OB4NFS,'
+      '  OB5NFS = :OB5NFS,'
+      '  OB6NFS = :OB6NFS,'
+      '  OB7NFS = :OB7NFS,'
+      '  OB8NFS = :OB8NFS,'
+      '  ALTVOL = :ALTVOL,'
+      '  INFLIQ = :INFLIQ,'
+      '  INFBRT = :INFBRT,'
+      '  TOTFRT = :TOTFRT,'
+      '  TOTSEG = :TOTSEG,'
+      '  TOTDES = :TOTDES,'
+      '  BASIP1 = :BASIP1,'
+      '  TOTIP1 = :TOTIP1,'
+      '  BASIC1 = :BASIC1,'
+      '  TOTIC1 = :TOTIC1,'
+      '  BASSU1 = :BASSU1,'
+      '  TOTSU1 = :TOTSU1,'
+      '  TOTIT1 = :TOTIT1,'
+      '  TOTGE1 = :TOTGE1,'
+      '  FLGIMP = :FLGIMP,'
+      '  FLGATU = :FLGATU,'
+      '  SEQNFS = :SEQNFS,'
+      '  SITNFS = :SITNFS,'
+      '  CODTRA = :CODTRA,'
+      '  FLGNFS = :FLGNFS,'
+      '  VALTMO = :VALTMO,'
+      '  ID_CMPPED = :ID_CMPPED,'
+      '  OB1OPE = :OB1OPE,'
+      '  OB2OPE = :OB2OPE,'
+      '  OB3OPE = :OB3OPE,'
+      '  OB4OPE = :OB4OPE,'
+      '  OB5OPE = :OB5OPE,'
+      '  CEFFOR = :CEFFOR,'
+      '  TEFFOR = :TEFFOR,'
+      '  ENFFOR = :ENFFOR,'
+      '  RFFFOR = :RFFFOR,'
+      '  NRFFOR = :NRFFOR,'
+      '  BAFFOR = :BAFFOR,'
+      '  CIFFOR = :CIFFOR,'
+      '  UFFFOR = :UFFFOR,'
+      '  ID_FINUFF = :ID_FINUFF,'
+      '  ID_FINCIF = :ID_FINCIF,'
+      '  ID_TRAUFE = :ID_TRAUFE,'
+      '  ID_TRACIE = :ID_TRACIE,'
+      '  ID_FINUFE = :ID_FINUFE,'
+      '  ID_FINCIE = :ID_FINCIE,'
+      '  CGEFOR = :CGEFOR,'
+      '  INEFOR = :INEFOR,'
+      '  DSCPED = :DSCPED,'
+      '  NROPDI = :NROPDI,'
+      '  DTEPDI = :DTEPDI,'
+      '  LOCPDI = :LOCPDI,'
+      '  UFEPDI = :UFEPDI,'
+      '  DTEADU = :DTEADU,'
+      '  EXPPDI = :EXPPDI'
+      'where'
+      '  ID_CMPNFS = :OLD_ID_CMPNFS')
+    InsertSQL.Strings = (
+      'insert into CmpNfs'
+      
+        '  (ID_CMPNFS, CODEMP, CODTIP, DTEFAT, HREFAT, UFENFS, CODPFA, TI' +
+        'PPFA, '
+      'MODPFA, '
+      
+        '   CODFOR, PERPIS, PERCOF, CODFIL, QTDNOT, NRONOT, QTDNFS, NRONF' +
+        'S, '
+      'CGCFOR, '
+      
+        '   INSFOR, CODCF1, CODCF2, FRTNFS, FLGENT, FLGSAI, DESNAT, INSSU' +
+        'B, '
+      'TIPFRT, '
+      
+        '   MARNFS, NUMNFS, ESPNFS, NOMTRA, CGCTRA, INSTRA, CEPTRA, TENTR' +
+        'A, '
+      'ENDTRA, '
+      
+        '   REFTRA, NUMTRA, BAITRA, CIDTRA, UFETRA, PLCTRA, PRTTRA, FONTR' +
+        'A, '
+      'UFEPLC, '
+      
+        '   NOMENT, CEPFOR, TENFOR, ENDFOR, REFFOR, NUMFOR, BAIFOR, CIDFO' +
+        'R, '
+      'UFEFOR, '
+      
+        '   OB1NFS, OB2NFS, OB3NFS, OB4NFS, OB5NFS, OB6NFS, OB7NFS, OB8NF' +
+        'S, '
+      'QTINFS, '
+      
+        '   LINNFS, QTDVOL, ALTVOL, INFLIQ, TOTLIQ, INFBRT, TOTBRT, BASIP' +
+        'I, TOTIPI, '
+      
+        '   BASICM, TOTICM, BASSUB, TOTSUB, TOTITE, TOTGER, TOTPIS, TOTCO' +
+        'F, '
+      'TOTFRT, '
+      
+        '   TOTSEG, TOTDES, BSICMF, BAICMF, TOICMF, BSICMS, BAICMS, TOICM' +
+        'S, '
+      'BSICMD, '
+      
+        '   BAICMD, TOICMD, BSIPIF, BAIPIF, TOIPIF, BSIPIS, BAIPIS, TOIPI' +
+        'S, BSIPID, '
+      
+        '   BAIPID, TOIPID, BASIP1, TOTIP1, BASIC1, TOTIC1, BASSU1, TOTSU' +
+        '1, TOTIT1, '
+      
+        '   TOTGE1, CODUSU, HRCNFS, DTCNFS, USCNFS, OBCNF1, OBCNF2, OBCNF' +
+        '3, '
+      'DTFNFS, '
+      
+        '   HRFNFS, OBFNF1, OBFNF2, OBFNF3, USFNFS, ATUEST, LANEST, INTFI' +
+        'N, '
+      'CONSUM, '
+      
+        '   FLGSIN, FLGCTB, CODIPI, TIPIPI, TRBIPI, REDIPI, BSCIPI, CODIC' +
+        'M, TIPICM, '
+      
+        '   TRBICM, REDICM, BSCICM, INCREV, INCFIN, NROCOL, TRBPIS, TRBCO' +
+        'F, '
+      'FLGENV, '
+      
+        '   FLGIMP, FLGATU, SEQNFS, SITNFS, SERNOT, SERSEL, FLGSEG, SEQIN' +
+        'I, '
+      'SEQFIN, '
+      
+        '   CODTRA, TXFICM, TXFIPI, FLGNFS, VALTMO, ID_CMPPED, OB1OPE, OB' +
+        '2OPE, '
+      'OB3OPE, '
+      
+        '   OB4OPE, OB5OPE, CEFFOR, TEFFOR, ENFFOR, RFFFOR, NRFFOR, BAFFO' +
+        'R, '
+      'CIFFOR, '
+      
+        '   UFFFOR, ID_FINUFF, ID_FINCIF, ID_TRAUFE, ID_TRACIE, ID_FINUFE' +
+        ', '
+      'ID_FINCIE, '
+      
+        '   NFEPIS, NFECOF, FLGNFE, ENVNFE, SEQNFE, DTENFE, RECNFE, PRONF' +
+        'E, '
+      'LOTNFE, '
+      
+        '   DTEPNF, HREPNF, DOPNFE, HRENFE, USUNFE, IMPNFE, RETNFE, DTECN' +
+        'E, '
+      'HRECNE, '
+      
+        '   ARQNFE, DTCNFE, HRCNFE, PRCNFE, CGEFOR, INEFOR, DSCPED, BASIM' +
+        'P, '
+      'TOTIMP, '
+      
+        '   BASPIS, BASCOF, NROPDI, DTEPDI, LOCPDI, UFEPDI, DTEADU, EXPPD' +
+        'I, '
+      'TOTNFS)'
+      'values'
+      
+        '  (:ID_CMPNFS, :CODEMP, :CODTIP, :DTEFAT, :HREFAT, :UFENFS, :COD' +
+        'PFA, '
+      ':TIPPFA, '
+      
+        '   :MODPFA, :CODFOR, :PERPIS, :PERCOF, :CODFIL, :QTDNOT, :NRONOT' +
+        ', '
+      ':QTDNFS, '
+      
+        '   :NRONFS, :CGCFOR, :INSFOR, :CODCF1, :CODCF2, :FRTNFS, :FLGENT' +
+        ', '
+      ':FLGSAI, '
+      
+        '   :DESNAT, :INSSUB, :TIPFRT, :MARNFS, :NUMNFS, :ESPNFS, :NOMTRA' +
+        ', '
+      ':CGCTRA, '
+      
+        '   :INSTRA, :CEPTRA, :TENTRA, :ENDTRA, :REFTRA, :NUMTRA, :BAITRA' +
+        ', '
+      ':CIDTRA, '
+      
+        '   :UFETRA, :PLCTRA, :PRTTRA, :FONTRA, :UFEPLC, :NOMENT, :CEPFOR' +
+        ', '
+      ':TENFOR, '
+      
+        '   :ENDFOR, :REFFOR, :NUMFOR, :BAIFOR, :CIDFOR, :UFEFOR, :OB1NFS' +
+        ', '
+      ':OB2NFS, '
+      
+        '   :OB3NFS, :OB4NFS, :OB5NFS, :OB6NFS, :OB7NFS, :OB8NFS, :QTINFS' +
+        ', :LINNFS, '
+      
+        '   :QTDVOL, :ALTVOL, :INFLIQ, :TOTLIQ, :INFBRT, :TOTBRT, :BASIPI' +
+        ', :TOTIPI, '
+      
+        '   :BASICM, :TOTICM, :BASSUB, :TOTSUB, :TOTITE, :TOTGER, :TOTPIS' +
+        ', '
+      ':TOTCOF, '
+      
+        '   :TOTFRT, :TOTSEG, :TOTDES, :BSICMF, :BAICMF, :TOICMF, :BSICMS' +
+        ', :BAICMS, '
+      
+        '   :TOICMS, :BSICMD, :BAICMD, :TOICMD, :BSIPIF, :BAIPIF, :TOIPIF' +
+        ', :BSIPIS, '
+      
+        '   :BAIPIS, :TOIPIS, :BSIPID, :BAIPID, :TOIPID, :BASIP1, :TOTIP1' +
+        ', :BASIC1, '
+      
+        '   :TOTIC1, :BASSU1, :TOTSU1, :TOTIT1, :TOTGE1, :CODUSU, :HRCNFS' +
+        ', '
+      ':DTCNFS, '
+      
+        '   :USCNFS, :OBCNF1, :OBCNF2, :OBCNF3, :DTFNFS, :HRFNFS, :OBFNF1' +
+        ', '
+      ':OBFNF2, '
+      
+        '   :OBFNF3, :USFNFS, :ATUEST, :LANEST, :INTFIN, :CONSUM, :FLGSIN' +
+        ', :FLGCTB, '
+      
+        '   :CODIPI, :TIPIPI, :TRBIPI, :REDIPI, :BSCIPI, :CODICM, :TIPICM' +
+        ', :TRBICM, '
+      
+        '   :REDICM, :BSCICM, :INCREV, :INCFIN, :NROCOL, :TRBPIS, :TRBCOF' +
+        ', :FLGENV, '
+      
+        '   :FLGIMP, :FLGATU, :SEQNFS, :SITNFS, :SERNOT, :SERSEL, :FLGSEG' +
+        ', :SEQINI, '
+      
+        '   :SEQFIN, :CODTRA, :TXFICM, :TXFIPI, :FLGNFS, :VALTMO, :ID_CMP' +
+        'PED, '
+      ':OB1OPE, '
+      
+        '   :OB2OPE, :OB3OPE, :OB4OPE, :OB5OPE, :CEFFOR, :TEFFOR, :ENFFOR' +
+        ', '
+      ':RFFFOR, '
+      
+        '   :NRFFOR, :BAFFOR, :CIFFOR, :UFFFOR, :ID_FINUFF, :ID_FINCIF, :' +
+        'ID_TRAUFE, '
+      
+        '   :ID_TRACIE, :ID_FINUFE, :ID_FINCIE, :NFEPIS, :NFECOF, :FLGNFE' +
+        ', :ENVNFE, '
+      
+        '   :SEQNFE, :DTENFE, :RECNFE, :PRONFE, :LOTNFE, :DTEPNF, :HREPNF' +
+        ', '
+      ':DOPNFE, '
+      
+        '   :HRENFE, :USUNFE, :IMPNFE, :RETNFE, :DTECNE, :HRECNE, :ARQNFE' +
+        ', '
+      ':DTCNFE, '
+      
+        '   :HRCNFE, :PRCNFE, :CGEFOR, :INEFOR, :DSCPED, :BASIMP, :TOTIMP' +
+        ', '
+      ':BASPIS, '
+      
+        '   :BASCOF, :NROPDI, :DTEPDI, :LOCPDI, :UFEPDI, :DTEADU, :EXPPDI' +
+        ', :TOTNFS)')
+    DeleteSQL.Strings = (
+      'delete from CmpNfs'
+      'where'
+      '  ID_CMPNFS = :OLD_ID_CMPNFS')
+    Left = 6
+    Top = 227
+  end
+  object UpNf2: TUpdateSQL
+    ModifySQL.Strings = (
+      'update CmpNf2'
+      'set'
+      '  CODEIT = :CODEIT,'
+      '  CODCLP = :CODCLP,'
+      '  CODGRU = :CODGRU,'
+      '  CODSUB = :CODSUB,'
+      '  CODPRO = :CODPRO,'
+      '  CODTAM = :CODTAM,'
+      '  CODCOR = :CODCOR,'
+      '  DESNF2 = :DESNF2,'
+      '  OBSNF2 = :OBSNF2,'
+      '  CODST1 = :CODST1,'
+      '  CODST2 = :CODST2,'
+      '  CODUND = :CODUND,'
+      '  REFNF2 = :REFNF2,'
+      '  LIQNF2 = :LIQNF2,'
+      '  BRTNF2 = :BRTNF2,'
+      '  LINNF2 = :LINNF2,'
+      '  QTPNF2 = :QTPNF2,'
+      '  VLUNF2 = :VLUNF2,'
+      '  IPINF2 = :IPINF2,'
+      '  CLSIPI = :CLSIPI,'
+      '  CODTXF = :CODTXF,'
+      '  CODCFO = :CODCFO,'
+      '  ICMNF2 = :ICMNF2,'
+      '  CODSTR = :CODSTR,'
+      '  TIPSTR = :TIPSTR,'
+      '  TRBSUB = :TRBSUB,'
+      '  ICMSUB = :ICMSUB,'
+      '  MRGSUB = :MRGSUB,'
+      '  BASESB = :BASESB,'
+      '  REGIPI = :REGIPI,'
+      '  TIPIPI = :TIPIPI,'
+      '  TRBIPI = :TRBIPI,'
+      '  REDIPI = :REDIPI,'
+      '  BSCIPI = :BSCIPI,'
+      '  REGICM = :REGICM,'
+      '  TIPICM = :TIPICM,'
+      '  TRBICM = :TRBICM,'
+      '  REDICM = :REDICM,'
+      '  BSCICM = :BSCICM,'
+      '  INCREV = :INCREV,'
+      '  INCFIN = :INCFIN,'
+      '  FLGATU = :FLGATU,'
+      '  VALNF2 = :VALNF2,'
+      '  FLGINT = :FLGINT,'
+      '  PRODEP = :PRODEP,'
+      '  IMPNF2 = :IMPNF2,'
+      '  NROADI = :NROADI,'
+      '  SEQADI = :SEQADI,'
+      '  FABADI = :FABADI,'
+      '  DSCADI = :DSCADI,'
+      '  TOTLIQ = :TOTLIQ'
+      'where'
+      '  ID_CMPNF2 = :OLD_ID_CMPNF2')
+    InsertSQL.Strings = (
+      'insert into CmpNf2'
+      
+        '  (ID_CMPNF2, ID_CMPNFS, CODEIT, CODCLP, CODGRU, CODSUB, CODPRO,' +
+        ' CODTAM, '
+      
+        '   CODCOR, DESNF2, OBSNF2, CODST1, CODST2, CODUND, REFNF2, QTINF' +
+        'E, LIQNF2, '
+      
+        '   BRTNF2, LINNF2, QTPNF2, QTNNF2, QTDNF2, SLDNF2, VLUNF2, IPINF' +
+        '2, CLSIPI, '
+      
+        '   CODTXF, CODCFO, ICMNF2, BASIPI, TOTIPI, BASICM, TOTICM, BASSU' +
+        'B, TOTSUB, '
+      
+        '   TOTITE, TOTNF2, TOTPIS, TOTCOF, TOTLIQ, TOTBRT, CODSTR, TIPST' +
+        'R, TRBSUB, '
+      
+        '   ICMSUB, MRGSUB, BASESB, REGIPI, TIPIPI, TRBIPI, REDIPI, BSCIP' +
+        'I, REGICM, '
+      
+        '   TIPICM, TRBICM, REDICM, BSCICM, INCREV, INCFIN, FLGENT, NRONF' +
+        'S, FLGATU, '
+      
+        '   NRONF2, ID_CMPNFG, ID_CMPNF3, NRONOT, VALNF2, FLGINT, PRODEP,' +
+        ' TOTFRT, '
+      
+        '   TOTSEG, TOTDES, BAICMF, TOICMF, BAICMS, TOICMS, BAICMD, TOICM' +
+        'D, BAIPIF, '
+      
+        '   TOIPIF, BAIPIS, TOIPIS, BAIPID, TOIPID, IMPNF2, BASIMP, TOTIM' +
+        'P, BASPIS, '
+      '   BASCOF, NROADI, SEQADI, FABADI, DSCADI)'
+      'values'
+      
+        '  (:ID_CMPNF2, :ID_CMPNFS, :CODEIT, :CODCLP, :CODGRU, :CODSUB, :' +
+        'CODPRO, '
+      
+        '   :CODTAM, :CODCOR, :DESNF2, :OBSNF2, :CODST1, :CODST2, :CODUND' +
+        ', :REFNF2, '
+      
+        '   :QTINFE, :LIQNF2, :BRTNF2, :LINNF2, :QTPNF2, :QTNNF2, :QTDNF2' +
+        ', :SLDNF2, '
+      
+        '   :VLUNF2, :IPINF2, :CLSIPI, :CODTXF, :CODCFO, :ICMNF2, :BASIPI' +
+        ', :TOTIPI, '
+      
+        '   :BASICM, :TOTICM, :BASSUB, :TOTSUB, :TOTITE, :TOTNF2, :TOTPIS' +
+        ', :TOTCOF, '
+      
+        '   :TOTLIQ, :TOTBRT, :CODSTR, :TIPSTR, :TRBSUB, :ICMSUB, :MRGSUB' +
+        ', :BASESB, '
+      
+        '   :REGIPI, :TIPIPI, :TRBIPI, :REDIPI, :BSCIPI, :REGICM, :TIPICM' +
+        ', :TRBICM, '
+      
+        '   :REDICM, :BSCICM, :INCREV, :INCFIN, :FLGENT, :NRONFS, :FLGATU' +
+        ', :NRONF2, '
+      
+        '   :ID_CMPNFG, :ID_CMPNF3, :NRONOT, :VALNF2, :FLGINT, :PRODEP, :' +
+        'TOTFRT, '
+      
+        '   :TOTSEG, :TOTDES, :BAICMF, :TOICMF, :BAICMS, :TOICMS, :BAICMD' +
+        ', :TOICMD, '
+      
+        '   :BAIPIF, :TOIPIF, :BAIPIS, :TOIPIS, :BAIPID, :TOIPID, :IMPNF2' +
+        ', :BASIMP, '
+      
+        '   :TOTIMP, :BASPIS, :BASCOF, :NROADI, :SEQADI, :FABADI, :DSCADI' +
+        ')')
+    DeleteSQL.Strings = (
+      'delete from CmpNf2'
+      'where'
+      '  ID_CMPNF2 = :OLD_ID_CMPNF2')
+    Left = 34
+    Top = 227
+  end
+  object DsNf2: TDataSource
+    DataSet = CmpNf2
+    OnDataChange = DsNf2DataChange
+    Left = 34
+    Top = 199
+  end
+  object DsNfs: TDataSource
+    DataSet = CmpNfs
+    Left = 34
+    Top = 171
+  end
+  object quSql: TwwQuery
+    AutoCalcFields = False
+    DatabaseName = 'ISade'
+    UniDirectional = True
+    ValidateWithMask = True
+    Left = 6
+    Top = 255
+  end
+end

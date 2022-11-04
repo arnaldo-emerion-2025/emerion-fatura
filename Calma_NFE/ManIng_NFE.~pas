@@ -1,0 +1,2403 @@
+unit ManIng_NFE;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, Buttons, ExtCtrls, dxCntner, dxEditor, dxEdLib, dxDBELib, Db,
+  DBTables, Wwquery, RDprint, dxExEdtr, FShowPadrao, dxDBColorCurrencyEdit;
+
+type
+  TfmManIng_NFE = class(TfmShowPadrao)
+    GerEmp: TwwQuery;
+    GerEmpCODEMP: TIntegerField;
+    GerEmpNOMEMP: TStringField;
+    GerEmpAPEEMP: TStringField;
+    GerEmpCEPEMP: TStringField;
+    GerEmpENDEMP: TStringField;
+    GerEmpREFEMP: TStringField;
+    GerEmpTENEMP: TStringField;
+    GerEmpNUMEMP: TStringField;
+    GerEmpBAIEMP: TStringField;
+    GerEmpCIDEMP: TStringField;
+    GerEmpSIGUFE: TStringField;
+    GerEmpCGCEMP: TStringField;
+    GerEmpINSEMP: TStringField;
+    GerEmpPRTEMP: TStringField;
+    GerEmpFONEMP: TStringField;
+    GerEmpPRFEMP: TStringField;
+    GerEmpFAXEMP: TStringField;
+    GerEmpEMAEMP: TStringField;
+    GerEmpWEBEMP: TStringField;
+    GerEmpQTDNFS: TIntegerField;
+    GerEmpNUMRES: TIntegerField;
+    GerEmpNUMPED: TIntegerField;
+    PaintBox: TPaintBox;
+    RDprint1: TRDprint;
+    quSQL: TwwQuery;
+    Label57: TLabel;
+    EdNroNfs: TdxDBColorCurrencyEdit;
+    bretornar: TBitBtn;
+    bcontinuar: TBitBtn;
+    DsGer: TDataSource;
+    GerEmpFLSGER: TStringField;
+    GerEmpFLGTRG: TStringField;
+    GerEmpCODFIL: TIntegerField;
+    GerEmpLANEST: TStringField;
+    GerEmpLANCAI: TStringField;
+    GerEmpFLGPRE: TStringField;
+    GerEmpEXIEST: TStringField;
+    GerEmpQTDACP: TIntegerField;
+    GerEmpEXIEMP: TStringField;
+    GerEmpFLGSER: TStringField;
+    GerEmpFLGFIL: TStringField;
+    GerEmpNFSLOJ: TIntegerField;
+    GerEmpQTDNOT: TIntegerField;
+    GerEmpNRONFS: TIntegerField;
+    GerEmpNRONOT: TIntegerField;
+    GerEmpQTDLIN: TIntegerField;
+    GerEmpID_FINUFE: TIntegerField;
+    GerEmpID_FINCIE: TIntegerField;
+    GerEmpFLGNFE: TStringField;
+    GerEmpID_FINPAI: TIntegerField;
+    procedure bretornarClick(Sender: TObject);
+    procedure bcontinuarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure PaintBoxPaint(Sender: TObject);
+  private
+    {Private declarations}
+  public
+    {Public declarations}
+  end;
+
+var
+  fmManIng_NFE: TfmManIng_NFE;
+
+implementation
+
+uses dxDemoUtils, Bbgeral, Bbmensag, Bbfuncao, ManGDB,
+  ManNge_NFE2, MsgUser;
+
+{$R *.DFM}
+
+procedure TfmManIng_NFE.bretornarClick(Sender: TObject);
+begin
+
+  if fmManNge_NFE2.FatGerSitGer.Value = 'Faturado' then
+    fmManNge_NFE2.Finalizar := 'S';
+
+  close;
+
+end;
+
+procedure TfmManIng_NFE.bcontinuarClick(Sender: TObject);
+var
+  ArqTexto: TStringList;
+  Nota01: array[1..210] of string;
+  Nota02: array[1..210] of string;
+  NomCli, CgcCli, InsCli, TefCli, CefCli, EnfCli, NrfCli, BafCli, CifCli, UffCli, GImpRef: string;
+  EndEnt1, EndEnt2, EndCob1, EndCob2, Linha, FonCli, Pt1Cli, Fo1Cli, sCanc, sText, ImpClf: string;
+  TecCli, EncCli, NrcCli, BacCli, CicCli, UfcCli, CecCli, ValorExt, ValorEx1, ValorEx2, ValorEx3, sContinuar: string;
+  Tam, Reg, Inc, Col, Lin, r, i, j, rec, qtdIte, qtdNfs, qtdLin, qtdnfis, qtdimpr, qtitens, SeqGe2, SeqNfg, QtiNfg, qtdnot, SeqError: integer;
+
+  procedure ApagaNroNfs;
+  begin
+    with fmManNge_NFE2.FatGer do
+    begin
+
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+
+      fmManNge_NFE2.FatGerNronfs.Value := Null;
+
+      try
+        ApplyUpdates; {Tenta aplicar as alterações}
+        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+      except
+        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+
+        if fmManNge_NFE2.FatGer.State = dsBrowse then
+          fmManNge_NFE2.FatGer.Edit;
+
+        EdNroNfs.Enabled := True;
+
+        raise;
+
+      end;
+      CommitUpdates; {sucesso!, limpa o cache...}
+    end;
+  end;
+begin
+  if ExisteNroNF(StrToInt(edNroNfs.Text),GEmp_Id) then
+  begin
+    if MessageBox(Handle, 'Deseja continuar com a emissão da NFe ciente que haverá duplicidade?',
+      'Validação de NFe', MB_YESNO + MB_ICONQUESTION + MB_NOFOCUS) = idYes then
+    begin
+      InformacaoObrigatoria('Continuar o processo de faturamento poderá causar duplicidade de envio de NFe e gerar informações não consistentes em relatórios do faturamento. Além de duplicar titulos em contas a receber.', 'Validação de NFE');
+      if ExisteNroNF(StrToInt(EdNroNfs.Text),GEmp_Id) then
+      begin
+        if messagebox(handle, 'Se está certo e deseja continuar?', 'Validação NFe', MB_YESNO + MB_ICONQUESTION + MB_NOFOCUS) = idno then
+        begin
+          ApagaNroNfs;
+          bretornar.Click;
+          abort;
+        end;
+      end;
+    end
+    else
+    begin
+      ApagaNroNfs;
+      bretornar.Click;
+      abort;
+    end;
+  end;
+
+
+if EdNroNfs.Value > 0 then
+begin
+
+  sContinuar := 'N';
+
+  qtdnfs := GerEmp.FieldbyName('QtdNfs').AsInteger + 1;
+
+  if EdNroNfs.Value > qtdnfs then
+  begin
+
+    if fMsgConf('Nota Fiscal Informada Fora de Sequencia. Proxima ' + Trim(IntToStr(QtdNfs)) + '. Confirma ?', 'E') = 'SIM' then
+      sContinuar := 'S'
+    else
+    begin
+
+      fmManNge_NFE2.FatGerNroNfs.Value := QtdNfs;
+
+      EdNroNfs.SetFocus;
+
+    end;
+
+  end
+  else
+  begin
+
+    if EdNroNfs.Value < qtdnfs then
+    begin
+
+      if fMsgConf('Nota Fiscal Informada Fora de Sequencia. Proxima ' + Trim(IntToStr(QtdNfs)) + '. Confirma ?', 'O') = 'SIM' then
+        sContinuar := 'S'
+      else
+        sContinuar := 'N';
+
+    end
+    else
+      sContinuar := 'S';
+
+  end;
+
+  if sContinuar = 'S' then
+  begin
+
+    if EdNroNfs.Enabled then
+    begin
+
+      fmManNge_NFE2.FatGer.Edit;
+
+      with fmManNge_NFE2.FatGer do
+      begin
+
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        ;
+
+        //Rolando - 16/03/2010
+        fmManNge_NFE2.FatGerFlgNfs.AsString := '*';
+        fmManNge_NFE2.FatGerFLGNFE.AsString := 'Sim';
+        fmManNge_NFE2.FatGerENVNFE.AsString := 'Nao';
+        //
+
+        try
+
+          ApplyUpdates; {Tenta aplicar as alterações}
+          ;
+
+          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          ;
+
+        except
+
+          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          ;
+
+          sContinuar := 'N';
+
+          if fmManNge_NFE2.FatGer.State = dsBrowse then
+            fmManNge_NFE2.FatGer.Edit;
+
+          EdNroNfs.Enabled := True;
+
+          EdNroNfs.SetFocus;
+
+          raise;
+
+        end;
+
+        CommitUpdates; {sucesso!, limpa o cache...}
+
+      end;
+
+      fmManNge_NFE2.FatGer.Close;
+      fmManNge_NFE2.FatGer.Open;
+
+      fmManNge_NFE2.FatGe2.Close;
+      fmManNge_NFE2.FatGe2.Open;
+
+      fmManNge_NFE2.FatGer.Edit;
+
+      EdNroNfs.Enabled := False;
+
+      sContinuar := 'S';
+
+    end;
+  end;
+
+  if sContinuar = 'S' then
+  begin
+
+    if fmManNge_NFE2.FatGerFlgNfe.Value = 'Nao' then
+    begin
+
+      if fMsg('Confirma emissão da nota fiscal ?', 'O') then
+      begin
+
+        if FileExists('C:\Emerion\LINCOL.TXT') then
+        begin
+
+          with quSQL, SQL do
+          begin
+
+            Close;
+            Text := ' Select ImpRef From FatPar';
+            Open;
+
+            GImpRef := FieldByName('ImpRef').AsString;
+
+          end;
+
+          with quSQL, SQL do
+          begin
+
+            Close;
+            Text := ' Select FinCli.NomCli,' +
+              ' FinCli.CgcCli,' +
+              ' FinCli.InsCli,' +
+              ' FinCli.TefCli,' +
+              ' FinCli.TecCli,' +
+              ' FinCli.EnfCli,' +
+              ' FinCli.EncCli,' +
+              ' FinCli.NrfCli,' +
+              ' FinCli.NrcCli,' +
+              ' FinCli.BafCli,' +
+              ' FinCli.BacCli,' +
+              ' FinCli.CifCli,' +
+              ' FinCli.CicCli,' +
+              ' FinCli.UffCli,' +
+              ' FinCli.UfcCli,' +
+              ' FinCli.CefCli,' +
+              ' FinCli.CecCli,' +
+              ' FinCli.Pt1Cli,' +
+              ' FinCli.Fo1Cli From FinCli Where FinCli.CodCli = ''' + IntToStr(fmManNge_NFE2.FatGerCodCli.Value) + '''';
+            Open;
+
+            NomCli := FieldbyName('NomCli').AsString;
+            CgcCli := FieldbyName('CgcCli').AsString;
+            InsCli := FieldbyName('InsCli').AsString;
+            TefCli := FieldbyName('TefCli').AsString;
+            TecCli := FieldbyName('TecCli').AsString;
+            EnfCli := FieldbyName('EnfCli').AsString;
+            EncCli := FieldbyName('EncCli').AsString;
+            NrfCli := FieldbyName('NrfCli').AsString;
+            NrcCli := FieldbyName('NrcCli').AsString;
+            BafCli := FieldbyName('BafCli').AsString;
+            BacCli := FieldbyName('BacCli').AsString;
+            CifCli := FieldbyName('CifCli').AsString;
+            CicCli := FieldbyName('CicCli').AsString;
+            UffCli := FieldbyName('UffCli').AsString;
+            UfcCli := FieldbyName('UfcCli').AsString;
+            CefCli := FieldbyName('CefCli').AsString;
+            CecCli := FieldbyName('CecCli').AsString;
+
+            Pt1Cli := FieldbyName('Pt1Cli').AsString;
+            Fo1Cli := FieldbyName('Fo1Cli').AsString;
+
+          end;
+
+          if Trim(NomCli) <> '' then
+          begin
+
+            if fmManNge_NFE2.FatGerSitGer.Value = 'Nao Concluido' then
+            begin
+
+              sText := '              Confirma Nota Fiscal?               ' + #10 +
+                '                                                  ' + #10 +
+                ' Ao Confirmar Ocorrerão os Seguintes Lançamentos :' + #10 +
+                '                                                  ';
+
+              if fmManNge_NFE2.FatGerAtuEst.Value = 'Sim' then
+                sText := sText + #10 + ' . Baixas nos Estoques dos Itens Faturados;       ';
+
+              if fmManNge_NFE2.FatGerIntFin.Value = 'Sim' then
+                sText := sText + #10 + ' . Lançamentos dos Titulos no Contas a Receber.   ';
+
+              sText := sText + #10 + '                                                  ';
+
+              if fMsg(sText, 'O') then
+              begin
+
+                fmManNge_NFE2.FatGer.Edit;
+
+                //Rolando - 16/03/2010
+                fmManNge_NFE2.FatGerSitGer.Value := 'Faturado';
+                fmManNge_NFE2.FatGerFLGNFE.Value := 'Sim';
+                fmManNge_NFE2.FatGerENVNFE.Value := 'Nao';
+                //
+
+                with fmManNge_NFE2.FatGer do
+                begin
+
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                  ;
+
+                  try
+
+                    ApplyUpdates; {Tenta aplicar as alterações}
+                    ;
+
+                    fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                    ;
+
+                  except
+
+                    fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                    ;
+
+                    if fmManNge_NFE2.FatGer.State <> dsBrowse then
+                      fmManNge_NFE2.FatGer.CancelUpdates;
+
+                    fmManNge_NFE2.FatGer.Close;
+                    fmManNge_NFE2.FatGer.Open;
+
+                    fmManNge_NFE2.FatGer.Edit;
+
+                    sContinuar := 'N';
+
+                    if EdNroNfs.Enabled then
+                      EdNroNfs.SetFocus;
+
+                    raise;
+
+                  end;
+
+                  CommitUpdates; {sucesso!, limpa o cache...}
+
+                end;
+
+                fmManNge_NFE2.FatGer.Close;
+                fmManNge_NFE2.FatGer.Open;
+
+                EdNroNfs.Enabled := False;
+
+                sContinuar := 'S';
+
+              end
+              else
+              begin
+
+                EdNroNfs.Enabled := False;
+
+                sContinuar := 'N';
+
+                bContinuar.SetFocus;
+
+              end;
+            end;
+
+            if sContinuar = 'S' then
+            begin
+
+              fmsg('Posicione Nota Fiscal e Pressione ENTER', 'E');
+
+              SeqError := 1;
+
+              try
+
+                with quSQL, SQL do
+                begin
+
+                  Close;
+                  Text := ' Select QtdLin,QtdNot,ImpClf From FatPar';
+                  Open;
+
+                  ImpClf := quSql.FieldbyName('ImpClf').AsString;
+                  QtdIte := quSql.FieldbyName('QtdLin').AsInteger;
+                  QtdNfs := quSql.FieldbyName('QtdNot').AsInteger;
+
+                end;
+
+                ArqTexto := TStringList.Create;
+                ArqTexto.LoadFromFile('C:\Emerion\LINCOL.TXT');
+
+                qtdLin := ArqTexto.Count - 1; {Quantidade de Linhas no Arquivo LINCOL.TXT}
+
+                EndCob2 := '';
+                EndEnt2 := '';
+
+                if Trim(TecCli) <> '' then
+                  EndCob1 := Trim(TecCli);
+
+                EndCob1 := EndCob1 + ' ' + Trim(EncCli) + ' No. ' + Trim(NrcCli) + ' ' +
+                  Trim(BacCli) + ' - ' + Trim(CicCli) + ' ' +
+                  Trim(UfcCli) + ' Cep ' + Trim(CecCli);
+
+                if Trim(fmManNge_NFE2.FatGerNomEnt.Value) <> '' then
+                begin
+
+                  EndEnt1 := Trim(fmManNge_NFE2.FatGerNomEnt.Value);
+
+                  EndEnt1 := EndEnt1 + ' C.N.P.J :' + copy(fmManNge_NFE2.FatGerCgeCli.Value, 01, 2) + '.' + copy(fmManNge_NFE2.FatGerCgeCli.Value, 3, 3)
+                    +
+                    '.'
+                    +
+                    copy(fmManNge_NFE2.FatGerCgeCli.Value, 06, 3) + '/' + copy(fmManNge_NFE2.FatGerCgeCli.Value, 9, 4) + '-' +
+                    copy(fmManNge_NFE2.FatGerCgeCli.Value, 13, 2);
+
+                  if Trim(fmManNge_NFE2.FatGerTenCli.Value) <> '' then
+                    EndEnt2 := Trim(fmManNge_NFE2.FatGerTenCli.Value) + ' ';
+
+                  if Trim(fmManNge_NFE2.FatGerNumCli.Value) <> '' then
+                    EndEnt2 := EndEnt2 + Trim(fmManNge_NFE2.FatGerEndCli.Value) + ', ' + Trim(fmManNge_NFE2.FatGerNumCli.Value) + ' '
+                  else
+                    EndEnt2 := EndEnt2 + Trim(fmManNge_NFE2.FatGerEndCli.Value) + ' ';
+
+                  EndEnt2 := EndEnt2 + Trim(fmManNge_NFE2.FatGerBaiCli.Value) + ' - ' + Trim(fmManNge_NFE2.FatGerCidCli.Value) + ' ' +
+                    Trim(fmManNge_NFE2.FatGerUfeCli.Value) + ' Cep ' + Trim(fmManNge_NFE2.FatGerCepCli.Value);
+
+                end
+                else
+                begin
+
+                  if Trim(fmManNge_NFE2.FatGerTenCli.Value) <> '' then
+                    EndEnt1 := Trim(fmManNge_NFE2.FatGerTenCli.Value) + ' ';
+
+                  if Trim(fmManNge_NFE2.FatGerNumCli.Value) <> '' then
+                    EndEnt1 := EndEnt1 + Trim(fmManNge_NFE2.FatGerEndCli.Value) + ', ' + Trim(fmManNge_NFE2.FatGerNumCli.Value) + ' '
+                  else
+                    EndEnt1 := EndEnt1 + Trim(fmManNge_NFE2.FatGerEndCli.Value) + ' ';
+
+                  EndEnt1 := EndEnt1 + Trim(fmManNge_NFE2.FatGerBaiCli.Value) + ' - ' + Trim(fmManNge_NFE2.FatGerCidCli.Value) + ' ' +
+                    Trim(fmManNge_NFE2.FatGerUfeCli.Value) + ' Cep ' + Trim(fmManNge_NFE2.FatGerCepCli.Value);
+
+                  EndEnt2 := 'C.N.P.J.:' + copy(fmManNge_NFE2.FatGerCgeCli.Value, 01, 2) + '.' + copy(fmManNge_NFE2.FatGerCgeCli.Value, 3, 3) + '.' +
+                    copy(fmManNge_NFE2.FatGerCgeCli.Value, 06, 3) + '/' + copy(fmManNge_NFE2.FatGerCgeCli.Value, 9, 4) + '-' +
+                    copy(fmManNge_NFE2.FatGerCgeCli.Value, 13, 2);
+
+                end;
+
+                if Trim(Pt1Cli) <> '' then
+                  FonCli := '(' + Trim(Pt1Cli) + ')' + Trim(Fo1Cli)
+                else
+                  FonCli := Trim(Fo1Cli);
+
+                Nota01[001] := 'NumNot';
+                Nota02[001] := 'Comp12';
+
+                Nota01[002] := fmManNge_NFE2.FatGerFlgSai.Value; {Saida}
+                Nota02[002] := 'Comp12';
+
+                Nota01[003] := fmManNge_NFE2.FatGerFlgEnt.Value; {Entrada}
+                Nota02[003] := 'Comp12';
+
+                Nota01[004] := Trim(fmManNge_NFE2.FatGerDesNat.Value); {NatOper}
+                Nota02[004] := 'Comp12';
+
+                if Trim(fmManNge_NFE2.FatGerCodCf2.Value) <> '' then {Cfop}
+                  Nota01[005] := Trim(fmManNge_NFE2.FatGerCodCf1.Value) + '/' + Trim(fmManNge_NFE2.FatGerCodCf2.Value)
+                else
+                  Nota01[005] := Trim(fmManNge_NFE2.FatGerCodCf1.Value);
+
+                Nota02[005] := 'Comp12';
+
+                Nota01[006] := '';
+                Nota02[006] := 'Comp12';
+
+                Nota01[007] := fmManNge_NFE2.FatGerInsSub.Value; {InscEstSubTrib}
+                Nota02[007] := 'Comp12';
+
+                Nota01[010] := DateToStr(fmManNge_NFE2.FatGerDteFat.Value); {DataEmis}
+                Nota02[010] := 'Comp12';
+
+                Nota01[008] := NomCli; {Nome do Cliente}
+                Nota02[008] := 'Comp12';
+
+                CgcCli := fLimpaStr(CgcCli);
+
+                if Trim(fmManNge_NFE2.FatGerUfeGer.Value) <> 'EX' then
+                begin
+
+                  if Length(Trim(CgcCli)) <= 11 then
+                    Nota01[009] := copy(CgcCli, 1, 3) + '.' + copy(CgcCli, 4, 3) + '.' +
+                      copy(CgcCli, 7, 3) + '-' + copy(CgcCli, 10, 2)
+                  else
+                    Nota01[009] := copy(CgcCli, 01, 2) + '.' + copy(CgcCli, 3, 3) + '.' +
+                      copy(CgcCli, 06, 3) + '/' + copy(CgcCli, 9, 4) + '-' +
+                      copy(CgcCli, 13, 2);
+
+                end
+                else
+                  Nota01[009] := ' ';
+
+                Nota02[009] := 'Comp12';
+
+                Nota01[010] := DateToStr(fmManNge_NFE2.FatGerDteFat.Value); {DataEmis}
+                Nota02[010] := 'Comp12';
+
+                Nota01[011] := Trim(TEfCli) + ' ' + Trim(EnfCli) + ', ' + Trim(NrfCli); {Endereco}
+                Nota02[011] := 'Comp12';
+
+                Nota01[012] := BafCli; {Bairro}
+                Nota02[012] := 'Comp12';
+
+                if Trim(CefCli) <> '' then {Cep}
+                  Nota01[013] := copy(CefCli, 1, 5) + '-' + copy(CefCli, 6, 3)
+                else
+                  Nota01[013] := ' ';
+
+                Nota02[013] := 'Comp12';
+
+                Nota01[014] := ''; {DataSai}
+                Nota02[014] := '';
+
+                Nota01[015] := CifCli; {Cidade}
+                Nota02[015] := 'Comp12';
+
+                Nota01[016] := FonCli; {Fone}
+                Nota02[016] := 'Comp12';
+
+                {Uf}
+                if Trim(fmManNge_NFE2.FatGerUfeGer.Value) <> 'EX' then
+                  Nota01[017] := UffCli
+                else
+                  Nota01[017] := ' ';
+
+                Nota02[017] := 'Comp12';
+
+                {InscEst}
+                if Trim(fmManNge_NFE2.FatGerUfeGer.Value) <> 'EX' then
+                  Nota01[018] := InsCli
+                else
+                  Nota01[018] := ' ';
+
+                Nota02[018] := 'Comp12';
+
+                Nota01[019] := ''; {Hora da Saida}
+                Nota02[019] := 'Comp12';
+
+                Nota01[208] := ' '; {Detalhamento do ICMS}
+                Nota02[208] := 'Comp20';
+
+                with quSQL, SQL do
+                begin
+
+                  Close;
+                  Text := ' Select FatGe3.NroGe3,' +
+                    '        FatGe3.DtvGe3,' +
+                    '        FatGe3.VlpGe3 From FatGe3' +
+                    ' Where FatGe3.CodEmp = :CodEmp' +
+                    '   and FatGe3.DteGer = :DteGer' +
+                    '   and FatGe3.NumGer = :NumGer';
+
+                  with Params do
+                  begin
+
+                    Params[0].AsInteger := fmManNge_NFE2.FatGerCodEmp.Value;
+                    Params[1].AsDateTime := fmManNge_NFE2.FatGerDteGer.Value;
+                    Params[2].AsInteger := fmManNge_NFE2.FatGerNumGer.Value;
+
+                  end;
+
+                  Open;
+                  First;
+
+                end;
+
+                i := 131;
+
+                rec := 0;
+
+                while not quSQL.Eof do
+                begin
+
+                  Nota01[i] := fNumZeros(IntToStr(fmManNge_NFE2.FatGerNroNfs.Value), 6) + '/' +
+                    FNumZeros(IntToStr(quSQL.FieldbyName('NroGe3').AsInteger),
+                    3);
+                  {Número}
+                  Nota02[i] := 'Comp12';
+
+                  i := i + 1;
+
+                  rec := rec + 1;
+
+                  if rec = 8 then
+                    i := 195;
+
+                  if rec > 12 then
+                    quSQL.Last
+                  else
+                    quSQL.Next;
+
+                end;
+
+                quSQL.First;
+
+                i := 141;
+
+                rec := 0;
+
+                while not quSQL.Eof do
+                begin
+
+                  Nota01[i] := quSQL.FieldbyName('DtvGe3').AsString; {Vencimento}
+                  Nota02[i] := 'Comp12';
+
+                  i := i + 1;
+
+                  rec := rec + 1;
+
+                  if rec = 8 then
+                    i := 199;
+
+                  if rec > 12 then
+                    quSQL.Last
+                  else
+                    quSQL.Next;
+
+                end;
+
+                quSQL.First;
+
+                i := 151;
+
+                rec := 0;
+
+                while not quSQL.Eof do
+                begin
+
+                  Nota01[i] := Prestring(FormatFloat('###,###,##0.00', quSQL.FieldbyName('VlpGe3').AsFloat), 14); {Valor}
+                  Nota02[i] := 'Comp12';
+
+                  i := i + 1;
+
+                  rec := rec + 1;
+
+                  if rec = 8 then
+                    i := 203;
+
+                  if rec > 12 then
+                    quSQL.Last
+                  else
+                    quSQL.Next;
+
+                end;
+
+                i := 161;
+
+                rec := 0;
+
+                with quSQL, SQL do
+                begin
+
+                  Close;
+                  Text := ' Select * From FatGse' +
+                    ' Where FatGse.CodEmp = :CodEmp' +
+                    '   and FatGse.DteGer = :DteGer' +
+                    '   and FatGse.NumGer = :NumGer';
+
+                  with Params do
+                  begin
+
+                    Params[0].AsInteger := fmManNge_NFE2.FatGerCodEmp.Value;
+                    Params[1].AsDateTime := fmManNge_NFE2.FatGerDteGer.Value;
+                    Params[2].AsInteger := fmManNge_NFE2.FatGerNumGer.Value;
+
+                  end;
+
+                  Open;
+                  First;
+
+                end;
+
+                while not quSQL.Eof do
+                begin
+
+                  if (quSql.FieldbyName('CodGru').AsString <> '888') and (quSql.FieldbyName('CodGru').AsString <> '999') then
+                    Nota01[i] := quSql.FieldbyName('CodGru').AsString + '.' + quSql.FieldbyName('CodSub').AsString + '.' +
+                      quSql.FieldbyName('CodPro').AsString
+                  else
+                    Nota01[i] := ' ';
+
+                  Nota02[i] := 'Comp20';
+
+                  i := i + 1;
+
+                  if rec > 4 then
+                    quSQL.Last
+                  else
+                    quSQL.Next;
+
+                end;
+
+                i := 165;
+
+                quSQL.First;
+
+                while not quSQL.Eof do
+                begin
+
+                  if Trim(copy(quSql.FieldbyName('DesSer').AsString, 1, 40)) <> '' then
+                    Nota01[i] := copy(quSql.FieldbyName('DesSer').AsString, 1, 40)
+                  else
+                    Nota01[i] := ' ';
+
+                  Nota02[i] := 'Comp20';
+
+                  i := i + 1;
+
+                  if rec > 4 then
+                    quSQL.Last
+                  else
+                    quSQL.Next;
+
+                end;
+
+                i := 169;
+
+                quSQL.First;
+
+                while not quSQL.Eof do
+                begin
+
+                  if Trim(quSql.FieldbyName('CodUnd').AsString) <> '' then
+                    Nota01[i] := quSql.FieldbyName('CodUnd').AsString
+                  else
+                    Nota01[i] := ' ';
+
+                  Nota02[i] := 'Comp20';
+
+                  i := i + 1;
+
+                  if rec > 4 then
+                    quSQL.Last
+                  else
+                    quSQL.Next;
+
+                end;
+
+                i := 173;
+
+                quSQL.First;
+
+                while not quSQL.Eof do
+                begin
+
+                  if quSql.FieldbyName('QtpSer').AsFloat > 0 then
+                  begin
+
+                    if fEncDecimal(quSql.FieldbyName('QtpSer').AsFloat) > 0 then
+                      Nota01[i] := Prestring(FormatFloat('###,##0.0000', quSql.FieldbyName('QtpSer').AsFloat), 12)
+                    else
+                      Nota01[i] := Prestring(FormatFloat('####,###,##0', quSql.FieldbyName('QtpSer').AsFloat), 12);
+
+                  end
+                  else
+                    Nota01[i] := ' ';
+
+                  Nota02[i] := 'Comp20';
+
+                  i := i + 1;
+
+                  if rec > 4 then
+                    quSQL.Last
+                  else
+                    quSQL.Next;
+
+                end;
+
+                i := 177;
+
+                quSQL.First;
+
+                while not quSQL.Eof do
+                begin
+
+                  if quSql.FieldbyName('VluSer').AsFloat > 0 then
+                    Nota01[i] := Prestring(FormatFloat('###,##0.0000', quSql.FieldbyName('VluSer').AsFloat), 12)
+                  else
+                    Nota01[i] := ' ';
+
+                  Nota02[i] := 'Comp20';
+
+                  i := i + 1;
+
+                  if rec > 4 then
+                    quSQL.Last
+                  else
+                    quSQL.Next;
+
+                end;
+
+                i := 181;
+
+                quSQL.First;
+
+                while not quSQL.Eof do
+                begin
+
+                  if quSql.FieldbyName('TotSer').AsFloat > 0 then
+                    Nota01[i] := Prestring(FormatFloat('###,###,##0.00', quSql.FieldbyName('TotSer').AsFloat), 12)
+                  else
+                    Nota01[i] := ' ';
+
+                  Nota02[i] := 'Comp20';
+
+                  i := i + 1;
+
+                  if rec > 4 then
+                    quSQL.Last
+                  else
+                    quSQL.Next;
+
+                end;
+
+                if fmManNge_NFE2.FatGerTotIs1.Value > 0 then
+                  Nota01[185] := Prestring(FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotIs1.Value), 14)
+                else
+                  Nota01[185] := ' ';
+
+                Nota02[185] := 'Comp12';
+
+                if fmManNge_NFE2.FatGerTotSe1.Value > 0 then
+                  Nota01[186] := Prestring(FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotSe1.Value), 14)
+                else
+                  Nota01[186] := ' ';
+
+                Nota02[186] := 'Comp12';
+
+                Nota01[038] := EndCob1; {Cobranca_1}
+                Nota02[038] := 'Comp20';
+
+                Nota01[039] := EndCob2; {Cobranca_2}
+                Nota02[039] := 'Comp20';
+
+                Nota01[040] := ''; {Produto}
+                Nota02[040] := 'Comp20';
+
+                Nota01[041] := ''; {Descr}
+                Nota02[041] := 'Comp20';
+
+                Nota01[042] := ''; {ClassFisc}
+                Nota02[042] := 'Comp20';
+
+                Nota01[207] := ''; {ClassFisc}
+                Nota02[207] := 'Comp20';
+
+                Nota01[209] := ''; {CFOP}
+                Nota02[209] := 'Comp20';
+
+                Nota01[210] := ''; {ClassFisc}
+                Nota02[210] := 'Comp20';
+
+                Nota01[043] := ''; {St1}
+                Nota02[043] := 'Comp20';
+
+                Nota01[044] := ''; {St2}
+                Nota02[044] := 'Comp20';
+
+                Nota01[045] := ''; {Unidade}
+                Nota02[045] := 'Comp20';
+
+                Nota01[046] := ''; {Qtde}
+                Nota02[046] := 'Comp20';
+
+                Nota01[047] := ''; {Unit}
+                Nota02[047] := 'Comp20';
+
+                Nota01[048] := ''; {Total}
+                Nota02[048] := 'Comp20';
+
+                Nota01[049] := ''; {AlIcms}
+                Nota02[049] := 'Comp20';
+
+                Nota01[050] := ''; {AlIpi}
+                Nota02[050] := 'Comp20';
+
+                Nota01[051] := ''; {ValIpi}
+                Nota02[051] := 'Comp20';
+
+                Nota01[052] := ''; {Descr2}
+                Nota02[052] := 'Comp20';
+
+                Nota01[128] := ''; {Descr3}
+                Nota02[128] := 'Comp20';
+
+                Nota01[053] := fmManNge_NFE2.FatGerTxfIpi.Value; {TextIpi}
+                Nota02[053] := 'Comp20';
+
+                Nota01[054] := fmManNge_NFE2.FatGerTxfIcm.Value; {TextIcm}
+                Nota02[054] := 'Comp20';
+
+                Nota01[055] := 'Entrega: ' + EndEnt1; {Entrega_1}
+                Nota02[055] := 'Comp20';
+
+                Nota01[056] := '         ' + EndEnt2; {Entrega_2}
+                Nota02[056] := 'Comp20';
+
+                Nota01[067] := fmManNge_NFE2.FatGerNomTra.Value; {NomeTransp}
+                Nota02[067] := 'Comp12';
+
+                Nota01[068] := fmManNge_NFE2.FatGerTipFrt.Value; {FretePc}
+                Nota02[068] := 'Comp12';
+
+                Nota01[069] := fmManNge_NFE2.FatGerPlcTra.Value; {Placa}
+                Nota02[069] := 'Comp12';
+
+                Nota01[070] := fmManNge_NFE2.FatGerUfePlc.Value; {UfPlaca}
+                Nota02[070] := 'Comp12';
+
+                if Trim(fmManNge_NFE2.FatGerCgcTra.Value) <> '' then
+
+                  Nota01[071] := copy(fmManNge_NFE2.FatGerCgcTra.Value, 01, 2) + '.' + copy(fmManNge_NFE2.FatGerCgcTra.Value, 3, 3) + '.' +
+                    copy(fmManNge_NFE2.FatGerCgcTra.Value, 06, 3) + '/' + copy(fmManNge_NFE2.FatGerCgcTra.Value, 9, 4) + '-' +
+                    copy(fmManNge_NFE2.FatGerCgcTra.Value, 13, 2)
+
+                else
+                  Nota01[071] := ' ';
+
+                Nota02[071] := 'Comp12';
+
+                Nota01[072] := Trim(fmManNge_NFE2.FatGerTenTra.Value) + ' ' + Trim(fmManNge_NFE2.FatGerEndTra.Value) + ', ' +
+                  Trim(fmManNge_NFE2.FatGerNumTra.Value) + ' ' + Trim(fmManNge_NFE2.FatGerBaiTra.Value);
+                Nota02[072] := 'Comp12';
+
+                Nota01[073] := fmManNge_NFE2.FatGerCidTra.Value; {CidTransp}
+                Nota02[073] := 'Comp12';
+
+                Nota01[074] := fmManNge_NFE2.FatGerUfeTra.Value; {UFTransp}
+                Nota02[074] := 'Comp12';
+
+                Nota01[075] := fmManNge_NFE2.FatGerInsTra.Value; {InscTransp}
+                Nota02[075] := 'Comp12';
+
+                // De Acordo com o Toninho Por Enquanto Deixar o Campo de Volumes Em branco Em  : 02/07/2003 //
+                // So Exibir se a Valeria Alterar o seu Conteudo "Notas de Exportação //
+
+                if fmManNge_NFE2.FatGerAltVol.Value > 0 then
+                  Nota01[076] := Prestring(IntToStr(fmManNge_NFE2.FatGerAltVol.Value), 7) {QtdeVol}
+                else
+                  Nota01[076] := ' ';
+
+                Nota02[076] := 'Comp12';
+
+                Nota01[077] := fmManNge_NFE2.FatGerEspGer.Value; {Especie}
+                Nota02[077] := 'Comp12';
+
+                Nota01[078] := fmManNge_NFE2.FatGerMarGer.Value; {Marca}
+                Nota02[078] := 'Comp12';
+
+                Nota01[079] := fmManNge_NFE2.FatGerNroGer.Value; {Numero}
+                Nota02[079] := 'Comp12';
+
+                Nota01[080] := Prestring(FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerInfBrt.Value), 14); {PesBruto}
+                Nota02[080] := 'Comp12';
+
+                Nota01[081] := Prestring(FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerInfLiq.Value), 14); {PesLiq}
+                Nota02[081] := 'Comp12';
+
+                if (Trim(fmManNge_NFE2.FatGerOb1Ger.Value) = '') and
+                  (Trim(fmManNge_NFE2.FatGerOb2Ger.Value) = '') and
+                  (Trim(fmManNge_NFE2.FatGerOb3Ger.Value) = '') and
+                  (Trim(fmManNge_NFE2.FatGerOb4Ger.Value) = '') and
+                  (Trim(fmManNge_NFE2.FatGerOb5Ger.Value) = '') and
+                  (Trim(fmManNge_NFE2.FatGerOb6Ger.Value) = '') and
+                  (Trim(fmManNge_NFE2.FatGerOb7Ger.Value) = '') and
+                  (Trim(fmManNge_NFE2.FatGerOb8Ger.Value) = '') then
+                begin
+
+                  Nota01[187] := copy(fmManNge_NFE2.FatGerObsGer.Value, 001, 070); {Obs1}
+                  Nota02[187] := 'Comp20';
+
+                  Nota01[188] := copy(fmManNge_NFE2.FatGerObsGer.Value, 071, 070); {Obs2}
+                  Nota02[188] := 'Comp20';
+
+                  Nota01[189] := copy(fmManNge_NFE2.FatGerObsGer.Value, 141, 070); {Obs3}
+                  Nota02[189] := 'Comp20';
+
+                  Nota01[190] := copy(fmManNge_NFE2.FatGerObsGer.Value, 211, 070); {Obs4}
+                  Nota02[190] := 'Comp20';
+
+                  Nota01[191] := copy(fmManNge_NFE2.FatGerObsGer.Value, 281, 070); {Obs5}
+                  Nota02[191] := 'Comp20';
+
+                  Nota01[192] := copy(fmManNge_NFE2.FatGerObsGer.Value, 351, 070); {Obs6}
+                  Nota02[192] := 'Comp20';
+
+                  Nota01[193] := ' '; {Obs7}
+                  Nota02[193] := 'Comp20';
+
+                  Nota01[194] := ' '; {Obs8}
+                  Nota02[194] := 'Comp20';
+
+                end
+                else
+                begin
+
+                  Nota01[187] := fmManNge_NFE2.FatGerOb1Ger.Value; {Obs1}
+                  Nota02[187] := 'Comp20';
+
+                  Nota01[188] := fmManNge_NFE2.FatGerOb2Ger.Value; {Obs2}
+                  Nota02[188] := 'Comp20';
+
+                  Nota01[189] := fmManNge_NFE2.FatGerOb3Ger.Value; {Obs3}
+                  Nota02[189] := 'Comp20';
+
+                  Nota01[190] := fmManNge_NFE2.FatGerOb4Ger.Value; {Obs4}
+                  Nota02[190] := 'Comp20';
+
+                  Nota01[191] := fmManNge_NFE2.FatGerOb5Ger.Value; {Obs5}
+                  Nota02[191] := 'Comp20';
+
+                  Nota01[192] := fmManNge_NFE2.FatGerOb6Ger.Value; {Obs6}
+                  Nota02[192] := 'Comp20';
+
+                  Nota01[193] := fmManNge_NFE2.FatGerOb7Ger.Value; {Obs7}
+                  Nota02[193] := 'Comp20';
+
+                  Nota01[194] := fmManNge_NFE2.FatGerOb8Ger.Value; {Obs8}
+                  Nota02[194] := 'Comp20';
+
+                end;
+
+                Nota01[117] := IntToStr(fmManNge_NFE2.FatGerCodCli.Value); {código do Cliente}
+                Nota02[117] := 'Comp12';
+
+                Nota01[118] := fNumZeros(IntToStr(fmManNge_NFE2.FatGerCodVen.Value), 3); {código do Vendedor}
+                Nota02[118] := 'Comp12';
+
+                Nota01[119] := ''; {SeuPed}
+                Nota02[119] := 'Comp12';
+
+                Nota01[120] := fNumZeros(IntToStr(fmManNge_NFE2.FatGerNumGer.Value), 7); {Nosso Pedido}
+                Nota02[120] := 'Comp12';
+
+                Nota01[121] := 'NumNot'; {NotaRod1}
+                Nota02[121] := 'Comp20';
+
+                Nota01[122] := 'NumNot'; {NotaRod2}
+                Nota02[122] := 'Comp20';
+
+                ValorExt := fExtenso(fmManNge_NFE2.FatGerTotGer.Value);
+
+                if Length(TrimLeft(TrimRight(ValorExt))) < 150 then
+                  ValorExt := TrimLeft(TrimRight(ValorExt)) + fReplicate('*', 150 - Length(TrimLeft(TrimRight(ValorExt))));
+
+                Nota01[123] := copy(ValorExt, 001, 50); {Valor por Extenso 1}
+                Nota02[123] := 'Comp12';
+
+                Nota01[124] := copy(ValorExt, 051, 50); {Valor por Extenso 2}
+                Nota02[124] := 'Comp12';
+
+                Nota01[125] := copy(ValorExt, 101, 50); {Valor por Extenso 3}
+                Nota02[125] := 'Comp12';
+
+                Nota01[126] := fmManNge_NFE2.FatGerDesReg.Value; {Observações Sobre Desconto}
+                Nota02[126] := 'Comp20';
+
+                {********************************************************************************************}
+
+                rdprint1.OpcoesPreview.Preview := False;
+                rdprint1.OpcoesPreview.PreviewZoom := 100;
+                rdprint1.TamanhoQteLPP := oito;
+                rdprint1.UsaGerenciadorImpr := True;
+
+                rdprint1.TamanhoQteColunas := 136;
+                rdprint1.FonteTamanhoPadrao := s17cpp;
+
+                {Programação dos Eventos: desliga eventos cabecalho/rodape}
+                rdprint1.OnNewPage := nil;
+                rdprint1.OnBeforeNewPage := nil;
+
+                rdprint1.TamanhoQteLinhas := QtdNfs;
+
+                qtdimpr := 0; {Quantidade de Linhas de Itens Impressas}
+                ;
+                qtitens := 0; {Indicador se Esta Sendo Impressos Itens ou Não}
+
+                SeqGe2 := 0; {sequencial dos Itens a Serem Impressos}
+
+                Lin := 0; {Linha que Esta Sendo Impressas} {Incrementos de Linhas}
+                Inc := 0; {Incrementos de Linhas}
+                Col := 0; {Posição da Coluna a ser Impressa}
+                Reg := 0; {Numero do Vetor a Ser Impresso}
+                Tam := 0; {Tamanho da String a Ser Impressa}
+
+                qtdnot := 1; {Quantidade de Notas Impressas}
+
+                rdprint1.abrir;
+
+                //            qtdnfis := (fmManNge_NFE2.FatGerNroNfs.Value - fmManNge_NFE2.FatGerQtdNfs.Value)+ 1;  {Quantidade de Notas Fiscais Impressas}
+
+                qtdnfis := 1; {Quantidade de Notas Fiscais Impressas}
+
+                while qtdnfis <= fmManNge_NFE2.FatGerQtdNfs.Value do
+                begin
+
+                  with quSQL, SQL do
+                  begin
+
+                    Close;
+                    Text := ' Select Count(*) as QtdReg From FatGe2' +
+                      ' Where FatGe2.CodEmp = :CodEmp' +
+                      '   and FatGe2.DteGer = :DteGer' +
+                      '   and FatGe2.NumGer = :NumGer' +
+                      '   and FatGe2.SeqNfg = :SeqNfg';
+
+                    with Params do
+                    begin
+
+                      Params[0].AsInteger := fmManNge_NFE2.FatGerCodEmp.Value;
+                      Params[1].AsDateTime := fmManNge_NFE2.FatGerDteGer.Value;
+                      Params[2].AsInteger := fmManNge_NFE2.FatGerNumGer.Value;
+                      Params[3].AsInteger := qtdnfis;
+
+                    end;
+
+                    Open;
+
+                    QtiNfg := FieldbyName('QtdReg').AsInteger;
+
+                  end;
+
+                  SeqNfg := 0;
+
+                  if qtdnfis = fmManNge_NFE2.FatGerQtdNfs.Value then
+                  begin
+
+                    with quSQL, SQL do
+                    begin
+
+                      Close;
+                      Text := ' Select Count(Distinct(FatGe5.PerIcm)) as QtdReg' +
+                        ' From FatGe5' +
+                        ' Where FatGe5.CodEmp = :CodEmp' +
+                        '   and FatGe5.DteGer = :DteGer' +
+                        '   and FatGe5.NumGer = :NumGer';
+
+                      with Params do
+                      begin
+
+                        Params[0].AsInteger := fmManNge_NFE2.FatGerCodEmp.Value;
+                        Params[1].AsDateTime := fmManNge_NFE2.FatGerDteGer.Value;
+                        Params[2].AsInteger := fmManNge_NFE2.FatGerNumGer.Value;
+
+                      end;
+
+                      Open;
+
+                    end;
+
+                    if quSQL.FieldbyName('QtdReg').AsInteger > 1 then
+                    begin
+
+                      with quSQL, SQL do
+                      begin
+
+                        Close;
+                        Text := ' Select FatGe5.PerIcm,' +
+                          '        Sum(FatGe5.BasIcm) as BasIcm,' +
+                          '        Sum(FatGe5.TotIcm) as TotIcm ' +
+                          ' From FatGe5' +
+                          ' Where FatGe5.CodEmp = :CodEmp' +
+                          '   and FatGe5.DteGer = :DteGer' +
+                          '   and FatGe5.NumGer = :NumGer' +
+                          ' Group by FatGe5.PerIcm' +
+                          ' Order by FatGe5.PerIcm';
+
+                        with Params do
+                        begin
+
+                          Params[0].AsInteger := fmManNge_NFE2.FatGerCodEmp.Value;
+                          Params[1].AsDateTime := fmManNge_NFE2.FatGerDteGer.Value;
+                          Params[2].AsInteger := fmManNge_NFE2.FatGerNumGer.Value;
+
+                        end;
+
+                        Open;
+                        First;
+
+                      end;
+
+                      while not quSQL.EOF do
+                      begin
+
+                        if Trim(Nota01[208]) <> '' then
+                          Nota01[208] := Trim(Nota01[208]) + ' Base ' + FormatFloat('###', quSQL.FieldbyName('PerIcm').AsFloat) + '% R$ ' +
+                            preString(FormatFloat('###,###,##0.00', quSQL.FieldbyName('BasIcm').AsFloat), 15) + ' Imp. R$ ' +
+                            preString(FormatFloat('###,###,##0.00', quSQL.FieldbyName('TotIcm').AsFloat), 15)
+                        else
+                          Nota01[208] := 'Base ' + FormatFloat('###', quSQL.FieldbyName('PerIcm').AsFloat) + '% R$ ' +
+                            preString(FormatFloat('###,###,##0.00', quSQL.FieldbyName('BasIcm').AsFloat), 15) + ' Imp. R$ ' +
+                            preString(FormatFloat('###,###,##0.00', quSQL.FieldbyName('TotIcm').AsFloat), 15);
+
+                        quSQL.Next;
+
+                      end;
+                    end;
+
+                    {BaseIcms}
+                    if fmManNge_NFE2.FatGerBasIc1.Value > 0 then
+                      Nota01[057] := Prestring(FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerBasIc1.Value), 14)
+                    else
+                      Nota01[057] := ' ';
+
+                    Nota02[057] := 'Comp12';
+
+                    {ValIcms}
+                    if fmManNge_NFE2.FatGerTotIc1.Value > 0 then
+                      Nota01[058] := Prestring(FormatFloat('###,###,##0.00', fRound(fmManNge_NFE2.FatGerTotIc1.Value, 2)), 14)
+                    else
+                      Nota01[058] := ' ';
+
+                    Nota02[058] := 'Comp12';
+
+                    {BaseIcmsSub}
+                    if fmManNge_NFE2.FatGerBasSu1.Value > 0 then
+                      Nota01[059] := Prestring(FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerBasSu1.Value), 14)
+                    else
+                      Nota01[059] := ' ';
+
+                    Nota02[059] := 'Comp12';
+
+                    {ValIcmsSub}
+                    if fmManNge_NFE2.FatGerTotSu1.Value > 0 then
+                      Nota01[060] := Prestring(FormatFloat('###,###,##0.00', fRound(fmManNge_NFE2.FatGerTotSu1.Value, 2)), 14)
+                    else
+                      Nota01[060] := ' ';
+
+                    Nota02[060] := 'Comp12';
+
+                    Nota01[061] := Prestring(FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotIt1.Value), 14); {TotalProds}
+                    Nota02[061] := 'Comp12';
+
+                    if fmManNge_NFE2.FatGerTotFrt.Value > 0 then
+                      Nota01[062] := Prestring(FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotFrt.Value), 14) {Frete}
+                    else
+                      Nota01[062] := ' ';
+
+                    Nota02[062] := 'Comp12';
+
+                    if fmManNge_NFE2.FatGerTotSeg.Value > 0 then
+                      Nota01[063] := Prestring(FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotSeg.Value), 14) {Seguro}
+                    else
+                      Nota01[063] := ' ';
+
+                    Nota02[063] := 'Comp12';
+
+                    if fmManNge_NFE2.FatGerTotDes.Value > 0 then
+                      Nota01[064] := Prestring(FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotDes.Value), 14) {Outras}
+                    else
+                      Nota01[064] := ' ';
+
+                    Nota02[064] := 'Comp12';
+
+                    if fmManNge_NFE2.FatGerTotIp1.Value > 0 then
+                      Nota01[065] := Prestring(FormatFloat('###,###,##0.00', fRound(fmManNge_NFE2.FatGerTotIp1.Value, 2)), 14) {TotalIPI}
+                    else
+                      Nota01[065] := ' ';
+
+                    Nota02[065] := 'Comp12';
+
+                    if fmManNge_NFE2.FatGerTotGe1.Value > 0 then
+                      Nota01[066] := Prestring(FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotGe1.Value), 14) {TotalNota}
+                    else
+                      Nota01[066] := ' ';
+
+                    Nota02[066] := 'Comp12';
+
+                    Nota01[126] := fmManNge_NFE2.FatGerDesReg.Value; {Descontos Gerais na Nota}
+                    Nota02[126] := 'Comp20';
+
+                    if fmManNge_NFE2.FatGerTotDsr.Value > 0 then
+                      Nota01[127] := PreString('-' + Trim(FormatFloat('###,##0.00', fmManNge_NFE2.FatGerTotDsr.Value)), 12) {Descontos Gerais na Nota}
+                    else
+                      Nota01[127] := ' ';
+
+                    Nota02[127] := 'Comp20';
+
+                  end
+                  else
+                  begin
+
+                    {BaseIcms}
+                    Nota01[057] := '***,***,***.**';
+                    Nota02[057] := 'Comp12';
+
+                    {ValIcms}
+                    Nota01[058] := '***,***,***.**';
+                    Nota02[058] := 'Comp12';
+
+                    {BaseIcmsSub}
+                    Nota01[059] := '***,***,***.**';
+                    Nota02[059] := 'Comp12';
+
+                    {ValIcmsSub}
+                    Nota01[060] := '***,***,***.**';
+                    Nota02[060] := 'Comp12';
+
+                    Nota01[061] := '***,***,***.**';
+                    Nota02[061] := 'Comp12';
+
+                    Nota01[062] := '***,***,***.**';
+                    Nota02[062] := 'Comp12';
+
+                    Nota01[063] := '***,***,***.**';
+                    Nota02[063] := 'Comp12';
+
+                    Nota01[064] := '***,***,***.**';
+                    Nota02[064] := 'Comp12';
+
+                    Nota01[065] := '***,***,***.**';
+                    Nota02[065] := 'Comp12';
+
+                    Nota01[066] := '***,***,***.**';
+                    Nota02[066] := 'Comp12';
+
+                    {Descontos Gerais na Nota}
+                    Nota01[126] := ' ';
+                    Nota02[126] := 'Comp20';
+
+                    Nota01[127] := ' ';
+                    Nota02[127] := 'Comp20';
+
+                  end;
+
+                  {Carregando Itens na Matriz NotaImpr}
+
+                  ValorExt := fExtenso(fmManNge_NFE2.FatGerTotGe1.Value);
+
+                  if Length(Trim(ValorExt)) < 150 then
+                    ValorExt := Trim(ValorExt) + fReplicate('*', 150 - Length(Trim(ValorExt)));
+
+                  Nota01[123] := copy(ValorExt, 001, 50); {Valor por Extenso 1}
+                  Nota02[123] := 'Comp12';
+
+                  Nota01[124] := copy(ValorExt, 051, 50); {Valor por Extenso 2}
+                  Nota02[124] := 'Comp12';
+
+                  Nota01[125] := copy(ValorExt, 101, 50); {Valor por Extenso 3}
+                  Nota02[125] := 'Comp12';
+
+                  with quSQL, SQL do
+                  begin
+
+                    Close;
+                    Text := ' Select FatGe4.SeqGe4,' +
+                      '        FatGe4.ClsIpi From FatGe4' +
+                      ' Where FatGe4.CodEmp = :CodEmp' +
+                      '   and FatGe4.DteGer = :DteGer' +
+                      '   and FatGe4.NumGer = :NumGer' +
+                      '   and FatGe4.SeqNfg = :SeqNfg' +
+                      ' Order by FatGe4.SeqGe4';
+
+                    with Params do
+                    begin
+
+                      Params[0].AsInteger := fmManNge_NFE2.FatGerCodEmp.Value;
+                      Params[1].AsDateTime := fmManNge_NFE2.FatGerDteGer.Value;
+                      Params[2].AsInteger := fmManNge_NFE2.FatGerNumGer.Value;
+                      Params[3].AsInteger := qtdnfis;
+
+                    end;
+
+                    Open;
+
+                  end;
+
+                  quSQL.First;
+
+                  {CodClassfisc}
+
+                  i := 88;
+
+                  for j := 1 to 28 do
+                  begin
+
+                    Nota01[i] := ' ';
+                    Nota02[i] := 'Comp20';
+
+                    i := i + 1;
+
+                  end;
+
+                  i := 88;
+
+                  rec := 0;
+
+                  while not quSQL.Eof do
+                  begin
+
+                    if Trim(quSQL.FieldbyName('ClsIpi').AsString) <> '' then
+                      Nota01[i] := fNumZeros(IntToStr(quSQL.FieldbyName('SeqGe4').AsInteger), 3) + ' - ' + quSQL.FieldbyName('ClsIpi').AsString
+                    else
+                      Nota01[i] := ' ';
+
+                    Nota02[i] := 'Comp20';
+
+                    i := i + 1;
+
+                    rec := rec + 1;
+
+                    if rec > 28 then
+                      quSQL.Last
+                    else
+                      quSQL.Next;
+
+                  end;
+
+                  r := 0;
+
+                  while r <= qtdLin do
+                  begin
+
+                    Linha := ArqTexto[r];
+
+                    if Trim(Linha) <> '' then
+                    begin
+
+                      if pos('Sim', Linha) > 0 then
+                      begin
+
+                        if pos('salto', Linha) > 0 then
+                        begin
+
+                          Inc := StrToInt(copy(Linha, pos('=', Linha) + 1, 3)); {Linha encontrada e de Incremento de Saltos de Linhas}
+                          Col := StrToInt(copy(Linha, pos(',', Linha) + 1, 3));
+
+                          if pos('Inicio', Linha) > 0 then
+                          begin
+
+                            if qtdnot > 1 then
+                              Inc := Inc + 1;
+
+                          end;
+
+                          Lin := Lin + Inc;
+
+                          rdprint1.imp(Lin, 001, '');
+
+                        end
+                        else
+                        begin
+
+                          if (pos('NotaCab', Linha) > 0) or (pos('NotaRod', Linha) > 0) then
+                          begin
+
+                            Inc := StrToInt(copy(Linha, pos('=', Linha) + 1, 3)); {Linha encontrada e de Final de Nota Fiscal}
+                            Col := StrToInt(copy(Linha, pos(',', Linha) + 1, 3));
+
+                            if (Col > 0) or (Inc > 0) then
+                            begin
+
+                              Lin := Lin + Inc;
+
+                              rdprint1.impf(Lin, Col, fNumZeros(IntToStr(fmManNge_NFE2.FatGerNroNfs.Value), 6), [EXPANDIDO, negrito]);
+
+                            end;
+
+                          end
+                          else
+                          begin
+
+                            if (pos('#00040', Linha) = 0) and (qtitens = 0) then
+                            begin {A Linha que Esta Sendo Impressa não e a de Itens}
+
+                              Inc := StrToInt(copy(Linha, pos('=', Linha) + 1, 3)); {Linha encontrada e de Incremento de Saltos de Linhas}
+                              Col := StrToInt(copy(Linha, pos(',', Linha) + 1, 3));
+                              reg := StrToInt(copy(Linha, pos('#', Linha) + 1, 5));
+
+                              if (Col > 0) or (Inc > 0) then
+                              begin
+
+                                Lin := Lin + Inc;
+
+                                if (reg >= 131) and (reg <= 160) then
+                                begin
+
+                                  if qtdnfis = fmManNge_NFE2.FatGerQtdNfs.Value then
+                                  begin
+
+                                    if Nota02[Reg] = 'Comp12' then
+                                      rdprint1.impf(Lin, Col, Nota01[reg], [Comp12]);
+                                    if Nota02[Reg] = 'Comp20' then
+                                      rdprint1.impf(Lin, Col, Nota01[reg], [Comp20]);
+                                    if Nota02[Reg] = 'Comp17' then
+                                      rdprint1.impf(Lin, Col, Nota01[reg], [Comp17]);
+
+                                  end
+                                  else
+                                  begin
+
+                                    if (reg = 151) then
+                                    begin
+
+                                      if Nota02[Reg] = 'Comp12' then
+                                        rdprint1.impf(Lin, Col, 'VIDE ULTIMA NOTA FISCAL', [Comp12]);
+                                      if Nota02[Reg] = 'Comp20' then
+                                        rdprint1.impf(Lin, Col, 'VIDE ULTIMA NOTA FISCAL', [Comp20]);
+                                      if Nota02[Reg] = 'Comp17' then
+                                        rdprint1.impf(Lin, Col, 'VIDE ULTIMA NOTA FISCAL', [Comp17]);
+
+                                    end
+                                    else
+                                    begin
+
+                                      if (reg >= 131) and (reg <= 140) then
+                                      begin
+
+                                        if Nota02[Reg] = 'Comp12' then
+                                          rdprint1.impf(Lin, Col, ' ', [Comp12]);
+                                        if Nota02[Reg] = 'Comp20' then
+                                          rdprint1.impf(Lin, Col, ' ', [Comp20]);
+                                        if Nota02[Reg] = 'Comp17' then
+                                          rdprint1.impf(Lin, Col, ' ', [Comp17]);
+
+                                      end
+                                      else
+                                      begin
+
+                                        if (reg >= 141) and (reg <= 150) then
+                                        begin
+
+                                          if Nota02[Reg] = 'Comp12' then
+                                            rdprint1.impf(Lin, Col, ' ', [Comp12]);
+                                          if Nota02[Reg] = 'Comp20' then
+                                            rdprint1.impf(Lin, Col, ' ', [Comp20]);
+                                          if Nota02[Reg] = 'Comp17' then
+                                            rdprint1.impf(Lin, Col, ' ', [Comp17]);
+
+                                        end
+                                        else
+                                        begin
+
+                                          if (reg >= 151) and (reg <= 160) then
+                                          begin
+
+                                            if Nota02[Reg] = 'Comp12' then
+                                              rdprint1.impf(Lin, Col, ' ', [Comp12]);
+                                            if Nota02[Reg] = 'Comp20' then
+                                              rdprint1.impf(Lin, Col, ' ', [Comp20]);
+                                            if Nota02[Reg] = 'Comp17' then
+                                              rdprint1.impf(Lin, Col, ' ', [Comp17]);
+
+                                          end;
+                                        end;
+                                      end;
+                                    end;
+                                  end;
+
+                                end
+                                else
+                                begin
+
+                                  if Nota02[Reg] = 'Comp12' then
+                                    rdprint1.impf(Lin, Col, Nota01[reg], [Comp12]);
+                                  if Nota02[Reg] = 'Comp20' then
+                                    rdprint1.impf(Lin, Col, Nota01[reg], [Comp20]);
+                                  if Nota02[Reg] = 'Comp17' then
+                                    rdprint1.impf(Lin, Col, Nota01[reg], [Comp17]);
+
+                                end;
+                              end;
+
+                            end
+                            else
+                            begin
+
+                              if qtitens < 2 then
+                              begin
+
+                                qtitens := 1;
+
+                                SeqGe2 := SeqGe2 + 1;
+                                SeqNfg := SeqNfg + 1;
+
+                                if qtdimpr = 0 then
+                                  qtdimpr := Lin;
+
+                                with quSQL, SQL do
+                                begin
+
+                                  Close;
+                                  Text := ' Select FatGe2.CodClp,' +
+                                    '        FatGe2.CodGru,' +
+                                    '        FatGe2.CodSub,' +
+                                    '        FatGe2.CodPro,' +
+                                    '        FatGe2.NroNfs,' +
+                                    '        FatGe2.SeqNfg,' +
+                                    '        FatGe2.DesGe2,' +
+                                    '        FatGe2.ObsGe2,' +
+                                    '        FatGe2.RefGe2,' +
+                                    '        FatGe2.TipClf,' +
+                                    '        FatGe2.SeqGe4,' +
+                                    '        FatGe2.ClsIpi,' +
+                                    '        FatGe2.CodSt1,' +
+                                    '        FatGe2.CodSt2,' +
+                                    '        FatGe2.CodUnd,' +
+                                    '        FatGe2.QtpGe2,' +
+                                    '        FatGe2.CodCfo,' +
+                                    '        FatGe2.CodUnd,' +
+                                    '        FatGe2.VlqGe2,' +
+                                    '        FatGe2.TotIte,' +
+                                    '        FatGe2.TrbIcm,' +
+                                    '        FatGe2.IcmGe2,' +
+                                    '        FatGe2.TrbIpi,' +
+                                    '        FatGe2.IpiGe2,' +
+                                    '        FatGe2.TotIpi ' +
+                                    ' From FatGe2' +
+                                    ' Where FatGe2.CodEmp = :CodEmp' +
+                                    '   and FatGe2.DteGer = :DteGer' +
+                                    '   and FatGe2.NumGer = :NumGer' +
+                                    '   and FatGe2.NroGe2 = :NroGe2';
+
+                                  with Params do
+                                  begin
+
+                                    Params[0].AsInteger := fmManNge_NFE2.FatGerCodEmp.Value;
+                                    Params[1].AsDateTime := fmManNge_NFE2.FatGerDteGer.Value;
+                                    Params[2].AsInteger := fmManNge_NFE2.FatGerNumGer.Value;
+                                    Params[3].AsInteger := SeqGe2;
+
+                                  end;
+
+                                  Open;
+
+                                end;
+
+                                if Trim(quSql.FieldbyName('CodGru').AsString) <> '' then
+                                begin
+
+                                  {Item a Ser Impresso Pertence a Nota Fiscal}
+                                  if quSql.FieldbyName('SeqNfg').AsInteger = qtdnfis then
+                                  begin
+
+                                    {Produto}
+                                    if GImpRef = 'Nao' then
+                                    begin
+
+                                      if (quSql.FieldbyName('CodGru').AsString <> '888') and (quSql.FieldbyName('CodGru').AsString <> '999') then
+                                        Nota01[040] := quSql.FieldbyName('CodClp').AsString + '-' + quSql.FieldbyName('CodGru').AsString + '.' +
+                                          quSql.FieldbyName('CodSub').AsString + '.' + quSql.FieldbyName('CodPro').AsString
+                                      else
+                                        Nota01[040] := ' ';
+
+                                    end
+                                    else
+                                      Nota01[040] := Trim(quSql.FieldbyName('RefGe2').AsString);
+
+                                    Nota02[040] := 'Comp20';
+
+                                    {Descr}
+                                    Nota01[041] := Trim(quSql.FieldbyName('DesGe2').AsString);
+                                    Nota02[041] := 'Comp20';
+
+                                    {Descr}
+
+                                    if Trim(quSql.FieldbyName('RefGe2').AsString) <> '' then
+                                      Nota01[052] := Trim(quSql.FieldbyName('RefGe2').AsString)
+                                    else
+                                      Nota01[052] := ' ';
+
+                                    Nota02[052] := 'Comp20';
+
+                                    {ClassFisc}
+                                    if Trim(quSQL.FieldbyName('ClsIpi').AsString) <> '' then
+                                      Nota01[042] := fLimpaStr(quSql.FieldbyName('ClsIpi').AsString)
+                                    else
+                                      Nota01[042] := ' ';
+
+                                    Nota02[042] := 'Comp20';
+
+                                    {CFOP}
+                                    if Trim(quSQL.FieldbyName('CodCfo').AsString) <> '' then
+                                      Nota01[209] := fLimpaStr(quSql.FieldbyName('CodCfo').AsString)
+                                    else
+                                      Nota01[209] := ' ';
+
+                                    Nota02[209] := 'Comp20';
+
+                                    if Trim(quSQL.FieldbyName('SeqGe4').AsString) <> '' then
+                                      Nota01[207] := fNumZeros(IntToStr(quSQL.FieldbyName('SeqGe4').AsInteger), 3)
+                                    else
+                                      Nota01[207] := ' ';
+
+                                    Nota02[207] := 'Comp20';
+
+                                    Nota01[210] := Trim(quSQL.FieldbyName('TipClf').AsString);
+                                    Nota02[210] := 'Comp20';
+
+                                    {St1}
+                                    Nota01[043] := quSql.FieldbyName('CodSt1').AsString;
+                                    Nota02[043] := 'Comp20';
+
+                                    {St2}
+                                    Nota01[044] := quSql.FieldbyName('CodSt2').AsString;
+                                    Nota02[044] := 'Comp20';
+
+                                    {Unidade}
+                                    Nota01[045] := quSql.FieldbyName('CodUnd').AsString;
+                                    Nota02[045] := 'Comp20';
+
+                                    {Qtde}
+
+                                    if quSql.FieldbyName('QtpGe2').AsFloat > 0 then
+                                    begin
+
+                                      if fEncDecimal(quSql.FieldbyName('QtpGe2').AsFloat) > 0 then
+                                        Nota01[046] := Prestring(FormatFloat('###,##0.0000', quSql.FieldbyName('QtpGe2').AsFloat), 12)
+                                      else
+                                        Nota01[046] := Prestring(FormatFloat('####,###,##0', quSql.FieldbyName('QtpGe2').AsFloat), 12);
+
+                                    end
+                                    else
+                                      Nota01[046] := ' ';
+
+                                    Nota02[046] := 'Comp20';
+
+                                    {Unit}
+                                    if quSql.FieldbyName('VlqGe2').AsFloat > 0 then
+                                      Nota01[047] := Prestring(FormatFloat('###,##0.0000', quSql.FieldbyName('VlqGe2').AsFloat), 12)
+                                    else
+                                      Nota01[047] := ' ';
+
+                                    Nota02[047] := 'Comp20';
+
+                                    {Total}
+                                    if quSql.FieldbyName('TotIte').AsFloat > 0 then
+                                      Nota01[048] := Prestring(FormatFloat('###,###,##0.00', quSql.FieldbyName('TotIte').AsFloat), 12)
+                                    else
+                                      Nota01[048] := ' ';
+
+                                    Nota02[048] := 'Comp20';
+
+                                    {AlIcms}
+                                    if quSql.FieldbyName('TrbIcm').AsString = 'Sim' then
+                                      Nota01[049] := Prestring(FormatFloat('##0', quSql.FieldbyName('IcmGe2').AsFloat), 3)
+                                    else
+                                      Nota01[049] := ' ';
+
+                                    Nota02[049] := 'Comp20';
+
+                                    {AlIpi}
+                                    if quSql.FieldbyName('TrbIpi').AsString = 'Sim' then
+                                      Nota01[050] := Prestring(FormatFloat('##0', quSql.FieldbyName('IpiGe2').AsFloat), 3)
+                                    else
+                                      Nota01[050] := ' ';
+
+                                    Nota02[050] := 'Comp20';
+
+                                    {ValIpi}
+                                    if quSql.FieldbyName('TrbIpi').AsString = 'Sim' then
+                                      Nota01[051] := Prestring(FormatFloat('###,##0.00', fRound(quSql.FieldbyName('TotIpi').AsFloat, 2)), 10)
+                                    else
+                                    begin
+
+                                      if quSql.FieldbyName('TotIpi').AsFloat > 0 then
+                                        Nota01[051] := Prestring(FormatFloat('###,##0.00', fRound(quSql.FieldbyName('TotIpi').AsFloat, 2)), 10)
+                                      else
+                                        Nota01[051] := ' ';
+
+                                    end;
+
+                                    Nota02[051] := 'Comp20';
+
+                                    rec := r;
+
+                                    i := rec + 18;
+
+                                    Inc := StrToInt(copy(Linha, pos('=', Linha) + 1, 3)); {Linha encontrada e de Incremento de Saltos de Linhas}
+
+                                    Lin := Lin + 1;
+
+                                    while r <= i do
+                                    begin
+
+                                      Linha := ArqTexto[r];
+
+                                      if Trim(Linha) <> '' then
+                                      begin
+
+                                        Inc := StrToInt(copy(Linha, pos('=', Linha) + 1, 3));
+                                        Col := StrToInt(copy(Linha, pos(',', Linha) + 1, 3));
+                                        reg := StrToInt(copy(Linha, pos('#', Linha) + 1, 5));
+                                        Tam := StrToInt(copy(Linha, pos('#', Linha) + 6, 3));
+
+                                        if Tam > 0 then
+                                        begin
+
+                                          if (Col > 0) or (Inc > 0) then
+                                          begin
+
+                                            if pos('Sim', Linha) > 0 then
+                                            begin
+
+                                              {Verifica se a Linha que Esta Sendo Impressa não e a de Segunda Descrição ou de Titulos de Descontos}
+                                              if (Reg <> 52) and (Reg <> 126) and (Reg <> 127) and (Reg <> 128) then
+                                              begin
+
+                                                if Nota02[Reg] = 'Comp12' then
+                                                  rdprint1.impf(Lin, Col, copy(Nota01[reg], 1, Tam), [Comp12]);
+                                                if Nota02[Reg] = 'Comp20' then
+                                                  rdprint1.impf(Lin, Col, copy(Nota01[reg], 1, Tam), [Comp20]);
+                                                if Nota02[Reg] = 'Comp17' then
+                                                  rdprint1.impf(Lin, Col, copy(Nota01[reg], 1, Tam), [Comp17]);
+
+                                              end
+                                              else
+                                              begin
+
+                                                if (Reg = 52) and (Trim(quSql.FieldbyName('RefGe2').AsString) <> '') then
+                                                begin
+
+                                                  {Descr2}
+                                                  Nota01[052] := Trim(quSql.FieldbyName('RefGe2').AsString);
+                                                  Nota02[052] := 'Comp20';
+
+                                                  Lin := Lin + Inc;
+
+                                                  if Nota02[Reg] = 'Comp12' then
+                                                    rdprint1.impf(Lin, Col, copy(Nota01[reg], 1, Tam), [Comp12]);
+                                                  if Nota02[Reg] = 'Comp20' then
+                                                    rdprint1.impf(Lin, Col, copy(Nota01[reg], 1, Tam), [Comp20]);
+                                                  if Nota02[Reg] = 'Comp17' then
+                                                    rdprint1.impf(Lin, Col, copy(Nota01[reg], 1, Tam), [Comp17]);
+
+                                                end;
+
+                                                if (Reg = 128) and (Trim(quSql.FieldbyName('ObsGe2').AsString) <> '') then
+                                                begin
+
+                                                  {Descr2}
+                                                  Nota01[128] := Trim(quSql.FieldbyName('ObsGe2').AsString);
+                                                  Nota02[128] := 'Comp20';
+
+                                                  Lin := Lin + Inc;
+
+                                                  if Nota02[Reg] = 'Comp12' then
+                                                    rdprint1.impf(Lin, Col, copy(Nota01[reg], 1, Tam), [Comp12]);
+                                                  if Nota02[Reg] = 'Comp20' then
+                                                    rdprint1.impf(Lin, Col, copy(Nota01[reg], 1, Tam), [Comp20]);
+                                                  if Nota02[Reg] = 'Comp17' then
+                                                    rdprint1.impf(Lin, Col, copy(Nota01[reg], 1, Tam), [Comp17]);
+
+                                                end;
+
+                                                if ((Reg = 126) or (Reg = 127)) then
+                                                begin
+
+                                                  if (fmManNge_NFE2.FatGerTotDsr.Value > 0) and (SeqNfg = QtiNfg) then
+                                                  begin
+
+                                                    { Só ira Imprimir o Campo de Descontos na Ultima Nota e se foi Efetuado Descontos na Nota }
+
+                                                    Lin := Lin + Inc;
+
+                                                    if Nota02[Reg] = 'Comp12' then
+                                                      rdprint1.impf(Lin, Col, Nota01[reg], [Comp12]);
+                                                    if Nota02[Reg] = 'Comp20' then
+                                                      rdprint1.impf(Lin, Col, Nota01[reg], [Comp20]);
+                                                    if Nota02[Reg] = 'Comp17' then
+                                                      rdprint1.impf(Lin, Col, Nota01[reg], [Comp17]);
+
+                                                  end;
+                                                end;
+                                              end;
+                                            end;
+                                          end;
+                                        end;
+                                      end;
+
+                                      r := r + 1;
+
+                                    end;
+
+                                    r := rec;
+
+                                  end
+                                  else
+                                  begin {Finalizar Nota para Impressão da Proxima Nota}
+
+                                    SeqGe2 := SeqGe2 - 1;
+
+                                    r := r + 18;
+
+                                    qtitens := 2;
+
+                                  end;
+
+                                end
+                                else
+                                begin {Não Ha Mais Itens para Impressão}
+
+                                  SeqGe2 := SeqGe2 - 1;
+
+                                  r := r + 18;
+
+                                  qtitens := 0;
+
+                                end;
+
+                              end
+                              else
+                              begin
+
+                                reg := StrToInt(copy(Linha, pos('#', Linha) + 1, 5));
+                                Inc := StrToInt(copy(Linha, pos('=', Linha) + 1, 3));
+                                Col := StrToInt(copy(Linha, pos(',', Linha) + 1, 3));
+
+                                if (Col > 0) or (Inc > 0) then
+                                begin
+
+                                  if (reg >= 57) and (reg <= 66) then
+                                  begin
+
+                                    Lin := Lin + Inc;
+
+                                    if Nota02[Reg] = 'Comp12' then
+                                      rdprint1.impf(Lin, Col, Nota01[Reg], [Comp12]);
+                                    if Nota02[Reg] = 'Comp20' then
+                                      rdprint1.impf(Lin, Col, Nota01[Reg], [Comp20]);
+                                    if Nota02[Reg] = 'Comp17' then
+                                      rdprint1.impf(Lin, Col, Nota01[Reg], [Comp17]);
+
+                                  end
+                                  else
+                                  begin
+
+                                    if (Reg = 67) and (qtdnfis < fmManNge_NFE2.FatGerQtdNfs.Value) then
+                                    begin
+
+                                      Lin := Lin + Inc;
+
+                                      if Nota02[Reg] = 'Comp12' then
+                                        rdprint1.impf(Lin, Col, 'VIDE ULTIMA NOTA FISCAL', [Comp12]);
+                                      if Nota02[Reg] = 'Comp20' then
+                                        rdprint1.impf(Lin, Col, 'VIDE ULTIMA NOTA FISCAL', [Comp20]);
+                                      if Nota02[Reg] = 'Comp17' then
+                                        rdprint1.impf(Lin, Col, 'VIDE ULTIMA NOTA FISCAL', [Comp17]);
+
+                                    end
+                                    else
+                                    begin
+
+                                      if (Reg >= 68) and (Reg <= 81) and (qtdnfis < fmManNge_NFE2.FatGerQtdNfs.Value) then
+                                      begin
+
+                                        Lin := Lin + Inc;
+
+                                        if Nota02[Reg] = 'Comp12' then
+                                          rdprint1.impf(Lin, Col, ' ', [Comp12]);
+                                        if Nota02[Reg] = 'Comp20' then
+                                          rdprint1.impf(Lin, Col, ' ', [Comp20]);
+                                        if Nota02[Reg] = 'Comp17' then
+                                          rdprint1.impf(Lin, Col, ' ', [Comp17]);
+
+                                      end
+                                      else
+                                      begin
+
+                                        if (reg >= 187) and (reg <= 194) and (qtdnfis < fmManNge_NFE2.FatGerQtdNfs.Value) then
+                                        begin
+
+                                          if reg = 187 then
+                                            Linha := 'Continua ' + Trim(IntToStr(qtdnot)) + '/' + Trim(IntToStr(fmManNge_NFE2.FatGerQtdNfs.Value))
+                                          else
+                                            Linha := ' ';
+
+                                          Lin := Lin + Inc;
+
+                                          if Nota02[Reg] = 'Comp12' then
+                                            rdprint1.impf(Lin, Col, Linha, [Comp12]);
+                                          if Nota02[Reg] = 'Comp20' then
+                                            rdprint1.impf(Lin, Col, Linha, [Comp20]);
+                                          if Nota02[Reg] = 'Comp17' then
+                                            rdprint1.impf(Lin, Col, Linha, [Comp17]);
+
+                                        end
+                                        else
+                                        begin
+
+                                          if (reg >= 82) or (reg <= 128) or (reg >= 187) then
+                                          begin
+
+                                            Lin := Lin + Inc;
+
+                                            if Nota02[Reg] = 'Comp12' then
+                                              rdprint1.impf(Lin, Col, Nota01[Reg], [Comp12]);
+                                            if Nota02[Reg] = 'Comp20' then
+                                              rdprint1.impf(Lin, Col, Nota01[Reg], [Comp20]);
+                                            if Nota02[Reg] = 'Comp17' then
+                                              rdprint1.impf(Lin, Col, Nota01[Reg], [Comp17]);
+
+                                          end
+                                          else
+                                            Lin := Lin + Inc;
+                                        end;
+                                      end;
+                                    end;
+                                  end;
+                                end;
+                              end;
+                            end;
+                          end;
+                        end;
+
+                        if (qtitens = 0) or (qtitens = 2) then
+                        begin
+
+                          if qtdimpr > 0 then
+                          begin
+
+                            Lin := Lin + (QtdIte - (Lin - qtdimpr));
+
+                            qtdimpr := 0;
+
+                          end;
+
+                          r := r + 1;
+
+                        end;
+
+                      end
+                      else
+                        r := r + 1;
+
+                    end
+                    else
+                      r := r + 1;
+                  end;
+
+                  qtitens := 0;
+
+                  qtdnot := qtdnot + 1;
+
+                  qtdnfis := qtdnfis + 1;
+
+                end;
+
+                rdprint1.fechar; {Finaliza e inicia impressão ou preview}
+
+                rdprint1.TamanhoQteLinhas := 66; {Voltar o valor original...}
+
+                SeqError := 0;
+
+                if fMsg('Nota Impressa Corretamente', 'O') then
+                begin
+
+                  fmManNge_NFE2.FatGer.Edit;
+
+                  fmManNge_NFE2.FatGerFlgAtu.Value := 'F';
+
+                  fmManNge_NFE2.FatGerFlgImp.Value := 'Sim';
+
+                  with fmManNge_NFE2.FatGer do
+                  begin
+
+                    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                    ;
+
+                    try
+
+                      ApplyUpdates; {Tenta aplicar as alterações}
+                      ;
+
+                      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                      ;
+
+                    except
+
+                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                      ;
+
+                      fmManNge_NFE2.Finalizar := 'N';
+
+                      if fmManNge_NFE2.FatGer.State <> dsBrowse then
+                        fmManNge_NFE2.FatGer.CancelUpdates;
+
+                      fmManNge_NFE2.FatGer.Close;
+                      fmManNge_NFE2.FatGer.Open;
+
+                      fmManNge_NFE2.FatGer.Edit;
+
+                      if EdNroNfs.Enabled then
+                        EdNroNfs.SetFocus;
+
+                      raise;
+
+                    end;
+
+                    CommitUpdates; {sucesso!, limpa o cache...}
+
+                  end;
+
+                  fmManNge_NFE2.FatGer.Close;
+                  fmManNge_NFE2.FatGer.Open;
+
+                  fmManNge_NFE2.Finalizar := 'S';
+
+                  close;
+
+                end
+                else
+                begin
+
+                  if EdNroNfs.Enabled then
+                    EdNroNfs.SetFocus;
+
+                  exit;
+
+                end;
+
+              finally
+
+                fmManNge_NFE2.FatGer.Edit;
+
+                if SeqError = 1 then
+                begin
+
+                  rdprint1.Abortar;
+
+                  rdprint1.TamanhoQteLinhas := 66;
+
+                end;
+
+                if EdNroNfs.Enabled then
+                  EdNroNfs.SetFocus;
+
+              end;
+
+              close;
+
+            end
+            else
+            begin
+
+              if EdNroNfs.Enabled then
+                EdNroNfs.SetFocus;
+
+            end;
+
+          end
+          else
+          begin
+
+            if EdNroNfs.Enabled then
+              fmsgErro('Cliente informado para a emissão da nota Fiscal não localizado.', EdNroNfs)
+            else
+              fmsgErro('Cliente informado para a emissão da nota Fiscal não localizado.', nil)
+
+          end;
+
+        end
+        else
+        begin
+
+          if EdNroNfs.Enabled then
+            fmsgErro('Arquivo de configuração de impressão da nota fiscal não localizado. Consulte o administrador do sistema para maiores informações.',
+              EdNroNfs)
+          else
+            fmsgErro('Arquivo de configuração de impressão da nota fiscal não localizado. Consulte o administrador do sistema para maiores informações.',
+              nil);
+
+        end;
+
+      end
+      else
+      begin
+
+        if EdNroNfs.Enabled then
+          EdNroNfs.SetFocus;
+
+      end;
+
+    end
+    else
+    begin
+
+      if Trim(fmManNge_NFE2.FatGerSitGer.Value) = 'Nao Concluido' then
+      begin
+
+        sText := '              Confirma Nota Fiscal?               ' + #10 +
+          '                                                  ' + #10 +
+          ' Ao Confirmar Ocorrerão os Seguintes Lançamentos :' + #10 +
+          '                                                  ';
+
+        if fmManNge_NFE2.FatGerAtuEst.Value = 'Sim' then
+          sText := sText + #10 + ' . Baixas nos Estoques dos Itens Faturados;       ';
+
+        if fmManNge_NFE2.FatGerIntFin.Value = 'Sim' then
+          sText := sText + #10 + ' . Lançamentos dos Titulos no Contas a Receber.   ';
+
+        sText := sText + #10 + '                                                  ';
+
+        if fMsg(sText, 'O') then
+        begin
+
+          fmManNge_NFE2.FatGer.Edit;
+
+          fmManNge_NFE2.FatGerFlgImp.Value := 'Sim';
+
+          //Rolando - 16/03/2010
+          fmManNge_NFE2.FatGerSitGer.Value := 'Faturado';
+          fmManNge_NFE2.FatGerFLGNFE.Value := 'Sim';
+          fmManNge_NFE2.FatGerENVNFE.Value := 'Nao';
+          //
+
+          with fmManNge_NFE2.FatGer do
+          begin
+
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+            ;
+
+            try
+
+              ApplyUpdates; {Tenta aplicar as alterações}
+              ;
+
+              fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+              ;
+
+            except
+
+              fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+              ;
+
+              if fmManNge_NFE2.FatGer.State <> dsBrowse then
+                fmManNge_NFE2.FatGer.CancelUpdates;
+
+              fmManNge_NFE2.FatGer.Close;
+              fmManNge_NFE2.FatGer.Open;
+
+              fmManNge_NFE2.FatGer.Edit;
+
+              fmManNge_NFE2.Finalizar := 'N';
+
+              if EdNroNfs.Enabled then
+                EdNroNfs.SetFocus;
+
+              raise;
+
+            end;
+
+            CommitUpdates; {sucesso!, limpa o cache...}
+
+          end;
+
+          fmManNge_NFE2.FatGer.Close;
+          fmManNge_NFE2.FatGer.Open;
+
+          fmManNge_NFE2.Finalizar := 'S';
+
+          Close;
+
+        end
+        else
+        begin
+
+          EdNroNfs.Enabled := False;
+
+          sContinuar := 'N';
+
+          bContinuar.SetFocus;
+
+        end;
+      end;
+    end;
+
+  end
+  else
+  begin
+
+    if EdNroNfs.Enabled then
+      EdNroNfs.SetFocus;
+
+  end;
+
+end
+else
+begin
+
+  if fmManNge_NFE2.FatGerNroNfs.Value = 0 then
+  begin
+
+    GerEmp.Close;
+    GerEmp.Open;
+
+    fmManNge_NFE2.FatGer.Edit;
+
+    EdNroNfs.Value := GerEmp.FieldbyName('QtdNfs').AsInteger + 1;
+
+    fmsgErro('Número da Nota Fiscal não Informado. Próximo No. ' + Trim(FloatToStr(EdNroNfs.Value)), EdNroNfs);
+
+  end;
+end;
+end;
+
+procedure TfmManIng_NFE.FormShow(Sender: TObject);
+begin
+  inherited;
+
+  EdNroNfs.Enabled := False;
+
+  if fmManNge_NFE2.FatGerSitGer.Value = 'Nao Concluido' then
+  begin
+
+    if fmManNge_NFE2.FatGerNroNfs.Value = 0 then
+    begin
+
+      EdNroNfs.Enabled := True;
+
+      GerEmp.Close;
+      GerEmp.Params[0].AsInteger := fmManNge_NFE2.FatGerCodEmp.Value;
+      GerEmp.Open;
+
+      fmManNge_NFE2.FatGer.Edit;
+
+      if fmManNge_NFE2.FatGerNroNfs.Value = 0 then
+        fmManNge_NFE2.FatGerNroNfs.Value := GerEmp.FieldbyName('QtdNfs').AsInteger + 1;
+
+      if fmManNge_NFE2.FatGerNroNfs.Value > 0 then
+        EdNroNfs.Text := IntToStr(fmManNge_NFE2.FatGerNroNfs.Value)
+      else
+        EdNroNfs.Text := '0';
+
+    end;
+  end;
+
+  if EdNroNfs.Enabled then
+    EdNroNfs.SetFocus
+  else
+    bContinuar.SetFocus;
+
+end;
+
+procedure TfmManIng_NFE.PaintBoxPaint(Sender: TObject);
+begin
+  with Sender as TPaintBox do
+    FillGrayGradientRect(PaintBox.Canvas, PaintBox.ClientRect, PaintBox.Color);
+end;
+
+end.
+

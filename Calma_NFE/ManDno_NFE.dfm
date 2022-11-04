@@ -1,0 +1,613 @@
+inherited fmManDno_NFE: TfmManDno_NFE
+  Left = 366
+  Top = 112
+  Caption = 'Notas fiscais (Comercial) - Emissão de nota fiscal de entrada'
+  ClientHeight = 482
+  ClientWidth = 786
+  Position = poDesigned
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PaintBox: TPaintBox
+    Left = 0
+    Top = 0
+    Width = 786
+    Height = 482
+    Align = alClient
+    OnPaint = PaintBoxPaint
+  end
+  object Label2: TLabel
+    Left = 3
+    Top = 9
+    Width = 69
+    Height = 14
+    Caption = 'Devoluções'
+    Color = clBtnFace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    Transparent = True
+  end
+  object Label3: TLabel
+    Left = 4
+    Top = 265
+    Width = 101
+    Height = 14
+    Caption = 'Itens devolvidos'
+    Color = clBtnFace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    Transparent = True
+  end
+  object bIncluir: TSpeedButton
+    Left = 578
+    Top = 452
+    Width = 207
+    Height = 28
+    Caption = 'F4 - Emitir nota fiscal'
+    Flat = True
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    Glyph.Data = {
+      96040000424D9604000000000000360000002800000012000000140000000100
+      18000000000060040000C40E0000C40E00000000000000000000C0CFD0C0CFD0
+      C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+      D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD00000C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+      D0C0CFD0C0CFD0C0CFD0000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+      CFD0C0CFD0C0CFD00000C0CFD0000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+      CFD0000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0000000C0CFD0
+      0000C0CFD0C0CFD0000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0
+      C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0000000C0CFD0C0CFD00000C0CFD0C0CFD0
+      C0CFD0C0CFD00000000000000000000000000000000000000000000000000000
+      00000000C0CFD0C0CFD0C0CFD0C0CFD00000C0CFD0C0CFD0C0CFD0C0CFD00000
+      00FFF8FFFFF8FFFFF8FFFFF8FFFFF8FFFFF8FFFFF8FFFFF8FF000000C0CFD0C0
+      CFD0C0CFD0C0CFD00000C0CFD0C0CFD0C0CFD0C0CFD0000000FFF8FFFFF8FFFF
+      F8FFFFF8FFFFF8FFFFF8FFFFF8FFFFF8FF000000C0CFD0C0CFD0C0CFD0C0CFD0
+      0000C0CFD0C0CFD0C0CFD0C0CFD0000000FFF8FFFFF8FFFFF8FFFFF8FFFFF8FF
+      FFF8FFFFF8FFFFF8FF000000C0CFD0C0CFD0C0CFD0C0CFD00000C0CFD0C0CFD0
+      C0CFD0C0CFD0000000FFF8FFFFF8FFFFF8FFFFF8FFFFF8FFFFF8FFFFF8FFFFF8
+      FF000000C0CFD0C0CFD0C0CFD0C0CFD00000C0CFD0C0CFD0C0CFD0C0CFD00000
+      00FFF8FFFFF8FFFFF8FFFFF8FFFFF8FFFFF8FFFFF8FFFFF8FF000000C0CFD0C0
+      CFD0C0CFD0C0CFD00000C0CFD0000000000000C0CFD0000000FFF8FFFFF8FFFF
+      F8FFFFF8FFFFF8FFFFF8FFFFF8FFFFF8FF000000C0CFD0000000000000C0CFD0
+      0000C0CFD0C0CFD0C0CFD0C0CFD0000000FFF8FFFFF8FFFFF8FFFFF8FFFFF8FF
+      FFF8FFFFF8FFFFF8FF000000C0CFD0C0CFD0C0CFD0C0CFD00000C0CFD0C0CFD0
+      C0CFD0C0CFD0000000FFF8FFFFF8FFFFF8FFFFF8FFFFF8FF0000000000000000
+      00000000C0CFD0C0CFD0C0CFD0C0CFD00000C0CFD0C0CFD0C0CFD0C0CFD00000
+      00FFF8FFFFF8FFFFF8FFFFF8FFFFF8FF000000FFF8FF000000C0CFD0C0CFD0C0
+      CFD0C0CFD0C0CFD00000C0CFD0C0CFD0C0CFD0C0CFD0000000FFF8FFFFF8FFFF
+      F8FFFFF8FFFFF8FF000000000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0
+      0000C0CFD0C0CFD0C0CFD0C0CFD00000000000000F0000000000000000000000
+      000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD00000C0CFD0C0CFD0
+      000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+      D0C0CFD0C0CFD0000000C0CFD0C0CFD00000C0CFD0000000C0CFD0C0CFD0C0CF
+      D0C0CFD0C0CFD0C0CFD0000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+      CFD0000000C0CFD00000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+      CFD0000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0
+      0000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0
+      C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD00000}
+    ParentFont = False
+    OnClick = bIncluirClick
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 599
+    Top = 3
+    Width = 185
+    Height = 28
+    Caption = '&Atualizar informações'
+    Flat = True
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      18000000000000030000C40E0000C40E00000000000000000000C0CFD0C0CFD0
+      C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+      D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0FF0000FF0000FF
+      0000FF0000FF0000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0
+      C0CFD0FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000C0CF
+      D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0FF0000FF0000FF0000C0CFD0C0CFD0C0
+      CFD0C0CFD0C0CFD0FF0000FF0000FF0000C0CFD0C0CFD0C0CFD0C0CFD0FF0000
+      FF0000FF0000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0FF0000FF00
+      00FF0000C0CFD0C0CFD0C0CFD0FF0000FF0000C0CFD0C0CFD0C0CFD0C0CFD0C0
+      CFD0C0CFD0C0CFD0C0CFD0C0CFD0FF0000FF0000C0CFD0C0CFD0FF0000FF0000
+      C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+      D0FF0000FF0000C0CFD0FF0000FF0000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+      CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0FF0000FF0000C0CFD0FF0000FF0000
+      C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+      D0C0CFD0C0CFD0C0CFD0FF0000FF0000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+      CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0FF0000FF0000
+      C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0FF0000FF0000FF00
+      00FF0000FF0000C0CFD0C0CFD0FF0000FF0000C0CFD0C0CFD0C0CFD0C0CFD0C0
+      CFD0C0CFD0C0CFD0C0CFD0FF0000FF0000FF0000FF0000C0CFD0C0CFD0FF0000
+      FF0000FF0000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0FF00
+      00FF0000FF0000C0CFD0C0CFD0C0CFD0FF0000FF0000FF0000C0CFD0C0CFD0C0
+      CFD0C0CFD0C0CFD0FF0000FF0000FF0000FF0000FF0000C0CFD0C0CFD0C0CFD0
+      C0CFD0FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000C0CF
+      D0C0CFD0FF0000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0FF0000FF0000FF
+      0000FF0000FF0000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0}
+    ParentFont = False
+    OnClick = SpeedButton1Click
+  end
+  object grFatDv21: TdxDBGraphicEdit
+    Left = 3
+    Top = 287
+    Width = 782
+    Color = 16577773
+    Enabled = False
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Haettenschweiler'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Style.BorderColor = clBlack
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 3
+    TabStop = False
+    DblClickActivate = False
+    Stretch = True
+    ToolbarLayout.Buttons = []
+    ToolbarLayout.IsPopupMenu = False
+    ToolbarPosStored = False
+    Height = 165
+  end
+  object grFatDev1: TdxDBGraphicEdit
+    Left = 2
+    Top = 32
+    Width = 784
+    Color = 16577773
+    Enabled = False
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Haettenschweiler'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Style.BorderColor = clBlack
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 2
+    TabStop = False
+    DblClickActivate = False
+    Stretch = True
+    ToolbarLayout.Buttons = []
+    ToolbarLayout.IsPopupMenu = False
+    ToolbarPosStored = False
+    Height = 228
+  end
+  object Panel1: TPanel
+    Left = 571
+    Top = 260
+    Width = 213
+    Height = 25
+    Alignment = taLeftJustify
+    BevelOuter = bvNone
+    Caption = ' No. nota fiscal:'
+    Color = clRed
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    object EdPsqNumNfs: TdxColorEdit
+      Left = 99
+      Top = 1
+      Width = 112
+      Color = 16577773
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Style.BorderColor = clBlack
+      Style.BorderStyle = xbsSingle
+      Style.ButtonStyle = btsSimple
+      Style.ButtonTransparence = ebtInactive
+      Style.HotTrack = True
+      Style.Shadow = True
+      TabOrder = 0
+      OnKeyPress = EdPsqNumNfsKeyPress
+      CharCase = ecUpperCase
+      OnChange = EdPsqNumNfsChange
+      CorDeFoco = clInfoBk
+    end
+  end
+  object grFatDev: ThGrid
+    Tag = 1
+    Left = 4
+    Top = 34
+    Width = 778
+    Height = 222
+    Selected.Strings = (
+      'NUMNFS'#9'15'#9'No. Nota Fiscal  '
+      'NUMRES'#9'10'#9'Pedido'
+      'NFSCLI'#9'25'#9'No. nota fiscal cliente'#9'F'
+      'DTEDEV'#9'10'#9'Emissão'
+      'HREDEV'#9'8'#9'Hora'
+      'CODCLI'#9'10'#9'Cliente'
+      'CODVEN'#9'10'#9'Vendedor'
+      'TOTDEV'#9'10'#9'         Total devolvido')
+    IniAttributes.Delimiter = ';;'
+    TitleColor = clBtnFace
+    FixedCols = 0
+    ShowHorzScrollBar = True
+    ShowVertScrollBar = False
+    BorderStyle = bsNone
+    Color = 16577773
+    DataSource = DsFatDev
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clGray
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    KeyOptions = []
+    Options = [dgTitles, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap]
+    ParentFont = False
+    TabOrder = 1
+    TitleAlignment = taLeftJustify
+    TitleFont.Charset = ANSI_CHARSET
+    TitleFont.Color = clBlack
+    TitleFont.Height = -12
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = [fsBold]
+    TitleLines = 2
+    TitleButtons = False
+    IndicatorColor = icYellow
+    CorDeFoco = clInfoBk
+  end
+  object grFatDv2: ThGrid
+    Tag = 1
+    Left = 5
+    Top = 289
+    Width = 776
+    Height = 159
+    Selected.Strings = (
+      'CODITE'#9'15'#9'Item'
+      'DESDV2'#9'70'#9' '
+      'ULTQTD'#9'10'#9'         Quantidade devolvida')
+    IniAttributes.Delimiter = ';;'
+    TitleColor = clBtnFace
+    FixedCols = 0
+    ShowHorzScrollBar = True
+    ShowVertScrollBar = False
+    BorderStyle = bsNone
+    Color = 16577773
+    DataSource = DsDv2
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clGray
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    KeyOptions = []
+    Options = [dgTitles, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap]
+    ParentFont = False
+    TabOrder = 4
+    TitleAlignment = taLeftJustify
+    TitleFont.Charset = ANSI_CHARSET
+    TitleFont.Color = clBlack
+    TitleFont.Height = -12
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = [fsBold]
+    TitleLines = 2
+    TitleButtons = False
+    IndicatorColor = icYellow
+    CorDeFoco = clInfoBk
+  end
+  object pnNomCli: TPanel
+    Left = 173
+    Top = 260
+    Width = 396
+    Height = 25
+    Alignment = taLeftJustify
+    BevelOuter = bvNone
+    Caption = ' Cliente:  '
+    Color = clRed
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 5
+  end
+  object pnLogUsu: TPanel
+    Left = 281
+    Top = 3
+    Width = 316
+    Height = 28
+    Alignment = taLeftJustify
+    BevelOuter = bvNone
+    Caption = ' Usuário responsavel:'
+    Color = clRed
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 6
+  end
+  object quSql: TwwQuery
+    AutoCalcFields = False
+    DatabaseName = 'ISade'
+    UniDirectional = True
+    ValidateWithMask = True
+    Left = 33
+    Top = 227
+  end
+  object UpFatDev: TUpdateSQL
+    ModifySQL.Strings = (
+      'update FatDev'
+      'set'
+      '  SITDEV = :SITDEV'
+      'where'
+      '  CODEMP = :OLD_CODEMP and'
+      '  DTERES = :OLD_DTERES and'
+      '  NUMRES = :OLD_NUMRES and'
+      '  SEQLIB = :OLD_SEQLIB and'
+      '  SEQFAT = :OLD_SEQFAT and'
+      '  SEQDEV = :OLD_SEQDEV')
+    InsertSQL.Strings = (
+      'insert into FatDev'
+      
+        '  (CODEMP, DTERES, NUMRES, SEQLIB, SEQFAT, SEQDEV, NUMNFS, NFSCL' +
+        'I, '
+      'DTEDEV, '
+      '   HREDEV, CODCLI, CODVEN, TOTDEV, SITDEV)'
+      'values'
+      
+        '  (:CODEMP, :DTERES, :NUMRES, :SEQLIB, :SEQFAT, :SEQDEV, :NUMNFS' +
+        ', '
+      ':NFSCLI, '
+      '   :DTEDEV, :HREDEV, :CODCLI, :CODVEN, :TOTDEV, :SITDEV)')
+    DeleteSQL.Strings = (
+      'delete from FatDev'
+      'where'
+      '  CODEMP = :OLD_CODEMP and'
+      '  DTERES = :OLD_DTERES and'
+      '  NUMRES = :OLD_NUMRES and'
+      '  SEQLIB = :OLD_SEQLIB and'
+      '  SEQFAT = :OLD_SEQFAT and'
+      '  SEQDEV = :OLD_SEQDEV')
+    Left = 5
+    Top = 227
+  end
+  object FatDev: TwwQuery
+    CachedUpdates = True
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'Select FatDev.CodEmp,'
+      '           FatDev.DteRes,'
+      '           FatDev.NumRes,'
+      '           FatDev.SeqLib,'
+      '           FatDev.SeqFat,'
+      '           FatDev.SeqDev,'
+      '           FatDev.NumNfs,'
+      '           cast(FatDev.NfsCli as integer)NFSCLI,'
+      '           FatDev.DteDev,'
+      '           FatDev.HreDev,'
+      '           FatDev.CodCli,'
+      '           FatDev.CodVen,'
+      '           FatDev.TotDev,'
+      '           FatDev.SitDev,'
+      '           FinCli.NomCli,'
+      '           FinVen.ApeVen,'
+      '           GerUsu.LogUsu'
+      'From FatDev LEFT JOIN FinCli ON (FatDev.CodCli = FinCli.CodCli)'
+      
+        '                   LEFT JOIN FinVen ON (FatDev.CodVen = FinVen.C' +
+        'odVen)'
+      
+        '                   LEFT JOIN GerUsu ON (FatDev.CodUsu = GerUsu.C' +
+        'odUsu)'
+      
+        'Where (FatDev.SitDev = '#39'Concluido'#39' or FatDev.SitDev = '#39'Faturando' +
+        #39')'
+      'Order by FatDev.NumNfs')
+    UpdateObject = UpFatDev
+    ValidateWithMask = True
+    Left = 5
+    Top = 199
+    object FatDevNUMNFS: TIntegerField
+      Alignment = taLeftJustify
+      DisplayLabel = 'No. Nota Fiscal  '
+      DisplayWidth = 15
+      FieldName = 'NUMNFS'
+    end
+    object FatDevNUMRES: TIntegerField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Pedido'
+      DisplayWidth = 10
+      FieldName = 'NUMRES'
+    end
+    object FatDevNFSCLI: TIntegerField
+      DisplayLabel = 'No. nota fiscal cliente'
+      DisplayWidth = 25
+      FieldName = 'NFSCLI'
+    end
+    object FatDevDTEDEV: TDateTimeField
+      DisplayLabel = 'Emissão'
+      DisplayWidth = 10
+      FieldName = 'DTEDEV'
+    end
+    object FatDevHREDEV: TStringField
+      DisplayLabel = 'Hora'
+      DisplayWidth = 8
+      FieldName = 'HREDEV'
+      FixedChar = True
+      Size = 8
+    end
+    object FatDevCODCLI: TIntegerField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Cliente'
+      DisplayWidth = 10
+      FieldName = 'CODCLI'
+    end
+    object FatDevCODVEN: TIntegerField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Vendedor'
+      DisplayWidth = 10
+      FieldName = 'CODVEN'
+    end
+    object FatDevTOTDEV: TFloatField
+      DisplayLabel = '         Total devolvido'
+      DisplayWidth = 10
+      FieldName = 'TOTDEV'
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object FatDevCODEMP: TIntegerField
+      FieldName = 'CODEMP'
+      Visible = False
+    end
+    object FatDevDTERES: TDateTimeField
+      FieldName = 'DTERES'
+      Visible = False
+    end
+    object FatDevSEQLIB: TIntegerField
+      FieldName = 'SEQLIB'
+      Visible = False
+    end
+    object FatDevSEQFAT: TIntegerField
+      FieldName = 'SEQFAT'
+      Visible = False
+    end
+    object FatDevSEQDEV: TIntegerField
+      FieldName = 'SEQDEV'
+      Visible = False
+    end
+    object FatDevSITDEV: TStringField
+      FieldName = 'SITDEV'
+      Visible = False
+      FixedChar = True
+      Size = 45
+    end
+    object FatDevNOMCLI: TStringField
+      FieldName = 'NOMCLI'
+      Visible = False
+      FixedChar = True
+      Size = 70
+    end
+    object FatDevAPEVEN: TStringField
+      FieldName = 'APEVEN'
+      Visible = False
+      FixedChar = True
+    end
+    object FatDevLOGUSU: TStringField
+      FieldName = 'LOGUSU'
+      Visible = False
+      FixedChar = True
+      Size = 15
+    end
+  end
+  object DsFatDev: TwwDataSource
+    DataSet = FatDev
+    OnDataChange = DsFatDevDataChange
+    Left = 33
+    Top = 199
+  end
+  object FatDv2: TwwQuery
+    Active = True
+    CachedUpdates = True
+    DatabaseName = 'ISade'
+    DataSource = DsFatDev
+    SQL.Strings = (
+      'Select FatDv2.DesDv2,'
+      '           FatDv2.UltQtd,'
+      
+        '           FatDv2.CodClp || _UNICODE_FSS '#39'-'#39' || FatDv2.CodGru ||' +
+        ' _UNICODE_FSS '#39'.'#39' || FatDv2.CodSub || _UNICODE_FSS '#39'.'#39' || FatDv2' +
+        '.CodPro as CodIte'
+      'From FatDv2'
+      'Where FatDv2.CodEmp = :CodEmp'
+      '     and FatDv2.DteRes = :DteRes'
+      '     and FatDv2.NumRes = :NumRes'
+      '     and FatDv2.SeqLib = :SeqLib'
+      '     and FatDv2.SeqFat = :SeqFat'
+      '     and FatDv2.SeqDev = :SeqDev'
+      '     and FatDv2.UltQtd > 0'
+      'Order by FatDv2.NroDv2')
+    ValidateWithMask = True
+    Left = 6
+    Top = 419
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'CODEMP'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DTERES'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'NUMRES'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'SEQLIB'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'SEQFAT'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'SEQDEV'
+        ParamType = ptInput
+      end>
+    object FatDv2CODITE: TStringField
+      DisplayLabel = 'Item'
+      DisplayWidth = 15
+      FieldName = 'CODITE'
+      Size = 16
+    end
+    object FatDv2DESDV2: TStringField
+      DisplayLabel = ' '
+      DisplayWidth = 70
+      FieldName = 'DESDV2'
+      FixedChar = True
+      Size = 70
+    end
+    object FatDv2ULTQTD: TFloatField
+      DisplayLabel = '         Quantidade devolvida'
+      DisplayWidth = 10
+      FieldName = 'ULTQTD'
+    end
+  end
+  object DsDv2: TwwDataSource
+    DataSet = FatDv2
+    Left = 34
+    Top = 419
+  end
+end

@@ -1,0 +1,332 @@
+object fmManChaveNfe: TfmManChaveNfe
+  Left = 416
+  Top = 196
+  Width = 850
+  Height = 422
+  Caption = 'Emerion - Fatura Referência'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Pn1: TPanel
+    Left = 0
+    Top = 0
+    Width = 834
+    Height = 116
+    Align = alTop
+    TabOrder = 0
+    object GroupBox2: TGroupBox
+      Left = 5
+      Top = 1
+      Width = 826
+      Height = 104
+      Caption = 'Filtro'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      object Label2: TLabel
+        Left = 42
+        Top = 16
+        Width = 60
+        Height = 13
+        Caption = 'Nro. NFe :'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label1: TLabel
+        Left = 12
+        Top = 40
+        Width = 90
+        Height = 13
+        Caption = 'Código Cli/For :'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lbNomCli: TLabel
+        Left = 232
+        Top = 40
+        Width = 441
+        Height = 13
+        AutoSize = False
+        Caption = 'Nome cliente'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label3: TLabel
+        Left = 48
+        Top = 64
+        Width = 54
+        Height = 13
+        Caption = 'Período :'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object edNroNfs: TEdit
+        Left = 120
+        Top = 12
+        Width = 105
+        Height = 21
+        BiDiMode = bdRightToLeft
+        CharCase = ecUpperCase
+        Color = 16577773
+        ParentBiDiMode = False
+        TabOrder = 0
+        OnKeyPress = edNroNfsKeyPress
+      end
+      object Button1: TButton
+        Left = 725
+        Top = 64
+        Width = 87
+        Height = 31
+        Caption = '&Buscar'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 4
+        OnClick = Button1Click
+      end
+      object edCliFor: TEdit
+        Left = 120
+        Top = 36
+        Width = 105
+        Height = 21
+        BiDiMode = bdRightToLeft
+        CharCase = ecUpperCase
+        Color = 16577773
+        ParentBiDiMode = False
+        TabOrder = 1
+        OnKeyPress = edNroNfsKeyPress
+      end
+      object edDtIni: TDateTimePicker
+        Left = 120
+        Top = 64
+        Width = 105
+        Height = 21
+        CalAlignment = dtaLeft
+        Date = 41732.7165856829
+        Time = 41732.7165856829
+        Color = 16577773
+        DateFormat = dfShort
+        DateMode = dmComboBox
+        Kind = dtkDate
+        ParseInput = False
+        TabOrder = 2
+      end
+      object edDtFim: TDateTimePicker
+        Left = 256
+        Top = 64
+        Width = 105
+        Height = 21
+        CalAlignment = dtaLeft
+        Date = 41732.7165856829
+        Time = 41732.7165856829
+        Color = 16577773
+        DateFormat = dfShort
+        DateMode = dmComboBox
+        Kind = dtkDate
+        ParseInput = False
+        TabOrder = 3
+      end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 116
+    Width = 834
+    Height = 227
+    Align = alClient
+    BevelInner = bvRaised
+    Caption = 'Panel1'
+    TabOrder = 1
+    object DBGrid1: TDBGrid
+      Left = 2
+      Top = 2
+      Width = 830
+      Height = 223
+      Align = alClient
+      Color = 16577773
+      DataSource = dsBus
+      Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgCancelOnExit]
+      ReadOnly = True
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'MS Sans Serif'
+      TitleFont.Style = []
+      OnDblClick = DBGrid1DblClick
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'TAB'
+          Title.Caption = 'Orig.Devol.'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = [fsBold]
+          Width = 72
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CODCLI'
+          Title.Caption = 'Cód. Cli/For'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = [fsBold]
+          Width = 76
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'NOMCLI'
+          Title.Caption = 'Cliente/Fornecedor'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = [fsBold]
+          Width = 241
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'NRONFS'
+          Title.Caption = 'Nro. NFe'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'DTEFAT'
+          Title.Alignment = taCenter
+          Title.Caption = 'Dt.Faturado'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = [fsBold]
+          Width = 85
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'SEQNFE'
+          Title.Caption = 'Chave NFe'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = [fsBold]
+          Width = 265
+          Visible = True
+        end>
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 343
+    Width = 834
+    Height = 41
+    Align = alBottom
+    BevelOuter = bvNone
+    TabOrder = 2
+    object btnConfirma: TButton
+      Left = 730
+      Top = 5
+      Width = 87
+      Height = 31
+      Caption = '&Confirma'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      OnClick = btnConfirmaClick
+    end
+  end
+  object SQLBUS: TQuery
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      
+        'select '#39'FP'#39' TAB, CODCLI, FC.NOMCLI, NRONFS, DTEFAT, SEQNFE, ID_F' +
+        'ATPED ID '
+      'from fatped FP'
+      'join fincli fc on fc.codcli = fp.codcli'
+      'where 1 <> 1')
+    Left = 32
+    Top = 184
+    object SQLBUSTAB: TStringField
+      FieldName = 'TAB'
+      OnGetText = SQLBUSTABGetText
+      FixedChar = True
+      Size = 2
+    end
+    object SQLBUSCODCLI: TIntegerField
+      FieldName = 'CODCLI'
+    end
+    object SQLBUSNOMCLI: TStringField
+      FieldName = 'NOMCLI'
+      Size = 70
+    end
+    object SQLBUSNRONFS: TIntegerField
+      FieldName = 'NRONFS'
+    end
+    object SQLBUSDTEFAT: TDateTimeField
+      FieldName = 'DTEFAT'
+    end
+    object SQLBUSSEQNFE: TStringField
+      FieldName = 'SEQNFE'
+      FixedChar = True
+      Size = 44
+    end
+    object SQLBUSID: TIntegerField
+      FieldName = 'ID'
+    end
+  end
+  object dsBus: TDataSource
+    DataSet = SQLBUS
+    Left = 72
+    Top = 184
+  end
+end

@@ -1,0 +1,1304 @@
+unit ManGr2_NFE;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Fpadrao, Grids, Wwdbigrd, Wwdbgrid, hGrid, dxExEdtr, dxEdLib, dxEditor,
+  StdCtrls, ExtCtrls, Buttons, dxCntner, Menus, Db, Wwdatsrc, DBTables,
+  Wwquery, ImgList, dxDBELib, dxDBColorCurrencyEdit, dxColorPickEdit,
+  dxColorCurrencyEdit, dxColorEdit, dxColorDateEdit, dxDBColorEdit, inifiles,
+  IdComponent, IdTCPConnection, IdTCPClient, IdMessageClient, IdSMTP,
+  IdBaseComponent, IdMessage;
+
+type
+  TfmManGr2_NFE = class(TfmPadrao)
+    FatGer: TwwQuery;
+    DsFatGer: TwwDataSource;
+    PaintBox: TPaintBox;
+    Label16: TLabel;
+    Label17: TLabel;
+    EdPsqDteFat1: TdxColorDateEdit;
+    EdPsqNumGer: TdxColorEdit;
+    Label18: TLabel;
+    EdPsqDteFat2: TdxColorDateEdit;
+    Label26: TLabel;
+    Label20: TLabel;
+    Label22: TLabel;
+    Label21: TLabel;
+    EdPsqCodPfa: TdxColorEdit;
+    EdPsqCodVen: TdxColorEdit;
+    EdPsqCodCli: TdxColorEdit;
+    EdPsqCodEmp: TdxColorEdit;
+    bPsqEmp: TSpeedButton;
+    bPsqCli: TSpeedButton;
+    bPsqVen: TSpeedButton;
+    BbPsqPfa: TSpeedButton;
+    EdPsqNomPfa: TdxColorEdit;
+    EdPsqApeVen: TdxColorEdit;
+    EdPsqNomCli: TdxColorEdit;
+    EdPsqApeEmp: TdxColorEdit;
+    bbPesquisa: TBitBtn;
+    grFatGer: ThGrid;
+    quSql: TwwQuery;
+    FatGe2: TwwQuery;
+    UpFatGer: TUpdateSQL;
+    pnSitGer: TPanel;
+    DsFatGe2: TwwDataSource;
+    FatGerNUMGER: TIntegerField;
+    FatGerCODVEN: TIntegerField;
+    FatGerCODPFA: TStringField;
+    FatGerNRONFS: TIntegerField;
+    FatGerNOMCLI: TStringField;
+    grFatGer1: TdxDBGraphicEdit;
+    grFatGe21: TdxDBGraphicEdit;
+    Label11: TLabel;
+    EdPsqNroNfs: TdxColorEdit;
+    FatGerDTEFAT: TDateTimeField;
+    FatGerTOTGE1: TFloatField;
+    FatGe2DESGE2: TStringField;
+    FatGe2QTPGE2: TFloatField;
+    FatGe2VLUGE2: TFloatField;
+    FatGe2IPIGE2: TFloatField;
+    FatGe2ICMGE2: TFloatField;
+    FatGe2TOTITE: TFloatField;
+    FatGe2TOTIPI: TFloatField;
+    FatGe2CODCFO: TStringField;
+    FatGe2CLSIPI: TStringField;
+    FatGe2CODUND: TStringField;
+    FatGe2CODSIT: TStringField;
+    FatGe2CODITE: TStringField;
+    grFatGe2: ThGrid;
+    FatGerCODEMP: TIntegerField;
+    FatGerDTEGER: TDateTimeField;
+    FatGerTIPPFA: TStringField;
+    FatGerSITGER: TStringField;
+    Label4: TLabel;
+    EdPsqTipPfa: TdxColorPickEdit;
+    FatGerCODCLI: TIntegerField;
+    pnDesGe2: TPanel;
+    pnProNfe: TPanel;
+    pnRecNfe: TPanel;
+    pnDteNfe: TPanel;
+    pnHreNfe: TPanel;
+    pnSitImp: TPanel;
+    pnMensag: TPanel;
+    bRecuperar: TBitBtn;
+    bconsultar: TBitBtn;
+    BitBtn1: TBitBtn;
+    pnRetNfe: TLabel;
+    FatGerRETNFE: TStringField;
+    FatGerPRCNFE: TStringField;
+    FatGerDTCNFE: TDateTimeField;
+    FatGerHRCNFE: TStringField;
+    FatGerPRONFE: TStringField;
+    FatGerDTEPNF: TDateTimeField;
+    FatGerHREPNF: TStringField;
+    FatGerRECNFE: TStringField;
+    FatGerIMPNFE: TStringField;
+    SaveDialog: TSaveDialog;
+    FatGerSEQNFE: TStringField;
+    FatGerFLGATU: TStringField;
+    FatGerDTECNE: TDateTimeField;
+    FatGerHRECNE: TStringField;
+    quSQL1: TwwQuery;
+    FatGerEM1CLI: TStringField;
+    pn_erro: TPanel;
+    memo_erro: TMemo;
+    bt_erro: TButton;
+    Memo1: TMemo;
+    CorpoMail: TMemo;
+    IdMessage1: TIdMessage;
+    IdSMTP1: TIdSMTP;
+    Button1: TButton;
+    FatGerPROTDPEC: TStringField;
+    BitBtn2: TBitBtn;
+    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure bPsqCliClick(Sender: TObject);
+    procedure bPsqVenClick(Sender: TObject);
+    procedure BbPsqPfaClick(Sender: TObject);
+    procedure bPsqEmpClick(Sender: TObject);
+    procedure EdPsqNumGerExit(Sender: TObject);
+    procedure bbPesquisaClick(Sender: TObject);
+    procedure EdPsqCodEmpExit(Sender: TObject);
+    procedure EdPsqCodCliExit(Sender: TObject);
+    procedure EdPsqCodVenExit(Sender: TObject);
+    procedure DsFatGerDataChange(Sender: TObject; Field: TField);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdPsqCodVenKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdPsqCodEmpKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdPsqCodCliKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdPsqCodPfaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure PaintBoxPaint(Sender: TObject);
+    procedure EdPsqNumGerKeyPress(Sender: TObject; var Key: Char);
+    procedure EdPsqCodPfaExit(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure EdPsqNroNfsExit(Sender: TObject);
+    procedure DsFatGe2DataChange(Sender: TObject; Field: TField);
+    procedure bRecuperarClick(Sender: TObject);
+    procedure bconsultarClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure bt_erroClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+  private
+    eAssunto, eAnexo, ePara, eUsuario, eSenha, eHost, EProtocolo, EPDF: string;
+    eAutomatico, ei, eposicao, ehomologacao, ePorta: integer;
+    ecorpo: string;
+    {Private declarations}
+  public
+    {Public declarations}
+    DteGer: TDateTime;
+    CodEmp, NumGer: integer;
+    sBase, sFiltro, sOrdem: string;
+    bolCFOP: Boolean;
+    strAux: string;
+  end;
+
+var
+  fmManGr2_NFE: TfmManGr2_NFE;
+
+implementation
+
+uses dxDemoUtils, FileCtrl, Bbgeral, Bbfuncao, Bbmensag, ManGDB, PsqEmp, AuxIni,
+  AuxPsq, PsqPfa, ManPri, ManE02_NFE;
+
+{$R *.DFM}
+
+procedure FindReplace(const Enc, subs: string; var Texto: TMemo);
+var
+  ifr, Posicaofr: Integer;
+  Linhafr: string;
+begin
+  for ifr := 0 to Texto.Lines.count - 1 do
+  begin
+    Linhafr := Texto.Lines[ifr];
+    repeat
+      Posicaofr := Pos(Enc, Linhafr);
+      if Posicaofr > 0 then
+      begin
+        Delete(Linhafr, Posicaofr, Length(Enc));
+        Insert(Subs, Linhafr, Posicaofr);
+        Texto.Lines[ifr] := Linhafr;
+      end;
+    until Posicaofr = 0;
+  end;
+end;
+
+function Executa(Arquivo: string; Estado: Integer): Integer;
+var
+  Programa: array[0..512] of char;
+  CurDir: array[0..255] of char;
+  WorkDir: string;
+  StartupInfo: TStartupInfo;
+  ProcessInfo: TProcessInformation;
+begin
+  StrPCopy(Programa, Arquivo);
+  GetDir(0, WorkDir);
+  StrPCopy(CurDir, WorkDir);
+  FillChar(StartupInfo, Sizeof(StartupInfo), #0);
+  StartupInfo.cb := sizeof(StartupInfo);
+  StartupInfo.dwFlags := STARTF_USESHOWWINDOW;
+  StartupInfo.wShowWindow := Estado;
+  if not CreateProcess(nil, Programa, nil, nil, false, CREATE_NEW_CONSOLE or NORMAL_PRIORITY_CLASS, nil, nil, StartupInfo, ProcessInfo) then
+    Result := -1
+  else
+  begin
+    WaitForSingleObject(ProcessInfo.hProcess, Infinite);
+    //GetExitCodeProcess (ProcessInfo.hProcess, Result);
+  end;
+end; //Estado é o tipo de janela que aparecerá, que pode ser:
+
+procedure TfmManGr2_NFE.FormCreate(Sender: TObject);
+begin
+  inherited;
+
+  FatGer.Close;
+  FatGer.Params[0].AsDateTime := Date;
+  FatGer.Open;
+
+  sBase := ' Select FatGer.CodEmp,' +
+    ' FatGer.DteGer,' +
+    ' FatGer.NumGer,' +
+    ' FatGer.NroNfs,' +
+    ' FatGer.DteFat,' +
+    ' FatGer.CodCli,' +
+    ' FatGer.CodVen,' +
+    ' FatGer.CodPfa,' +
+    ' FatGer.TipPfa,' +
+    ' FatGer.TotGe1,' +
+    ' FatGer.RetNfe,' +
+    ' FatGer.PrcNfe,' +
+    ' FatGer.DtcNfe,' +
+    ' FatGer.HrcNfe,' +
+    ' FatGer.ProNfe,' +
+    ' FatGer.DtePnf,' +
+    ' FatGer.HrePnf,' +
+    ' FatGer.RecNfe,' +
+    ' FatGer.SeqNfe,' +
+    ' FatGer.ImpNfe,' +
+    ' FatGer.DteCne,' +
+    ' FatGer.HreCne,' +
+    ' FatGer.FlgAtu,' +
+    ' FatGer.SitGer,' +
+    ' FinCli.NomCli,' +
+    ' FinCli.Em1Cli,' +
+    ' FatGer.PROTDPEC ' +
+    ' From FatGer,FinCli' +
+    ' Where FatGer.CodCli = FinCli.CodCli';
+
+end;
+
+procedure TfmManGr2_NFE.bbPesquisaClick(Sender: TObject);
+begin
+
+  ActiveControl := nil;
+
+  sFiltro := ' and FatGer.EnvNfe = ' + QuotedStr('Sim');
+
+  sOrdem := ' Order by FatGer.NroNfs';
+
+  if Trim(EdPsqNroNfs.Text) <> '' then
+    sFiltro := sFiltro + ' and FatGer.NroNfs = ' + QuotedStr(EdPsqNroNfs.Text);
+  if Trim(EdPsqNumGer.Text) <> '' then
+    sFiltro := sFiltro + ' and FatGer.NumGer = ' + QuotedStr(EdPsqNumGer.Text);
+  if Trim(EdPsqCodEmp.Text) <> '' then
+    sFiltro := sFiltro + ' and FatGer.CodEmp = ' + QuotedStr(EdPsqCodEmp.Text);
+  if Trim(EdPsqCodCli.Text) <> '' then
+    sFiltro := sFiltro + ' and FatGer.CodCli = ' + QuotedStr(EdPsqCodCli.Text);
+  if Trim(EdPsqCodVen.Text) <> '' then
+    sFiltro := sFiltro + ' and FatGer.CodVen = ' + QuotedStr(EdPsqCodVen.Text);
+  if Trim(EdPsqCodPfa.Text) <> '' then
+    sFiltro := sFiltro + ' and FatGer.CodPfa = ' + QuotedStr(EdPsqCodPfa.Text);
+  if Trim(EdPsqTipPfa.Text) <> '' then
+    sFiltro := sFiltro + ' and FatGer.TipPfa = ' + QuotedStr(EdPsqTipPfa.Text);
+
+  if Trim(fLimpaStr(EdPsqDteFat1.Text)) <> '' then
+    sFiltro := sFiltro + ' and FatGer.DteFat >= ' + QuotedStr(fDateToSQL(EdPsqDteFat1.Date));
+  if Trim(fLimpaStr(EdPsqDteFat2.Text)) <> '' then
+    sFiltro := sFiltro + ' and FatGer.DteFat <= ' + QuotedStr(fDateToSQL(EdPsqDteFat2.Date));
+
+  with FatGer, SQL do
+  begin
+
+    Close;
+    Text := sBase + sFiltro + sOrdem;
+    Open;
+
+  end;
+
+  grFatGer.SetFocus;
+
+end;
+
+procedure TfmManGr2_NFE.EdPsqCodEmpExit(Sender: TObject);
+begin
+  if Trim(EdPsqCodEmp.Text) <> '' then
+  begin
+
+    with quSql, SQL do
+    begin
+
+      Close;
+      Text := 'Select GerEmp.ApeEmp From GerEmp Where GerEmp.CodEmp = ' + QuotedStr(EdPsqCodEmp.Text);
+
+      if GFlgAce = 'Sim' then
+        Text := Text + ' and GerEmp.CodFil > ' + QuotedStr('0');
+
+      Open;
+
+      EdPsqApeEmp.Text := FieldByName('ApeEmp').AsString;
+
+    end;
+
+    if Trim(quSQL.FieldbyName('ApeEmp').AsString) = '' then
+      fmsgErro('Empresa informada não localizada.', EdPsqCodEmp);
+
+  end
+  else
+    EdPsqApeEmp.Text := '';
+end;
+
+procedure TfmManGr2_NFE.EdPsqCodCliExit(Sender: TObject);
+begin
+  if Trim(EdPsqCodCli.Text) <> '' then
+  begin
+
+    with quSql, SQL do
+    begin
+
+      Close;
+      Text := 'Select FinCli.NomCli From FinCli Where FinCli.CodCli = ' + QuotedStr(EdPsqCodCli.Text);
+      Open;
+
+      EdPsqNomCli.Text := FieldByName('NomCli').AsString;
+
+    end;
+
+  end
+  else
+    EdPsqNomCli.Text := '';
+end;
+
+procedure TfmManGr2_NFE.bPsqEmpClick(Sender: TObject);
+begin
+  inherited;
+
+  try
+
+    fmPsqEmp := TfmPsqEmp.Create(Self);
+    fmPsqEmp.ShowModal;
+
+    if fmPsqEmp.CodEmp > 0 then
+    begin
+
+      EdPsqApeEmp.Text := fmPsqEmp.NomEmp;
+      EdPsqCodEmp.Text := IntToStr(fmPsqEmp.CodEmp);
+
+    end;
+
+  finally
+
+    FreeAndNil(fmPsqEmp);
+
+  end;
+end;
+
+procedure TfmManGr2_NFE.EdPsqCodEmpKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmPsqEmp := TfmPsqEmp.Create(Self);
+      fmPsqEmp.ShowModal;
+
+      if fmPsqEmp.CodEmp > 0 then
+      begin
+
+        EdPsqApeEmp.Text := fmPsqEmp.NomEmp;
+        EdPsqCodEmp.Text := IntToStr(fmPsqEmp.CodEmp);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmPsqEmp);
+
+    end;
+  end;
+end;
+
+procedure TfmManGr2_NFE.EdPsqCodCliKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmAuxIni := TfmAuxIni.Create(Self);
+
+      fmAuxIni.TipoPesq := 'C';
+
+      fmAuxIni.ShowModal;
+
+      if fmAuxIni.CodCli > 0 then
+      begin
+
+        EdPsqNomCli.Text := fmAuxIni.NomCli;
+        EdPsqCodCli.Text := IntToStr(fmAuxIni.CodCli);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxIni);
+
+    end;
+  end;
+
+  if key = 113 then
+  begin {F2 - Inteligente/Nome}
+
+    try
+
+      fmAuxPsq := TfmAuxPsq.Create(Self);
+
+      fmAuxPsq.TipoPesq := 'C';
+
+      fmAuxPsq.ShowModal;
+
+      if fmAuxPsq.CodCli > 0 then
+      begin
+
+        EdPsqNomCli.Text := fmAuxPsq.NomCli;
+        EdPsqCodCli.Text := IntToStr(fmAuxPsq.CodCli);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxPsq);
+
+    end;
+  end;
+end;
+
+procedure TfmManGr2_NFE.EdPsqCodVenExit(Sender: TObject);
+begin
+  if Trim(EdPsqCodVen.Text) <> '' then
+  begin
+
+    with quSql, SQL do
+    begin
+
+      Close;
+      Text := 'Select FinVen.ApeVen From FinVen Where FinVen.CodVen = ' + QuotedStr(EdPsqCodVen.Text);
+      Open;
+
+      EdPsqApeVen.Text := FieldByName('ApeVen').AsString;
+
+    end;
+
+  end
+  else
+    EdPsqApeVen.Text := '';
+end;
+
+procedure TfmManGr2_NFE.EdPsqCodVenKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmAuxIni := TfmAuxIni.Create(Self);
+
+      fmAuxIni.TipoPesq := 'V';
+
+      fmAuxIni.ShowModal;
+
+      if fmAuxIni.CodVen > 0 then
+      begin
+
+        EdPsqApeVen.Text := fmAuxIni.NomVen;
+        EdPsqCodVen.Text := IntToStr(fmAuxIni.CodVen);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxIni);
+
+    end;
+  end;
+
+  if key = 113 then
+  begin {F2 - Inteligente/Nome}
+
+    try
+
+      fmAuxPsq := TfmAuxPsq.Create(Self);
+
+      fmAuxPsq.TipoPesq := 'V';
+
+      fmAuxPsq.ShowModal;
+
+      if fmAuxPsq.CodVen > 0 then
+      begin
+
+        EdPsqApeVen.Text := fmAuxPsq.NomVen;
+        EdPsqCodVen.Text := IntToStr(fmAuxPsq.CodVen);
+
+      end;
+
+    finally
+
+      FreeAndNil(fmAuxPsq);
+
+    end;
+  end;
+end;
+
+procedure TfmManGr2_NFE.bPsqCliClick(Sender: TObject);
+begin
+
+  try
+
+    fmAuxIni := TfmAuxIni.Create(Self);
+
+    fmAuxIni.TipoPesq := 'C';
+
+    fmAuxIni.ShowModal;
+
+    if fmAuxIni.CodCli > 0 then
+    begin
+
+      EdPsqNomCli.Text := fmAuxIni.NomCli;
+      EdPsqCodCli.Text := IntToStr(fmAuxIni.CodCli);
+
+    end;
+
+  finally
+
+    FreeAndNil(fmAuxIni);
+
+  end;
+end;
+
+procedure TfmManGr2_NFE.bPsqVenClick(Sender: TObject);
+begin
+
+  try
+
+    fmAuxIni := TfmAuxIni.Create(Self);
+
+    fmAuxIni.TipoPesq := 'V';
+
+    fmAuxIni.ShowModal;
+
+    if fmAuxIni.CodVen > 0 then
+    begin
+
+      EdPsqApeVen.Text := fmAuxIni.NomVen;
+      EdPsqCodVen.Text := IntToStr(fmAuxIni.CodVen);
+
+    end;
+
+  finally
+
+    FreeAndNil(fmAuxIni);
+
+  end;
+end;
+
+procedure TfmManGr2_NFE.EdPsqNumGerExit(Sender: TObject);
+begin
+  if Trim(EdPsqNumGer.Text) <> '' then
+  begin
+
+    EdPsqNroNfs.Clear;
+    EdPsqTipPfa.Clear;
+    EdPsqCodEmp.Clear;
+    EdPsqApeEmp.Clear;
+    EdPsqCodCli.Clear;
+    EdPsqNomCli.Clear;
+    EdPsqCodVen.Clear;
+    EdPsqApeVen.Clear;
+    EdPsqCodPfa.Clear;
+    EdPsqNomPfa.Clear;
+
+    EdPsqDteFat1.Clear;
+    EdPsqDteFat2.Clear;
+
+  end;
+end;
+
+procedure TfmManGr2_NFE.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if key = 27 then
+    close;
+end;
+
+procedure TfmManGr2_NFE.FormShow(Sender: TObject);
+begin
+  inherited;
+  EdPsqNroNfs.SetFocus;
+end;
+
+procedure TfmManGr2_NFE.BbPsqPfaClick(Sender: TObject);
+begin
+  inherited;
+
+  try
+
+    fmPsqPfa := TfmPsqPfa.Create(Self);
+
+    with fmPsqPfa.EstPfa, SQL do
+    begin
+
+      Close;
+      Text := ' Select EstPfa.CodPfa,' +
+        '        EstPfa.TipPfa,' +
+        '        EstPfa.DscPfa,' +
+        '        EstPfa.DsrPfa,' +
+        '        EstPfa.CodCf1,' +
+        '        EstPfa.CodCf2,' +
+        '        EstPfa.IntFin,' +
+        '        EstPfa.AtuEst,' +
+        '        EstPfa.ConSum,' +
+        '        EstPfa.ModPfa ' +
+        ' From EstPfa';
+
+      if Trim(EdPsqTipPfa.Text) <> '' then
+        Text := Text + ' Where EstPfa.TipPfa = ' + QuotedStr(EdPsqTipPfa.Text);
+
+      Text := Text + ' Order by EstPfa.DscPfa';
+
+      Open;
+
+    end;
+
+    fmPsqPfa.ShowModal;
+
+    if Trim(fmPsqPfa.CodPfa) <> '' then
+    begin
+
+      EdPsqCodPfa.Text := fmPsqPfa.CodPfa;
+      EdPsqNomPfa.Text := fmPsqPfa.NomPfa;
+
+    end;
+
+  finally
+
+    FreeAndNil(fmPsqPfa);
+
+  end;
+end;
+
+procedure TfmManGr2_NFE.DsFatGerDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+
+  pnSitGer.Caption := FatGerSitGer.Value;
+
+  pnRetNfe.Caption := Trim(FatGerRetNfe.Value);
+
+  if Trim(FatGerPrcNfe.Value) <> '' then
+  begin
+
+    pnProNfe.Caption := ' No. do protocolo: ' + Trim(FatGerPrcNfe.Value);
+
+    pnDteNfe.Caption := ' Processado em: ' + FormatDateTime('dd/mm/yyyy', FatGerDtcNfe.Value);
+
+    pnHreNfe.Caption := ' Horário: ' + FatGerHrcNfe.Value;
+
+  end
+  else
+  begin
+
+    pnProNfe.Caption := ' No. do protocolo: ' + Trim(FatGerProNfe.Value);
+
+    if FatGerDtePNF.Value > 0 then
+      pnDteNfe.Caption := ' Processado em: ' + FormatDateTime('dd/mm/yyyy', FatGerDtePNF.Value)
+    else
+      pnDteNfe.Caption := ' Processado em:';
+
+    pnHreNfe.Caption := ' Horário: ' + FatGerHrePNF.Value;
+
+  end;
+
+  pnRecNfe.Caption := ' No. do recibo: ' + Trim(FatGerRecNfe.Value);
+
+  if FatGerImpNfe.Value = 'Sim' then
+  begin
+
+    pnSitImp.Color := clRed;
+
+    pnSitImp.Caption := 'Impressão confirmada';
+
+  end
+  else
+  begin
+
+    pnSitImp.Color := clLime;
+
+    pnSitImp.Caption := 'Impressão não confirmada';
+
+  end;
+end;
+
+procedure TfmManGr2_NFE.EdPsqCodPfaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmPsqPfa := TfmPsqPfa.Create(Self);
+
+      with fmPsqPfa.EstPfa, SQL do
+      begin
+
+        Close;
+        Text := ' Select EstPfa.CodPfa,' +
+          '        EstPfa.TipPfa,' +
+          '        EstPfa.DscPfa,' +
+          '        EstPfa.DsrPfa,' +
+          '        EstPfa.CodCf1,' +
+          '        EstPfa.CodCf2,' +
+          '        EstPfa.IntFin,' +
+          '        EstPfa.AtuEst,' +
+          '        EstPfa.ConSum,' +
+          '        EstPfa.ModPfa ' +
+          ' From EstPfa';
+
+        if Trim(EdPsqTipPfa.Text) <> '' then
+          Text := Text + ' Where EstPfa.TipPfa = ' + QuotedStr(EdPsqTipPfa.Text);
+
+        Text := Text + ' Order by EstPfa.DscPfa';
+
+        Open;
+
+      end;
+
+      fmPsqPfa.ShowModal;
+
+      if Trim(fmPsqPfa.CodPfa) <> '' then
+      begin
+
+        EdPsqCodPfa.Text := fmPsqPfa.CodPfa;
+        EdPsqNomPfa.Text := fmPsqPfa.NomPfa;
+
+      end;
+
+    finally
+
+      FreeAndNil(fmPsqPfa);
+
+    end;
+  end;
+end;
+
+procedure TfmManGr2_NFE.PaintBoxPaint(Sender: TObject);
+begin
+  inherited;
+  with Sender as TPaintBox do
+    FillGrayGradientRect(PaintBox.Canvas, PaintBox.ClientRect, PaintBox.Color);
+end;
+
+procedure TfmManGr2_NFE.EdPsqNumGerKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if not (key in ['0'..'9']) then
+    key := #0;
+end;
+
+procedure TfmManGr2_NFE.EdPsqCodPfaExit(Sender: TObject);
+begin
+  inherited;
+  if Trim(EdPsqCodPfa.Text) <> '' then
+  begin
+
+    with quSql, SQL do
+    begin
+
+      Close;
+      Text := ' Select EstPfa.DscPfa' +
+        ' From EstPfa' +
+        ' Where EstPfa.CodPfa = ' + QuotedStr(EdPsqCodPfa.Text);
+
+      if Trim(EdPsqTipPfa.Text) <> '' then
+        Text := Text + ' and EstPfa.TipPfa = ' + QuotedStr(EdPsqTipPfa.Text);
+
+      Open;
+
+      EdPsqNomPfa.Text := FieldByName('DscPfa').AsString;
+
+    end;
+
+  end
+  else
+    EdPsqNomPfa.Text := '';
+end;
+
+procedure TfmManGr2_NFE.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  fmManGr2_NFE := nil;
+end;
+
+procedure TfmManGr2_NFE.EdPsqNroNfsExit(Sender: TObject);
+begin
+  inherited;
+  if Trim(EdPsqNroNfs.Text) <> '' then
+  begin
+
+    EdPsqNumGer.Clear;
+    EdPsqTipPfa.Clear;
+    EdPsqCodEmp.Clear;
+    EdPsqApeEmp.Clear;
+    EdPsqCodCli.Clear;
+    EdPsqNomCli.Clear;
+    EdPsqCodVen.Clear;
+    EdPsqApeVen.Clear;
+    EdPsqCodPfa.Clear;
+    EdPsqNomPfa.Clear;
+
+    EdPsqDteFat1.Clear;
+    EdPsqDteFat2.Clear;
+
+  end;
+end;
+
+procedure TfmManGr2_NFE.DsFatGe2DataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+  pnDesGe2.Caption := ' ' + FatGe2DesGe2.Value;
+end;
+
+procedure TfmManGr2_NFE.bRecuperarClick(Sender: TObject);
+var
+  UfeEmp: string;
+  ArqRe1: string;
+  ArqRe2: string;
+  ArqRs1: string;
+  ArqRs2: string;
+  FlgRej: string;
+  LinArq: string;
+  EmaCli: string;
+  MSGNFE: string;
+  SeqEnc: integer;
+  SeqLin: integer;
+  SeqRet: Boolean;
+  Handle: LongInt;
+  ArqEnv: TextFile;
+  ArqRet: TStringList;
+  IniFile: string;
+  Ini: TIniFile;
+  Snumeronf, sAssunto: string;
+  vaux: string;
+  VCaminhoDanfe, VCGeraisCaminhoArquivoLeitura, VCGeraisCaminhoArquivoRetorno, vchave: string;
+begin
+  inherited;
+  if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
+  begin
+    if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+      then
+    begin
+      Abort;
+    end;
+  end;
+
+  IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
+
+  Ini := TIniFile.Create(IniFile);
+  try
+    VCGeraisCaminhoArquivoLeitura := Ini.ReadString('Geral', 'PathLeitura', '');
+    VCGeraisCaminhoArquivoRetorno := Ini.ReadString('Geral', 'PathRetorno', '');
+    VCaminhoDanfe := Ini.ReadString('Geral', 'PathDANFE', '');
+  finally
+    Ini.Free;
+  end;
+
+  if FatGERCodEmp.Value > 0 then
+  begin
+
+    CodEmp := FatgerCodEmp.Value;
+    Dteger := FatgerDteGER.Value;
+    NumGER := FatgerNumGer.Value;
+
+    with Fatger, SQL do
+    begin
+
+      Close;
+      Text := sBase +
+        ' and Fatger.CodEmp = ' + QuotedStr(IntToStr(CodEmp)) +
+        ' and Fatger.DteGER = ' + QuotedStr(fDateToSQL(Dteger)) +
+        ' and Fatger.NumGER = ' + QuotedStr(IntToStr(Numger));
+      Open;
+
+    end;
+
+    if FatgerCodEmp.Value > 0 then
+    begin
+
+      if fMsg('Recupera o arquivo enviado para o cliente ?', 'O') then
+      begin
+
+        savedialog.InitialDir := VCGeraisCaminhoArquivoRetorno;
+        SaveDialog.FileName := Fatgernronfs.asstring + ' - NF-e- ' + FatgerSEQNFE.AsString + '.xml';
+
+        with quSQL, SQL do
+        begin
+
+          Close;
+          Text := ' Select Fatger.ArqNfe' +
+            ' From Fatger' +
+            ' Where Fatger.CodEmp = ' + QuotedStr(IntToStr(FatgerCodEmp.Value)) +
+            '   and Fatger.Dteger = ' + QuotedStr(fDateToSQL(FatgerDteger.Value)) +
+            '   and Fatger.Numger = ' + QuotedStr(IntToStr(FatgerNumger.Value));
+          Open;
+          vaux := VCGeraisCaminhoArquivoRetorno + '\' + FatgerNRONFS.asstring + ' - NF-e- ' + FatgerSEQNFE.asstring + '.xml';
+
+          if FieldbyName('ArqNFE').AsString <> null then
+          begin
+
+            if SaveDialog.Execute then
+            begin
+              TBlobField(FieldByName('ARQNFE')).SaveToFile(SaveDialog.FileName);
+              vaux := SaveDialog.filename;
+            end
+            else
+              vaux := VCGeraisCaminhoArquivoRetorno + '\' + FatgerNRONFS.asstring + ' - NF-e- ' + FatgerSEQNFE.asstring + '.xml';
+
+          end;
+        end;
+      end
+      else
+        vaux := VCGeraisCaminhoArquivoRetorno + '\' + FatgerNRONFS.asstring + ' - NF-e- ' + FatgerSEQNFE.asstring + '.xml';
+
+      if fMsg('Deseja enviar arquivo XML da DANFE por e-mail para o cliente ?', 'O') then
+      begin
+
+        ini := TIniFile.create(IniFile);
+        try
+          ehost := ini.ReadString('E-mail', 'host', '');
+          eusuario := ini.ReadString('E-mail', 'usuario', '');
+          esenha := ini.ReadString('E-mail', 'senha', '');
+          eAutomatico := ini.ReadInteger('E-mail', 'automatico', 0);
+          ehomologacao := ini.ReadInteger('WebService', 'Ambiente', 1);
+          ePORta := ini.ReadInteger('E-mail', 'PortaSMTP', 25);
+        finally
+          ini.free;
+        end;
+
+        if ehomologacao = 1 then
+          epara := inputbox('E-mail do XML', 'Digite o endereço de e-mail do destinatário', 'fernanda@emerion.com.br')
+        else
+          ePara := inputbox('E-mail do XML', 'Digite o endereço de e-mail do destinatário', FatGerEm1Cli.Value);
+
+        sNumeroNF := copy(fNumZeros(IntToStr(FatgerNroNfs.Value), 9), 1, 3) + '.' +
+          copy(fNumZeros(IntToStr(FatgerNroNfs.Value), 9), 4, 3) + '.' +
+          copy(fNumZeros(IntToStr(FatgerNroNfs.Value), 9), 7, 3);
+        eAssunto := 'NF-e: ' + sNumeroNF + ' ' + UpperCase(Trim(FatGERNOMCLI.AsString));
+
+        FindReplace('#PROTOCOLO#', eProtocolo, corpomail);
+        FindReplace('#SERIE#', '1', corpomail);
+        FindReplace('#EMITENTE#', trim(FatGerNOMCLI.AsString), corpomail);
+        FindReplace('#NUMERONOTA#', SNumeroNF, corpomail);
+
+        eanexo := VCGeraisCaminhoArquivoRetorno + '\' + fatgernronfs.asstring + ' - NF-e- ' + fatgerseqnfe.asstring + '.xml';
+        epdf := VCaminhoDanfe + '\' + fatgerseqnfe.asstring + '.pdf';
+        button1.Click;
+        //                end;//mandando e-mail
+        ////============================== Mandando E-mail Para o Cliente ==== ////
+
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManGr2_NFE.bconsultarClick(Sender: TObject);
+var
+  UfeEmp: string;
+  ArqRe1: string;
+  ArqRe2: string;
+  ArqRs1: string;
+  ArqRs2: string;
+  FlgRej: string;
+  LinArq: string;
+  MSGNFE: string;
+  DTECNE: string;
+  HRECNE: string;
+  SeqEnc: integer;
+  SeqLin: integer;
+  SeqRet: Boolean;
+  Handle: LongInt;
+  ArqEnv: TextFile;
+  ArqRet: TStringList;
+  IniFile: string;
+  Ini: TIniFile;
+  Ok: Boolean;
+  VCGeraisCaminhoArquivoLeitura, VCGeraisCaminhoArquivoRetorno, vaux, vchave: string;
+  vnumnota, i: integer;
+begin
+
+  if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
+  begin
+    if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+      then
+    begin
+      Abort;
+    end;
+  end;
+
+  IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
+
+  Ini := TIniFile.Create(IniFile);
+  try
+    VCGeraisCaminhoArquivoLeitura := Ini.ReadString('Geral', 'PathLeitura', '');
+    VCGeraisCaminhoArquivoRetorno := Ini.ReadString('Geral', 'PathRetorno', '');
+  finally
+    Ini.Free;
+  end;
+
+  inherited;
+  if FatgerCodEmp.Value > 0 then
+  begin
+    CodEmp := FatGerCodEmp.Value;
+    Dteger := FatGERDteGer.Value;
+    NumGer := FatGERNumGER.Value;
+
+    with Fatger, SQL do
+    begin
+
+      Close;
+      Text := sBase +
+        ' and FatGer.CodEmp = ' + QuotedStr(IntToStr(CodEmp)) +
+        ' and FatGer.DteGer = ' + QuotedStr(fDateToSQL(DteGer)) +
+        ' and FatGer.NumGer = ' + QuotedStr(IntToStr(NumGer));
+      Open;
+
+    end;
+
+    if FatGERCodEmp.Value > 0 then
+    begin
+      if fMsg('Confirma consulta ?', 'O') then
+      begin
+        with quSQL, SQL do
+        begin
+          Close;
+          Text := ' Select GerEmp.SigUfe' +
+            ' From GerEmp' +
+            ' Where GerEmp.CodEmp = ' + QuotedStr(IntToStr(FatGERCodEmp.Value));
+          Open;
+          UfeEmp := fLimpaAcentos(FieldbyName('SigUfe').AsString);
+        end;
+
+        Application.ProcessMessages;
+
+        fmManPri.Enabled := False;
+        fmManGR2_NFE.Enabled := False;
+        pnMensag.Visible := True;
+        pnMensag.Caption := 'Aguarde. Verificando status do serviço.';
+        ArqRe1 := VCGeraisCaminhoArquivoLeitura + '\CSNOTA' + FatGERNRONFS.asstring + '.txt';
+        DeleteFile(ArqRe1);
+        AssignFile(ArqEnv, ArqRe1);
+        Rewrite(ArqEnv);
+        vchave := fatGerseqnfe.asstring;
+        vnumnota := FatGERNRONFS.Value;
+        vaux := VCGeraisCaminhoArquivoRetorno + '\' + FatGERNRONFS.asstring + ' - NF-e- ' + Vchave + '.xml';
+        vaux := vaux + fReplicate(' ', 401 - length(vaux));
+        Writeln(ArqEnv, 'EMC' +
+          vaux);
+        CloseFile(ArqEnv);
+        Application.ProcessMessages;
+        pnMensag.Caption := 'Aguarde. Consultando informações da nota.';
+        //chamar o Nfemerion aqui
+
+        if (Trim(GNFeEnvia) = '') or (Trim(GNFeEnvia) = 'EXE') or (Trim(GNFeEnvia) = 'DEFAUT') then
+          Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe CONSULTA ' + inttostr(vnumnota), SW_NORMAL)
+        else
+          AbreNfe(PChar('CONSULTA'), pChar(vnumnota));
+
+        if FileExists(VCGeraisCaminhoArquivoRetorno + '\LogErro-CS' + inttostr(VNumNota) + '.txt') then
+        begin
+          Application.ProcessMessages;
+          ArqRet := TStringList.Create;
+          ArqRet.LoadFromFile(VCGeraisCaminhoArquivoRetorno + '\LogErro-CS' + inttostr(VNumNota) + '.txt');
+          i := 1;
+          repeat
+            i := i + 1;
+          until not FileExists(VCGeraisCaminhoArquivoRetorno + '\LogErro-CS' + inttostr(VNumNota) + '.EP' + inttostr(i));
+          FreeAndNil(ArqRet);
+          pn_erro.visible := true;
+          pn_erro.bringtofront;
+          memo_erro.Font.Color := clBlack;
+          memo_erro.Lines.Clear;
+          memo_erro.Lines.LoadFromFile(VCGeraisCaminhoArquivoRetorno + '\LogErro-CS' + inttostr(VNumNota) + '.txt');
+          MoveFile(pchar(VCGeraisCaminhoArquivoRetorno + '\LogErro-CS' + inttostr(VNumNota) + '.txt'), pchar(VCGeraisCaminhoArquivoRetorno + '\LogErro-CS' +
+            inttostr(VNumNota) + '.EP' + inttostr(i)));
+        end
+        else if FileExists(VCGeraisCaminhoArquivoRetorno + '\' + IntToStr(vnumnota) + ' Consulta - NF-e- ' + inttostr(vnumnota) + '.TXT') then
+        begin
+          pn_erro.visible := true;
+          pn_erro.bringtofront;
+          memo_erro.Font.Color := clBlack;
+          memo_erro.Lines.Clear;
+          memo_erro.Lines.LoadFromFile(VCGeraisCaminhoArquivoRetorno + '\' + IntToStr(vnumnota) + ' Consulta - NF-e- ' + inttostr(vnumnota) + '.TXT');
+        end; // Apagar no Sefaz
+
+      end; // codemp
+    end; //confirma
+  end;
+  fmManPri.Enabled := True;
+  fmMangr2_nfe.Enabled := True;
+  pnMensag.Visible := False;
+end;
+
+procedure TfmManGr2_NFE.BitBtn1Click(Sender: TObject);
+var
+  Vnumnota, IniFile, CaminhoLeitura, CaminhoRetorno, chaveN: string;
+  ini: Tinifile;
+  TDAnfe: TextFile;
+  NroReg: integer;
+  DscPro, sNumeroNF, NomEmp: string;
+begin
+  inherited;
+
+  if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
+  begin
+    if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+      then
+    begin
+      Abort;
+    end;
+  end;
+
+  IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
+
+  Ini := TIniFile.Create(IniFile);
+  try
+    CaminhoLeitura := Ini.ReadString('Geral', 'PathLeitura', '');
+    CaminhoRetorno := Ini.ReadString('Geral', 'PathRetorno', '');
+  finally
+    Ini.Free;
+  end;
+
+  if FatGerCodEmp.Value > 0 then
+  begin
+    CodEmp := FatGerCodEmp.Value;
+    DteGer := FatGerDteGer.Value;
+    NumGer := FatGerNumGer.Value;
+    with FatGer, SQL do
+    begin
+      Close;
+      Text := sBase +
+        ' and FatGer.CodEmp = ' + QuotedStr(IntToStr(CodEmp)) +
+        ' and FatGer.DteGer = ' + QuotedStr(fDateToSQL(DteGer)) +
+        ' and FatGer.NumGer = ' + QuotedStr(IntToStr(NumGer));
+      Open;
+      vnumnota := FatGERNRONFS.AsString;
+      chaven := FatGERSEQNFE.AsString;
+
+    end;
+    if FatGerCodEmp.Value > 0 then
+    begin
+      if fMsg('Confirma impressão da DANFE ?', 'O') then
+      begin
+        AssignFile(TDANFE, CaminhoLeitura + '\' + 'DANFE' + VNumNota + '.txt');
+        Rewrite(TDANFE);
+        WriteLn(TDANFE, CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + chaveN + '.xml');
+
+        if Trim(fatgerPROTDPEC.AsString) <> '' then
+          WriteLn(TDANFE, Trim(fatgerPROTDPEC.AsString));
+
+        CloseFile(TDANFE);
+
+        if (Trim(GNFeEnvia) = '') or (Trim(GNFeEnvia) = 'EXE') or (Trim(GNFeEnvia) = 'DEFAUT') then
+          Executa(ExtractFilePath(Application.exename) + '\NFeEmerion2.exe DANFE ' + vnumnota, SW_NORMAL)
+        else
+          AbreNfe(PChar('DANFE'), pChar(vnumnota));
+
+        if FatGerImpNFe.Value <> 'Sim' then
+        begin
+
+          if fMsg('DANFE impressa corretamente ?', 'O') then
+          begin
+
+            FatGer.Edit;
+
+            FatGerFlgAtu.AsString := 'F';
+            FatGerImpNFe.AsString := 'Sim';
+
+            with FatGer do
+            begin
+
+              fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+              ;
+
+              try
+
+                ApplyUpdates; {Tenta aplicar as alterações}
+                ;
+
+                fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                ;
+
+              except
+
+                fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                ;
+
+                if FatGer.State <> dsBrowse then
+                  FatGer.CancelUpdates;
+
+                FatGer.Close;
+                FatGer.Open;
+
+                grFatGer.SetFocus;
+
+                raise;
+
+              end;
+
+              CommitUpdates; {sucesso!, limpa o cache...}
+
+            end;
+          end;
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManGr2_NFE.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  Action := CaFree;
+end;
+
+procedure TfmManGr2_NFE.bt_erroClick(Sender: TObject);
+begin
+  inherited;
+  memo_erro.Font.Color := clWhite;
+  pn_erro.visible := False;
+  fmManGR2_NFE.Enabled := True;
+  pnMensag.Visible := False;
+
+end;
+
+procedure TfmManGr2_NFE.Button1Click(Sender: TObject);
+var
+  xAnexo: Integer;
+  newtext: tidtext;
+  p: TidMessageParts;
+begin
+  idmessage1.clear;
+
+  IdSMTP1.host := ehost;
+  idsmtp1.Password := eSenha;
+  idsmtp1.UserID := eUsuario;
+  idsmtp1.Port := ePorta;
+  idmessage1.From.Address := eUsuario;
+  IdMessage1.Recipients.EMailAddresses := ePara;
+  IdMessage1.Priority := mpHigh;
+  IdMessage1.Subject := eAssunto;
+  IdMessage1.ContentType := 'text/html';
+  IdMessage1.Body.text := corpomail.lines.text;
+  IdMessage1.IsEncoded := True;
+  IdMessage1.ReceiptRecipient.Text := IdMessage1.From.Text; // Auto Resposta
+  TIdAttachment.create(idmessage1.MessageParts, TFileName(eAnexo));
+  if fileexists(epdf) then
+    TIdAttachment.create(idmessage1.MessageParts, TFileName(ePDF));
+  IdSMTP1.Connect;
+  try
+    IdSMTP1.Send(IdMessage1);
+    Application.MessageBox('Email enviado com sucesso!', 'Confirmação', MB_ICONINFORMATION + MB_OK);
+  except
+    Showmessage('Não foi possível enviar o e-mail para o cliente.');
+  end;
+  IdSMTP1.Disconnect;
+  corpomail.Lines.text := memo1.lines.text;
+
+end;
+
+procedure TfmManGr2_NFE.BitBtn2Click(Sender: TObject);
+var
+   strAux:string;
+begin
+  inherited;
+  strAux := '\ECCe.exe ' +IfThen(trim(ParamStr(1))<>'',ParamStr(1),'DEFAULT@')+' '+ FatGerSEQNFE.AsString + ' FG ' + IntToStr(GUsu_Id);
+
+  Executa(ExtractFilePath(Application.exename) + strAux, SW_NORMAL);
+
+end;
+
+end.
+

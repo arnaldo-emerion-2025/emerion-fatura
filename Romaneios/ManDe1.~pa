@@ -1,0 +1,1532 @@
+unit ManDe1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Fpadrao, ExtCtrls, StdCtrls, Wwdatsrc, Db, DBTables, Wwquery, dxExEdtr,
+  dxEdLib, dxDBELib, dxEditor, Buttons, dxCntner, AlignEdit, hGrid, Grids,
+  Wwdbigrd, Wwdbgrid, dxDBColorCurrencyEdit, dxDBColorDateEdit,
+  dxDBColorEdit;
+
+type
+  TfmManDe1 = class(TfmPadrao)
+    PaintBox: TPaintBox;
+    FatDep: TwwQuery;
+    FatDe2: TwwQuery;
+    DsDe2: TDataSource;
+    DsDep: TDataSource;
+    quSql: TwwQuery;
+    LbText: TLabel;
+    Label22: TLabel;
+    UpDep: TUpdateSQL;
+    Panel1: TPanel;
+    EdNumRes: TdxDBColorEdit;
+    EdSeqLib: TdxDBColorEdit;
+    EdCodCli: TdxDBColorEdit;
+    EdCodEmp: TdxDBColorEdit;
+    EdCodVen: TdxDBColorEdit;
+    EdApeEmp: TdxDBColorEdit;
+    pnApeEmp: TPanel;
+    EdNomCli: TdxDBColorEdit;
+    pnNomCli: TPanel;
+    pnUfeDep: TPanel;
+    EdUfeRes: TdxDBColorEdit;
+    EdNomVen: TdxDBColorEdit;
+    EdDteDep: TdxDBColorDateEdit;
+    pnCodCli: TPanel;
+    pnCodVen: TPanel;
+    Label13: TLabel;
+    Label4: TLabel;
+    Label1: TLabel;
+    Label8: TLabel;
+    Label29: TLabel;
+    Label2: TLabel;
+    Label54: TLabel;
+    Label17: TLabel;
+    Label14: TLabel;
+    Label26: TLabel;
+    Label6: TLabel;
+    Label12: TLabel;
+    Label23: TLabel;
+    dxDBGraphicEdit1: TdxDBGraphicEdit;
+    grPe21: TdxDBGraphicEdit;
+    grDe2: ThGrid;
+    PaintBox1: TPaintBox;
+    UpDe2: TUpdateSQL;
+    Label10: TLabel;
+    Label11: TLabel;
+    EdDteRes: TdxDBColorDateEdit;
+    bpsqEmp: TSpeedButton;
+    bPsqLib: TSpeedButton;
+    pnNomVen: TPanel;
+    FatDepCODEMP: TIntegerField;
+    FatDepDTERES: TDateTimeField;
+    FatDepNUMRES: TIntegerField;
+    FatDepSEQLIB: TIntegerField;
+    FatDepSEQDEP: TIntegerField;
+    FatDepDTEDEP: TDateTimeField;
+    FatDepHREDEP: TStringField;
+    FatDepQTIDEP: TIntegerField;
+    FatDepSEQITE: TIntegerField;
+    FatDepQTSDEP: TIntegerField;
+    FatDepTOTDEP: TFloatField;
+    FatDepTOTGER: TFloatField;
+    FatDepBASCOM: TFloatField;
+    FatDepTOTCOM: TFloatField;
+    FatDepCODUSU: TIntegerField;
+    FatDepFLGDEP: TStringField;
+    FatDepOBSDEP: TStringField;
+    FatDepSEQREG: TStringField;
+    FatDepSITDEP: TStringField;
+    FatDepCODCLI: TIntegerField;
+    FatDepNOMCLI: TStringField;
+    FatDepCODVEN: TIntegerField;
+    FatDepAPEVEN: TStringField;
+    FatDepNOMVEN: TStringField;
+    FatDepLOGUSU: TStringField;
+    FatDe2CODEMP: TIntegerField;
+    FatDe2DTERES: TDateTimeField;
+    FatDe2NUMRES: TIntegerField;
+    FatDe2SEQLIB: TIntegerField;
+    FatDe2SEQDEP: TIntegerField;
+    FatDe2SEQDE2: TIntegerField;
+    FatDe2SEQRE2: TIntegerField;
+    FatDe2CODEIT: TIntegerField;
+    FatDe2CODCLP: TStringField;
+    FatDe2CODGRU: TStringField;
+    FatDe2CODSUB: TStringField;
+    FatDe2CODPRO: TStringField;
+    FatDe2CODTAM: TStringField;
+    FatDe2CODCOR: TStringField;
+    FatDe2DESDE2: TStringField;
+    FatDe2VLQDE2: TFloatField;
+    FatDe2QTLDE2: TFloatField;
+    FatDe2ULTQTS: TFloatField;
+    FatDe2QTDDE2: TFloatField;
+    FatDe2QTDRMA: TFloatField;
+    FatDe2SLDDE2: TFloatField;
+    FatDe2TOTDE2: TFloatField;
+    FatDe2TOTGE2: TFloatField;
+    FatDe2BASCOM: TFloatField;
+    FatDe2TOTCOM: TFloatField;
+    FatDe2NRORE2: TIntegerField;
+    FatDe2FLASEQ: TStringField;
+    Panel2: TPanel;
+    EdCodIte: TdxDBColorEdit;
+    EdDesLb2: TdxDBColorEdit;
+    EdQtlDe2: TdxDBColorCurrencyEdit;
+    EdQtdDe2: TdxDBColorCurrencyEdit;
+    EdUltQts: TdxDBColorCurrencyEdit;
+    EdSldDe2: TdxDBColorCurrencyEdit;
+    EdQtdRma: TdxDBColorCurrencyEdit;
+    Panel3: TPanel;
+    FatDe2CODITE: TStringField;
+    FatDepUFERES: TStringField;
+    Label44: TLabel;
+    EdTotDep: TdxDBColorCurrencyEdit;
+    pnTotDep: TPanel;
+    EdQtsDep: TdxDBColorCurrencyEdit;
+    pnQtsDep: TPanel;
+    Label32: TLabel;
+    Label3: TLabel;
+    Label15: TLabel;
+    Label7: TLabel;
+    Label18: TLabel;
+    Label21: TLabel;
+    Label19: TLabel;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdNumResExit(Sender: TObject);
+    procedure EdNumResKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdNumResMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure Panel1Exit(Sender: TObject);
+    procedure PaintBox1Paint(Sender: TObject);
+    procedure PaintBoxPaint(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure grDv2KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure grDv2MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure FatDepNewRecord(DataSet: TDataSet);
+    procedure Panel2Exit(Sender: TObject);
+    procedure grDe2KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdCodEmpExit(Sender: TObject);
+    procedure EdCodEmpKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdCodEmpKeyPress(Sender: TObject; var Key: Char);
+    procedure EdCodEmpKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdCodEmpMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure bPsqLibClick(Sender: TObject);
+    procedure bpsqEmpClick(Sender: TObject);
+    procedure EdSeqLibExit(Sender: TObject);
+    procedure EdSeqLibKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DsDe2DataChange(Sender: TObject; Field: TField);
+    procedure EdDteResExit(Sender: TObject);
+  private
+  public
+    DteRes: TDateTime;
+    sEntr, sEnc, Finalizar: string;
+    CodEmp, NumRes, SeqLib, SeqDep: integer;
+  end;
+
+var
+  fmManDe1: TfmManDe1;
+
+implementation
+
+uses dxDemoUtils, Bbgeral, Bbfuncao, Bbmensag, ManGDB, PsqEst, ManDep, PsqPfa,
+  AuxPsq, AuxIni, PsqGru, PsqSub, ManDe2, PsqEmp, PsqLib;
+
+{$R *.DFM}
+
+procedure TfmManDe1.FormActivate(Sender: TObject);
+begin
+  inherited;
+  if sEnc = 'S' then
+  begin
+
+    if FatDepSitDep.Value = 'Concluido' then fMsg('Operação não Pode ser Realizada. Devolução já Concluida.', 'E');
+
+    Finalizar := 'S';
+
+    Close;
+
+  end;
+end;
+
+procedure TfmManDe1.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  if Finalizar = 'N' then
+  begin
+
+    if fMsg('Deseja Realmente Abandonar a Operação ?', 'O') then
+    begin
+
+      CodEmp := fmManDep.FatDepCodEmp.Value;
+      DteRes := fmManDep.FatDepDteRes.Value;
+      NumRes := fmManDep.FatDepNumRes.Value;
+      SeqLib := fmManDep.FatDepSeqLib.Value;
+      SeqDep := fmManDep.FatDepSeqDep.Value;
+
+      fmManDep.FatDep.Close;
+      fmManDep.FatDep.Open;
+
+      fmManDep.FatDe2.Close;
+      fmManDep.FatDe2.Open;
+
+      if CodEmp > 0 then fmManDep.FatDep.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqDep', VarArrayOf([CodEmp, DteRes, NumRes, SeqLib, SeqDep]), [loPartialKey]);
+
+      Action := CaFree;
+
+    end
+    else
+      Abort;
+
+  end
+  else
+  begin
+
+    CodEmp := fmManDep.FatDepCodEmp.Value;
+    DteRes := fmManDep.FatDepDteRes.Value;
+    NumRes := fmManDep.FatDepNumRes.Value;
+    SeqLib := fmManDep.FatDepSeqLib.Value;
+    SeqDep := fmManDep.FatDepSeqDep.Value;
+
+    fmManDep.FatDep.Close;
+    fmManDep.FatDep.Open;
+
+    fmManDep.FatDe2.Close;
+    fmManDep.FatDe2.Open;
+
+    if CodEmp > 0 then fmManDep.FatDep.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqDep', VarArrayOf([CodEmp, DteRes, NumRes, SeqLib, SeqDep]), [loPartialKey]);
+
+    Action := CaFree;
+
+  end;
+end;
+
+procedure TfmManDe1.FormCreate(Sender: TObject);
+begin
+  inherited;
+
+  sEnc := 'N';
+
+  sEntr := 'N';
+
+  Finalizar := 'N';
+
+end;
+
+procedure TfmManDe1.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  fmManDe1 := nil;
+end;
+
+procedure TfmManDe1.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+var
+  DteRes: TDateTime;
+  CodEmp, NumRes, SeqLib, SeqDep, SeqDe2: integer;
+begin
+  inherited;
+  if key = 115 then
+  begin {F4 - Estoque}
+
+    try
+
+      fmPsqEst := TfmPsqEst.Create(Self);
+
+      fmPsqEst.sEntr := sEntr;
+
+      fmPsqEst.sCodClp := '1';
+
+      if (Trim(FatDe2CodGru.Value) <> '') or
+        (Trim(FatDe2CodSub.Value) <> '') or
+        (Trim(FatDe2CodPro.Value) <> '') then
+      begin
+
+        with fmPsqEst.EstPro, SQL do
+        begin
+
+          Close;
+          Text := ' Select EstPro.CodClp,' +
+            '        EstPro.CodGru,' +
+            '        EstPro.CodSub,' +
+            '        EstPro.CodPro,' +
+            '        EstPro.DscPro,' +
+            '        EstPro.RefPro,' +
+            '        EstPro.LocPro,' +
+            '        EstPro.CodUne,' +
+            '        EstPro.CodUns,' +
+            '        EstPro.QtePro,' +
+            '        EstPro.QtsPro,' +
+            '        EstPro.SaiIpi,' +
+            '        EstPro.ClfSai,' +
+            '        EstPro.SaiIcm,' +
+            '        EstPro.SimPro,' +
+            '        EstPro.CodSt1,' +
+            '        EstPro.CodSt2,' +
+            '        EstPro.QtdEmb,' +
+            '        EstPro.ImgPro,' +
+            '        EstPro.FlgPro,' +
+            '        EstPro.CbaPro,' +
+            '        EstPro.WebPro,' +
+            '        EstPro.CodCat,' +
+            '        EstPro.CodTip,' +
+            '        EstPro.CodMrc,' +
+            '        EstPro.NumPro,' +
+            '        EstPro.CodAnt' +
+            ' From EstPro' +
+            ' Where EstPro.CodClp = ''' + '1' + '''' +
+            '   and EstPro.FlbPro = ''' + ' ' + '''';
+
+          if Trim(FatDe2CodGru.Value) <> '' then Text := Text + ' and EstPro.CodGru = ''' + FatDe2CodGru.Value + '''';
+          if Trim(FatDe2CodSub.Value) <> '' then Text := Text + ' and EstPro.CodSub = ''' + FatDe2CodSub.Value + '''';
+          if Trim(FatDe2CodPro.Value) <> '' then Text := Text + ' and EstPro.CodPro = ''' + FatDe2CodPro.Value + '''';
+
+          Text := Text + ' Order by EstPro.DscPro';
+
+          Open;
+
+        end;
+      end;
+
+      fmPsqEst.ShowModal;
+
+    finally
+
+      FreeAndNil(fmPsqEst);
+
+    end;
+  end;
+
+  if key = 32 then
+  begin {Barra de Espaço}
+
+    CodEmp := FatDe2CodEmp.Value;
+    DteRes := FatDe2DteRes.Value;
+    NumRes := FatDe2NumRes.Value;
+    SeqLib := FatDe2SeqLib.Value;
+    SeqDep := FatDe2SeqDep.Value;
+    SeqDe2 := FatDe2SeqDe2.Value;
+
+    FatDe2.Edit;
+
+    if FatDe2SldDe2.Value > 0 then
+    begin
+
+      if FatDe2UltQts.Value > 0 then
+        FatDe2UltQts.Value := fRound(FatDe2UltQts.Value + FatDe2SldDe2.Value, 4)
+      else
+        FatDe2UltQts.Value := FatDe2SldDe2.Value;
+
+    end
+    else
+      FatDe2UltQts.Value := 0;
+
+    with FatDe2 do
+    begin
+
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+      try
+
+        ApplyUpdates; {Tenta aplicar as alterações};
+
+        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+      except
+
+        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+        if FatDe2.State <> dsBrowse then FatDe2.CancelUpdates;
+
+        grDe2.SetFocus;
+
+        raise;
+
+      end;
+
+      CommitUpdates; {sucesso!, limpa o cache...}
+
+    end;
+
+    FatDe2.Close;
+    FatDe2.Open;
+
+    FatDep.Close;
+    FatDep.Open;
+
+    FatDe2.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqDep;SeqDe2', VarArrayOf([CodEmp, DteRes, NumRes, SeqLib, SeqDep, SeqDe2]), [LoPartialKey]);
+
+  end;
+
+  if key = 117 then
+  begin {F6 - Separar Tudo/Nao Separar}
+
+    CodEmp := FatDe2CodEmp.Value;
+    DteRes := FatDe2DteRes.Value;
+    NumRes := FatDe2NumRes.Value;
+    SeqLib := FatDe2SeqLib.Value;
+    SeqDep := FatDe2SeqDep.Value;
+    SeqDe2 := FatDe2SeqDe2.Value;
+
+    if EdUltQts.Enabled then
+    begin
+
+      FatDe2.CancelUpdates;
+
+      EdUltQts.Enabled := False;
+      EdQtdRma.Enabled := False;
+
+    end;
+
+    FatDep.Edit;
+
+    if FatDepFlgDep.Value = '*' then
+      FatDepFlgDep.Value := ' '
+    else
+      FatDepFlgDep.Value := '*';
+
+    with FatDep do
+    begin
+
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+      try
+
+        ApplyUpdates; {Tenta aplicar as alterações};
+
+        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+      except
+
+        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+        if FatDep.State <> dsBrowse then FatDep.CancelUpdates;
+
+        grDe2.SetFocus;
+
+        raise;
+
+      end;
+
+      CommitUpdates; {sucesso!, limpa o cache...}
+
+    end;
+
+    FatDep.Close;
+    FatDep.Open;
+
+    FatDe2.Close;
+    FatDe2.Open;
+
+    FatDe2.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqDep;SeqDe2', VarArrayOf([CodEmp, DteRes, NumRes, SeqLib, SeqDep, SeqDe2]), [LoPartialKey]);
+
+    grDe2.SetFocus;
+
+  end;
+
+  if key = 27 then
+  begin
+
+    if FatDe2.State <> dsBrowse then FatDe2.CancelUpdates;
+
+    if EdUltQts.Enabled then
+    begin
+
+      EdUltQts.Enabled := False;
+      EdQtdRma.Enabled := False;
+
+      grDe2.SetFocus;
+
+    end
+    else
+      Close;
+  end;
+
+  if key = 123 then
+  begin {F12-Finalizar Pedido}
+
+    if FatDepQtiDep.Value > 0 then
+    begin
+
+      if FatDepTotGer.Value > 0 then
+      begin
+
+        if grDe2.Focused then
+        begin
+
+          try
+
+            fmManDe2 := TfmManDe2.Create(Self);
+
+            fmManDe2.ShowModal;
+
+          finally
+
+            FreeAndNil(fmManDe2);
+
+          end;
+
+          if Finalizar = 'S' then close;
+
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManDe1.EdNumResExit(Sender: TObject);
+var
+  saida: boolean;
+begin
+  inherited;
+  if (Tecla <> 'ESC') and (Tecla <> 'UP') then
+  begin
+
+    if not EdCodEmp.Focused then
+      saida := True
+    else
+      saida := False;
+
+    if saida then
+    begin
+
+      if FatDep.State <> dsBrowse then
+      begin
+
+        if FatDepNumRes.Value > 0 then
+        begin
+
+          with quSQL, SQL do
+          begin
+
+            Close;
+            Text := ' Select PedRes.DteRes,' +
+              '        PedRes.UfeRes,' +
+              '        PedRes.CodCli,' +
+              '        PedRes.CodVen' +
+              ' From PedRes' +
+              ' Where CodEmp = :CodEmp' +
+              '   and NumRes = :NumRes';
+
+            with Params do
+            begin
+
+              Params[0].AsInteger := FatDepCodEmp.Value;
+              Params[1].AsInteger := FatDepNumRes.Value;
+
+            end;
+
+            Open;
+
+          end;
+
+          if quSQL.FieldbyName('CodCli').AsInteger > 0 then
+          begin
+
+            FatDepDteRes.Value := quSql.FieldbyName('DteRes').AsDateTime;
+
+            EdDteRes.Date := FatDepDteRes.Value;
+
+          end
+          else
+          begin
+
+            EdDteRes.Clear;
+
+            fmsgErro('Pedido Informado não Encontrado.', EdNumRes);
+
+          end;
+
+        end
+        else
+        begin
+
+          EdDteRes.Clear;
+
+          fmsgErro('Campo de Preenchimento Obrigátorio não Informado.', EdNumRes);
+
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManDe1.EdNumResKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+
+  sEntr := 'N';
+
+  LbText.Caption := 'F4-Estoque';
+
+end;
+
+procedure TfmManDe1.EdNumResMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  inherited;
+
+  sEntr := 'N';
+
+  LbText.Caption := 'F4-Estoque';
+
+end;
+
+procedure TfmManDe1.Panel1Exit(Sender: TObject);
+var
+  SeqReg: string;
+begin
+  inherited;
+  if FatDep.State <> dsBrowse then
+  begin
+
+    if FatDepDteDep.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio não Informado', EdDteDep);
+
+    if FatDep.State = dsInsert then
+    begin
+
+      if FatDepCodEmp.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdCodEmp);
+      if FatDepDteRes.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdDteRes);
+      if FatDepNumRes.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdNumRes);
+      if FatDepSeqLib.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdSeqLib);
+
+      Randomize;
+      SeqReg := copy(FormatDateTime('dd/mm/yyyy', Date), 1, 2) +
+        copy(FormatDateTime('dd/mm/yyyy', Date), 4, 2) +
+        copy(FormatDateTime('dd/mm/yyyy', Date), 7, 4) +
+        copy(TimeToStr(Time), 1, 2) +
+        copy(TimeToStr(Time), 4, 2) +
+        copy(TimeToStr(Time), 7, 2) +
+        FNumZeros(Trim(IntToStr(GUsu_Id)), 3) +
+        FNumZeros(Trim(IntToStr(Random(50000))), 5);
+
+      FatDepSeqReg.Value := SeqReg;
+
+    end
+    else
+      SeqReg := FatDepSeqReg.Value;
+
+    with FatDep do
+    begin
+
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+      try
+
+        ApplyUpdates; {Tenta aplicar as alterações};
+
+        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+      except
+
+        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+        FatDep.Edit;
+
+        if EdCodEmp.Enabled then
+          EdCodEmp.SetFocus
+        else
+          EdDteDep.SetFocus;
+
+        raise;
+
+      end;
+
+      CommitUpdates; {sucesso!, limpa o cache...}
+
+    end;
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select CodEmp,DteRes,NumRes,SeqLib,SeqDep From FatDep' +
+        ' Where SeqReg = :SeqReg';
+
+      with Params do
+      begin
+
+        Params[0].AsString := SeqReg;
+
+      end;
+
+      Open;
+
+    end;
+
+    FatDep.Close;
+    FatDep.Params[0].AsInteger := quSQL.FieldbyName('CodEmp').AsInteger;
+    FatDep.Params[1].AsDateTime := quSQL.FieldbyName('DteRes').AsDateTime;
+    FatDep.Params[2].AsInteger := quSQL.FieldbyName('NumRes').AsInteger;
+    FatDep.Params[3].AsInteger := quSQL.FieldbyName('SeqLib').AsInteger;
+    FatDep.Params[4].AsInteger := quSQL.FieldbyName('SeqDep').AsInteger;
+    FatDep.Open;
+
+    FatDe2.Close;
+    FatDe2.Params[0].AsInteger := FatDepCodEmp.Value;
+    FatDe2.Params[1].AsDateTime := FatDepDteRes.Value;
+    FatDe2.Params[2].AsInteger := FatDepNumRes.Value;
+    FatDe2.Params[3].AsInteger := FatDepSeqLib.Value;
+    FatDe2.Params[4].AsInteger := FatDepSeqDep.Value;
+    FatDe2.Open;
+
+    EdCodEmp.Enabled := False;
+    EdDteRes.Enabled := False;
+    EdNumRes.Enabled := False;
+    EdSeqLib.Enabled := False;
+    EdDteDep.Enabled := False;
+
+    EdCodEmp.Font.Style := [fsBold];
+    EdDteRes.Font.Style := [fsBold];
+    EdNumRes.Font.Style := [fsBold];
+    EdSeqLib.Font.Style := [fsBold];
+    EdDteDep.Font.Style := [fsBold];
+
+    if FatDepQtiDep.Value = 0 then
+      FatDe2.Append
+    else
+      grDe2.SetFocus;
+
+  end;
+end;
+
+procedure TfmManDe1.PaintBoxPaint(Sender: TObject);
+begin
+  inherited;
+  with Sender as TPaintBox do FillGrayGradientRect(PaintBox.Canvas, PaintBox.ClientRect, PaintBox.Color);
+end;
+
+procedure TfmManDe1.PaintBox1Paint(Sender: TObject);
+begin
+  inherited;
+  with Sender as TPaintBox do FillGrayGradientRect(PaintBox1.Canvas, PaintBox1.ClientRect, PaintBox1.Color);
+end;
+
+procedure TfmManDe1.FormShow(Sender: TObject);
+begin
+  inherited;
+
+  if fmManDep.CodEmp > 0 then
+  begin
+
+    sEntr := 'S';
+
+    FatDep.Close;
+    FatDep.Params[0].AsInteger := fmManDep.CodEmp;
+    FatDep.Params[1].AsDateTime := fmManDep.DteRes;
+    FatDep.Params[2].AsInteger := fmManDep.NumRes;
+    FatDep.Params[3].AsInteger := fmManDep.SeqLib;
+    FatDep.Params[4].AsInteger := fmManDep.SeqDep;
+    FatDep.Open;
+
+    pnUfeDep.Caption := FatDepUfeRes.Value;
+
+    pnCodCli.Caption := IntToStr(FatDepCodCli.Value);
+    pnCodVen.Caption := IntToStr(FatDepCodVen.Value);
+
+    FatDe2.Close;
+    FatDe2.Params[0].AsInteger := FatDepCodEmp.Value;
+    FatDe2.Params[1].AsDateTime := FatDepDteRes.Value;
+    FatDe2.Params[2].AsInteger := FatDepNumRes.Value;
+    FatDe2.Params[3].AsInteger := FatDepSeqLib.Value;
+    FatDe2.Params[4].AsInteger := FatDepSeqDep.Value;
+    FatDe2.Open;
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select ApeEmp From GerEmp Where GerEmp.CodEmp = :CodEmp';
+
+      with Params do
+      begin
+
+        Params[0].AsInteger := FatDepCodEmp.Value;
+
+      end;
+
+      Open;
+
+      pnApeEmp.Caption := FieldbyName('ApeEmp').AsString;
+
+    end;
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select NomVen From FinVen' +
+        ' Where CodVen = :CodVen';
+
+      with Params do
+      begin
+
+        Params[0].AsInteger := FatDepCodVen.Value;
+
+      end;
+
+      Open;
+
+      pnNomVen.Caption := FieldbyName('NomVen').AsString;
+
+    end;
+
+    with quSQL, SQL do
+    begin
+
+      Close;
+      Text := ' Select NomCli From FinCli' +
+        ' Where CodCli = :CodCli';
+
+      with Params do
+      begin
+
+        Params[0].AsInteger := FatDepCodCli.Value;
+
+      end;
+
+      Open;
+
+      pnNomCli.Caption := FieldbyName('NomCli').AsString;
+
+    end;
+
+    if FatDepSitDep.Value <> 'Nao Concluido' then
+      sEnc := 'S'
+    else
+    begin
+
+      FatDep.Edit;
+
+      EdDteDep.Enabled := True;
+
+      EdDteDep.Font.Style := [];
+
+      EdDteDep.Date := FatDepDteDep.Value;
+
+      EdDteDep.SetFocus;
+
+    end;
+
+  end
+  else
+  begin
+
+    sEntr := 'N';
+
+    LbText.Caption := '';
+
+    FatDep.Insert;
+
+    EdCodEmp.SetFocus;
+
+  end;
+end;
+
+procedure TfmManDe1.grDv2KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+
+  sEntr := 'N';
+
+  LbText.Caption := 'F4-Estoque'
+
+end;
+
+procedure TfmManDe1.grDv2MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  inherited;
+
+  sEntr := 'N';
+
+  LbText.Caption := 'F4-Estoque'
+
+end;
+
+procedure TfmManDe1.FatDepNewRecord(DataSet: TDataSet);
+begin
+  inherited;
+
+  FatDep.DisableControls;
+
+  FatDepNumRes.Value := 0;
+  FatDepSeqIte.Value := 0;
+  FatDepQtiDep.Value := 0;
+  FatDepSeqLib.Value := 1;
+  FatDepFlgDep.Value := ' ';
+  FatDepDteRes.Value := Date;
+  FatDepDteDep.Value := Date;
+  FatDepCodEmp.Value := GEmp_Id;
+  FatDepCodUsu.Value := GUsu_Id;
+  FatDepSitDep.Value := 'Nao Concluido';
+  FatDepHreDep.Value := TimeToStr(Time);
+
+  EdNumRes.Text := '0';
+  EdSeqLib.Text := '1';
+
+  if GEmp_Id > 0 then EdCodEmp.Text := IntToStr(GEmp_Id);
+
+  EdDteRes.Date := Date;
+  EdDteDep.Date := Date;
+
+  FatDe2.Close;
+  FatDe2.Params[0].AsInteger := FatDepCodEmp.Value;
+  FatDe2.Params[1].AsDateTime := FatDepDteRes.Value;
+  FatDe2.Params[2].AsInteger := FatDepNumRes.Value;
+  FatDe2.Params[3].AsInteger := FatDepSeqLib.Value;
+  FatDe2.Params[4].AsInteger := FatDepSeqDep.Value;
+  FatDe2.Open;
+
+  EdCodEmp.Enabled := True;
+  EdDteRes.Enabled := True;
+  EdNumRes.Enabled := True;
+  EdSeqLib.Enabled := True;
+  EdDteDep.Enabled := True;
+
+  EdCodEmp.Font.Style := [];
+  EdDteRes.Font.Style := [];
+  EdNumRes.Font.Style := [];
+  EdSeqLib.Font.Style := [];
+  EdDteDep.Font.Style := [];
+
+  pnCodCli.Caption := '';
+  pnCodVen.Caption := '';
+  pnNomCli.Caption := '';
+  pnUfeDep.Caption := '';
+  pnApeEmp.Caption := '';
+  pnNomCli.Caption := '';
+  pnNomVen.Caption := '';
+
+  if FatDepCodEmp.Value > 0 then
+    EdDteRes.SetFocus
+  else
+    EdCodEmp.SetFocus;
+
+end;
+
+procedure TfmManDe1.Panel2Exit(Sender: TObject);
+var
+  SeqDe2: integer;
+begin
+  inherited;
+  if FatDe2.State <> dsBrowse then
+  begin
+
+    if FatDe2UltQts.Value <= fRound(FatDe2SldDe2.Value + FatDe2QtdDe2.Value, 4) then
+    begin
+
+      SeqDe2 := FatDe2SeqDe2.Value;
+
+      with FatDe2 do
+      begin
+
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+
+        try
+
+          ApplyUpdates; {Tenta aplicar as alterações};
+
+          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+
+        except
+
+          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+
+          if FatDe2.State = dsBrowse then FatDe2.Edit;
+
+          EdUltQts.SetFocus;
+
+          raise;
+
+        end;
+
+        CommitUpdates; {sucesso!, limpa o cache...}
+
+      end;
+
+      FatDe2.Close;
+      FatDe2.Open;
+
+      FatDe2.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqDep;SeqDe2', VarArrayOf([FatDe2CodEmp.Value, FatDe2DteRes.Value, FatDe2NumRes.Value, FatDe2SeqLib.Value, FatDe2SeqDep.Value, SeqDe2]), [LoPartialKey]);
+
+      FatDep.Close;
+      FatDep.Open;
+
+      FatDe2.Next;
+
+      EdUltQts.Enabled := False;
+      EdQtdRma.Enabled := False;
+
+      grDe2.SetFocus;
+
+    end
+    else
+      fmsgErro('Quantidade Informada Maior que o Saldo a Depolver.', EdUltQts);
+
+  end
+  else
+  begin
+
+    EdUltQts.Enabled := False;
+    EdQtdRma.Enabled := False;
+
+    grDe2.SetFocus;
+
+  end;
+end;
+
+procedure TfmManDe1.grDe2KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if key = 13 then
+  begin {Tecla - ENTER}
+
+    EdUltQts.Enabled := True;
+    EdQtdRma.Enabled := True;
+
+    EdUltQts.SetFocus;
+
+  end;
+end;
+
+procedure TfmManDe1.EdCodEmpExit(Sender: TObject);
+begin
+  inherited;
+  if (Tecla <> 'ESC') and (Tecla <> 'UP') then
+  begin
+
+    if FatDep.State <> dsBrowse then
+    begin
+
+      if FatDepCodEmp.Value > 0 then
+      begin
+
+        if GFlgAce <> 'Sim' then
+        begin
+
+          with quSQL, SQL do
+          begin
+
+            Close;
+            Text := ' Select FLGDEL,SEQIMP from GerPar';
+            Open;
+
+            if Trim(FieldbyName('FLGDEL').AsString) = '*' then
+            begin
+
+              GFlgAce := 'Sim';
+
+              if FieldbyName('SEQIMP').AsInteger > 0 then GEmpLog := FieldbyName('SEQIMP').AsInteger;
+
+            end
+            else
+            begin
+
+              GEmpLog := 0;
+              GFlgAce := 'Nao';
+
+            end;
+          end;
+        end;
+
+        with quSql, SQL do
+        begin
+
+          Close;
+          Text := ' Select GerEmp.ApeEmp From GerEmp Where GerEmp.CodEmp = :CodEmp';
+
+          with Params do
+          begin
+
+            Params[0].AsInteger := FatDepCodEmp.Value;
+
+          end;
+
+          Open;
+
+        end;
+
+        if Trim(quSql.FieldbyName('ApeEmp').AsString) <> '' then
+          pnApeEmp.Caption := quSql.FieldbyName('ApeEmp').AsString
+        else
+        begin
+
+          pnApeEmp.Caption := '';
+
+          fmsgErro('Empresa Informada não Encontrada.', EdCodEmp);
+
+        end;
+
+      end
+      else
+      begin
+
+        pnApeEmp.Caption := '';
+
+        fmsgErro('Campo de Preenchimento Obrigátorio não Informado.', EdCodEmp);
+
+      end;
+    end;
+
+  end
+  else
+  begin
+
+    if Tecla = 'UP' then EdCodEmp.SetFocus
+
+  end;
+end;
+
+procedure TfmManDe1.EdCodEmpKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmPsqEmp := TfmPsqEmp.Create(Self);
+      fmPsqEmp.ShowModal;
+
+      if fmPsqEmp.CodEmp > 0 then
+      begin
+
+        FatDepCodEmp.Value := fmPsqEmp.CodEmp;
+
+        EdCodEmp.Text := IntToStr(FatDepCodEmp.Value);
+
+        pnApeEmp.Caption := fmPsqEmp.ApeEmp;
+
+      end;
+
+    finally
+
+      FreeAndNil(fmPsqEmp);
+
+    end;
+
+    if FatDepCodEmp.Value > 0 then EdDteRes.SetFocus;
+
+  end;
+end;
+
+procedure TfmManDe1.EdCodEmpKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if not (key in ['0'..'9']) then key := #0;
+end;
+
+procedure TfmManDe1.EdCodEmpKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+
+  sEntr := 'N';
+
+  LbText.Caption := 'F1-Iniciais F4-Estoque';
+
+end;
+
+procedure TfmManDe1.EdCodEmpMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  inherited;
+
+  sEntr := 'N';
+
+  LbText.Caption := 'F1-Iniciais F4-Estoque';
+
+end;
+
+procedure TfmManDe1.bPsqLibClick(Sender: TObject);
+begin
+  inherited;
+
+  try
+
+    fmPsqLib := TfmPsqLib.Create(Self);
+
+    fmPsqLib.PedLib.Close;
+    fmPsqLib.PedLib.Params[0].AsInteger := FatDepCodEmp.Value;
+    fmPsqLib.PedLib.Params[1].AsDateTime := FatDepDteRes.Value;
+    fmPsqLib.PedLib.Params[2].AsInteger := FatDepNumRes.Value;
+    fmPsqLib.PedLib.Open;
+
+    fmPsqLib.ShowModal;
+
+    if fmPsqLib.SeqLib > 0 then FatDepSeqLib.Value := fmPsqLib.SeqLib;
+
+  finally
+
+    FreeAndNil(fmPsqLib);
+
+  end;
+
+  EdSeqLib.SetFocus;
+
+end;
+
+procedure TfmManDe1.bpsqEmpClick(Sender: TObject);
+begin
+  inherited;
+
+  try
+
+    fmPsqEmp := TfmPsqEmp.Create(Self);
+    fmPsqEmp.ShowModal;
+
+    if fmPsqEmp.CodEmp > 0 then
+    begin
+
+      FatDepCodEmp.Value := fmPsqEmp.CodEmp;
+
+      EdCodEmp.Text := IntToStr(FatDepCodEmp.Value);
+
+      pnApeEmp.Caption := fmPsqEmp.ApeEmp;
+
+    end;
+
+  finally
+
+    FreeAndNil(fmPsqEmp);
+
+  end;
+
+  EdCodEmp.SetFocus;
+
+end;
+
+procedure TfmManDe1.EdSeqLibExit(Sender: TObject);
+var
+  saida: boolean;
+begin
+  inherited;
+  if (Tecla <> 'ESC') and (Tecla <> 'UP') then
+  begin
+
+    if (not EdNumRes.Focused) and (not EdDteRes.Focused) and (not EdCodEmp.Focused) then
+      saida := True
+    else
+      saida := False;
+
+    if saida then
+    begin
+
+      if FatDep.State <> dsBrowse then
+      begin
+
+        if FatDepSeqLib.Value > 0 then
+        begin
+
+          with quSQL, SQL do
+          begin
+
+            Close;
+            Text := ' Select Count(*) as Reg From PedLib' +
+              ' Where CodEmp = :CodEmp' +
+              '   and DteRes = :DteRes' +
+              '   and NumRes = :NumRes' +
+              '   and SeqLib = :SeqLib';
+
+            with Params do
+            begin
+
+              Params[0].AsInteger := FatDepCodEmp.Value;
+              Params[1].AsDateTime := FatDepDteRes.Value;
+              Params[2].AsInteger := FatDepNumRes.Value;
+              Params[3].AsInteger := FatDepSeqLib.Value;
+
+            end;
+
+            Open;
+
+          end;
+
+          if quSQL.FieldbyName('Reg').AsInteger = 0 then fmsgErro('Liberação não Encontrada para o Pedido.', EdSeqLib);
+
+        end
+        else
+          fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdSeqLib);
+      end;
+    end;
+  end;
+end;
+
+procedure TfmManDe1.EdSeqLibKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if key = 112 then
+  begin {F1 - Iniciais}
+
+    try
+
+      fmPsqLib := TfmPsqLib.Create(Self);
+
+      fmPsqLib.PedLib.Close;
+      fmPsqLib.PedLib.Params[0].AsInteger := FatDepCodEmp.Value;
+      fmPsqLib.PedLib.Params[1].AsDateTime := FatDepDteRes.Value;
+      fmPsqLib.PedLib.Params[2].AsInteger := FatDepNumRes.Value;
+      fmPsqLib.PedLib.Open;
+
+      fmPsqLib.ShowModal;
+
+      if fmPsqLib.SeqLib > 0 then FatDepSeqLib.Value := fmPsqLib.SeqLib;
+
+    finally
+
+      FreeAndNil(fmPsqLib);
+
+    end;
+
+    EdSeqLib.SetFocus;
+
+  end;
+end;
+
+procedure TfmManDe1.DsDe2DataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+
+  if FatDepQtsDep.Value > 0 then
+    pnQtsDep.Caption := IntToStr(FatDepQtsDep.Value)
+  else
+    pnQtsDep.Caption := '0';
+
+  pnTotDep.Caption := FormatFloat('###,###,##0.00', FatDepTotDep.Value);
+
+end;
+
+procedure TfmManDe1.EdDteResExit(Sender: TObject);
+var
+  saida: boolean;
+begin
+  inherited;
+  if (Tecla <> 'ESC') and (Tecla <> 'UP') then
+  begin
+
+    if (not EdCodEmp.Focused) and (not EdNumRes.Focused) then
+      saida := True
+    else
+      saida := False;
+
+    if saida then
+    begin
+
+      if FatDep.State <> dsBrowse then
+      begin
+
+        if FatDepNumRes.Value > 0 then
+        begin
+
+          with quSQL, SQL do
+          begin
+
+            Close;
+            Text := ' Select PedRes.UfeRes,' +
+              '        PedRes.CodCli,' +
+              '        PedRes.CodVen' +
+              ' From PedRes' +
+              ' Where PedRes.CodEmp = :CodEmp' +
+              '   and PedRes.DteRes = :DteRes' +
+              '   and PedRes.NumRes = :NumRes';
+
+            with Params do
+            begin
+
+              Params[0].AsInteger := FatDepCodEmp.Value;
+              Params[1].AsDateTime := FatDepDteRes.Value;
+              Params[2].AsInteger := FatDepNumRes.Value;
+
+            end;
+
+            Open;
+
+          end;
+
+          if quSQL.FieldbyName('CodCli').AsInteger > 0 then
+          begin
+
+            FatDepCodCli.Value := quSql.FieldbyName('CodCli').AsInteger;
+            FatDepCodVen.Value := quSql.FieldbyName('CodVen').AsInteger;
+
+            pnUfeDep.Caption := quSql.FieldbyName('UfeRes').AsString;
+
+            pnCodCli.Caption := IntToStr(FatDepCodCli.Value);
+            pnCodVen.Caption := IntToStr(FatDepCodVen.Value);
+
+            with quSQL, SQL do
+            begin
+
+              Close;
+              Text := ' Select ApeEmp From GerEmp Where GerEmp.CodEmp = :CodEmp';
+
+              with Params do
+              begin
+
+                Params[0].AsInteger := FatDepCodEmp.Value;
+
+              end;
+
+              Open;
+
+              pnApeEmp.Caption := FieldbyName('ApeEmp').AsString;
+
+            end;
+
+            with quSQL, SQL do
+            begin
+
+              Close;
+              Text := ' Select NomCli From FinCli' +
+                ' Where CodCli = :CodCli';
+
+              with Params do
+              begin
+
+                Params[0].AsInteger := FatDepCodCli.Value;
+
+              end;
+
+              Open;
+
+              pnNomCli.Caption := FieldbyName('NomCli').AsString;
+
+            end;
+
+            with quSQL, SQL do
+            begin
+
+              Close;
+              Text := ' Select NomVen From FinVen' +
+                ' Where CodVen = :CodVen';
+
+              with Params do
+              begin
+
+                Params[0].AsInteger := FatDepCodVen.Value;
+
+              end;
+
+              Open;
+
+              pnNomVen.Caption := FieldbyName('NomVen').AsString;
+
+            end;
+
+            with quSQL, SQL do
+            begin
+
+              Close;
+              Text := ' Select Count(*) as QtdReg From PedRe2' +
+                ' Where PedRe2.CodEmp = :CodEmp' +
+                '   and PedRe2.DteRes = :DteRes' +
+                '   and PedRe2.NumRes = :NumRes' +
+                '   and PedRe2.QtdRe2 <> QtfRe2';
+
+              with Params do
+              begin
+
+                Params[0].AsInteger := FatDepCodEmp.Value;
+                Params[1].AsDateTime := FatDepDteRes.Value;
+                Params[2].AsInteger := FatDepNumRes.Value;
+
+              end;
+
+              Open;
+
+            end;
+
+            if quSQL.FieldbyName('QtdReg').AsInteger = 0 then
+            begin
+
+              pnCodCli.Caption := '';
+              pnCodVen.Caption := '';
+              pnNomCli.Caption := '';
+              pnUfeDep.Caption := '';
+              pnApeEmp.Caption := '';
+              pnNomCli.Caption := '';
+              pnNomVen.Caption := '';
+
+              fmsgErro('Pedido sem Saldos para novas Devoluções.', EdNumRes)
+
+            end;
+
+          end
+          else
+          begin
+
+            pnCodCli.Caption := '';
+            pnCodVen.Caption := '';
+            pnNomCli.Caption := '';
+            pnUfeDep.Caption := '';
+            pnApeEmp.Caption := '';
+            pnNomCli.Caption := '';
+            pnNomVen.Caption := '';
+
+            fmsgErro('Pedido Informado não Encontrado.', EdNumRes);
+
+          end;
+
+        end
+        else
+        begin
+
+          pnCodCli.Caption := '';
+          pnCodVen.Caption := '';
+          pnNomCli.Caption := '';
+          pnUfeDep.Caption := '';
+          pnApeEmp.Caption := '';
+          pnNomCli.Caption := '';
+          pnNomVen.Caption := '';
+
+          fmsgErro('Campo de Preenchimento Obrigátorio não Informado', EdNumRes);
+
+        end;
+      end;
+    end;
+  end;
+end;
+
+end.

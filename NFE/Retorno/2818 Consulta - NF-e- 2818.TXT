@@ -1,0 +1,10 @@
+Identificador : 35100961186755000117550010000028184304994387
+Ambiente : 2
+Versão Aplicativo : SP_NFE_PL_005e
+Status Código : 101
+Status Descrição : Cancelamento de NF-e homologado
+UF : SP
+Chave Acesso : 35100961186755000117550010000028184304994387
+Recebimento : 14/9/2010 16:31:39
+Protocolo : 135100026227884
+Digest Value : QapGENU1ZVzP3OxNRMmRBIl70ZY=

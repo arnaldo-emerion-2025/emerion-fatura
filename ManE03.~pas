@@ -1,0 +1,845 @@
+unit ManE03;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  FShowpadrao, RLReport, Db, Wwdatsrc, DBTables, Wwquery, RLXLSFilter,
+  RLPDFFilter, RLRichFilter, RLFilters, RLHTMLFilter, RLPreviewForm,
+  StdCtrls, Mask, DBCtrls;
+
+type
+  TfmManE03 = class(TfmShowPadrao)
+    RLReport1: TRLReport;
+    RLBand1: TRLBand;
+    ppNomEmp: TRLLabel;
+    RLLabel8: TRLLabel;
+    ppCodCli: TRLDBText;
+    ppCgcCli: TRLLabel;
+    RLDBText1: TRLDBText;
+    ppImagem: TRLImage;
+    ppEndEmp: TRLLabel;
+    ppCepEmp: TRLLabel;
+    ppCidEmp: TRLLabel;
+    ppUfeEmp: TRLLabel;
+    ppFonEmp: TRLLabel;
+    ppFaxEmp: TRLLabel;
+    ppWebEmp: TRLLabel;
+    ppEmaEmp: TRLLabel;
+    RLDraw14: TRLDraw;
+    ppPedido: TRLLabel;
+    ppNomCli: TRLLabel;
+    RLLabel62: TRLLabel;
+    RLLabel63: TRLLabel;
+    ppFonCli: TRLLabel;
+    RLLabel65: TRLLabel;
+    ppEmaCli: TRLLabel;
+    RLDraw15: TRLDraw;
+    RLLabel109: TRLLabel;
+    FatDev: TwwQuery;
+    DsFatDev: TwwDataSource;
+    FatDv3: TwwQuery;
+    DsFatDv3: TwwDataSource;
+    RLHTMLFilter1: TRLHTMLFilter;
+    RLRichFilter1: TRLRichFilter;
+    RLPDFFilter1: TRLPDFFilter;
+    RLXLSFilter1: TRLXLSFilter;
+    RLSubDetail1: TRLSubDetail;
+    RLGroup1: TRLGroup;
+    RLBand3: TRLBand;
+    RLGroup2: TRLGroup;
+    RLBand2: TRLBand;
+    RLDraw3: TRLDraw;
+    RLLabel21: TRLLabel;
+    RLLabel22: TRLLabel;
+    RLLabel23: TRLLabel;
+    RLLabel24: TRLLabel;
+    RLLabel25: TRLLabel;
+    RLDraw4: TRLDraw;
+    RLLabel26: TRLLabel;
+    RLLabel27: TRLLabel;
+    RLLabel28: TRLLabel;
+    RLLabel29: TRLLabel;
+    RLLabel30: TRLLabel;
+    RLLabel31: TRLLabel;
+    RLDetailGrid1: TRLDetailGrid;
+    RLLabel13: TRLLabel;
+    RLLabel2: TRLLabel;
+    RLDBText2: TRLDBText;
+    RLLabel3: TRLLabel;
+    RLDBText3: TRLDBText;
+    RLLabel4: TRLLabel;
+    RLDBText4: TRLDBText;
+    RLLabel18: TRLLabel;
+    RLDBText5: TRLDBText;
+    RLDBText6: TRLDBText;
+    RLDBText7: TRLDBText;
+    RLDBText8: TRLDBText;
+    RLDBText9: TRLDBText;
+    RLDBText10: TRLDBText;
+    RLDBText11: TRLDBText;
+    RLDBText12: TRLDBText;
+    RLDBText13: TRLDBText;
+    RLDBText14: TRLDBText;
+    RLDBText15: TRLDBText;
+    RLLabel1: TRLLabel;
+    ppInsCli: TRLLabel;
+    RLBand5: TRLBand;
+    RLLabel47: TRLLabel;
+    RLLabel6: TRLLabel;
+    RLLabel33: TRLLabel;
+    RLLabel49: TRLLabel;
+    RLLabel53: TRLLabel;
+    RLDBText16: TRLDBText;
+    RLDBText17: TRLDBText;
+    RLDBText18: TRLDBText;
+    RLDBText19: TRLDBText;
+    RLDBText20: TRLDBText;
+    RLLabel7: TRLLabel;
+    RLDBText21: TRLDBText;
+    RLDBText22: TRLDBText;
+    RLDBText23: TRLDBText;
+    RLLabel9: TRLLabel;
+    RLLabel10: TRLLabel;
+    RLLabel11: TRLLabel;
+    RLLabel12: TRLLabel;
+    RLLabel14: TRLLabel;
+    RLDBText24: TRLDBText;
+    RLDBText25: TRLDBText;
+    RLDBText26: TRLDBText;
+    RLBand4: TRLBand;
+    RLDraw7: TRLDraw;
+    RLLabel15: TRLLabel;
+    RLDraw1: TRLDraw;
+    RLDBText27: TRLDBText;
+    RLLabel16: TRLLabel;
+    RLDBText28: TRLDBText;
+    RLLabel17: TRLLabel;
+    RLDBText29: TRLDBText;
+    RLLabel19: TRLLabel;
+    RLDBText30: TRLDBText;
+    RLLabel20: TRLLabel;
+    RLDBText31: TRLDBText;
+    RLDraw2: TRLDraw;
+    RLLabel32: TRLLabel;
+    RLLabel34: TRLLabel;
+    RLBand6: TRLBand;
+    RLDraw6: TRLDraw;
+    RLLabel35: TRLLabel;
+    RLSystemInfo1: TRLSystemInfo;
+    RLLabel36: TRLLabel;
+    RLSystemInfo2: TRLSystemInfo;
+    quSql: TQuery;
+    PedPar: TwwQuery;
+    PedParUSADEC: TStringField;
+    ppCgcEmp: TRLLabel;
+    ppInsEmp: TRLLabel;
+    RLBand7: TRLBand;
+    RLLabel5: TRLLabel;
+    RLBand8: TRLBand;
+    RLDraw5: TRLDraw;
+    RLMemo1: TRLMemo;
+    RLMemo2: TRLMemo;
+    RLPreviewSetup1: TRLPreviewSetup;
+    RLLabel37: TRLLabel;
+    RLLabel39: TRLLabel;
+    RLLabel38: TRLLabel;
+    RLDBText37: TRLDBText;
+    FatDevCODEMP: TIntegerField;
+    FatDevDTERES: TDateTimeField;
+    FatDevNUMRES: TIntegerField;
+    FatDevSEQLIB: TIntegerField;
+    FatDevSEQFAT: TIntegerField;
+    FatDevSEQDEV: TIntegerField;
+    FatDevNUMNFS: TIntegerField;
+    FatDevDTEDEV: TDateTimeField;
+    FatDevHREDEV: TStringField;
+    FatDevUFEDEV: TStringField;
+    FatDevCODPFA: TStringField;
+    FatDevTIPPFA: TStringField;
+    FatDevDSCREG: TFloatField;
+    FatDevPERPIS: TFloatField;
+    FatDevPERCOF: TFloatField;
+    FatDevCODFIL: TIntegerField;
+    FatDevQTDNFS: TIntegerField;
+    FatDevNRONFS: TIntegerField;
+    FatDevNROSUF: TStringField;
+    FatDevFLGAVI: TStringField;
+    FatDevCGCCLI: TStringField;
+    FatDevINSCLI: TStringField;
+    FatDevCODCF1: TStringField;
+    FatDevCODCF2: TStringField;
+    FatDevFRTDEV: TStringField;
+    FatDevFLGENT: TStringField;
+    FatDevFLGSAI: TStringField;
+    FatDevDESNAT: TStringField;
+    FatDevINSSUB: TStringField;
+    FatDevTIPFRT: TStringField;
+    FatDevMARDEV: TStringField;
+    FatDevNRODEV: TStringField;
+    FatDevESPDEV: TStringField;
+    FatDevNOMTRA: TStringField;
+    FatDevCGCTRA: TStringField;
+    FatDevINSTRA: TStringField;
+    FatDevCEPTRA: TStringField;
+    FatDevTENTRA: TStringField;
+    FatDevENDTRA: TStringField;
+    FatDevREFTRA: TStringField;
+    FatDevNUMTRA: TStringField;
+    FatDevBAITRA: TStringField;
+    FatDevCIDTRA: TStringField;
+    FatDevUFETRA: TStringField;
+    FatDevPLCTRA: TStringField;
+    FatDevUFEPLC: TStringField;
+    FatDevCEPCLI: TStringField;
+    FatDevTENCLI: TStringField;
+    FatDevENDCLI: TStringField;
+    FatDevREFCLI: TStringField;
+    FatDevNUMCLI: TStringField;
+    FatDevBAICLI: TStringField;
+    FatDevCIDCLI: TStringField;
+    FatDevUFECLI: TStringField;
+    FatDevINECLI: TStringField;
+    FatDevCGECLI: TStringField;
+    FatDevTXFIPI: TStringField;
+    FatDevTXFICM: TStringField;
+    FatDevOBSDEV: TStringField;
+    FatDevQTDDEV: TIntegerField;
+    FatDevSEQITE: TIntegerField;
+    FatDevQTIDEV: TIntegerField;
+    FatDevLINDEV: TIntegerField;
+    FatDevQTDVOL: TIntegerField;
+    FatDevINFLIQ: TFloatField;
+    FatDevTOTLIQ: TFloatField;
+    FatDevINFBRT: TFloatField;
+    FatDevTOTBRT: TFloatField;
+    FatDevBASIPI: TFloatField;
+    FatDevTOTIPI: TFloatField;
+    FatDevBASICM: TFloatField;
+    FatDevTOTICM: TFloatField;
+    FatDevBASSUB: TFloatField;
+    FatDevTOTSUB: TFloatField;
+    FatDevTOTDEV: TFloatField;
+    FatDevTOTPIS: TFloatField;
+    FatDevTOTCOF: TFloatField;
+    FatDevTOTFRT: TFloatField;
+    FatDevTOTSEG: TFloatField;
+    FatDevTOTDES: TFloatField;
+    FatDevICMFRT: TFloatField;
+    FatDevBSICMF: TFloatField;
+    FatDevBAICMF: TFloatField;
+    FatDevTOICMF: TFloatField;
+    FatDevICMSEG: TFloatField;
+    FatDevBSICMS: TFloatField;
+    FatDevBAICMS: TFloatField;
+    FatDevTOICMS: TFloatField;
+    FatDevICMDES: TFloatField;
+    FatDevBSICMD: TFloatField;
+    FatDevBAICMD: TFloatField;
+    FatDevTOICMD: TFloatField;
+    FatDevIPIFRT: TFloatField;
+    FatDevBSIPIF: TFloatField;
+    FatDevBAIPIF: TFloatField;
+    FatDevTOIPIF: TFloatField;
+    FatDevIPISEG: TFloatField;
+    FatDevBSIPIS: TFloatField;
+    FatDevBAIPIS: TFloatField;
+    FatDevTOIPIS: TFloatField;
+    FatDevIPIDES: TFloatField;
+    FatDevBSIPID: TFloatField;
+    FatDevBAIPID: TFloatField;
+    FatDevTOIPID: TFloatField;
+    FatDevTOTGER: TFloatField;
+    FatDevBASCOM: TFloatField;
+    FatDevTOTCOM: TFloatField;
+    FatDevTOTDSR: TFloatField;
+    FatDevDESREG: TStringField;
+    FatDevCODUSU: TIntegerField;
+    FatDevATUEST: TStringField;
+    FatDevLANEST: TStringField;
+    FatDevINTFIN: TStringField;
+    FatDevCONSUM: TStringField;
+    FatDevFLGCTB: TStringField;
+    FatDevCODIPI: TStringField;
+    FatDevTIPIPI: TStringField;
+    FatDevTRBIPI: TStringField;
+    FatDevREDIPI: TFloatField;
+    FatDevBSCIPI: TFloatField;
+    FatDevCODICM: TStringField;
+    FatDevTIPICM: TStringField;
+    FatDevTRBICM: TStringField;
+    FatDevREDICM: TFloatField;
+    FatDevBSCICM: TFloatField;
+    FatDevINCREV: TFloatField;
+    FatDevINCFIN: TFloatField;
+    FatDevOBSMDV: TMemoField;
+    FatDevSEQREG: TStringField;
+    FatDevFLGDIF: TStringField;
+    FatDevFLGDEV: TStringField;
+    FatDevFLGATU: TStringField;
+    FatDevSITDEV: TStringField;
+    FatDevCODCLI: TIntegerField;
+    FatDevCODVEN: TIntegerField;
+    FatDevMODPFA: TStringField;
+    FatDevFLGNFS: TStringField;
+    FatDevHRCDEV: TStringField;
+    FatDevDTCDEV: TDateTimeField;
+    FatDevUSUCFT: TIntegerField;
+    FatDevOBSCFT: TMemoField;
+    FatDevFLGSIN: TStringField;
+    FatDevFLGFSC: TStringField;
+    FatDevSERNOT: TStringField;
+    FatDevMODDEV: TStringField;
+    FatDevOB1DEV: TStringField;
+    FatDevOB2DEV: TStringField;
+    FatDevOB3DEV: TStringField;
+    FatDevOB4DEV: TStringField;
+    FatDevOB5DEV: TStringField;
+    FatDevOB6DEV: TStringField;
+    FatDevOB7DEV: TStringField;
+    FatDevOB8DEV: TStringField;
+    FatDevFLGIMP: TStringField;
+    FatDevNOMENT: TStringField;
+    FatDevQTDDSE: TIntegerField;
+    FatDevSEQDSE: TIntegerField;
+    FatDevTOTDSE: TFloatField;
+    FatDevBASISS: TFloatField;
+    FatDevTOTISS: TFloatField;
+    FatDevTOTFAT: TFloatField;
+    FatDevFLGTOT: TStringField;
+    FatDevCODTCL: TIntegerField;
+    FatDevFLGENV: TStringField;
+    FatDevNFSCLI: TIntegerField;
+    FatDevARQNFE: TBlobField;
+    FatDevBAFCLI: TStringField;
+    FatDevCEFCLI: TStringField;
+    FatDevCIFCLI: TStringField;
+    FatDevCODTRA: TIntegerField;
+    FatDevDOPNFE: TDateTimeField;
+    FatDevDTCNFE: TDateTimeField;
+    FatDevDTECNE: TDateTimeField;
+    FatDevDTENFE: TDateTimeField;
+    FatDevDTEPNF: TDateTimeField;
+    FatDevENFCLI: TStringField;
+    FatDevENVNFE: TStringField;
+    FatDevFLGNFE: TStringField;
+    FatDevFLGNOT: TStringField;
+    FatDevHRCNFE: TStringField;
+    FatDevHRECNE: TStringField;
+    FatDevHRENFE: TStringField;
+    FatDevHREPNF: TStringField;
+    FatDevID_ESTSIP: TIntegerField;
+    FatDevID_FINCIE: TIntegerField;
+    FatDevID_FINCIF: TIntegerField;
+    FatDevID_FINUFE: TIntegerField;
+    FatDevID_FINUFF: TIntegerField;
+    FatDevID_TRACIE: TIntegerField;
+    FatDevID_TRAUFE: TIntegerField;
+    FatDevIMPNFE: TStringField;
+    FatDevLOTNFE: TIntegerField;
+    FatDevNFECOF: TStringField;
+    FatDevNFEPIS: TStringField;
+    FatDevNRFCLI: TStringField;
+    FatDevPRCNFE: TStringField;
+    FatDevPRONFE: TStringField;
+    FatDevRECNFE: TStringField;
+    FatDevRETNFE: TStringField;
+    FatDevRFFCLI: TStringField;
+    FatDevSEQNFE: TStringField;
+    FatDevTEFCLI: TStringField;
+    FatDevTRBCOF: TStringField;
+    FatDevTRBPIS: TStringField;
+    FatDevUFFCLI: TStringField;
+    FatDevUSUNFE: TIntegerField;
+    FatDevBASCAT: TFloatField;
+    FatDevTOTCAT: TFloatField;
+    FatDevID_FATDEV: TIntegerField;
+    FatDevDTEFAT: TDateTimeField;
+    FatDevFLGEMI: TStringField;
+    FatDevALTVOL: TIntegerField;
+    FatDevNFETH: TSmallintField;
+    FatDevARQNFECANC: TBlobField;
+    FatDevNFETHCANC: TSmallintField;
+    FatDevDTECAN: TDateTimeField;
+    FatDevHRECAN: TStringField;
+    FatDevUSUCAN: TIntegerField;
+    FatDevOB1CAN: TStringField;
+    FatDevOB2CAN: TStringField;
+    FatDevOB3CAN: TStringField;
+    FatDevOB4CAN: TStringField;
+    FatDevOB5CAN: TStringField;
+    FatDevSERIENF: TSmallintField;
+    FatDevSERIECONTINGENCIA: TSmallintField;
+    FatDevNUMCONTINGENCIA: TSmallintField;
+    FatDevFLGDENEGADA: TStringField;
+    FatDevNFE_PROTOCOLO: TMemoField;
+    FatDevNFE_RECIBO: TMemoField;
+    FatDevENVDPEC: TStringField;
+    FatDevUSUDPEC: TIntegerField;
+    FatDevJUSTDPEC: TStringField;
+    FatDevPROTDPEC: TStringField;
+    FatDevTOTVOL: TIntegerField;
+    FatDevNUMGER: TIntegerField;
+    FatDevCSTPIS: TStringField;
+    FatDevCSTCOF: TStringField;
+    FatDevALIQPIS: TFloatField;
+    FatDevALIQCOF: TFloatField;
+    FatDevTOTOUTDESP: TFloatField;
+    FatDevTOTDESCINC: TFloatField;
+    FatDevID_FRETE: TIntegerField;
+    FatDevCRED_SEM_SUB: TStringField;
+    FatDevID_ESTICM: TIntegerField;
+    FatDevID_ESTIPI: TIntegerField;
+    FatDv3CODEMP: TIntegerField;
+    FatDv3DTERES: TDateTimeField;
+    FatDv3NUMRES: TIntegerField;
+    FatDv3SEQLIB: TIntegerField;
+    FatDv3SEQFAT: TIntegerField;
+    FatDv3SEQDEV: TIntegerField;
+    FatDv3SEQDV2: TIntegerField;
+    FatDv3CODEIT: TIntegerField;
+    FatDv3CODCLP: TStringField;
+    FatDv3CODGRU: TStringField;
+    FatDv3CODSUB: TStringField;
+    FatDv3CODPRO: TStringField;
+    FatDv3CODTAM: TStringField;
+    FatDv3CODCOR: TStringField;
+    FatDv3DESDV2: TStringField;
+    FatDv3OBSDV2: TStringField;
+    FatDv3CODST1: TStringField;
+    FatDv3CODST2: TStringField;
+    FatDv3CODUND: TStringField;
+    FatDv3REFDV2: TStringField;
+    FatDv3LINDV2: TIntegerField;
+    FatDv3LIQDV2: TFloatField;
+    FatDv3BRTDV2: TFloatField;
+    FatDv3QTPDV2: TFloatField;
+    FatDv3QTDDV2: TFloatField;
+    FatDv3ULTQTD: TFloatField;
+    FatDv3QTDRMA: TFloatField;
+    FatDv3SLDDV2: TFloatField;
+    FatDv3VLUDV2: TFloatField;
+    FatDv3VCHDV2: TFloatField;
+    FatDv3VREDV2: TFloatField;
+    FatDv3VCPDV2: TFloatField;
+    FatDv3VPRDV2: TFloatField;
+    FatDv3DSRDV2: TFloatField;
+    FatDv3VDRDV2: TFloatField;
+    FatDv3VLQDV2: TFloatField;
+    FatDv3IPIDV2: TFloatField;
+    FatDv3CLSIPI: TStringField;
+    FatDv3SEQNFD: TIntegerField;
+    FatDv3SEQDV3: TIntegerField;
+    FatDv3ICMDV2: TFloatField;
+    FatDv3BASIPI: TFloatField;
+    FatDv3TOTIPI: TFloatField;
+    FatDv3BASICM: TFloatField;
+    FatDv3TOTICM: TFloatField;
+    FatDv3BASSUB: TFloatField;
+    FatDv3TOTSUB: TFloatField;
+    FatDv3TOTDV2: TFloatField;
+    FatDv3TOTGE2: TFloatField;
+    FatDv3TOTLIQ: TFloatField;
+    FatDv3TOTBRT: TFloatField;
+    FatDv3TOTDSR: TFloatField;
+    FatDv3TOTPIS: TFloatField;
+    FatDv3TOTCOF: TFloatField;
+    FatDv3BASCOM: TFloatField;
+    FatDv3TOTCOM: TFloatField;
+    FatDv3CODSTR: TStringField;
+    FatDv3TIPSTR: TStringField;
+    FatDv3REGIPI: TStringField;
+    FatDv3TIPIPI: TStringField;
+    FatDv3TRBIPI: TStringField;
+    FatDv3REDIPI: TFloatField;
+    FatDv3BSCIPI: TFloatField;
+    FatDv3REGICM: TStringField;
+    FatDv3TIPICM: TStringField;
+    FatDv3TRBICM: TStringField;
+    FatDv3REDICM: TFloatField;
+    FatDv3BSCICM: TFloatField;
+    FatDv3INCREV: TFloatField;
+    FatDv3INCFIN: TFloatField;
+    FatDv3FLASEQ: TStringField;
+    FatDv3NRONFS: TIntegerField;
+    FatDv3SEQNFS: TIntegerField;
+    FatDv3SEQRE2: TIntegerField;
+    FatDv3SEQPE2: TIntegerField;
+    FatDv3NROPE2: TIntegerField;
+    FatDv3CODVWA: TStringField;
+    FatDv3FLGREQ: TStringField;
+    FatDv3FLGDUP: TStringField;
+    FatDv3NRODV2: TIntegerField;
+    FatDv3CODTXF: TStringField;
+    FatDv3VPFDV2: TFloatField;
+    FatDv3CODCFO: TStringField;
+    FatDv3TRBSUB: TStringField;
+    FatDv3ICMSUB: TFloatField;
+    FatDv3MRGSUB: TFloatField;
+    FatDv3BASESB: TFloatField;
+    FatDv3VPFANT: TFloatField;
+    FatDv3TOTFRT: TFloatField;
+    FatDv3TOTSEG: TFloatField;
+    FatDv3TOTDES: TFloatField;
+    FatDv3DESNC1: TStringField;
+    FatDv3DESNC2: TStringField;
+    FatDv3DESNC3: TStringField;
+    FatDv3DESNC4: TStringField;
+    FatDv3DESNC5: TStringField;
+    FatDv3DESNC6: TStringField;
+    FatDv3DESNC7: TStringField;
+    FatDv3DESNC8: TStringField;
+    FatDv3CSTIPI: TStringField;
+    FatDv3CSTPIS: TStringField;
+    FatDv3CSTCOF: TStringField;
+    FatDv3BASPIS: TFloatField;
+    FatDv3BASCOF: TFloatField;
+    FatDv3ALIQPIS: TFloatField;
+    FatDv3ALIQCOF: TFloatField;
+    FatDv3TRBPIS: TStringField;
+    FatDv3TRBCOF: TStringField;
+    FatDv3PERPIS: TFloatField;
+    FatDv3PERCOF: TFloatField;
+    FatDv3ID_FATDEV: TIntegerField;
+    FatDv3TOTVOL: TIntegerField;
+    FatDv3FRTICM: TFloatField;
+    FatDv3DESICM: TFloatField;
+    FatDv3SEGICM: TFloatField;
+    FatDv3TOTOUTDESP: TFloatField;
+    FatDv3ALIQPIS_ZF: TFloatField;
+    FatDv3ALIQCOF_ZF: TFloatField;
+    FatDv3FLG_DESC_ZF_PIS: TStringField;
+    FatDv3FLG_DESC_ZF_COF: TStringField;
+    FatDv3TOTPISZF: TFloatField;
+    FatDv3TOTCOFZF: TFloatField;
+    FatDv3FLGNCALC_DIF_MVA: TStringField;
+    FatDv3DSCREG: TFloatField;
+    FatDv3FRTIPI: TFloatField;
+    FatDv3SEGIPI: TFloatField;
+    FatDv3DESIPI: TFloatField;
+    FatDv3TOTDESCINC: TFloatField;
+    FatDv3NRONFS_1: TIntegerField;
+    FatDv3DTEFAT: TDateTimeField;
+    FatDv3APEVEN: TStringField;
+    FatDv3CODITE: TStringField;
+    RLDBMemo1: TRLDBMemo;
+    RLLabel40: TRLLabel;
+    RLDBText32: TRLDBText;
+    procedure RLBand1BeforePrint(Sender: TObject; var PrintIt: Boolean);
+    procedure RLBand3BeforePrint(Sender: TObject; var PrintIt: Boolean);
+    procedure RLBand7BeforePrint(Sender: TObject; var PrintIt: Boolean);
+    procedure RLPreviewSetup1Send(Sender: TObject);
+    procedure RLDBText6BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText16BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText8BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText9BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText37BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText10BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText11BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText12BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText13BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText14BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText23BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText26BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText22BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText25BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText21BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText24BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText18BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+    procedure RLDBText17BeforePrint(Sender: TObject; var Text: String;
+      var PrintIt: Boolean);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmManE03: TfmManE03;
+
+implementation
+
+uses SendMailOptions, ManGDB, Bbfuncao, Bbgeral;
+
+{$R *.DFM}
+
+procedure TfmManE03.RLBand1BeforePrint(Sender: TObject;
+  var PrintIt: Boolean);
+begin
+  inherited;
+
+  if FileExists('C:\Emerion\Print.bmp') then
+    ppImagem.Picture.Bitmap.LoadFromFile('C:\Emerion\Print.bmp')
+  else
+    ppImagem.Picture.Bitmap.FreeImage;
+
+  ppNomEmp.Caption := Trim(GRazEmp);
+  ppEndEmp.Caption := Trim(GEndEmp);
+  ppCepEmp.Caption := 'CEP. ' + Trim(GCepEmp);
+
+  ppCidEmp.Caption := 'MUNICIPIO ' + Trim(GCidEmp);
+
+  with quSQL, SQL do
+  begin
+
+    Close;
+    Text := ' Select GerUfe.NomUfe From GerUfe Where GerUfe.SigUfe = ' + Quotedstr(GUfeEmp);
+    Open;
+
+    ppUfeEmp.Caption := 'ESTADO ' + Trim(FieldbyName('NomUfe').AsString);
+
+  end;
+
+  ppFonEmp.Caption := 'FONE: ' + Trim(GFonEmp);
+  ppFaxEmp.Caption := 'FAX: ' + Trim(GFaxEmp);
+
+  ppWebEmp.Caption := 'http://' + Trim(GWebEmp);
+  ppEmaEmp.Caption := 'e-mail: ' + Trim(GEmaEmp);
+  ppCgcEmp.Caption := 'CNPJ: ' + Trim(GCgcEmp);
+  ppInsEmp.Caption := 'Inscrição estadual: ' + Trim(GInsEmp);
+
+  ppPedido.Caption := 'Autorização de devolução no. ' + fNumZeros(IntToStr(FatDevId_FatDev.Value), 6);
+
+  with quSQL, SQL do
+  begin
+
+    Close;
+    Text := ' Select FinCli.NomCli,' +
+      '        FinCli.CgcCli,' +
+      '        FinCli.InsCli,' +
+      '        FinCli.Pt3Cli,' +
+      '        FinCli.Fo3Cli,' +
+      '        FinCli.Em1Cli ' +
+      ' From FinCli' +
+      ' Where FinCli.CodCli = ' + QuotedStr(IntToStr(FatDevCodCli.Value));
+    Open;
+
+    ppNomCli.Caption := Trim(FieldbyName('NomCli').AsString);
+    ppCgcCli.Caption := fFormatCgcCpf(FieldbyName('CgcCli').AsString);
+    ppInsCli.Caption := Trim(FieldbyName('InsCli').AsString);
+    ppEmaCli.Caption := Trim(FieldbyName('Em1Cli').AsString);
+
+    if Trim(FieldbyName('Pt3Cli').AsString) <> '' then
+      ppFonCli.Caption := '(' + Trim(FieldbyName('Pt3Cli').AsString) + ') ' + Trim(FieldbyName('Fo3Cli').AsString)
+    else
+      ppFonCli.Caption := Trim(FieldbyName('Fo3Cli').AsString);
+
+  end;
+end;
+
+procedure TfmManE03.RLBand3BeforePrint(Sender: TObject;
+  var PrintIt: Boolean);
+begin
+  inherited;
+  //if FatDv3NroIte.Value = 1 then
+  if true then
+  begin
+
+    RLLabel18.Caption := 'Itens dentro do prazo de garantia';
+
+    RLLabel18.Font.Color := clBlack;
+
+  end
+  else
+  begin
+
+    RLLabel18.Caption := 'Itens fora do prazo de garantia';
+
+    RLLabel18.Font.Color := clRed;
+
+  end;
+end;
+
+procedure TfmManE03.RLBand7BeforePrint(Sender: TObject;
+  var PrintIt: Boolean);
+begin
+  inherited;
+
+  RLMemo1.Lines.Clear;
+  RLMemo2.Lines.Clear;
+
+  with quSQL, SQL do
+  begin
+               
+    Close;
+    Text := ' Select Distinct FatDv2.CodCfo' +
+      ' From FatDv2' +
+      ' Where FatDv2.Id_FatDev = ' + QuotedStr(IntToStr(FatDevId_FatDev.Value));
+    Open;
+    First;
+
+  end;
+
+  while not quSQL.EOF do
+  begin
+
+    if Trim(fLimpaStr(quSQL.FieldbyName('CodCfo').AsString)) <> '' then
+    begin
+
+      if copy(fLimpaStr(quSQL.FieldbyName('CodCfo').AsString), 1, 1) = '1' then
+        RLMemo1.Lines.Add('5.' + copy(fLimpaStr(quSQL.FieldbyName('CodCfo').AsString), 2, 4))
+      else
+        RLMemo1.Lines.Add('6.' + copy(fLimpaStr(quSQL.FieldbyName('CodCfo').AsString), 2, 4));
+
+      RLMemo2.Lines.Add(Trim(FatDevDesNat.Value));
+
+    end;
+
+    quSQL.Next;
+
+  end;
+end;
+
+procedure TfmManE03.RLPreviewSetup1Send(Sender: TObject);
+begin
+  inherited;
+  TFormSendMailOptions.CreateShowAndFree(TRLPreviewForm(Sender).Preview.Pages);
+end;
+
+procedure TfmManE03.RLDBText6BeforePrint(Sender: TObject; var Text: String;
+  var PrintIt: Boolean);
+begin
+  inherited;
+  if copy(fLimpaStr(Text), 1, 1) = '1' then
+     Text := '5.' + copy(fLimpaStr(Text), 2, 4)
+  else
+     Text := '6.' + copy(fLimpaStr(Text), 2, 4);
+end;
+
+procedure TfmManE03.RLDBText16BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText8BeforePrint(Sender: TObject; var Text: String;
+  var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText9BeforePrint(Sender: TObject; var Text: String;
+  var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText37BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText10BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText11BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText12BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText13BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText14BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText23BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText26BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText22BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText25BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText21BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText24BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText18BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+procedure TfmManE03.RLDBText17BeforePrint(Sender: TObject;
+  var Text: String; var PrintIt: Boolean);
+begin
+  inherited;
+   Text := FormatFloat('#0.00',StrToFloat(Text));
+end;
+
+end.

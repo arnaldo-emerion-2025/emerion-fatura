@@ -1,0 +1,76 @@
+unit PsqCro;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, ComCtrls, ExtCtrls, DBCtrls, Db, Wwdatsrc, DBTables, Wwquery,
+  dxCntner, dxEditor, dxEdLib, dxDBELib, dxExEdtr, dxDBEdtr, FShowPadrao,
+  dxDBColorLookupEdit, dxDBColorEdit, DBColorRichEdit;
+
+type
+  TfmPsqCro = class(TfmShowPadrao)
+    CmpNfs: TwwQuery;
+    DsRes: TwwDataSource;
+    PaintBox: TPaintBox;
+    dxDBEdit29: TdxDBColorEdit;
+    Panel3: TPanel;
+    Label11: TLabel;
+    dxDBEdit1: TdxDBColorEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label12: TLabel;
+    EdUscNfs: TdxDBColorEdit;
+    GerUsu: TwwQuery;
+    DsUsu: TwwDataSource;
+    GerUsuCODUSU: TIntegerField;
+    GerUsuLOGUSU: TStringField;
+    Panel1: TPanel;
+    EdObcNfs: TDBColorRichEdit;
+    CbNomUsu: TdxDBColorLookupEdit;
+    CmpNfsOBCNFS: TStringField;
+    CmpNfsUSCNFS: TIntegerField;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure PaintBoxPaint(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    {Private declarations}
+  public
+    {Public declarations}
+  end;
+
+var
+  fmPsqCro: TfmPsqCro;
+
+implementation
+
+uses dxDemoUtils;
+
+{$R *.DFM}
+
+procedure TfmPsqCro.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if key = 27 then
+    close;
+end;
+
+procedure TfmPsqCro.PaintBoxPaint(Sender: TObject);
+begin
+  with Sender as TPaintBox do
+    FillGrayGradientRect(PaintBox.Canvas, PaintBox.ClientRect, PaintBox.Color);
+end;
+
+procedure TfmPsqCro.FormShow(Sender: TObject);
+begin
+  inherited;
+
+  GerUsu.Close;
+  GerUsu.Params[0].AsInteger := CmpNfsUscNfs.Value;
+  GerUsu.Open;
+
+  EdObcNfs.SetFocus;
+
+end;
+
+end.

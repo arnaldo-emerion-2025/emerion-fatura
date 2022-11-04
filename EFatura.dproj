@@ -1,0 +1,560 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{BA94D06E-FD51-4B9D-96C4-558EA1B90572}</ProjectGuid>
+			<MainSource>EFatura.dpr</MainSource>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<ProjectVersion>12.0</ProjectVersion>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_DependencyCheckOutputName>EFatura.exe</DCC_DependencyCheckOutputName>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_UsePackage>Vcl50;Vclx50;VclSmp50;Vcldb50;vclado50;ibevnt50;Vclbde50;vcldbx50;Qrpt50;TeeUI50;TeeDB50;Tee50;Dss50;TeeQR50;VCLIB50;Vclmid50;vclie50;Inetdb50;Inet50;NMFast50;webmid50;dclocx50;dclaxserver50;rbTDBC51;rbRCL55;rbCIDE55;rbIDE55;rbBDE55;rbRIDE55;rbRAP55;rbDBDE55;rbDAD55;rbDIDE55;rbUSER55;rbDB55;rbADO55;rbIBE55;ip50client_d5;ip50_d5;ip50word_d5;dxBarD5;dxcomnD5;dxBarDBNavD5;dxBarExtItemsD5;dxBarExtDBItemsD5;dxsbd5;dxFlowChartD5;dxForumLibD5;dxInsD5;dxDBEdD5;dxEdtrD5;dxObjInsD5;dxorgcd5;dxdbord5;dxPageControlD5;dxmdsd5;dxMasterViewD5;EQTLD5;ECQDBCD5;EQDBTLD5;EQGridD5;dxGrEdD5;dxExELD5;dxELibD5;dxPSCored5;dxPSPrVwAdvD5;dxPSLnksD5;dxPSTLLnkD5;dxPSdxDBTLLnkD5;dxPSdxDBCtrlLnkd5;dxPSdxDBGrLnkD5;dxPSTeeChartD5;dxPSDBTeeChartD5;dxPSdxInsLnkD5;dxPSdxMVLnkD5;dxPSdxOCLnkD5;dxPSdxDBOCLnkD5;DelPrint5;RLibWinD5;OutrosComps;synapse</DCC_UsePackage>
+			<DCC_Alignment>1</DCC_Alignment>
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
+			<DCC_Platform>x86</DCC_Platform>
+			<DCC_WriteableConstants>true</DCC_WriteableConstants>
+			<DCC_K>false</DCC_K>
+			<DCC_N>true</DCC_N>
+			<DCC_S>false</DCC_S>
+			<DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
+			<DCC_E>false</DCC_E>
+			<DCC_F>false</DCC_F>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="EFatura.dpr">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="W:\_wglib\padrao\Fpadrao.pas">
+				<Form>fmPadrao</Form>
+			</DCCReference>
+			<DCCReference Include="ManPri.pas">
+				<Form>fmManPri</Form>
+			</DCCReference>
+			<DCCReference Include="padrao\FShowpadrao.pas">
+				<Form>fmShowPadrao</Form>
+			</DCCReference>
+			<DCCReference Include="padrao\ManApl.pas">
+				<Form>fmManApl</Form>
+			</DCCReference>
+			<DCCReference Include="UnitItau.pas"/>
+			<DCCReference Include="UntBradesco.pas"/>
+			<DCCReference Include="FatR01.pas">
+				<Form>fmFatR01</Form>
+			</DCCReference>
+			<DCCReference Include="FatR02.pas">
+				<Form>fmFatR02</Form>
+			</DCCReference>
+			<DCCReference Include="FatR03.pas">
+				<Form>fmFatR03</Form>
+			</DCCReference>
+			<DCCReference Include="FatR04.pas">
+				<Form>fmFatR04</Form>
+			</DCCReference>
+			<DCCReference Include="FatR05.pas">
+				<Form>fmFatR05</Form>
+			</DCCReference>
+			<DCCReference Include="FatR06.pas">
+				<Form>fmFatR06</Form>
+			</DCCReference>
+			<DCCReference Include="FatR09.pas">
+				<Form>fmFatR09</Form>
+			</DCCReference>
+			<DCCReference Include="FatR10.pas">
+				<Form>fmFatR10</Form>
+			</DCCReference>
+			<DCCReference Include="FatR11.pas">
+				<Form>fmFatR11</Form>
+			</DCCReference>
+			<DCCReference Include="FatR12.pas">
+				<Form>fmFatR12</Form>
+			</DCCReference>
+			<DCCReference Include="FatR16.pas">
+				<Form>fmFatR16</Form>
+			</DCCReference>
+			<DCCReference Include="FatR14.pas">
+				<Form>fmFatR14</Form>
+			</DCCReference>
+			<DCCReference Include="FatR17.pas">
+				<Form>fmFatR17</Form>
+			</DCCReference>
+			<DCCReference Include="ManCdp.pas">
+				<Form>fmManCdp</Form>
+			</DCCReference>
+			<DCCReference Include="ManCDc.pas">
+				<Form>fmManCDc</Form>
+			</DCCReference>
+			<DCCReference Include="ManCno.pas">
+				<Form>fmManCno</Form>
+			</DCCReference>
+			<DCCReference Include="ManCr1.pas">
+				<Form>fmManCr1</Form>
+			</DCCReference>
+			<DCCReference Include="ManCre.pas">
+				<Form>fmManCre</Form>
+			</DCCReference>
+			<DCCReference Include="ManDes.pas">
+				<Form>fmManDes</Form>
+			</DCCReference>
+			<DCCReference Include="ManDn1.pas">
+				<Form>fmManDn1</Form>
+			</DCCReference>
+			<DCCReference Include="ManDn2.pas">
+				<Form>fmManDn2</Form>
+			</DCCReference>
+			<DCCReference Include="ManDno.pas">
+				<Form>fmManDno</Form>
+			</DCCReference>
+			<DCCReference Include="ManEn1.pas">
+				<Form>fmManEn1</Form>
+			</DCCReference>
+			<DCCReference Include="ManEn2.pas">
+				<Form>fmManEn2</Form>
+			</DCCReference>
+			<DCCReference Include="ManEne.pas">
+				<Form>fmManEne</Form>
+			</DCCReference>
+			<DCCReference Include="ManEno.pas">
+				<Form>fmManEno</Form>
+			</DCCReference>
+			<DCCReference Include="ManEnt.pas">
+				<Form>fmManEnt</Form>
+			</DCCReference>
+			<DCCReference Include="ManDCl.pas">
+				<Form>fmManDCl</Form>
+			</DCCReference>
+			<DCCReference Include="ManIdn.pas">
+				<Form>fmManIdn</Form>
+			</DCCReference>
+			<DCCReference Include="ManImp.pas">
+				<Form>fmManImp</Form>
+			</DCCReference>
+			<DCCReference Include="ManIng.pas">
+				<Form>fmManIng</Form>
+			</DCCReference>
+			<DCCReference Include="ManLn2.pas">
+				<Form>fmManLn2</Form>
+			</DCCReference>
+			<DCCReference Include="ManLn3.pas">
+				<Form>fmManLn3</Form>
+			</DCCReference>
+			<DCCReference Include="ManLn5.pas">
+				<Form>fmManLn5</Form>
+			</DCCReference>
+			<DCCReference Include="ManLn6.pas">
+				<Form>fmManLn6</Form>
+			</DCCReference>
+			<DCCReference Include="ManLno.pas">
+				<Form>fmManLno</Form>
+			</DCCReference>
+			<DCCReference Include="ManNg1.pas">
+				<Form>fmManNg1</Form>
+			</DCCReference>
+			<DCCReference Include="ManNg3.pas">
+				<Form>fmManNg3</Form>
+			</DCCReference>
+			<DCCReference Include="ManDC2.pas">
+				<Form>fmManDc2</Form>
+			</DCCReference>
+			<DCCReference Include="ManNot.pas">
+				<Form>fmManNot</Form>
+			</DCCReference>
+			<DCCReference Include="ManNt1.pas">
+				<Form>fmManNt1</Form>
+			</DCCReference>
+			<DCCReference Include="ManOb1.pas">
+				<Form>fmManOb1</Form>
+			</DCCReference>
+			<DCCReference Include="ManObs.pas">
+				<Form>fmManObs</Form>
+			</DCCReference>
+			<DCCReference Include="ManPar.pas">
+				<Form>fmManPar</Form>
+			</DCCReference>
+			<DCCReference Include="ManSdn.pas">
+				<Form>fmManSdn</Form>
+			</DCCReference>
+			<DCCReference Include="ManSin.pas">
+				<Form>fmManSin</Form>
+			</DCCReference>
+			<DCCReference Include="ObsCli.pas">
+				<Form>fmObsCli</Form>
+			</DCCReference>
+			<DCCReference Include="PsqLib.pas">
+				<Form>fmPsqLib</Form>
+			</DCCReference>
+			<DCCReference Include="Estoque\Emerion\ManIpi.pas">
+				<Form>fmManIpi</Form>
+			</DCCReference>
+			<DCCReference Include="Estoque\Emerion\ManIcm.pas">
+				<Form>fmManIcm</Form>
+			</DCCReference>
+			<DCCReference Include="Vmp\ManTxf.pas">
+				<Form>fmManTxf</Form>
+			</DCCReference>
+			<DCCReference Include="Pedidos\DualComp\PsqCmp.pas">
+				<Form>fmPsqCmp</Form>
+			</DCCReference>
+			<DCCReference Include="Pedidos\DualComp\PsqIcm.pas">
+				<Form>fmPsqIcm</Form>
+			</DCCReference>
+			<DCCReference Include="Romaneios\ManDep.pas">
+				<Form>fmManDep</Form>
+			</DCCReference>
+			<DCCReference Include="Romaneios\ManDe2.pas">
+				<Form>fmManDe2</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\ManRom.pas">
+				<Form>fmManRom</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\ManRo1.pas">
+				<Form>fmManRo1</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\ManRo2.pas">
+				<Form>fmManRo2</Form>
+			</DCCReference>
+			<DCCReference Include="ManIro.pas">
+				<Form>fmManIro</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\ManCnf.pas">
+				<Form>fmManCnf</Form>
+			</DCCReference>
+			<DCCReference Include="Pedidos\DualComp\PsqRes.pas">
+				<Form>fmPsqRes</Form>
+			</DCCReference>
+			<DCCReference Include="ColR02.pas">
+				<Form>fmColR02</Form>
+			</DCCReference>
+			<DCCReference Include="ManCdv.pas">
+				<Form>fmManCdv</Form>
+			</DCCReference>
+			<DCCReference Include="ManSda.pas">
+				<Form>fmManSda</Form>
+			</DCCReference>
+			<DCCReference Include="ManCge.pas">
+				<Form>fmManCge</Form>
+			</DCCReference>
+			<DCCReference Include="FatR13.pas">
+				<Form>fmFatR13</Form>
+			</DCCReference>
+			<DCCReference Include="padrao\ManLog.pas">
+				<Form>fmManLog</Form>
+			</DCCReference>
+			<DCCReference Include="ManNg2.pas">
+				<Form>fmManNg2</Form>
+			</DCCReference>
+			<DCCReference Include="ManSeg.pas">
+				<Form>fmManSeg</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\ManSro.pas">
+				<Form>fmManSro</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\ManRo4.pas">
+				<Form>fmManRo4</Form>
+			</DCCReference>
+			<DCCReference Include="ManSge.pas">
+				<Form>fmManSge</Form>
+			</DCCReference>
+			<DCCReference Include="ManDn3.pas">
+				<Form>fmManDn3</Form>
+			</DCCReference>
+			<DCCReference Include="ManObp.pas">
+				<Form>fmManObp</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\ManFro.pas">
+				<Form>fmManFro</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\PsqCro.pas">
+				<Form>fmPsqCro</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\PsqFro.pas">
+				<Form>fmPsqFro</Form>
+			</DCCReference>
+			<DCCReference Include="FatR15.pas">
+				<Form>fmFatR15</Form>
+			</DCCReference>
+			<DCCReference Include="ManUfc.pas">
+				<Form>fmManUfc</Form>
+			</DCCReference>
+			<DCCReference Include="PadraoPsq\PsqUfe.pas">
+				<Form>fmPsqUfe</Form>
+			</DCCReference>
+			<DCCReference Include="ManEma.pas">
+				<Form>fmManEma</Form>
+			</DCCReference>
+			<DCCReference Include="ManDs1.pas">
+				<Form>fmManDs1</Form>
+			</DCCReference>
+			<DCCReference Include="Romaneios\ManDe1.pas">
+				<Form>fmManDe1</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\CmpR15.pas">
+				<Form>fmCmpR15</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\CmpR16.pas">
+				<Form>fmCmpR16</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\CmpR12.pas">
+				<Form>fmCmpR12</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\CmpR18.pas">
+				<Form>fmCmpR18</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\ManLro.pas">
+				<Form>fmManLro</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\ManLr2.pas">
+				<Form>fmManLr2</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\ManLr3.pas">
+				<Form>fmManLr3</Form>
+			</DCCReference>
+			<DCCReference Include="Compras\DualComp\ManRo3.pas">
+				<Form>fmManRo3</Form>
+			</DCCReference>
+			<DCCReference Include="Estoque\Emerion\ManCol.pas">
+				<Form>fmManCol</Form>
+			</DCCReference>
+			<DCCReference Include="ManNfp.pas">
+				<Form>fmManNfp</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ConCn1_NFE.pas">
+				<Form>fmConCn1_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManCdv_NFE.pas">
+				<Form>fmManCdv_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManCge_NFE.pas">
+				<Form>fmManCge_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManCn1_NFE.pas">
+				<Form>fmManCn1_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManCn2_NFE.pas">
+				<Form>fmManCn2_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManDn1_NFE.pas">
+				<Form>fmManDn1_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManDn2_NFE.pas">
+				<Form>fmManDn2_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManDn3_NFE.pas">
+				<Form>fmManDn3_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManDno_NFE.pas">
+				<Form>fmManDno_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManE01_NFE.pas">
+				<Form>fmManE01_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManE02_NFE.pas">
+				<Form>fmManE02_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManE03_NFE.pas">
+				<Form>fmManE03_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManEn1_NFE.pas">
+				<Form>fmManEn1_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManEn2_NFE.pas">
+				<Form>fmManEn2_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManEn3_NFE.pas">
+				<Form>fmManEn3_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManEn4_NFE.pas">
+				<Form>fmManEn4_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManEno_NFE.pas">
+				<Form>fmManEno_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManGer_NFE.pas">
+				<Form>fmManGer_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManGr1_NFE.pas">
+				<Form>fmManGr1_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManGr2_NFE.pas">
+				<Form>fmManGr2_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManIdn_NFE.pas">
+				<Form>fmManIdn_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManImp_NFE.pas">
+				<Form>fmManImp_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManIng_NFE.pas">
+				<Form>fmManIng_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManLn7_NFE.pas">
+				<Form>fmManLn7_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManLn8_NFE.pas">
+				<Form>fmManLn8_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManLno_NFE.pas">
+				<Form>fmManLno_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManNF1_NFE.pas">
+				<Form>fmManNF1_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManNg1_NFE.pas">
+				<Form>fmManNg1_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManNg2_NFE.pas">
+				<Form>fmManNg2_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManNg3_NFE.pas">
+				<Form>fmManNg3_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManNge_NFE.pas">
+				<Form>fmManNge_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManNot_NFE.pas">
+				<Form>fmManNot_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManNt1_NFE.pas">
+				<Form>fmManNt1_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManNt2_NFE.pas">
+				<Form>fmManNt2_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManNt3_NFE.pas">
+				<Form>fmManNt3_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManNt4_NFE.pas">
+				<Form>fmManNt4_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManObp_NFE.pas">
+				<Form>fmManObp_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManSge_NFE.pas">
+				<Form>fmManSge_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_Geral\ManPfa_GERAL.pas">
+				<Form>fmManPfa_GERAL</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\Controle_NFE.pas">
+				<Form>fmControle_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="ManC01.pas">
+				<Form>fmManC01</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManNF1R_NFE.pas">
+				<Form>fmManNF1R_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="ManE12_NFE.pas">
+				<Form>fmManE12_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="Calma_NFE\ManLnRMA_NFE.pas">
+				<Form>fmManLnRMA_NFE</Form>
+			</DCCReference>
+			<DCCReference Include="mandi.pas">
+				<Form>FMMANDI</Form>
+			</DCCReference>
+			<DCCReference Include="ManLn7.pas">
+				<Form>fmManLn7</Form>
+			</DCCReference>
+			<DCCReference Include="ManE02.pas">
+				<Form>fmManE02</Form>
+			</DCCReference>
+			<DCCReference Include="W:\_wglib\padrao\ManGDB.pas">
+				<Form>fmManGDB</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="UNTObsRMN.pas">
+				<Form>FrmObsRMN</Form>
+			</DCCReference>
+			<DCCReference Include="ManNt2.pas">
+				<Form>fmManNt2</Form>
+			</DCCReference>
+			<DCCReference Include="W:\_wglib\lib\Bbfuncao.pas"/>
+			<DCCReference Include="ManEditNfe.pas">
+				<Form>FrmEditNfe</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\compras\dualcompSN\manNFEAltPort.pas">
+				<Form>fmNFEAltPort</Form>
+			</DCCReference>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>VCLApplication</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Source>
+						<Source Name="MainSource">EFatura.dpr</Source>
+					</Source>
+					<Parameters>
+						<Parameters Name="UseLauncher">False</Parameters>
+						<Parameters Name="LoadAllSymbols">True</Parameters>
+						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+					</Parameters>
+					<Language>
+						<Language Name="ProjectLang">$00000416</Language>
+					</Language>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">0</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">1</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1046</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">0.0.0.1</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+					</VersionInfoKeys>
+				</Delphi.Personality>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>

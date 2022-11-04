@@ -1,0 +1,1339 @@
+inherited fmManPar: TfmManPar
+  Left = 391
+  Top = 203
+  Caption = 'Parametros'
+  ClientHeight = 481
+  ClientWidth = 631
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label10: TLabel
+    Left = 4
+    Top = 1
+    Width = 44
+    Height = 13
+    Caption = 'Moedas'
+    Color = clBtnFace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    Transparent = True
+  end
+  object Bevel1: TBevel
+    Left = 112
+    Top = 7
+    Width = 531
+    Height = 2
+    Shape = bsTopLine
+    Style = bsRaised
+  end
+  object Label5: TLabel
+    Left = 4
+    Top = 21
+    Width = 153
+    Height = 13
+    Caption = 'Utiliza Conversão de Moedas ? :'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label6: TLabel
+    Left = 4
+    Top = 45
+    Width = 120
+    Height = 13
+    Caption = 'Tipo de Moeda Utilizado :'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label1: TLabel
+    Left = 4
+    Top = 90
+    Width = 120
+    Height = 13
+    Caption = 'Data da Última Cotação :'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label2: TLabel
+    Left = 4
+    Top = 114
+    Width = 121
+    Height = 13
+    Caption = 'Valor da Última Cotação :'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label3: TLabel
+    Left = 4
+    Top = 141
+    Width = 206
+    Height = 13
+    Caption = 'Usuário que Realizou a Última Atualização :'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label4: TLabel
+    Left = 4
+    Top = 66
+    Width = 85
+    Height = 13
+    Caption = 'Tipo de Cotação :'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label7: TLabel
+    Left = 4
+    Top = 162
+    Width = 72
+    Height = 13
+    Caption = 'Notas Fiscais'
+    Color = clBtnFace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    Transparent = True
+  end
+  object Label8: TLabel
+    Left = 4
+    Top = 182
+    Width = 173
+    Height = 13
+    Caption = 'Qtd. Linhas de Impressão de Itens :'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label9: TLabel
+    Left = 4
+    Top = 206
+    Width = 171
+    Height = 13
+    Caption = 'Qtd. Linhas de Impressão da Nota :'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Bevel2: TBevel
+    Left = 112
+    Top = 168
+    Width = 531
+    Height = 2
+    Shape = bsTopLine
+    Style = bsRaised
+  end
+  object Label11: TLabel
+    Left = 764
+    Top = 351
+    Width = 67
+    Height = 13
+    Caption = '(%) COFINS :'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+    Visible = False
+  end
+  object Label12: TLabel
+    Left = 764
+    Top = 327
+    Width = 45
+    Height = 13
+    Caption = '(%) PIS :'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+    Visible = False
+  end
+  object Label14: TLabel
+    Left = 337
+    Top = 230
+    Width = 221
+    Height = 26
+    Alignment = taRightJustify
+    Caption = 'Obrigar Leitura das Observações Contidas no Cliente ?'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+    WordWrap = True
+  end
+  object Label31: TLabel
+    Left = 320
+    Top = 182
+    Width = 235
+    Height = 13
+    Caption = 'Imprimir Referência ao invés do Código do Item ?'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label15: TLabel
+    Left = 5
+    Top = 230
+    Width = 201
+    Height = 13
+    Caption = 'Descontar PIS no calculo da Zona Franca?'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label16: TLabel
+    Left = 6
+    Top = 254
+    Width = 225
+    Height = 13
+    Caption = 'Descontar COFINS no Calculo da Zona Franca?'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label13: TLabel
+    Left = 26
+    Top = 276
+    Width = 258
+    Height = 30
+    AutoSize = False
+    Caption = 
+      'Usar planilhar para importação e fixar valores (ICMS, IPI, PIS e' +
+      ' COFINS).'
+    WordWrap = True
+  end
+  object Label17: TLabel
+    Left = 4
+    Top = 338
+    Width = 114
+    Height = 13
+    Caption = 'Email da Contabilidade: '
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label18: TLabel
+    Left = 4
+    Top = 370
+    Width = 280
+    Height = 13
+    Caption = 'Alíquota aplicável de cálculo do crédito (Simples Nacional) :'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object bConfirmar: TBitBtn
+    Left = 345
+    Top = 434
+    Width = 132
+    Height = 37
+    Hint = 'Salvar as Alterações Realizadas'
+    Caption = '&Salvar'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 18
+    OnClick = bConfirmarClick
+    Glyph.Data = {
+      AA040000424DAA04000000000000360000002800000014000000130000000100
+      18000000000074040000C40E0000C40E00000000000000000000C0CFD0C0CFD0
+      C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+      D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD07F7F7F7F
+      7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F
+      7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FC0CFD0C0CFD0C0CFD00000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000007F7F7FC0CFD0C0CFD0000000000000FF0000FF0000000000
+      7F7F7FFF0000FF00007F7F7F7F7F7F7F7F7F7F7F7F000000FF0000FF0000FF00
+      000000007F7F7FC0CFD0C0CFD0000000FF0000FF0000FF00000000007F7F7FFF
+      0000FF00007F7F7F7F7F7F7F7F7F7F7F7F000000FF0000FF0000FF0000000000
+      7F7F7FC0CFD0C0CFD0000000FF0000FF0000FF00000000007F7F7F7F7F7F7F7F
+      7F7F7F7F7F7F7F7F7F7F7F7F7F000000FF0000FF0000FF00000000007F7F7FC0
+      CFD0C0CFD0000000FF0000FF0000FF0000000000000000000000000000000000
+      000000000000000000000000FF0000FF0000FF00000000007F7F7FC0CFD0C0CF
+      D0000000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FF00000000007F7F7FC0CFD0C0CFD0000000
+      FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF00
+      00FF0000FF0000FF0000FF00000000007F7F7FC0CFD0C0CFD0000000FF0000FF
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000FF0000FF00000000007F7F7FC0CFD0C0CFD0000000FF0000FF00000000
+      00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FF
+      0000FF00000000007F7F7FC0CFD0C0CFD0000000FF0000FF0000000000FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FF0000FF00
+      000000007F7F7FC0CFD0C0CFD0000000FF0000FF0000000000FFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FF0000FF0000000000
+      7F7F7FC0CFD0C0CFD0000000FF0000FF0000000000FFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FF0000FF00000000007F7F7FC0
+      CFD0C0CFD0000000FF0000FF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFF000000FF0000FF00000000007F7F7FC0CFD0C0CF
+      D0000000FF0000FF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFF000000FF0000FF00000000007F7F7FC0CFD0C0CFD0000000
+      FF0000FF000000000000FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      FF00FFFF000000FF0000FF00000000007F7F7FC0CFD0C0CFD000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+      D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0
+      CFD0C0CFD0C0CFD0C0CFD0C0CFD0}
+  end
+  object bCancelar: TBitBtn
+    Left = 480
+    Top = 434
+    Width = 132
+    Height = 37
+    Hint = 'Retornar a Tela Anterior'
+    Caption = '&Fechar'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 19
+    OnClick = bCancelarClick
+    Glyph.Data = {
+      AA030000424DAA03000000000000360000002800000011000000110000000100
+      18000000000074030000C40E0000C40E00000000000000000000C0CFD0C0CFD0
+      C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+      D0C0CFD0C0CFD0C0CFD0C0CFD000C0CFD0C0CFD0C0CFD0C0CFD0000000000000
+      000000C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+      D000C0CFD0C0CFD000000000000030679F30679F000000C0CFD0C0CFD0C0CFD0
+      C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD000C0CFD000506030679F30
+      679F30679F30679F000000005060005060005060005060005060005060C0CFD0
+      C0CFD0C0CFD0C0CFD000C0CFD000506030689F30689F30679F30679F00000000
+      CFFF00CFFF00CFFF000000C0C0C0C0C0C0C0CFD0C0CFD0C0CFD0C0CFD000C0CF
+      D00050602F6FA02F6FA02F6F9F2F689F00000000CFFF00CFFF00CFFF000000C0
+      C0C0FF0000C0CFD0C0CFD0C0CFD0C0CFD000C0CFD00050602077AF2077A02070
+      A02F70A000000010CFFF00CFFF00CFFF000000FF0000FF0000C0CFD0C0CFD0C0
+      CFD0C0CFD000C0CFD00050601F7FAF1F78AFFFFFFF2077AF00000030D7FF2FD0
+      FF1FD0FFFF0000FF0000FF0000C0CFD0C0CFD0C0CFD0C0CFD000C0CFD0005060
+      1080B01F80B01F80B01F7FB000000060DFFF50D8FFFF0000FF0000FF0000FF00
+      00FF0000FF0000FF0000C0CFD000C0CFD00050600F88BF1088BF1087BF1087B0
+      0000008FE7FFFF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000C0CF
+      D000C0CFD00050600F90C00F8FC00F8FC00F88BF000000B0EFFFA0E8FFFF0000
+      FF0000FF0000FF0000FF0000FF0000FF0000C0CFD000C0CFD00050600097CF00
+      97CF0090C00090C0000000DFF0FFCFF0FFC0EFFFFF0000FF0000FF0000C0CFD0
+      C0CFD0C0CFD0C0CFD000C0CFD00050600098CF0098CF0098CF0097CF000000FF
+      F8FFF0F7FFE0F7FF000000FF0000FF0000C0CFD0C0CFD0C0CFD0C0CFD000C0CF
+      D00050600098CF0098CF0098CF0098CF000000FFF8FFFFF8FFFFF8FF000000C0
+      C0C0FF0000C0CFD0C0CFD0C0CFD0C0CFD000C0CFD0C0CFD00050600050600098
+      CF0098CF000000005060005060005060005060C0CFD0C0CFD0C0CFD0C0CFD0C0
+      CFD0C0CFD000C0CFD0C0CFD0C0CFD0C0CFD0005060005060005060C0CFD0C0CF
+      D0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD000C0CFD0C0CFD0
+      C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CFD0C0CF
+      D0C0CFD0C0CFD0C0CFD0C0CFD000}
+  end
+  object EdFlgCot: TdxDBCheckEdit
+    Left = 210
+    Top = 19
+    Width = 20
+    Color = 16644596
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 0
+    OnClick = EdFlgCotClick
+    AutoSize = False
+    DataField = 'FLGCOT'
+    DataSource = DsPar
+    ValueChecked = 'Sim'
+    ValueUnchecked = 'Nao'
+    Height = 18
+  end
+  object EdCodTmo: TdxDBColorEdit
+    Left = 213
+    Top = 38
+    Width = 96
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 1
+    Alignment = taRightJustify
+    CharCase = ecUpperCase
+    DataField = 'CODTMO'
+    DataSource = DsPar
+    CorDeFoco = clInfoBk
+    StoredValues = 1
+  end
+  object CbNomTmo: TdxDBColorLookupEdit
+    Left = 311
+    Top = 38
+    Width = 310
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14065456
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 2
+    TabStop = False
+    DataField = 'CODTMO'
+    DataSource = DsPar
+    DropDownWidth = 400
+    ListFieldName = 'NOMTMO;CODTMO'
+    KeyFieldName = 'CODTMO'
+    ListSource = DsTmo
+    LookupKeyValue = Null
+    CorDeFoco = clInfoBk
+  end
+  object EdDUlCot: TdxDBColorDateEdit
+    Left = 213
+    Top = 86
+    Width = 96
+    Color = 16577773
+    Enabled = False
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14065456
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 4
+    DataField = 'DULCOT'
+    DataSource = DsPar
+    PopupBorder = pbFlat
+    DateButtons = []
+    DateValidation = True
+    SaveTime = False
+    UseEditMask = True
+    CorDeFoco = clInfoBk
+    StoredValues = 4
+  end
+  object EdValCot: TdxDBColorCurrencyEdit
+    Left = 213
+    Top = 110
+    Width = 96
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 5
+    Alignment = taRightJustify
+    DataField = 'VALCOT'
+    DataSource = DsPar
+    DecimalPlaces = 4
+    DisplayFormat = '###,###,##0.0000'
+    Nullable = False
+    CorDeFoco = clInfoBk
+    StoredValues = 49
+  end
+  object EdCodUsu: TdxDBColorEdit
+    Left = 213
+    Top = 134
+    Width = 96
+    Color = 16577773
+    Enabled = False
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 6
+    Alignment = taRightJustify
+    CharCase = ecUpperCase
+    DataField = 'CODUSU'
+    DataSource = DsPar
+    CorDeFoco = clInfoBk
+    StoredValues = 1
+  end
+  object CbNomUsu: TdxDBColorLookupEdit
+    Left = 311
+    Top = 134
+    Width = 310
+    Color = 16577773
+    Enabled = False
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14065456
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 7
+    TabStop = False
+    DataField = 'CODUSU'
+    DataSource = DsPar
+    DropDownWidth = 400
+    ListFieldName = 'LOGUSU;CODUSU'
+    KeyFieldName = 'CODUSU'
+    ListSource = DsUsu
+    LookupKeyValue = Null
+    CorDeFoco = clInfoBk
+  end
+  object EdTipTmo: TdxDBColorPickEdit
+    Left = 213
+    Top = 62
+    Width = 96
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 3
+    DataField = 'TIPTMO'
+    DataSource = DsPar
+    ReadOnly = False
+    DropDownListStyle = True
+    Items.Strings = (
+      'Comercial'
+      'Paralelo'
+      'Turismo'
+      'Cabo')
+    CorDeFoco = clInfoBk
+    StoredValues = 64
+  end
+  object EdPerPis: TdxDBColorCurrencyEdit
+    Left = 837
+    Top = 323
+    Width = 96
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 8
+    Visible = False
+    Alignment = taRightJustify
+    DataField = 'PERPIS'
+    DataSource = DsPar
+    DisplayFormat = '###,###,##0.00'
+    Nullable = False
+    CorDeFoco = clInfoBk
+    StoredValues = 49
+  end
+  object EdPerCof: TdxDBColorCurrencyEdit
+    Left = 837
+    Top = 347
+    Width = 96
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 9
+    Visible = False
+    Alignment = taRightJustify
+    DataField = 'PERCOF'
+    DataSource = DsPar
+    DisplayFormat = '###,###,##0.00'
+    Nullable = False
+    CorDeFoco = clInfoBk
+    StoredValues = 49
+  end
+  object EdQtdLin: TdxDBColorCurrencyEdit
+    Left = 213
+    Top = 178
+    Width = 96
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 10
+    Alignment = taRightJustify
+    DataField = 'QTDLIN'
+    DataSource = DsPar
+    DecimalPlaces = 0
+    DisplayFormat = '###0'
+    Nullable = False
+    CorDeFoco = clInfoBk
+    StoredValues = 49
+  end
+  object EdQtdNot: TdxDBColorCurrencyEdit
+    Left = 213
+    Top = 202
+    Width = 96
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 12
+    Alignment = taRightJustify
+    DataField = 'QTDNOT'
+    DataSource = DsPar
+    DecimalPlaces = 0
+    DisplayFormat = '###0'
+    Nullable = False
+    CorDeFoco = clInfoBk
+    StoredValues = 49
+  end
+  object EdLerObs: TdxDBColorPickEdit
+    Left = 565
+    Top = 226
+    Width = 56
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 15
+    DataField = 'LEROBS'
+    DataSource = DsPar
+    ReadOnly = False
+    DropDownListStyle = True
+    Items.Strings = (
+      'Sim'
+      'Nao')
+    CorDeFoco = clInfoBk
+    StoredValues = 64
+  end
+  object EdImpRef: TdxDBColorPickEdit
+    Left = 574
+    Top = 178
+    Width = 46
+    Hint = 'Imprimir Referência ao invés do Códido do Item nos Pedidos'
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 11
+    DataField = 'IMPREF'
+    DataSource = DsPar
+    MaxLength = 15
+    ReadOnly = False
+    DropDownListStyle = True
+    Items.Strings = (
+      'Sim'
+      'Nao')
+    CorDeFoco = clInfoBk
+    StoredValues = 66
+  end
+  object DBCheckBox1: TDBCheckBox
+    Left = 320
+    Top = 204
+    Width = 241
+    Height = 17
+    Caption = 'Consistir valor de NF com valor de liberação'
+    DataField = 'CONSPEDXNOTA'
+    DataSource = DsPar
+    TabOrder = 13
+    ValueChecked = '1'
+    ValueUnchecked = '0'
+  end
+  object dxDBColorPickEdit1: TdxDBColorPickEdit
+    Left = 252
+    Top = 226
+    Width = 56
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 14
+    DataField = 'CALC_PIS_ZF'
+    DataSource = DsPar
+    ReadOnly = False
+    DropDownListStyle = True
+    Items.Strings = (
+      'Sim'
+      'Nao')
+    CorDeFoco = clInfoBk
+    StoredValues = 64
+  end
+  object dxDBColorPickEdit2: TdxDBColorPickEdit
+    Left = 251
+    Top = 250
+    Width = 56
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 16
+    DataField = 'CALC_COF_ZF'
+    DataSource = DsPar
+    ReadOnly = False
+    DropDownListStyle = True
+    Items.Strings = (
+      'Sim'
+      'Nao')
+    CorDeFoco = clInfoBk
+    StoredValues = 64
+  end
+  object DBCheckBox2: TDBCheckBox
+    Left = 8
+    Top = 280
+    Width = 11
+    Height = 19
+    DataField = 'FLG_PLAN_IMPORT'
+    DataSource = DsPar
+    TabOrder = 17
+    ValueChecked = 'S'
+    ValueUnchecked = 'N'
+  end
+  object DBCheckBox3: TDBCheckBox
+    Left = 320
+    Top = 276
+    Width = 153
+    Height = 17
+    Caption = 'Realiza Calculo do DIFAL'
+    DataField = 'FLGDIFAL'
+    DataSource = DsPar
+    TabOrder = 20
+    ValueChecked = 'S'
+    ValueUnchecked = 'N'
+  end
+  object DBCheckBox4: TDBCheckBox
+    Left = 8
+    Top = 308
+    Width = 297
+    Height = 17
+    Caption = 'Cancelar Titulos ao Realizar Devolucao dos Itens'
+    DataField = 'FLG_DEL_TITULOS'
+    DataSource = DsPar
+    TabOrder = 21
+    ValueChecked = '*'
+    ValueUnchecked = ' '
+  end
+  object dxDBColorEdit1: TdxDBColorEdit
+    Left = 117
+    Top = 334
+    Width = 220
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 22
+    Alignment = taLeftJustify
+    CharCase = ecLowerCase
+    DataField = 'EMAIL_CONTABILIDADE'
+    DataSource = DsPar
+    CorDeFoco = clInfoBk
+    StoredValues = 1
+  end
+  object dxDBColorCurrencyEdit1: TdxDBColorCurrencyEdit
+    Left = 301
+    Top = 366
+    Width = 96
+    Color = 16577773
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Style.BorderColor = 14789952
+    Style.BorderStyle = xbsSingle
+    Style.ButtonStyle = btsSimple
+    Style.ButtonTransparence = ebtInactive
+    Style.HotTrack = True
+    Style.Shadow = True
+    TabOrder = 23
+    Alignment = taRightJustify
+    DataField = 'ALIQ_CRED_SN'
+    DataSource = DsPar
+    DecimalPlaces = 4
+    DisplayFormat = '###,###,##0.00'
+    Nullable = False
+    CorDeFoco = clInfoBk
+    StoredValues = 49
+  end
+  object DBCheckBox22: TDBCheckBox
+    Left = 7
+    Top = 391
+    Width = 370
+    Height = 17
+    Caption = 'Suprimir os "Zeros " do código na impressão do Pedido e cotação.'
+    DataField = 'SUPRIMIR_ZEROS'
+    DataSource = DsPar
+    TabOrder = 24
+    ValueChecked = '1'
+    ValueUnchecked = '0'
+  end
+  object FatPar: TwwQuery
+    CachedUpdates = True
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'Select * From FatPar')
+    UpdateObject = UpPar
+    ValidateWithMask = True
+    Left = 434
+    Top = 126
+    object FatParFLGCOT: TStringField
+      FieldName = 'FLGCOT'
+      Origin = 'ISADE.FATPAR.FLGCOT'
+      FixedChar = True
+      Size = 3
+    end
+    object FatParCODTMO: TIntegerField
+      FieldName = 'CODTMO'
+      Origin = 'ISADE.FATPAR.CODTMO'
+    end
+    object FatParDULCOT: TDateTimeField
+      FieldName = 'DULCOT'
+      Origin = 'ISADE.FATPAR.DULCOT'
+    end
+    object FatParCODUSU: TIntegerField
+      FieldName = 'CODUSU'
+      Origin = 'ISADE.FATPAR.CODUSU'
+    end
+    object FatParTIPTMO: TStringField
+      FieldName = 'TIPTMO'
+      Origin = 'ISADE.FATPAR.TIPTMO'
+      FixedChar = True
+      Size = 9
+    end
+    object FatParVALCOT: TFloatField
+      FieldName = 'VALCOT'
+      Origin = 'ISADE.FATPAR.VALCOT'
+      DisplayFormat = '###,###,##0.0000'
+      Precision = 4
+    end
+    object FatParPERPIS: TFloatField
+      FieldName = 'PERPIS'
+      Origin = 'ISADE.FATPAR.PERPIS'
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object FatParPERCOF: TFloatField
+      FieldName = 'PERCOF'
+      Origin = 'ISADE.FATPAR.PERCOF'
+      DisplayFormat = '###,###,##0.00'
+      Precision = 2
+    end
+    object FatParQTDLIN: TIntegerField
+      FieldName = 'QTDLIN'
+      Origin = 'ISADE.FATPAR.QTDLIN'
+    end
+    object FatParQTDNOT: TIntegerField
+      FieldName = 'QTDNOT'
+      Origin = 'ISADE.FATPAR.QTDNOT'
+    end
+    object FatParCONPLC: TIntegerField
+      FieldName = 'CONPLC'
+      Origin = 'ISADE.FATPAR.CONPLC'
+    end
+    object FatParSUBPLC: TIntegerField
+      FieldName = 'SUBPLC'
+      Origin = 'ISADE.FATPAR.SUBPLC'
+    end
+    object FatParLANFAT: TStringField
+      FieldName = 'LANFAT'
+      Origin = 'ISADE.FATPAR.LANFAT'
+      FixedChar = True
+      Size = 3
+    end
+    object FatParIMPCLF: TStringField
+      FieldName = 'IMPCLF'
+      Origin = 'ISADE.FATPAR.IMPCLF'
+      FixedChar = True
+      Size = 10
+    end
+    object FatParLEROBS: TStringField
+      FieldName = 'LEROBS'
+      Origin = 'ISADE.FATPAR.LEROBS'
+      FixedChar = True
+      Size = 3
+    end
+    object FatParIMPREF: TStringField
+      FieldName = 'IMPREF'
+      Origin = 'ISADE.FATPAR.IMPREF'
+      FixedChar = True
+      Size = 3
+    end
+    object FatParQTDROM: TIntegerField
+      FieldName = 'QTDROM'
+      Origin = 'ISADE.FATPAR.QTDROM'
+    end
+    object FatParNFE2: TSmallintField
+      FieldName = 'NFE2'
+      Origin = 'ISADE.FATPAR.NFE2'
+    end
+    object FatParPATHDANFE: TStringField
+      FieldName = 'PATHDANFE'
+      Origin = 'ISADE.FATPAR.PATHDANFE'
+      Size = 200
+    end
+    object FatParPATHCANCELAMENTO: TStringField
+      FieldName = 'PATHCANCELAMENTO'
+      Origin = 'ISADE.FATPAR.PATHCANCELAMENTO'
+      Size = 200
+    end
+    object FatParPATHNFE: TStringField
+      FieldName = 'PATHNFE'
+      Origin = 'ISADE.FATPAR.PATHNFE'
+      Size = 200
+    end
+    object FatParPATHXML: TStringField
+      FieldName = 'PATHXML'
+      Origin = 'ISADE.FATPAR.PATHXML'
+      Size = 200
+    end
+    object FatParPATHSCHEMAS: TStringField
+      FieldName = 'PATHSCHEMAS'
+      Origin = 'ISADE.FATPAR.PATHSCHEMAS'
+      Size = 200
+    end
+    object FatParPATHLOGO: TStringField
+      FieldName = 'PATHLOGO'
+      Origin = 'ISADE.FATPAR.PATHLOGO'
+      Size = 200
+    end
+    object FatParAMBIENTE: TSmallintField
+      FieldName = 'AMBIENTE'
+      Origin = 'ISADE.FATPAR.AMBIENTE'
+    end
+    object FatParCERTNSERIE: TStringField
+      FieldName = 'CERTNSERIE'
+      Origin = 'ISADE.FATPAR.CERTNSERIE'
+      Size = 30
+    end
+    object FatParCERTSENHA: TStringField
+      FieldName = 'CERTSENHA'
+      Origin = 'ISADE.FATPAR.CERTSENHA'
+    end
+    object FatParCONSPEDXNOTA: TSmallintField
+      FieldName = 'CONSPEDXNOTA'
+      Origin = 'ISADE.FATPAR.CONSPEDXNOTA'
+    end
+    object FatParALTERA_FATURADO: TSmallintField
+      FieldName = 'ALTERA_FATURADO'
+      Origin = 'ISADE.FATPAR.ALTERA_FATURADO'
+    end
+    object FatParN_ALT_FAT: TStringField
+      FieldName = 'N_ALT_FAT'
+      Origin = 'ISADE.FATPAR.N_ALT_FAT'
+      FixedChar = True
+      Size = 1
+    end
+    object FatParCFOP_CONS_SUB: TStringField
+      FieldName = 'CFOP_CONS_SUB'
+      Origin = 'ISADE.FATPAR.CFOP_CONS_SUB'
+      FixedChar = True
+      Size = 1
+    end
+    object FatParENVIO_SERVICO: TStringField
+      FieldName = 'ENVIO_SERVICO'
+      Origin = 'ISADE.FATPAR.ENVIO_SERVICO'
+      FixedChar = True
+      Size = 1
+    end
+    object FatParCALC_PIS_ZF: TStringField
+      FieldName = 'CALC_PIS_ZF'
+      Origin = 'ISADE.FATPAR.CALC_PIS_ZF'
+      FixedChar = True
+      Size = 3
+    end
+    object FatParCALC_COF_ZF: TStringField
+      FieldName = 'CALC_COF_ZF'
+      Origin = 'ISADE.FATPAR.CALC_COF_ZF'
+      FixedChar = True
+      Size = 3
+    end
+    object FatParVAL_DESCONTO: TFloatField
+      FieldName = 'VAL_DESCONTO'
+      Origin = 'ISADE.FATPAR.VAL_DESCONTO'
+    end
+    object FatParFLG_PLAN_IMPORT: TStringField
+      FieldName = 'FLG_PLAN_IMPORT'
+      Origin = 'ISADE.FATPAR.FLG_PLAN_IMPORT'
+      FixedChar = True
+      Size = 1
+    end
+    object FatParORIG_DIFAL: TFloatField
+      FieldName = 'ORIG_DIFAL'
+      Origin = 'ISADE.FATPAR.ORIG_DIFAL'
+    end
+    object FatParFLGDIFAL: TStringField
+      FieldName = 'FLGDIFAL'
+      Origin = 'ISADE.FATPAR.FLGDIFAL'
+      FixedChar = True
+      Size = 1
+    end
+    object FatParFLG_DEL_TITULOS: TStringField
+      FieldName = 'FLG_DEL_TITULOS'
+      Origin = 'ISADE.FATPAR.FLG_DEL_TITULOS'
+      FixedChar = True
+      Size = 1
+    end
+    object FatParEMAIL_CONTABILIDADE: TStringField
+      FieldName = 'EMAIL_CONTABILIDADE'
+      Origin = 'ISADE.FATPAR.EMAIL_CONTABILIDADE'
+      Size = 70
+    end
+    object FatParFLG_MINUTA_RESUMIDA: TStringField
+      FieldName = 'FLG_MINUTA_RESUMIDA'
+      Origin = 'ISADE.FATPAR.FLG_MINUTA_RESUMIDA'
+      FixedChar = True
+      Size = 3
+    end
+    object FatParALIQ_CRED_SN: TFloatField
+      FieldName = 'ALIQ_CRED_SN'
+      Origin = 'ISADE.FATPAR.ALIQ_CRED_SN'
+      DisplayFormat = '0.00'
+      EditFormat = '0.00'
+    end
+    object FatParSUPRIMIR_ZEROS: TSmallintField
+      FieldName = 'SUPRIMIR_ZEROS'
+      Origin = 'ISADE.FATPAR.SUPRIMIR_ZEROS'
+    end
+  end
+  object DsPar: TDataSource
+    DataSet = FatPar
+    OnDataChange = DsParDataChange
+    Left = 462
+    Top = 126
+  end
+  object UpPar: TUpdateSQL
+    ModifySQL.Strings = (
+      'update FatPar'
+      'set'
+      '  FLGCOT = :FLGCOT,'
+      '  CODTMO = :CODTMO,'
+      '  TIPTMO = :TIPTMO,'
+      '  DULCOT = :DULCOT,'
+      '  VALCOT = :VALCOT,'
+      '  PERPIS = :PERPIS,'
+      '  PERCOF = :PERCOF,'
+      '  QTDLIN = :QTDLIN,'
+      '  QTDNOT = :QTDNOT,'
+      '  CODUSU = :CODUSU,'
+      '  CONPLC = :CONPLC,'
+      '  SUBPLC = :SUBPLC,'
+      '  LANFAT = :LANFAT,'
+      '  IMPCLF = :IMPCLF,'
+      '  LEROBS = :LEROBS,'
+      '  IMPREF = :IMPREF,'
+      '  CONSPEDXNOTA = :CONSPEDXNOTA,'
+      '  CALC_PIS_ZF = :CALC_PIS_ZF,'
+      '  CALC_COF_ZF = :CALC_COF_ZF,'
+      '  FLG_PLAN_IMPORT = :FLG_PLAN_IMPORT,'
+      '  FLG_DEL_TITULOS = :FLG_DEL_TITULOS,'
+      '  EMAIL_CONTABILIDADE = :EMAIL_CONTABILIDADE,'
+      '  ALIQ_CRED_SN = :ALIQ_CRED_SN,'
+      '  SUPRIMIR_ZEROS = :SUPRIMIR_ZEROS'
+      ' ')
+    InsertSQL.Strings = (
+      'insert into FatPar'
+      
+        '  (FLGCOT, CODTMO, TIPTMO, DULCOT, VALCOT, PERPIS, PERCOF, QTDLI' +
+        'N, QTDNOT, '
+      
+        '   CODUSU, CONPLC, SUBPLC, LANFAT, IMPCLF, LEROBS, IMPREF, CONSP' +
+        'EDXNOTA, '
+      
+        '   CALC_PIS_ZF, CALC_COF_ZF, FLG_PLAN_IMPORT, FLG_DEL_TITULOS, E' +
+        'MAIL_CONTABILIDADE, '
+      '   ALIQ_CRED_SN, SUPRIMIR_ZEROS)'
+      'values'
+      
+        '  (:FLGCOT, :CODTMO, :TIPTMO, :DULCOT, :VALCOT, :PERPIS, :PERCOF' +
+        ', :QTDLIN,'
+      
+        '   :QTDNOT, :CODUSU, :CONPLC, :SUBPLC, :LANFAT, :IMPCLF, :LEROBS' +
+        ', :IMPREF,'
+      
+        '   :CONSPEDXNOTA, :CALC_PIS_ZF, :CALC_COF_ZF, :FLG_PLAN_IMPORT, ' +
+        ':FLG_DEL_TITULOS,'
+      '   :EMAIL_CONTABILIDADE, :ALIQ_CRED_SN, :SUPRIMIR_ZEROS)'
+      ' ')
+    DeleteSQL.Strings = (
+      'delete from FatPar'
+      'where'
+      '  FLGCOT = :OLD_FLGCOT and'
+      '  CODTMO = :OLD_CODTMO and'
+      '  TIPTMO = :OLD_TIPTMO and'
+      '  DULCOT = :OLD_DULCOT and'
+      '  VALCOT = :OLD_VALCOT and'
+      '  PERPIS = :OLD_PERPIS and'
+      '  PERCOF = :OLD_PERCOF and'
+      '  QTDLIN = :OLD_QTDLIN and'
+      '  QTDNOT = :OLD_QTDNOT and'
+      '  CODUSU = :OLD_CODUSU and'
+      '  CONPLC = :OLD_CONPLC and'
+      '  SUBPLC = :OLD_SUBPLC and'
+      '  LANFAT = :OLD_LANFAT and'
+      '  IMPCLF = :OLD_IMPCLF and'
+      '  LEROBS = :OLD_LEROBS and'
+      '  IMPREF = :OLD_IMPREF and'
+      '  QTDROM = :OLD_QTDROM and'
+      '  NFE2 = :OLD_NFE2 and'
+      '  PATHDANFE = :OLD_PATHDANFE and'
+      '  PATHCANCELAMENTO = :OLD_PATHCANCELAMENTO and'
+      '  PATHNFE = :OLD_PATHNFE and'
+      '  PATHXML = :OLD_PATHXML and'
+      '  PATHSCHEMAS = :OLD_PATHSCHEMAS and'
+      '  PATHLOGO = :OLD_PATHLOGO and'
+      '  AMBIENTE = :OLD_AMBIENTE and'
+      '  CERTNSERIE = :OLD_CERTNSERIE and'
+      '  CERTSENHA = :OLD_CERTSENHA and'
+      '  CONSPEDXNOTA = :OLD_CONSPEDXNOTA and'
+      '  ALTERA_FATURADO = :OLD_ALTERA_FATURADO and'
+      '  N_ALT_FAT = :OLD_N_ALT_FAT and'
+      '  CFOP_CONS_SUB = :OLD_CFOP_CONS_SUB and'
+      '  ENVIO_SERVICO = :OLD_ENVIO_SERVICO and'
+      '  CALC_PIS_ZF = :OLD_CALC_PIS_ZF and'
+      '  CALC_COF_ZF = :OLD_CALC_COF_ZF and'
+      '  VAL_DESCONTO = :OLD_VAL_DESCONTO and'
+      '  FLG_PLAN_IMPORT = :OLD_FLG_PLAN_IMPORT and'
+      '  ORIG_DIFAL = :OLD_ORIG_DIFAL and'
+      '  FLGDIFAL = :OLD_FLGDIFAL and'
+      '  FLG_MINUTA_RESUMIDA = :OLD_FLG_MINUTA_RESUMIDA and'
+      '  FLG_DEL_TITULOS = :OLD_FLG_DEL_TITULOS and'
+      '  EMAIL_CONTABILIDADE = :OLD_EMAIL_CONTABILIDADE and'
+      '  ALIQ_CRED_SN = :OLD_ALIQ_CRED_SN')
+    Left = 434
+    Top = 170
+  end
+  object FinTmo: TwwQuery
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'Select * From FinTmo')
+    PictureMasks.Strings = (
+      'NUMCRE'#9'#[#][#]'#9'T'#9'T')
+    ValidateWithMask = True
+    Left = 544
+    Top = 86
+    object FinTmoNOMTMO: TStringField
+      DisplayLabel = 'Descrição'
+      DisplayWidth = 40
+      FieldName = 'NOMTMO'
+      Origin = 'ISADE.FINTMO.NOMTMO'
+      FixedChar = True
+      Size = 40
+    end
+    object FinTmoCODTMO: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'CODTMO'
+      Origin = 'ISADE.FINTMO.CODTMO'
+      Visible = False
+    end
+  end
+  object DsTmo: TwwDataSource
+    DataSet = FinTmo
+    Left = 572
+    Top = 86
+  end
+  object GerUsu: TwwQuery
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'Select CodUsu,LogUsu From GerUsu')
+    PictureMasks.Strings = (
+      'NUMCRE'#9'#[#][#]'#9'T'#9'T')
+    ValidateWithMask = True
+    Left = 544
+    Top = 114
+    object GerUsuCODUSU: TIntegerField
+      FieldName = 'CODUSU'
+    end
+    object GerUsuLOGUSU: TStringField
+      FieldName = 'LOGUSU'
+      FixedChar = True
+      Size = 15
+    end
+  end
+  object DsUsu: TwwDataSource
+    DataSet = GerUsu
+    Left = 572
+    Top = 114
+  end
+end

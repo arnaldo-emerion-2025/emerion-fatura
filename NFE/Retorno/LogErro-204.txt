@@ -1,0 +1,2 @@
+Nota(s) não confirmadas:
+204->Rejeição: Duplicidade de NF-e, com diferença na Chave de Acesso [35100708982270000157550010000002043530066298]

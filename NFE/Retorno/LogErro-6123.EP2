@@ -1,0 +1,3 @@
+WebService Consulta Status serviço:
+- Inativo ou Inoperante tente novamente.
+- .portalfiscal.inf.br/nfe/wsdl/NfeStatusServico"><nfeCabecMsg>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;&lt;cabecMsg xmlns="http://www.portalfiscal.inf.br/nfe" versao="1.02"&gt;&lt;versaoDados&gt;1.07&lt;/versaoDados&gt;&lt;/cabecMsg&gt;</ - URL:https://homologacao.nfe.fazenda.sp.gov.br/nfeweb/services/nfestatusservico.asmx - SOAPAction:http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico/nfeStatusServicoNF
