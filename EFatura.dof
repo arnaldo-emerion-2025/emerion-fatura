@@ -44,10 +44,10 @@ UnitOutputDir=W:\_wgsys\emerion\Emerion-DCUs
 PackageDLLOutputDir=
 PackageDCPOutputDir=
 SearchPath=
-Packages=Vcl50;Vclx50;VclSmp50;Vcldb50;vclado50;ibevnt50;Vclbde50;vcldbx50;Qrpt50;TeeUI50;TeeDB50;Tee50;Dss50;TeeQR50;VCLIB50;Vclmid50;vclie50;Inetdb50;Inet50;NMFast50;webmid50;dclocx50;dclaxserver50;ip50client_d5;ip50_d5;ip50word_d5;rbIBE55;rbDB55;rbRCL55;rbDAD55;rbTDBC51;rbIDE55;rbCIDE55;rbBDE55;rbRIDE55;rbRAP55;rbDBDE55;rbDIDE55;rbUSER55;rbADO55;dxBarD5;dxcomnD5;dxBarDBNavD5;dxBarExtItemsD5;dxBarExtDBItemsD5;dxsbd5;dxFlowChartD5;dxForumLibD5;dxInsD5;dxDBEdD5;dxEdtrD5;dxObjInsD5;dxorgcd5;dxdbord5;dxPageControlD5;dxmdsd5;dxMasterViewD5;EQTLD5;ECQDBCD5;EQDBTLD5;EQGridD5;dxGrEdD5;dxExELD5;dxELibD5;dxPSCored5;dxPSPrVwAdvD5;dxPSLnksD5;dxPSTLLnkD5;dxPSdxDBTLLnkD5;dxPSdxDBCtrlLnkd5;dxPSdxDBGrLnkD5;dxPSTeeChartD5;dxPSDBTeeChartD5;dxPSdxInsLnkD5;dxPSdxMVLnkD5;dxPSdxOCLnkD5;dxPSdxDBOCLnkD5;DelPrint5;RLibWinD5;OutrosComps2;Indy50
+Packages=Vcl50;Vclx50;VclSmp50;Vcldb50;vclado50;ibevnt50;Vclbde50;vcldbx50;Qrpt50;TeeUI50;TeeDB50;Tee50;Dss50;TeeQR50;VCLIB50;Vclmid50;vclie50;Inetdb50;Inet50;NMFast50;webmid50;dclocx50;dclaxserver50;ip50client_d5;ip50_d5;ip50word_d5;rbIBE55;rbDB55;rbRCL55;rbDAD55;rbTDBC51;rbIDE55;rbCIDE55;rbBDE55;rbRIDE55;rbRAP55;rbDBDE55;rbDIDE55;rbUSER55;rbADO55;OutrosComps2;Indy50
 Conditionals=
 DebugSourceDirs=
-UsePackages=0
+UsePackages=1
 [Parameters]
 RunParams=senhaNova
 HostApplication=
@@ -80,9 +80,14 @@ OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
 [Excluded Packages]
+$(DELPHI)\Bin\dphcrb50.bpl=Borland Delphi Core IDE CORBA Package
+$(DELPHI)\Bin\crbide50.bpl=Borland Core IDE CORBA Package
+$(DELPHI)\Bin\dphmts50.bpl=Borland Delphi Core MTS IDE Package
+$(DELPHI)\Bin\mtside50.bpl=Borland Core MTS IDE Package
+$(DELPHI)\Bin\dcltqr50.bpl=TeeChart 5.0 for QuickReport Components Design Package
 C:\Program Files (x86)\Developer Express Inc\ExpressInspector\Delphi 5\Lib\dcldxExRwD5.bpl=ExpressInspector Extended Rows
 C:\Program Files (x86)\Developer Express Inc\ExpressPageControl\Delphi 5\Lib\dcldxPageControlD5.bpl=ExpressPageControl by Developer Express Inc.
-$(DELPHI)\Bin\dcltqr50.bpl=TeeChart 5.0 for QuickReport Components Design Package
+C:\Componentes\Delphi 5\Quickrep5\QR5DesignD5.bpl=QuickReport 5 Components (Delphi 5)
 C:\Program Files (x86)\Developer Express Inc\ExpressPrinting System\Delphi 5\Lib\dxPSdxDBTVLnkD5.bpl=ExpressPrinting System ReportLink for ExpressDBTree by Developer Express Inc.
 C:\Program Files (x86)\Developer Express Inc\ExpressPrinting System\Delphi 5\Lib\dxPSdxFCLnkD5.bpl=ExpressPrinting System ReportLinks for ExpressFlowChart by Developer Express Inc.
 [HistoryLists\hlUnitAliases]

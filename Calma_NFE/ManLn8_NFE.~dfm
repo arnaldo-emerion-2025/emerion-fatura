@@ -2,7 +2,7 @@ inherited fmManLn8_NFE: TfmManLn8_NFE
   Left = 312
   Top = 135
   Caption = 'Notas Fiscais (Comercial) - Reimpressão do DANFE'
-  ClientHeight = 483
+  ClientHeight = 488
   ClientWidth = 786
   Position = poDesigned
   OnClose = FormClose
@@ -12,7 +12,7 @@ inherited fmManLn8_NFE: TfmManLn8_NFE
     Left = 0
     Top = 0
     Width = 786
-    Height = 483
+    Height = 488
     Align = alClient
     OnPaint = PaintBoxPaint
   end
