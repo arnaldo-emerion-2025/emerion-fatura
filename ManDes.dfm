@@ -1048,7 +1048,6 @@ inherited fmManDes: TfmManDes
     CorDeFoco = clInfoBk
   end
   object FatPed: TwwQuery
-    Active = True
     CachedUpdates = True
     AfterOpen = FatPedAfterOpen
     DatabaseName = 'ISade'

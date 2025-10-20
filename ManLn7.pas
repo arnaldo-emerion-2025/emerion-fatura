@@ -11,7 +11,7 @@ uses
 
   RLReport, RLPDFFilter, RLRichFilter, RLFilters, RLHTMLFilter,
   RLPreviewForm, RLBarcode,
-  RLXLSFilter;
+  RLXLSFilter, DBCtrls;
 
 type
   TfmManLn7 = class(TfmPadrao)
@@ -114,6 +114,37 @@ type
     OK: TButton;
     btnBradesco: TButton;
     btnEnviarPorEmail: TButton;
+    cobtco: TwwQuery;
+    cobtcoCODBAN: TIntegerField;
+    cobtcoCODAGB: TStringField;
+    cobtcoCODCNB: TStringField;
+    cobtcoCODTCO: TStringField;
+    cobtcoNOMTCO: TStringField;
+    cobtcoCODMOD: TIntegerField;
+    cobtcoNROCON: TStringField;
+    cobtcoNROCTR: TIntegerField;
+    cobtcoTIPCOB: TStringField;
+    cobtcoTIPOPE: TStringField;
+    cobtcoNROAUT: TIntegerField;
+    cobtcoFLGBOL: TStringField;
+    dsCobtco: TwwDataSource;
+    Label4: TLabel;
+    Label5: TLabel;
+    DBLookupComboBox1: TDBLookupComboBox;
+    wwQuery1: TwwQuery;
+    IntegerField1: TIntegerField;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    StringField4: TStringField;
+    IntegerField2: TIntegerField;
+    StringField5: TStringField;
+    IntegerField3: TIntegerField;
+    StringField6: TStringField;
+    StringField7: TStringField;
+    IntegerField4: TIntegerField;
+    StringField8: TStringField;
+    DataSource1: TDataSource;
     procedure countregistros;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -263,8 +294,9 @@ begin
 
   try
     quSQL.Close;
-    quSQL.SQL.Text := ' Insert Into FatBol(SeqArq,CodEmp,DteCre,NumCre,NumCrp,QtpCre,CodCli,CodBan,DtvCrp,VlpCrp,NosNum,CodBar,LinDig,SeqBol,DtvBol,VlpBol, PerMulta)' +
+    quSQL.SQL.Text := ' Insert Into FatBol(SeqArq,CODCNB,CodEmp,DteCre,NumCre,NumCrp,QtpCre,CodCli,CodBan,DtvCrp,VlpCrp,NosNum,CodBar,LinDig,SeqBol,DtvBol,VlpBol, PerMulta)' +
                       ' Select ' + QuotedStr(SeqArq) + ',' +
+                      QuotedStr(cobtcoCODCNB.AsString) + ',' +
                       '       FinCrp.CodEmp,' +
                       '       FinCrp.DteCre,' +
                       '       FinCrp.NumCre,' +
@@ -783,7 +815,7 @@ var
   CodEmp, NumCrp: integer;
 begin
   inherited;
-  if key = 32 then
+  if key = 32 then      //barra de espaço
   begin
 
     if FatBolCodEmp.Value > 0 then

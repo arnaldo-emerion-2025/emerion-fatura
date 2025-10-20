@@ -1,1 +1,14 @@
 *.exe
+*.dcu
+*~*
+*.~dfm
+*.~pas
+*.lnk
+*.LCK
+.history
+*.MB
+*.DB
+*.xsd
+*.xml
+*.EP*
+*EVNOTA*.txt

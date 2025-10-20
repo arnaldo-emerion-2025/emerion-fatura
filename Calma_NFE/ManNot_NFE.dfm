@@ -1,6 +1,6 @@
 inherited fmManNot_NFE: TfmManNot_NFE
-  Left = 157
-  Top = 131
+  Left = 282
+  Top = 137
   Caption = 'Notas fiscais (Comercial)'
   ClientHeight = 482
   ClientWidth = 786

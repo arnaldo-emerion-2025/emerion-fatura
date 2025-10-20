@@ -940,6 +940,7 @@ var
   suprimiZeros: Integer;
 
   emailRecepcaoXml: string;
+  precoUnitario, valorIpi, valorMva, valorComMva, valorSemMva, quantidade, percentualIcm: Double;
 begin
   inherited;
 
@@ -1535,6 +1536,7 @@ begin
           ' Pe2.CodCfo,' +
           ' Pe2.CodSt1,' +
           ' Pe2.CodSt2,' +
+          ' Pe2.CodStr,' +
           ' Pe2.CodUnd,' +
           ' Pe2.QtpPe2,' +
           ' Pe2.VlqPe2 VluPe2,' +
@@ -1669,8 +1671,8 @@ begin
           TotPro := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotPe2').AsFloat), 15);
           BasIcm := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('BasIcm').AsFloat), 15);
           RedIcm := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('RedIcm').AsFloat), 15);
-          PerIcm := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('IcmPe2').AsFloat), 05);
-          TotIcm := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotIcm').AsFloat), 15);
+          PerIcm := fSubstDecimal(FormatFloat('########0.0000', quSQL.FieldbyName('IcmPe2').AsFloat), 07);
+          TotIcm := fSubstDecimal(FormatFloat('########0.0000', quSQL.FieldbyName('TotIcm').AsFloat), 13);
           BasIpi := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('BasIpi').AsFloat), 15);
           PerIpi := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('IpiPe2').AsFloat), 05);
           TotIpi := fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('TotIpi').AsFloat), 15);
@@ -1789,6 +1791,33 @@ begin
 
           //========================== THIAGO OBS DO ITEM
           strAux := Trim(quSQL.FieldbyName('ObsPe2').AsString);
+
+
+          quSql1.Active := False;
+          quSQL1.sql.Text := 'select ICMSUB, MRGMVA from estufe ufe ' +
+                ' where 1 = 1 ' +
+                ' and ufe.codstr = ' + QuotedStr(qusql.fieldbyname('CODSTR').asstring) +
+                ' and ufe.tipstr = ' + QuotedStr('Saida') +
+                ' and ufe.ufemitente = ' + QuotedStr(UfeEmp) +
+                ' and ufe.sigufe = ' + QuotedStr(UfeCli);
+         quSQL1.Active := true;
+         valorMva := quSql1.FieldbyName('MRGMVA').AsFloat;
+         percentualIcm := quSql1.FieldbyName('ICMSUB').AsFloat;
+
+
+          quSql1.Active := False;
+          quSQL1.sql.Text := 'select CSTITE from estite where ' + #13 +
+                ' CodCLP = ' + QuotedStr(qusql.fieldbyname('CODCLP').asstring) +
+                ' and CODGRU = ' + QuotedStr(qusql.fieldbyname('CODGRU').asstring) +
+                ' and CODSUB = ' + QuotedStr(qusql.fieldbyname('CODSUB').asstring) +
+                ' and CODPRO = ' + QuotedStr(qusql.fieldbyname('CODPRO').asstring);
+           quSQL1.Active := true;
+
+        precoUnitario := qusql1.fieldbyname('CSTITE').AsFloat;
+        valorIpi :=     quSQL.FieldbyName('TotIpi').AsFloat;
+        quantidade := quSQL.FieldbyName('QtpPe2').AsFloat;
+        valorComMva := ((((precoUnitario + valorIpi) * (1 + valorMva / 100)) * quantidade) * percentualIcm) / 100;
+        valorSemMva := (((precoUnitario + valorIpi) * quantidade) * percentualIcm) / 100;
 
           // descricao de DI
           qusql1.Active := false;
@@ -1920,7 +1949,12 @@ begin
             TOTDESONERADO + //Valor do ICMS Desonerado //3.1
             CodDesoneracao + //Código do ICMS Desonerado //3.1
             ALIQ_CRED_SN + //Aliq. Cred SN
-            VLR_CRED_SN); //Vlr. Cred SN
+            VLR_CRED_SN +//Vlr. Cred SN
+            fSubstDecimal(FormatFloat('########0.00', ((precoUnitario + valorIpi) * (1 + valorMva / 100)) * quantidade), 15) + // vBCSTRet
+            fSubstDecimal(FormatFloat('########0.00', valorSemMva), 15) + //  vICMSSubstituto
+            fSubstDecimal(FormatFloat('########0.00', valorComMva - valorSemMva), 15) + // vICMSSTRet
+            fSubstDecimal(FormatFloat('########0.00', percentualIcm), 15) // pST
+            );
 
           FlgDifal := fmManGDB.BuscaSimples('FATPAR', 'FLGDIFAL', ' 1 = 1 ');
 
@@ -1971,7 +2005,7 @@ begin
 
       Writeln(ArqEnv, 'EM0210' + // Uso interno do sistema
         fSubstDecimal(FormatFloat('########0.00', FatPedBasIcm.AsFloat), 15) + // Base de Calculo do ICMS
-        fSubstDecimal(FormatFloat('########0.00', FatPedTotIcm.AsFloat), 15) + // Valor Total do ICMS
+        fSubstDecimal(FormatFloat('########0.0000', FatPedTotIcm.AsFloat), 15) + // Valor Total do ICMS
         fSubstDecimal(FormatFloat('########0.00', FatPedBasSub.AsFloat), 15) + // Base de Calculo do ICMS ST
         fSubstDecimal(FormatFloat('########0.00', FatPedTotSub.AsFloat), 15) + // Valor Total do ICMS ST
         fSubstDecimal(FormatFloat('########0.00', FatPedTotFat.AsFloat), 15) + // Valor Total dos produtos e serviços

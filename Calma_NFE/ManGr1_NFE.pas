@@ -1351,6 +1351,7 @@ var
   suprimiZeros: Integer;
 
   emailRecepcaoXml : String;
+  precoUnitario, valorIpi, valorMva, valorComMva, valorSemMva, quantidade, percentualIcm: Double;
 begin
   inherited;
   if FatGerCodEmp.AsInteger > 0 then
@@ -2066,6 +2067,7 @@ begin
                             ' FatGe2.CodCfo,' +
                             ' FatGe2.CodSt1,' +
                             ' FatGe2.CodSt2,' +
+                            ' FatGe2.CodStr,' +
                             ' FatGe2.CodUnd,' +
                             ' FatGe2.QtpGe2,' +
                             ' FatGe2.VluGe2,' +
@@ -2308,6 +2310,31 @@ begin
 
                           strAux := strAux + Trim(quSQL.FieldbyName('ObsGe2').AsString);
 
+                          quSql1.Active := False;
+                          quSQL1.sql.Text := 'select ICMSUB, MRGMVA from estufe ufe ' +
+                          ' where 1 = 1 ' +
+                          ' and ufe.codstr = ' + QuotedStr(qusql.fieldbyname('CODSTR').asstring) +
+                          ' and ufe.tipstr = ' + QuotedStr('Saida') +
+                          ' and ufe.ufemitente = ' + QuotedStr(UfeEmp) +
+                          ' and ufe.sigufe = ' + QuotedStr(UfeCli);
+                          quSQL1.Active := true;
+                          valorMva := quSql1.FieldbyName('MRGMVA').AsFloat;
+                          percentualIcm := quSql1.FieldbyName('ICMSUB').AsFloat;
+
+                          quSql1.Active := False;
+                          quSQL1.sql.Text := 'select CSTITE from estite where ' + #13 +
+                          ' CodCLP = ' + QuotedStr(qusql.fieldbyname('CODCLP').asstring) +
+                          ' and CODGRU = ' + QuotedStr(qusql.fieldbyname('CODGRU').asstring) +
+                          ' and CODSUB = ' + QuotedStr(qusql.fieldbyname('CODSUB').asstring) +
+                          ' and CODPRO = ' + QuotedStr(qusql.fieldbyname('CODPRO').asstring);
+                          quSQL1.Active := true;
+
+                          precoUnitario := qusql1.fieldbyname('CSTITE').AsFloat;
+                          valorIpi :=     quSQL.FieldbyName('TotIpi').AsFloat;
+                          quantidade := quSQL.FieldbyName('QtpGe2').AsFloat;
+                          valorComMva := ((((precoUnitario + valorIpi) * (1 + valorMva / 100)) * quantidade) * percentualIcm) / 100;
+                          valorSemMva := (((precoUnitario + valorIpi) * quantidade) * percentualIcm) / 100;
+
                           // descricao de DI
                           qusql1.Active := false;
                           quSQL1.sql.Text := 'Select DESIMP from estpro where ' + #13 +
@@ -2410,7 +2437,14 @@ begin
                             MrgSub + // Percentual da Margem de valor Adicionado do ICMS ST  86/5
                             TotSub + // Valor do ICMS ST
                             TOTDESONERADO + //Valor do ICMS Desonerado //3.1
-                            CodDesoneracao); //Código do ICMS Desonerado //3.1
+                            CodDesoneracao + //Código do ICMS Desonerado //3.1
+                            fSubstDecimal(FormatFloat('########0.00', 0), 15) + //Aliq. Cred SN
+                            fSubstDecimal(FormatFloat('########0.00', 0), 15) + //Vlr. Cred SN
+                            fSubstDecimal(FormatFloat('########0.00', ((precoUnitario + valorIpi) * (1 + valorMva / 100)) * quantidade), 15) + // vBCSTRet
+                            fSubstDecimal(FormatFloat('########0.00', valorSemMva), 15) + //  vICMSSubstituto
+                            fSubstDecimal(FormatFloat('########0.00', valorComMva - valorSemMva), 15) + // vICMSSTRet
+                            fSubstDecimal(FormatFloat('########0.00', percentualIcm), 15) // pST
+                            );
 
                           FlgDifal := fmManGDB.BuscaSimples('FATPAR', 'FLGDIFAL', ' 1 = 1 ');
 

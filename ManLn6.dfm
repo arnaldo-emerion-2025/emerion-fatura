@@ -1,6 +1,6 @@
 inherited fmManLn6: TfmManLn6
-  Left = 239
-  Top = 95
+  Left = 257
+  Top = 126
   Caption = 'Minuta de Despacho'
   ClientHeight = 485
   ClientWidth = 786
@@ -1391,7 +1391,6 @@ inherited fmManLn6: TfmManLn6
     end
   end
   object FatDes: TwwQuery
-    Active = True
     CachedUpdates = True
     DatabaseName = 'ISade'
     DataSource = DsRes

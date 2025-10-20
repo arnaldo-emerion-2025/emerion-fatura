@@ -3,7 +3,7 @@ object fmManEma: TfmManEma
   Top = 10
   BorderStyle = bsSingle
   Caption = 'Cotações'
-  ClientHeight = 691
+  ClientHeight = 773
   ClientWidth = 852
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -1241,7 +1241,7 @@ object fmManEma: TfmManEma
       end
       object RLLabel20: TRLLabel
         Left = 8
-        Top = 35
+        Top = 38
         Width = 259
         Height = 13
         Caption = 'DATA DA COLETA: _____/_____/__________.'
@@ -1254,7 +1254,7 @@ object fmManEma: TfmManEma
       end
       object RLLabel21: TRLLabel
         Left = 8
-        Top = 50
+        Top = 56
         Width = 412
         Height = 13
         Caption = 'PLACA DO VEÍCULO:___________________________________________'
@@ -1267,10 +1267,49 @@ object fmManEma: TfmManEma
       end
       object RLLabel22: TRLLabel
         Left = 8
-        Top = 65
+        Top = 74
         Width = 413
         Height = 13
         Caption = 'NOME LEGÍVEL:_______________________________________________'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel25: TRLLabel
+        Left = 8
+        Top = 92
+        Width = 79
+        Height = 13
+        Caption = 'SOLICITANTE:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel26: TRLLabel
+        Left = 88
+        Top = 92
+        Width = 335
+        Height = 13
+        Caption = 'NOME___________________________________________'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clNavy
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel27: TRLLabel
+        Left = 432
+        Top = 92
+        Width = 228
+        Height = 13
+        Caption = 'DATA/HORA: ___/___/_____ - ___H___'
         Font.Charset = ANSI_CHARSET
         Font.Color = clNavy
         Font.Height = -11

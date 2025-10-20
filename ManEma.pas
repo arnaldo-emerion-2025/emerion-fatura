@@ -175,6 +175,9 @@ type
     RLLabel20: TRLLabel;
     RLLabel21: TRLLabel;
     RLLabel22: TRLLabel;
+    RLLabel25: TRLLabel;
+    RLLabel26: TRLLabel;
+    RLLabel27: TRLLabel;
     procedure RLPreviewSetup1Send(Sender: TObject);
     procedure RLBand1BeforePrint(Sender: TObject; var PrintIt: Boolean);
     procedure RLBand4BeforePrint(Sender: TObject; var PrintIt: Boolean);

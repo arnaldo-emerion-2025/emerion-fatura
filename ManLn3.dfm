@@ -1044,6 +1044,7 @@ inherited fmManLn3: TfmManLn3
     end
   end
   object FatPe4: TwwQuery
+    Tag = 99
     CachedUpdates = True
     DatabaseName = 'ISade'
     DataSource = DsPed

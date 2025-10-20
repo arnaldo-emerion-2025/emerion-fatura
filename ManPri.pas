@@ -173,6 +173,7 @@ type
 
     function enviaEmail(mostrarDialog: Boolean; assunto, corpo, destinatario: PAnsiChar; anexos: Variant;
                     copia: TStringList = nil): Boolean;
+    function EnviaEmailNovo(ePara, anexos: Variant): Boolean;
 
   end;
 
@@ -196,7 +197,7 @@ uses Bbgeral, Bbacesso, Bbmensag, Bberro, ManGDB, ManInf, VerUsu,
   ManLno_NFE, ManLn7_NFE, ManLn8_NFE, ManGer_NFE, ManGr1_NFE, ManGr2_NFE,
   ManEno_NFE, ManDno_NFE, ManEn3_NFE, ManEn4_NFE, ManPfa_GERAL,
   Controle_NFE, ManLnRMA_NFE, ManRes, ManLn7, ManEditNfe, MsgUser, ManStr2,
-  uPerfilDevolucao;
+  uPerfilDevolucao, INIFILES;
 
 {$R *.DFM}
 
@@ -1422,6 +1423,19 @@ begin
       enviarEmail(mostrarDialog, assunto,corpo,destinatario,anexos,copia)
     else
        enviarEmail(mostrarDialog, assunto,corpo,destinatario,anexos);
+
+end;
+
+function TfmManPri.EnviaEmailNovo(ePara, anexos: Variant): Boolean;
+var
+  strPDF: string;
+  strNomCli, strEmailCli, IdCli: string;
+begin
+  strNomCli := 'Nome Cliente';
+  strEmailCli := 'arnaldotecadm@hotmail.com';
+
+  SendMailMAPITeste('Pedido de venda ', 'Segue em anexo pedido de venda ', anexos, GUsu_Nm, GUsu_Ema, strNomCli,
+        ePara);
 end;
 
 end.

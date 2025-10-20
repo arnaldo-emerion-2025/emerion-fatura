@@ -1226,6 +1226,7 @@ begin
   try
      arq := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini');
      tipoEmail := arq.ReadString('E-mail','tipo_email','ANTIGO');
+     eUsuario := arq.ReadString('E-mail', 'usuario', '');
   finally
      arq.Free;
   end;
@@ -1234,11 +1235,22 @@ begin
      begin
         if FileExists(epdf) then
         begin
-          fmManPri.enviaEmail(true,PAnsiChar(eAssunto),PansiChar(CorpoMail.Lines.Text),PansiChar(ePara),VarArrayOf([eAnexo,epdf]));
+           //fmManPri.EnviaEmailNovo(ePara, VarArrayOf([eAnexo]));
+           //fmManPri.EnviaEmailNovo(ePara, VarArrayOf([ePDF]));
+
+           SendMailMAPI(eAssunto, corpomail.lines.text, eAnexo, eUsuario, eUsuario, ePara,
+           IfThen(Trim(emailContabilidade) <> '',emailContabilidade + ';','') + ePara);
+
+           SendMailMAPI(eAssunto, corpomail.lines.text, ePDF, eUsuario, eUsuario, ePara,
+           IfThen(Trim(emailContabilidade) <> '',emailContabilidade + ';','') + ePara);
+          //fmManPri.enviaEmail(true,PAnsiChar(eAssunto),PansiChar(CorpoMail.Lines.Text),PansiChar(ePara),VarArrayOf([eAnexo,epdf]));
         end
         else
         begin
-          fmManPri.enviaEmail(true,PAnsiChar(eAssunto),PansiChar(CorpoMail.Lines.Text),PansiChar(ePara),VarArrayOf([eAnexo]));
+           //fmManPri.EnviaEmailNovo(ePara, VarArrayOf([eAnexo]));
+           SendMailMAPI(eAssunto, corpomail.lines.text, eAnexo, eUsuario, eUsuario, ePara,
+           IfThen(Trim(emailContabilidade) <> '',emailContabilidade + ';','') + ePara);
+          //fmManPri.enviaEmail(true,PAnsiChar(eAssunto),PansiChar(CorpoMail.Lines.Text),PansiChar(ePara),VarArrayOf([eAnexo]));
         end;
      end
   else

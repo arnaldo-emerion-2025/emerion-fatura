@@ -1,6 +1,6 @@
 inherited fmManLn7: TfmManLn7
-  Left = 433
-  Top = 124
+  Left = 253
+  Top = 182
   Caption = 'Emissão de boleto bancário'
   ClientHeight = 482
   ClientWidth = 786
@@ -526,6 +526,27 @@ inherited fmManLn7: TfmManLn7
     ParentColor = False
     ParentFont = False
     Transparent = True
+  end
+  object Label4: TLabel
+    Left = 514
+    Top = 132
+    Width = 86
+    Height = 13
+    Caption = 'Conta a se utilizar'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object Label5: TLabel
+    Left = 88
+    Top = 264
+    Width = 42
+    Height = 13
+    Caption = 'CODBAN'
   end
   object grBol1: TdxDBGraphicEdit
     Left = 1
@@ -1282,6 +1303,16 @@ inherited fmManLn7: TfmManLn7
     TabOrder = 28
     OnClick = btnEnviarPorEmailClick
   end
+  object DBLookupComboBox1: TDBLookupComboBox
+    Left = 512
+    Top = 152
+    Width = 105
+    Height = 21
+    KeyField = 'CODCNB'
+    ListField = 'CODCNB'
+    ListSource = dsCobtco
+    TabOrder = 29
+  end
   object FatBol: TwwQuery
     CachedUpdates = True
     DatabaseName = 'ISade'
@@ -1539,6 +1570,7 @@ inherited fmManLn7: TfmManLn7
     end
   end
   object DsFatBol: TwwDataSource
+    AutoEdit = False
     DataSet = FatBol
     OnDataChange = DsFatBolDataChange
     Left = 33
@@ -1636,5 +1668,177 @@ inherited fmManLn7: TfmManLn7
       Hint = 'Desmarcar todos'
       OnClick = ExcluirAmbiente1Click
     end
+  end
+  object cobtco: TwwQuery
+    CachedUpdates = True
+    ObjectView = True
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'select * from cobtco where UPPER(FLGBOL) = '#39'SIM'#39)
+    ControlType.Strings = (
+      'FLGIMP;CheckBox;Sim;Nao')
+    ValidateWithMask = True
+    Left = 5
+    Top = 331
+    object cobtcoCODBAN: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'CODBAN'
+      Origin = 'ISADE.COBTCO.CODBAN'
+    end
+    object cobtcoCODAGB: TStringField
+      DisplayWidth = 15
+      FieldName = 'CODAGB'
+      Origin = 'ISADE.COBTCO.CODAGB'
+      Size = 15
+    end
+    object cobtcoCODCNB: TStringField
+      DisplayWidth = 15
+      FieldName = 'CODCNB'
+      Origin = 'ISADE.COBTCO.CODCNB'
+      Size = 15
+    end
+    object cobtcoCODTCO: TStringField
+      DisplayWidth = 4
+      FieldName = 'CODTCO'
+      Origin = 'ISADE.COBTCO.CODTCO'
+      Size = 4
+    end
+    object cobtcoNOMTCO: TStringField
+      DisplayWidth = 80
+      FieldName = 'NOMTCO'
+      Origin = 'ISADE.COBTCO.NOMTCO'
+      Size = 80
+    end
+    object cobtcoCODMOD: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'CODMOD'
+      Origin = 'ISADE.COBTCO.CODMOD'
+    end
+    object cobtcoNROCON: TStringField
+      DisplayWidth = 20
+      FieldName = 'NROCON'
+      Origin = 'ISADE.COBTCO.NROCON'
+    end
+    object cobtcoNROCTR: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'NROCTR'
+      Origin = 'ISADE.COBTCO.NROCTR'
+    end
+    object cobtcoTIPCOB: TStringField
+      DisplayWidth = 15
+      FieldName = 'TIPCOB'
+      Origin = 'ISADE.COBTCO.TIPCOB'
+      Size = 15
+    end
+    object cobtcoTIPOPE: TStringField
+      DisplayWidth = 10
+      FieldName = 'TIPOPE'
+      Origin = 'ISADE.COBTCO.TIPOPE'
+      Size = 10
+    end
+    object cobtcoNROAUT: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'NROAUT'
+      Origin = 'ISADE.COBTCO.NROAUT'
+    end
+    object cobtcoFLGBOL: TStringField
+      DisplayWidth = 3
+      FieldName = 'FLGBOL'
+      Origin = 'ISADE.COBTCO.FLGBOL'
+      FixedChar = True
+      Size = 3
+    end
+  end
+  object dsCobtco: TwwDataSource
+    AutoEdit = False
+    DataSet = cobtco
+    OnDataChange = DsFatBolDataChange
+    Left = 33
+    Top = 331
+  end
+  object wwQuery1: TwwQuery
+    CachedUpdates = True
+    ObjectView = True
+    DatabaseName = 'ISade'
+    SQL.Strings = (
+      'select * from cobtco where UPPER(FLGBOL) = '#39'SIM'#39)
+    ControlType.Strings = (
+      'FLGIMP;CheckBox;Sim;Nao')
+    ValidateWithMask = True
+    Left = 21
+    Top = 267
+    object IntegerField1: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'CODBAN'
+      Origin = 'ISADE.COBTCO.CODBAN'
+    end
+    object StringField1: TStringField
+      DisplayWidth = 15
+      FieldName = 'CODAGB'
+      Origin = 'ISADE.COBTCO.CODAGB'
+      Size = 15
+    end
+    object StringField2: TStringField
+      DisplayWidth = 15
+      FieldName = 'CODCNB'
+      Origin = 'ISADE.COBTCO.CODCNB'
+      Size = 15
+    end
+    object StringField3: TStringField
+      DisplayWidth = 4
+      FieldName = 'CODTCO'
+      Origin = 'ISADE.COBTCO.CODTCO'
+      Size = 4
+    end
+    object StringField4: TStringField
+      DisplayWidth = 80
+      FieldName = 'NOMTCO'
+      Origin = 'ISADE.COBTCO.NOMTCO'
+      Size = 80
+    end
+    object IntegerField2: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'CODMOD'
+      Origin = 'ISADE.COBTCO.CODMOD'
+    end
+    object StringField5: TStringField
+      DisplayWidth = 20
+      FieldName = 'NROCON'
+      Origin = 'ISADE.COBTCO.NROCON'
+    end
+    object IntegerField3: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'NROCTR'
+      Origin = 'ISADE.COBTCO.NROCTR'
+    end
+    object StringField6: TStringField
+      DisplayWidth = 15
+      FieldName = 'TIPCOB'
+      Origin = 'ISADE.COBTCO.TIPCOB'
+      Size = 15
+    end
+    object StringField7: TStringField
+      DisplayWidth = 10
+      FieldName = 'TIPOPE'
+      Origin = 'ISADE.COBTCO.TIPOPE'
+      Size = 10
+    end
+    object IntegerField4: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'NROAUT'
+      Origin = 'ISADE.COBTCO.NROAUT'
+    end
+    object StringField8: TStringField
+      DisplayWidth = 3
+      FieldName = 'FLGBOL'
+      Origin = 'ISADE.COBTCO.FLGBOL'
+      FixedChar = True
+      Size = 3
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = wwQuery1
+    Left = 56
+    Top = 272
   end
 end

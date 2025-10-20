@@ -5,8 +5,8 @@ Especie=105098115097100101050048
 
 
 Portal
-Senha=99989796959493929190
-NumSerie=0D719BA5DA13A7CC98CC75CBE5B8E3D0    
+Senha=123456
+NumSerie=7738EC8E3A38C4D67E4B9987DF45A074    
 
 
 
@@ -20,17 +20,19 @@ PathLeitura=W:\NFE2\Leitura
 PathRetorno=W:\NFE2\Retorno
 PathCancelada=W:\NFE2\Cancelada
 PathDANFE=W:\NFE2\DANFE
-PathSchemas=W:\NFE2\Schemas-Novo
+PathSchemas=W:\NFE2\Schemas-NovoA
 TipoImpressao=FAST
 FileImpressao=W:\NFE2\Report\DANFePaisagem.fr3
 DialogoImpressao=SIM
 LogoMarca=W:\NFE2\print.bmp
-
-
+ModeloImpressao=1
+==========
+ISadeUsu
+192.168.1.32:/opt/firebird/security.fdb
 
 [WebService]
 UF=SP
-Ambiente=2
+Ambiente=1
 1=homologação / 2=produção
 
 Visualizar=1

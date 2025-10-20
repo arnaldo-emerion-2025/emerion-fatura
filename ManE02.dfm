@@ -1,6 +1,6 @@
 object fmManE02: TfmManE02
-  Left = -8
-  Top = -8
+  Left = 325
+  Top = 29
   BorderStyle = bsSingle
   Caption = 'Emissão de boleto bancário'
   ClientHeight = 837
@@ -485,8 +485,8 @@ object fmManE02: TfmManE02
           Pen.Width = 2
         end
         object ppMenBco1: TRLLabel
-          Left = 205
-          Top = 611
+          Left = 5
+          Top = 602
           Width = 303
           Height = 15
           Caption = 'PAGÁVEL EM QUALQUER BANCO ATÉ O VENCIMENTO'

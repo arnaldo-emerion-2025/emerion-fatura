@@ -158,7 +158,7 @@ uses
   ManIpi in '..\..\..\estoque\dualcompSN\ManIpi.pas' {fmManIpi},
   ConCn1_NFE in 'Calma_NFE\ConCn1_NFE.pas' {fmConCn1_NFE},
   ManCge_NFE in 'Calma_NFE\ManCge_NFE.pas' {fmManCge_NFE},
-  ManStr2 in '\\192.168.5.100\fontes\_wgsys\emerion\estoque\dualcompSN\ManStr2.pas' {fmManStr2},
+  ManStr2 in '..\..\..\estoque\dualcompSN\ManStr2.pas' {fmManStr2},
   ManIcm in '..\..\..\pedidos\dualcompSN\ManIcm.pas' {fmManIcm},
   ManMsgSuframa in '..\..\..\..\..\_wglib\padrao\ManMsgSuframa.pas' {fmMsgSuframa},
   ManChaveNfe in 'ManChaveNfe.pas' {fmManChaveNfe},
@@ -166,14 +166,15 @@ uses
   ManTxf in '..\..\..\estoque\dualcompSN\ManTxf.pas' {fmManTxf},
   uSantander in 'uSantander.pas',
   uLogEststr in '..\..\..\estoque\dualcompSN\uLogEststr.pas' {fmLogST},
-  ManE03 in '\\192.168.5.100\fontes\_wgsys\emerion\fatura\Dualcomp - DISN\Nota Fiscal\ManE03.pas' {fmManE03},
-  ManEm2 in '\\192.168.5.100\fontes\_wgsys\emerion\fatura\Dualcomp - DISN\Nota Fiscal\ManEm2.pas' {fmManEm2},
+  ManE03 in 'ManE03.pas' {fmManE03},
+  ManEm2 in 'ManEm2.pas' {fmManEm2},
   udf_glob in 'C:\Componentes\_wglib\Udf\udf_glob.pas',
   manLote in 'manLote.pas' {fmLote},
-  uSicredi in '\\192.168.5.100\fontes\_wgsys\emerion\fatura\Dualcomp - DISN\Nota Fiscal\uSicredi.pas',
+  uSicredi in 'uSicredi.pas',
   uPerfilDevolucao in 'uPerfilDevolucao.pas' {frmPerfilDevolucao},
   uBancoBrasil in 'uBancoBrasil.pas',
-  ManLoteMed in 'ManLoteMed.pas' {fmLotesMed};
+  ManLoteMed in 'ManLoteMed.pas' {fmLotesMed},
+  UntItau in '..\..\..\..\..\_wglib\padrao\UntItau.pas';
 
 {$R *.RES}
 

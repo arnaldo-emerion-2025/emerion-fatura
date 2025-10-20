@@ -3322,7 +3322,8 @@ begin
                 FatGe2TipIcm.AsString := Trim(quSQL.FieldbyName('TIPICM').AsString);
                 FatGe2ID_ESTICM.AsInteger := quSQL.FieldByName('ID_ESTICM').AsInteger;
 
-                FatGe2CodStr.AsString := '';
+                // TODO -> Verificar 2024_02
+                //FatGe2CodStr.AsString := '';
                 FatGe2TipStr.AsString := '';
               end;
 
@@ -6619,7 +6620,8 @@ begin
     FatGe2TipIcm.AsString := Trim(quSQL.FieldbyName('TIPICM').AsString);
     FatGe2ID_ESTICM.AsInteger := quSQL.FieldByName('ID_ESTICM').AsInteger;
 
-    FatGe2CodStr.AsString := '';
+    // TODO -> Verificar 2024_02
+    //FatGe2CodStr.AsString := '';
     FatGe2TipStr.AsString := '';
   end;
 

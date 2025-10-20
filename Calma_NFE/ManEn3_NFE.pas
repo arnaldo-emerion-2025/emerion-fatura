@@ -1214,6 +1214,7 @@ var
   nrofat, chaven, cinserir, cdir, vchave: string;
   SN, IMPREF: boolean; //Simples Nacional
   intNroNfs: Integer;
+  precoUnitario, valorIpi, valorMva, valorComMva, valorSemMva, quantidade, percentualIcm: Double;
 begin
   inherited;
 
@@ -1863,6 +1864,21 @@ begin
         if (quSQL.FieldbyName('CodCfo').AsString = '5.405') or (quSQL.FieldbyName('CodCfo').AsString = '6.405') then
           strAux := strAux + ' ValorBase: ' + BasSub + ' Valor St.: ' + TotSub;
 
+      quSql1.Active := False;
+      quSQL1.sql.Text := 'select VPFITE from estite where ' + #13 +
+        ' CodCLP = ' + QuotedStr(qusql.fieldbyname('CODCLP').asstring) +
+        ' and CODGRU = ' + QuotedStr(qusql.fieldbyname('CODGRU').asstring) +
+        ' and CODSUB = ' + QuotedStr(qusql.fieldbyname('CODSUB').asstring) +
+        ' and CODPRO = ' + QuotedStr(qusql.fieldbyname('CODPRO').asstring);
+      quSQL1.Active := true;
+      precoUnitario := qusql.fieldbyname('VPFITE').AsFloat;
+      valorIpi :=     quSQL.FieldbyName('TotIpi').AsFloat;
+      valorMva := quSQL.FieldbyName('MRGSUB').AsFloat;
+      quantidade := quSQL.FieldbyName('ULTQTD').AsFloat;
+      percentualIcm := quSQL.FieldbyName('Icmdv2').AsFloat;
+      valorComMva := ((((precoUnitario + valorIpi) * 1 + valorMva / 100) * quantidade) * percentualIcm) / 100;
+      valorSemMva := (((precoUnitario + valorIpi) * quantidade) * percentualIcm) / 100;
+
       // descricao de DI
       qusql1.Active := false;
       quSQL1.sql.Text := 'Select DESIMP from estpro where ' + #13 +
@@ -1894,7 +1910,12 @@ begin
         BasSub + // Valor da BC do ICMS ST
         IcmSub + // Aliquota do imposto do ICMS ST
         MrgSub + // Percentual da Margem de valor Adicionado do ICMS ST
-        TotSub); // Valor do ICMS ST
+        TotSub +// Valor do ICMS ST
+        fSubstDecimal(FormatFloat('########0.00', (precoUnitario + valorIpi) * 1 + valorMva / 100), 15) + // vBCSTRet
+        fSubstDecimal(FormatFloat('########0.00', valorSemMva), 15) + //  vICMSSubstituto
+        fSubstDecimal(FormatFloat('########0.00', valorComMva - valorSemMva), 15) + // vICMSSTRet
+        fSubstDecimal(FormatFloat('########0.00', percentualIcm), 15) // pST
+        );
 
       Writeln(ArqEnv, 'EM0208' + // Uso interno do sistema
         '01' + // Tipo de operação

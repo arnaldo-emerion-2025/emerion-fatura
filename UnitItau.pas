@@ -117,7 +117,7 @@ begin
   CB := '';
   s := '';
 
-  nExtToInt := dVencto - StrToDate('07/10/97');
+  nExtToInt := dVencto - StrToDate('22/02/25');
 
   _cfator := StrZero(nExtToInt, 4);
 

@@ -1,6 +1,6 @@
 inherited fmManLn7_NFE: TfmManLn7_NFE
-  Left = 166
-  Top = 170
+  Left = 299
+  Top = 160
   Caption = 'Notas fiscais (Comercial) - Envio da NF-e à SEFAZ'
   ClientHeight = 500
   ClientWidth = 787
