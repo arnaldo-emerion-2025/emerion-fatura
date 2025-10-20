@@ -1,3 +1,0 @@
-WebService Consulta Status serviço:
-- Inativo ou Inoperante tente novamente.
--  - URL:https://homologacao.nfe.fazenda.sp.gov.br/nfeweb/services/nfestatusservico.asmx - SOAPAction:http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico/nfeStatusServicoNF
