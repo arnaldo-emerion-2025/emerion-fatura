@@ -162,7 +162,7 @@ uses
   ManIcm in '..\..\..\pedidos\dualcompSN\ManIcm.pas' {fmManIcm},
   ManMsgSuframa in '..\..\..\..\..\_wglib\padrao\ManMsgSuframa.pas' {fmMsgSuframa},
   ManChaveNfe in 'ManChaveNfe.pas' {fmManChaveNfe},
-  ManListaNFeRef in '..\..\K3R - DISN\Nota Fiscal\ManListaNFeRef.pas' {fmManListaNFeRef},
+  ManListaNFeRef in 'ManListaNFeRef.pas' {fmManListaNFeRef},
   ManTxf in '..\..\..\estoque\dualcompSN\ManTxf.pas' {fmManTxf},
   uSantander in 'uSantander.pas',
   uLogEststr in '..\..\..\estoque\dualcompSN\uLogEststr.pas' {fmLogST},

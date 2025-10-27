@@ -5,13 +5,13 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Grids, DBGrids, ExtCtrls, Db, DBTables, StdCtrls, Mask, DBCtrls,
-  AppEvnts, ComCtrls;
+  AppEvnts, ComCtrls, dxCntner, dxEditor, dxExEdtr, dxEdLib, dxDBELib,
+  dxDBColorPickEdit, IniFiles, dxColorPickEdit;
 
 type
   TfmManListaNFeRef = class(TForm)
     pnCab: TPanel;
     pnFoot: TPanel;
-    DBGrid1: TDBGrid;
     SQLREF: TQuery;
     btnConcluir: TButton;
     dsRef: TDataSource;
@@ -24,12 +24,6 @@ type
     DBEdit3: TDBEdit;
     Label4: TLabel;
     DBEdit4: TDBEdit;
-    DBEdit5: TDBEdit;
-    edSerie: TDBEdit;
-    DBEdit7: TDBEdit;
-    DBEdit8: TDBEdit;
-    DBEdit9: TDBEdit;
-    DBEdit10: TDBEdit;
     upRef: TUpdateSQL;
     btnFecha: TButton;
     sbText: TStatusBar;
@@ -49,6 +43,24 @@ type
     SQLREFCGCCLI: TStringField;
     SQLREFMODELO: TIntegerField;
     SQLREFSERIE: TIntegerField;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    DBGrid1: TDBGrid;
+    DBEdit5: TDBEdit;
+    edSerie: TDBEdit;
+    DBEdit7: TDBEdit;
+    DBEdit8: TDBEdit;
+    DBEdit9: TDBEdit;
+    DBEdit10: TDBEdit;
+    DBGrid2: TDBGrid;
+    edNroCoo: TDBEdit;
+    edNroEcf: TDBEdit;
+    SQLREFMODELO_ECF: TStringField;
+    SQLREFNUM_COO: TStringField;
+    SQLREFTIPO_IMPRESSAO_ECF: TStringField;
+    edModECF: TdxDBColorPickEdit;
+    SQLREFNUM_ECF: TStringField;
     procedure Button1Click(Sender: TObject);
     procedure btnConcluirClick(Sender: TObject);
     procedure btnFechaClick(Sender: TObject);
@@ -81,7 +93,7 @@ var
 
 implementation
 
-uses ManGDB, ManChaveNfe;
+uses ManGDB;//, ManChaveNfe;
 
 {$R *.DFM}
 
@@ -95,6 +107,7 @@ begin
 
   SQLREF.sql.Text :=
     'select ref.id_fatger,ref.nfe_ref,ref.cnpj,ref.modelo,ref.serie,ref.nronfs,ref.coduf, ' + _BR +
+    ' ref.MODELO_ECF, ref.NUM_ECF, ref.NUM_COO, ref.TIPO_IMPRESSAO_ECF,' + _BR +
     ' ger.nronfs NRONFS_GER,ger.codcli,cli.nomcli, ger.modpfa,ger.numger,ger.cgccli ' + _BR +
     ' from fatger_ref ref ' + _BR +
     ' join fatger ger on ger.numger = ref.id_fatger ' + _BR +
@@ -108,7 +121,7 @@ end;
 
 procedure TfmManListaNFeRef.Button1Click(Sender: TObject);
 begin
-  fmManChaveNFe := TfmManChaveNFe.Create(Self);
+  {fmManChaveNFe := TfmManChaveNFe.Create(Self);
   try
     if fmManChaveNFe.ShowModal = mrOk then
     begin
@@ -134,40 +147,113 @@ begin
 
   finally
     FreeAndnil(fmManChaveNFe);
-  end;
+  end;}
 end;
 
 procedure TfmManListaNFeRef.btnConcluirClick(Sender: TObject);
+var
+   validou: Boolean;
+   
+   IniFile: String;
+   ini, modImpressao: TIniFile;
 begin
-  if SQLREFSerie.Asinteger <= 0 then
-  begin
-    messagebox(handle, 'Série é um campo obrigatório e deve ser maior que zero. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
-    Abort;
-  end;
 
-  if SQLREFModelo.Asinteger <= 0 then
-  begin
-    messagebox(handle, 'Modelo é um campo obrigatório e deve ser maior que zero. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
-    Abort;
-  end;
+  validou := False;
 
-  if SQLREFCODUF.Asinteger <= 0 then
-  begin
-    messagebox(handle, 'Código da UF é um campo obrigatório e deve ser maior que zero. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
-    Abort;
-  end;
+  if ((Trim(DBEdit5.text) <> '') or
+      (Trim(edSerie.text) <> '') or
+      (Trim(DBEdit7.text) <> '') or
+      (Trim(DBEdit8.text) <> '') or
+      (Trim(DBEdit9.text) <> '') or
+      (Trim(DBEdit10.text) <> '') ) then
+     begin
 
-  if length(trim(SQLREFSerie.AsString)) <= 0 then
-  begin
-    messagebox(handle, 'CNPJ/CPF é um campo obrigatório. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
-    Abort;
-  end;
+      validou := True;
 
-  if length(trim(SQLREFNFE_REF.AsString)) <> 44 then
-  begin
-    messagebox(handle, 'Chave é um campo obrigatório e deve conter 44 caracteres. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
-    Abort;
-  end;
+      if SQLREFSerie.Asinteger <= -1 then
+      begin
+        //Regra de Negócio foi alterada. Agora é SIM possível a série ser "Zero", é estranho; mas existe.
+        messagebox(handle, 'Série é um campo obrigatório e deve ser maior ou igual a zero. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
+        Abort;
+      end;
+
+      if SQLREFModelo.Asinteger <= 0 then
+      begin
+        messagebox(handle, 'Modelo é um campo obrigatório e deve ser maior que zero. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
+        Abort;
+      end;
+
+      if SQLREFCODUF.Asinteger <= 0 then
+      begin
+        messagebox(handle, 'Código da UF é um campo obrigatório e deve ser maior que zero. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
+        Abort;
+      end;
+
+      if length(trim(SQLREFSerie.AsString)) <= 0 then
+      begin
+        messagebox(handle, 'CNPJ/CPF é um campo obrigatório. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
+        Abort;
+      end;
+
+      if length(trim(SQLREFNFE_REF.AsString)) <> 44 then
+      begin
+        messagebox(handle, 'Chave é um campo obrigatório e deve conter 44 caracteres. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
+        Abort;
+      end;
+     end;
+
+  if ((Trim(edNroEcf.text) <> '') or
+      (Trim(edNroCoo.text) <> '')) then
+     begin
+        validou := True;
+
+        if (SQLREF.State in [dsEdit, dsInsert]) then
+           begin
+              SQLREF.FieldByName('MODELO_ECF').AsString := '2D';
+
+              IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
+
+              Ini := TIniFile.Create(IniFile);
+              try
+
+                if Ini.ReadString('Geral', 'ModeloImpressao', '') = '' then
+                   begin
+                      Ini.WriteString('Geral', 'ModeloImpressao', '1');
+                      SQLREF.FieldByName('TIPO_IMPRESSAO_ECF').AsString := '1';
+                   end
+                else
+                   begin
+                      SQLREF.FieldByName('TIPO_IMPRESSAO_ECF').AsString := Ini.ReadString('Geral', 'ModeloImpressao', '');
+                   end;
+              finally
+                 Ini.Free;
+              end;
+           end;
+           
+        if trim(edModECF.Text) = '' then
+           begin
+              messagebox(handle, 'O modelo do Documento Fiscal é de Preenchimento Obrigatório. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
+              Abort;
+           end;
+
+        if length(trim(edNroEcf.Text)) > 6 then
+           begin
+              messagebox(handle, 'Nro do ECF é um campo obrigatório e deve conter no máximo 6 caracteres. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
+              Abort;
+           end;
+
+        if length(trim(edNroCoo.Text)) <> 6 then
+           begin
+              messagebox(handle, 'Nro do COO é um campo obrigatório e deve conter 6 caracteres. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
+              Abort;
+           end;
+     end;
+
+  if not (validou) then
+     begin
+        messagebox(handle, 'Há campos de Preenchimento Obrigatório não informados. Verifique e tente novamente.', 'Validação', mb_ok + MB_ICONWARNING);
+        Abort;
+     end;
 
   fmManGDB.dbMain.StartTransaction;
   try
@@ -207,7 +293,7 @@ end;
 procedure TfmManListaNFeRef.DBEdit10KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  if ((key = vk_f2) and (shift = [])) then
+ { if ((key = vk_f2) and (shift = [])) then
   begin
     fmManChaveNfe := TfmManChaveNfe.Create(Self);
 
@@ -220,13 +306,15 @@ begin
     finally
       FreeAndnil(fmManChaveNfe);
     end;
-  end;
+  end;}
 end;
 
 procedure TfmManListaNFeRef.btnIncluirClick(Sender: TObject);
 begin
   if not (SQLREF.State in [dsedit, dsinsert]) then
-    SQLREF.Append
+    begin
+      SQLREF.Append;
+    end
   else
     messagebox(handle, 'Há um registro em processo de edição.', 'Validação', mb_ok + MB_ICONINFORMATION);
 
