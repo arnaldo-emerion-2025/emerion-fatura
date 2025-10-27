@@ -3416,11 +3416,6 @@ var
   strNumger, msgJust: string;
   dtCont: TDateTime;
 begin
-  if not fmmangdb.CliSocket.Active then
-  begin
-    fmmangdb.ConectaServico;
-  end;
-
   strNumger := FatGerNUMGER.AsString;
 
   if TipoEnvio = 3 then

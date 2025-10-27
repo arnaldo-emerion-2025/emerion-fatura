@@ -10,7 +10,7 @@ uses
   dxColorDateEdit, dxDBELib, dxDBColorCurrencyEdit, dxDBColorPickEdit,
   dxfProgressBar, dxDBColorEdit, inifiles, IdBaseComponent, IdComponent,
   IdTCPConnection, IdTCPClient, IdMessageClient, IdSMTP, IdMessage, clipbrd,
-  DBGrids;
+  DBGrids, ulkJSON, uUtils;
 
 type
   TfmManLn7_NFE = class(TfmPadrao)
@@ -254,15 +254,13 @@ type
     Id_FatPed: integer;
     cDir: string;
     eAssunto, eAnexo, ePara, eUsuario, eSenha, eHost, EProtocolo, EPDF: string;
-    eAutomatico, ei, eposicao, ehomologacao, Eporta: integer;
-    ecorpo: string;
+    eAutomatico, ehomologacao, Eporta: integer;
 
     procedure EnvioNFe(TipoEnvio: integer = 3);
     procedure EnvioServico(TipoEnvio: integer = 3);
     procedure ImprimeDPEC;
     procedure ImprimeDPECServico;
     procedure EnvioDPEC_SEFAZ;
-    procedure EnvioDPEC_SEFAZ_Servico;
 
   public
     {Public declarations}
@@ -644,28 +642,10 @@ end;
 
 procedure TfmManLn7_NFE.Button1Click(Sender: TObject);
 var
-  xAnexo: Integer;
-  newtext: tidtext;
-  p: TidMessageParts;
   emailContabilidade: string;
   arq: TIniFile;
   tipoEmail: string;
 begin
-  {idmessage1.clear;
-
-  IdSMTP1.host := ehost;
-  idsmtp1.Password := eSenha;
-  idsmtp1.UserID := eUsuario;
-  idsmtp1.Port := Eporta;
-  idmessage1.From.Address := eUsuario;
-  IdMessage1.Recipients.EMailAddresses := ePara;
-  IdMessage1.Priority := mpHigh;
-  IdMessage1.Subject := eAssunto;
-  IdMessage1.ContentType := 'text/html';
-  IdMessage1.Body.text := corpomail.lines.text;
-  IdMessage1.IsEncoded := True;
-  IdMessage1.ReceiptRecipient.Text := IdMessage1.From.Text; // Auto Resposta
-  TIdAttachment.create(idmessage1.MessageParts, TFileName(eAnexo));}
   try
     arq := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini');
     tipoEmail := arq.ReadString('E-mail', 'tipo_email', 'ANTIGO');
@@ -700,18 +680,6 @@ begin
         VarArrayOf([eAnexo]));
     end;
   end;
-
-  {if FileExists(epdf) then
-    TIdAttachment.create(idmessage1.MessageParts, TFileName(ePDF));
-
-  IdSMTP1.Connect;
-  try
-    IdSMTP1.Send(IdMessage1);
-    Application.MessageBox('Email enviado com sucesso!', 'Confirmação', MB_ICONINFORMATION + MB_OK);
-  except
-    Showmessage('Não foi possível enviar o e-mail para o cliente.');
-  end;
-  IdSMTP1.Disconnect; }
   corpomail.Lines.text := memo1.lines.text;
 
 end;
@@ -778,26 +746,12 @@ var
   TArquivo, TDAnfe: TextFile;
   i: integer;
   ini: Tinifile;
-  SeqEnc: integer;
-  LinArq: string;
-  NroReg: integer;
-  SeqLin: integer;
   ArqRe1: string;
   ArqRe2: string;
   ArqRs1: string;
   ArqRs2: string;
   FlgRej: string;
-  FlgArq: string;
-  MSGNFE: string;
-  MSGANT: string;
-  RECNFE: string;
-  PRONFE: string;
-  DTENFE: string;
-  HRENFE: string;
-  DTEPNF: string;
-  HREPNF: string;
   ArqEnv: TextFile;
-  ArqRet: TStringList;
   SeqRet: Boolean;
   Handle: LongInt;
   ApeEmp: string;
@@ -850,7 +804,6 @@ var
   VluPro: string;
   TotPro: string;
   EspFat: string;
-  INSSUB: string;
   MarFat: string;
   PesLiq: string;
   PesBrt: string;
@@ -896,7 +849,6 @@ var
 
   ObsFat: string;
   TipCnd: string;
-  NomArq: string;
   sNumeroNF: string;
   NroPais_Emp: string;
   NomPais_Emp: string;
@@ -941,8 +893,33 @@ var
 
   emailRecepcaoXml: string;
   precoUnitario, valorIpi, valorMva, valorComMva, valorSemMva, quantidade, percentualIcm: Double;
+  nfeObj, infNFe, contigenciaObj, ideObj, emitObj, emitEnderObj, destObj, destEnderObj, icmsTotObj,
+  entregaObj, productObj, itemObj, productRastroObj, productMedObj, impostoIcmsUfDestObj, transportObj,
+  exportObj, pagamentoObj,
+  impostoObj, impostoIcmsObj, impostoIpiObj, impostoPisObj, impostoCofinsObj, impostoIIObj: TlkJSONobject;
+  productObjList, productRastroObjList, productMedObjList, pagamentoObjList: TlkJSONlist;
+  Json: string;
+  jsonText: TStringList;
 begin
   inherited;
+
+  nfeObj := TlkJSONobject.Create;
+  infNFe := TlkJSONobject.Create;
+  contigenciaObj := TlkJSONobject.Create;
+  ideObj := TlkJSONobject.Create;
+  emitObj := TlkJSONobject.Create;
+  emitEnderObj := TlkJSONobject.Create;
+  destObj := TlkJSONobject.Create;
+  destEnderObj := TlkJSONobject.Create;
+  entregaObj := TlkJSONobject.Create;
+  icmsTotObj := TlkJSONobject.Create;
+  transportObj := TlkJSONobject.Create;
+  exportObj := TlkJSONobject.Create;
+
+  productObjList := TlkJSONlist.Create;
+  productRastroObjList := TlkJSONlist.Create;
+  productMedObjList := TlkJSONlist.Create;
+  pagamentoObjList := TlkJSONlist.Create;
 
   //Etapa 1 - Acertar dados
   Finalizar := 'N';
@@ -955,7 +932,7 @@ begin
       FatPed.SQL.Text := sBase + ' Where FatPed.Id_FatPed = ' + QuotedStr(IntToStr(Id_FatPed));
       FatPed.Open;
     except
-       Application.MessageBox('Erro ao selecionar Nota Niscal... ', 'Atenção', MB_OK);
+       Application.MessageBox('Erro ao selecionar Nota Niscal... ', 'Atenï¿½ï¿½o', MB_OK);
        Exit;
     end;
     
@@ -969,10 +946,10 @@ begin
     else
       Impref := false;
 
-    //Verificando se Irá remover os "Zeros" do código de Produto
+    //Verificando se Irï¿½ remover os "Zeros" do cï¿½digo de Produto
     suprimiZeros := StrToIntDef(fmManGDB.BuscaSimples('FATPAR', 'SUPRIMIR_ZEROS', '1 = 1'), 0);
 
-    //verificando se é simples nacional
+    //verificando se ï¿½ simples nacional
     qusql.active   := false;
     qusql.sql.text := 'Select GEREMP.TIPEMP from GEREMP where codemp = ' + QuotedStr(FatPedCODEMP.asstring);
     qusql.open;
@@ -986,7 +963,7 @@ begin
     if FatPedId_FatPed.Value > 0 then
     begin
 
-      if fMsg('Confirma envio para emissão da NFe ?', 'O') then
+      if fMsg('Confirma envio para emissï¿½o da NFe ?', 'O') then
       begin
         try
           Finalizar := 'N';
@@ -1079,7 +1056,7 @@ begin
     fmManPri.Enabled     := True;
     fmManLn7_NFE.Enabled := True;
     pnMensag.Visible     := False;
-    fmsgErro('Código da UF para emissão de NFe não informado no cadastro da empresa.', nil);
+    fmsgErro('Cï¿½digo da UF para emissï¿½o de NFe nï¿½o informado no cadastro da empresa.', nil);
   end;
 
   if (Finalizar = 'S') and (not Id_FinCie > 0) then
@@ -1088,7 +1065,7 @@ begin
     fmManPri.Enabled     := True;
     fmManLn7_NFE.Enabled := True;
     pnMensag.Visible     := False;
-    fmsgErro('Código de municipio para emissão de NFe não informado no cadastro da empresa.', nil);
+    fmsgErro('Cï¿½digo de municipio para emissï¿½o de NFe nï¿½o informado no cadastro da empresa.', nil);
   end;
 
   if (Finalizar = 'S') and (not Id_FinPai > 0) then
@@ -1097,7 +1074,7 @@ begin
     fmManPri.Enabled     := True;
     fmManLn7_NFE.Enabled := True;
     pnMensag.Visible     := False;
-    fmsgErro('Código do país para emissão de NFe não informado no cadastro da empresa.', nil);
+    fmsgErro('Cï¿½digo do paï¿½s para emissï¿½o de NFe nï¿½o informado no cadastro da empresa.', nil);
   end;
 
   if Finalizar = 'S' then
@@ -1186,7 +1163,7 @@ begin
         fmManPri.Enabled     := True;
         fmManLn7_NFE.Enabled := True;
         pnMensag.Visible     := False;
-        fmsgErro('Código do país para emissão de NFe não informado no cadastro do cliente.', nil);
+        fmsgErro('Cï¿½digo do paï¿½s para emissï¿½o de NFe nï¿½o informado no cadastro do cliente.', nil);
       end
       else
         NroPais_Cli := fNumZeros(IntToStr(Id_FinPai), 4);
@@ -1227,12 +1204,12 @@ begin
       FatPedSeqNFe.AsString := fMontaChaveAcessoNFe(Id_FinUfe, FatPedDteFat.Value, CgcEmp, 55, 1, FatPedNroNfs.Value, 1);
       with FatPed do
       try
-        fmManGDB.dbMain.StartTransaction; //Inicia a Transação
-        ApplyUpdates; //Tenta aplicar as alterações
-        fmManGDB.dbMain.Commit; //confirma todas as alterações fechando a transação
+        fmManGDB.dbMain.StartTransaction; //Inicia a Transaï¿½ï¿½o
+        ApplyUpdates; //Tenta aplicar as alteraï¿½ï¿½es
+        fmManGDB.dbMain.Commit; //confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o
       except
         begin
-          fmManGDB.dbMain.Rollback; //desfaz as alterações se acontecer um erro
+          fmManGDB.dbMain.Rollback; //desfaz as alteraï¿½ï¿½es se acontecer um erro
           if FatPed.State <> dsBrowse then
             FatPed.CancelUpdates;
         end;
@@ -1243,12 +1220,12 @@ begin
   end;
 
   try
-    // Etapa 2 - Verificando se o serviço está ativo
+    // Etapa 2 - Verificando se o serviï¿½o estï¿½ ativo
     flgrej := 'N';
     //Etapa 3 - Preparar os dados para o envio para o robo
     if FlgRej = 'N' then
     begin
-      pnMensag.Caption := 'Aguarde. Enviando NFe à SEFAZ.';
+      pnMensag.Caption := 'Aguarde. Enviando NFe ï¿½ SEFAZ.';
       Application.ProcessMessages;
       fmManPri.Enabled := False;
       fmManLn7_NFE.Enabled := False;
@@ -1279,6 +1256,10 @@ begin
         FatPedSeqNFe.AsString +
         fNumZeros(IntToStr(FatPedLotNfe.Value), 9));
 
+      infNFe.Add('ufeEmp', putString(UfeEmp));
+      infNFe.Add('SeqNFe', putString(FatPedSeqNFe.AsString));
+      infNFe.Add('LotNfe', putNumber(FatPedLotNfe.AsInteger));
+
       //Para CONTIGENCIA DPEC JUSTIFICATIVA
       if TipoEnvio = 4 then
       begin
@@ -1296,17 +1277,20 @@ begin
           FormatDateTime('yyyy-mm-dd hh:MM:ss', dtCont) + //19
           copy(msgJust, 1, 255)); //255
 
+        contigenciaObj.Add('dhCont', putString(FormatDateTime('yyyy-mm-dd hh:MM:ss', dtCont)));
+        contigenciaObj.Add('xJust', putString(msgJust));
+
         FatPed.Edit;
         FatPedFlgAtu.AsString := 'F';
         FatPedJustDPEC.AsString := msgJust;
 
         try
-          fmManGDB.dbMain.StartTransaction; //Inicia a Transação
-          FatPed.ApplyUpdates; //Tenta aplicar as alterações
-          fmManGDB.dbMain.Commit; //confirma todas as alterações fechando a transação
+          fmManGDB.dbMain.StartTransaction; //Inicia a Transaï¿½ï¿½o
+          FatPed.ApplyUpdates; //Tenta aplicar as alteraï¿½ï¿½es
+          fmManGDB.dbMain.Commit; //confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o
         except
           begin
-            fmManGDB.dbMain.Rollback; //desfaz as alterações se acontecer um erro
+            fmManGDB.dbMain.Rollback; //desfaz as alteraï¿½ï¿½es se acontecer um erro
             if FatPed.State <> dsBrowse then
               FatPed.CancelUpdates;
           end;
@@ -1366,50 +1350,91 @@ begin
 
      
       Writeln(ArqEnv, 'EM0202' + // Uso interno do sistema
-        FormatFloat('00', Id_FinUfe) + // Código da UF do emitente do documento fiscal
-        copy(FatPedSeqNFE.AsString, 35, 09) + // Código númerico que compõe a chave de acesso
-        DesNat + // Descrição da natureza de operação
-        TipCnd + // Indicador da forma de pagamento 0-Pagamento à vista 1-Pagamento à prazo 2-Outros
-        '55' + // Código do Modelo do documento fiscal
-        '1' + // Série do documento fiscal
-        fNumZeros(IntToStr(FatPedNroNfs.Value), 9) + // Número do documento fiscal
-        FormatDateTime('yyyy-mm-dd', FatPedDteFat.AsDateTime) + // Data de emissão do documento fiscal
+        FormatFloat('00', Id_FinUfe) + // Cï¿½digo da UF do emitente do documento fiscal
+        copy(FatPedSeqNFE.AsString, 35, 09) + // Cï¿½digo nï¿½merico que compï¿½e a chave de acesso
+        DesNat + // Descriï¿½ï¿½o da natureza de operaï¿½ï¿½o
+        TipCnd + // Indicador da forma de pagamento 0-Pagamento ï¿½ vista 1-Pagamento ï¿½ prazo 2-Outros
+        '55' + // Cï¿½digo do Modelo do documento fiscal
+        '1' + // Sï¿½rie do documento fiscal
+        fNumZeros(IntToStr(FatPedNroNfs.Value), 9) + // Nï¿½mero do documento fiscal
+        FormatDateTime('yyyy-mm-dd', FatPedDteFat.AsDateTime) + // Data de emissï¿½o do documento fiscal
         '0000-00-00' + // Data de saida ou entrada da Mercadoria/Produto
         '1' + // Tipo do documento fiscal
-        Id_EmpCie + // Código do Municipio de Ocorrência do Fato Gerador
+        Id_EmpCie + // Cï¿½digo do Municipio de Ocorrï¿½ncia do Fato Gerador
         '1' + // Formato de Impressao do DANFE
-        '1' + // Forma de emissão da NF-e
+        '1' + // Forma de emissï¿½o da NF-e
         copy(FatPedSeqNFE.AsString, 44, 1) + // Digito verificador da Chave de Acesso da NF-e
-        '2' + // Identificação do Ambiente
-        '1' + // Finalidade de emissão da NF-e 
-        '0' + // Processo de emissão da NF-e
-        'EMERION FATURA' + Replicate(' ', 6) + // Versão do processo de emissão da NF-e
+        '2' + // Identificaï¿½ï¿½o do Ambiente
+        '1' + // Finalidade de emissï¿½o da NF-e
+        '0' + // Processo de emissï¿½o da NF-e
+        'EMERION FATURA' + Replicate(' ', 6) + // Versï¿½o do processo de emissï¿½o da NF-e
         idDest + //Identifica destino //3.1
         formatFloat('00', FatPedINDIC_CF.AsInteger) + //indica Cosumidor final //3.1
         formatFloat('00', FatPedINDIC_PRESENCA.AsInteger)); //Indica Presenca do Consumidor  //3.1
+
+      ideObj.Add('cUF', putString(FormatFloat('00', Id_FinUfe)));
+      ideObj.Add('SeqNFE', putString(copy(FatPedSeqNFE.AsString, 35, 09)));
+      ideObj.Add('natOp', putString(DesNat));
+      ideObj.Add('TipCnd', putString(TipCnd));
+      ideObj.Add('modelo', putString('55'));
+      ideObj.Add('serie', putString('1'));
+      ideObj.Add('nNF', putNumber(FatPedNroNfs.AsInteger));
+      ideObj.Add('dataEmissao', putString(FormatDateTime('yyyy-mm-dd', FatPedDteFat.AsDateTime)));
+      ideObj.Add('dataEntradaSaidaMercadoria', putString('0000-00-00'));
+      ideObj.Add('tpNF', putString('1'));
+      ideObj.Add('cMunFG', putString(Id_EmpCie));
+      ideObj.Add('tpImp', putString('1'));
+      ideObj.Add('tpEmis', putString('1'));
+      ideObj.Add('cDV', putString(copy(FatPedSeqNFE.AsString, 44, 1)));
+      ideObj.Add('tpAmb', putString('2'));
+      ideObj.Add('finNFe', putString('1'));
+      ideObj.Add('procEmi', putString('0'));
+      ideObj.Add('verProc', putString('EMERION FATURA'));
+      ideObj.Add('idDest', putString(idDest));
+      ideObj.Add('indFinal', putNumber(FatPedINDIC_CF.AsInteger));
+      ideObj.Add('indPres', putNumber(FatPedINDIC_PRESENCA.AsInteger));
 
       VNumNota := FatPedNroNfs.AsString;
 
       Writeln(ArqEnv, 'EM0203' + // Uso interno do sistema
         CgcEmp + // CNPJ do emitente
         CpfEmp + // CPF do emitente
-        NomEmp + // Razão social ou Nome do emitente
+        NomEmp + // Razï¿½o social ou Nome do emitente
         ApeEmp + // Nome fantasia
         EndEmp + // Logradouro
-        NumEmp + // Número
+        NumEmp + // Nï¿½mero
         RefEmp + // Complemento
         BaiEmp + // Bairro
-        Id_EmpCie + // Código do municipio
+        Id_EmpCie + // Cï¿½digo do municipio
         CidEmp + // Nome do municipio
         UfeEmp + // Sigla da UF
-        CepEmp + // Código do CEP
-        NroPais_Emp + // Código do País
-        NomPais_Emp + // Nome do País
+        CepEmp + // Cï¿½digo do CEP
+        NroPais_Emp + // Cï¿½digo do Paï¿½s
+        NomPais_Emp + // Nome do Paï¿½s
         FonEmp + // Telefone
         InsEmp + // IE
-        copy(Trim(FatPedINSSUB.AsString), 1, 18) + fReplicate(' ', 18 - Length(copy(Trim(FatPedINSSUB.AsString), 1, 18))) + // IE do Substituto tributário
-        '               ' + // IM inscrição municipal
+        copy(Trim(FatPedINSSUB.AsString), 1, 18) + fReplicate(' ', 18 - Length(copy(Trim(FatPedINSSUB.AsString), 1, 18))) + // IE do Substituto tributï¿½rio
+        '               ' + // IM inscriï¿½ï¿½o municipal
         '       '); // CNAE Fiscal
+
+      emitObj.Add('CNPJ', putString(Trim(CgcEmp) + Trim(CpfEmp)));
+      emitObj.Add('xNome', putString(NomEmp));
+      emitObj.Add('xFant', putString(ApeEmp));
+      emitEnderObj.Add('xLgr', putString(EndEmp));
+      emitEnderObj.Add('nro', putString(NumEmp));
+      emitEnderObj.Add('xCpl', putString(RefEmp));
+      emitEnderObj.Add('xBairro', putString(BaiEmp));
+      emitEnderObj.Add('cMun', putString(Id_EmpCie));
+      emitEnderObj.Add('xMun', putString(CidEmp));
+      emitEnderObj.Add('UF', putString(UfeEmp));
+      emitEnderObj.Add('CEP', putString(CepEmp));
+      emitEnderObj.Add('cPais', putString(NroPais_Emp));
+      emitEnderObj.Add('xPais', putString(NroPais_Emp));
+      emitEnderObj.Add('fone', putString(FonEmp));
+      emitObj.Add('enderEmit', emitEnderObj);
+      emitObj.Add('ie', putString(InsEmp));
+      emitObj.Add('IEST', putString(InsEmp));
+      emitObj.Add('CRT', putString('SIMPLES OU NORMAL'));
 
       if FatPedTefCli.Value <> '' then
         EndCli := Trim(FatPedTefCli.Value) + ' ' + FatPedEnfCli.Value
@@ -1437,24 +1462,47 @@ begin
       Writeln(ArqEnv, 'EM0204' + // Uso interno do sistema
         CgcCli + // CNPJ do destinatario
         CpfCli + // CPF do destinatario
-        NomCli + // Razão social ou nome do destinatario
+        NomCli + // Razï¿½o social ou nome do destinatario
         EndCli + // Logradouro
-        NumCli + // Número
+        NumCli + // Nï¿½mero
         RefCli + // Complemento
         BaiCli + // Bairro
-        Id_CliNfe + // Código do Municipio
+        Id_CliNfe + // Cï¿½digo do Municipio
         CidCli + // Nome do Municipio
         UffCli + // Sigla da UF
-        CepCli + // Código do Cep
-        NroPais_Cli + // Código do País
-        NomPais_Cli + // Nome do País
+        CepCli + // Cï¿½digo do Cep
+        NroPais_Cli + // Cï¿½digo do Paï¿½s
+        NomPais_Cli + // Nome do Paï¿½s
         FonCli + // Telefone
         InsCli + // IE
-        NroSuf + // Inscrição SUFRAMA
-        idEstrangeiro + // Identificação de estrangeiro //3.1
-        INDIC_IE + // Identificação do IE //3.1
-        INSC_MUNICIPAL + // Identificação do IM//3.1
-        emailRecepcaoXml); // Email de Recepção do XML
+        NroSuf + // Inscriï¿½ï¿½o SUFRAMA
+        idEstrangeiro + // Identificaï¿½ï¿½o de estrangeiro //3.1
+        INDIC_IE + // Identificaï¿½ï¿½o do IE //3.1
+        INSC_MUNICIPAL + // Identificaï¿½ï¿½o do IM//3.1
+        emailRecepcaoXml); // Email de Recepï¿½ï¿½o do XML
+
+      destObj.Add('CPF_CNPJ', putString(Trim(CgcCli) + Trim(CpfCli)));
+      destObj.Add('idEstrangeiro', putString(idEstrangeiro));
+      destObj.Add('xNome', putString(NomCli));
+      destEnderObj.Add('xLgr', putString(EndCli));
+      destEnderObj.Add('nro', putString(NumCli));
+      destEnderObj.Add('xCpl', putString(RefCli));
+      destEnderObj.Add('xBairro', putString(BaiCli));
+      destEnderObj.Add('cMun', putString(Id_CliNfe));
+      destEnderObj.Add('xMun', putString(CidCli));
+      destEnderObj.Add('UF', putString(UffCli));
+      destEnderObj.Add('CEP', putString(CepCli));
+      destEnderObj.Add('cPais', putString(NroPais_Cli));
+      destEnderObj.Add('xPais', putString(NomPais_Cli));
+      destEnderObj.Add('fone', putString(FonCli));
+      destObj.Add('enderDest', destEnderObj);
+      destObj.Add('ie', putString(InsCli));
+      destObj.Add('ISUF', putString(NroSuf));
+      destObj.Add('email', putString(emailRecepcaoXml));
+      destObj.Add('indIEDest', putString(INDIC_IE));
+      destObj.Add('IM', putString(INSC_MUNICIPAL));
+
+
 
       if Trim(FatPedCepCli.AsString) <> '' then
       begin
@@ -1504,12 +1552,21 @@ begin
           Writeln(ArqEnv, 'EM0205' + // Uso interno do sistema
             CgcCli + // CNPJ do destinatario
             EndCli + // Logradouro
-            NumCli + // Número
+            NumCli + // Nï¿½mero
             RefCli + // Complemento
             BaiCli + // Bairro
-            Id_CliNfe + // Código do Municipio
+            Id_CliNfe + // Cï¿½digo do Municipio
             CidCli + // Nome do Municipio
             UfeCli); // Sigla da UF
+
+          entregaObj.Add('CPF_CNPJ', putString(CgcCli));
+          entregaObj.Add('xLgr', putString(EndCli));
+          entregaObj.Add('nro', putString(NumCli));
+          entregaObj.Add('xCpl', putString(RefCli));
+          entregaObj.Add('xBairro', putString(BaiCli));
+          entregaObj.Add('cMun', putString(Id_CliNfe));
+          entregaObj.Add('xMun', putString(CidCli));
+          entregaObj.Add('UF', putString(UffCli));
         end;
       end;
 
@@ -1601,7 +1658,7 @@ begin
           ' AND Pe2.SEQLIB = ' + QuotedStr(IntToStr(FatPedSEQLIB.AsInteger)) +
           ' AND Pe2.SEQFAT = ' + QuotedStr(IntToStr(FatPedSEQFAT.AsInteger)) +
           ' Order by Pe2.NroPe2';
-        //clipboard.astext := text;
+
         Open;
         First;
       end;
@@ -1755,39 +1812,77 @@ begin
           DesPro := copy(Trim(DesPro), 1, 120) + fReplicate(' ', 120 - Length(copy(Trim(DesPro), 1, 120)));
 
           Writeln(ArqEnv, 'EM0206' + // Uso interno do sistema
-            '00' + // Tipo de operação
+            '00' + // Tipo de operaï¿½ï¿½o
             fNumZeros(IntToStr(quSQL.FieldbyName('NroPe2').AsInteger), 3) + // Nro. do item
-            CodPro + // Código do Produto ou serviço
+            CodPro + // Cï¿½digo do Produto ou serviï¿½o
             cEAN + // GTIN cEAN
-            DesPro + // Descrição do produto ou serviço
-            ClsIpi + // Código NCM
+            DesPro + // Descriï¿½ï¿½o do produto ou serviï¿½o
+            ClsIpi + // Cï¿½digo NCM
             '   ' + // EX_TIPI
-            '  ' + // Gênero do produto ou serviço
-            CodCfo + // Código fiscal da operação
+            '  ' + // Gï¿½nero do produto ou serviï¿½o
+            CodCfo + // Cï¿½digo fiscal da operaï¿½ï¿½o
             CodUnd + // Unidade comercial
             QtdPro + // Quantidade comercial
-            VluPro + // Valor unitário de comercialização
-            TotPro + // Valor Total Bruto dos Produtos ou Serviços
+            VluPro + // Valor unitï¿½rio de comercializaï¿½ï¿½o
+            TotPro + // Valor Total Bruto dos Produtos ou Serviï¿½os
             cEANTrib + // GTIN cEANTrib
             CodUnd + // Unidade Tributavel
             QtdPro + // Quantidade Tributavel
-            VluPro + // Valor Unitário de tributação
+            VluPro + // Valor Unitï¿½rio de tributaï¿½ï¿½o
             TotFrt + // Valor Total do Frete
             TotSeg + // Valor Total do Seguro
             TOTDES + // Valor de Outras Despesas
             TotDsr + // Valor do Desconto
-            VLRBCII + // Valor Base de Calculo para Importação
-            VLRIMPII + // Valor do imposto de importação
+            VLRBCII + // Valor Base de Calculo para Importaï¿½ï¿½o
+            VLRIMPII + // Valor do imposto de importaï¿½ï¿½o
             VLRDESPATU + // Valor de Despesas Aduneiras
             VLRIOF + // Valor de IOF
-            TOTIBPT + //Transparência Tributária
+            TOTIBPT + //Transparï¿½ncia Tributï¿½ria
             NUMPEDCOMPRA + //Numero do pedido de compra
             NUMITEMCOMPRA + //Numero do item do pedido de compra
             CEST + //CEST
             CODANP + //COD. ANP
             CODIF + //COD DIF
-            FCI + // FCI - Número de controle da FCI - Ficha de Conteúdo de Importação
-            DESCANP); // DESCANP - Descrição do ANP se usar derivado de combustível
+            FCI + // FCI - Nï¿½mero de controle da FCI - Ficha de Conteï¿½do de Importaï¿½ï¿½o
+            DESCANP); // DESCANP - Descriï¿½ï¿½o do ANP se usar derivado de combustï¿½vel
+
+
+          productObj := TlkJSONobject.Create;
+          itemObj := TlkJSONobject.Create;
+          impostoObj := TlkJSONobject.Create;
+
+          itemObj.Add('nItem', putNumber(quSQL.FieldbyName('NroPe2').AsInteger));
+          itemObj.Add('cProd', putString(CodPro));
+          itemObj.Add('cEAN', putString(cEAN));
+          itemObj.Add('xProd', putString(DesPro));
+          itemObj.Add('NCM', putString(ClsIpi));
+          itemObj.Add('EXTIPI', putString(''));
+          itemObj.Add('CFOP', putString(CodCfo));
+          itemObj.Add('uCom', putString(CodUnd));
+          itemObj.Add('qCom', putStrToNumber(QtdPro));
+          itemObj.Add('vUnCom', putStrToNumber(VluPro));
+          itemObj.Add('vProd', putStrToNumber(TotPro));
+          itemObj.Add('cEANTrib', putString(cEANTrib));
+          itemObj.Add('uTrib', putString(CodUnd));
+          itemObj.Add('qTrib', putStrToNumber(QtdPro));
+          itemObj.Add('vUnTrib', putStrToNumber(VluPro));
+          itemObj.Add('vFrete', putStrToNumber(TotFrt));
+          itemObj.Add('vSeg', putStrToNumber(TotSeg));
+          itemObj.Add('vOutro', putStrToNumber(TOTDES));
+          itemObj.Add('vDesc', putStrToNumber(TotDsr));
+          itemObj.Add('nFCI', putString(FCI));
+          itemObj.Add('xPed', putString(NUMPEDCOMPRA));
+          itemObj.Add('nItemPed', putString(NUMITEMCOMPRA));
+          itemObj.Add('CEST', putString(CEST));
+
+          impostoIIObj := TlkJSONobject.Create;
+          impostoIIObj.Add('vBC', putStrToNumber(VLRBCII));
+          impostoIIObj.Add('vII', putStrToNumber(VLRIMPII));
+          impostoIIObj.Add('vDespAdu', putStrToNumber(VLRDESPATU));
+          impostoIIObj.Add('vIOF', putStrToNumber(VLRIOF));
+          impostoObj.Add('vTotTrib', putStrToNumber(TOTIBPT));
+
+          impostoObj.Add('importoImportacao', impostoIIObj);
 
           //========================== THIAGO OBS DO ITEM
           strAux := Trim(quSQL.FieldbyName('ObsPe2').AsString);
@@ -1829,17 +1924,9 @@ begin
 
           quSQL1.Active := true;
 
-          //NUNCA DEVE SAIR A Descricao do Cartalogo
-          //A portal possui uma excecao para a impressao do FCI
-          //Se o campo comecar com '###' deve-se entao imprimi-lo na NFE
-//          if((Trim(qusql1.fieldbyname('DSRIMP').asstring) <> '') and
-//             (copy(qusql1.fieldbyname('DSRIMP').asstring,1,3) = '###')) then
-//             begin
-//               strAux := strAux + copy(Trim(qusql1.fieldbyname('DSRIMP').asstring),1, length(Trim(qusql1.fieldbyname('DSRIMP').asstring)) - 3);
-//             end;
           if Trim(FCI) <> '' then
           begin
-             strAux := strAux + FCI// copy(Trim(qusql1.fieldbyname('DSRIMP').asstring),1, length(Trim(qusql1.fieldbyname('DSRIMP').asstring)) - 3);
+             strAux := strAux + FCI
           end;
 
           strAux := copy(Trim(strAux), 1, 500) + fReplicate(' ', 500 - Length(copy(Trim(strAux), 1, 500)));
@@ -1847,8 +1934,9 @@ begin
             [rfReplaceAll, rfIgnoreCase]);
           // descricao de DI
           Writeln(ArqENV, 'EM1206' + StrAux);
+          productObj.Add('infAdProd', putString(StrAux));
 
-          if (1 = 1) then //Lotes - Arnaldo
+          if (1 = 1) then
           begin
             quSql1.Active := False;
             quSql1.sql.text := ' select * from FATPED_LOTE ' +
@@ -1883,6 +1971,13 @@ begin
                 dVal +
                 vPMC
                 );
+
+              productRastroObj := TlkJSONobject.Create();
+              productRastroObj.Add('nLote', putString(nLote));
+              productRastroObj.Add('qLote', putStrToNumber(qLote));
+              productRastroObj.Add('dFab', putString(dFab));
+              productRastroObj.Add('dVal', putString(dVal));
+              productRastroObjList.Add(productRastroObj);
 
               quSql1.Next;
             end;
@@ -1924,21 +2019,30 @@ begin
                 vPMC
                 );
 
+              productMedObj := TlkJSONobject.Create();
+              productMedObj.Add('nLote', putString(nLote));
+              productMedObj.Add('qLote', putStrToNumber(qLote));
+              productMedObj.Add('dFab', putString(dFab));
+              productMedObj.Add('dVal', putString(dVal));
+              productMedObj.Add('vPMC', putStrToNumber(vPMC));
+              productMedObjList.Add(productMedObj);
+
               quSql1.Next;
             end;
           end;
 
-          //Writeln(ArqENV, 'EM2206' + StrAux);
-
-          //========================== THIAGO OBS DO ITEM
+          productObj.Add('imposto', impostoObj);
+          productObj.Add('rastro', productRastroObjList);
+          productObj.Add('med', productMedObjList);
+          productObjList.Add(productObj);
 
           Writeln(ArqEnv, 'EM0207' + // Uso interno do sistema
-            '01' + // Tipo de operação
+            '01' + // Tipo de operaï¿½ï¿½o
             fNumZeros(IntToStr(quSQL.FieldbyName('NroPe2').AsInteger + 1), 3) + // Nro. do item
             CodSt1 + // Origem da mercadoria
             CodSt2 + // Grupo de CST
-            '3' + // Modalidade de determinação da BC do ICMS ST
-            RedIcm + // Percential de redução de BC do ICMS
+            '3' + // Modalidade de determinaï¿½ï¿½o da BC do ICMS ST
+            RedIcm + // Percential de reduï¿½ï¿½o de BC do ICMS
             BasIcm + // Valor da BC do ICMS
             PerIcm + // Aliquota do imposto
             TotIcm + // Valor do ICMS
@@ -1947,7 +2051,7 @@ begin
             MrgSub + // Percentual da Margem de valor Adicionado do ICMS ST
             TotSub + // Valor do ICMS ST
             TOTDESONERADO + //Valor do ICMS Desonerado //3.1
-            CodDesoneracao + //Código do ICMS Desonerado //3.1
+            CodDesoneracao + //Cï¿½digo do ICMS Desonerado //3.1
             ALIQ_CRED_SN + //Aliq. Cred SN
             VLR_CRED_SN +//Vlr. Cred SN
             fSubstDecimal(FormatFloat('########0.00', ((precoUnitario + valorIpi) * (1 + valorMva / 100)) * quantidade), 15) + // vBCSTRet
@@ -1955,6 +2059,29 @@ begin
             fSubstDecimal(FormatFloat('########0.00', valorComMva - valorSemMva), 15) + // vICMSSTRet
             fSubstDecimal(FormatFloat('########0.00', percentualIcm), 15) // pST
             );
+
+          impostoIcmsObj := TlkJSONobject.Create;
+          impostoIcmsObj.Add('orig', putString(CodSt1));
+          impostoIcmsObj.Add('cst', putString(CodSt2));
+          impostoIcmsObj.Add('modBCST', putString('3'));
+
+          impostoIcmsObj.Add('pRedBC', putStrToNumber(RedIcm));
+          impostoIcmsObj.Add('vBC', putStrToNumber(BasIcm));
+          impostoIcmsObj.Add('pICMS', putStrToNumber(PerIcm));
+          impostoIcmsObj.Add('vICMS', putStrToNumber(TotIcm));
+          impostoIcmsObj.Add('vBCST', putStrToNumber(BasSub));
+          impostoIcmsObj.Add('pICMSST', putStrToNumber(IcmSub));
+          impostoIcmsObj.Add('pMVAST', putStrToNumber(MrgSub));
+          impostoIcmsObj.Add('vICMSST', putStrToNumber(TotSub));
+          impostoIcmsObj.Add('vICMSDeson', putStrToNumber(TOTDESONERADO));
+          impostoIcmsObj.Add('motDesICMS', putString(CodDesoneracao));
+          impostoIcmsObj.Add('pCredSN', putStrToNumber(ALIQ_CRED_SN));
+          impostoIcmsObj.Add('vCredICMSSN', putStrToNumber(VLR_CRED_SN));
+          impostoIcmsObj.Add('vBCSTRet', putStrToNumber(FormatFloat('########0.00', ((precoUnitario + valorIpi) * (1 + valorMva / 100)) * quantidade)));
+          impostoIcmsObj.Add('vICMSSubstituto', putStrToNumber(FormatFloat('########0.00', valorSemMva)));
+          impostoIcmsObj.Add('vICMSSTRet', putStrToNumber(FormatFloat('########0.00', valorComMva - valorSemMva)));
+          impostoIcmsObj.Add('pST', putStrToNumber(FormatFloat('########0.00', percentualIcm)));
+          impostoObj.Add('icms', impostoIcmsObj);
 
           FlgDifal := fmManGDB.BuscaSimples('FATPAR', 'FLGDIFAL', ' 1 = 1 ');
 
@@ -1964,41 +2091,72 @@ begin
             begin
               Writeln(ArqEnv, 'EM2207' + // Uso interno do sistema
                 BAS_UFDEST + // Valor da BC do ICMS na UF de destino
-                ALIQ_FCPUFDEST + // Percentual do ICMS relativo ao Fundo de Combate à Pobreza (FCP) na UF de destino
-                ALIQ_ICMSUFDEST + // Alíquota interna da UF de destino
-                ALIQ_ICMSINTER + // Alíquota interestadual das UF envolvidas
-                ALIQ_ICMSINTERPART + // Percentual provisório de partilha do ICMS Interestadual
-                TOT_FCPUFDEST + // Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP) da UF de destino
+                ALIQ_FCPUFDEST + // Percentual do ICMS relativo ao Fundo de Combate ï¿½ Pobreza (FCP) na UF de destino
+                ALIQ_ICMSUFDEST + // Alï¿½quota interna da UF de destino
+                ALIQ_ICMSINTER + // Alï¿½quota interestadual das UF envolvidas
+                ALIQ_ICMSINTERPART + // Percentual provisï¿½rio de partilha do ICMS Interestadual
+                TOT_FCPUFDEST + // Valor do ICMS relativo ao Fundo de Combate ï¿½ Pobreza (FCP) da UF de destino
                 TOT_ICMSUFDEST + // Valor do ICMS Interestadual para a UF de destino
                 TOT_ICMSUFREMET); //Valor do ICMS Interestadual para a UF do remetente
             end;
           end;
 
+          impostoIcmsUfDestObj := TlkJSONobject.Create;
+          impostoIcmsUfDestObj.Add('vBCUFDest', putStrToNumber(BAS_UFDEST));
+          impostoIcmsUfDestObj.Add('vBCFCPUFDest', putStrToNumber(ALIQ_FCPUFDEST));
+          impostoIcmsUfDestObj.Add('pICMSUFDest', putStrToNumber(ALIQ_ICMSUFDEST));
+          impostoIcmsUfDestObj.Add('pICMSInter', putStrToNumber(ALIQ_ICMSINTER));
+          impostoIcmsUfDestObj.Add('pICMSInterPart', putStrToNumber(ALIQ_ICMSINTERPART));
+          impostoIcmsUfDestObj.Add('vICMSUFDest', putStrToNumber(TOT_ICMSUFDEST));
+          impostoIcmsUfDestObj.Add('vICMSUFRemet', putStrToNumber(TOT_ICMSUFREMET));
+          impostoObj.Add('ICMSUFDest', impostoIcmsUfDestObj);
+
           //if (FlgDifal <> 'N') then
           begin
             Writeln(ArqEnv, 'EM0208' + // Uso interno do sistema
-              '01' + // Tipo de operação
+              '01' + // Tipo de operaï¿½ï¿½o
               fNumZeros(IntToStr(quSQL.FieldbyName('NroPe2').AsInteger + 1), 3) + // Nro. do item
               TrbIpi + // IPI tributado
               BasIpi + // Valor da BC do IPI
               PerIpi + // Aliquota do imposto
               TotIpi + // Valor do IPI
-              CSTIPI); // Situação tributária do IPI
+              CSTIPI); // Situaï¿½ï¿½o tributï¿½ria do IPI
+            impostoIpiObj := TlkJSONobject.Create;
+            impostoIpiObj.Add('vBC', putStrToNumber(BasIpi));
+            impostoIpiObj.Add('pIPI', putStrToNumber(PerIpi));
+            impostoIpiObj.Add('vIPI', putStrToNumber(TotIpi));
+            impostoIpiObj.Add('CST', putStrToNumber(CSTIPI));
+            impostoObj.Add('ipi', impostoIpiObj);
           end;
 
           Writeln(ArqEnv, 'EM0209' + // Uso interno do sistema
-            '01' + // Tipo de operação
+            '01' + // Tipo de operaï¿½ï¿½o
             fNumZeros(IntToStr(quSQL.FieldbyName('NroPe2').AsInteger + 1), 3) + // Nro. do item
-            NfePis + // Situação Tributaria do PIS
+            NfePis + // Situaï¿½ï¿½o Tributaria do PIS
             TrbPis + // PIS tributado
             BasPis + // BC PIS
             PerPis + // Percentual do PIS
             TotPis + // Valor do PIS
-            NfeCof + // Situação Tributaria do COFINS
+            NfeCof + // Situaï¿½ï¿½o Tributaria do COFINS
             TrbCof + // COFINS tributado
             BasCof + // BC COFINS
             PerCof + // Percentual do COFINS
             TotCof); // Valor do COFINS
+
+          impostoPisObj := TlkJSONobject.Create;
+          impostoPisObj.Add('vBC', putStrToNumber(BasPis));
+          impostoPisObj.Add('pIPI', putStrToNumber(PerPis));
+          impostoPisObj.Add('vIPI', putStrToNumber(TotPis));
+          impostoPisObj.Add('CST', putStrToNumber(NfePis));
+          impostoObj.Add('pis', impostoPisObj);
+
+          impostoCofinsObj := TlkJSONobject.Create;
+          impostoCofinsObj.Add('vBC', putStrToNumber(BasCof));
+          impostoCofinsObj.Add('pIPI', putStrToNumber(PerCof));
+          impostoCofinsObj.Add('vIPI', putStrToNumber(TotCof));
+          impostoCofinsObj.Add('CST', putStrToNumber(NfeCof));
+          impostoObj.Add('cofins', impostoCofinsObj);
+
           Application.ProcessMessages;
           quSQL.Next;
         until QUSQL.Eof;
@@ -2008,7 +2166,7 @@ begin
         fSubstDecimal(FormatFloat('########0.0000', FatPedTotIcm.AsFloat), 15) + // Valor Total do ICMS
         fSubstDecimal(FormatFloat('########0.00', FatPedBasSub.AsFloat), 15) + // Base de Calculo do ICMS ST
         fSubstDecimal(FormatFloat('########0.00', FatPedTotSub.AsFloat), 15) + // Valor Total do ICMS ST
-        fSubstDecimal(FormatFloat('########0.00', FatPedTotFat.AsFloat), 15) + // Valor Total dos produtos e serviços
+        fSubstDecimal(FormatFloat('########0.00', FatPedTotFat.AsFloat), 15) + // Valor Total dos produtos e serviï¿½os
         fSubstDecimal(FormatFloat('########0.00', FatPedTotFrt.AsFloat), 15) + // Valor Total do Frete
         fSubstDecimal(FormatFloat('########0.00', FatPedTotSeg.AsFloat), 15) + // Valor Total do Seguro
         fSubstDecimal(FormatFloat('########0.00', FatPedTotDsr.AsFloat + FatPedTOTDESCINC.AsFloat), 15) + // Valor Total do Desconto
@@ -2016,14 +2174,34 @@ begin
         fSubstDecimal(FormatFloat('########0.00', FatPedTotIpi.AsFloat), 15) + // Valor Total do IPI
         fSubstDecimal(FormatFloat('########0.00', FatPedTotPis.AsFloat), 15) + // Valor Total do PIS
         fSubstDecimal(FormatFloat('########0.00', FatPedTotCof.AsFloat), 15) + // Valor Total do COFINS
-        fSubstDecimal(FormatFloat('########0.00', FatPedTotOUTDESP.AsFloat), 15) + // Outras Despesas Acessórias
+        fSubstDecimal(FormatFloat('########0.00', FatPedTotOUTDESP.AsFloat), 15) + // Outras Despesas Acessï¿½rias
         fSubstDecimal(FormatFloat('########0.00', FatPedTotGer.AsFloat), 15) + // Valor Total da NFe
-        fSubstDecimal(FormatFloat('########0.00', FatPedTOTIBPT.AsFloat), 15) + // Valor Total Tributário Tranparencia
+        fSubstDecimal(FormatFloat('########0.00', FatPedTOTIBPT.AsFloat), 15) + // Valor Total Tributï¿½rio Tranparencia
         fSubstDecimal(FormatFloat('########0.00', FatPedTOTDESONERADO.AsFloat), 15) + // Valor Total o ICMS DESONERADO //3.1
         fSubstDecimal(FormatFloat('########0.00', FatPedTOT_FCPUFDEST.AsFloat), 15) + // Valor Total Fundo contra pobresa //3.1
         fSubstDecimal(FormatFloat('########0.00', FatPedTOT_ICMSUFDEST.AsFloat), 15) + // Valor Total Partilha destino //3.1
         fSubstDecimal(FormatFloat('########0.00', FatPedTOT_ICMSUFREMET.AsFloat), 15) // Valor Total Partilha emitente //3.1
         ); // Valor Total o ICMS DESONERADO //3.1
+
+      icmsTotObj.Add('vBC', putNumber(FatPedBasIcm.AsFloat));
+      icmsTotObj.Add('vICMS', putNumber(FatPedTotIcm.AsFloat));
+      icmsTotObj.Add('vBCST', putNumber(FatPedBasSub.AsFloat));
+      icmsTotObj.Add('vST', putNumber(FatPedTotSub.AsFloat));
+      icmsTotObj.Add('vProd', putNumber(FatPedTotFat.AsFloat));
+      icmsTotObj.Add('vFrete', putNumber(FatPedTotFrt.AsFloat));
+      icmsTotObj.Add('vSeg', putNumber(FatPedTotSeg.AsFloat));
+      icmsTotObj.Add('vDesc', putNumber(FatPedTotDsr.AsFloat + FatPedTOTDESCINC.AsFloat));
+      icmsTotObj.Add('vII', putNumber(0));
+      icmsTotObj.Add('vIPI', putNumber(FatPedTotIpi.AsFloat));
+      icmsTotObj.Add('vPIS', putNumber(FatPedTotPis.AsFloat));
+      icmsTotObj.Add('vCOFINS', putNumber(FatPedTotCof.AsFloat));
+      icmsTotObj.Add('vOutro', putNumber(FatPedTotOUTDESP.AsFloat));
+      icmsTotObj.Add('vNF', putNumber(FatPedTotGer.AsFloat));
+      icmsTotObj.Add('vTotTrib', putNumber(FatPedTOTIBPT.AsFloat));
+      icmsTotObj.Add('vICMSDeson', putNumber(FatPedTOTDESONERADO.AsFloat));
+      icmsTotObj.Add('vFCPUFDest', putNumber(FatPedTOT_FCPUFDEST.AsFloat));
+      icmsTotObj.Add('vICMSUFDest', putNumber(FatPedTOT_ICMSUFDEST.AsFloat));
+      icmsTotObj.Add('vICMSUFRemet', putNumber(FatPedTOT_ICMSUFREMET.AsFloat));
 
       TipFrt := inttostr(FatPedID_FRETE.AsInteger);
 
@@ -2094,9 +2272,9 @@ begin
         TipFrt + // Modalidade do Frete
         CgcTra + // CNPJ
         CpfTra + // CPF
-        NomTra + // Razão social ou nome
+        NomTra + // Razï¿½o social ou nome
         InsTra + // IE
-        EndTra + // Endereço completo
+        EndTra + // Endereï¿½o completo
         CidTra + // Nome do Municipio
         UfeTra + // Sigla da UF
         fNumZeros(IntToStr(FatPedAltVol.AsInteger), 15) + // Quantidade de volumes
@@ -2108,6 +2286,22 @@ begin
         placa +
         ufPlaca);
 
+      transportObj.Add('modFrete', putString(TipFrt));
+      transportObj.Add('CNPJCPF', putString(CgcTra + CpfTra));
+      transportObj.Add('xNome', putString(NomTra));
+      transportObj.Add('ie', putString(InsTra));
+      transportObj.Add('xEnder', putString(EndTra));
+      transportObj.Add('xMun', putString(CidTra));
+      transportObj.Add('uf', putString(UfeTra));
+      transportObj.Add('qVol', putNumber(FatPedAltVol.AsInteger));
+      transportObj.Add('esp', putString(EspFat));
+      transportObj.Add('marca', putString(MarFat));
+      transportObj.Add('pesoL', putString(PesLiq));
+      transportObj.Add('pesoB', putString(PesBrt));
+      transportObj.Add('nVol', putString(NROFAT));
+      transportObj.Add('placa', putString(placa));
+      transportObj.Add('ufPlaca', putString(ufPlaca));
+
       if FatPedUFECLI.AsString = 'EX' then
       begin
         LOCEMB := fLimpaAcentos(FatpedLOCEMB.AsString);
@@ -2117,16 +2311,23 @@ begin
         Writeln(ArqEnv, 'EM1211' +
           UFEMB + //UF do Embarque
           LOCEMB); //Local de Embarque
+        exportObj.Add('UFSaidaPais', putString(FatpedLOCEMB.AsString));
+        exportObj.Add('xLocExporta', putString(LOCEMB));
+        exportObj.Add('xLocDespacho', putString(LOCEMB));
       end;
 
       if FatPedIntFin.Value = 'Sim' then
       begin
         NroDoc := fSubstDecimal(IntToStr(FatPedNroNfs.Value), 60);
         Writeln(ArqEnv, 'EM0212' + // Uso interno do sistema
-          NroDoc + // Número da fatura
+          NroDoc + // Nï¿½mero da fatura
           fSubstDecimal(FormatFloat('########0.00', FatPedTotGer.Value), 15) + // Valor Original
           '           0.00' + // Valor do desconto
           fSubstDecimal(FormatFloat('########0.00', FatPedTotGer.Value), 15)); // Valor Original
+
+        nfeObj.Add('nfat', putString(NroDoc));
+        nfeObj.Add('vliq', putNumber(FatPedTotGer.AsFloat));
+        nfeObj.Add('voriginal', putNumber(FatPedTotGer.AsFloat));
 
         with quSQL, SQL do
         begin
@@ -2160,14 +2361,19 @@ begin
           NroDoc := IntToStr(FatPedNroNfs.Value) + '-' + fNumZeros(IntToStr(quSQL.FieldbyName('NroPe3').AsInteger), 2);
           NroDoc := copy(Trim(NroDoc), 1, 60) + fReplicate(' ', 60 - Length(copy(Trim(NroDoc), 1, 60)));
           Writeln(ArqEnv, 'EM0213' + // Uso interno do sistema
-                           NroDoc + // Número da fatura
+                           NroDoc + // Nï¿½mero da fatura
                            copy(FormatDateTime('dd/mm/yyyy', quSQL.FieldbyName('DtvPe3').AsDateTime), 7, 4) + '-' + // Data de vencimento
                            copy(FormatDateTime('dd/mm/yyyy', quSQL.FieldbyName('DtvPe3').AsDateTime), 4, 2) + '-' +
                            copy(FormatDateTime('dd/mm/yyyy', quSQL.FieldbyName('DtvPe3').AsDateTime), 1, 2) +
                            fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('VlpPe3').AsFloat), 15)); // Valor da duplicata
           Application.ProcessMessages;
+
+          pagamentoObj := TlkJSONobject.Create;
+          pagamentoObj.Add('vPag', putNumber(quSQL.FieldbyName('VlpPe3').AsFloat));
+          pagamentoObjList.Add(pagamentoObj);
           quSQL.Next;
         end;
+
       end;
 
       ObsFat := '';
@@ -2181,7 +2387,7 @@ begin
       if Trim(fLimpaAcentos(FatPedOb7Fat.asString)) <> '' then ObsFat := ObsFat +' '+ Trim(fLimpaAcentos(FatPedOb7Fat.asString));
       if Trim(fLimpaAcentos(FatPedOb8Fat.asString)) <> '' then ObsFat := ObsFat +' '+ Trim(fLimpaAcentos(FatPedOb8Fat.asString));
 
-      if (FatPedTOT_FCPUFDEST.AsFloat > 0)   then ObsFat := 'Total do ICMS relativo ao Fundo de Combate à Pobreza: ' + FormatFloat('R$ 0.00', FatPedTOT_FCPUFDEST.AsFloat) + '; ' + ObsFat;
+      if (FatPedTOT_FCPUFDEST.AsFloat > 0)   then ObsFat := 'Total do ICMS relativo ao Fundo de Combate ï¿½ Pobreza: ' + FormatFloat('R$ 0.00', FatPedTOT_FCPUFDEST.AsFloat) + '; ' + ObsFat;
       if (FatPedTOT_ICMSUFDEST.AsFloat > 0)  then ObsFat := 'Total do ICMS Interestadual para a UF de destino: '     + FormatFloat('R$ 0.00', FatPedTOT_ICMSUFDEST.AsFloat) + '; ' + ObsFat;
       if (FatPedTOT_ICMSUFREMET.AsFloat > 0) then ObsFat := 'Total do ICMS Interestadual para a UF do remetente: '   + FormatFloat('R$ 0.00', FatPedTOT_ICMSUFREMET.AsFloat) + '; ' + ObsFat;
 
@@ -2190,7 +2396,25 @@ begin
       ObsFat := copy(Trim(ObsFat), 1, 8000) + fReplicate(' ', 8000 - Length(copy(Trim(ObsFat), 1, 8000)));
 
       Writeln(ArqEnv, 'EM0214' + // Uso interno do sistema
-        ObsFat); // Informações adicionais de interesse do Fisco
+        ObsFat); // Informaï¿½ï¿½es adicionais de interesse do Fisco
+
+      nfeObj.Add('ide', ideObj);
+      nfeObj.Add('emit', emitObj);
+      nfeObj.Add('dest', destObj);
+      nfeObj.Add('nfCOntingencia', contigenciaObj);
+      nfeObj.Add('inf', infNFe);
+      nfeObj.Add('det', productObjList);
+      nfeObj.Add('icmsTot', icmsTotObj);
+      nfeObj.Add('entrega', entregaObj);
+      nfeObj.Add('transporte', transportObj);
+      nfeObj.Add('export', exportObj);
+      nfeObj.Add('pagamento', pagamentoObjList);
+      nfeObj.Add('infCpl', putString(ObsFat));
+      json := TlkJSON.GenerateText(nfeObj);
+      Clipboard.astext := json;
+      jsonText := TStringList.create;
+      jsonText.Add(json);
+
       CloseFile(ArqEnv);
     end;
 
@@ -2198,7 +2422,7 @@ begin
 
     if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
     begin
-      if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+      if MessageBox(Handle, 'Arquivo de configuraï¿½ï¿½o para envio de NFe nï¿½o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
         then
       begin
         Abort;
@@ -2208,7 +2432,7 @@ begin
     IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
     if not FileExists(inifile) then
     begin
-      showmessage('Erro. Não foi possível localizar o arquivo de configuração da NF-e.');
+      showmessage('Erro. Nï¿½o foi possï¿½vel localizar o arquivo de configuraï¿½ï¿½o da NF-e.');
       sysutils.abort;
     end;
 
@@ -2229,8 +2453,8 @@ begin
 
     ReescreveChaveEnviada(Chave);
 
-    //if
     CopyFile(Pchar(ArqRe1), Pchar(CaminhoLeitura + '\EVNOTA' + VNumNota + '.txt'), SeqRet);
+    jsonText.SaveToFile(CaminhoLeitura + '\EVNOTA' + VNumNota + '.json');
 
     if TipoEnvio = 4 then
     begin
@@ -2269,15 +2493,15 @@ begin
 
     with FatPed do
     begin
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
       ;
       try
-        ApplyUpdates; {Tenta aplicar as alterações}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
         ;
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
         ;
       except
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
         ;
         if FatPed.State <> dsBrowse then
           FatPed.CancelUpdates;
@@ -2290,7 +2514,7 @@ begin
     if RecuperaChaveEnviando.Denegada = 'S' then
     begin
 
-      MessageBox(Handle, 'Nota fiscal será cancelada por ter sido denegada do SeFaz.', 'Envio NFe', MB_OK + MB_ICONINFORMATION);
+      MessageBox(Handle, 'Nota fiscal serï¿½ cancelada por ter sido denegada do SeFaz.', 'Envio NFe', MB_OK + MB_ICONINFORMATION);
 
       FatPed.edit;
       FatPedFLGATU.value    := 'F';
@@ -2302,19 +2526,19 @@ begin
 
       FatPed.Post;
 
-      fatped.ApplyUpdates; //Tenta aplicar as alterações
+      fatped.ApplyUpdates; //Tenta aplicar as alteraï¿½ï¿½es
 
       with FatPed do
       begin
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
         try
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
         except
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
           if FatPed.State <> dsBrowse then
             FatPed.CancelUpdates;
@@ -2400,7 +2624,7 @@ begin
         chave := chaven;
 
         FatPed.Post;
-        FatPed.ApplyUpdates; //Tenta aplicar as alterações
+        FatPed.ApplyUpdates; //Tenta aplicar as alteraï¿½ï¿½es
 
         FatArq.Active := false;
 
@@ -2523,7 +2747,7 @@ begin
 
             if FatPedCodEmp.Value > 0 then
             begin
-              if fMsg('Confirma impressão da DANFE ?', 'O') then
+              if fMsg('Confirma impressï¿½o da DANFE ?', 'O') then
               begin
                 AssignFile(TDANFE, CaminhoLeitura + '\' + 'DANFE' + VNumNota + '.txt');
                 Rewrite(TDANFE);
@@ -2671,12 +2895,6 @@ var
   dtCont: TDateTime;
   strSql: string;
 begin
-
-  if not fmmangdb.CliSocket.Active then
-  begin
-    fmmangdb.ConectaServico;
-  end;
-
   //Envio Normal para SEFAZ
   if TipoEnvio = 3 then
   begin
@@ -2703,12 +2921,12 @@ begin
     fmmangdb.dbMain.Execute(strSql);
 
     {try
-      fmManGDB.dbMain.StartTransaction; //Inicia a Transação
-      FatPed.ApplyUpdates; //Tenta aplicar as alterações
-      fmManGDB.dbMain.Commit; //confirma todas as alterações fechando a transação
+      fmManGDB.dbMain.StartTransaction; //Inicia a Transaï¿½ï¿½o
+      FatPed.ApplyUpdates; //Tenta aplicar as alteraï¿½ï¿½es
+      fmManGDB.dbMain.Commit; //confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o
     except
       begin
-        fmManGDB.dbMain.Rollback; //desfaz as alterações se acontecer um erro
+        fmManGDB.dbMain.Rollback; //desfaz as alteraï¿½ï¿½es se acontecer um erro
         if FatPed.State <> dsBrowse then
           FatPed.CancelUpdates;
       end;
@@ -2726,7 +2944,7 @@ begin
   end
   else
   begin
-    messagebox(handle, 'Tipo de envio não processado. Verifique se está apto a utilizá-lo.', 'Envio de NFe Vendas', mb_ok + mb_iconinformation);
+    messagebox(handle, 'Tipo de envio nï¿½o processado. Verifique se estï¿½ apto a utilizï¿½-lo.', 'Envio de NFe Vendas', mb_ok + mb_iconinformation);
     abort;
   end;
 
@@ -2743,7 +2961,7 @@ begin
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configuraï¿½ï¿½o para envio de NFe nï¿½o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -2753,7 +2971,7 @@ begin
   IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
   if not FileExists(inifile) then
   begin
-    showmessage('Erro. Não foi possível localizar o arquivo de configuração da NF-e.');
+    showmessage('Erro. Nï¿½o foi possï¿½vel localizar o arquivo de configuraï¿½ï¿½o da NF-e.');
     sysutils.abort;
   end;
 
@@ -2779,7 +2997,7 @@ begin
     if FatPedCodEmp.AsInteger > 0 then
     begin
 
-      if fMsg('Confirma impressão da DANFE ?', 'O') then
+      if fMsg('Confirma impressï¿½o da DANFE ?', 'O') then
       begin
 
         AssignFile(TDANFE, CaminhoLeitura + '\' + 'DANFE' + VNumNota + '.txt');
@@ -2806,10 +3024,6 @@ end;
 
 procedure TfmManLn7_NFE.ImprimeDPECServico;
 begin
-  if not fmmangdb.CliSocket.Active then
-  begin
-    fmmangdb.ConectaServico;
-  end;
   fmmangdb.CliSocket.Socket.SendText(GCodEmpCodUsuServ + 'FATURA||FATPED_IMPRIME_DPEC||' + FatPedID_FATPED.AsString + '||' + inttostr(4) + '||');
 end;
 
@@ -2818,10 +3032,8 @@ var
   Vnumnota, IniFile, CaminhoLeitura, CaminhoRetorno, CaminhoPDF, chave: string;
   ini: Tinifile;
   TDPECN, TDANFE: TextFile;
-  pathArq: string;
-  NroReg, i: integer;
-  DscPro, sNumeroNF, NomEmp: string;
-  strNFe: string;
+  i: integer;
+  sNumeroNF, NomEmp: string;
 begin
   inherited;
 
@@ -2831,7 +3043,7 @@ begin
   begin
     if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
     begin
-      if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+      if MessageBox(Handle, 'Arquivo de configuraï¿½ï¿½o para envio de NFe nï¿½o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
         then
       begin
         Abort;
@@ -2864,7 +3076,7 @@ begin
       if FatPedCodEmp.AsInteger > 0 then
       begin
 
-        if fMsg('Sistema irá encaminha NFe - ' + vnumnota + ' que se encontra em contingência para o SEFAZ. Deseja proseguir?', 'O') then
+        if fMsg('Sistema irï¿½ encaminha NFe - ' + vnumnota + ' que se encontra em contingï¿½ncia para o SEFAZ. Deseja proseguir?', 'O') then
         begin
 
           AssignFile(TDPECN, CaminhoLeitura + '\' + 'DEPCSEFAZ' + VNumNota + '.txt');
@@ -2890,12 +3102,12 @@ begin
 
               with FatPed do
               begin
-                fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
                 try
-                  ApplyUpdates; {Tenta aplicar as alterações}
-                  fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                  ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
+                  fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
                 except
-                  fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                  fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
                   if FatPed.State <> dsBrowse then
                     FatPed.CancelUpdates;
                   raise;
@@ -2981,7 +3193,7 @@ begin
 
                 if FatPedCodEmp.Value > 0 then
                 begin
-                  if fMsg('Confirma impressão da DANFE ?', 'O') then
+                  if fMsg('Confirma impressï¿½o da DANFE ?', 'O') then
                   begin
                     AssignFile(TDANFE, CaminhoLeitura + '\' + 'DANFE' + VNumNota + '.txt');
                     Rewrite(TDANFE);
@@ -3060,11 +3272,6 @@ begin
       end;
     end;
   end;
-end;
-
-procedure TfmManLn7_NFE.EnvioDPEC_SEFAZ_Servico;
-begin
-
 end;
 
 procedure TfmManLn7_NFE.bDisponibilidadeClick(Sender: TObject);

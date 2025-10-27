@@ -2370,12 +2370,6 @@ var
   msgJust: string;
   dtCont: TDateTime;
 begin
-
-  if not fmmangdb.CliSocket.Active then
-  begin
-    fmmangdb.ConectaServico;
-  end;
-
   //Envio Normal para SEFAZ
   if TipoEnvio = 3 then
   begin

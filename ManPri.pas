@@ -287,28 +287,7 @@ end;
 
 procedure TfmManPri.FormCreate(Sender: TObject);
 begin
-
-  {qusql.Active := false;
-  qusql.sql.text := 'SELECT count(*)as conta FROM RDB$RELATIONS WHERE rdb$System_flag = 0 and RDB$Relation_NAme = ' + quotedstr('EXECUTAVEIS') + ' order by 1';
-  qusql.Open;
-
-  if qusql.fieldbyname('Conta').asinteger > 0 then
-     begin
-        qusql.Active := false;
-        qusql.sql.text := 'SELECT VERSAO FROM EXECUTAVEIS WHERE EXECUTAVEL = ' + QuotedStr(UpperCase(ExtractFileName(Application.ExeName)));
-        qusql.Open;
-        if qusql.FieldByName('VERSAO').Text <> fmverusu.VersaoExe then
-           begin
-              showmessage('Sua maquina está desatualizada. Aguarde 10 min se o problema persistir entre em contato com a Emerion');
-              Application.Terminate;
-           end;
-        qusql.Active := false;
-     end;}
-
   ObjFocusColor := TFocusColor.Create(Self);
-  fmManGdb.CheckExecutavelAtu;
-
-  //Rolando
   self.Width := 800;
   self.Height := 590;
   self.top := 0;
@@ -330,38 +309,6 @@ begin
   end;
 
   Timer1.Interval := GTmpLog * 60000;
-
-  {try
-
-    VMDIImage := TMDIImage.Create(Self);
-
-    if FileExists('c:\emerion\fundo.jpg') then
-    begin
-
-      VMDIImage.Image := 'c:\emerion\fundo.jpg';
-
-      VMDIImage.active := True;
-
-    end
-    else
-    begin
-
-      if FileExists('c:\emerion\fundo.bmp') then
-      begin
-
-        VMDIImage.Image := 'c:\emerion\fundo.bmp';
-
-        VMDIImage.active := True;
-
-      end;
-    end;
-
-  except
-
-    if Assigned(vMDIImage) then
-      FreeAndNil(vMDIImage);
-
-  end;}
 
   //Formato de Datas
   ShortDateFormat := 'dd/MM/yyyy';
@@ -1311,14 +1258,7 @@ end;
 
 procedure TfmManPri.RetornoSocket(StrComando: string);
 begin
-  ///fmManLn7_NFE.batualizar.Click;
-
-      //application.FindComponent
-
-      {if btnAtualiza <> nil then
-        btnAtualiza.click; }
   EscutaServidor(strComando);
-
 end;
 
 procedure TfmManPri.EscutaServidor(strTexto: string);
@@ -1330,8 +1270,6 @@ begin
   strParam1 := '';
   strParam2 := '';
   strParam3 := '';
-
-  // ServerSocket1.Socket.ActiveConnections
 
   lnConex := strTexto;
 

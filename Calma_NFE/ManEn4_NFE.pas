@@ -1432,10 +1432,6 @@ end;
 
 procedure TfmManEn4_NFE.ImprimeDanfeServico;
 begin
-  if not fmmangdb.CliSocket.Active then
-  begin
-    fmmangdb.ConectaServico;
-  end;
   fmmangdb.CliSocket.Socket.SendText(GCodEmpCodUsuServ + 'EFATURA||FATDEV_IMPRIME||' + FatDevID_FATDEV.AsString + '||');
 end;
 
