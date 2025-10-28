@@ -163,7 +163,7 @@ end;
 procedure TFMMANDI.SpeedButton3Click(Sender: TObject);
 begin
    inherited;
-   if MessageDlg('Deseja Cancelar as Alterações?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+   if MessageDlg('Deseja Cancelar as Alteraï¿½ï¿½es?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
       begin
          SQLDI.Cancel;
          SQLDIDET.Cancel;
@@ -194,17 +194,17 @@ end;
 procedure TFMMANDI.SpeedButton2Click(Sender: TObject);
 begin
    inherited;
-   if MessageDlg('Confirma Exclusão de Dados da DI?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+   if MessageDlg('Confirma Exclusï¿½o de Dados da DI?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
       begin
          sqldi.Delete;
          with sqldi do
             begin
-               fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+               fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
                try
-                  ApplyUpdates; {Tenta aplicar as alterações};
-                  fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                  ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
+                  fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
                except
-                  fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                  fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
                end;
                CommitUpdates; {sucesso!, limpa o cache...}
             end;
@@ -227,12 +227,12 @@ begin
    inherited;
    with sqldi do
       begin
-         fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+         fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
          try
-            ApplyUpdates; {Tenta aplicar as alterações};
-            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+            ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
+            fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
          except
-            fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+            fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
          end;
          CommitUpdates; {sucesso!, limpa o cache...}
       end;
@@ -264,12 +264,12 @@ begin
    inherited;
    with SQLDIDET do
       begin
-         fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+         fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
          try
-            ApplyUpdates; {Tenta aplicar as alterações};
-            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+            ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
+            fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
          except
-            fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+            fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
          end;
          CommitUpdates; {sucesso!, limpa o cache...}
       end;
@@ -281,7 +281,7 @@ begin
    SQLDIDETID_DI.Value := SQLDIID_DI.Value;
    SQLDIDETNSEQADIC.Value := 1;
    SQLDIDETVDESCDI.Value := 0;
-   //SQLDIDETNADICAO.AsString := '1';
+
    SQLDIDETCODFAB.Value := fmmannge_nfe.FatGe2CODGRU.AsString + '.' + fmmannge_nfe.FatGe2CODSUB.AsString + '.' + fmmannge_nfe.FatGe2CODPRO.AsString;
 end;
 

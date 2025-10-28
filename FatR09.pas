@@ -134,16 +134,6 @@ procedure TfmFatR09.FormCreate(Sender: TObject);
 begin
   inherited;
 
-  (*sBase := ' Select PedLib.DteFat,'+
-             '        PedLb2.UltQts,'+
-             '        TextoOcor(IntStrZeros(PedLib.CodCli,7),'''+ '-' +''',FinCli.ApeCli,'''+ '' +''','''+ '' +''','''+ '' +''','''+ '' +''') as Cliente,'+
-             '        TextoOcor(PedLb2.CodGru,'''+ '.' +''',PedLb2.CodSub,'''+ '.' +''',PedLb2.CodPro,'''+ '-' +''',PedLb2.DesLb2) as Item'+
-             ' From PedLb2 LEFT JOIN PedLib ON (PedLb2.CodEmp = PedLib.CodEmp)'+
-             '                             AND (PedLb2.DteRes = PedLib.DteRes)'+
-             '                             AND (PedLb2.NumRes = PedLib.NumRes)'+
-             '                             AND (PedLb2.SeqLib = PedLib.SeqLib)'+
-             '             LEFT JOIN FinCli ON (PedLib.CodCli = FinCli.CodCli)'; *)
-
   sBase := ' Select PedLib.DteFat,' +
     '        PedLb2.UltQts,' +
     '        TextoOcor(IntStrZeros(PedLib.CodCli,7),''' + '-' + ''',FinCli.ApeCli,''' + '' + ''',''' + '' + ''',''' + '' + ''',''' + '' + ''') as Cliente,' +
@@ -192,9 +182,9 @@ begin
   end;
 
   if Trim(fLimpaStr(EdPsqDteFt1.Text)) = '' then
-    fmsgErro('Campo de Preenchimento Obrigatorio não Informado. Periodo Inicial.', EdPsqDteFt1);
+    fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado. Periodo Inicial.', EdPsqDteFt1);
   if Trim(fLimpaStr(EdPsqDteFt2.Text)) = '' then
-    fmsgErro('Campo de Preenchimento Obrigatorio não Informado. Periodo Final.', EdPsqDteFt2);
+    fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado. Periodo Final.', EdPsqDteFt2);
 
   if Trim(fLimpaStr(EdPsqDteFt1.Text)) <> '' then
     sFiltro := sFiltro + ' and PedLib.DteFat >= ''' + fDateToSQL(EdPsqDteFt1.Date) + '''';
@@ -293,7 +283,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada não Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nï¿½o Encontrada.', EdPsqCodEmp);
 
       end;
     end;
@@ -728,7 +718,7 @@ begin
   dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Empresa : ' + EdPsqCodEmp.Text + ' - ' + EdPsqApeEmp.Text);
   dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Cliente : ' + EdPsqCodCli.Text + ' - ' + EdPsqNomCli.Text);
   dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Vendedor : ' + EdPsqCodVen.Text + ' - ' + EdPsqNomVen.Text);
-  dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Padrão de Faturamento : ' + EdPsqCodPfa.Text + ' - ' + EdPsqNomPfa.Text);
+  dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Padrï¿½o de Faturamento : ' + EdPsqCodPfa.Text + ' - ' + EdPsqNomPfa.Text);
   dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Faturados no Periodo de : ' + EdPsqDteFt1.Text + ' a ' + EdPsqDteFt2.Text);
 
   dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add(' ');
@@ -748,19 +738,19 @@ end;
 procedure TfmFatR09.HTMLClick(Sender: TObject);
 begin
   inherited;
-  Save('htm', 'HTML File (*.htm; *.html)|*.htm', 'Relação de Itens Faturados.htm', grFat.SaveToHTML);
+  Save('htm', 'HTML File (*.htm; *.html)|*.htm', 'Relaï¿½ï¿½o de Itens Faturados.htm', grFat.SaveToHTML);
 end;
 
 procedure TfmFatR09.ExcelClick(Sender: TObject);
 begin
   inherited;
-  Save('xls', 'Microsoft Excel 4.0 Worksheet (*.xls)|*.xls', 'Relação de Itens Faturados.xls', grFat.SaveToXLS);
+  Save('xls', 'Microsoft Excel 4.0 Worksheet (*.xls)|*.xls', 'Relaï¿½ï¿½o de Itens Faturados.xls', grFat.SaveToXLS);
 end;
 
 procedure TfmFatR09.XMLClick(Sender: TObject);
 begin
   inherited;
-  Save('xml', 'XML File (*.xml)|*.xml', 'Relação de Itens Faturados.xml', grFat.SaveToXML);
+  Save('xml', 'XML File (*.xml)|*.xml', 'Relaï¿½ï¿½o de Itens Faturados.xml', grFat.SaveToXML);
 end;
 
 procedure TfmFatR09.FormClose(Sender: TObject; var Action: TCloseAction);

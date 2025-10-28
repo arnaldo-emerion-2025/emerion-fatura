@@ -203,14 +203,8 @@ begin
   if TEdit(ActiveControl).Color <> mDesativado then
   begin
     if Assigned(mComponAnt) then
-      {if TDBEdit(mComponAnt).Color <> mDesativado then
-        TDBEdit(mComponAnt).Color := mSemFoco; // cor sem foco}
       if (ActiveControl is TEdit) or
-        //(ActiveControl is TDBEdit) or
-      //(ActiveControl is TDBCheckBox) or
       (ActiveControl is TDBGrid) or
-        //(ActiveControl is TComboBox) or
-      //(ActiveControl is TDBLookupComboBox) or
       (ActiveControl is TEdit) then
       begin
         TEdit(ActiveControl).Color := mComFoco; // cor com foco

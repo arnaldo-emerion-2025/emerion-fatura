@@ -81,41 +81,9 @@ begin
     end
     else
       fmsgErro('No. de nota fiscal informado incorreto.', EdNroNfs);
-
-    {if sComplemento = 'S' then
-    begin
-      if StrToInt(EdNroNfs.Text) = fmManCno.FatgerNroNfs.Value then
-      begin
-        sContinuar := 'S';
-        Close;
-      end
-      else
-        fmsgErro('No. de nota fiscal informado incorreto.', EdNroNfs);
-    end
-    else
-      if Sdevolucao = 'S' then
-      begin
-        if StrToInt(EdNroNfs.Text) = fmManCno.FatdevNroNfs.Value then
-        begin
-          sContinuar := 'S';
-          Close;
-        end
-        else
-          fmsgErro('No. de nota fiscal informado incorreto.', EdNroNfs);
-      end
-      else
-      begin
-        if StrToInt(EdNroNfs.Text) = fmManCno.FatPedNroNfs.Value then begin
-          sContinuar := 'S';
-          Close;
-        end
-        else
-          fmsgErro('No. de nota fiscal informado incorreto.', EdNroNfs);
-
-      end; }
   end
   else
-    fmsgErro('Campo de preenchimento obrigatório não informado.', EdNroNfs);
+    fmsgErro('Campo de preenchimento obrigatï¿½rio nï¿½o informado.', EdNroNfs);
 end;
 
 procedure TfmConCno.EdNroNfsKeyPress(Sender: TObject; var Key: Char);

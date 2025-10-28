@@ -168,7 +168,7 @@ begin
     WaitForSingleObject(ProcessInfo.hProcess, Infinite);
     //GetExitCodeProcess (ProcessInfo.hProcess, Result);
   end;
-end; //Estado é o tipo de janela que aparecerá, que pode ser:
+end; //Estado ï¿½ o tipo de janela que aparecerï¿½, que pode ser:
 
 procedure TfmManCno.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
@@ -277,11 +277,11 @@ begin
     begin
       if ((fmManLn3.FatPedSITFAT.Value <> 'Complemento') and (fmManLn3.FatPedSITFAT.Value <> 'Devolucao')) then
       begin
-        //Processo de confirmação digitando Sim ou Nao
+        //Processo de confirmaï¿½ï¿½o digitando Sim ou Nao
         if fmsgConf('Tem certeza que esta realmente cancelando a nota fiscal correta ?', 'E') = 'SIM' then
         begin
           sContinuar := 'N';
-          //Processo de confirmação digitando o numero da NF
+          //Processo de confirmaï¿½ï¿½o digitando o numero da NF
           try
             fmConCno := TfmConCno.Create(Self);
             fmConCno.ShowModal;
@@ -297,7 +297,7 @@ begin
             strIdUFE := fmmangdb.BuscaSimples('GerEmp', 'Id_FinUfe', fmManLn3.FatPedCODEMP.AsString);
             strIdCie := fmmangdb.BuscaSimples('GerEmp', 'Id_FinCie', fmManLn3.FatPedCODEMP.AsString);
 
-            //Por motivo de Força maior irie interromper o novo cancelamento  e inutilização de NFe
+            //Por motivo de Forï¿½a maior irie interromper o novo cancelamento  e inutilizaï¿½ï¿½o de NFe
 
           end;
 
@@ -374,7 +374,7 @@ var
     try
       pnMensag.Visible := True;
 
-      pnMensag.Caption := 'Aguarde. Verificando status do serviço.';
+      pnMensag.Caption := 'Aguarde. Verificando status do serviï¿½o.';
       application.ProcessMessages;
 
       //Gera arquivo para Cancelamento
@@ -443,7 +443,7 @@ var
         TBlobField(SQLCorrente.FieldByName('ARQNFECANC')).LoadFromFile(CaminhoRetorno + '\' + inttostr(VNumNota) + ' Cancelamento - NF-e- ' + Vchave + '.xml');
 
         SQLCorrente.post;
-        SQLCorrente.ApplyUpdates; {Tenta aplicar as alterações}
+        SQLCorrente.ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
         ;
         SQLCorrente.CommitUpdates;
 
@@ -474,7 +474,7 @@ var
     try
       pnMensag.visible := True;
 
-      pnMensag.Caption := 'Aguarde. Verificando status do serviço.';
+      pnMensag.Caption := 'Aguarde. Verificando status do serviï¿½o.';
       application.ProcessMessages;
 
       // aqui a inutilizacao FP
@@ -496,7 +496,7 @@ var
 
       sleep(500);
 
-      pnMensag.Caption := 'Aguarde. Enviando ao SeFaz Inutilização.';
+      pnMensag.Caption := 'Aguarde. Enviando ao SeFaz Inutilizaï¿½ï¿½o.';
       application.ProcessMessages;
 
       if (Trim(GNFeEnvia) = '') or (Trim(GNFeEnvia) = 'EXE') or (Trim(GNFeEnvia) = 'DEFAUT') then
@@ -504,7 +504,7 @@ var
       //else
       //  AbreNfe(PChar('INUTIL'), pChar(vnumnota));
 
-      pnMensag.Caption := 'Aguarde. Transmissão concluida.';
+      pnMensag.Caption := 'Aguarde. Transmissï¿½o concluida.';
       application.ProcessMessages;
 
       if FileExists(CaminhoRetorno + '\' + inttostr(VNumNota) + ' INUTILIZADA - NF-e.xml') then
@@ -530,7 +530,7 @@ var
         application.ProcessMessages;
 
         SQLCorrente.post;
-        SQLCorrente.ApplyUpdates; {Tenta aplicar as alterações}
+        SQLCorrente.ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
         ;
         SQLCorrente.CommitUpdates;
 
@@ -583,7 +583,7 @@ begin
       if FatPedIntFin.AsString = 'Sim' then
         sReceber := ' . Cancelamento do titulos a receber.';
       if (Trim(sEstoque) <> '') or (Trim(sReceber) <> '') then
-        sText := sText + #10 + ' ' + #10 + ' Ao confirmar ocorrerão os seguintes lançamentos:';
+        sText := sText + #10 + ' ' + #10 + ' Ao confirmar ocorrerï¿½o os seguintes lanï¿½amentos:';
       sText := sText + #10 + ' ' + #10 + sEstoque + #10 + ' ' + #10 + sReceber;
 
       if fmsgConf(sText, 'E') = 'SIM' then
@@ -644,13 +644,13 @@ begin
     end
     else //Valida Tamanho da Justificativa
     begin
-      messagebox(handle, 'Necessário observação com no mínimo 15 caracteres. Verifique e tente novamente.', 'Validação da observação', MB_OK +
+      messagebox(handle, 'Necessï¿½rio observaï¿½ï¿½o com no mï¿½nimo 15 caracteres. Verifique e tente novamente.', 'Validaï¿½ï¿½o da observaï¿½ï¿½o', MB_OK +
         MB_ICONINFORMATION);
     end;
   end
   else //Valida Tamanho da Justificativa
   begin
-    messagebox(handle, 'Obrigatório informar motivo do cancelamento. Informe e tente novamente.', 'Validação da observação', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigatï¿½rio informar motivo do cancelamento. Informe e tente novamente.', 'Validaï¿½ï¿½o da observaï¿½ï¿½o', MB_OK + MB_ICONINFORMATION);
   end;
 end;
 
@@ -709,7 +709,7 @@ begin
 
     if SQLTEMP.RecordCount = 0 then
     begin
-      messagebox(handle, 'Não foram encontradas NFe para cancelar.', 'Cancelamento de NFe', mb_ok + MB_ICONEXCLAMATION);
+      messagebox(handle, 'Nï¿½o foram encontradas NFe para cancelar.', 'Cancelamento de NFe', mb_ok + MB_ICONEXCLAMATION);
     end;
 
     VerificaArquivoNfeEmerionIni;
@@ -727,7 +727,7 @@ begin
     NFeXML := CaminhoRetorno + '\' + SQLTEMP.FieldByName('nronfs').AsString + ' - NF-e- ' + SQLTEMP.FieldByName('seqnfe').AsString + '.xml';
     if not fileExists(NFeXML) then
     begin
-      messagebox(handle, pchar('Arquivo ' + NFeXML + ' da NFe não encontrado. Verifique e tente novamente.'), 'Cancelamento NFe', mb_ok + MB_ICONEXCLAMATION);
+      messagebox(handle, pchar('Arquivo ' + NFeXML + ' da NFe nï¿½o encontrado. Verifique e tente novamente.'), 'Cancelamento NFe', mb_ok + MB_ICONEXCLAMATION);
       abort;
     end;
 
@@ -751,7 +751,7 @@ begin
           if FatPedIntFin.Value = 'Sim' then
             sReceber := ' . Cancelamento do titulos a receber.';
           if (Trim(sEstoque) <> '') or (Trim(sReceber) <> '') then
-            sText := sText + #10 + ' ' + #10 + ' Ao confirmar ocorrerão os seguintes lançamentos:';
+            sText := sText + #10 + ' ' + #10 + ' Ao confirmar ocorrerï¿½o os seguintes lanï¿½amentos:';
           sText := sText + #10 + ' ' + #10 + sEstoque + #10 + ' ' + #10 + sReceber;
 
           if fmsgConf(sText, 'E') = 'SIM' then
@@ -780,7 +780,7 @@ begin
                   try
                     SQLTSCR.DatabaseName := 'Isade';
 
-                    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                    fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
                     ;
 
                     try
@@ -833,17 +833,14 @@ begin
 
                       SQLTSCR.ExecSQL;
 
-                      //SQLTSCR.ApplyUpdates; {Tenta aplicar as alterações};
-                      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                      fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
                       ;
                     except
-                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
                       ;
                       raise;
                     end;
-                    //SQLTSCR.CommitUpdates; {sucesso!, limpa o cache...}
-
-                    //verifica se foi enviada para Sefaz
+                  
                     if SQLTEMP.fieldbyname('ENVNFE').AsString = 'Sim' then
                     begin
                       if TAB = 'FP' then
@@ -894,10 +891,10 @@ begin
             EdOb1Can.SetFocus;
         end //     if Length(Trim(ObcFat)) >= 15 then
         else
-          fmsgErro('Observações informadas tem que ter o minimo de 15 caracteres.', EdOb1Can);
+          fmsgErro('Observaï¿½ï¿½es informadas tem que ter o minimo de 15 caracteres.', EdOb1Can);
       end //  if Trim(ObcFat) <> '' then
       else
-        fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdOb1Can);
+        fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdOb1Can);
     end; //complemento
 
   finally

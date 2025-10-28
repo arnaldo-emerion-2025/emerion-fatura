@@ -274,7 +274,7 @@ begin
     ppSiglaBanco1.Caption := '001-9';
     ppSiglaBanco2.Caption := '001-9';
 
-    ppMenBco1.Caption := 'Pagável em qualquer banco até o vencimento. Após, atualize o boleto no site bb.com.br.';
+    ppMenBco1.Caption := 'Pagï¿½vel em qualquer banco atï¿½ o vencimento. Apï¿½s, atualize o boleto no site bb.com.br.';
 
     ppCodCnb2.Caption := copy(Trim(FatBolCodAgb.AsString), 1, length(Trim(FatBolCodAgb.AsString)) - 1) + '-' +
       copy(Trim(FatBolCodAgb.AsString), length(Trim(FatBolCodAgb.AsString)), 1) + '/' +
@@ -323,7 +323,7 @@ begin
     ppSiglaBanco1.Caption := '033-7';
     ppSiglaBanco2.Caption := '033-7';
 
-    ppMenBco1.Caption := 'Pagável preferencialmente no Banco Santander.';
+    ppMenBco1.Caption := 'Pagï¿½vel preferencialmente no Banco Santander.';
 
   end;
 
@@ -348,7 +348,7 @@ begin
     ppSiglaBanco1.Caption := '237-2';
     ppSiglaBanco2.Caption := '237-2';
 
-    ppMenBco1.Caption := 'Pagável preferencialmente nas agências do Bradesco.';
+    ppMenBco1.Caption := 'Pagï¿½vel preferencialmente nas agï¿½ncias do Bradesco.';
 
   end;
 
@@ -367,13 +367,13 @@ begin
     ppImagem201.Visible := True;
     ppImagem205.Visible := False;
 
-    ppNomBan1.Caption := 'Banco Itaú S.A.';
-    ppNomBan2.Caption := 'Banco Itaú S.A.';
+    ppNomBan1.Caption := 'Banco Itaï¿½ S.A.';
+    ppNomBan2.Caption := 'Banco Itaï¿½ S.A.';
 
     ppSiglaBanco1.Caption := '341-7';
     ppSiglaBanco2.Caption := '341-7';
 
-    ppMenBco1.Caption := 'Até o vencimento, preferencialmente no Itaú e após o vencimento, somente no Itaú.';
+    ppMenBco1.Caption := 'Atï¿½ o vencimento, preferencialmente no Itaï¿½ e apï¿½s o vencimento, somente no Itaï¿½.';
 
   end;
 
@@ -398,7 +398,7 @@ begin
     ppSiglaBanco1.Caption := '748-X';
     ppSiglaBanco2.Caption := '748-X';
 
-    ppMenBco1.Caption := 'PAGÁVEL PREFERENCIALMENTE NAS COOPERATIVAS DE CRÉDITO DO SICREDI.';
+    ppMenBco1.Caption := 'PAGï¿½VEL PREFERENCIALMENTE NAS COOPERATIVAS DE CRï¿½DITO DO SICREDI.';
 
   end;
 
@@ -569,16 +569,16 @@ begin
       RLLabel2.Visible := True;
 
       case StrToInt(Trim(FatBolCodTco.AsString)) of
-        101: RLLabel2.Caption := 'COBRANÇA SIMPLES - RCR';
-        102: RLLabel2.Caption := 'COBRANÇA SIMPLES - CSR';
-        201: RLLabel2.Caption := 'COBRANÇA PENHOR - RCR';
+        101: RLLabel2.Caption := 'COBRANï¿½A SIMPLES - RCR';
+        102: RLLabel2.Caption := 'COBRANï¿½A SIMPLES - CSR';
+        201: RLLabel2.Caption := 'COBRANï¿½A PENHOR - RCR';
       end;
 
       RLLabel84.Caption := 'REAL';
     end
     else
     begin
-      RLLabel25.Caption := 'Uso do Banco/Convênio';
+      RLLabel25.Caption := 'Uso do Banco/Convï¿½nio';
       RLDraw8.Height := 62;
       RLLabel26.Visible := True;
       ppCodTco.Visible := True;
@@ -589,15 +589,15 @@ begin
     if FatBolCodBan.Value = 33 then
     begin
       RLLabel84.Caption := 'REAL';
-      RLLabel22.Caption := 'NÃO';
+      RLLabel22.Caption := 'Nï¿½O';
     end;
 
     if (FieldbyName('QtdPro').AsInteger > 0) and ((StrToIntDef(Copy(FieldbyName('IN1CNB').AsString,1,2) ,0) <> 66) and
                                                   (StrToIntDef(Copy(FieldbyName('IN2CNB').AsString,1,2) ,0) <> 66)) then
     begin
 
-      ppMensa101.Caption := 'Protestar ' + IntToStr(FieldbyName('QtdPro').AsInteger) + ' dias corridos após o vencimento';
-      ppMensa201.Caption := 'Protestar ' + IntToStr(FieldbyName('QtdPro').AsInteger) + ' dias corridos após o vencimento';
+      ppMensa101.Caption := 'Protestar ' + IntToStr(FieldbyName('QtdPro').AsInteger) + ' dias corridos apï¿½s o vencimento';
+      ppMensa201.Caption := 'Protestar ' + IntToStr(FieldbyName('QtdPro').AsInteger) + ' dias corridos apï¿½s o vencimento';
 
     end;
 
@@ -606,8 +606,8 @@ begin
 
       ValJur := ((FatBolVlpCrp.Value * FieldbyName('ValJur').AsFloat) / 100) / 30;
 
-      ppMensa102.Caption := 'Após o vencimento cobrar mora de R$ ' + Trim(PreString(FormatFloat('###,###,##0.00', ValJur), 18)) + ' ao dia';
-      ppMensa202.Caption := 'Após o vencimento cobrar mora de R$ ' + Trim(PreString(FormatFloat('###,###,##0.00', ValJur), 18)) + ' ao dia';
+      ppMensa102.Caption := 'Apï¿½s o vencimento cobrar mora de R$ ' + Trim(PreString(FormatFloat('###,###,##0.00', ValJur), 18)) + ' ao dia';
+      ppMensa202.Caption := 'Apï¿½s o vencimento cobrar mora de R$ ' + Trim(PreString(FormatFloat('###,###,##0.00', ValJur), 18)) + ' ao dia';
 
     end;
 
@@ -616,8 +616,8 @@ begin
 
       ValMulta := (FatBolVlpCrp.Value * FieldbyName('PerMulta').AsFloat) / 100;
 
-      ppMensa103.Caption := 'Após o vencimento cobrar multa de R$ ' + Trim(PreString(FormatFloat('###,###,##0.00', ValMulta), 18));
-      ppMensa203.Caption := 'Após o vencimento cobrar multa de R$ ' + Trim(PreString(FormatFloat('###,###,##0.00', ValMulta), 18));
+      ppMensa103.Caption := 'Apï¿½s o vencimento cobrar multa de R$ ' + Trim(PreString(FormatFloat('###,###,##0.00', ValMulta), 18));
+      ppMensa203.Caption := 'Apï¿½s o vencimento cobrar multa de R$ ' + Trim(PreString(FormatFloat('###,###,##0.00', ValMulta), 18));
 
     end;
 
@@ -632,7 +632,7 @@ begin
       if FieldbyName('QtdPro').AsInteger > 0 then
         sDias:= IntToStr(FieldbyName('QtdPro').AsInteger)+' DIAS ';
 
-      ppMensa104.Caption := 'SUJEITO A NEGATIVAÇÃO APÓS '+sDias+'CORRIDOS DO VENCIMENTO';
+      ppMensa104.Caption := 'SUJEITO A NEGATIVAï¿½ï¿½O APï¿½S '+sDias+'CORRIDOS DO VENCIMENTO';
     end;
     
     //ppMensa203.Caption := quSQL.FieldByName('MENSG1').AsString;
@@ -641,7 +641,7 @@ begin
 
     if ((StrToIntDef(Copy(FieldbyName('IN1CNB').AsString,1,2) ,0) = 66) or
         (StrToIntDef(Copy(FieldbyName('IN2CNB').AsString,1,2) ,0) = 66)) then
-      ppMensa204.Caption := 'SUJEITO A NEGATIVAÇÃO APÓS '+sDias+'CORRIDOS DO VENCIMENTO';
+      ppMensa204.Caption := 'SUJEITO A NEGATIVAï¿½ï¿½O APï¿½S '+sDias+'CORRIDOS DO VENCIMENTO';
 
   end;
 

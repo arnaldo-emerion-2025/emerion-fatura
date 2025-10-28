@@ -910,7 +910,6 @@ type
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
-    procedure CheckBox1Click(Sender: TObject);
     procedure FatGerAfterOpen(DataSet: TDataSet);
     procedure EdClsIpiKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -1009,10 +1008,10 @@ begin
   begin
 
     if FatGerSitGer.Value = 'Faturado' then
-      fMsg('Operação não Pode ser Realizada. Nota já Emitida.', 'E')
+      fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Nota jï¿½ Emitida.', 'E')
 
     else if FatGerSitGer.Value = 'Cancelado' then
-      fMsg('Operação não Pode ser Realizada. Nota Cancelada.', 'E');
+      fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Nota Cancelada.', 'E');
 
     Finalizar := 'S';
 
@@ -1134,7 +1133,7 @@ begin
   begin
 
     if FatGerDteFat.Value = 0 then
-      fmsgErro('Campo de preenchimento obrigatorio não informado.', EdDteFat);
+      fmsgErro('Campo de preenchimento obrigatorio nï¿½o informado.', EdDteFat);
 
     Status := 'dsEdit';
 
@@ -1144,13 +1143,13 @@ begin
       Status := 'dsInsert';
 
       if FatGerCodCli.Value = 0 then
-        fmsgErro('Campo de preenchimento obrigatorio não informado.', EdCodCli);
+        fmsgErro('Campo de preenchimento obrigatorio nï¿½o informado.', EdCodCli);
 
       if Trim(FatGerCodPfa.Value) = '' then
-        fmsgErro('Campo de preenchimento obrigatorio não informado.', EdCodPfa);
+        fmsgErro('Campo de preenchimento obrigatorio nï¿½o informado.', EdCodPfa);
 
       if Trim(FatGerUfeGer.Value) = '' then
-        fmsgErro('Endereço de faturamento do cliente esta incompleto.', EdCodCli);
+        fmsgErro('Endereï¿½o de faturamento do cliente esta incompleto.', EdCodCli);
 
       Randomize;
       SeqGer := copy(FormatDateTime('dd/mm/yyyy', Date), 1, 2) +
@@ -1192,7 +1191,7 @@ begin
 
     if Trim(quSQL.FieldbyName('ModPfa').AsString) = 'Vendas' then
     begin
-      MessageBox(handle, 'Não é permitido o uso de Padrão de Faturamento de venda neste modulo. Verifique e tente novamente.', 'Outros tipo de nota', MB_OK +
+      MessageBox(handle, 'Nï¿½o ï¿½ permitido o uso de Padrï¿½o de Faturamento de venda neste modulo. Verifique e tente novamente.', 'Outros tipo de nota', MB_OK +
         MB_ICONINFORMATION);
       Abort;
     end;
@@ -1236,15 +1235,15 @@ begin
         begin
           post;
           ApplyUpdates;
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
           try
-            ApplyUpdates; {Tenta aplicar as alterações}
+            ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
 
-            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+            fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
           except
-            fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+            fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
             if FatGer.State = dsBrowse then
               FatGer.Edit;
@@ -1459,7 +1458,7 @@ begin
           end;
 
           if Trim(quSql.FieldbyName('ApeEmp').AsString) = '' then
-            fmsgErro('Empresa Informada não Encontrada', EdCodEmp)
+            fmsgErro('Empresa Informada nï¿½o Encontrada', EdCodEmp)
           else
             edNomEmp.Text := quSql.FieldbyName('ApeEmp').AsString;
 
@@ -1469,7 +1468,7 @@ begin
 
           edNomEmp.Text := '';
 
-          fmsgErro('Campo de Preenchimento Obrigátorio não Informado', EdCodEmp);
+          fmsgErro('Campo de Preenchimento Obrigï¿½torio nï¿½o Informado', EdCodEmp);
 
         end;
       end;
@@ -1682,7 +1681,7 @@ begin
             edNomVen.Text := quSQL.FieldbyName('ApeVen').AsString;
 
             if Trim(FatGerUfeGer.Value) = '' then
-              fmsgErro('Endereço de Faturamento do Cliente Incompleto. Falta UF', EdCodCli);
+              fmsgErro('Endereï¿½o de Faturamento do Cliente Incompleto. Falta UF', EdCodCli);
 
           end
           else
@@ -1693,7 +1692,7 @@ begin
             pnUfeGer.Caption := '';
             pnNomVen.Caption := '';}
 
-            fmsgErro('Cliente Informado não Encontrado', EdCodCli);
+            fmsgErro('Cliente Informado nï¿½o Encontrado', EdCodCli);
 
           end;
 
@@ -1706,7 +1705,7 @@ begin
           pnCgcCli.Caption := '';
           pnNomVen.Caption := '';}
 
-          fmsgErro('Campo de Preenchimento Obrigátorio não Informado', EdCodCli);
+          fmsgErro('Campo de Preenchimento Obrigï¿½torio nï¿½o Informado', EdCodCli);
 
         end;
       end;
@@ -1838,7 +1837,7 @@ begin
           end;
 
           if Trim(quSql.FieldbyName('NomVen').AsString) = '' then
-            fmsgErro('Vendedor Informado não Encontrado', EdCodVen)
+            fmsgErro('Vendedor Informado nï¿½o Encontrado', EdCodVen)
           else
             edNomVen.Text := quSql.FieldbyName('NomVen').AsString;
 
@@ -1848,7 +1847,7 @@ begin
 
           edNomVen.Text := '';
 
-          fmsgErro('Campo de Preenchimento Obrigatorio não Informado', EdCodVen);
+          fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado', EdCodVen);
 
         end;
 
@@ -1858,7 +1857,7 @@ begin
 
         edNomVen.Text := '';
 
-        fmsgErro('Vendedor Informado não Encontrado', EdCodVen);
+        fmsgErro('Vendedor Informado nï¿½o Encontrado', EdCodVen);
 
       end;
     end;
@@ -1938,8 +1937,6 @@ procedure TfmManNge_NFE2.EdCodPFAExist(Sender: TObject);
 var
   saida: boolean;
   LocPfa: string;
-  intVoltas: integer;
-  strBalde: string;
 begin
   inherited;
   if (Tecla <> 'ESC') and (Tecla <> 'UP') then
@@ -2002,13 +1999,13 @@ begin
 
             //Removido para atender Segs
             {if ((vcodicm = '') or (vcodicm = '0')) then
-              fmsgErro('Padrão de Faturamento Informado Sem regra de ICMS', EdCodPfa);}
+              fmsgErro('Padrï¿½o de Faturamento Informado Sem regra de ICMS', EdCodPfa);}
 
           end;
 
           if Trim(quSql.FieldbyName('DscPfa').AsString) = '' then
           begin
-            fmsgErro('Padrão de Faturamento Informado não Encontrado', EdCodPfa);
+            fmsgErro('Padrï¿½o de Faturamento Informado nï¿½o Encontrado', EdCodPfa);
           end
           else
             edDescPfa.Text := quSql.FieldbyName('DscPfa').AsString;
@@ -2020,7 +2017,7 @@ begin
 
           edDescPfa.Text := '';
 
-          fmsgErro('Campo de Preenchimento Obrigatorio não Informado', EdCodPfa);
+          fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado', EdCodPfa);
 
         end;
       end;
@@ -2030,7 +2027,7 @@ begin
 
   if DebugHook > 0 then
   begin
-    //Quando modalidade é devolução é necessário informar chave da nfe de referência
+    //Quando modalidade ï¿½ devoluï¿½ï¿½o ï¿½ necessï¿½rio informar chave da nfe de referï¿½ncia
     if UpperCase(FatGerMODPFA.AsString) = 'DEVOLUCOES' then
     begin
       fmManListaNFeRef := TfmManListaNFeRef.Create(Self);
@@ -2341,7 +2338,7 @@ begin
 
             end
             else
-              fmsgErro('Classificação Informada não Encontrada.', EdCodClp);
+              fmsgErro('Classificaï¿½ï¿½o Informada nï¿½o Encontrada.', EdCodClp);
 
           end
           else
@@ -2484,7 +2481,7 @@ begin
 
         end
         else
-          fmsgErro('Classificação Informada não Encontrada.', EdCodClp);
+          fmsgErro('Classificaï¿½ï¿½o Informada nï¿½o Encontrada.', EdCodClp);
 
       end
       else
@@ -2494,7 +2491,7 @@ begin
         begin
 
           if Trim(FatGe2CodClp.AsString) = '' then
-            fmsgErro('Classificação Informada não Encontrada.', EdCodClp);
+            fmsgErro('Classificaï¿½ï¿½o Informada nï¿½o Encontrada.', EdCodClp);
 
         end;
       end;
@@ -2802,13 +2799,13 @@ begin
             end;
 
             if quSql.FieldbyName('Reg').AsInteger = 0 then
-              fmsgErro('Grupo Informado não Encontrado.', EdCodGru);
+              fmsgErro('Grupo Informado nï¿½o Encontrado.', EdCodGru);
 
           end;
 
         end
         else
-          fmsgErro('Grupo Informado não Encontrado.', EdCodGru);
+          fmsgErro('Grupo Informado nï¿½o Encontrado.', EdCodGru);
 
       end
       else
@@ -2818,7 +2815,7 @@ begin
         begin
 
           if Trim(FatGe2CodGru.Value) = '' then
-            fmsgErro('Grupo Informado não Encontrado.', EdCodGru);
+            fmsgErro('Grupo Informado nï¿½o Encontrado.', EdCodGru);
 
         end;
       end;
@@ -2987,7 +2984,7 @@ begin
               Open;
 
               if quSql.FieldbyName('Reg').AsInteger = 0 then
-                fmsgErro('Grupo e Sub-Grupo não Encontrado.', EdCodGru);
+                fmsgErro('Grupo e Sub-Grupo nï¿½o Encontrado.', EdCodGru);
 
             end;
           end;
@@ -3000,14 +2997,14 @@ begin
           begin
 
             if Trim(FatGe2CodSub.Value) = '' then
-              fmsgErro('Sub-Grupo Informado não Encontrado.', EdCodSub);
+              fmsgErro('Sub-Grupo Informado nï¿½o Encontrado.', EdCodSub);
 
           end;
         end;
 
       end
       else
-        fmsgErro('Sub-Grupo Informado não Encontrado.', EdCodSub);
+        fmsgErro('Sub-Grupo Informado nï¿½o Encontrado.', EdCodSub);
     end;
   end;
 end;
@@ -3146,11 +3143,6 @@ end;
 procedure TfmManNge_NFE2.EdCodProExit(Sender: TObject);
 var
   saida         : boolean;
-  CODSTR, TIPSTR: string;
-  CODSTRSAI, TIPSTRSAI, CPDSTRENT, TIPSTRENT,
-  CODICMSAI, TIPICMSAI, CODICMENT, TIPICMENT,
-  CODIPISAI, TIPIPISAI, CODIPIENT, TIPIPIENT: string;
-  REGICMPFA     : string;
   strCusto      : string;
   VlrCusto      : Double;
 
@@ -3172,11 +3164,6 @@ begin
                                                 ' CODGRU = ' + QuotedStr(FatGe2CODGRU.AsString) + ' and ' +
                                                 ' CODSUB = ' + QuotedStr(FatGe2CODSUB.AsString) + ' and ' +
                                                 ' CODPRO = ' + QuotedStr(FNumZeros(FatGe2CODPRO.AsString,5)))) > 0;
-
-    if(itemJaLancado) then
-       begin
-          //ShowMessage('Item já Cadastrado!');
-       end;
 
     if saida then
     begin
@@ -3268,7 +3255,7 @@ begin
               end
               else
               begin
-                //Quando ModPfa Devolução
+                //Quando ModPfa Devoluï¿½ï¿½o
                 if UpperCase(trim(FatGerTIPPFA.AsString)) <> 'SAIDA' then
                 begin
                   FatGe2CodStr.AsString := Trim(quSQL.FieldbyName('CodSte').AsString);
@@ -3307,7 +3294,7 @@ begin
                                 '                                             and numger = ' + QuotedStr(FatGerNUMGER.asstring) + ');';
               qusql.Open;
 
-              //Regra de IPI Padrão de Faturamento
+              //Regra de IPI Padrï¿½o de Faturamento
               if Trim(quSQL.FieldbyName('CODIPI').AsString) <> '' then
               begin
                 FatGe2RegIpi.AsString := Trim(quSQL.FieldbyName('CODIPI').AsString);
@@ -3315,7 +3302,7 @@ begin
                 FatGe2CSTIPI.AsString := Trim(quSQL.FieldbyName('CSTIPI').AsString);
               end;
 
-              //Regra de ICMS Padrão de Faturamento
+              //Regra de ICMS Padrï¿½o de Faturamento
               if Trim(quSQL.FieldbyName('CODICM').AsString) <> '' then
               begin
                 FatGe2RegIcm.AsString := Trim(quSQL.FieldbyName('CODICM').AsString);
@@ -3565,17 +3552,17 @@ begin
                   Open;
 
                   if FieldbyName('QtdReg').AsInteger = 0 then
-                    fmsgErro('Item Informado não Encontrado no Estoque da Empresa.', EdCodPro);
+                    fmsgErro('Item Informado nï¿½o Encontrado no Estoque da Empresa.', EdCodPro);
 
                 end;
 
               end
               else
-                fmsgErro('Item Informado não Encontrado na Empresa.', EdCodPro);
+                fmsgErro('Item Informado nï¿½o Encontrado na Empresa.', EdCodPro);
 
             end
             else
-              fmsgErro('Item Informado não Encontrado.', EdCodPro);
+              fmsgErro('Item Informado nï¿½o Encontrado.', EdCodPro);
 
           end;
 
@@ -3587,14 +3574,14 @@ begin
           begin
 
             if Trim(FatGe2CodPro.Value) = '' then
-              fmsgErro('Item Informado não Encontrado.', EdCodPro);
+              fmsgErro('Item Informado nï¿½o Encontrado.', EdCodPro);
 
           end;
         end;
 
       end
       else
-        fmsgErro('Item Informado não Encontrado.', EdCodPro);
+        fmsgErro('Item Informado nï¿½o Encontrado.', EdCodPro);
     end;
   end;
 end;
@@ -3860,7 +3847,7 @@ begin
   if (EdCodClp.Focused) or (EdCodGru.Focused) or (EdCodSub.Focused) or (EdCodPro.Focused) then
   begin
     if key = 114 then
-    begin {F3 - Descrição}
+    begin {F3 - Descriï¿½ï¿½o}
 
       try
 
@@ -3917,7 +3904,7 @@ begin
     end;
 
     if key = 116 then
-    begin {F5 - Referência}
+    begin {F5 - Referï¿½ncia}
 
       try
 
@@ -3974,7 +3961,7 @@ begin
     end;
 
     if key = 117 then
-    begin {F6 - Inteligente/Descrição}
+    begin {F6 - Inteligente/Descriï¿½ï¿½o}
 
       try
 
@@ -4029,7 +4016,7 @@ begin
     end;
 
     if key = 118 then
-    begin {F7 - Inteligente/Referência}
+    begin {F7 - Inteligente/Referï¿½ncia}
 
       try
 
@@ -4300,27 +4287,6 @@ begin
           EdTotIp1.ReadOnly := True;
           EdTotGe1.ReadOnly := True;
 
-          {EdBasIc1.Font.Style := [fsBold];
-          EdTotIc1.Font.Style := [fsBold];
-          EdBasSu1.Font.Style := [fsBold];
-          EdTotSu1.Font.Style := [fsBold];
-          EdTotIt1.Font.Style := [fsBold];
-          EdTotFrt.Font.Style := [fsBold];
-          EdTotSeg.Font.Style := [fsBold];
-          EdTotDes.Font.Style := [fsBold];
-          EdTotIp1.Font.Style := [fsBold];
-          EdTotGe1.Font.Style := [fsBold];}
-
-          {pnBasIc1.Visible := True;
-          pnTotIc1.Visible := True;
-          pnBasSu1.Visible := True;
-          pnTotSu1.Visible := True;
-          pnTotIt1.Visible := True;
-          pnTotFrt.Visible := True;
-          pnTotSeg.Visible := True;
-          pnTotDes.Visible := True;
-          pnTotIp1.Visible := True;
-          pnTotGe1.Visible := True;}
 
           grGe2.SetFocus;
 
@@ -4380,7 +4346,6 @@ begin
           EdCodCli.Clear;
           EdCodVen.Clear;
           EdCodPfa.Clear;
-          //EdFrtGer.Clear;
           EdBasIc1.Clear;
           EdTotIc1.Clear;
           EdBasSu1.Clear;
@@ -4391,15 +4356,6 @@ begin
           EdTotDes.Clear;
           EdTotIp1.Clear;
           EdTotGe1.Clear;
-
-          {pnNumGer.Caption := '0';
-
-          pnApeEmp.Caption := '';
-          pnNomCli.Caption := '';
-          pnCgcCli.Caption := '';
-          pnNomVen.Caption := '';
-          pnUfeGer.Caption := '';
-          pnNomPfa.Caption := '';}
 
           FatGer.Close;
           FatGer.Params[0].AsInteger := 0;
@@ -4439,18 +4395,6 @@ begin
 
       if FatGe2CodEmp.AsInteger > 0 then
       begin
-
-        {pnBasIc1.Visible := False;
-        pnTotIc1.Visible := False;
-        pnBasSu1.Visible := False;
-        pnTotSu1.Visible := False;
-        pnTotIt1.Visible := False;
-        pnTotFrt.Visible := False;
-        pnTotSeg.Visible := False;
-        pnTotDes.Visible := False;
-        pnTotIp1.Visible := False;
-        pnTotGe1.Visible := False;}
-
         EdBasIc1.ReadOnly := False;
         EdTotIc1.ReadOnly := False;
         EdBasSu1.ReadOnly := False;
@@ -4461,17 +4405,6 @@ begin
         EdTotDes.ReadOnly := False;
         EdTotIp1.ReadOnly := False;
         EdTotGe1.ReadOnly := False;
-
-        {EdBasIc1.Font.Style := [];
-        EdTotIc1.Font.Style := [];
-        EdBasSu1.Font.Style := [];
-        EdTotSu1.Font.Style := [];
-        EdTotIt1.Font.Style := [];
-        EdTotFrt.Font.Style := [];
-        EdTotSeg.Font.Style := [];
-        EdTotDes.Font.Style := [];
-        EdTotIp1.Font.Style := [];
-        EdTotGe1.Font.Style := [];}
 
         EdBasIc1.Value := FatGerBasIc1.AsFloat;
         EdTotIc1.Value := FatGerTotIc1.AsFloat;
@@ -4612,20 +4545,20 @@ begin
       with FatGe2 do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if FatGe2.State <> dsBrowse then
@@ -4774,26 +4707,6 @@ begin
     end;
 
     edNomCli.Text := quSQL.FieldbyName('NomCli').AsString;
-    //pnUfeGer.Caption := quSQL.FieldbyName('UffCli').AsString;
-
-    {if Trim(quSQL.FieldbyName('CgcCli').AsString) <> '' then
-    begin
-
-      if Length(Trim(quSQL.FieldbyName('CgcCli').AsString)) <= 11 then
-        pnCgcCli.Caption := copy(quSQL.FieldbyName('CgcCli').AsString, 01, 03) + '.' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 04, 03) + '.' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 07, 03) + '-' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 10, 02)
-      else
-        pnCgcCli.Caption := copy(quSQL.FieldbyName('CgcCli').AsString, 01, 02) + '.' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 03, 03) + '.' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 06, 03) + '/' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 09, 04) + '-' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 13, 02);
-
-    end
-    else
-      pnCgcCli.Caption := '';}
 
     if FatGerSitGer.Value <> 'Nao Concluido' then
       sEnc := 'S'
@@ -4972,11 +4885,6 @@ end;
 procedure TfmManNge_NFE2.Panel3Exit(Sender: TObject);
 var
   NroGe2: integer;
-  vcodemp, vnumger: integer;
-  vdata: tdate;
-  vhora: string;
-  SeqGer, Status: string;
-
   bmLocalImportante: TBookmark;
   inserindo : Boolean;
 begin
@@ -4995,7 +4903,7 @@ begin
 
           if FatGe2VluGe2.AsFloat = 0 then
             if ((FatGerMODPfa.AsString <> 'Complemento')) then
-              fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdVluGe2);
+              fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdVluGe2);
           if FatGe2QtpGe2.AsFloat = 0 then
           begin
             if FatGe2CodCfo.Asstring <> '1.604' then
@@ -5010,7 +4918,7 @@ begin
                 Open;
               end;
               if (FatGerMODPfa.AsString <> 'Complemento') then
-                fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdQtpGe2);
+                fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdQtpGe2);
             end;
           end;
         end
@@ -5018,7 +4926,7 @@ begin
         begin
 
           if EdDesGe2.Enabled and (Trim(FatGe2DesGe2.Value) = '') then
-            fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdDesGe2);
+            fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdDesGe2);
 
         end;
         try
@@ -5075,16 +4983,16 @@ begin
           with FatGe2 do
           begin
 
-            fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
             try
-              ApplyUpdates; {Tenta aplicar as alterações}
+              ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
 
-              fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+              fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
             except
 
-              fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+              fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
               if FatGe2.State = dsBrowse then
                 FatGe2.Edit;
@@ -5138,7 +5046,6 @@ begin
             edBCII.Enabled := False;
             edIOF.Enabled := False;
             edDespAdu.Enabled := False;
-            //edTotIcmItem.ReadOnly := True;
 
             EdCodClp.Font.Style := [fsBold];
             EdCodGru.Font.Style := [fsBold];
@@ -5160,7 +5067,6 @@ begin
             edIOF.Font.Style := [fsBold];
             edDespAdu.Font.Style := [fsBold];
 
-            //EdDesGe2.Enabled := True;
             EdObsGe2.Enabled := True;
 
             grGe2.SetFocus;
@@ -5194,7 +5100,6 @@ begin
       edBCII.Enabled := False;
       edIOF.Enabled := False;
       edDespAdu.Enabled := False;
-      //edTotIcmItem.ReadOnly := True;
 
       EdCodClp.Font.Style := [fsBold];
       EdCodGru.Font.Style := [fsBold];
@@ -5282,17 +5187,17 @@ begin
     with FatGer do
     begin
 
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
       try
 
-        ApplyUpdates; {Tenta aplicar as alterações}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
 
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
       except
 
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
         if FatGer.State = dsBrowse then
           FatGer.Edit;
@@ -5311,17 +5216,6 @@ begin
     FatGer.Close;
     FatGer.Open;
 
-    {pnBasIc1.Caption := FormatFloat('###,###,##0.00', FatGerBasIc1.AsFloat);
-    pnTotIc1.Caption := FormatFloat('###,###,##0.00', FatGerTotIc1.AsFloat);
-    pnBasSu1.Caption := FormatFloat('###,###,##0.00', FatGerBasSu1.AsFloat);
-    pnTotSu1.Caption := FormatFloat('###,###,##0.00', FatGerTotSu1.AsFloat);
-    pnTotIt1.Caption := FormatFloat('###,###,##0.00', FatGerTotIt1.AsFloat);
-    pnTotFrt.Caption := FormatFloat('###,###,##0.00', FatGerTotFrt.AsFloat);
-    pnTotSeg.Caption := FormatFloat('###,###,##0.00', FatGerTotSeg.AsFloat);
-    pnTotDes.Caption := FormatFloat('###,###,##0.00', FatGerTotOUTDESP.AsFloat);
-    pnTotIp1.Caption := FormatFloat('###,###,##0.00', FatGerTotIp1.AsFloat);
-    pnTotGe1.Caption := FormatFloat('###,###,##0.00', FatGerTotGe1.AsFloat);}
-
     EdBasIc1.ReadOnly := True;
     EdTotIc1.ReadOnly := True;
     EdBasSu1.ReadOnly := True;
@@ -5332,28 +5226,6 @@ begin
     EdTotDes.ReadOnly := True;
     EdTotIp1.ReadOnly := True;
     EdTotGe1.ReadOnly := True;
-
-    {EdBasIc1.Font.Style := [fsBold];
-    EdTotIc1.Font.Style := [fsBold];
-    EdBasSu1.Font.Style := [fsBold];
-    EdTotSu1.Font.Style := [fsBold];
-    EdTotIt1.Font.Style := [fsBold];
-    EdTotFrt.Font.Style := [fsBold];
-    EdTotSeg.Font.Style := [fsBold];
-    EdTotDes.Font.Style := [fsBold];
-    EdTotIp1.Font.Style := [fsBold];
-    EdTotGe1.Font.Style := [fsBold];}
-
-    {pnBasIc1.Visible := True;
-    pnTotIc1.Visible := True;
-    pnBasSu1.Visible := True;
-    pnTotSu1.Visible := True;
-    pnTotIt1.Visible := True;
-    pnTotFrt.Visible := True;
-    pnTotSeg.Visible := True;
-    pnTotDes.Visible := True;
-    pnTotIp1.Visible := True;
-    pnTotGe1.Visible := True;}
 
     grGe2.SetFocus;
 
@@ -5371,28 +5243,6 @@ begin
     EdTotDes.ReadOnly := True;
     EdTotIp1.ReadOnly := True;
     EdTotGe1.ReadOnly := True;
-
-    {EdBasIc1.Font.Style := [fsBold];
-    EdTotIc1.Font.Style := [fsBold];
-    EdBasSu1.Font.Style := [fsBold];
-    EdTotSu1.Font.Style := [fsBold];
-    EdTotIt1.Font.Style := [fsBold];
-    EdTotFrt.Font.Style := [fsBold];
-    EdTotSeg.Font.Style := [fsBold];
-    EdTotDes.Font.Style := [fsBold];
-    EdTotIp1.Font.Style := [fsBold];
-    EdTotGe1.Font.Style := [fsBold];}
-
-    {pnBasIc1.Visible := True;
-    pnTotIc1.Visible := True;
-    pnBasSu1.Visible := True;
-    pnTotSu1.Visible := True;
-    pnTotIt1.Visible := True;
-    pnTotFrt.Visible := True;
-    pnTotSeg.Visible := True;
-    pnTotDes.Visible := True;
-    pnTotIp1.Visible := True;
-    pnTotGe1.Visible := True;}
 
     grGe2.SetFocus;
 
@@ -5538,7 +5388,6 @@ begin
         ' From EstPfa' +
         ' Where EstPfa.TipPfa = :TipPfa' +
         '   and EstPfa.LocPfa = :LocPfa' +
-        //        '   and (modpfa <> ' + QuotedStr('Devolucoes') + ' and modpfa <> ' + QuotedStr('Vendas') + ')' +
       '   and modpfa <> ' + QuotedStr('Vendas') +
         ' Order by EstPfa.DscPfa';
 
@@ -5594,22 +5443,6 @@ begin
       if FatGe2CODST2.asinteger in [20, 30, 40, 41, 50, 70, 90] then
         edMotivo.Enabled := True;
   end;
-
-  {pnDesGe2.Caption := FatGe2DesGe2.Value;
-  pnObsGe2.Caption := FatGe2ObsGe2.Value;}
-
-  //pnNumGer.Caption := IntToStr(FatGerNumGer.Value);
-
-  {pnBasIc1.Caption := FormatFloat('###,###,##0.00', FatGerBasIc1.AsFloat);
-  pnTotIc1.Caption := FormatFloat('###,###,##0.00', FatGerTotIc1.AsFloat);
-  pnBasSu1.Caption := FormatFloat('###,###,##0.00', FatGerBasSu1.AsFloat);
-  pnTotSu1.Caption := FormatFloat('###,###,##0.00', FatGerTotSu1.AsFloat);
-  pnTotIt1.Caption := FormatFloat('###,###,##0.00', FatGerTotIt1.AsFloat);
-  pnTotFrt.Caption := FormatFloat('###,###,##0.00', FatGerTotFrt.AsFloat);
-  pnTotSeg.Caption := FormatFloat('###,###,##0.00', FatGerTotSeg.AsFloat);
-  pnTotDes.Caption := FormatFloat('###,###,##0.00', FatGerTotOUTDESP.AsFloat);
-  pnTotIp1.Caption := FormatFloat('###,###,##0.00', FatGerTotIp1.AsFloat);
-  pnTotGe1.Caption := FormatFloat('###,###,##0.00', FatGerTotGe1.AsFloat); }
 
   if FatGe2.State = dsInsert then
     pnNroGe2.Caption := FNumZeros(IntToStr(FatGe2NroGe2.Value), 4) + '/' + FNumZeros(IntToStr(FatGerQtiGer.Value + 1), 4)
@@ -5763,13 +5596,13 @@ end;
 
 procedure TfmManNge_NFE2.SpeedButton2Click(Sender: TObject);
 var
-  linha, coluna, linhaaux, Plaux: integer;
+  linha: integer;
 var
   planilha: variant;
 begin
   //=================planilha principal
   planilha := CreateoleObject('Excel.Application');
-  planilha.caption := 'Importação';
+  planilha.caption := 'Importaï¿½ï¿½o';
   planilha.visible := true;
   planilha.WorkBooks.add(1);
 
@@ -5907,7 +5740,7 @@ begin
       FATGE2BASICM.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLBaseICMS];
       FATGE2TOTDES.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLSIscomex];
 
-      //Informações de II
+      //Informaï¿½ï¿½es de II
       FATGE2VLRIMPII.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLII];
       FATGE2VLRBCII.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLBCII];
       FATGE2PERIMPII.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLPERII];
@@ -5924,12 +5757,12 @@ begin
       NroGe2 := FatGe2NroGe2.Value;
       with FatGe2 do
       begin
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         try
-          ApplyUpdates; {Tenta aplicar as alterações}
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
         except
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           raise;
         end;
         CommitUpdates; {sucesso!, limpa o cache...}
@@ -6000,13 +5833,6 @@ begin
   FatGe2.Open;
 end;
 
-procedure TfmManNge_NFE2.CheckBox1Click(Sender: TObject);
-begin
-  inherited;
-  //dxDBColorCurrencyEdit1.visible := CheckBox1.Checked;
-  //dxDBColorCurrencyEdit2.visible := CheckBox1.Checked;
-end;
-
 procedure TfmManNge_NFE2.FatGerAfterOpen(DataSet: TDataSet);
 begin
   inherited;
@@ -6029,13 +5855,6 @@ end;
 
 procedure TfmManNge_NFE2.flagDI;
 begin
-  // Verificação para marcar o flag entrar com a DI, caso o tipo de classificação for 'Importacao' ou 'Importacao direta'
-  // o Flag ficará marcado, caso não o flag não ficará marcado
-  {if ((fmManGDB.BuscaSimples('EstPfa', 'ModPfa', 'codpfa = ' + QuotedStr(FatGerCODPFA.AsString)) = 'Importacao') or
-    (fmManGDB.BuscaSimples('EstPfa', 'ModPfa', 'codpfa = ' + QuotedStr(FatGerCODPFA.AsString)) = 'Importacao direta')) then
-  begin
-    FlgTemDI := True;
-  }// ALTERADO POR SERGIO EM 05/12/2013
 
   if ((fmManGDB.BuscaSimples('EstPfa', 'ModPfa', 'codpfa = ' + QuotedStr(FatGerCODPFA.AsString)) = 'Importacao') or
     (fmManGDB.BuscaSimples('EstPfa', 'ModPfa', 'codpfa = ' + QuotedStr(FatGerCODPFA.AsString)) = 'Importacao direta') or
@@ -6176,16 +5995,16 @@ begin
     with FatGe2 do
     begin
 
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
       try
-        ApplyUpdates; {Tenta aplicar as alterações}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
 
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
       except
 
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
         if FatGe2.State = dsBrowse then
           FatGe2.Edit;
@@ -6237,7 +6056,7 @@ begin
       SQLTEMP.Last;
       SQLTEMP.First;
 
-      strMsg := 'Há itens sem DI ou sem adição da DI : ' + _BR;
+      strMsg := 'Hï¿½ itens sem DI ou sem adiï¿½ï¿½o da DI : ' + _BR;
 
       while not SQLTEMP.Eof do
       begin
@@ -6248,7 +6067,7 @@ begin
         SQLTEMP.Next;
       end;
 
-      Messagebox(Handle, pChar(strMsg), 'Validação de DI', mb_ok + MB_ICONSTOP);
+      Messagebox(Handle, pChar(strMsg), 'Validaï¿½ï¿½o de DI', mb_ok + MB_ICONSTOP);
       Abort;
 
     end;
@@ -6264,14 +6083,11 @@ var
   Excel: OleVariant;
   COLCodigo, COLQtde, COLIPI, COLICMS, COLunitario, COLbasePISCOF, COLBaseICMS,
     COLSIscomex, COLadicao, COLitem, COLdi, COLdatadi, COLdatades, COLUFdes, COLcodexp,
-    COLlocaldes, COLBCII, COLII, COLPERII, COLDespAdu, COLIOF, COLPERPIS, COLPERCOF, COLBASIPI,
-    CSTIPI, CSTPIS, CSTCOF,VLRUNITARIOREAL: integer;
+    COLlocaldes, COLBCII, COLII, COLPERII, COLDespAdu, COLIOF, COLBASIPI,
+    CSTIPI, CSTPIS, CSTCOF: integer;
   Linha, NroGe2, VGENID, VFATGE2, ALIQ_PIS, ALIQ_COF: Integer;
-  Sadicao, Sitem, Sdi, SUFdes, Scodexp, Slocaldes, strAux, strCodPro: string;
+  Sadicao, Sitem, Sdi, SUFdes, Scodexp, Slocaldes, strCodPro: string;
   Sdatadi, Sdatades: TDatetime;
-
-  str1, str2: string;
-
 begin
   try
     flgXLS := True;
@@ -6286,8 +6102,6 @@ begin
     COLICMS             := 9;
     COLunitario         := 42;
     COLbasePISCOF       := 14;
-    COLPERPIS           := 15;
-    COLPERCOF           := 16;
     COLBaseICMS         := 17;
     COLSIscomex         := 19;
     COLadicao           := 20;
@@ -6308,8 +6122,6 @@ begin
     CSTIPI              := 38;
     CSTPIS              := 39;
     CSTCOF              := 40;
-    //VLRUNITARIOREAL     := 42;
-
 
     try
       Excel := CreateOleObject('Excel.Application');
@@ -6318,10 +6130,8 @@ begin
         Excel.WorkBooks.Open(opendialog1.filename, EmptyParam, EmptyParam, EmptyParam, EmptyParam, EmptyParam, EmptyParam, EmptyParam, EmptyParam, EmptyParam,
           EmptyParam, EmptyParam);
         linha := 2;
-        //showmessage(String(Excel.WorkBooks[1].Sheets[1].cells[1,1]));
         while (string(Excel.WorkBooks[1].Sheets[1].cells[linha, 1]) <> '') do
         begin
-          //===================================================================
 
           try
             if not (fatge2.state in [dsinsert, dsedit]) then
@@ -6370,7 +6180,7 @@ begin
           FATGE2BASICM.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLBaseICMS];
           FATGE2TOTOUTDESP.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLSIscomex];
 
-          //Informações de II
+          //Informaï¿½ï¿½es de II
           FATGE2VLRIMPII.AsFloat := Excel.WorkBooks[1].Sheets[1].cells[linha, COLII];
           FATGE2VLRBCII.AsFloat := Excel.WorkBooks[1].Sheets[1].cells[linha, COLBCII];
           FATGE2PERIMPII.AsFloat := Excel.WorkBooks[1].Sheets[1].cells[linha, COLPERII];
@@ -6399,12 +6209,12 @@ begin
           NroGe2 := FatGe2NroGe2.Value;
           with FatGe2 do
           begin
-            fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
             try
-              ApplyUpdates; {Tenta aplicar as alterações}
-              fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+              ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
+              fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
             except
-              fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+              fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
               raise;
             end;
             CommitUpdates; {sucesso!, limpa o cache...}
@@ -6480,12 +6290,6 @@ begin
     end;
 
     fatge2.Active := False;
-    {fatge2.SQL.text := 'Select * From FatGe2' +
-      '     Where FatGe2.CodEmp = :CodEmp ' +
-      '     and FatGe2.DteGer = :DteGer ' +
-      '     and FatGe2.NumGer = :NumGer ' +
-      ' Order by FatGe2.NroGe2'; }
-
     FatGe2.Params[0].AsInteger := FatGerCodEmp.Value;
     FatGe2.Params[1].AsDateTime := FatGerDteGer.Value;
     FatGe2.Params[2].AsInteger := FatGerNumGer.Value;
@@ -6507,7 +6311,6 @@ begin
   begin
     if FatGerNUMGER.AsInteger > 0 then
     begin
-      //Gerenciar Referências NFE
       fmManListaNFeRef := TfmManListaNFeRef.Create(Self);
       try
         fmManListaNFeRef.ShowModal(FatGerNUMGER.AsInteger);
@@ -6521,7 +6324,6 @@ end;
 procedure TfmManNge_NFE2.ValidaDanfeRef;
 var
   SQLTEMP: TQuery;
-  strMsg: string;
 begin
 
   SQLTEMP := TQuery.Create(Self);
@@ -6536,7 +6338,7 @@ begin
     if SQLTEMP.FieldByName('NFE').AsInteger < 1 then
     begin
 
-      Messagebox(Handle, 'É necessário informar a Danfe de referência. Verifique e tente novamente.', 'Validação de referência', mb_ok + MB_ICONSTOP);
+      Messagebox(Handle, 'ï¿½ necessï¿½rio informar a Danfe de referï¿½ncia. Verifique e tente novamente.', 'Validaï¿½ï¿½o de referï¿½ncia', mb_ok + MB_ICONSTOP);
       Abort;
 
     end;
@@ -6605,7 +6407,7 @@ begin
                     '                                                    and numger = ' + QuotedStr(FatGerNUMGER.asstring) + ');';
   qusql.Open;
 
-  //Regra de IPI Padrão de Faturamento
+  //Regra de IPI Padrï¿½o de Faturamento
   if Trim(quSQL.FieldbyName('CODIPI').AsString) <> '' then
   begin
     FatGe2RegIpi.AsString := Trim(quSQL.FieldbyName('CODIPI').AsString);
@@ -6613,7 +6415,7 @@ begin
     FatGe2CSTIPI.AsString := Trim(quSQL.FieldbyName('CSTIPI').AsString);
   end;
 
-  //Regra de ICMS Padrão de Faturamento
+  //Regra de ICMS Padrï¿½o de Faturamento
   if Trim(quSQL.FieldbyName('CODICM').AsString) <> '' then
   begin
     FatGe2RegIcm.AsString := Trim(quSQL.FieldbyName('CODICM').AsString);
@@ -6675,7 +6477,6 @@ begin
   end
   else
     FatGe2IcmGe2.AsFloat := 0;
-
 
 end;
 

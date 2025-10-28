@@ -162,21 +162,6 @@ begin
 
   if sqldi.IsEmpty then
   begin
-    {SQLDI.Append;
-    SQLDIID_CMPNF2.AsInteger := fmmannge_nfe2.FatGe2ID_FATGE2.AsInteger;
-    sqldi.Post;
-
-    sqldi.Active := false;
-    sqldi.sql.text := 'Select * from DI where ID_CMPNF2 = ' + QuotedStr(fmmannge_nfe2.FatGe2ID_FATGE2.Asstring);
-    sqldi.Open;
-
-    SQLDIDET.Active := true;
-    SQLDIDET.Append;
-    SQLDIDETID_DI.AsInteger := SQLDIID_DI.AsInteger;
-    SQLDIDETNSEQADIC.AsInteger := 1;
-    SQLDIDETVDESCDI.AsFloat := 0;
-    SQLDIDETCODFAB.AsString := fmmannge_nfe2.FatGe2CODGRU.AsString + '.' + fmmannge_nfe2.FatGe2CODSUB.AsString + '.' + fmmannge_nfe2.FatGe2CODPRO.AsString;
-    SQLDIDET.post;}
     panel1.BringToFront;
 
   end
@@ -203,13 +188,6 @@ end;
 procedure TFMMANDI2.bContinuarClick(Sender: TObject);
 begin
   inherited;
-
-   {if ((SQLDI.State in [dsedit]) or (SQLDIDET.State in [dsedit])) then
-     if MessageDlg('Deseja salvar os dados antes de Sair?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-       bDiConcluir.Click
-     else
-       bDiCancelar.Click;}
-
   close;
 end;
 
@@ -223,10 +201,6 @@ begin
   sqldi.Active := False;
   sqldi.Active := True;
   sqldi.Last;
-
-  {if (SQLDIDET.state in [dsedit, dsinsert]) then
-    sqldidet.post;}
-
   EnableControlsDI;
 
   panel1.SendToBack;
@@ -235,7 +209,7 @@ end;
 procedure TFMMANDI2.bDiCancelarClick(Sender: TObject);
 begin
   inherited;
-  if MessageDlg('Deseja Cancelar as Alterações?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg('Deseja Cancelar as Alteraï¿½ï¿½es?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
     SQLDI.Cancel;
     SQLDIDET.Cancel;
@@ -249,31 +223,19 @@ procedure TFMMANDI2.bIteIncluirClick(Sender: TObject);
 begin
 
   inherited;
-  //Processo antigo. Permitia apenas uma adição por DI. Layout de NFE permite mais de uma adição por DI
-  {SQLDI.Insert;
-  SQLDIID_CMPNF2.value := fmmannge_nfe2.FatGe2ID_FATGE2.Value;
-  sqldi.Post;
-
-  sqldi.Active := false;
-  sqldi.sql.text := 'Select * from DI where ID_CMPNF2 = ' + QuotedStr(fmmannge_nfe2.FatGe2ID_FATGE2.Asstring);
-  sqldi.Open;
-  sqldi.Last;}
-
   if SQLDIDET.State <> dsBrowse then
   begin
-    if messagebox(Handle, 'Adição da DI não concluída. Deseja Cancelar?', 'Inclução de DI', MB_ICONQUESTION + MB_YESNO) = IDYES then
+    if messagebox(Handle, 'Adiï¿½ï¿½o da DI nï¿½o concluï¿½da. Deseja Cancelar?', 'Incluï¿½ï¿½o de DI', MB_ICONQUESTION + MB_YESNO) = IDYES then
       SQLDIDET.Cancel;
     EnableControlsITE
   end
   else
   begin
-    //Abort;
     DIsableControlsIte;
   end;
 
   SQLDIDET.Active := true;
   SQLDIDET.Append;
-  //SQLDIDET.post;
 
   if edNumAdicao.canfocus then
     edNumAdicao.SetFocus;
@@ -285,39 +247,22 @@ end;
 procedure TFMMANDI2.bIteRemoverClick(Sender: TObject);
 begin
   inherited;
-  //Processo antigo. Se apagar uma adição apaga a DI completa
-  (*if MessageDlg('Confirma Exclusão de Dados da DI?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-  begin
-    sqldi.Delete;
-    with sqldi do
-    begin
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
-      try
-        ApplyUpdates; {Tenta aplicar as alterações};
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
-      except
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
-      end;
-      CommitUpdates; {sucesso!, limpa o cache...}
-    end;
-  end; *)
-
-    //Inicia processo de exclusão
-  if messagebox(handle, 'Confirma Exclusão dos Dados da Adição.', 'Dados da adição', MB_ICONQUESTION + MB_YESNO) = IDYES then
+    //Inicia processo de exclusï¿½o
+  if messagebox(handle, 'Confirma Exclusï¿½o dos Dados da Adiï¿½ï¿½o.', 'Dados da adiï¿½ï¿½o', MB_ICONQUESTION + MB_YESNO) = IDYES then
   begin
     SQLDIDET.Delete;
     with SQLDIDET do
     begin
       EnableControlsIte;
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
       ;
       try
-        ApplyUpdates; {Tenta aplicar as alterações}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
         ;
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
         ;
       except
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
         ;
       end;
       CommitUpdates; {sucesso!, limpa o cache...}
@@ -351,15 +296,15 @@ begin
   inherited;
   with sqldi do
   begin
-    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
     try
-      ApplyUpdates; {Tenta aplicar as alterações}
+      ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
 
-      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+      fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
     except
-      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
     end;
     CommitUpdates; {sucesso!, limpa o cache...}
@@ -395,15 +340,15 @@ begin
   inherited;
   with SQLDIDET do
   begin
-    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
     try
-      ApplyUpdates; {Tenta aplicar as alterações}
+      ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
 
-      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+      fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
     except
-      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
     end;
     CommitUpdates; {sucesso!, limpa o cache...}
@@ -417,7 +362,6 @@ begin
   SQLDIDETNSEQADIC.AsInteger := 1;
   SQLDIDETVDESCDI.AsInteger := 0;
   SQLDIDETQTDE.AsInteger := 0;
-  //SQLDIDETNADICAO.AsString := '1';
   SQLDIDETCODFAB.Value := fmManNge_NFE2.FatGe2CODGRU.AsString + '.' + fmManNge_NFE2.FatGe2CODSUB.AsString + '.' + fmManNge_NFE2.FatGe2CODPRO.AsString;
 end;
 
@@ -444,7 +388,7 @@ begin
   inherited;
   if SQLDI.State <> DsBrowse then
   begin
-    MessageBox(handle, 'Necessário concluir a DI antes de incluir nova.', 'Dados da DI', mb_ok + MB_ICONINFORMATION);
+    MessageBox(handle, 'Necessï¿½rio concluir a DI antes de incluir nova.', 'Dados da DI', mb_ok + MB_ICONINFORMATION);
     EnableControlsDI;
     Abort;
   end
@@ -459,21 +403,21 @@ end;
 procedure TFMMANDI2.bDiRemoverClick(Sender: TObject);
 begin
   inherited;
-  if MessageDlg('Confirma Exclusão de Dados da DI?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg('Confirma Exclusï¿½o de Dados da DI?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
     sqldi.Delete;
     EnableControlsDI;
     with sqldi do
     begin
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
       ;
       try
-        ApplyUpdates; {Tenta aplicar as alterações}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
         ;
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
         ;
       except
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
         ;
       end;
       CommitUpdates; {sucesso!, limpa o cache...}
@@ -494,38 +438,6 @@ begin
 
     EnableControlsIte;
   end;
-end;
-
-procedure TFMMANDI2.enableControlsDI;
-begin
-  {bDiIncluir.Enabled := True;
-  bDiConcluir.Enabled := False;
-  bDiCancelar.Enabled := True;
-  bDiRemover.Enabled := False; }
-end;
-
-procedure TFMMANDI2.disableControlsDI;
-begin
-  {bDiIncluir.Enabled := False;
-  bDiConcluir.Enabled := True;
-  bDiCancelar.Enabled := False;
-  bDiRemover.Enabled := True;}
-end;
-
-procedure TFMMANDI2.enableControlsIte;
-begin
-  {bIteIncluir.Enabled := True;
-  bIteConcluir.Enabled := False;
-  bIteCancelar.Enabled := True;
-  bIteRemover.Enabled := False;}
-end;
-
-procedure TFMMANDI2.disableControlsIte;
-begin
-  {bIteIncluir.Enabled := False;
-  bIteConcluir.Enabled := True;
-  bIteCancelar.Enabled := False;
-  bIteRemover.Enabled := True;}
 end;
 
 procedure TFMMANDI2.DSDIStateChange(Sender: TObject);
@@ -550,7 +462,6 @@ end;
 procedure TFMMANDI2.DSDIDETStateChange(Sender: TObject);
 begin
   inherited;
-  //bIteIncluir.Enabled := SQLDIDET.State in [dsBrowse];
   bIteConcluir.Enabled := SQLDIDET.State in [dsEdit, dsInsert];
   bIteCancelar.Enabled := SQLDIDET.State in [dsEdit, dsInsert];
   bIteRemover.Enabled := SQLDIDET.State in [dsBrowse];
@@ -567,7 +478,7 @@ begin
   inherited;
   if (Trim(SQLDINUMDI.AsString) = '') then
   begin
-    messagebox(handle, 'Obrigatório informar número da DI.', 'Informações da DI', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigatï¿½rio informar nï¿½mero da DI.', 'Informaï¿½ï¿½es da DI', MB_OK + MB_ICONINFORMATION);
     if edNumDI.CanFocus then
       edNumDI.SetFocus;
     abort;
@@ -575,7 +486,7 @@ begin
 
   if (Trim(SQLDILOCALDESEMB.AsString) = '') then
   begin
-    messagebox(handle, 'Obrigatório informar local de desembarque.', 'Informações da DI', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigatï¿½rio informar local de desembarque.', 'Informaï¿½ï¿½es da DI', MB_OK + MB_ICONINFORMATION);
     if edLocalDesemb.CanFocus then
       edLocalDesemb.SetFocus;
     abort;
@@ -583,7 +494,7 @@ begin
 
   if (Trim(SQLDIUFDESEMB.AsString) = '') then
   begin
-    messagebox(handle, 'Obrigatório informar UF de desembarque.', 'Informações da DI', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigatï¿½rio informar UF de desembarque.', 'Informaï¿½ï¿½es da DI', MB_OK + MB_ICONINFORMATION);
     if edUFDesemb.CanFocus then
       edUFDesemb.SetFocus;
     abort;
@@ -591,7 +502,7 @@ begin
 
   if (Trim(SQLDICODEXPORT.AsString) = '') then
   begin
-    messagebox(handle, 'Obrigatório informar código de exportador.', 'Informações da DI', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigatï¿½rio informar cï¿½digo de exportador.', 'Informaï¿½ï¿½es da DI', MB_OK + MB_ICONINFORMATION);
     if edCodExport.CanFocus then
       edCodExport.SetFocus;
     abort;
@@ -604,7 +515,7 @@ begin
   inherited;
   if (Trim(SQLDIDETNADICAO.AsString) = '') then
   begin
-    messagebox(handle, 'Obrigatório informar número da adição.', 'Informações da Adição da DI', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigatï¿½rio informar nï¿½mero da adiï¿½ï¿½o.', 'Informaï¿½ï¿½es da Adiï¿½ï¿½o da DI', MB_OK + MB_ICONINFORMATION);
     if edNumAdicao.CanFocus then
       edNumAdicao.SetFocus;
     abort;

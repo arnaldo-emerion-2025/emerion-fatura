@@ -174,12 +174,6 @@ procedure TfmFatR15.bbPesquisaClick(Sender: TObject);
 var
   imptip, filtroFinal: string;
 begin
-
-  {if fmmanpri.nfe then
-    imptip := 'ENVNFE'
-  else
-    imptip := 'FLGIMP';}
-
   imptip := ' (ENVNFE = ''Sim'' or (flgnfe = ''Nao'' and FLGIMP = ''Sim''))';
   ActiveControl := nil;
 
@@ -194,8 +188,6 @@ begin
 
   if (Trim(EdPsqTipOpe.Text) = '') or (Trim(EdPsqTipOpe.Text) = 'Saida') then
   begin
-
-    //sFiltro := ' and ( FatPed.SitFat = ''' + 'Faturado' + ''' or FatPed.SitFat = ''' + 'Devolvido' + '''  ) and FatPed.' + imptip + ' = ''' + 'Sim' + '''';
     if ckCanceladas.Checked then
       sFiltro := ' and ( FatPed.SitFat = ''Cancelado'' ) '
     else
@@ -819,7 +811,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada não Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nï¿½o Encontrada.', EdPsqCodEmp);
 
       end;
     end;
@@ -942,19 +934,19 @@ end;
 procedure TfmFatR15.HTMLClick(Sender: TObject);
 begin
   inherited;
-  Save('htm', 'HTML File (*.htm; *.html)|*.htm', 'Relação de Notas Fiscais Emitidas (Global).htm', grR16.SaveToHTML);
+  Save('htm', 'HTML File (*.htm; *.html)|*.htm', 'Relaï¿½ï¿½o de Notas Fiscais Emitidas (Global).htm', grR16.SaveToHTML);
 end;
 
 procedure TfmFatR15.ExcelClick(Sender: TObject);
 begin
   inherited;
-  Save('xls', 'Microsoft Excel 4.0 Worksheet (*.xls)|*.xls', 'Relação de Notas Fiscais Emitidas (Global).xls', grR16.SaveToXLS);
+  Save('xls', 'Microsoft Excel 4.0 Worksheet (*.xls)|*.xls', 'Relaï¿½ï¿½o de Notas Fiscais Emitidas (Global).xls', grR16.SaveToXLS);
 end;
 
 procedure TfmFatR15.XMLClick(Sender: TObject);
 begin
   inherited;
-  Save('xml', 'XML File (*.xml)|*.xml', 'Relação de Notas Fiscais Emitidas (Global).xml', grR16.SaveToXML);
+  Save('xml', 'XML File (*.xml)|*.xml', 'Relaï¿½ï¿½o de Notas Fiscais Emitidas (Global).xml', grR16.SaveToXML);
 end;
 
 procedure TfmFatR15.FormClose(Sender: TObject; var Action: TCloseAction);

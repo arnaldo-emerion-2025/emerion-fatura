@@ -244,7 +244,7 @@ begin
   if Finalizar = 'N' then
   begin
 
-    if fMsg('Deseja Realmente Abandonar a Emissão da Nota Fiscal ?', 'O') then
+    if fMsg('Deseja Realmente Abandonar a Emissï¿½o da Nota Fiscal ?', 'O') then
     begin
 
       CodEmp := fmManLn6.FatPedCodEmp.Value;
@@ -315,20 +315,20 @@ begin
       with FatDes do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if FatDes.State = dsBrowse then
@@ -363,20 +363,20 @@ begin
       with FatDes do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if FatDes.State = dsBrowse then
@@ -401,22 +401,6 @@ begin
       FatDes.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqFat;NroDes', VarArrayOf([FatDesCodEmp.Value, FatDesDteRes.Value, FatDesNumRes.Value, FatDesSeqLib.Value,
         FatDesSeqFat.Value, NroDes]), [LoPartialKey]);
 
-      {if FatDesNroDes.Value = FatPedQtiDes.Value then
-         FatDes.Append
-      else
-         begin
-
-            FatDes.Next;
-
-            EdQtdVol.Enabled := False;
-            EdCodUnd.Enabled := False;
-            EdNomCon.Enabled := False;
-            EdPesDes.Enabled := False;
-            EdPesliqDes.Enabled := False;
-
-            grDes.SetFocus;
-
-         end;}
     end;
 
   end
@@ -615,20 +599,20 @@ begin
       with FatDes do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if FatDes.State <> dsBrowse then

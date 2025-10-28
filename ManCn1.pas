@@ -96,7 +96,7 @@ begin
     WaitForSingleObject(ProcessInfo.hProcess, Infinite);
 //GetExitCodeProcess (ProcessInfo.hProcess, Result);
   end;
-end; //Estado é o tipo de janela que aparecerá, que pode ser:
+end; //Estado ï¿½ o tipo de janela que aparecerï¿½, que pode ser:
 
 
 
@@ -150,7 +150,7 @@ begin
     if Length(Trim(ObcFat)) >= 15 then
     begin
       sText := 'Deseja realmente cancelar a nota fiscal ?';
-      if (Trim(sEstoque) <> '') or (Trim(sReceber) <> '') then sText := sText + #10 + ' ' + #10 + ' Ao confirmar ocorrerão os seguintes lançamentos:';
+      if (Trim(sEstoque) <> '') or (Trim(sReceber) <> '') then sText := sText + #10 + ' ' + #10 + ' Ao confirmar ocorrerï¿½o os seguintes lanï¿½amentos:';
       sText := sText + #10 + ' ' + #10 + sEstoque + #10 + ' ' + #10 + sReceber;
       if fmsgConf(sText, 'E') = 'SIM' then
       begin
@@ -277,7 +277,7 @@ begin
 
 
                     fmManLr3.cmpnfs.post;
-                    fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alterações};
+                    fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
                     fmManLr3.cmpnfs.CommitUpdates;
                     fmManCnF.Enabled := True;
                     fmManCnF.close;
@@ -312,7 +312,7 @@ begin
                   fmManLr3.cmpnfsNFETHCANC.Value := 1;
                   fmManLr3.cmpnfsHreCan.Value := TimeToStr(Time);
                   fmManLr3.cmpnfs.post;
-                  fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alterações};
+                  fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
                   fmManLr3.cmpnfs.CommitUpdates;
                   fmManCnF.Enabled := True;
                   fmManCnF.close;
@@ -356,79 +356,11 @@ begin
         EdObcNfs.SetFocus;
     end //     if Length(Trim(ObcFat)) >= 15 then
     else
-      fmsgErro('Observações informadas tem que ter o minimo de 15 caracteres.', EdObcNfs);
+      fmsgErro('Observaï¿½ï¿½es informadas tem que ter o minimo de 15 caracteres.', EdObcNfs);
   end //  if Trim(ObcFat) <> '' then
   else
-    fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdObcNfs);
+    fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdObcNfs);
 end //complemento
-{var
-sText,sReceber,sEstoque : string;
-begin
-
-  fmManLr3.CmpNfsObcNfs.Value := EdObcNfs.Text;
-
-  if Trim( fmManLr3.CmpNfsObcNfs.Value ) <> '' then begin
-
-     sText := 'Deseja Realmente Cancelar a Operação ? ';
-
-     if fmManLr3.CmpNfsAtuEst.Value = 'Sim' then sEstoque := ' . Devolução ao Estoque dos Itens da Operação;';
-
-//   if fmManLr3.CmpNfsIntFin.Value = 'Sim' then sReceber := ' . Exclusão dos Titulos a Receber Decorrentes da Emissão da Nota Fiscal.';
-
-     if (Trim( sEstoque ) <> '') or (Trim( sReceber ) <> '') then
-        sText := sText + #10 + ' ' + #10 + ' Ao Confirmar Ocorrerão os Seguintes Lançamentos :';
-
-     sText := sText + #10 + ' ' + #10 + sEstoque + #10 + ' ' + #10 + sReceber;
-
-     if fMsg(sText,'O') then begin
-
-        fmManLr3.CmpNfs.Edit;
-
-        fmManLr3.CmpNfsDtcNfs.Value := Date;
-
-        fmManLr3.CmpNfsUscNfs.Value := GUsu_Id;
-
-        fmManLr3.CmpNfsSitNfs.Value := 'Cancelado';
-
-        fmManLr3.CmpNfsHrcNfs.Value := TimeToStr(Time);
-
-        with fmManLr3.CmpNfs do begin
-
-             fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
- {
-             try
-
-                ApplyUpdates; {Tenta aplicar as alterações}//;
-
-{                fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
-{
-             except
-
-                fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
-{
-                if fmManLr3.CmpNfs.State <> dsBrowse then fmManLr3.CmpNfs.CancelUpdates;
-
-                EdObcNfs.SetFocus;
-
-                raise;
-
-             end;
-
-             CommitUpdates; {sucesso!, limpa o cache...}
-
-{        end;
-
-        fmManLr3.CmpNfs.Close;
-        fmManLr3.CmpNfs.Open;
-
-        Close;
-
-     end;
-
-     end
-  else
-     fmsgErro('Campo de Preenchimento Obrigatorio não Informado.',EdObcNfs);}
-//end;
 
 procedure TfmManCn1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
