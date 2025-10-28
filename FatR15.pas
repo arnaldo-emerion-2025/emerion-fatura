@@ -934,19 +934,19 @@ end;
 procedure TfmFatR15.HTMLClick(Sender: TObject);
 begin
   inherited;
-  Save('htm', 'HTML File (*.htm; *.html)|*.htm', 'Rela��o de Notas Fiscais Emitidas (Global).htm', grR16.SaveToHTML);
+  Save('htm', 'HTML File (*.htm; *.html)|*.htm', 'Relacao de Notas Fiscais Emitidas (Global).htm', grR16.SaveToHTML);
 end;
 
 procedure TfmFatR15.ExcelClick(Sender: TObject);
 begin
   inherited;
-  Save('xls', 'Microsoft Excel 4.0 Worksheet (*.xls)|*.xls', 'Rela��o de Notas Fiscais Emitidas (Global).xls', grR16.SaveToXLS);
+  Save('xls', 'Microsoft Excel 4.0 Worksheet (*.xls)|*.xls', 'Relacao de Notas Fiscais Emitidas (Global).xls', grR16.SaveToXLS);
 end;
 
 procedure TfmFatR15.XMLClick(Sender: TObject);
 begin
   inherited;
-  Save('xml', 'XML File (*.xml)|*.xml', 'Rela��o de Notas Fiscais Emitidas (Global).xml', grR16.SaveToXML);
+  Save('xml', 'XML File (*.xml)|*.xml', 'Relacao de Notas Fiscais Emitidas (Global).xml', grR16.SaveToXML);
 end;
 
 procedure TfmFatR15.FormClose(Sender: TObject; var Action: TCloseAction);

@@ -443,7 +443,7 @@ var
         TBlobField(SQLCorrente.FieldByName('ARQNFECANC')).LoadFromFile(CaminhoRetorno + '\' + inttostr(VNumNota) + ' Cancelamento - NF-e- ' + Vchave + '.xml');
 
         SQLCorrente.post;
-        SQLCorrente.ApplyUpdates; {Tenta aplicar as altera��es}
+        SQLCorrente.ApplyUpdates; {Tenta aplicar as alteracoes}
         ;
         SQLCorrente.CommitUpdates;
 
@@ -530,7 +530,7 @@ var
         application.ProcessMessages;
 
         SQLCorrente.post;
-        SQLCorrente.ApplyUpdates; {Tenta aplicar as altera��es}
+        SQLCorrente.ApplyUpdates; {Tenta aplicar as alteracoes}
         ;
         SQLCorrente.CommitUpdates;
 
@@ -833,10 +833,10 @@ begin
 
                       SQLTSCR.ExecSQL;
 
-                      fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+                      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
                       ;
                     except
-                      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
                       ;
                       raise;
                     end;

@@ -466,13 +466,13 @@ begin
 
                    try
 
-                      ApplyUpdates; {Tenta aplicar as altera��es};
+                      ApplyUpdates; {Tenta aplicar as alteracoes};
 
-                      fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o};
+                      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o};
 
                    except
 
-                      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro};
+                      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro};
 
                       sContinuar := 'N';
 
@@ -576,13 +576,13 @@ begin
 
                             try
 
-                               ApplyUpdates; {Tenta aplicar as altera��es};
+                               ApplyUpdates; {Tenta aplicar as alteracoes};
 
-                               fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o};
+                               fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o};
 
                             except
 
-                               fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro};
+                               fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro};
 
                                if fmManRo2.CmpNfs.State <> dsBrowse then fmManRo2.CmpNfs.CancelUpdates;
 
@@ -2045,13 +2045,13 @@ begin
 
                                try
 
-                                  ApplyUpdates; {Tenta aplicar as altera��es};
+                                  ApplyUpdates; {Tenta aplicar as alteracoes};
 
-                                  fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o};
+                                  fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o};
 
                                except
 
-                                  fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro};
+                                  fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro};
 
                                   fmManRo2.Finalizar := 'N';
 
@@ -2617,11 +2617,11 @@ cmpnfs.Post;
       with CMPNFS do
         try
           fmManGDB.dbMain.StartTransaction; //Inicia a Transa��o
-          ApplyUpdates; //Tenta aplicar as altera��es
-          fmManGDB.dbMain.Commit; //confirma todas as altera��es fechando a transa��o
+          ApplyUpdates; //Tenta aplicar as alteracoes
+          fmManGDB.dbMain.Commit; //confirma todas as alteracoes fechando a transa��o
         except
           begin
-          fmManGDB.dbMain.Rollback; //desfaz as altera��es se acontecer um erro
+          fmManGDB.dbMain.Rollback; //desfaz as alteracoes se acontecer um erro
           if CMPNFS.State <> dsBrowse then CMPNFS.CancelUpdates;
           end;
         end;
@@ -3129,7 +3129,7 @@ VNumNota:=EdNroNfs.Text;
         movefile(pchar(CaminhoRetorno+'\'+VNumNota+' - NF-e- Retorno.xml'), pchar(CaminhoRetorno+'\'+VNumNota+' - NF-e- '+chave+'.xml'));
 
         CMPNFS.Post;
-        CMPNFS.ApplyUpdates; //Tenta aplicar as altera��es
+        CMPNFS.ApplyUpdates; //Tenta aplicar as alteracoes
 
 
         FatArq.Active:=false;
@@ -3303,10 +3303,10 @@ VNumNota:=EdNroNfs.Text;
               begin
                    fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o};
                    try
-                      ApplyUpdates; {Tenta aplicar as altera��es};
-                      fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o};
+                      ApplyUpdates; {Tenta aplicar as alteracoes};
+                      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o};
                    except
-                      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro};
+                      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro};
                       if CMPNFS.State <> dsBrowse then CMPNFS.CancelUpdates;
                       CMPNFS.Close;
                       CMPNFS.Open;

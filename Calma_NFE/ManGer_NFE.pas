@@ -1193,10 +1193,10 @@ begin
         begin
           fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
           try
-            ApplyUpdates; {Tenta aplicar as altera��es}
-            fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+            ApplyUpdates; {Tenta aplicar as alteracoes}
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
           except
-            fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+            fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
             if FatGer.State <> dsBrowse then
               FatGer.CancelUpdates;
             grGer.SetFocus;
@@ -1426,15 +1426,15 @@ begin
 
         try
 
-          ApplyUpdates; {Tenta aplicar as altera��es}
+          ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
           ;
 
           if FatGe2.State = dsBrowse then
@@ -1473,7 +1473,7 @@ begin
   if psaida = 'Nao' then
   begin
 
-    if fMsg('Confirma Altera��es ?', 'S') then
+    if fMsg('Confirma Alteracoes ?', 'S') then
     begin
 
       CodEmp := FatGerCodEmp.Value;
@@ -1488,15 +1488,15 @@ begin
 
         try
 
-          ApplyUpdates; {Tenta aplicar as altera��es}
+          ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
           ;
 
           if FatGer.State = dsBrowse then

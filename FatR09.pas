@@ -182,9 +182,9 @@ begin
   end;
 
   if Trim(fLimpaStr(EdPsqDteFt1.Text)) = '' then
-    fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado. Periodo Inicial.', EdPsqDteFt1);
+    fmsgErro('Campo de Preenchimento Obrigatorio nao Informado. Periodo Inicial.', EdPsqDteFt1);
   if Trim(fLimpaStr(EdPsqDteFt2.Text)) = '' then
-    fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado. Periodo Final.', EdPsqDteFt2);
+    fmsgErro('Campo de Preenchimento Obrigatorio nao Informado. Periodo Final.', EdPsqDteFt2);
 
   if Trim(fLimpaStr(EdPsqDteFt1.Text)) <> '' then
     sFiltro := sFiltro + ' and PedLib.DteFat >= ''' + fDateToSQL(EdPsqDteFt1.Date) + '''';
@@ -283,7 +283,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada n�o Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nao Encontrada.', EdPsqCodEmp);
 
       end;
     end;
@@ -718,7 +718,7 @@ begin
   dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Empresa : ' + EdPsqCodEmp.Text + ' - ' + EdPsqApeEmp.Text);
   dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Cliente : ' + EdPsqCodCli.Text + ' - ' + EdPsqNomCli.Text);
   dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Vendedor : ' + EdPsqCodVen.Text + ' - ' + EdPsqNomVen.Text);
-  dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Padr�o de Faturamento : ' + EdPsqCodPfa.Text + ' - ' + EdPsqNomPfa.Text);
+  dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Padrao de Faturamento : ' + EdPsqCodPfa.Text + ' - ' + EdPsqNomPfa.Text);
   dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add('Faturados no Periodo de : ' + EdPsqDteFt1.Text + ' a ' + EdPsqDteFt2.Text);
 
   dxComponentPrinterLink1.PrinterPage.PageHeader.LeftTitle.Add(' ');
@@ -738,19 +738,19 @@ end;
 procedure TfmFatR09.HTMLClick(Sender: TObject);
 begin
   inherited;
-  Save('htm', 'HTML File (*.htm; *.html)|*.htm', 'Rela��o de Itens Faturados.htm', grFat.SaveToHTML);
+  Save('htm', 'HTML File (*.htm; *.html)|*.htm', 'Relacao de Itens Faturados.htm', grFat.SaveToHTML);
 end;
 
 procedure TfmFatR09.ExcelClick(Sender: TObject);
 begin
   inherited;
-  Save('xls', 'Microsoft Excel 4.0 Worksheet (*.xls)|*.xls', 'Rela��o de Itens Faturados.xls', grFat.SaveToXLS);
+  Save('xls', 'Microsoft Excel 4.0 Worksheet (*.xls)|*.xls', 'Relacao de Itens Faturados.xls', grFat.SaveToXLS);
 end;
 
 procedure TfmFatR09.XMLClick(Sender: TObject);
 begin
   inherited;
-  Save('xml', 'XML File (*.xml)|*.xml', 'Rela��o de Itens Faturados.xml', grFat.SaveToXML);
+  Save('xml', 'XML File (*.xml)|*.xml', 'Relacao de Itens Faturados.xml', grFat.SaveToXML);
 end;
 
 procedure TfmFatR09.FormClose(Sender: TObject; var Action: TCloseAction);

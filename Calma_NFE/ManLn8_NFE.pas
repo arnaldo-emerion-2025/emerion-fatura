@@ -1459,12 +1459,12 @@ begin
                 fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
                 ;
                 try
-                  ApplyUpdates; {Tenta aplicar as altera��es}
+                  ApplyUpdates; {Tenta aplicar as alteracoes}
                   ;
-                  fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+                  fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
                   ;
                 except
-                  fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+                  fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
                   ;
                   if FatPed.State <> dsBrowse then
                     FatPed.CancelUpdates;

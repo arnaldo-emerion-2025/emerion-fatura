@@ -293,7 +293,7 @@ begin
                     fmManLr3.cmpnfsARQNFECANC.LoadFromFile(CaminhoRetorno + '\' + (VNumNota) + ' Cancelamento - NF-e- ' + Vchave + '.xml');
 
                     fmManLr3.cmpnfs.post;
-                    fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as altera��es}
+                    fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alteracoes}
                     ;
                     fmManLr3.cmpnfs.CommitUpdates;
                     fmManCnF.Enabled := True;
@@ -335,7 +335,7 @@ begin
                   fmManLr3.cmpnfsNFETHCANC.Value := 1;
                   fmManLr3.cmpnfsHreCan.Value := TimeToStr(Time);
                   fmManLr3.cmpnfs.post;
-                  fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as altera��es}
+                  fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alteracoes}
                   ;
                   fmManLr3.cmpnfs.CommitUpdates;
                   fmManCnF.Enabled := True;
@@ -421,13 +421,13 @@ begin
 {
             try
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ApplyUpdates; {Tenta aplicar as altera��es}//;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ApplyUpdates; {Tenta aplicar as alteracoes}//;
 
-{                fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+{                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
 {
             except
 
-               fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+               fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
 {
                if fmManLr3.CmpNfs.State <> dsBrowse then fmManLr3.CmpNfs.CancelUpdates;
 

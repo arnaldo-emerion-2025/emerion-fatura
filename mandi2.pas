@@ -201,7 +201,7 @@ end;
 procedure TFMMANDI2.bDiCancelarClick(Sender: TObject);
 begin
   inherited;
-  if MessageDlg('Deseja Cancelar as Altera��es?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg('Deseja Cancelar as Alteracoes?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
     SQLDI.Cancel;
     SQLDIDET.Cancel;
@@ -241,12 +241,12 @@ begin
       fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
       ;
       try
-        ApplyUpdates; {Tenta aplicar as altera��es}
+        ApplyUpdates; {Tenta aplicar as alteracoes}
         ;
-        fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
         ;
       except
-        fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
         ;
       end;
       CommitUpdates; {sucesso!, limpa o cache...}
@@ -283,12 +283,12 @@ begin
     fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
 
     try
-      ApplyUpdates; {Tenta aplicar as altera��es}
+      ApplyUpdates; {Tenta aplicar as alteracoes}
 
-      fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
 
     except
-      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
 
     end;
     CommitUpdates; {sucesso!, limpa o cache...}
@@ -327,12 +327,12 @@ begin
     fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
 
     try
-      ApplyUpdates; {Tenta aplicar as altera��es}
+      ApplyUpdates; {Tenta aplicar as alteracoes}
 
-      fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
 
     except
-      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
 
     end;
     CommitUpdates; {sucesso!, limpa o cache...}
@@ -393,12 +393,12 @@ begin
       fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
       ;
       try
-        ApplyUpdates; {Tenta aplicar as altera��es}
+        ApplyUpdates; {Tenta aplicar as alteracoes}
         ;
-        fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
         ;
       except
-        fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
         ;
       end;
       CommitUpdates; {sucesso!, limpa o cache...}

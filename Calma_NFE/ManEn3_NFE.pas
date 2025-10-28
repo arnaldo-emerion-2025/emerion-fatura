@@ -888,15 +888,15 @@ begin
 
       try
 
-        ApplyUpdates; {Tenta aplicar as altera��es}
+        ApplyUpdates; {Tenta aplicar as alteracoes}
         ;
 
-        fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
         ;
 
       except
 
-        fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
         ;
 
         if FatDv2.State = dsBrowse then
@@ -1497,11 +1497,11 @@ begin
       with Fatdev do
       try
         fmManGDB.dbMain.StartTransaction; //Inicia a Transa��o
-        ApplyUpdates; //Tenta aplicar as altera��es
-        fmManGDB.dbMain.Commit; //confirma todas as altera��es fechando a transa��o
+        ApplyUpdates; //Tenta aplicar as alteracoes
+        fmManGDB.dbMain.Commit; //confirma todas as alteracoes fechando a transa��o
       except
         begin
-          fmManGDB.dbMain.Rollback; //desfaz as altera��es se acontecer um erro
+          fmManGDB.dbMain.Rollback; //desfaz as alteracoes se acontecer um erro
           if Fatdev.State <> dsBrowse then
             Fatdev.CancelUpdates;
         end;
@@ -2168,7 +2168,7 @@ begin
     chave := chaven;
 
     Fatdev.Post;
-    Fatdev.ApplyUpdates; //Tenta aplicar as altera��es
+    Fatdev.ApplyUpdates; //Tenta aplicar as alteracoes
 
     FatArq.Active := false;
     with Fatarq do
@@ -2190,12 +2190,12 @@ begin
       fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
       ;
       try
-        ApplyUpdates; {Tenta aplicar as altera��es}
+        ApplyUpdates; {Tenta aplicar as alteracoes}
         ;
-        fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
         ;
       except
-        fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
         ;
       end;
       CommitUpdates; {sucesso!, limpa o cache...}
@@ -2298,15 +2298,15 @@ begin
 
               try
 
-                ApplyUpdates; {Tenta aplicar as altera��es}
+                ApplyUpdates; {Tenta aplicar as alteracoes}
                 ;
 
-                fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
                 ;
 
               except
 
-                fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+                fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
                 ;
 
                 if FatDev.State <> dsBrowse then
@@ -2390,11 +2390,11 @@ begin
 
     try
       fmManGDB.dbMain.StartTransaction; //Inicia a Transa��o
-      FatDev.ApplyUpdates; //Tenta aplicar as altera��es
-      fmManGDB.dbMain.Commit; //confirma todas as altera��es fechando a transa��o
+      FatDev.ApplyUpdates; //Tenta aplicar as alteracoes
+      fmManGDB.dbMain.Commit; //confirma todas as alteracoes fechando a transa��o
     except
       begin
-        fmManGDB.dbMain.Rollback; //desfaz as altera��es se acontecer um erro
+        fmManGDB.dbMain.Rollback; //desfaz as alteracoes se acontecer um erro
         if FatDev.State <> dsBrowse then
           FatDev.CancelUpdates;
       end;

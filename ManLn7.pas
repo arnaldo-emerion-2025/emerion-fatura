@@ -281,11 +281,11 @@ begin
     quSQL.SQL.Text := ' Delete From FatBol Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
     quSQL.ExecSQL;
 
-    fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
   except
     on E: exception do
     begin
-      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
       MessageBox(handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
     end;
   end;
@@ -331,11 +331,11 @@ begin
       if DebugHook > 0 then
         clipboard.asText := Text;
 
-    fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
   except
     on E: exception do
     begin
-      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
       MessageBox(handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
     end;
   end;
@@ -849,15 +849,15 @@ begin
 
         try
 
-          ApplyUpdates; {Tenta aplicar as altera��es}
+          ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
           ;
 
           if FatBol.State <> dsBrowse then
@@ -988,12 +988,12 @@ begin
           Text := ' Update FatBol set FlgAlt = ' + QuotedStr('Sim') + ' Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
           ExecSQL;
 
-          fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
 
         except
           on E: exception do
           begin
-            fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+            fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
 
             MessageBox(Self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
           end;
@@ -1109,12 +1109,12 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
                     ;
                   except
                     on E: exception do
                     begin
-                      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
                       ;
                       MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
                     end;
@@ -1191,12 +1191,12 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
                     ;
                   except
                     on E: exception do
                     begin
-                      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
                       ;
                       MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
                     end;
@@ -1265,12 +1265,12 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
                     ;
                   except
                     on E: exception do
                     begin
-                      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
                       ;
                       MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
                     end;
@@ -1349,12 +1349,12 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
                     ;
                   except
                     on E: exception do
                     begin
-                      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
                       ;
                       MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
                     end;
@@ -1430,12 +1430,12 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
                     ;
                   except
                     on E: exception do
                     begin
-                      fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
                       ;
                       MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
                     end;
@@ -1465,12 +1465,12 @@ begin
             Text := ' Update FatBol set FlgAlt = ' + QuotedStr('ENV') + ' Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
             ExecSQL;
 
-            fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
             ;
           except
             on E: exception do
             begin
-              fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+              fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
               ;
               MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
             end;
@@ -1517,12 +1517,12 @@ begin
             Text := ' Delete From FatBol Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
             ExecSQL;
 
-            fmManGDB.dbMain.Commit; {confirma todas as altera��es fechando a transa��o}
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
             ;
           except
             on E: exception do
             begin
-              fmManGDB.dbMain.Rollback; {desfaz as altera��es se acontecer um erro}
+              fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
               ;
               MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
             end;

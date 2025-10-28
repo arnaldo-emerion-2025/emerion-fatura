@@ -277,7 +277,7 @@ begin
 
 
                     fmManLr3.cmpnfs.post;
-                    fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as altera��es};
+                    fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alteracoes};
                     fmManLr3.cmpnfs.CommitUpdates;
                     fmManCnF.Enabled := True;
                     fmManCnF.close;
@@ -312,7 +312,7 @@ begin
                   fmManLr3.cmpnfsNFETHCANC.Value := 1;
                   fmManLr3.cmpnfsHreCan.Value := TimeToStr(Time);
                   fmManLr3.cmpnfs.post;
-                  fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as altera��es};
+                  fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alteracoes};
                   fmManLr3.cmpnfs.CommitUpdates;
                   fmManCnF.Enabled := True;
                   fmManCnF.close;
