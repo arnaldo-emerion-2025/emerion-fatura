@@ -260,45 +260,45 @@ begin
   begin
 
     if Trim(fmManNge_NFE2.FatGerUfeTra.Value) = '' then
-      fmsgErro('UF de entrega é d transportadora obrigatório. Verifique e tente novamente.', EdUfeTra);
+      fmsgErro('UF de entrega ï¿½ d transportadora obrigatï¿½rio. Verifique e tente novamente.', EdUfeTra);
 
     if fmManNge_NFE2.FatGerId_TraUfe.Value = 0 then
-      fmsgErro('Código da UF da transportadora é de preenchimento obrigatório. Verifique e tente novamente.', EdUfeTra);
+      fmsgErro('Cï¿½digo da UF da transportadora ï¿½ de preenchimento obrigatï¿½rio. Verifique e tente novamente.', EdUfeTra);
 
     if fmManNge_NFE2.FatGerId_TraCie.Value = 0 then
-      fmsgErro('Cidade da transportadora é de preenchimento obrigatório. Verifique e tente novamente.', EdId_TraCie);
+      fmsgErro('Cidade da transportadora ï¿½ de preenchimento obrigatï¿½rio. Verifique e tente novamente.', EdId_TraCie);
 
   end;
 
   if fmManNge_NFE2.FatGerId_FinUff.Value = 0 then
-    fmsgErro('UF de faturamente é de preenchimento. Verifique e tente novamente.', EdUffCli);
+    fmsgErro('UF de faturamente ï¿½ de preenchimento. Verifique e tente novamente.', EdUffCli);
 
   if fmManNge_NFE2.FatGerId_FinCif.Value = 0 then
-    fmsgErro('Código da cidade de faturamente é de preenchimento. Verifique e tente novamente.', EdId_FinCif);
+    fmsgErro('Cï¿½digo da cidade de faturamente ï¿½ de preenchimento. Verifique e tente novamente.', EdId_FinCif);
 
   if fmManNge_NFE2.FatGerId_FinUfe.Value = 0 then
-    fmsgErro('Código da UF de entrega é de preenchimento. Verifique e tente novamente.', EdId_FinUfe);
+    fmsgErro('Cï¿½digo da UF de entrega ï¿½ de preenchimento. Verifique e tente novamente.', EdId_FinUfe);
 
   if fmManNge_NFE2.FatGerId_FinCie.Value = 0 then
-    fmsgErro('Código da cidade de entrega é de preenchimento. Verifique e tente novamente.', EdId_FinCie);
+    fmsgErro('Cï¿½digo da cidade de entrega ï¿½ de preenchimento. Verifique e tente novamente.', EdId_FinCie);
 
   with fmManNge_NFE2.FatGer do
   begin
 
-    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
     ;
 
     try
 
-      ApplyUpdates; {Tenta aplicar as alterações}
+      ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
       ;
 
-      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+      fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
       ;
 
     except
 
-      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
       ;
 
       if fmManNge_NFE2.FatGer.State = dsBrowse then
@@ -316,17 +316,6 @@ begin
 
   fmManNge_NFE2.FatGer.Close;
   fmManNge_NFE2.FatGer.Open;
-
-  {fmManNge_NFE2.pnBasIc1.Caption := FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerBasIc1.Value);
-  fmManNge_NFE2.pnTotIc1.Caption := FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotIc1.Value);
-  fmManNge_NFE2.pnBasSu1.Caption := FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerBasSu1.Value);
-  fmManNge_NFE2.pnTotSu1.Caption := FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotSu1.Value);
-  fmManNge_NFE2.pnTotIt1.Caption := FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotIt1.Value);
-  fmManNge_NFE2.pnTotFrt.Caption := FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotFrt.Value);
-  fmManNge_NFE2.pnTotSeg.Caption := FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotSeg.Value);
-  fmManNge_NFE2.pnTotDes.Caption := FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotDes.Value);
-  fmManNge_NFE2.pnTotIp1.Caption := FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotIp1.Value);
-  fmManNge_NFE2.pnTotGe1.Caption := FormatFloat('###,###,##0.00', fmManNge_NFE2.FatGerTotGe1.Value);}
 
   try
 
@@ -940,7 +929,7 @@ begin
 
     end
     else
-      fmsgErro('Código para UF da NFe não informado.', EdId_TraCie);
+      fmsgErro('Cï¿½digo para UF da NFe nï¿½o informado.', EdId_TraCie);
 
   end;
 
@@ -979,7 +968,7 @@ begin
 
     end
     else
-      fmsgErro('Código para UF da NFe não informado.', EdId_TraCie);
+      fmsgErro('Cï¿½digo para UF da NFe nï¿½o informado.', EdId_TraCie);
 
   end;
 end;
@@ -1047,7 +1036,7 @@ begin
 
     end
     else
-      fmsgErro('Código para UF da NFe não informado.', EdId_FinCif);
+      fmsgErro('Cï¿½digo para UF da NFe nï¿½o informado.', EdId_FinCif);
 
   end;
 
@@ -1086,7 +1075,7 @@ begin
 
     end
     else
-      fmsgErro('Código para UF da NFe não informado.', EdId_FinCif);
+      fmsgErro('Cï¿½digo para UF da NFe nï¿½o informado.', EdId_FinCif);
 
   end;
 end;
@@ -1154,7 +1143,7 @@ begin
 
     end
     else
-      fmsgErro('Código para UF da NFe não informado.', EdId_FinCie);
+      fmsgErro('Cï¿½digo para UF da NFe nï¿½o informado.', EdId_FinCie);
 
   end;
 
@@ -1193,7 +1182,7 @@ begin
 
     end
     else
-      fmsgErro('Código para UF da NFe não informado.', EdId_FinCie);
+      fmsgErro('Cï¿½digo para UF da NFe nï¿½o informado.', EdId_FinCie);
 
   end;
 end;
@@ -1293,7 +1282,7 @@ begin
 
   end
   else
-    fmsgErro('Código para UF da NFe não informado.', EdId_FinCif);
+    fmsgErro('Cï¿½digo para UF da NFe nï¿½o informado.', EdId_FinCif);
 
 end;
 
@@ -1332,7 +1321,7 @@ begin
 
   end
   else
-    fmsgErro('Código para UF da NFe não informado.', EdId_FinCie);
+    fmsgErro('Cï¿½digo para UF da NFe nï¿½o informado.', EdId_FinCie);
 
 end;
 
@@ -1371,7 +1360,7 @@ begin
 
   end
   else
-    fmsgErro('Código para UF da NFe não informado.', EdId_TraCie);
+    fmsgErro('Cï¿½digo para UF da NFe nï¿½o informado.', EdId_TraCie);
 
 end;
 

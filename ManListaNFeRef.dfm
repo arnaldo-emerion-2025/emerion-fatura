@@ -14,7 +14,6 @@ object fmManListaNFeRef: TfmManListaNFeRef
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  OnActivate = FormActivate
   OnClose = FormClose
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
@@ -127,7 +126,6 @@ object fmManListaNFeRef: TfmManListaNFeRef
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 4
-        OnClick = Button1Click
       end
     end
   end
@@ -385,7 +383,6 @@ object fmManListaNFeRef: TfmManListaNFeRef
         TabOrder = 6
         OnEnter = DBEdit10Enter
         OnExit = DBEdit10Exit
-        OnKeyDown = DBEdit10KeyDown
       end
     end
     object TabSheet2: TTabSheet

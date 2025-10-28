@@ -624,7 +624,7 @@ begin
 
         EdPsqNomEmp.Text := '';
 
-        fmsgErro('Empresa Informada não Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nï¿½o Encontrada.', EdPsqCodEmp);
 
       end;
     end;
@@ -1089,21 +1089,7 @@ begin
       Close;
       Text := ' Select DscPfa From EstPfa' +
         ' Where TipPfa = ''' + 'Saida' + '''' +
-        '   and CodPfa = ''' + EdPsqCodPfa.Text + '''';{ +
-        '   and Exists (Select * From PedPve Where CodPfa = EstPfa.CodPfa' +
-        '                                      and TipPfa = EstPfa.TipPfa' +
-        '                                      and CodVen = :CodVen)';}
-
-      {with Params do
-      begin
-
-        if Trim(EdPsqCodVen.Text) <> '' then
-          Params[0].AsInteger := StrToInt(EdPsqCodVen.Text)
-        else
-          Params[0].AsInteger := 0;
-
-      end;}
-
+        '   and CodPfa = ''' + EdPsqCodPfa.Text + '''';
       Open;
 
       EdPsqNomPfa.Text := FieldByName('DscPfa').AsString;
@@ -1136,16 +1122,8 @@ begin
 
     if Found >= 0 then
     begin
-      //if debughook = 1 then
-      //begin
       fmManNge_NFE2.WindowState := wsNormal;
       fmManNge_NFE2.BringToFront;
-      //end
-      {else
-      begin
-        fmManNge_NFE.WindowState := wsNormal;
-        fmManNge_NFE.BringToFront;
-      end;  }
 
     end
     else
@@ -1208,17 +1186,17 @@ begin
     if Trim(FatGerSitGer.Value) = 'Nao Concluido' then
     begin
 
-      if fMsg('Confirma a Exclusão da Nota Fiscal ?', 'O') then
+      if fMsg('Confirma a Exclusï¿½o da Nota Fiscal ?', 'O') then
       begin
         FatGer.Delete;
         with FatGer do
         begin
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
           try
-            ApplyUpdates; {Tenta aplicar as alterações}
-            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+            ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
+            fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           except
-            fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+            fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
             if FatGer.State <> dsBrowse then
               FatGer.CancelUpdates;
             grGer.SetFocus;
@@ -1236,7 +1214,7 @@ begin
     end
     else
     begin
-      fMsgErro('Nota já concluida. Utiliza a opção de cancelamento de Notas.', nil);
+      fMsgErro('Nota jï¿½ concluida. Utiliza a opï¿½ï¿½o de cancelamento de Notas.', nil);
     end;
   end;
 end;
@@ -1318,10 +1296,10 @@ begin
       begin
 
         if FatGerSitGer.Value = 'Nao Concluido' then
-          fMsg('Operação não Pode ser Realizada. Nota não Emitida', 'E')
+          fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Nota nï¿½o Emitida', 'E')
 
         else if FatGerSitGer.Value = 'Cancelado' then
-          fMsg('Operação não Pode ser Realizada. Nota já Cancelada', 'E');
+          fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Nota jï¿½ Cancelada', 'E');
 
       end;
     end;
@@ -1352,7 +1330,7 @@ begin
   end;
 
   if Found >= 0 then
-    fmsgErro('Existem Emissões de Nota em Andamento. Por Favor Feche o Formulario.', nil)
+    fmsgErro('Existem Emissï¿½es de Nota em Andamento. Por Favor Feche o Formulario.', nil)
   else
     Action := CaFree;
 
@@ -1432,7 +1410,7 @@ begin
   if psaida = 'Nao' then
   begin
 
-    if fMsg('Confirma Alteração da Aliquota de ICMS ?', 'S') then
+    if fMsg('Confirma Alteraï¿½ï¿½o da Aliquota de ICMS ?', 'S') then
     begin
 
       CodEmp := FatGe2CodEmp.Value;
@@ -1443,20 +1421,20 @@ begin
       with FatGe2 do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if FatGe2.State = dsBrowse then
@@ -1495,7 +1473,7 @@ begin
   if psaida = 'Nao' then
   begin
 
-    if fMsg('Confirma Alterações ?', 'S') then
+    if fMsg('Confirma Alteraï¿½ï¿½es ?', 'S') then
     begin
 
       CodEmp := FatGerCodEmp.Value;
@@ -1505,20 +1483,20 @@ begin
       with FatGer do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if FatGer.State = dsBrowse then
@@ -1620,16 +1598,16 @@ begin
   inherited;
 
   if FatGerCodCli.Value > 0 then
-    pnCodCli.Caption := ' Código do Cliente : ' + FNumZeros(IntToStr(FatGerCodCli.Value), 7)
+    pnCodCli.Caption := ' Cï¿½digo do Cliente : ' + FNumZeros(IntToStr(FatGerCodCli.Value), 7)
   else
-    pnCodCli.Caption := ' Código do Cliente : ';
+    pnCodCli.Caption := ' Cï¿½digo do Cliente : ';
 
   pnSitGer.Caption := FatGerSitGer.Value;
   pnTipPfa.Caption := FatGerTipPfa.Value;
 
   pnHreGer.Caption := ' ' + FatGerHreFat.Value;
 
-  pnSitImp.Caption := ' Impressão Confirmada (Sim/Nao) : ' + FatGerFlgImp.Value;
+  pnSitImp.Caption := ' Impressï¿½o Confirmada (Sim/Nao) : ' + FatGerFlgImp.Value;
 
 end;
 
@@ -1654,18 +1632,8 @@ begin
 
     if Found >= 0 then
     begin
-
-      {if debughook = 1 then
-      begin}
       fmManNge_NFE2.WindowState := wsNormal;
       fmManNge_NFE2.BringToFront;
-      {end
-      else
-      begin
-        fmManNge_NFE.WindowState := wsNormal;
-        fmManNge_NFE.BringToFront;
-      end;}
-
     end
     else
     begin

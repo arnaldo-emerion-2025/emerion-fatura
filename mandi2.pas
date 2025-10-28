@@ -131,10 +131,6 @@ type
   public
     sContinuar: Boolean;
     function ShowModal(TB, ID: string): integer;
-    procedure enableControlsDI();
-    procedure disableControlsDI();
-    procedure enableControlsIte();
-    procedure disableControlsIte();
     { Public declarations }
   end;
 
@@ -170,9 +166,6 @@ begin
 
   SQLDIDET.Active := false;
   SQLDIDET.Active := True;
-
-  DisableControlsDI;
-  DisableControlsITE;
 end;
 
 procedure TFMMANDI2.FormShow(Sender: TObject);
@@ -201,7 +194,6 @@ begin
   sqldi.Active := False;
   sqldi.Active := True;
   sqldi.Last;
-  EnableControlsDI;
 
   panel1.SendToBack;
 end;
@@ -214,8 +206,6 @@ begin
     SQLDI.Cancel;
     SQLDIDET.Cancel;
     panel1.SendToBack;
-    EnableControlsDI;
-    EnableControlsIte;
   end;
 end;
 
@@ -227,11 +217,6 @@ begin
   begin
     if messagebox(Handle, 'Adi��o da DI n�o conclu�da. Deseja Cancelar?', 'Inclu��o de DI', MB_ICONQUESTION + MB_YESNO) = IDYES then
       SQLDIDET.Cancel;
-    EnableControlsITE
-  end
-  else
-  begin
-    DIsableControlsIte;
   end;
 
   SQLDIDET.Active := true;
@@ -253,7 +238,6 @@ begin
     SQLDIDET.Delete;
     with SQLDIDET do
     begin
-      EnableControlsIte;
       fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
       ;
       try
@@ -389,13 +373,11 @@ begin
   if SQLDI.State <> DsBrowse then
   begin
     MessageBox(handle, 'Necess�rio concluir a DI antes de incluir nova.', 'Dados da DI', mb_ok + MB_ICONINFORMATION);
-    EnableControlsDI;
     Abort;
   end
   else
   begin
     SQLDI.Append;
-    DisableControlsDI;
     edNumDI.SetFocus;
   end;
 end;
@@ -406,7 +388,6 @@ begin
   if MessageDlg('Confirma Exclus�o de Dados da DI?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
     sqldi.Delete;
-    EnableControlsDI;
     with sqldi do
     begin
       fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
@@ -435,8 +416,6 @@ begin
     sqldidet.Active := False;
     sqldidet.Active := True;
     sqldidet.Last;
-
-    EnableControlsIte;
   end;
 end;
 

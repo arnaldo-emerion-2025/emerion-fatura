@@ -182,7 +182,7 @@ begin
 end;
 
 {*************************************************************************
-* Rotina: setup da aplicação
+* Rotina: setup da aplicaï¿½ï¿½o
 *************************************************************************}
 procedure TfmManPri.FormCreate(Sender: TObject);
 begin
@@ -266,7 +266,7 @@ begin
 end;
 
 {*************************************************************************
-* Rotina: Form de conexão com o banco de dados
+* Rotina: Form de conexï¿½o com o banco de dados
 *************************************************************************}
 procedure TfmManPri.FormShow(Sender: TObject);
 begin
@@ -275,7 +275,7 @@ begin
 end;
 
 {*************************************************************************
-* Rotina: Emissão de Mensagens na Linha de Status
+* Rotina: Emissï¿½o de Mensagens na Linha de Status
 *************************************************************************}
 procedure TfmManPri.ShowHint(Sender: Tobject);
 begin
@@ -297,7 +297,7 @@ begin
 
   sNome := TMenuItem(Sender).Name;
 
-  if Trim( fAcesso(sNome) ) = '' then fmsgErro('Usuario não Possui Acesso a Opção',Nil);
+  if Trim( fAcesso(sNome) ) = '' then fmsgErro('Usuario nï¿½o Possui Acesso a Opï¿½ï¿½o',Nil);
 
   PopMenu.AutoPopup := False;
 
@@ -388,13 +388,6 @@ begin
   if sNome = 'PED030211' then CriarForm(TfmPedR23, fmPedR23);
   if sNome = 'PED030212' then CriarForm(TfmPedR28, fmPedR28);
   if sNome = 'PED030213' then CriarForm(TfmPedR29, fmPedR29);
-
-  {
-  if sNome = 'PED030301' then CriarForm(TfmPedR10, fmPedR10);
-  if sNome = 'PED030302' then CriarForm(TfmPedR30, fmPedR30);
-  if sNome = 'PED030303' then CriarForm(TfmPedR14, fmPedR14);
-  if sNome = 'PED030304' then CriarForm(TfmPedR12, fmPedR12);
-  if sNome = 'PED030305' then CriarForm(TfmPedR26, fmPedR26); }
 
   if sNome = 'PED030401' then CriarForm(TfmPedR32, fmPedR32);
   if sNome = 'PED030402' then CriarForm(TfmGCom01, fmGCom01);
@@ -742,9 +735,9 @@ begin
            fmManPri.Caption := 'Emerion Comercial';
 
         if GEmp_Id > 0 then
-           fmManPri.sbMain.Panels[1].Text := ' Usuário : ' + GUsu_Nm
+           fmManPri.sbMain.Panels[1].Text := ' Usuï¿½rio : ' + GUsu_Nm
         else
-           fmManPri.sbMain.Panels[1].Text := ' Usuário : ';
+           fmManPri.sbMain.Panels[1].Text := ' Usuï¿½rio : ';
 
         fmManPri.sbMain.Panels[2].Text := DateToStr(Date);
 
@@ -795,9 +788,9 @@ begin
      fmManPri.Caption := 'Emerion Comercial';
 
   if GEmp_Id > 0 then
-     fmManPri.sbMain.Panels[1].Text := ' Usuário : ' + GUsu_Nm
+     fmManPri.sbMain.Panels[1].Text := ' Usuï¿½rio : ' + GUsu_Nm
   else
-     fmManPri.sbMain.Panels[1].Text := ' Usuário : ';
+     fmManPri.sbMain.Panels[1].Text := ' Usuï¿½rio : ';
 
   fmManPri.sbMain.Panels[2].Text := DateToStr(Date);
 

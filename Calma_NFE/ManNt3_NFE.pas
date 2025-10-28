@@ -98,7 +98,7 @@ begin
   inherited;
 
   if key = 119 then
-  begin // Observações Sobre o Cliente
+  begin // Observaï¿½ï¿½es Sobre o Cliente
 
     if fmManNot_NFE.FatParLerObs.Value = 'Sim' then
     begin
@@ -160,20 +160,20 @@ begin
       with fmManNot_nfe.FatPed do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if fmManNot_nfe.FatPed.State <> dsBrowse then
@@ -230,20 +230,20 @@ begin
     with fmManNot_nfe.FatPed do
     begin
 
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
       ;
 
       try
 
-        ApplyUpdates; {Tenta aplicar as alterações}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
         ;
 
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
         ;
 
       except
 
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
         ;
 
         if fmManNot_nfe.FatPed.State <> dsBrowse then
@@ -335,21 +335,17 @@ begin
     if (Trim(ObsCli) <> '') then
        begin
           pnObsCli.Color   := clRed;
-          pnObsCli.Caption := 'F8 - LER OBSERVAÇÔES SOBRE O CLIENTE';
+          pnObsCli.Caption := 'F8 - LER OBSERVAï¿½ï¿½ES SOBRE O CLIENTE';
           pnObsCli.Visible := True;
        end
     else
       if (Trim(obsGerais) <> '') then
          begin
             pnObsCli.Color   := $00FAB689;
-            pnObsCli.Caption := 'F8 - LER OBSERVAÇÔES DO PEDIDO';
+            pnObsCli.Caption := 'F8 - LER OBSERVAï¿½ï¿½ES DO PEDIDO';
             pnObsCli.Visible := True;
          end;
   end;
-
-  {EdTotGer.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedTotGer.Value);
-  EdLanNot.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedLanNot.Value);
-  EdSldNot.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedSldNot.Value);}
 
   FatPe3.Close;
   FatPe3.Params[0].AsInteger := fmManNot_NFE.FatPedCodEmp.Value;
@@ -388,7 +384,7 @@ begin
     begin
 
       if SeqObs = 0 then
-        fmsgErro('Por favor leia as observações sobre o cliente antes de prosseguir.', nil);
+        fmsgErro('Por favor leia as observaï¿½ï¿½es sobre o cliente antes de prosseguir.', nil);
 
     end;
   end;
@@ -397,9 +393,9 @@ begin
   begin
 
     if fmManNot_NFE.FatPedLanNot.Value < fmManNot_NFE.FatPedTotGer.Value then
-      fmsgErro('Total de vencimentos informados é menor que o total a ser lançado.', nil)
+      fmsgErro('Total de vencimentos informados ï¿½ menor que o total a ser lanï¿½ado.', nil)
     else
-      fmsgErro('Total de vencimentos informados é maior que o total a ser lançado.', nil);
+      fmsgErro('Total de vencimentos informados ï¿½ maior que o total a ser lanï¿½ado.', nil);
 
   end
   else
@@ -425,7 +421,7 @@ begin
     end
     else
     begin
-      if fMsg('Existe uma diferença de ' + formatfloat('R$ #,##0.00', fmManNot_NFE.FatPedTotDup.asfloat) +
+      if fMsg('Existe uma diferenï¿½a de ' + formatfloat('R$ #,##0.00', fmManNot_NFE.FatPedTotDup.asfloat) +
         '. Deseja gerar boletos?', 'S') then
       begin
 
@@ -533,7 +529,7 @@ begin
     FinBan.Open;
 
     if FinBanCodBan.Value = 0 then
-      fmsgErro('Banco Informado não Encontrado', EdCodBan);
+      fmsgErro('Banco Informado nï¿½o Encontrado', EdCodBan);
 
   end;
 end;
@@ -577,20 +573,20 @@ begin
       with FatPe3 do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if FatPe3.State <> dsBrowse then
@@ -611,10 +607,6 @@ begin
 
       fmManNot_NFE.FatPed.Close;
       fmManNot_NFE.FatPed.Open;
-
-      {EdTotGer.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedTotGer.Value);
-      EdLanNot.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedLanNot.Value);
-      EdSldNot.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedSldNot.Value);}
 
       if SeqPe3 < fmManNot_NFE.FatPedQtpNot.Value then
         FatPe3.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqFat;SeqPe3', VarArrayOf([FatPe3CodEmp.Value, FatPe3DteRes.Value, FatPe3NumRes.Value, FatPe3SeqLib.Value,
@@ -731,10 +723,10 @@ begin
       FinBan.Open;
 
       if FinBanCodBan.Value = 0 then
-        fmsgErro('Banco Informado não Encontrado', EdCodBan);
+        fmsgErro('Banco Informado nï¿½o Encontrado', EdCodBan);
 
       if FatPe3VlpPe3.Value = 0 then
-        fmsgErro('Valor da Parcela para o Vencimento não Informado', EdVlpPe3);
+        fmsgErro('Valor da Parcela para o Vencimento nï¿½o Informado', EdVlpPe3);
 
       if FatPe3DtvPe3.Value < fmManNot_NFE.FatPedDteFat.Value then
         fmsgErro('Data de Vencimento Informada Inferior a Data de Faturamento.', EdDtvPe3);
@@ -745,20 +737,20 @@ begin
         with FatPe3 do
         begin
 
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
           ;
 
           try
 
-            ApplyUpdates; {Tenta aplicar as alterações}
+            ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
             ;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+            fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
             ;
 
           except
 
-            fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+            fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
             ;
 
             if FatPe3.State = dsBrowse then
@@ -780,10 +772,6 @@ begin
         fmManNot_NFE.FatPed.Close;
         fmManNot_NFE.FatPed.Open;
 
-        {EdTotGer.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedTotGer.Value);
-        EdLanNot.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedLanNot.Value);
-        EdSldNot.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedSldNot.Value);}
-
         FatPe3.Append;
 
         EdPraPe3.SetFocus;
@@ -797,20 +785,20 @@ begin
         with FatPe3 do
         begin
 
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
           ;
 
           try
 
-            ApplyUpdates; {Tenta aplicar as alterações}
+            ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
             ;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+            fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
             ;
 
           except
 
-            fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+            fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
             ;
 
             if FatPe3.State = dsBrowse then
@@ -834,10 +822,6 @@ begin
 
         FatPe3.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqFat;SeqPe3', VarArrayOf([fmManNot_NFE.FatPedCodEmp.Value, fmManNot_NFE.FatPedDteRes.Value,
           fmManNot_NFE.FatPedNumRes.Value, fmManNot_NFE.FatPedSeqLib.Value, fmManNot_NFE.FatPedSeqFat.Value, SeqPe3]), [LoPartialKey]);
-
-        {EdTotGer.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedTotGer.Value);
-        EdLanNot.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedLanNot.Value);
-        EdSldNot.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedSldNot.Value);}
 
         EdPraPe3.Enabled := False;
         EdDtvPe3.Enabled := False;

@@ -152,7 +152,6 @@ type
     procedure ABE0106Click(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Licenciamento1Click(Sender: TObject);
-    procedure EditarNfeClick(Sender: TObject);
 
   private
     ObjFocusColor: TFocusColor;
@@ -204,11 +203,11 @@ uses Bbgeral, Bbacesso, Bbmensag, Bberro, ManGDB, ManInf, VerUsu,
 function TFMmanpri.ValidaEMail(const EMailIn: PChar): Boolean;
 const
   CaraEsp: array[1..40] of string[1] =
-  ('!', '#', '$', '%', '¨', '&', '*',
-    '(', ')', '+', '=', '§', '¬', '¢', '¹', '²',
-    '³', '£', '´', '`', 'ç', 'Ç', ',', ';', ':',
+  ('!', '#', '$', '%', 'ï¿½', '&', '*',
+    '(', ')', '+', '=', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½',
+    'ï¿½', 'ï¿½', 'ï¿½', '`', 'ï¿½', 'ï¿½', ',', ';', ':',
     '<', '>', '~', '^', '?', '/', '', '|', '[', ']', '{', '}',
-    'º', 'ª', '°');
+    'ï¿½', 'ï¿½', 'ï¿½');
 var
   i, cont: integer;
   EMail: ShortString;
@@ -282,7 +281,7 @@ begin
 end;
 
 {*************************************************************************
-* Rotina: setup da aplicação
+* Rotina: setup da aplicaï¿½ï¿½o
 *************************************************************************}
 
 procedure TfmManPri.FormCreate(Sender: TObject);
@@ -347,7 +346,7 @@ begin
 end;
 
 {*************************************************************************
-* Rotina: Form de conexão com o banco de dados
+* Rotina: Form de conexï¿½o com o banco de dados
 *************************************************************************}
 
 procedure TfmManPri.FormShow(Sender: TObject);
@@ -361,7 +360,7 @@ begin
 end;
 
 {*************************************************************************
-* Rotina: Emissão de Mensagens na Linha de Status
+* Rotina: Emissï¿½o de Mensagens na Linha de Status
 *************************************************************************}
 
 procedure TfmManPri.ShowHint(Sender: Tobject);
@@ -381,7 +380,7 @@ begin
   sNome := TMenuItem(Sender).Name;
 
   if Trim(fAcesso(sNome)) = '' then
-    fmsgErro('Usuario não Possui Acesso a Opção', nil);
+    fmsgErro('Usuario nï¿½o Possui Acesso a Opï¿½ï¿½o', nil);
 
   PopMenu.AutoPopup := False;
 
@@ -934,7 +933,7 @@ begin
   Application.ProcessMessages;
 
   //verificarValidadeCertificado;
-  pEmpCli := inttostr(GEmp_Id) + '||' + inttostr(GUsu_Id) + '||'; //parametro padrão para envio de NFE
+  pEmpCli := inttostr(GEmp_Id) + '||' + inttostr(GUsu_Id) + '||'; //parametro padrï¿½o para envio de NFE
 
 end;
 
@@ -1165,16 +1164,6 @@ begin
   end;
 end;
 
-procedure TfmManPri.EditarNfeClick(Sender: TObject);
-begin
-  {try
-     FrmEditNfe := TFrmEditNfe.Create(Self);
-     FrmEditNfe.ShowModal;
-  finally
-     FreeAndNil(FrmEditNfe);
-  end;  }
-end;
-
 procedure TfmManPri.ComboBox_AutoWidth(const theComboBox: TCombobox);
 const
   HORIZONTAL_PADDING = 4;
@@ -1208,8 +1197,8 @@ begin
 end;
 
 /////////////////////////////////////////////////////////////////////////////////////
-//procedure que verifica a data de validade dos certificados instalados na máquina //
-//se o certificado vencer dentro de 15 dias, um alerta é exibido                   //
+//procedure que verifica a data de validade dos certificados instalados na mï¿½quina //
+//se o certificado vencer dentro de 15 dias, um alerta ï¿½ exibido                   //
 /////////////////////////////////////////////////////////////////////////////////////
 
 procedure TfmManPri.verificarValidadeCertificado;
@@ -1242,7 +1231,7 @@ begin
         msg := 'O Certificado ' + cert.GetInfo(CAPICOM_CERT_INFO_SUBJECT_SIMPLE_NAME) + #13 +
           'Vence/Venceu em: ' + FormatDateTime('dd/mm/yyy', cert.ValidToDate) + #13 + #13 +
           'Providencie um certificado do tipo A1';
-        Application.MessageBox(pChar(msg), 'Atenção', mb_ok + MB_ICONWARNING);
+        Application.MessageBox(pChar(msg), 'Atenï¿½ï¿½o', mb_ok + MB_ICONWARNING);
       end;
     end;
 
@@ -1327,7 +1316,7 @@ begin
 
     if strExecuta = 'FATPED_DENEGADA' then
     begin
-      showmessage('Não programada Denegada');
+      showmessage('Nï¿½o programada Denegada');
     end;
 
     if strExecuta = 'ERRO' then

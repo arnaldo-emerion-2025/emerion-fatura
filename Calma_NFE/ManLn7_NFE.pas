@@ -2653,15 +2653,6 @@ begin
         FatArq.ApplyUpdates;
         FatArq.Close;
 
-        {EnviaEmailNFe(IniFile,//Caminho do INI
-        FatPedEm1Cli.AsString,//Email Cliente
-        FatPedCODTRA.AsString,//Cod. Transportadora
-        FatPedNroNfs.AsString,//Nro NF
-        Chave,//Chave da Danfe
-        NomEmp,//Nome da Empresa
-        eProtocolo,//Protocolo
-        CaminhoRetorno,//Caminho do retorno
-        CaminhoPDF);//Caminho do Pdf}
          ////============================== Mandando E-mail Para o Cliente ==== ////
 
         ini := TIniFile.create(IniFile);
@@ -2920,18 +2911,6 @@ begin
 
     fmmangdb.dbMain.Execute(strSql);
 
-    {try
-      fmManGDB.dbMain.StartTransaction; //Inicia a Transa��o
-      FatPed.ApplyUpdates; //Tenta aplicar as altera��es
-      fmManGDB.dbMain.Commit; //confirma todas as altera��es fechando a transa��o
-    except
-      begin
-        fmManGDB.dbMain.Rollback; //desfaz as altera��es se acontecer um erro
-        if FatPed.State <> dsBrowse then
-          FatPed.CancelUpdates;
-      end;
-    end; }
-
     fmmangdb.CliSocket.Socket.SendText(GCodEmpCodUsuServ + 'FATURA||FATPED_ENVIO||' + FatPedID_FATPED.AsString + '||' + inttostr(TipoEnvio) + '||');
 
     FatPed.Close;
@@ -2957,7 +2936,6 @@ var
   TDAnfe: TextFile;
 begin
   inherited;
-  //Chamando o NFeEmerion
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin

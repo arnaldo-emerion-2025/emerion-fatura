@@ -142,12 +142,12 @@ begin
   end;
 
   if Trim(EdPsqCodEmp.Text) = '' then
-    fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdPsqCodEmp);
+    fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdPsqCodEmp);
 
   if Trim(fLimpaStr(EdDteFat1.Text)) = '' then
-    fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdDteFat1);
+    fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdDteFat1);
   if Trim(fLimpaStr(EdDteFat2.Text)) = '' then
-    fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdDteFat2);
+    fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdDteFat2);
 
   sFiltro := '';
 
@@ -791,7 +791,7 @@ begin
   if FatGSINroNfs.Value > 0 then
     bCriarTexto.Enabled := True
   else
-    fmsgErro('Informações para Envio não Encontradas.', EdPsqCodEmp);
+    fmsgErro('Informaï¿½ï¿½es para Envio nï¿½o Encontradas.', EdPsqCodEmp);
 
   grGSI.SetFocus;
 
@@ -939,7 +939,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada não Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nï¿½o Encontrada.', EdPsqCodEmp);
 
       end;
     end;
@@ -1018,7 +1018,7 @@ begin
     if FatGSINroNfs.Value > 0 then
     begin
 
-      if fMsg('Confirma Envio das Informações', 'S') then
+      if fMsg('Confirma Envio das Informaï¿½ï¿½es', 'S') then
       begin
 
         NomArq := 'DC' + copy(DateToStr(EdDteFat1.Date), 7, 4) + copy(DateToStr(EdDteFat2.Date), 4, 2) + '.TXT';
@@ -1500,8 +1500,6 @@ begin
           while not quSql.EOF do
           begin
 
-            //InsNot := Trim(fLimpaStr(quSql.FieldByName('INSCRICAO').AsString)) + fReplicate(' ', 14 - Length(fLImpaStr(quSql.FieldByName('INSCRICAO').AsString)));
-
             InsNot := Trim(fLimpaStr(quSql.FieldByName('INSCRICAO').AsString));
 
             if Length(Trim(InsNot)) < 14 then
@@ -1510,8 +1508,6 @@ begin
             begin
               InsNot := fLimpaStr(InsNot);
             end;
-            {f InsNot = '' then
-               InsNot := 'ISENTO' + fReplicate(' ', 14 - Length('ISENTO'));}
 
             DteNot := DateToStr(quSql.FieldByName('DATA').Value);
             DteNot := copy(DteNot, 7, 4) + copy(DteNot, 4, 2) + copy(DteNot, 1, 2);
@@ -1897,7 +1893,7 @@ begin
 
           pnCaption.Visible := False;
 
-          fMsg('Arquivo Gerado com Sucesso'#10'Quantidade de Registros para Transmissão ' + TrimLeft(TrimRight(IntToStr(TotReg))), 'I');
+          fMsg('Arquivo Gerado com Sucesso'#10'Quantidade de Registros para Transmissï¿½o ' + TrimLeft(TrimRight(IntToStr(TotReg))), 'I');
 
           with quSQL, SQL do
           begin

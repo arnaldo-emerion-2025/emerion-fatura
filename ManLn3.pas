@@ -308,9 +308,6 @@ begin
 
   if Trim(EdPsqId_PedRes.Text) <> '' then
   begin
-    {sFiltroFP := sFiltroFP +
-      ' and Exists(Select * From FatPe2,PedLib Where FatPe2.Id_PedLib = PedLib.Id_PedLib and FatPe2.Id_FatPed = FatPed.Id_FatPed and PedLib.Id_PedRes = ' +
-      QuotedStr(EdPsqId_PedRes.Text) + ')';}
     sFiltroFP := sFiltroFP + ' and FATPED.NUMRES = ' + QuotedStr(EdPsqId_PedRes.Text);
     sFiltroFD := sFiltroFD + ' and FATPED.NUMRES = ' + QuotedStr(EdPsqId_PedRes.Text);
     sFiltroFG := sFiltroFG + ' and 1 <> 1 ';
@@ -429,7 +426,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada não localizada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nï¿½o localizada.', EdPsqCodEmp);
 
       end;
     end;
@@ -974,7 +971,7 @@ begin
   begin
     if Trim(GUsu_Nm) = 'SUPORTE' then
     begin
-      //Inclui xml de nfe sem restrições uso exclusivo para o suporte.
+      //Inclui xml de nfe sem restriï¿½ï¿½es uso exclusivo para o suporte.
       if SalvaXML.Execute then
       begin
 
@@ -1008,15 +1005,15 @@ begin
 
           with FP do
           begin
-            fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
             try
-              ApplyUpdates; {Tenta aplicar as alterações}
+              ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
 
-              fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+              fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
             except
-              fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+              fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
        
               if FP.State <> dsBrowse then
                 FP.CancelUpdates;
@@ -1050,15 +1047,15 @@ begin
 
           with FG do
           begin
-            fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
             try
-              ApplyUpdates; {Tenta aplicar as alterações}
+              ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
 
-              fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+              fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
             except
-              fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+              fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
               if FG.State <> dsBrowse then
                 FG.CancelUpdates;
@@ -1093,15 +1090,15 @@ begin
 
           with FD do
           begin
-            fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
             try
-              ApplyUpdates; {Tenta aplicar as alterações}
+              ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
 
-              fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+              fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
             except
-              fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+              fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
               if FD.State <> dsBrowse then
                 FD.CancelUpdates;

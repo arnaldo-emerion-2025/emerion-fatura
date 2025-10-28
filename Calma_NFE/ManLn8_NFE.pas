@@ -184,7 +184,6 @@ type
   public
     {Public declarations}
     sBase, sFiltro, sOrdem: string;
-    procedure ReemprimeServico;
   end;
 
 var
@@ -239,7 +238,7 @@ begin
     WaitForSingleObject(ProcessInfo.hProcess, Infinite);
     //GetExitCodeProcess (ProcessInfo.hProcess, Result);
   end;
-end; //Estado é o tipo de janela que aparecerá, que pode ser:
+end; //Estado ï¿½ o tipo de janela que aparecerï¿½, que pode ser:
 
 procedure TfmManLn8_NFE.FormCreate(Sender: TObject);
 begin
@@ -373,7 +372,7 @@ begin
     end;
 
     if Trim(quSQL.FieldbyName('ApeEmp').AsString) = '' then
-      fmsgErro('Empresa informada não localizada.', EdPsqCodEmp);
+      fmsgErro('Empresa informada nï¿½o localizada.', EdPsqCodEmp);
 
   end
   else
@@ -733,7 +732,7 @@ begin
 
     pnDteNfe.Caption := ' Processado em: ' + FormatDateTime('dd/mm/yyyy', FatPedDtcNfe.Value);
 
-    pnHreNfe.Caption := ' Horário: ' + FatPedHrcNfe.Value;
+    pnHreNfe.Caption := ' Horï¿½rio: ' + FatPedHrcNfe.Value;
 
   end
   else
@@ -746,7 +745,7 @@ begin
     else
       pnDteNfe.Caption := ' Processado em: ';
 
-    pnHreNfe.Caption := ' Horário: ' + FatPedHrePNF.Value;
+    pnHreNfe.Caption := ' Horï¿½rio: ' + FatPedHrePNF.Value;
 
   end;
 
@@ -757,7 +756,7 @@ begin
 
     pnSitImp.Color := clRed;
 
-    pnSitImp.Caption := 'Impressão confirmada';
+    pnSitImp.Caption := 'Impressï¿½o confirmada';
 
   end
   else
@@ -765,7 +764,7 @@ begin
 
     pnSitImp.Color := clLime;
 
-    pnSitImp.Caption := 'Impressão não confirmada';
+    pnSitImp.Caption := 'Impressï¿½o nï¿½o confirmada';
 
   end;
 end;
@@ -931,7 +930,7 @@ begin
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configuraï¿½ï¿½o para envio de NFe nï¿½o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -1028,9 +1027,9 @@ begin
         end;
 
         if ehomologacao = 1 then
-          epara := inputbox('E-mail do XML', 'Digite o endereço de e-mail do destinatário', 'fernanda@emerion.com.br')
+          epara := inputbox('E-mail do XML', 'Digite o endereï¿½o de e-mail do destinatï¿½rio', 'fernanda@emerion.com.br')
         else
-          ePara := inputbox('E-mail do XML', 'Digite o endereço de e-mail do destinatário', FatPedEm1Cli.Value);
+          ePara := inputbox('E-mail do XML', 'Digite o endereï¿½o de e-mail do destinatï¿½rio', FatPedEm1Cli.Value);
 
         sNumeroNF := copy(fNumZeros(IntToStr(FatPedNroNfs.Value), 9), 1, 3) + '.' +
           copy(fNumZeros(IntToStr(FatPedNroNfs.Value), 9), 4, 3) + '.' +
@@ -1086,7 +1085,7 @@ begin
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configuraï¿½ï¿½o para envio de NFe nï¿½o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -1096,7 +1095,7 @@ begin
   IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
   if not FileExists(inifile) then
   begin
-    showmessage('Erro. Não foi possível localizar o arquivo de configuração da NF-e.');
+    showmessage('Erro. Nï¿½o foi possï¿½vel localizar o arquivo de configuraï¿½ï¿½o da NF-e.');
     sysutils.abort;
   end;
 
@@ -1270,16 +1269,6 @@ begin
         end;
      end;
 
-  {try
-    IdSMTP1.Send(IdMessage1);
-    Application.MessageBox('Email enviado com sucesso!', 'Confirmação', MB_ICONINFORMATION + MB_OK);
-  except
-    on E: Exception do
-    begin
-      Showmessage('Não foi possível enviar o e-mail para o cliente. ' + E.Message);
-    end;
-  end;
-  IdSMTP1.Disconnect;}
   corpomail.Lines.text := memo1.lines.text;
 
 end;
@@ -1305,7 +1294,7 @@ begin
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configuraï¿½ï¿½o para envio de NFe nï¿½o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -1315,7 +1304,7 @@ begin
   IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
   if not FileExists(inifile) then
   begin
-    showmessage('Erro. Não foi possível localizar o arquivo de configuração da NF-e.');
+    showmessage('Erro. Nï¿½o foi possï¿½vel localizar o arquivo de configuraï¿½ï¿½o da NF-e.');
     sysutils.abort;
   end;
 
@@ -1374,17 +1363,8 @@ end;
 procedure TfmManLn8_NFE.Button3Click(Sender: TObject);
 begin
   inherited;
-  SendMailMAPI('Teste de Gerenciador de Email', 'Função gerenciador de email.', 'C:\Users\Sergio\Desktop\Retorno\CB240501.RET',
+  SendMailMAPI('Teste de Gerenciador de Email', 'Funï¿½ï¿½o gerenciador de email.', 'C:\Users\Sergio\Desktop\Retorno\CB240501.RET',
     'Sidnei', 'sidnei@emerion.com.br', 'Sergio', 'sergio@emerion.com.br');
-end;
-
-procedure TfmManLn8_NFE.ReemprimeServico;
-begin
-  {if not fmmangdb.CliSocket.Active then
-  begin
-    fmmangdb.ConectaServico;
-  end;
-  fmmangdb.CliSocket.Socket.SendText(GCodEmpCodUsuServ + 'FATURA||FATPED_IMPRIME||' + FatPedID_FATPED.AsString + '||' );}
 end;
 
 procedure TfmManLn8_NFE.ImprimeDanfe;
@@ -1402,7 +1382,7 @@ begin
 
     if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
     begin
-      if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+      if MessageBox(Handle, 'Arquivo de configuraï¿½ï¿½o para envio de NFe nï¿½o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
         then
       begin
         Abort;
@@ -1412,7 +1392,7 @@ begin
     IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
     if not FileExists(inifile) then
     begin
-      showmessage('Erro. Não foi possível localizar o arquivo de configuração da NF-e.');
+      showmessage('Erro. Nï¿½o foi possï¿½vel localizar o arquivo de configuraï¿½ï¿½o da NF-e.');
       sysutils.abort;
     end;
 
@@ -1448,7 +1428,7 @@ begin
       if FatPedCodEmp.Value > 0 then
       begin
 
-        if fMsg('Confirma impressão da DANFE ?', 'O') then
+        if fMsg('Confirma impressï¿½o da DANFE ?', 'O') then
         begin
 
           AssignFile(TDANFE, CaminhoLeitura + '\' + 'DANFE' + VNumNota + '.txt');
@@ -1476,15 +1456,15 @@ begin
 
               with FatPed do
               begin
-                fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
                 ;
                 try
-                  ApplyUpdates; {Tenta aplicar as alterações}
+                  ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
                   ;
-                  fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                  fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
                   ;
                 except
-                  fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                  fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
                   ;
                   if FatPed.State <> dsBrowse then
                     FatPed.CancelUpdates;
@@ -1500,10 +1480,6 @@ begin
         end;
       end;
     end;
-  end
-  else
-  begin
-    ReemprimeServico;
   end;
 
 end;

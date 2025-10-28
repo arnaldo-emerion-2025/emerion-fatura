@@ -158,19 +158,6 @@ begin
   
   if key = 27 then close;
 
- {if key = 13 then begin
-
-     sCepCli := GerCep.FieldByName('NumCep').AsString;
-     sTenCli := GerCep.FieldByName('TipCep').AsString;
-     sEndCli := GerCep.FieldByName('EndCep').AsString;
-     sBaiCli := GerCep.FieldByName('BaiCep').AsString;
-     sCidCli := GerCep.FieldByName('CidCep').AsString;
-     sUfeCli := GerCep.FieldByName('SigUfe').AsString;
-
-     close;
-
-  end;}
-
   if key = 33 then GerCep.MoveBy(-10); {Page Up}
   if key = 34 then GerCep.MoveBy(10);  {Page Down}
 

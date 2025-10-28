@@ -520,9 +520,9 @@ begin
   inherited;
   if sEnc = 'S' then begin
 
-     if FatGerSitGer.Value = 'Faturado' then fMsg('Operação não Pode ser Realizada. Nota já Emitida.','E')
+     if FatGerSitGer.Value = 'Faturado' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Nota jï¿½ Emitida.','E')
 
-     else if FatGerSitGer.Value = 'Cancelado' then fMsg('Operação não Pode ser Realizada. Nota Cancelada.','E');
+     else if FatGerSitGer.Value = 'Cancelado' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Nota Cancelada.','E');
 
      Finalizar := 'S';
 
@@ -611,7 +611,7 @@ begin
   inherited;
   if FatGer.State <> dsBrowse then begin
 
-     if FatGerDteFat.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio não Informado',EdDteFat);
+     if FatGerDteFat.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado',EdDteFat);
 
      Status := 'dsEdit';
 
@@ -619,13 +619,13 @@ begin
 
         Status := 'dsInsert';
 
-        if FatGerCodCli.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio não Informado.',EdCodCli);
+        if FatGerCodCli.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.',EdCodCli);
 
-        if FatGerCodVen.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio não Informado.',EdCodVen);
+        if FatGerCodVen.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.',EdCodVen);
 
-        if Trim( FatGerCodPfa.Value ) = '' then fmsgErro('Campo de Preenchimento Obrigatorio não Informado.',EdCodPfa);
+        if Trim( FatGerCodPfa.Value ) = '' then fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.',EdCodPfa);
 
-        if Trim( FatGerUfeGer.Value ) = '' then fmsgErro('Endereço de Faturamento do Cliente Esta Incompleto.',EdCodCli);
+        if Trim( FatGerUfeGer.Value ) = '' then fmsgErro('Endereï¿½o de Faturamento do Cliente Esta Incompleto.',EdCodCli);
 
         Randomize;
         SeqGer := copy(FormatDateTime('dd/mm/yyyy',Date),1,2)+
@@ -645,17 +645,17 @@ begin
 
      with FatGer do begin
 
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
           try
 
-             ApplyUpdates; {Tenta aplicar as alterações};
+             ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-             fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+             fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
           except
 
-             fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+             fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
              if FatGer.State = dsBrowse then FatGer.Edit;
 
@@ -845,7 +845,7 @@ begin
 
                  pnApeEmp.Caption := '';
 
-                 fmsgErro('Empresa Informada não Encontrada',EdCodEmp);
+                 fmsgErro('Empresa Informada nï¿½o Encontrada',EdCodEmp);
 
               end;
 
@@ -855,7 +855,7 @@ begin
 
               pnApeEmp.Caption := '';
 
-              fmsgErro('Campo de Preenchimento Obrigátorio não Informado',EdCodEmp);
+              fmsgErro('Campo de Preenchimento Obrigï¿½torio nï¿½o Informado',EdCodEmp);
 
            end;
         end;
@@ -1047,7 +1047,7 @@ begin
 
                  pnNomVen.Caption := quSQL.FieldbyName('ApeVen').AsString;
 
-                 if Trim( FatGerUfeGer.Value ) = '' then fmsgErro('Endereço de Faturamento do Cliente Incompleto. Falta UF',EdCodCli);
+                 if Trim( FatGerUfeGer.Value ) = '' then fmsgErro('Endereï¿½o de Faturamento do Cliente Incompleto. Falta UF',EdCodCli);
 
                  end
               else
@@ -1058,7 +1058,7 @@ begin
                  pnUfeGer.Caption := '';
                  pnNomVen.Caption := '';
 
-                 fmsgErro('Cliente Informado não Encontrado',EdCodCli);
+                 fmsgErro('Cliente Informado nï¿½o Encontrado',EdCodCli);
 
               end;
 
@@ -1071,7 +1071,7 @@ begin
               pnCgcCli.Caption := '';
               pnNomVen.Caption := '';
 
-              fmsgErro('Campo de Preenchimento Obrigátorio não Informado',EdCodCli);
+              fmsgErro('Campo de Preenchimento Obrigï¿½torio nï¿½o Informado',EdCodCli);
 
            end;
         end;
@@ -1197,7 +1197,7 @@ begin
 
                  pnNomVen.Caption := '';
 
-                 fmsgErro('Vendedor Informado não Encontrado',EdCodVen);
+                 fmsgErro('Vendedor Informado nï¿½o Encontrado',EdCodVen);
 
               end;
 
@@ -1207,7 +1207,7 @@ begin
 
               pnNomVen.Caption := '';
 
-              fmsgErro('Campo de Preenchimento Obrigatorio não Informado',EdCodVen);
+              fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado',EdCodVen);
 
            end;
 
@@ -1217,7 +1217,7 @@ begin
 
            pnNomVen.Caption := '';
 
-           fmsgErro('Vendedor Informado não Encontrado',EdCodVen);
+           fmsgErro('Vendedor Informado nï¿½o Encontrado',EdCodVen);
 
         end;
      end;
@@ -1358,7 +1358,7 @@ begin
 
                  pnNomPfa.Caption := '';
 
-                 fmsgErro('Padrão de Faturamento Informado não Encontrado',EdCodPfa);
+                 fmsgErro('Padrï¿½o de Faturamento Informado nï¿½o Encontrado',EdCodPfa);
 
               end;
 
@@ -1368,7 +1368,7 @@ begin
 
               pnNomPfa.Caption := '';
 
-              fmsgErro('Campo de Preenchimento Obrigatorio não Informado',EdCodPfa);
+              fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado',EdCodPfa);
 
            end;
         end;
@@ -1586,7 +1586,7 @@ begin
 
                     end
                  else
-                    fmsgErro('Classificação Informada não Encontrada.',EdCodClp);
+                    fmsgErro('Classificaï¿½ï¿½o Informada nï¿½o Encontrada.',EdCodClp);
 
                  end
               else
@@ -1677,7 +1677,7 @@ begin
 
               end
            else
-              fmsgErro('Classificação Informada não Encontrada.',EdCodClp);
+              fmsgErro('Classificaï¿½ï¿½o Informada nï¿½o Encontrada.',EdCodClp);
 
            end
         else
@@ -1685,7 +1685,7 @@ begin
 
            if EdCodClp.Enabled then begin
 
-              if Trim( FatGe2CodClp.Value ) = '' then fmsgErro('Classificação Informada não Encontrada.',EdCodClp);
+              if Trim( FatGe2CodClp.Value ) = '' then fmsgErro('Classificaï¿½ï¿½o Informada nï¿½o Encontrada.',EdCodClp);
 
            end;
         end;
@@ -1945,13 +1945,13 @@ begin
 
                  end;
 
-                 if quSql.FieldbyName('Reg').AsInteger = 0 then fmsgErro('Grupo Informado não Encontrado.',EdCodGru);
+                 if quSql.FieldbyName('Reg').AsInteger = 0 then fmsgErro('Grupo Informado nï¿½o Encontrado.',EdCodGru);
 
               end;
 
               end
            else
-              fmsgErro('Grupo Informado não Encontrado.',EdCodGru);
+              fmsgErro('Grupo Informado nï¿½o Encontrado.',EdCodGru);
 
            end
         else
@@ -1959,7 +1959,7 @@ begin
 
            if EdCodGru.Enabled then begin
 
-              if Trim( FatGe2CodGru.Value ) = '' then fmsgErro('Grupo Informado não Encontrado.',EdCodGru);
+              if Trim( FatGe2CodGru.Value ) = '' then fmsgErro('Grupo Informado nï¿½o Encontrado.',EdCodGru);
 
            end;
         end;
@@ -2110,7 +2110,7 @@ begin
                               '   and CodSub = '+ QuotedStr(FatGe2CodSub.Value) ;
                       Open;
 
-                      if quSql.FieldbyName('Reg').AsInteger = 0 then fmsgErro('Grupo e Sub-Grupo não Encontrado.',EdCodGru);
+                      if quSql.FieldbyName('Reg').AsInteger = 0 then fmsgErro('Grupo e Sub-Grupo nï¿½o Encontrado.',EdCodGru);
 
                  end;
               end;
@@ -2121,14 +2121,14 @@ begin
 
               if EdCodSub.Enabled then begin
 
-                 if Trim( FatGe2CodSub.Value ) = '' then fmsgErro('Sub-Grupo Informado não Encontrado.',EdCodSub);
+                 if Trim( FatGe2CodSub.Value ) = '' then fmsgErro('Sub-Grupo Informado nï¿½o Encontrado.',EdCodSub);
 
               end;
            end;
 
            end
         else
-           fmsgErro('Sub-Grupo Informado não Encontrado.',EdCodSub);
+           fmsgErro('Sub-Grupo Informado nï¿½o Encontrado.',EdCodSub);
      end;
   end;
 end;
@@ -2343,14 +2343,6 @@ begin
                                  '   and EstIcm.TipIcm = '+ QuotedStr(FatGe2TipIcm.Value) ;
                          Open;
 
-                         {Close;
-                         Text := ' Select EstIcm.CodIcm,'+
-                                 '        EstIcm.CodSt1,'+
-                                 '        EstIcm.CodSt2,'+
-                                 '        EstIcm.PerIcm From EstIcm'+
-                                 ' Where EstIcm.ID_ESTICM = ' + QuotedStr(FatGe2TipIcm.Value) ;
-                         Open;}
-
                     end;
 
                     if Trim( quSql.FieldbyName('CodIcm').AsString ) <> '' then begin
@@ -2431,17 +2423,17 @@ begin
                                     '   and EstQte.CodCor = '+ QuotedStr(FatGe2CodCor.Value) ;
                             Open;
 
-                            if FieldbyName('QtdReg').AsInteger = 0 then fmsgErro('Item Informado não Encontrado no Estoque da Empresa.',EdCodPro);
+                            if FieldbyName('QtdReg').AsInteger = 0 then fmsgErro('Item Informado nï¿½o Encontrado no Estoque da Empresa.',EdCodPro);
 
                        end;
 
                        end
                     else
-                       fmsgErro('Item Informado não Encontrado na Empresa.',EdCodPro);
+                       fmsgErro('Item Informado nï¿½o Encontrado na Empresa.',EdCodPro);
 
                     end
                  else
-                    fmsgErro('Item Informado não Encontrado.',EdCodPro);
+                    fmsgErro('Item Informado nï¿½o Encontrado.',EdCodPro);
 
               end;
 
@@ -2451,14 +2443,14 @@ begin
 
               if EdCodPro.Enabled then begin
 
-                 if Trim( FatGe2CodPro.Value ) = '' then fmsgErro('Item Informado não Encontrado.',EdCodPro);
+                 if Trim( FatGe2CodPro.Value ) = '' then fmsgErro('Item Informado nï¿½o Encontrado.',EdCodPro);
 
               end;
            end;
 
            end
         else
-           fmsgErro('Item Informado não Encontrado.',EdCodPro);
+           fmsgErro('Item Informado nï¿½o Encontrado.',EdCodPro);
      end;
   end;
 end;
@@ -2661,7 +2653,7 @@ begin
   inherited;
   if (EdCodClp.Focused) or (EdCodGru.Focused) or (EdCodSub.Focused) or (EdCodPro.Focused) then begin
 
-     if key = 114 then begin {F3 - Descrição}
+     if key = 114 then begin {F3 - Descriï¿½ï¿½o}
 
         try
 
@@ -2709,7 +2701,7 @@ begin
         end;
      end;
 
-     if key = 116 then begin {F5 - Referência}
+     if key = 116 then begin {F5 - Referï¿½ncia}
 
         try
 
@@ -2757,7 +2749,7 @@ begin
         end;
      end;
 
-     if key = 117 then begin {F6 - Inteligente/Descrição}
+     if key = 117 then begin {F6 - Inteligente/Descriï¿½ï¿½o}
 
         try
 
@@ -2803,7 +2795,7 @@ begin
         end;
      end;
 
-     if key = 118 then begin {F7 - Inteligente/Referência}
+     if key = 118 then begin {F7 - Inteligente/Referï¿½ncia}
 
         try
 
@@ -3267,17 +3259,17 @@ begin
 
         with FatGe2 do begin
 
-             fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+             fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
              try
 
-                ApplyUpdates; {Tenta aplicar as alterações};
+                ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-                fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
              except
 
-                fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
                 if FatGe2.State <> dsBrowse then FatGe2.CancelUpdates;
 
@@ -3574,14 +3566,14 @@ begin
 
         if (FatGe2CodClp.Value <> '8') and (FatGe2CodClp.Value <> '9') then begin
 
-           if FatGe2VluGe2.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio não Informado.',EdVluGe2);
-           if FatGe2QtpGe2.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio não Informado.',EdQtpGe2);
+           if FatGe2VluGe2.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.',EdVluGe2);
+           if FatGe2QtpGe2.Value = 0 then fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.',EdQtpGe2);
 
            end
         else
            begin
 
-           if Trim( FatGe2DesGe2.Value ) = '' then fmsgErro('Campo de Preenchimento Obrigatorio não Informado.',EdDesGe2);
+           if Trim( FatGe2DesGe2.Value ) = '' then fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.',EdDesGe2);
 
         end;
         
@@ -3589,17 +3581,17 @@ begin
 
            with FatGe2 do begin
 
-                fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
                 try
 
-                   ApplyUpdates; {Tenta aplicar as alterações};
+                   ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-                   fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                   fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
                 except
 
-                   fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                   fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
                    if FatGe2.State = dsBrowse then FatGe2.Edit;
 
@@ -3631,17 +3623,17 @@ begin
 
            with FatGe2 do begin
 
-                fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
                 try
 
-                   ApplyUpdates; {Tenta aplicar as alterações};
+                   ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-                   fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                   fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
                 except
 
-                   fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                   fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
                    if FatGe2.State = dsBrowse then FatGe2.Edit;
 
@@ -3805,17 +3797,17 @@ begin
 
      with FatGer do begin
 
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
           try
 
-             ApplyUpdates; {Tenta aplicar as alterações};
+             ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-             fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+             fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
           except
 
-             fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+             fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
              if FatGer.State = dsBrowse then FatGer.Edit;
 

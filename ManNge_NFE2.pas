@@ -1018,12 +1018,6 @@ begin
     Close;
 
   end;
-  {  fmManNge_NFE.Vdiddi := '';
-    fmManNge_NFE.Vdidata:=now;
-    fmManNge_NFE.VdiLOCDESEMB:= '';
-    fmManNge_NFE.Vdidatadesemb:=now;
-    fmManNge_NFE.VdiUF:= '';
-    fmManNge_NFE.VDICexp:= '';}
 
 end;
 
@@ -1650,25 +1644,6 @@ begin
             else
               FatGerCGCCLI.EditMask := '000.000.000-00;0; ';
 
-            {if Trim(quSQL.FieldbyName('CgcCli').AsString) <> '' then
-            begin
-
-              if Length(Trim(quSQL.FieldbyName('CgcCli').AsString)) <= 11 then
-                pnCgcCli.Caption := copy(quSQL.FieldbyName('CgcCli').AsString, 01, 03) + '.' +
-                  copy(quSQL.FieldbyName('CgcCli').AsString, 04, 03) + '.' +
-                  copy(quSQL.FieldbyName('CgcCli').AsString, 07, 03) + '-' +
-                  copy(quSQL.FieldbyName('CgcCli').AsString, 10, 02)
-              else
-                pnCgcCli.Caption := copy(quSQL.FieldbyName('CgcCli').AsString, 01, 02) + '.' +
-                  copy(quSQL.FieldbyName('CgcCli').AsString, 03, 03) + '.' +
-                  copy(quSQL.FieldbyName('CgcCli').AsString, 06, 03) + '/' +
-                  copy(quSQL.FieldbyName('CgcCli').AsString, 09, 04) + '-' +
-                  copy(quSQL.FieldbyName('CgcCli').AsString, 13, 02);
-
-            end
-            else
-              pnCgcCli.Caption := '';}
-
             with quSql, SQL do
             begin
 
@@ -1686,24 +1661,12 @@ begin
           end
           else
           begin
-
-            {pnNomCli.Caption := '';
-            pnCgcCli.Caption := '';
-            pnUfeGer.Caption := '';
-            pnNomVen.Caption := '';}
-
             fmsgErro('Cliente Informado n�o Encontrado', EdCodCli);
-
           end;
 
         end
         else
         begin
-
-          {pnNomCli.Caption := '';
-          pnUfeGer.Caption := '';
-          pnCgcCli.Caption := '';
-          pnNomVen.Caption := '';}
 
           fmsgErro('Campo de Preenchimento Obrig�torio n�o Informado', EdCodCli);
 
@@ -1996,11 +1959,6 @@ begin
             vcodicm := '';
             VCODICM := quSql.FieldbyName('CODICM').AsString;
             vtiponota := quSql.FieldbyName('MODPfa').AsString;
-
-            //Removido para atender Segs
-            {if ((vcodicm = '') or (vcodicm = '0')) then
-              fmsgErro('Padr�o de Faturamento Informado Sem regra de ICMS', EdCodPfa);}
-
           end;
 
           if Trim(quSql.FieldbyName('DscPfa').AsString) = '' then
@@ -2126,26 +2084,6 @@ begin
     end;
 
     edNomCli.Text := quSQL.FieldbyName('NomCli').AsString;
-    //pnUfeGer.Caption := quSQL.FieldbyName('UffCli').AsString;
-
-    {if Trim(quSQL.FieldbyName('CgcCli').AsString) <> '' then
-    begin
-
-      if Length(Trim(quSQL.FieldbyName('CgcCli').AsString)) <= 11 then
-        pnCgcCli.Caption := copy(quSQL.FieldbyName('CgcCli').AsString, 01, 03) + '.' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 04, 03) + '.' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 07, 03) + '-' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 10, 02)
-      else
-        pnCgcCli.Caption := copy(quSQL.FieldbyName('CgcCli').AsString, 01, 02) + '.' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 03, 03) + '.' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 06, 03) + '/' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 09, 04) + '-' +
-          copy(quSQL.FieldbyName('CgcCli').AsString, 13, 02);
-
-    end
-    else
-      pnCgcCli.Caption := '';}
 
     with quSQL, SQL do
     begin

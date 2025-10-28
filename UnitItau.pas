@@ -1,6 +1,6 @@
 unit UnitItau;
 
-//funcões para o Banco Itau
+//funcï¿½es para o Banco Itau
 
 interface
 
@@ -10,7 +10,7 @@ uses
 
 const
   CodigoBanco = '341';
-  NomeBanco = 'Banco Itaú SA';
+  NomeBanco = 'Banco Itaï¿½ SA';
 
 implementation
 
@@ -68,33 +68,6 @@ begin
     D := 1;
   result := D;
 end;
-
-{
-//Banco Itau
-//Calculo do Digito do Codigo de Barras
-function BarraDV( B_CAMPO: String ): String;
-var
-   i, nCont, nPeso: Integer;
-   Resto, Resultado: Extended;
-begin
-   nCont := 0;
-   nPeso := 2;
-   for i := 43 downto 1 do
-   begin
-      nCont := nCont + ( StrToInt( Copy( B_CAMPO, i, 1 ) ) * nPeso );
-      nPeso := nPeso + 1;
-      if nPeso > 9 then
-         nPeso := 2;
- end;
-
-   Resto  := Frac( nCont / 11 );
-   Resultado := ( 11 - Resto );
-   if ( Resultado = 10 ) or ( resultado = 11 ) then
-  Result := '1'
-   else
-  Result := FloatToStr( Resultado );
-end;
-}
 
 function aCB_LD_NN_ITAU(cCart, cBanco, cAgencia, cConta, cDigCC, cNroDoc: string; nValor: Extended; dVencto: TDateTime): TStringList;
 var

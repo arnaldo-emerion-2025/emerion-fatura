@@ -36,7 +36,7 @@ object FMMANDI2: TFMMANDI2
   object Panel2: TPanel
     Left = 0
     Top = 379
-    Width = 631
+    Width = 627
     Height = 235
     Align = alTop
     TabOrder = 2
@@ -104,7 +104,7 @@ object FMMANDI2: TFMMANDI2
     object Panel5: TPanel
       Left = 1
       Top = 117
-      Width = 629
+      Width = 625
       Height = 117
       Align = alBottom
       BevelInner = bvLowered
@@ -112,7 +112,7 @@ object FMMANDI2: TFMMANDI2
       object DBGrid2: TDBGrid
         Left = 2
         Top = 2
-        Width = 625
+        Width = 621
         Height = 113
         Align = alClient
         DataSource = DSDIDET
@@ -431,7 +431,7 @@ object FMMANDI2: TFMMANDI2
   object Panel3: TPanel
     Left = 0
     Top = 0
-    Width = 631
+    Width = 627
     Height = 30
     Align = alTop
     TabOrder = 0
@@ -452,7 +452,7 @@ object FMMANDI2: TFMMANDI2
   object Panel1: TPanel
     Left = 0
     Top = 30
-    Width = 631
+    Width = 627
     Height = 349
     Align = alTop
     TabOrder = 1
@@ -989,7 +989,7 @@ object FMMANDI2: TFMMANDI2
     object Panel4: TPanel
       Left = 1
       Top = 227
-      Width = 629
+      Width = 625
       Height = 121
       Align = alBottom
       BevelInner = bvLowered
@@ -997,7 +997,7 @@ object FMMANDI2: TFMMANDI2
       object DBGrid1: TDBGrid
         Left = 2
         Top = 2
-        Width = 625
+        Width = 621
         Height = 117
         Align = alClient
         DataSource = DSDI

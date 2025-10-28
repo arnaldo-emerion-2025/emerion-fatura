@@ -540,7 +540,6 @@ type
     procedure UpdateFP;
     procedure UpdateFG;
     procedure UpdateLJ;
-    procedure BuscaNF;
     function formataReal(valor: Double; Decimal: integer = 2): string;
     procedure CarregaDI(ID: integer);
     procedure CarregaCombos(CODEMP: string);
@@ -556,7 +555,7 @@ type
       toticmsub, bcIcm, bcIcmSt, basipi, baspis, bascof, BasFCP, BasUFDestino, BasEmitente: boolean;
     //variaveis para verificar se calcula ou nao os dados do cabecalho
     valicm, valipi, valpis, valcof, valsub, bcIcmStITE: boolean; //variaveis para verificar se calcula ou nao os dados dos itens
-    valFrt, valSeg, valOut, valDesc: boolean; //Variávei para Ratear
+    valFrt, valSeg, valOut, valDesc: boolean; //Variï¿½vei para Ratear
 
     function ShowModal(CODEMP, ORIGTB, NRONFS: string; DtePed: TDateTime; ALT_VISU: string; NUMPED: string = ''; SEQLIB: string = ''): integer;
     procedure setReadOnly();
@@ -599,14 +598,6 @@ begin
 
   //st IPI
   fmManGdb.CarregaCboIPI('Saida');
-
-  {ComboBox_AutoWidth(CBSitTrib);
-  ComboBox_AutoWidth(CbCstIpi);
-  ComboBox_AutoWidth(CbCstPis);
-  ComboBox_AutoWidth(EdPisVpis);
-  ComboBox_AutoWidth(CbCstCof); }
-
-  //BuscaNF;
 end;
 
 procedure TFrmEditNfe.FormKeyDown(Sender: TObject; var Key: Word;
@@ -995,43 +986,6 @@ begin
 
   CDSPROD.First;
 
-  //   if GridProd.CanFocus then
-  //      GridProd.SetFocus;
-
-  //EdNumNot.SetFocus;
-
-end;
-
-procedure TFrmEditNfe.BuscaNF;
-var
-  auxStr: string;
-begin
-
-  {auxStr := InputBox('Alteração de NFe', 'Informe o número da NFe que deseja alterar:', '0');
-
-  try
-    if (trim(auxStr) = '') or (strtoint(trim(auxStr)) = 0) then
-    begin
-      messagebox(handle, 'Número informado inválido. Tente novamente.', 'Alteração de NFe', mb_ok + MB_ICONEXCLAMATION);
-      abort;
-    end;
-
-    fmNFEAltPort := TfmNFEAltPort.Create(self);
-
-    try
-      if fmNFEAltPort.BuscaNFE(strtoint(trim(auxStr))) > 0 then
-      begin
-        BuscaNF_FP(fmNFEAltPort.CODEMP, fmNFEAltPort.NUMRES, QuotedStr(fmNFEAltPort.DTERES), fmNFEAltPort.SEQLIB);
-      end;
-
-    finally
-      freeandnil(fmNFEAltPort);
-    end;
-
-  except
-    messagebox(handle, 'Número informado inválido. Tente novamente.', 'Alteração de NFe', mb_ok + MB_ICONWARNING);
-  end;}
-
 end;
 
 procedure TFrmEditNfe.FormShow(Sender: TObject);
@@ -1094,7 +1048,7 @@ begin
       SQLBUS.SQL.Text :=
         ' UPDATE FATPE2 '
         + ' SET '
-        + ' OBSPE2 =  ' + QuotedStr(CDSPRODDESC2.AsString) + ',' + _BR //STICMS -- Mistério
+        + ' OBSPE2 =  ' + QuotedStr(CDSPRODDESC2.AsString) + ',' + _BR //STICMS -- Mistï¿½rio
       + ' CLSIPI =  ' + QuotedStr(CDSPRODNCM.AsString) + ',' + _BR
         + ' CODST1 =  ' + QuotedStr(CDSPRODORIG.AsString) + ',' + _BR
         + ' CODST2 =  ' + QuotedStr(CDSPRODCSTICMS.AsString) + ',' + _BR
@@ -1497,15 +1451,6 @@ begin
     CDSCABTOT_FCPUFDEST.AsFloat := SQLCAB.FieldByName('TOT_FCPUFDEST').AsFloat;
     CDSCABTOT_ICMSUFDEST.AsFloat := SQLCAB.FieldByName('TOT_ICMSUFDEST').AsFloat;
     CDSCABTOT_ICMSUFREMET.AsFloat := SQLCAB.FieldByName('TOT_ICMSUFREMET').AsFloat;
-
-    { EdObsFat.MaxLength :=  SQLCAB.FieldByName('OB1FAT').Size;
-      DBEdit19.MaxLength := SQLCAB.FieldByName('OB2FAT').Size;
-      DBEdit20.MaxLength := SQLCAB.FieldByName('OB3FAT').Size;
-      DBEdit21.MaxLength := SQLCAB.FieldByName('OB4FAT').Size;
-      DBEdit22.MaxLength := SQLCAB.FieldByName('OB5FAT').Size;
-      DBEdit23.MaxLength := SQLCAB.FieldByName('OB6FAT').Size;
-      DBEdit24.MaxLength := SQLCAB.FieldByName('OB7FAT').Size;
-      DBEdit25.MaxLength := SQLCAB.FieldByName('OB8FAT').Size;}
 
     EdObsFat.MaxLength := 80;
     DBEdit19.MaxLength := 80;
@@ -1948,69 +1893,14 @@ begin
 
   verificador := fmManGDB.BuscaSimples('GerEmp', 'TipEmp', 'CodEmp = ' + CODEMP);
 
-  {with SQLBUS, SQL do
-  begin
-    close;
-    text :=
-      'select codst2 from estst2';
-    open;
-
-    first;
-    while not Eof do
-    begin
-      if (verificador = 'Simples Nacional') then
-      begin
-        if (Length(SQLBUS.FieldByName('CodSt2').AsString) = 3) then
-          CBSitTrib.Items.Add(SQLBUS.FieldByName('codst2').AsString);
-      end
-      else
-        if (Length(SQLBUS.FieldByName('CodSt2').AsString) = 2) then
-          CBSitTrib.Items.Add(SQLBUS.FieldByName('codst2').AsString);
-      Next;
-    end;
-  end;}
-
   try
     if (StrToIntDef(Copy(CDSPRODCFOP.AsString, 0, 1),0) in [1, 2, 3]) then
       lbldanfe.Text := '0 - Entrada'
     else
-      lbldanfe.Text := '1 - Saída';
+      lbldanfe.Text := '1 - Saï¿½da';
   except
 
   end;
-
-  //Preencher combo da CST do IPI
- {SQLBUS.Active := False;
- SQLBUS.SQL.Text := 'select signfe from estsip order by signfe';
- SQLBUS.Active := True;
-
- SQLBUS.First;
- while not SQLBUS.Eof do
- begin
-   CbCstIpi.Items.Add(SQLBUS.FieldByName('signfe').AsString);
-   SQLBUS.Next;
- end;}
-
-  //Preencher o combo da CSTPIS
- {SQLBUS.Active := False;
- SQLBUS.SQL.Text := 'select signfe from estpis order by signfe';
- SQLBUS.Active := True;
-
- while not SQLBUS.Eof do
- begin
-   CbCstPis.Items.Add(SQLBUS.FieldByName('signfe').AsString);
-   SQLBUS.Next;
- end; }
-
-  //Preenchar combo da CSTCOFINS
- {SQLBUS.Active := False;
- SQLBUS.SQL.Text := 'select signfe from estcof order by signfe';
- SQLBUS.Active := True;
- while not SQLBUS.Eof do
- begin
-   CbCstCof.Items.Add(SQLBUS.FieldByName('signfe').AsString);
-   SQLBUS.Next;
- end;}
 end;
 
 function TFrmEditNfe.ShowModal(CODEMP, ORIGTB, NRONFS: string;
@@ -2022,12 +1912,12 @@ begin
 
   if Self.ALT_VISU = 'VISU' then
   begin
-    Self.Caption := 'Emerion - Editar NFe         Modo: Visualização';
+    Self.Caption := 'Emerion - Editar NFe         Modo: Visualizaï¿½ï¿½o';
     setReadOnly;
   end
   else
   begin
-    Self.Caption := 'Emerion - Editar NFe        Modo: Alteração';
+    Self.Caption := 'Emerion - Editar NFe        Modo: Alteraï¿½ï¿½o';
   end;
 
   if ORIGTB = 'FP' then
@@ -2055,15 +1945,6 @@ var
 begin
   if (CDSPRODCSTIPI.AsString <> '') then
     CstIpi := FmManGdb.BuscaSimples('EstSip', 'SigNfe', 'id_estsip = ' + CDSPRODCSTIPI.AsString);
-  {if (CDSPRODCSTPIS.AsString <> '') then
-    CstPis := FmManGdb.BuscaSimples('EstPis', 'SigNfe', 'id_estpis = ' + CDSPRODCSTPIS.AsString);
-  if (CDSPRODCSTCOF.AsString <> '') then
-    CstCof := FmManGdb.BuscaSimples('EstCof', 'SigNfe', 'id_estcof = ' + CDSPRODCSTCOF.AsString);}
-
-  {CbCstIpi.Text := CstIpi;
-  CbCstPis.Text := CstPis;
-  CbCstCof.Text := CstCof;}
-
 end;
 
 procedure TFrmEditNfe.dsProdDataChange(Sender: TObject; Field: TField);
@@ -2645,12 +2526,12 @@ begin
   end;
 end;
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||//
-//Rateia frete, seguro e outras despesas entre os ítens//
+//Rateia frete, seguro e outras despesas entre os ï¿½tens//
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||//
 
 procedure TFrmEditNfe.ratear;
 var
-  totfrt, totseg, totdesp, totdesc: real; {Variáveis de totalização para o rateio}
+  totfrt, totseg, totdesp, totdesc: real; {Variï¿½veis de totalizaï¿½ï¿½o para o rateio}
 begin
   if (not (valFrt) or (valSeg) or (valOut) or (valDesc)) then
   begin
@@ -2678,18 +2559,13 @@ begin
           totdesp := totdesp + CDSPRODTOTOUTDESP.AsFloat;
         end;
 
-        {if (valdesc) then
-        begin
-          CDSCABVALDESC.AsFloat := CDSCABVLRDES.AsFloat * CDSPRODVALLIQ.AsFloat / CDSCABVLRTOTNOT.AsFloat;
-          totdesc := totdesc + CDSPRODVALDESC.AsFloat;
-        end;}
       end
       else
       begin
         ///////////////////////////////////////////////////////////////////////////
-        // o último ítem ficará como restante do frete, seguro e outras despesas //
-        // Esse procedimento é feito devido ao arredondamento do frete por ítem  //
-        //que é só com duas casas decimais                                       //
+        // o ï¿½ltimo ï¿½tem ficarï¿½ como restante do frete, seguro e outras despesas //
+        // Esse procedimento ï¿½ feito devido ao arredondamento do frete por ï¿½tem  //
+        //que ï¿½ sï¿½ com duas casas decimais                                       //
         ///////////////////////////////////////////////////////////////////////////
         if (valfrt) then
           CDSPRODTOTFRT.AsFloat := CDSCABVLRFRETE.AsFloat - totfrt;
@@ -2697,8 +2573,6 @@ begin
           CDSPRODTOTSEG.AsFloat := CDSCABVLRSEGURO.AsFloat - totseg;
         if (valout) then
           CDSPRODTOTOUTDESP.AsFloat := CDSCABVLROUTDESP.AsFloat - totdesp;
-        {if (valDesc) then
-          CDSPRODVALDESC.AsFloat := CDSCABVLRDES.AsFloat - totdesc;}
       end;
       CDSPROD.Post;
       CDSPROD.next;
@@ -2900,7 +2774,7 @@ end;
 procedure TFrmEditNfe.ValidacaoProdutos;
 begin
 
-  //Validação do NCM
+  //Validaï¿½ï¿½o do NCM
   if Length(trim(CDSPRODNCM.AsString)) <> 8 then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString + ' - NCM : ' +
@@ -2911,7 +2785,7 @@ begin
   if (pos(CDSPRODNCM.AsString, '.') > 0) or (pos(CDSPRODNCM.AsString, ' ') > 0) or (pos(CDSPRODNCM.AsString, '-') > 0) then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString + ' - NCM : ' +
-      QuotedStr(CDSPRODNCM.AsString) + ' - Não pode possuir traços, pontos ou espaços no NCM.');
+      QuotedStr(CDSPRODNCM.AsString) + ' - Nï¿½o pode possuir traï¿½os, pontos ou espaï¿½os no NCM.');
     abort;
   end;
 
@@ -2919,43 +2793,43 @@ begin
   if (trim(CDSPRODORIG.AsString) = '') then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString + ' - Origem : ' +
-      QuotedStr(CDSPRODORIG.AsString) + ' - Obrigatório informar origem do produto.');
+      QuotedStr(CDSPRODORIG.AsString) + ' - Obrigatï¿½rio informar origem do produto.');
     abort;
   end;
 
-  //situação Tributária ICMS
+  //situaï¿½ï¿½o Tributï¿½ria ICMS
   if (trim(CDSPRODCSTICMS.AsString) = '') then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString +
-      ' - Situação tributária do ICMS : ' +
-      QuotedStr(CDSPRODCSTICMS.AsString) + ' - Obrigatório informar situação tributária do ICMS do produto.');
+      ' - Situaï¿½ï¿½o tributï¿½ria do ICMS : ' +
+      QuotedStr(CDSPRODCSTICMS.AsString) + ' - Obrigatï¿½rio informar situaï¿½ï¿½o tributï¿½ria do ICMS do produto.');
     abort;
   end;
 
-  //situação Tributária IPI
+  //situaï¿½ï¿½o Tributï¿½ria IPI
   if (trim(CDSPRODCSTIPI.AsString) = '') then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString +
-      ' - Situação tributária do IPI : ' +
-      QuotedStr(CDSPRODCSTIPI.AsString) + ' - Obrigatório informar situação tributária do IPI do produto.');
+      ' - Situaï¿½ï¿½o tributï¿½ria do IPI : ' +
+      QuotedStr(CDSPRODCSTIPI.AsString) + ' - Obrigatï¿½rio informar situaï¿½ï¿½o tributï¿½ria do IPI do produto.');
     abort;
   end;
 
-  //situação Tributária PIS
+  //situaï¿½ï¿½o Tributï¿½ria PIS
   if (trim(CDSPRODCSTPIS.AsString) = '') then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString +
-      ' - Situação tributária do PIS : ' +
-      QuotedStr(CDSPRODCSTPIS.AsString) + ' - Obrigatório informar situação tributária do PIS do produto.');
+      ' - Situaï¿½ï¿½o tributï¿½ria do PIS : ' +
+      QuotedStr(CDSPRODCSTPIS.AsString) + ' - Obrigatï¿½rio informar situaï¿½ï¿½o tributï¿½ria do PIS do produto.');
     abort;
   end;
 
-  //situação Tributária Cofins
+  //situaï¿½ï¿½o Tributï¿½ria Cofins
   if (trim(CDSPRODCSTCOF.AsString) = '') then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString +
-      ' - Situação tributária do Cofins : ' +
-      QuotedStr(CDSPRODCSTCOF.AsString) + ' - Obrigatório informar situação tributária do Cofins do produto.');
+      ' - Situaï¿½ï¿½o tributï¿½ria do Cofins : ' +
+      QuotedStr(CDSPRODCSTCOF.AsString) + ' - Obrigatï¿½rio informar situaï¿½ï¿½o tributï¿½ria do Cofins do produto.');
     abort;
   end;
 
@@ -2971,7 +2845,7 @@ end;
 
 procedure TFrmEditNfe.Button1Click(Sender: TObject);
 begin
-  //Gerenciar Referências NFE
+  //Gerenciar Referï¿½ncias NFE
   fmManListaNFeRef := TfmManListaNFeRef.Create(Self);
   try
     fmManListaNFeRef.ShowModal(CDSCABNUMRES.Asinteger);

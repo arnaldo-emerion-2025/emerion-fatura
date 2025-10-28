@@ -518,7 +518,7 @@ begin
 
                 EdPsqNomCli.Text := '';
 
-                fmsgErro('Cliente Informado não Pertence ao Atendente.',EdPsqCodCli);
+                fmsgErro('Cliente Informado nï¿½o Pertence ao Atendente.',EdPsqCodCli);
 
              end;
           end;
@@ -851,22 +851,6 @@ begin
                        end
                     else
                        begin
-
-                    {  try
-
-                          fmPsqOrc := TfmPsqOrc.Create(Self);
-
-                          fmPsqOrc.FatOrc.Close;
-                          fmPsqOrc.FatOrc.Params[0].AsInteger := PedResId_PedRes.Value;
-                          fmPsqOrc.FatOrc.Open;
-
-                          fmPsqOrc.ShowModal;
-
-                       finally
-
-                          FreeAndNil(fmPsqOrc);
-
-                       end;  }
                     end;
                  end;
               end;
@@ -875,7 +859,7 @@ begin
      end;
   end;
   
-  if key = 121 then begin {F10 - Observações Quanto a Rejeicao do Pedido}
+  if key = 121 then begin {F10 - Observaï¿½ï¿½es Quanto a Rejeicao do Pedido}
 
      if Trim(PedResSitRes.Value) = 'Cancelado' then begin
 
@@ -1247,17 +1231,17 @@ begin
 
                  with PedRes do begin
 
-                      fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                      fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
                       try
 
-                         ApplyUpdates; {Tenta aplicar as alterações};
+                         ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-                         fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                         fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
                       except
 
-                         fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                         fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
                          if PedRes.State <> dsBrowse then PedRes.CancelUpdates;
 
@@ -1392,23 +1376,23 @@ begin
               if (Trim(PedResSitRes.Value) = 'Rejeitado') or
                  (Trim(PedResSitRes.Value) = 'Nao Concluido') then begin
 
-                 if fMsg('Confirma a exclusão do pedido ?','S') then begin
+                 if fMsg('Confirma a exclusï¿½o do pedido ?','S') then begin
 
                     PedRes.Delete;
 
                     with PedRes do begin
 
-                         fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                         fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
                          try
 
-                            ApplyUpdates; {Tenta aplicar as alterações};
+                            ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-                            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                            fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
                          except
 
-                            fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                            fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
                             if PedRes.State <> dsBrowse then PedRes.CancelUpdates;
 
@@ -1474,19 +1458,19 @@ begin
                     begin
 
                     if (Trim(PedResSitRes.Value) = 'Faturado') or
-                       (Trim(PedResSitRes.Value) = 'Parcialmente Faturado') then fMsg('Operação não Pode ser Realizada. Pedido Faturado.','E')
+                       (Trim(PedResSitRes.Value) = 'Parcialmente Faturado') then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Pedido Faturado.','E')
 
-                    else if Trim(PedResSitRes.Value) = 'Aguardando Separacao dos Itens a Faturar' then fMsg('Operação não Pode ser Realizada. Pedido em Processo de Separação dos Itens para Faturamento.','E')
+                    else if Trim(PedResSitRes.Value) = 'Aguardando Separacao dos Itens a Faturar' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Pedido em Processo de Separaï¿½ï¿½o dos Itens para Faturamento.','E')
 
-                    else if Trim(PedResSitRes.Value) = 'Pronto para Faturar' then fMsg('Operação não Pode ser Realizada. Pedido Pronto para Faturar.','E')
+                    else if Trim(PedResSitRes.Value) = 'Pronto para Faturar' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Pedido Pronto para Faturar.','E')
 
-                    else if Trim(PedResSitRes.Value) = 'Aguardando Separacao de Estoque' then fMsg('Operação não Pode ser Realizada. Pedido Aguardando Separação de Estoque.','E')
+                    else if Trim(PedResSitRes.Value) = 'Aguardando Separacao de Estoque' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Pedido Aguardando Separaï¿½ï¿½o de Estoque.','E')
 
-                    else if Trim(PedResSitRes.Value) = 'Aguardando Liberacao para Faturamento' then fMsg('Operação não Pode ser Realizada. Pedido Aguardando Liberacao para Faturamento.','E')
+                    else if Trim(PedResSitRes.Value) = 'Aguardando Liberacao para Faturamento' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Pedido Aguardando Liberacao para Faturamento.','E')
 
-                    else if Trim(PedResSitRes.Value) = 'Cancelado' then fMsg('Operação não Pode ser Realizada. Pedido Cancelado','E')
+                    else if Trim(PedResSitRes.Value) = 'Cancelado' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Pedido Cancelado','E')
 
-                    else if Trim(PedResSitRes.Value) = 'Faturado com Saldo nao Atendido' then fMsg('Operação não Pode ser Realizada. Pedido com Saldo que não Será Atendido.','E');
+                    else if Trim(PedResSitRes.Value) = 'Faturado com Saldo nao Atendido' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Pedido com Saldo que nï¿½o Serï¿½ Atendido.','E');
 
                  end;
               end;
@@ -1544,7 +1528,7 @@ begin
         
         if Trim(PedResSitRes.Value) <> 'Nao Concluido' then begin
 
-           if fMsg('Confirma impressão do pedido ?','O') then begin
+           if fMsg('Confirma impressï¿½o do pedido ?','O') then begin
 
               try
 
@@ -1563,7 +1547,7 @@ begin
               end;
            end;
 
-           if fMsg('Imprime via de separação do pedido ?','O') then begin
+           if fMsg('Imprime via de separaï¿½ï¿½o do pedido ?','O') then begin
 
               PedRes.Edit;
 
@@ -1575,17 +1559,17 @@ begin
 
               with PedRes do begin
 
-                   fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                   fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
                    try
 
-                      ApplyUpdates; {Tenta aplicar as alterações};
+                      ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-                      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                      fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
                    except
 
-                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
                       if PedRes.State <> dsBrowse then PedRes.CancelUpdates;
 
@@ -1623,13 +1607,13 @@ begin
 
            end
         else
-           fmsgErro('Não é permitido impressão de processos não concluidos.',Nil);
+           fmsgErro('Nï¿½o ï¿½ permitido impressï¿½o de processos nï¿½o concluidos.',Nil);
 
         if PedParFlgCot.Value = 'Sim' then begin
 
            if PedResQtiRe4.Value > 0 then begin
 
-              if fMsg('Confirma impressão da via de cotação para os fornecedores ?','O') then begin
+              if fMsg('Confirma impressï¿½o da via de cotaï¿½ï¿½o para os fornecedores ?','O') then begin
 
                  try
 
@@ -1739,7 +1723,7 @@ begin
 
              EdPsqNomEmp.Text := '';
 
-             fmsgErro('Empresa Informada não Encontrada.',EdPsqCodEmp);
+             fmsgErro('Empresa Informada nï¿½o Encontrada.',EdPsqCodEmp);
 
           end;
      end;
@@ -2050,7 +2034,7 @@ begin
 
      if PedResFlgImp.Value = 'Nao' then begin
 
-        pnFlgImp.Caption := 'Não Impresso';
+        pnFlgImp.Caption := 'Nï¿½o Impresso';
 
         pnFlgImp.Color := clLime;
 

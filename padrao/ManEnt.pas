@@ -39,7 +39,7 @@ begin
 
   if not Session.IsAlias('ISade') then begin
 
-     if fMsg('Caminho para os Arquivos não Configurados. Configurar?','S') then begin
+     if fMsg('Caminho para os Arquivos nï¿½o Configurados. Configurar?','S') then begin
 
         try
 
@@ -54,7 +54,7 @@ begin
         
         if not Session.IsAlias('ISade') then begin
 
-           Application.MessageBox('Caminho de Acesso aos Arquivos não Configurados,'+ #13 +'Acesso as Opções do Sistema não podem ser realizados.','Atenção', MB_OK + MB_ICONINFORMATION);
+           Application.MessageBox('Caminho de Acesso aos Arquivos nï¿½o Configurados,'+ #13 +'Acesso as Opï¿½ï¿½es do Sistema nï¿½o podem ser realizados.','Atenï¿½ï¿½o', MB_OK + MB_ICONINFORMATION);
 
            Application.Terminate;
 
@@ -119,13 +119,13 @@ begin
 
   end;
 
-  {Lançamento de Titulos Automaticos}
+  {Lanï¿½amento de Titulos Automaticos}
 
   if not quSql.Eof then begin
 
      GTmpLog := quSql.FieldbyName('TmpLog').AsInteger;
 
-     {Verifica se a Data da Ultima Atualização no Sistema e Inferior a Data do Sistema
+     {Verifica se a Data da Ultima Atualizaï¿½ï¿½o no Sistema e Inferior a Data do Sistema
       e se a data se refere a inicio de um novo mes}
      if (Date > quSql.FieldByName('DtAtua').AsDateTime) and (StrToInt(copy(DateToStr(Date),4,02)) <> StrToInt(copy(DateToStr(quSql.FieldByName('DtAtua').AsDateTime),4,02))) then begin
 
@@ -140,7 +140,7 @@ begin
 
         if not quSql.Eof then begin
 
-           Label1.Caption := 'Aguarde. Verificando Lançamento de Titulos...';
+           Label1.Caption := 'Aguarde. Verificando Lanï¿½amento de Titulos...';
 
            while not quSql.Eof do begin
 
@@ -199,28 +199,6 @@ begin
                         else
                            dtvenc := StrToDate(copy(DateToStr(Date),1,2)+'/'+'01'+'/'+
                                      IntToStr(StrToInt(copy(DateToStr(dtlanc),7,4))+1));
-
-                       {if (StrToInt(copy(DateToStr(dtlanc),1,2)) < (quSql.FieldByName('VctACp').AsInteger - 1)) or
-                           (StrToInt(copy(DateToStr(dtlanc),1,2)) < (quSql.FieldByName('VctACp').AsInteger - 2)) then
-                           begin
-                           dtvenc := StrToDate(copy(DateToStr(Date),1,2)+'/'+
-                                     fStrZeros(IntToStr(StrToInt(copy(DateToStr(dtlanc),4,2))),2)+'/'+
-                                     copy(DateToStr(dtlanc),7,4));
-                           end
-                        else
-                           begin
-                           if StrToInt(copy(DateToStr(dtlanc),4,2))+1 <= 12 then
-                              begin
-                              dtvenc := StrToDate(copy(DateToStr(Date),1,2)+'/'+
-                                        fStrZeros(IntToStr(StrToInt(copy(DateToStr(dtlanc),4,2))+1),2)+'/'+
-                                        copy(DateToStr(dtlanc),7,4));
-                              end
-                           else
-                              begin
-                              dtvenc := StrToDate(copy(DateToStr(Date),1,2)+'/'+'01'+'/'+
-                                        IntToStr(StrToInt(copy(DateToStr(dtlanc),7,4))+1));
-                           end;
-                        end;}
 
                         diames := fUltMes(dtvenc);
 
@@ -366,7 +344,7 @@ begin
         begin
         if quSql.FieldByName('DtAtua').AsDateTime > Date then begin
 
-           Label1.Caption := 'Aguarde. Verificando Lançamento de Titulos...';
+           Label1.Caption := 'Aguarde. Verificando Lanï¿½amento de Titulos...';
 
            if StrToInt(Copy(DateToStr(Date),4,2))+1 <= 12 then
               dtvenc := StrToDate('01'+'/'+fStrZeros(IntToStr(StrToInt(Copy(DateToStr(Date),4,2))+1),2)+'/'+copy(DateToStr(Date),7,4))
@@ -418,7 +396,7 @@ begin
 
   end;
 
-  {Lançamento de Titulos Programados não Finalizados}
+  {Lanï¿½amento de Titulos Programados nï¿½o Finalizados}
 
   if not quSql.Eof then begin
 
@@ -469,28 +447,6 @@ begin
                      else
                         dtvenc := StrToDate(copy(DateToStr(Date),1,2)+'/'+'01'+'/'+
                                   IntToStr(StrToInt(copy(DateToStr(dtlanc),7,4))+1));
-
-                    {if (StrToInt(copy(DateToStr(dtlanc),1,2)) < (quSql.FieldbyName('VctLCp').AsInteger - 1)) or
-                        (StrToInt(copy(DateToStr(dtlanc),1,2)) < (quSql.FieldbyName('VctLCp').AsInteger - 2)) then
-                        begin
-                        dtvenc := StrToDate(copy(DateToStr(Date),1,2)+'/'+
-                                  fStrZeros(IntToStr(StrToInt(copy(DateToStr(dtlanc),4,2))),2)+'/'+
-                                  copy(DateToStr(dtlanc),7,4));
-                        end
-                     else
-                        begin
-                        if StrToInt(copy(DateToStr(dtlanc),4,2))+1 <= 12 then
-                           begin
-                           dtvenc := StrToDate(copy(DateToStr(Date),1,2)+'/'+
-                                     fStrZeros(IntToStr(StrToInt(copy(DateToStr(dtlanc),4,2))+1),2)+'/'+
-                                     copy(DateToStr(dtlanc),7,4));
-                           end
-                        else
-                           begin
-                           dtvenc := StrToDate(copy(DateToStr(Date),1,2)+'/'+'01'+'/'+
-                                     IntToStr(StrToInt(copy(DateToStr(dtlanc),7,4))+1));
-                        end;
-                     end;}
 
                      diames := fUltMes(dtvenc);
 

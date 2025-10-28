@@ -5,7 +5,7 @@ uses
    Windows, Messages, SysUtils, Classes, Graphics, Controls, Dialogs, StdCtrls,
   ExtCtrls;
 
-  //Funções para o Banco Brasil
+  //Funï¿½ï¿½es para o Banco Brasil
    //function getCodBar(): String;
    function StrZero(numero, digitos: Integer): string;
    function Modulo11(Valor: string; Base: Integer = 9; Resto: boolean = false): string;
@@ -50,9 +50,6 @@ begin
   dVal := (nValor * 100);
   iVal :=  Trunc(dVal);
   strValorFormatado := StrZero(iVal, 10);
-
-  {intValor := Trunc(nValor * 100);
-  strValorFormatado := StrZero(intValor, 10);}
 
   sTempBarras := codigoBanco+'9'+strFatorVenc + strValorFormatado + strZeros + strConvenio + strNossoNumero+strCarteira; //ALTEREI AQUI TINHA O cDigCC
   dvcb := strToInt(modulo11(sTempBarras));
@@ -113,7 +110,7 @@ begin
   Result.Add(CodBarras);                  //Codigo de Barras
   Result.Add(LinhaDigitavel);                  //Linha Digitavel
   Result.Add(nossoNumero);                  //Nosso Numero
-  Result.Add(Trim(IntToStr(dvNossoNumero)));//Digito Verificador Nosso Número
+  Result.Add(Trim(IntToStr(dvNossoNumero)));//Digito Verificador Nosso Nï¿½mero
 
 end;
 
@@ -128,16 +125,16 @@ end;
 
 function Modulo11(Valor: string; Base: Integer = 9; Resto: boolean = false): string;
 {
-   Rotina muito usada para calcular dígitos verificadores
-   Pega-se cada um dos dígitos contidos no parâmetro VALOR, da direita para a
-   esquerda e multiplica-se pela seqüência de pesos 2, 3, 4 ... até BASE.
-   Por exemplo: se a base for 9, os pesos serão 2,3,4,5,6,7,8,9,2,3,4,5...
-   Se a base for 7, os pesos serão 2,3,4,5,6,7,2,3,4...
+   Rotina muito usada para calcular dï¿½gitos verificadores
+   Pega-se cada um dos dï¿½gitos contidos no parï¿½metro VALOR, da direita para a
+   esquerda e multiplica-se pela seqï¿½ï¿½ncia de pesos 2, 3, 4 ... atï¿½ BASE.
+   Por exemplo: se a base for 9, os pesos serï¿½o 2,3,4,5,6,7,8,9,2,3,4,5...
+   Se a base for 7, os pesos serï¿½o 2,3,4,5,6,7,2,3,4...
    Soma-se cada um dos subprodutos.
    Divide-se a soma por 11.
-   Faz-se a operação 11-Resto da divisão e devolve-se o resultado dessa operação
-   como resultado da função Modulo11.
-   Obs.: Caso o resultado seja maior que 9, deverá ser substituído por 0 (ZERO).
+   Faz-se a operaï¿½ï¿½o 11-Resto da divisï¿½o e devolve-se o resultado dessa operaï¿½ï¿½o
+   como resultado da funï¿½ï¿½o Modulo11.
+   Obs.: Caso o resultado seja maior que 9, deverï¿½ ser substituï¿½do por 0 (ZERO).
 }
 var
   Soma: integer;

@@ -444,11 +444,6 @@ begin
 
     ppCodCnb1.Caption := copy(Trim(FatBolCodCnb.Value), 1, 5) + '-' + copy(Trim(FatBolCodCnb.Value), 6, 1);
 
-    {ppCodCnb2.Caption := copy(Trim(FatBolCodAgb.Value), 1, 4) + '-' +
-      copy(Trim(FatBolCodAgb.Value), 5, 1) + '/' +
-      copy(Trim(FatBolCodCnb.Value), 1, 5) + '-' +
-      copy(Trim(FatBolCodCnb.Value), 6, 1); }
-
     ppCodCnb2.Caption := copy(Trim(FatBolCodAgb.AsString), 1, length(Trim(FatBolCodAgb.AsString)) - 1) + '-' +
       copy(Trim(FatBolCodAgb.AsString), length(Trim(FatBolCodAgb.AsString)), 1) + '/' +
       copy(Trim(FatBolCodCnb.AsString), 1, length(Trim(FatBolCodCnb.AsString)) - 1) + '-' +

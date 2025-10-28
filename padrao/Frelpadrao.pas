@@ -58,39 +58,10 @@ begin
 end;
 
 {*************************************************************************
-* Rotina: cabeçalho padrão
+* Rotina: cabeï¿½alho padrï¿½o
 *************************************************************************}
 procedure TfmRelPadrao.CabPdr(PTitulo1,PTitulo2: String);
-//var
-//  quLogo: TQuery;
 begin
-
-  { Logotipo }
-
-{  quLogo := TQuery.Create(Self);
-  try
-    with quLogo,SQL do begin
-      DatabaseName := GDatabaseName;
-      UniDirectional := True;
-      Text := 'select Logo from Taimagem where Cetb = ' + GEmp_Id;
-      Open;
-    end;
-
-    with TppImage.Create(ppReport.Owner) do begin
-      Band := ppReport.Bands[0];
-      Picture.Assign(quLogo.FieldByName('Logo'));
-      Height := 14;
-      Left := 2;
-      Top := 2;
-      Width := 26;
-      MaintainAspectRatio := True;
-      Stretch := True;
-    end;
-  finally
-    FreeAndNil(quLogo);
-  end;
-
-}
 
   { Nome do Sistema }
   with TppLabel.Create(ppReport.Owner) do begin
@@ -102,7 +73,7 @@ begin
     Font.Style := [fsBold,fsItalic];
   end;
 
-  { Títulos }
+  { Tï¿½tulos }
   with TppLabel.Create(ppReport.Owner) do begin
     Band := ppReport.Bands[0];
     Left := 30;
@@ -140,14 +111,14 @@ begin
       else Width := 285;
     Pen.Width := 1;
   end;
-  { Data de Emissão }
+  { Data de Emissï¿½o }
   with TppLabel.Create(ppReport.Owner) do begin
     Band := ppReport.Bands[0];
     if (ppReport.PrinterSetup.Orientation = poPortrait)
       then Left := 158
       else Left := 240;
     Top := 2;
-    Caption := 'Emissão:';
+    Caption := 'Emissï¿½o:';
     Font.Size := 8;
   end;
   with TppSystemVariable.Create(ppReport.Owner) do begin
@@ -160,14 +131,14 @@ begin
     VarType := vtDateTime;
     Font.Size := 8;
   end;
-  { Numeração de Página }
+  { Numeraï¿½ï¿½o de Pï¿½gina }
   with TppLabel.Create(ppReport.Owner) do begin
     Band := ppReport.Bands[0];
     if (ppReport.PrinterSetup.Orientation = poPortrait)
       then Left := 158
       else Left := 240;
     Top := 6;
-    Caption := 'Página:';
+    Caption := 'Pï¿½gina:';
     Font.Size := 8;
   end;
   with TppSystemVariable.Create(ppReport.Owner) do begin
@@ -208,7 +179,7 @@ begin
 end;
 
 {*************************************************************************
-* Rotina: impressão
+* Rotina: impressï¿½o
 *************************************************************************}
 procedure TfmRelPadrao.sbImprimeClick(Sender: TObject);
 begin
@@ -217,7 +188,7 @@ begin
 end;
 
 {*************************************************************************
-* Rotina: geração das colunas do relatório em função do DataSet vinculado
+* Rotina: geraï¿½ï¿½o das colunas do relatï¿½rio em funï¿½ï¿½o do DataSet vinculado
 *************************************************************************}
 procedure TfmRelPadrao.RelatorioPadrao(PDataSource: TDataSource);
 var
@@ -226,7 +197,7 @@ var
   cFonte: TCanvas;
 begin
 
-  // Cabeçalho
+  // Cabeï¿½alho
   fmRelPadrao.Caption := TForm(PDataSource.Owner).Caption;
   CabPdr(TForm(PDataSource.Owner).Caption,'');
   plReport := TppBDEPipeline.Create(ppReport.Owner);
@@ -260,7 +231,7 @@ begin
           Font.Size := 8;
           Font.Style := [fsUnderline,fsBold];
 
-          // Comprimento em função do fonte usado
+          // Comprimento em funï¿½ï¿½o do fonte usado
           cFonte.Font.Assign(aTitulo[i].Font);
           iWtit := cFonte.TextWidth(aTitulo[i].Caption);
 
@@ -281,10 +252,10 @@ begin
           Font.Size := 8;
           Font.Style := [];
 
-          // Comprimento em função do fonte usado
+          // Comprimento em funï¿½ï¿½o do fonte usado
           cFonte.Font.Assign(aCampo[i].Font);
 
-          // Campos numéricos
+          // Campos numï¿½ricos
           if (Fields[i] is TNumericField) then
             iWcam := Length(TNumericField(Fields[i]).DisplayFormat) * cFonte.TextWidth('9')
           // Campos data
@@ -296,7 +267,7 @@ begin
 
         end;
 
-        // Conversão da largura do campo para centímetros
+        // Conversï¿½o da largura do campo para centï¿½metros
         nWidth := fMaxI(iWtit,iWcam) / 3.78;
 
         // Offset para campos alinhados pela direita
@@ -314,14 +285,14 @@ begin
 end;
 
 {*************************************************************************
-* Rotina: inicialização
+* Rotina: inicializaï¿½ï¿½o
 *************************************************************************}
 procedure TfmRelPadrao.FormCreate(Sender: TObject);
 var
   i,j: Integer;
 begin
 
-  { Inicialização }
+  { Inicializaï¿½ï¿½o }
   for i := 0 to 29 do begin
     aTitulo[i] := nil;
     aCampo[i] := nil;
@@ -331,16 +302,16 @@ begin
 
     for i := 0 to ComponentCount - 1 do begin
 
-      { Ativação automática dos componentes wwQuery: somente com Tag = 0 }
+      { Ativaï¿½ï¿½o automï¿½tica dos componentes wwQuery: somente com Tag = 0 }
       if (Components[i] is TwwQuery) then
         with TwwQuery(Components[i]) do
           if (Tag = 0) then begin
 
             if Active then Close;
 
-            { Verifica se existe parâmetro definido para seleção por código da
+            { Verifica se existe parï¿½metro definido para seleï¿½ï¿½o por cï¿½digo da
               empresa. Se o mesmo estiver definido, o sistema assume a
-              empresa ativa para seleção dos dados.
+              empresa ativa para seleï¿½ï¿½o dos dados.
             }
             for j := 0 to ParamCount - 1 do
               if (UpperCase(Params.Items[j].Name) = 'PEMP_ID') then

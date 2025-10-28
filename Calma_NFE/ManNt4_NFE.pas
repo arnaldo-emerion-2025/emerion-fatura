@@ -138,10 +138,6 @@ procedure TfmManNt4_NFE.FormShow(Sender: TObject);
 begin
   inherited;
 
-  {EdTotDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedTotDup.Value);
-  EdLanDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedLanDup.Value);
-  EdSldDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedSldDup.Value);}
-
   FatPe4.Close;
   FatPe4.Params[0].AsInteger := fmManNot_NFE.FatPedCodEmp.Value;
   FatPe4.Params[1].AsDateTime := fmManNot_NFE.FatPedDteRes.Value;
@@ -177,9 +173,9 @@ begin
   begin
 
     if fmManNot_NFE.FatPedLanDup.Value < fmManNot_NFE.FatPedTotDup.Value then
-      fmsgErro('Total de Boletos é Menor que o Valor a ser Lançado.', nil)
+      fmsgErro('Total de Boletos ï¿½ Menor que o Valor a ser Lanï¿½ado.', nil)
     else
-      fmsgErro('Total de Boletos é Maior que o Total a ser Lançado.', nil);
+      fmsgErro('Total de Boletos ï¿½ Maior que o Total a ser Lanï¿½ado.', nil);
 
   end
   else
@@ -318,20 +314,20 @@ begin
       with FatPe4 do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if FatPe4.State <> dsBrowse then
@@ -352,10 +348,6 @@ begin
 
       fmManNot_NFE.FatPed.Close;
       fmManNot_NFE.FatPed.Open;
-
-      {EdTotDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedTotDup.Value);
-      EdLanDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedLanDup.Value);
-      EdSldDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedSldDup.Value);}
 
       if SeqPe4 < fmManNot_NFE.FatPedQtpDup.Value then
         FatPe4.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqFat;SeqPe4', VarArrayOf([FatPe4CodEmp.Value, FatPe4DteRes.Value, FatPe4NumRes.Value, FatPe4SeqLib.Value,
@@ -467,7 +459,7 @@ begin
     FinBan.Open;
 
     if FinBanCodBan.Value = 0 then
-      fmsgErro('Banco Informado não Encontrado', EdCodBan);
+      fmsgErro('Banco Informado nï¿½o Encontrado', EdCodBan);
 
   end;
 end;
@@ -515,7 +507,7 @@ begin
       FinBan.Open;
 
       if FinBanCodBan.Value = 0 then
-        fmsgErro('Banco Informado não Encontrado', EdCodBan);
+        fmsgErro('Banco Informado nï¿½o Encontrado', EdCodBan);
 
       if FatPe4DtvPe4.Value < fmManNot_NFE.FatPedDteFat.Value then
         fmsgErro('Data de Vencimento Informada Inferior a Data de Faturamento.', EdDtvPe4);
@@ -526,20 +518,20 @@ begin
         with FatPe4 do
         begin
 
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
           ;
 
           try
 
-            ApplyUpdates; {Tenta aplicar as alterações}
+            ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
             ;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+            fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
             ;
 
           except
 
-            fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+            fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
             ;
 
             if FatPe4.State = dsBrowse then
@@ -561,10 +553,6 @@ begin
         fmManNot_NFE.FatPed.Close;
         fmManNot_NFE.FatPed.Open;
 
-        {EdTotDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedTotDup.Value);
-        EdLanDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedLanDup.Value);
-        EdSldDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedSldDup.Value);}
-
         FatPe4.Append;
 
         EdPraPe4.SetFocus;
@@ -578,20 +566,20 @@ begin
         with FatPe4 do
         begin
 
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
           ;
 
           try
 
-            ApplyUpdates; {Tenta aplicar as alterações}
+            ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
             ;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+            fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
             ;
 
           except
 
-            fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+            fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
             ;
 
             if FatPe4.State = dsBrowse then
@@ -612,10 +600,6 @@ begin
 
         FatPe4.Locate('CodEmp;DteRes;NumRes;SeqLib;SeqFat;SeqPe4', VarArrayOf([fmManNot_NFE.FatPedCodEmp.Value, fmManNot_NFE.FatPedDteRes.Value,
           fmManNot_NFE.FatPedNumRes.Value, fmManNot_NFE.FatPedSeqLib.Value, fmManNot_NFE.FatPedSeqFat.Value, SeqPe4]), [LoPartialKey]);
-
-        {EdTotDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedTotDup.Value);
-        EdLanDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedLanDup.Value);
-        EdSldDup.Text := FormatFloat('###,###,##0.00', fmManNot_NFE.FatPedSldDup.Value);}
 
         if FatPe4NroPe4.Value = fmManNot_NFE.FatPedQtpNot.Value then
           FatPe4.Append

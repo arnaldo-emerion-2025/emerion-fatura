@@ -37,43 +37,9 @@ begin
 
   Brush.Style := BsClear;
 
-  {try
-
-     AliasInfo := TStringList.Create;
-    
-     if not Session.IsAlias('Emerion_01') then begin
-
-        AliasInfo.Clear;
-        AliasInfo.Add('BLOBS TO CACHE=-1');
-        AliasInfo.Add('SERVER NAME =192.168.10.10/3052:/rede/_wgdad/interbase/aurora.fdb');
-        AliasInfo.Add('USER NAME =SYSDBA');
-        Session.AddAlias('Emerion_01','INTRBASE',AliasInfo);
-
-        Session.SaveConfigFile;
-
-     end;
-
-     if not Session.IsAlias('Emerion_02') then begin
-
-        AliasInfo.Clear;
-        AliasInfo.Add('BLOBS TO CACHE=-1');
-        AliasInfo.Add('SERVER NAME =192.168.10.10/3053:/rede/_wgdad/interbase/gusmoes.fdb');
-        AliasInfo.Add('USER NAME =SYSDBA');
-        Session.AddAlias('Emerion_02','INTRBASE',AliasInfo);
-
-        Session.SaveConfigFile;
-
-     end;
-
-  except
-
-     FreeAndNil(AliasInfo);
-     
-  end;  }
-
   if not Session.IsAlias('ISade') then begin
 
-     if fMsg('Caminho para os Arquivos não Configurados. Configurar?','S') then begin
+     if fMsg('Caminho para os Arquivos nï¿½o Configurados. Configurar?','S') then begin
 
         try
 
@@ -91,7 +57,7 @@ begin
 
         if not Session.IsAlias('ISade') then begin
 
-           Application.MessageBox('Caminho de Acesso aos Arquivos não Configurados,'+ #13 +'Acesso as Opções do Sistema não podem ser realizados.','Atenção', MB_OK + MB_ICONINFORMATION);
+           Application.MessageBox('Caminho de Acesso aos Arquivos nï¿½o Configurados,'+ #13 +'Acesso as Opï¿½ï¿½es do Sistema nï¿½o podem ser realizados.','Atenï¿½ï¿½o', MB_OK + MB_ICONINFORMATION);
 
            Application.Terminate;
 
@@ -101,7 +67,7 @@ begin
      else
         begin
 
-        Application.MessageBox('Caminho de Acesso aos Arquivos não Configurados,'+ #13 +'Acesso as Opções do Sistema não podem ser realizados.','Atenção', MB_OK + MB_ICONINFORMATION);
+        Application.MessageBox('Caminho de Acesso aos Arquivos nï¿½o Configurados,'+ #13 +'Acesso as Opï¿½ï¿½es do Sistema nï¿½o podem ser realizados.','Atenï¿½ï¿½o', MB_OK + MB_ICONINFORMATION);
 
         Application.Terminate;
 

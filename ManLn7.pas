@@ -275,22 +275,22 @@ begin
     1: sFiltro := sFiltro + ' and FinCrp.FlgBol = ' + QuotedStr('Nao');
   end;
 
-  fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+  fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
   try
     quSQL.Close;
     quSQL.SQL.Text := ' Delete From FatBol Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
     quSQL.ExecSQL;
 
-    fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+    fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
   except
     on E: exception do
     begin
-      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
       MessageBox(handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
     end;
   end;
 
-  fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+  fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
   try
     quSQL.Close;
@@ -331,11 +331,11 @@ begin
       if DebugHook > 0 then
         clipboard.asText := Text;
 
-    fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+    fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
   except
     on E: exception do
     begin
-      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
       MessageBox(handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
     end;
   end;
@@ -412,7 +412,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada não Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nï¿½o Encontrada.', EdPsqCodEmp);
 
       end;
     end;
@@ -815,7 +815,7 @@ var
   CodEmp, NumCrp: integer;
 begin
   inherited;
-  if key = 32 then      //barra de espaço
+  if key = 32 then      //barra de espaï¿½o
   begin
 
     if FatBolCodEmp.Value > 0 then
@@ -844,20 +844,20 @@ begin
       with FatBol do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if FatBol.State <> dsBrowse then
@@ -944,26 +944,26 @@ begin
   else
     pnNomBan.Caption := ' Local de cobranca: ';
 
-  pnNosNum.Caption := ' Número bancário: ' + Trim(FatBolNosNum.Value);
+  pnNosNum.Caption := ' Nï¿½mero bancï¿½rio: ' + Trim(FatBolNosNum.Value);
 
 end;
 
 procedure TfmManLn7.bImprimirClick(Sender: TObject);
 var
-  Bol_NosNum: string; // Nosso Número
-  Bol_NosBol: string; // Sequencia utilizada para emissão do nosso número
-  Bol_DigNum: string; // Digito do nosso número
-  Bol_CodBar: string; // Código de barras
+  Bol_NosNum: string; // Nosso Nï¿½mero
+  Bol_NosBol: string; // Sequencia utilizada para emissï¿½o do nosso nï¿½mero
+  Bol_DigNum: string; // Digito do nosso nï¿½mero
+  Bol_CodBar: string; // Cï¿½digo de barras
   Bol_LinDig: string; // Linha digitavel
-  Bol_NumCre: string; // Número do documento/nota fiscal
-  Bol_DteCre: string; // Data de emissão do documento
-  Bol_NumCrp: string; // Número da parcela
+  Bol_NumCre: string; // Nï¿½mero do documento/nota fiscal
+  Bol_DteCre: string; // Data de emissï¿½o do documento
+  Bol_NumCrp: string; // Nï¿½mero da parcela
   Bol_DtvCrp: string; // Data de vencto do titulo
   Bol_VlpCrp: string; // Valor do titulo
   Bol_CodBan: string; // Local de cobranca
   Bol_CodAgb: string; // Agencia sem o digito
   Bol_DigAgb: string; // Digito da agencia
-  Bol_CodCnb: string; // Número da conta bancaria sem o digito
+  Bol_CodCnb: string; // Nï¿½mero da conta bancaria sem o digito
   Bol_DigCnb: string; // Digito da conta bancaria
   Bol_CodTco: string; // Codigo da carteira de cobranca cadastrada no modulo de cobranca
   Ger_Boleto: TStringList;
@@ -973,7 +973,7 @@ begin
   begin
 
     if not(gerarEmail) then
-      if not fMsg('Confirma emissão dos boletos ?', 'O') then
+      if not fMsg('Confirma emissï¿½o dos boletos ?', 'O') then
          begin
             exit;
          end;
@@ -981,19 +981,19 @@ begin
       with quSQL, SQL do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         try
 
           Close;
           Text := ' Update FatBol set FlgAlt = ' + QuotedStr('Sim') + ' Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
           ExecSQL;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
         except
           on E: exception do
           begin
-            fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+            fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
             MessageBox(Self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
           end;
@@ -1046,13 +1046,6 @@ begin
             if FatBolCodBan.AsString = '33' then
             begin
 
-              //Errado
-             {Bol_CodAgb := copy(Trim(FatBolCodAgb.Value), 1, 4);
-             Bol_DigAgb := copy(Trim(FatBolCodAgb.Value), 5, 1);
-             Bol_CodCnb := copy(Trim(FatBolCodCnb.Value), 1, 5);
-             Bol_DigCnb := copy(Trim(FatBolCodCnb.Value), 6, 1);
-             Bol_CodTco := copy(Trim(FatBolCodTco.Value), 2, 2);}
-
               Bol_CodAgb := copy(Trim(FatBolCodAgb.AsString), 1, length(Trim(FatBolCodAgb.AsString)) - 1);
               Bol_DigAgb := copy(Trim(FatBolCodAgb.AsString), length(Trim(FatBolCodAgb.AsString)), 1);
               Bol_CodCnb := copy(Trim(FatBolCodCnb.AsString), 1, length(Trim(FatBolCodCnb.AsString)) - 1);
@@ -1083,7 +1076,7 @@ begin
 
                 with quSQL, SQL do
                 begin
-                  fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
                   ;
 
                   try
@@ -1116,12 +1109,12 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
                     ;
                   except
                     on E: exception do
                     begin
-                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
                       ;
                       MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
                     end;
@@ -1165,7 +1158,7 @@ begin
 
                 with quSQL, SQL do
                 begin
-                  fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
                   ;
 
                   try
@@ -1198,12 +1191,12 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
                     ;
                   except
                     on E: exception do
                     begin
-                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
                       ;
                       MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
                     end;
@@ -1239,7 +1232,7 @@ begin
 
                 with quSQL, SQL do
                 begin
-                  fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
                   ;
 
                   try
@@ -1272,12 +1265,12 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
                     ;
                   except
                     on E: exception do
                     begin
-                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
                       ;
                       MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
                     end;
@@ -1315,7 +1308,7 @@ begin
               //if length(Bol_NosNum) > 8 then
                 //Bol_NosNum := copy(Bol_NosNum, (length(Bol_NosNum) - 6), length(Bol_NosNum));
 
-              //Bol_NosNum := Bol_NosNum + Bol_DigNum;//Não é necessário enviar DAC para remessa
+              //Bol_NosNum := Bol_NosNum + Bol_DigNum;//Nï¿½o ï¿½ necessï¿½rio enviar DAC para remessa
             //end;
 
               if Trim(Bol_NosNum) <> '' then
@@ -1323,7 +1316,7 @@ begin
 
                 with quSQL, SQL do
                 begin
-                  fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
                   ;
 
                   try
@@ -1356,12 +1349,12 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
                     ;
                   except
                     on E: exception do
                     begin
-                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
                       ;
                       MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
                     end;
@@ -1404,7 +1397,7 @@ begin
 
                 with quSQL, SQL do
                 begin
-                  fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
                   ;
 
                   try
@@ -1437,12 +1430,12 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
                     ;
                   except
                     on E: exception do
                     begin
-                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+                      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
                       ;
                       MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
                     end;
@@ -1463,7 +1456,7 @@ begin
 
         with quSQL, SQL do
         begin
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
           ;
 
           try
@@ -1472,12 +1465,12 @@ begin
             Text := ' Update FatBol set FlgAlt = ' + QuotedStr('ENV') + ' Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
             ExecSQL;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+            fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
             ;
           except
             on E: exception do
             begin
-              fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+              fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
               ;
               MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
             end;
@@ -1515,7 +1508,7 @@ begin
 
         with quSQL, SQL do
         begin
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
           ;
 
           try
@@ -1524,12 +1517,12 @@ begin
             Text := ' Delete From FatBol Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
             ExecSQL;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+            fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
             ;
           except
             on E: exception do
             begin
-              fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+              fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
               ;
               MessageBox(self.handle, 'Falha no registro.', 'Boleto', mb_ok + MB_ICONEXCLAMATION);
             end;
@@ -1639,7 +1632,7 @@ end;
 procedure TfmManLn7.grBolEnter(Sender: TObject);
 begin
   inherited;
-  pnTexto.Caption := 'Barra de espaço-Selecionar ou não um documento para emitir boleto';
+  pnTexto.Caption := 'Barra de espaï¿½o-Selecionar ou nï¿½o um documento para emitir boleto';
 end;
 
 procedure TfmManLn7.EdPsqId_PedRes1Enter(Sender: TObject);
@@ -1712,20 +1705,20 @@ var
   SQLTEMP: TQuery;
   strAux: TStrings;
 
-  Bol_NosNum: string; // Nosso Número
-  Bol_NosBol: string; // Sequencia utilizada para emissão do nosso número
-  Bol_DigNum: string; // Digito do nosso número
-  Bol_CodBar: string; // Código de barras
+  Bol_NosNum: string; // Nosso Nï¿½mero
+  Bol_NosBol: string; // Sequencia utilizada para emissï¿½o do nosso nï¿½mero
+  Bol_DigNum: string; // Digito do nosso nï¿½mero
+  Bol_CodBar: string; // Cï¿½digo de barras
   Bol_LinDig: string; // Linha digitavel
-  Bol_NumCre: string; // Número do documento/nota fiscal
-  Bol_DteCre: string; // Data de emissão do documento
-  Bol_NumCrp: string; // Número da parcela
+  Bol_NumCre: string; // Nï¿½mero do documento/nota fiscal
+  Bol_DteCre: string; // Data de emissï¿½o do documento
+  Bol_NumCrp: string; // Nï¿½mero da parcela
   Bol_DtvCrp: string; // Data de vencto do titulo
   Bol_VlpCrp: string; // Valor do titulo
   Bol_CodBan: string; // Local de cobranca
   Bol_CodAgb: string; // Agencia sem o digito
   Bol_DigAgb: string; // Digito da agencia
-  Bol_CodCnb: string; // Número da conta bancaria sem o digito
+  Bol_CodCnb: string; // Nï¿½mero da conta bancaria sem o digito
   Bol_DigCnb: string; // Digito da conta bancaria
   Bol_CodTco: string; // Codigo da carteira de cobranca cadastrada no modulo de cobranca
   Ger_Boleto: TStringList;

@@ -347,11 +347,6 @@ end;
 
 procedure TfmManEma.ppPesDesBeforePrint(Sender: TObject; var PrintIt: Boolean);
 begin
-  {  if FatDesPesDes.Value > 0 then
-       ppPesDes.Caption := FormatFloat('###,###,##0.0000',FatDesPesDes.Value)
-    else
-       ppPesDes.Caption := ' ';}
-
   vlPesDes := vlPesDes + FatDesPesDes.AsFloat;
   vlPesLiqDes := vlPesLiqDes + FatDesPesLiqDes.AsFloat;
 end;

@@ -770,10 +770,10 @@ begin
   begin
 
     if FatPedSitFat.Value = 'Faturado' then
-      fMsg('Operação não Pode ser Realizada. Nota Fiscal já Emitida.', 'E')
+      fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Nota Fiscal jï¿½ Emitida.', 'E')
 
     else if FatPedSitFat.Value = 'Cancelado' then
-      fMsg('Operação não Pode ser Realizada. Nota Fiscal Cancelada.', 'E');
+      fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Nota Fiscal Cancelada.', 'E');
 
     Finalizar := 'S';
 
@@ -956,7 +956,7 @@ begin
   if finalizar = 'N' then
   begin
 
-    if fMsg('Deseja Realmente Abandonar a Emissão da Nota Fiscal ?', 'O') then
+    if fMsg('Deseja Realmente Abandonar a Emissï¿½o da Nota Fiscal ?', 'O') then
     begin
 
       if FatPedNumRes.Value > 0 then
@@ -970,20 +970,20 @@ begin
           with FatPed do
           begin
 
-            fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
             ;
 
             try
 
-              ApplyUpdates; {Tenta aplicar as alterações}
+              ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
               ;
 
-              fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+              fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
               ;
 
             except
 
-              fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+              fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
               ;
 
               if FatPed.State <> dsBrowse then
@@ -1100,10 +1100,10 @@ begin
   end;
 
   if pSaida = 'Nao' then
-     fmsgErro('Campo de Preenchimento Obrigatorio não Informado', EdDteFat);
+     fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado', EdDteFat);
 
   if FatPedDteFat.Value = 0 then
-    fmsgErro('Campo de Preenchimento Obrigatorio não Informado', EdDteFat);
+    fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado', EdDteFat);
 
   if FatPed.State <> dsBrowse then
   begin
@@ -1111,20 +1111,20 @@ begin
     with FatPed do
     begin
 
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
       ;
 
       try
 
-        ApplyUpdates; {Tenta aplicar as alterações}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
         ;
 
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
         ;
 
       except
 
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
         ;
 
         if FatPed.State = dsBrowse then
@@ -1226,11 +1226,11 @@ begin
           end;
 
           if quSql.FieldbyName('Reg').AsInteger = 0 then
-            fmsgErro('Grupo Informado não Encontrado.', EdCodGru);
+            fmsgErro('Grupo Informado nï¿½o Encontrado.', EdCodGru);
 
         end
         else
-          fmsgErro('Grupo Informado não Encontrado', EdCodGru);
+          fmsgErro('Grupo Informado nï¿½o Encontrado', EdCodGru);
 
       end
       else
@@ -1240,7 +1240,7 @@ begin
         begin
 
           if Trim(FatPe2CodGru.Value) = '' then
-            fmsgErro('Grupo Informado não Encontrado.', EdCodGru);
+            fmsgErro('Grupo Informado nï¿½o Encontrado.', EdCodGru);
 
         end;
       end;
@@ -1437,7 +1437,7 @@ begin
             Open;
 
             if FieldbyName('Reg').AsInteger = 0 then
-              fmsgErro('Grupo e Sub-Grupo Informado não Encontrado.', EdCodGru);
+              fmsgErro('Grupo e Sub-Grupo Informado nï¿½o Encontrado.', EdCodGru);
 
           end;
 
@@ -1449,14 +1449,14 @@ begin
           begin
 
             if Trim(FatPe2CodSub.Value) = '' then
-              fmsgErro('Sub-Grupo Informado não Encontrado.', EdCodSub);
+              fmsgErro('Sub-Grupo Informado nï¿½o Encontrado.', EdCodSub);
 
           end;
         end;
 
       end
       else
-        fmsgErro('Sub-Grupo Informado não Encontrado.', EdCodSub);
+        fmsgErro('Sub-Grupo Informado nï¿½o Encontrado.', EdCodSub);
     end;
   end;
 end;
@@ -1714,16 +1714,16 @@ begin
 
             end
             else
-              fmsgErro('Item Informado não Encontrado na Empresa.', EdCodPro);
+              fmsgErro('Item Informado nï¿½o Encontrado na Empresa.', EdCodPro);
 
           end
           else
-            fmsgErro('Item Informado não Encontrado.', EdCodPro);
+            fmsgErro('Item Informado nï¿½o Encontrado.', EdCodPro);
         end;
 
       end
       else
-        fmsgErro('Item Informado não Encontrado.', EdCodPro);
+        fmsgErro('Item Informado nï¿½o Encontrado.', EdCodPro);
     end;
   end;
 end;
@@ -1959,7 +1959,7 @@ begin
               begin
 
                 if FatPe2VluPe2.Value = 0 then
-                  fmsgErro('Item sem Preço Únitario Informado.', EdQtpPe2);
+                  fmsgErro('Item sem Preï¿½o ï¿½nitario Informado.', EdQtpPe2);
 
               end;
 
@@ -2062,15 +2062,15 @@ begin
   begin
 
     if FatPe2QtpPe2.Value = 0 then
-      fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdQtpPe2);
+      fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdQtpPe2);
 
     if FatPe2VluPe2.Value = 0 then
     begin
 
       if EdVluPe2.Enabled then
-        fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdVluPe2)
+        fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdVluPe2)
       else
-        fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdQtpPe2);
+        fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdQtpPe2);
 
     end;
 
@@ -2080,20 +2080,20 @@ begin
       with FatPe2 do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if FatPe2.State = dsBrowse then
@@ -2128,20 +2128,20 @@ begin
       with FatPe2 do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
         ;
 
         try
 
-          ApplyUpdates; {Tenta aplicar as alterações}
+          ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+          fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
           ;
 
         except
 
-          fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+          fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
           ;
 
           if FatPe2.State = dsBrowse then
@@ -2216,20 +2216,20 @@ begin
     with FatPe2 do
     begin
 
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
       ;
 
       try
 
-        ApplyUpdates; {Tenta aplicar as alterações}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
         ;
 
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
         ;
 
       except
 
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
         ;
 
         if FatPe2.State = dsBrowse then
@@ -2296,7 +2296,7 @@ begin
   if pnEstoque.Visible then
     pnEstoque.Visible := False;
 
-  LbText.Caption := 'D-Descrição/Obs F4-Estoque'
+  LbText.Caption := 'D-Descriï¿½ï¿½o/Obs F4-Estoque'
 
 end;
 
@@ -2309,7 +2309,7 @@ begin
   if pnEstoque.Visible then
     pnEstoque.Visible := False;
 
-  LbText.Caption := 'D-Descrição/Obs F4-Estoque'
+  LbText.Caption := 'D-Descriï¿½ï¿½o/Obs F4-Estoque'
 
 end;
 
@@ -2319,7 +2319,7 @@ var
 begin
   inherited;
   if key = 68 then
-  begin // D - Mudar Descrição/Observações Sobre o Item //
+  begin // D - Mudar Descriï¿½ï¿½o/Observaï¿½ï¿½es Sobre o Item //
     //Flg colocado para atender necessidade de clientes (Comwatts e LDF e KR3)
     if fmManGdb.BuscaSimples('FATPAR', 'N_ALT_FAT', ' 1 = 1 ') <> '*' then
     begin
@@ -2363,14 +2363,14 @@ begin
 
   if key = 40 then
   begin // Tecla - Seta para Baixo //
-    //Não pode perder integridade com Liberação
+    //Nï¿½o pode perder integridade com Liberaï¿½ï¿½o
    //if FatPe2NroPe2.Value = FatPedQtiFat.Value then FatPe2.Append;
 
   end;
 
   if key = 46 then
   begin // Tecla - DEL //
-    (* //Não pode perder integridade com Liberação
+    (* //Nï¿½o pode perder integridade com Liberaï¿½ï¿½o
      if Trim(FatPe2CodClp.Value) <> '' then begin
 
            NroPe2 := FatPe2NroPe2.Value;
@@ -2379,17 +2379,17 @@ begin
 
            with FatPe2 do begin
 
-                 fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                 fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
                  try
 
-                    ApplyUpdates; {Tenta aplicar as alterações};
+                    ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                    fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
                  except
 
-                    fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                    fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
                     if FatPe2.State <> dsBrowse then FatPe2.CancelUpdates;
 
@@ -2431,7 +2431,7 @@ begin
   begin
 
     if key = 114 then
-    begin // F3 - Descrição //
+    begin // F3 - Descriï¿½ï¿½o //
 
       try
 
@@ -2481,7 +2481,7 @@ begin
     end;
 
     if key = 116 then
-    begin // F5 - Referência //
+    begin // F5 - Referï¿½ncia //
 
       try
 
@@ -2531,7 +2531,7 @@ begin
     end;
 
     if key = 117 then
-    begin // F6 - Inteligente/Descrição //
+    begin // F6 - Inteligente/Descriï¿½ï¿½o //
 
       try
 
@@ -2572,7 +2572,7 @@ begin
     end;
 
     if key = 118 then
-    begin {F7 - Inteligente/Referência}
+    begin {F7 - Inteligente/Referï¿½ncia}
 
       try
 
@@ -2923,8 +2923,6 @@ end;
 procedure TfmManNot_NFE.pnDscNotExit(Sender: TObject);
 begin
   inherited;
-  {if FatPed.State = dsBrowse then
-  FatPed.Edit; }
 
   if FatPed.State <> dsBrowse then
   begin
@@ -2932,20 +2930,20 @@ begin
     with FatPed do
     begin
 
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
       ;
 
       try
 
-        ApplyUpdates; {Tenta aplicar as alterações}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
         ;
 
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
         ;
 
       except
 
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
         ;
 
         if FatPed.State = dsBrowse then

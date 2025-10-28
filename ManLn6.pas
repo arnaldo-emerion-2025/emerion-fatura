@@ -408,7 +408,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada não Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nï¿½o Encontrada.', EdPsqCodEmp);
 
       end;
     end;
@@ -763,15 +763,6 @@ begin
 
       if FatPedNroNfs.Value > 0 then
       begin
-
-        {fmManDes.FatPed.active := False;
-        fmManDes.FatPed.ParamByName('CodEmp').Value := FatPedCodEmp.Value;
-        fmManDes.FatPed.ParamByName('Dtefat').Value := FatPedDtefat.Value;
-        fmManDes.FatPed.ParamByName('NroNfs').Value := FatPedNroNfs.Value;
-        fmManDes.FatPed.ParamByName('Tip').Value := FatPedTip.Value;
-        //fmManDes.FatPed.ParamByName('SeqFat').Value := FatPedSeqFat.Value;
-        fmManDes.FatPed.active := True;}
-
         fmManDes := TfmManDes.Create(Self);
         fmManDes.Show;
 
@@ -813,7 +804,7 @@ begin
     if FatPedCodEmp.Value > 0 then
     begin
 
-      if fMsg('Confirma Impressão da Minuta de Despacho ?', 'O') then
+      if fMsg('Confirma Impressï¿½o da Minuta de Despacho ?', 'O') then
   begin
 
      if(Trim(fmManGDB.BuscaSimples('FATPAR','FLG_MINUTA_RESUMIDA',' 1 = 1')) <> 'Sim') then
@@ -930,7 +921,7 @@ begin
   else if FatPedTIP.AsString = 'FG' then
     pnOrigNF.Caption := ' Outros Tipos de NF'
   else if FatPedTIP.AsString = 'CN' then
-    pnOrigNF.Caption := ' NF de Devolução'
+    pnOrigNF.Caption := ' NF de Devoluï¿½ï¿½o'
   else
     pnOrigNF.Caption := ' ';
 end;
