@@ -1669,9 +1669,6 @@ begin
             pnTitulo.Caption := 'Aguarde. Gerando Registros 54 para ' + inttostr(QtdReg3) + '/' + inttostr(QuSql.RecordCount);
             QuSql.Next;
 
-            //if QtdReg3 = 27858 then
-                //showMessage('FUDEOOOO');
-                  //ProgressBar.StepBy(1);
             QtdReg3 := QtdReg3 + 1;
 
           end;
@@ -1679,16 +1676,12 @@ begin
           pnTitulo.Caption := 'Aguarde. Gerando Registros 74 para ' + SaveDialog.FileName;
           Application.ProcessMessages;
 
-          ///ProgressBar.Position := 0;
-
           with quSQL, SQL do
           begin
 
             Close;
             Text := ' Select Count(*) as QtdReg From EstQte Where EstQte.CodEmp = ' + codemp;
             Open;
-
-            //ProgressBar.Max := FieldbyName('QtdReg').AsInteger;
 
           end;
 

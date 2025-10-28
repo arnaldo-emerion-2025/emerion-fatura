@@ -5748,8 +5748,6 @@ begin
         ' ,' + SITEM + ' ,' + QuotedStr(SCODEXP) + ' , 0, NULL)';
       qusql.ExecSQL;
 
-      //====================================================================
-      //        showmessage(String(Excel.WorkBooks[1].Sheets[1].cells[1,1]));
       linha := linha + 1;
     end;
 
@@ -6208,8 +6206,6 @@ begin
             ' ,' + SITEM + ' ,' + QuotedStr(SCODEXP) + ' , 0, NULL)';
           qusql.ExecSQL;
 
-          //====================================================================
-          //        showmessage(String(Excel.WorkBooks[1].Sheets[1].cells[1,1]));
           linha := linha + 1;
 
           if linha = 90 then
@@ -6217,8 +6213,6 @@ begin
 
         end;
       finally
-
-        //Excel.WorkBooks.Close;
 
         Excel.quit;
         Excel := null;

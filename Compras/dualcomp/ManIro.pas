@@ -462,17 +462,17 @@ begin
 
               with fmManRo2.CmpNfs do begin
 
-                   fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                   fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
                    try
 
-                      ApplyUpdates; {Tenta aplicar as alterações};
+                      ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-                      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                      fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
                    except
 
-                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
                       sContinuar := 'N';
 
@@ -555,12 +555,12 @@ begin
 
                     sText := '              Confirma Nota Fiscal?               '+#10+
                              '                                                  '+#10+
-                             ' Ao Confirmar Ocorrerão os Seguintes Lançamentos :'+#10+
+                             ' Ao Confirmar Ocorrerï¿½o os Seguintes Lanï¿½amentos :'+#10+
                              '                                                  ';
 
                     if fmManRo2.CmpNfsAtuEst.Value = 'Sim' then sText := sText + #10 + ' . Baixas nos Estoques dos Itens Faturados;       ';
 
-                    if fmManRo2.CmpNfsIntFin.Value = 'Sim' then sText := sText + #10 + ' . Lançamentos dos Titulos no Contas a Receber.   ';
+                    if fmManRo2.CmpNfsIntFin.Value = 'Sim' then sText := sText + #10 + ' . Lanï¿½amentos dos Titulos no Contas a Receber.   ';
 
                     sText := sText + #10 + '                                                  ';
 
@@ -572,17 +572,17 @@ begin
 
                        with fmManRo2.CmpNfs do begin
 
-                            fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                            fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
                             try
 
-                               ApplyUpdates; {Tenta aplicar as alterações};
+                               ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-                               fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                               fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
                             except
 
-                               fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                               fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
                                if fmManRo2.CmpNfs.State <> dsBrowse then fmManRo2.CmpNfs.CancelUpdates;
 
@@ -626,19 +626,19 @@ begin
                  else
                     begin
 
-                    if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Concluido' then fMsg('Operação não Pode ser Realizada. Romaneio Concluido.','E')
+                    if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Concluido' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Romaneio Concluido.','E')
 
-                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Nao Concluido' then fMsg('Operação não Pode ser Realizada. Romaneio não Concluido.','E')
+                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Nao Concluido' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Romaneio nï¿½o Concluido.','E')
 
-                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Recebido' then fMsg('Operação não Pode ser Realizada. Romaneio com Recebimentos já Realizados.','E')
+                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Recebido' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Romaneio com Recebimentos jï¿½ Realizados.','E')
 
-                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Recebido Parcialmente' then fMsg('Operação não Pode ser Realizada. Romaneio com Recebimentos já Realizados.','E')
+                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Recebido Parcialmente' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Romaneio com Recebimentos jï¿½ Realizados.','E')
 
-                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Saldo Nao Atendido' then fMsg('Operação não Pode ser Realizada. Romaneio com Saldo não Atendido.','E')
+                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Saldo Nao Atendido' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Romaneio com Saldo nï¿½o Atendido.','E')
 
-                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Cancelado' then fMsg('Operação não Pode ser Realizada. Romaneio Cancelado.','E')
+                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Cancelado' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Romaneio Cancelado.','E')
 
-                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Processo de Alteracao' then fMsg('Operação não Pode ser Realizada. Romaneio em Processo de Alteração.','E');
+                    else if Trim(fmManRo2.CmpNfsSitNfs.Value) = 'Processo de Alteracao' then fMsg('Operaï¿½ï¿½o nï¿½o Pode ser Realizada. Romaneio em Processo de Alteraï¿½ï¿½o.','E');
 
                  end;
 
@@ -819,7 +819,7 @@ begin
 
                        for j := 1 to 12 do begin
 
-                           Nota01[i] := ' '; {Número}
+                           Nota01[i] := ' '; {Nï¿½mero}
                            Nota02[i] := 'Comp12';
 
                            i := i + 1;
@@ -836,7 +836,7 @@ begin
 
                        for j := 1 to 12 do begin
 
-                           Nota01[i] := ' '; {Número}
+                           Nota01[i] := ' '; {Nï¿½mero}
                            Nota02[i] := 'Comp12';
 
                            i := i + 1;
@@ -853,7 +853,7 @@ begin
 
                        for j := 1 to 12 do begin
 
-                           Nota01[i] := ' '; {Número}
+                           Nota01[i] := ' '; {Nï¿½mero}
                            Nota02[i] := 'Comp12';
 
                            i := i + 1;
@@ -963,7 +963,7 @@ begin
                        Nota02[075] := 'Comp12';
 
                        // De Acordo com o Toninho Por Enquanto Deixar o Campo de Volumes Em branco Em  : 02/07/2003 //
-                       // So Exibir se a Valeria Alterar o seu Conteudo "Notas de Exportação //
+                       // So Exibir se a Valeria Alterar o seu Conteudo "Notas de Exportaï¿½ï¿½o //
 
                        if fmManRo2.CmpNfsAltVol.Value > 0 then
                           Nota01[076] := Prestring(IntToStr(fmManRo2.CmpNfsAltVol.Value),7) {QtdeVol}
@@ -1050,10 +1050,10 @@ begin
 
                        end;
 
-                       Nota01[117] := IntToStr(fmManRo2.CmpNfsCodFor.Value); {código do Fornecedor}
+                       Nota01[117] := IntToStr(fmManRo2.CmpNfsCodFor.Value); {cï¿½digo do Fornecedor}
                        Nota02[117] := 'Comp12';
 
-                       Nota01[118] := ' ';                                   {código do Vendedor}
+                       Nota01[118] := ' ';                                   {cï¿½digo do Vendedor}
                        Nota02[118] := 'Comp12';
 
                        Nota01[119] := '';        {SeuPed}
@@ -1082,7 +1082,7 @@ begin
                        Nota01[125] := copy(ValorExt,101,50); {Valor por Extenso 3}
                        Nota02[125] := 'Comp12';
 
-                       Nota01[126] := fmManRo2.CmpNfsDesReg.Value; {Observações Sobre Desconto}
+                       Nota01[126] := fmManRo2.CmpNfsDesReg.Value; {Observaï¿½ï¿½es Sobre Desconto}
                        Nota02[126] := 'Comp20';
 
                        {********************************************************************************************}
@@ -1095,20 +1095,20 @@ begin
                        rdprint1.TamanhoQteColunas  := 136;
                        rdprint1.FonteTamanhoPadrao := s17cpp;
 
-                       {Programação dos Eventos: desliga eventos cabecalho/rodape}
+                       {Programaï¿½ï¿½o dos Eventos: desliga eventos cabecalho/rodape}
                        rdprint1.OnNewPage       := nil;
                        rdprint1.OnBeforeNewPage := nil;
 
                        rdprint1.TamanhoQteLinhas := QtdNfs;
 
                        qtdimpr := 0; {Quantidade de Linhas de Itens Impressas};
-                       qtitens := 0; {Indicador se Esta Sendo Impressos Itens ou Não}
+                       qtitens := 0; {Indicador se Esta Sendo Impressos Itens ou Nï¿½o}
 
                        SeqNf2 := 0;  {sequencial dos Itens a Serem Impressos}
 
                        Lin := 0; {Linha que Esta Sendo Impressas}{Incrementos de Linhas}
                        Inc := 0; {Incrementos de Linhas}
-                       Col := 0; {Posição da Coluna a ser Impressa}
+                       Col := 0; {Posiï¿½ï¿½o da Coluna a ser Impressa}
                        Reg := 0; {Numero do Vetor a Ser Impresso}
                        Tam := 0; {Tamanho da String a Ser Impressa}
 
@@ -1458,7 +1458,7 @@ begin
                                             else
                                                begin
 
-                                               if (pos('#00040',Linha) = 0) and (qtitens = 0) then begin  {A Linha que Esta Sendo Impressa não e a de Itens}
+                                               if (pos('#00040',Linha) = 0) and (qtitens = 0) then begin  {A Linha que Esta Sendo Impressa nï¿½o e a de Itens}
 
                                                   Inc := StrToInt(copy(Linha,pos('=',Linha)+1,3));   {Linha encontrada e de Incremento de Saltos de Linhas}
                                                   Col := StrToInt(copy(Linha,pos(',',Linha)+1,3));
@@ -1731,7 +1731,7 @@ begin
 
                                                                           if pos('Sim',Linha) > 0 then begin
 
-                                                                             {Verifica se a Linha que Esta Sendo Impressa não e a de Segunda Descrição ou de Titulos de Descontos}
+                                                                             {Verifica se a Linha que Esta Sendo Impressa nï¿½o e a de Segunda Descriï¿½ï¿½o ou de Titulos de Descontos}
                                                                              if (Reg <> 52) and (Reg <> 126) and (Reg <> 127) and (Reg <> 128) then begin
 
                                                                                 if Nota02[Reg] = 'Comp12' then rdprint1.impf(Lin,Col,copy(Nota01[reg],1,Tam),[Comp12]);
@@ -1801,7 +1801,7 @@ begin
 //
 //                                                                                 if (fmManRo2.CmpNfsTotDsr.Value > 0) and (SeqNfg = QtiNfg) then begin
 //
-//                                                                                    { Só ira Imprimir o Campo de Descontos na Ultima Nota e se foi Efetuado Descontos na Nota }
+//                                                                                    { Sï¿½ ira Imprimir o Campo de Descontos na Ultima Nota e se foi Efetuado Descontos na Nota }
 //
 //                                                                                    Lin := Lin + Inc;
 //
@@ -1825,7 +1825,7 @@ begin
 
                                                            end
                                                         else
-                                                           begin  {Finalizar Nota para Impressão da Proxima Nota}
+                                                           begin  {Finalizar Nota para Impressï¿½o da Proxima Nota}
 
                                                            SeqNf2 := SeqNf2 - 1;
 
@@ -1837,7 +1837,7 @@ begin
 
                                                         end
                                                      else
-                                                        begin {Não Ha Mais Itens para Impressão}
+                                                        begin {Nï¿½o Ha Mais Itens para Impressï¿½o}
 
                                                         SeqNf2 := SeqNf2 - 1;
 
@@ -2025,7 +2025,7 @@ begin
 
                        end;
 
-                       rdprint1.fechar;  {Finaliza e inicia impressão ou preview}
+                       rdprint1.fechar;  {Finaliza e inicia impressï¿½o ou preview}
 
                        rdprint1.TamanhoQteLinhas := 66; {Voltar o valor original...}
 
@@ -2041,17 +2041,17 @@ begin
 
                           with fmManRo2.CmpNfs do begin
 
-                               fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                               fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 
                                try
 
-                                  ApplyUpdates; {Tenta aplicar as alterações};
+                                  ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
 
-                                  fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                                  fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
 
                                except
 
-                                  fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                                  fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
 
                                   fmManRo2.Finalizar := 'N';
 
@@ -2120,9 +2120,9 @@ begin
                  begin
 
                  if EdNroNfs.Enabled then
-                    fmsgErro('Fornecedor Informado para a Emissão da Nota Fiscal não Encontrado.',EdNroNfs)
+                    fmsgErro('Fornecedor Informado para a Emissï¿½o da Nota Fiscal nï¿½o Encontrado.',EdNroNfs)
                  else
-                    fmsgErro('Fornecedor Informado para a Emissão da Nota Fiscal não Encontrado.',Nil)
+                    fmsgErro('Fornecedor Informado para a Emissï¿½o da Nota Fiscal nï¿½o Encontrado.',Nil)
 
               end;
                     
@@ -2139,9 +2139,9 @@ begin
            begin
 
            if EdNroNfs.Enabled then
-              fmsgErro('Arquivo de Configuração da Nota Fiscal não Encontrado. Consulte o Administrador do Sistema para Maiores Informações',EdNroNfs)
+              fmsgErro('Arquivo de Configuraï¿½ï¿½o da Nota Fiscal nï¿½o Encontrado. Consulte o Administrador do Sistema para Maiores Informaï¿½ï¿½es',EdNroNfs)
            else
-              fmsgErro('Arquivo de Configuração da Nota Fiscal não Encontrado. Consulte o Administrador do Sistema para Maiores Informações',Nil);
+              fmsgErro('Arquivo de Configuraï¿½ï¿½o da Nota Fiscal nï¿½o Encontrado. Consulte o Administrador do Sistema para Maiores Informaï¿½ï¿½es',Nil);
 
         end;
               
@@ -2166,7 +2166,7 @@ begin
 
         EdNroNfs.Value := GerEmp.FieldbyName('QtdNfs').AsInteger + 1;
 
-        fmsgErro('Número da Nota Fiscal não Informado. Próximo No. '+Trim(FloatToStr( EdNroNfs.Value )),EdNroNfs);
+        fmsgErro('Nï¿½mero da Nota Fiscal nï¿½o Informado. Prï¿½ximo No. '+Trim(FloatToStr( EdNroNfs.Value )),EdNroNfs);
 
      end;
   end;
@@ -2233,7 +2233,7 @@ begin
 WaitForSingleObject (ProcessInfo.hProcess, Infinite);
 //GetExitCodeProcess (ProcessInfo.hProcess, Result);
 end;
-end;   //Estado é o tipo de janela que aparecerá, que pode ser:
+end;   //Estado ï¿½ o tipo de janela que aparecerï¿½, que pode ser:
 
 //SW_SHOWNORMA//L - Janela em modo normal
 
@@ -2399,7 +2399,7 @@ cmpnfs.Post;
     Id_CMPNFS := CMPNFSID_CMPNFS.Value;
     if CMPNFSID_CMPNFS.Value > 0 then
       begin
-      if fMsg('Confirma envio para emissão da NFe ?','O') then
+      if fMsg('Confirma envio para emissï¿½o da NFe ?','O') then
         begin
         Nome_ArqIni := cDir+'config.ini';
         if FileExists(Nome_ArqIni) then
@@ -2412,7 +2412,7 @@ cmpnfs.Post;
             FreeAndNil(fmManNF1R_NFE);
           end
         else
-          fmsgErro('Arquivos de configuração para envio da nota fiscal eletronica não localizado .INI. Por favor verificar.',Nil);
+          fmsgErro('Arquivos de configuraï¿½ï¿½o para envio da nota fiscal eletronica nï¿½o localizado .INI. Por favor verificar.',Nil);
         end;
       end;
     end;
@@ -2484,7 +2484,7 @@ cmpnfs.Post;
       Finalizar:='N';
       fmManPri.Enabled := True;
       fmManIro.Enabled := True;
-      fmsgErro('Código da UF para emissão de NFe não informado no cadastro da empresa.',Nil);
+      fmsgErro('Cï¿½digo da UF para emissï¿½o de NFe nï¿½o informado no cadastro da empresa.',Nil);
       end;
   if Finalizar = 'S' then
     if not Id_FinCie > 0 then
@@ -2492,7 +2492,7 @@ cmpnfs.Post;
       Finalizar:='N';
       fmManPri.Enabled := True;
       fmManIro.Enabled := True;
-      fmsgErro('Código de municipio para emissão de NFe não informado no cadastro da empresa.',Nil);
+      fmsgErro('Cï¿½digo de municipio para emissï¿½o de NFe nï¿½o informado no cadastro da empresa.',Nil);
       end;
   if Finalizar = 'S' then
     if not Id_FinPai > 0 then
@@ -2500,7 +2500,7 @@ cmpnfs.Post;
       Finalizar:='N';
       fmManPri.Enabled := True;
       fmManIro.Enabled := True;
-      fmsgErro('Código do país para emissão de NFe não informado no cadastro da empresa.',Nil);
+      fmsgErro('Cï¿½digo do paï¿½s para emissï¿½o de NFe nï¿½o informado no cadastro da empresa.',Nil);
       end;
   if Finalizar = 'S' then
     begin
@@ -2579,7 +2579,7 @@ cmpnfs.Post;
         Finalizar:='N';
         fmManPri.Enabled := True;
         fmManIro.Enabled := True;
-        fmsgErro('Código do país para emissão de NFe não informado no cadastro do Fornecedor.',Nil);
+        fmsgErro('Cï¿½digo do paï¿½s para emissï¿½o de NFe nï¿½o informado no cadastro do Fornecedor.',Nil);
         end
       else
         NroPais_Cli := fNumZeros(IntToStr(Id_FinPai),4);
@@ -2616,12 +2616,12 @@ cmpnfs.Post;
       CMPNFSSeqNFe.Value := fMontaChaveAcessoNFe(Id_FinUfe,CmpNfsDTENFS.Value,CgcEmp,55,1,CMPNFSNroNfs.Value,1);
       with CMPNFS do
         try
-          fmManGDB.dbMain.StartTransaction; //Inicia a Transação
-          ApplyUpdates; //Tenta aplicar as alterações
-          fmManGDB.dbMain.Commit; //confirma todas as alterações fechando a transação
+          fmManGDB.dbMain.StartTransaction; //Inicia a Transaï¿½ï¿½o
+          ApplyUpdates; //Tenta aplicar as alteraï¿½ï¿½es
+          fmManGDB.dbMain.Commit; //confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o
         except
           begin
-          fmManGDB.dbMain.Rollback; //desfaz as alterações se acontecer um erro
+          fmManGDB.dbMain.Rollback; //desfaz as alteraï¿½ï¿½es se acontecer um erro
           if CMPNFS.State <> dsBrowse then CMPNFS.CancelUpdates;
           end;
         end;
@@ -2630,7 +2630,7 @@ cmpnfs.Post;
       end;
     end;
 
-  // Etapa 2 - Verificando se o serviço está ativo
+  // Etapa 2 - Verificando se o serviï¿½o estï¿½ ativo
   flgrej:='N';
   //Etapa 3 - Preparar os dados para o envio para o robo
   if FlgRej = 'N' then
@@ -2683,48 +2683,48 @@ cmpnfs.Post;
 
 
     Writeln(ArqEnv,'EM0202'+                                                        // Uso interno do sistema
-      IntToStr(Id_FinUfe)+                                             // Código da UF do emitente do documento fiscal
-      copy(CMPNFSSeqNFE.Value,35,09)+                                  // Código númerico que compõe a chave de acesso
-      DesNat+                                                          // Descrição da natureza de operação
-      TipCnd+                                                          // Indicador da forma de pagamento 0-Pagamento à vista 1-Pagamento à prazo 2-Outros
-      '55'+                                                            // Código do Modelo do documento fiscal
-      '1'+                                                             // Série do documento fiscal
-      fNumZeros(IntToStr(CMPNFSNroNfs.Value),9)+                       // Número do documento fiscal
-      copy(FormatDateTime('dd/mm/yyyy',CmpNfsDTENFS.Value),7,4) +'-'+  // Data de emissão do documento fiscal
+      IntToStr(Id_FinUfe)+                                             // Cï¿½digo da UF do emitente do documento fiscal
+      copy(CMPNFSSeqNFE.Value,35,09)+                                  // Cï¿½digo nï¿½merico que compï¿½e a chave de acesso
+      DesNat+                                                          // Descriï¿½ï¿½o da natureza de operaï¿½ï¿½o
+      TipCnd+                                                          // Indicador da forma de pagamento 0-Pagamento ï¿½ vista 1-Pagamento ï¿½ prazo 2-Outros
+      '55'+                                                            // Cï¿½digo do Modelo do documento fiscal
+      '1'+                                                             // Sï¿½rie do documento fiscal
+      fNumZeros(IntToStr(CMPNFSNroNfs.Value),9)+                       // Nï¿½mero do documento fiscal
+      copy(FormatDateTime('dd/mm/yyyy',CmpNfsDTENFS.Value),7,4) +'-'+  // Data de emissï¿½o do documento fiscal
       copy(FormatDateTime('dd/mm/yyyy',CmpNfsDTENFS.Value),4,2) +'-'+
       copy(FormatDateTime('dd/mm/yyyy',CmpNfsDTENFS.Value),1,2) +
       '0000-00-00'+                                                    // Data de saida ou entrada da Mercadoria/Produto
       '1'+                                                             // Tipo do documento fiscal
-      Id_EmpCie+                                                       // Código do Municipio de Ocorrência do Fato Gerador
+      Id_EmpCie+                                                       // Cï¿½digo do Municipio de Ocorrï¿½ncia do Fato Gerador
       '1'+                                                             // Formato de Impressao do DANFE
-      '1'+                                                             // Forma de emissão da NF-e
+      '1'+                                                             // Forma de emissï¿½o da NF-e
       copy(CMPNFSSeqNFE.Value,44,1)+                                   // Digito verificador da Chave de Acesso da NF-e
-      '2'+                                                             // Identificação do Ambiente
-      '1'+                                                             // Finalidade de emissão da NF-e
-      '0'+                                                             // Processo de emissão da NF-e
-      'EMERION FATURA      ');                                         // Versão do processo de emissão da NF-e
+      '2'+                                                             // Identificaï¿½ï¿½o do Ambiente
+      '1'+                                                             // Finalidade de emissï¿½o da NF-e
+      '0'+                                                             // Processo de emissï¿½o da NF-e
+      'EMERION FATURA      ');                                         // Versï¿½o do processo de emissï¿½o da NF-e
 
     VNumNota:=CMPNFSNroNfs.AsString;
 
     Writeln(ArqEnv,'EM0203'+                                                        // Uso interno do sistema
       CgcEmp+                                                          // CNPJ do emitente
       CpfEmp+                                                          // CPF do emitente
-      NomEmp+                                                          // Razão social ou Nome do emitente
+      NomEmp+                                                          // Razï¿½o social ou Nome do emitente
       ApeEmp+                                                          // Nome fantasia
       EndEmp+                                                          // Logradouro
-      NumEmp+                                                          // Número
+      NumEmp+                                                          // Nï¿½mero
       RefEmp+                                                          // Complemento
       BaiEmp+                                                          // Bairro
-      Id_EmpCie+                                                       // Código do municipio
+      Id_EmpCie+                                                       // Cï¿½digo do municipio
       CidEmp+                                                          // Nome do municipio
       UfeEmp+                                                          // Sigla da UF
-      CepEmp+                                                          // Código do CEP
-      NroPais_Emp+                                                     // Código do País
-      NomPais_Emp+                                                     // Nome do País
+      CepEmp+                                                          // Cï¿½digo do CEP
+      NroPais_Emp+                                                     // Cï¿½digo do Paï¿½s
+      NomPais_Emp+                                                     // Nome do Paï¿½s
       FonEmp+                                                          // Telefone
       InsEmp+                                                          // IE
-      '              '+                                                // IE do Substituto tributário
-      '               '+                                               // IM inscrição municipal
+      '              '+                                                // IE do Substituto tributï¿½rio
+      '               '+                                               // IM inscriï¿½ï¿½o municipal
       '       ');                                                      // CNAE Fiscal
 
     if CmpNfsTEFFOR.Value <> '' then
@@ -2746,20 +2746,20 @@ cmpnfs.Post;
     Writeln(ArqEnv,'EM0204'+                                                       // Uso interno do sistema
                        CgcCli+                                                         // CNPJ do destinatario
                        CpfCli+                                                         // CPF do destinatario
-                       NomCli+                                                         // Razão social ou nome do destinatario
+                       NomCli+                                                         // Razï¿½o social ou nome do destinatario
                        EndCli+                                                         // Logradouro
-                       NumCli+                                                         // Número
+                       NumCli+                                                         // Nï¿½mero
                        RefCli+                                                         // Complemento
                        BaiCli+                                                         // Bairro
-                       Id_CliNfe+                                                      // Código do Municipio
+                       Id_CliNfe+                                                      // Cï¿½digo do Municipio
                        CidCli+                                                         // Nome do Municipio
                        UfeCli+                                                         // Sigla da UF
-                       CepCli+                                                         // Código do Cep
-                       NroPais_Cli+                                                    // Código do País
-                       NomPais_Cli+                                                    // Nome do País
+                       CepCli+                                                         // Cï¿½digo do Cep
+                       NroPais_Cli+                                                    // Cï¿½digo do Paï¿½s
+                       NomPais_Cli+                                                    // Nome do Paï¿½s
                        FonCli+                                                         // Telefone
                        InsCli+                                                         // IE
-                       NroSuf);                                                        // Inscrição SUFRAMA
+                       NroSuf);                                                        // Inscriï¿½ï¿½o SUFRAMA
 
     if (Trim(CmpNfsCEPFOR.Value) <> Trim(CmpNfsCEFFOR.Value)) or (Trim(CmpNfsTENFOR.Value) <> Trim(CMPNFSTeffor.Value)) or (Trim(CMPNFSEndfor.Value) <> Trim(CMPNFSEnffor.Value)) or (Trim(CMPNFSRefFor.Value) <> Trim(CMPNFSRffFor.Value)) or (Trim(CMPNFSNumFor.Value) <> Trim(CMPNFSNrfFor.Value)) or (Trim(CMPNFSBaiFor.Value) <> Trim(CMPNFSBafFor.Value)) or (Trim(CMPNFSCidFor.Value) <> Trim(CMPNFSCifFor.Value)) or (Trim(CMPNFSUfeFor.Value) <> Trim(CMPNFSUffFor.Value)) then
       begin
@@ -2799,10 +2799,10 @@ cmpnfs.Post;
       Writeln(ArqEnv,'EM0205'+   // Uso interno do sistema
                        CgcCli+     // CNPJ do destinatario
                        EndCli+     // Logradouro
-                       NumCli+     // Número
+                       NumCli+     // Nï¿½mero
                        RefCli+     // Complemento
                        BaiCli+     // Bairro
-                    Id_CliNfe+  // Código do Municipio
+                    Id_CliNfe+  // Cï¿½digo do Municipio
                        CidCli+     // Nome do Municipio
                         UfeCli);    // Sigla da UF
       end;
@@ -2878,34 +2878,34 @@ cmpnfs.Post;
 
 
       Writeln(ArqEnv,'EM0206'+                                                     // Uso interno do sistema
-                         '00'+                                                         // Tipo de operação
+                         '00'+                                                         // Tipo de operaï¿½ï¿½o
                          fNumZeros(IntToStr(quSQL.FieldbyName('NroNF2').AsInteger),3)+ // Nro. do item
-                         CodPro+                                                       // Código do Produto ou serviço
+                         CodPro+                                                       // Cï¿½digo do Produto ou serviï¿½o
                          '              '+                                             // GTIN
-                         DesPro+                                                       // Descrição do produto ou serviço
-                         ClsIpi+                                                       // Código NCM
+                         DesPro+                                                       // Descriï¿½ï¿½o do produto ou serviï¿½o
+                         ClsIpi+                                                       // Cï¿½digo NCM
                          '   '+                                                        // EX_TIPI
-                         '  '+                                                         // Gênero do produto ou serviço
-                         CodCfo+                                                       // Código fiscal da operação
+                         '  '+                                                         // Gï¿½nero do produto ou serviï¿½o
+                         CodCfo+                                                       // Cï¿½digo fiscal da operaï¿½ï¿½o
                          CodUnd+                                                       // Unidade comercial
                          QtdPro+                                                       // Quantidade comercial
-                         VluPro+                                                       // Valor unitário de comercialização
-                         TotPro+                                                       // Valor Total Bruto dos Produtos ou Serviços
+                         VluPro+                                                       // Valor unitï¿½rio de comercializaï¿½ï¿½o
+                         TotPro+                                                       // Valor Total Bruto dos Produtos ou Serviï¿½os
                          '              '+                                             // GTIN
                          CodUnd+                                                       // Unidade Tributavel
                          QtdPro+                                                       // Quantidade Tributavel
-                         VluPro+                                                       // Valor Unitário de tributação
+                         VluPro+                                                       // Valor Unitï¿½rio de tributaï¿½ï¿½o
                          TotFrt+                                                       // Valor Total do Frete
                          TotSeg+                                                       // Valor Total do Seguro
                          TotDsr);                                                      // Valor do Desconto
 
       Writeln(ArqEnv,'EM0207'+                                                     // Uso interno do sistema
-                     '01'+                                                         // Tipo de operação
+                     '01'+                                                         // Tipo de operaï¿½ï¿½o
                      fNumZeros(IntToStr(quSQL.FieldbyName('NroNF2').AsInteger),3)+ // Nro. do item
                      CodSt1+                                                       // Origem da mercadoria
                      CodSt2+                                                       // Grupo de CST
-                     '3'+                                                          // Modalidade de determinação da BC do ICMS ST
-                     RedIcm+                                                       // Percential de redução de BC do ICMS
+                     '3'+                                                          // Modalidade de determinaï¿½ï¿½o da BC do ICMS ST
+                     RedIcm+                                                       // Percential de reduï¿½ï¿½o de BC do ICMS
                      BasIcm+                                                       // Valor da BC do ICMS
                      PerIcm+                                                       // Aliquota do imposto
                      TotIcm+                                                       // Valor do ICMS
@@ -2915,23 +2915,23 @@ cmpnfs.Post;
                      TotSub);                                                      // Valor do ICMS ST
 
       Writeln(ArqEnv,'EM0208'+                                                     // Uso interno do sistema
-                     '01'+                                                         // Tipo de operação
+                     '01'+                                                         // Tipo de operaï¿½ï¿½o
                      fNumZeros(IntToStr(quSQL.FieldbyName('NroNF2').AsInteger),3)+ // Nro. do item
                      TrbIpi+                                                       // IPI tributado
                      BasIpi+                                                       // Valor da BC do IPI
                      PerIpi+                                                       // Aliquota do imposto
                      TotIpi+                                                       // Valor do IPI
-                     Id_EstSip);                                                   // Situação tributária do IPI
+                     Id_EstSip);                                                   // Situaï¿½ï¿½o tributï¿½ria do IPI
 
       Writeln(ArqEnv,'EM0209'+                                                     // Uso interno do sistema
-                     '01'+                                                         // Tipo de operação
+                     '01'+                                                         // Tipo de operaï¿½ï¿½o
                      fNumZeros(IntToStr(quSQL.FieldbyName('NroNF2').AsInteger),3)+ // Nro. do item
-                     NfePis+                                                       // Situação Tributaria do PIS
+                     NfePis+                                                       // Situaï¿½ï¿½o Tributaria do PIS
                      TrbPis+                                                       // PIS tributado
                      BasPis+                                                       // BC PIS
                      PerPis+                                                       // Percentual do PIS
                      TotPis+                                                       // Valor do PIS
-                     NfeCof+                                                       // Situação Tributaria do COFINS
+                     NfeCof+                                                       // Situaï¿½ï¿½o Tributaria do COFINS
                      TrbCof+                                                       // COFINS tributado
                      BasCof+                                                       // BC COFINS
                      PerCof+                                                       // Percentual do COFINS
@@ -2945,7 +2945,7 @@ cmpnfs.Post;
                    fSubstDecimal(FormatFloat('########0.00',CMPNFSTotIcm.Value),15)+  // Valor Total do ICMS
                    fSubstDecimal(FormatFloat('########0.00',CMPNFSBasSub.Value),15)+  // Base de Calculo do ICMS ST
                    fSubstDecimal(FormatFloat('########0.00',CMPNFSTotSub.Value),15)+  // Valor Total do ICMS ST
-                   fSubstDecimal(FormatFloat('########0.00',CMPNFSTotGer.Value),15)+  // Valor Total dos produtos e serviços
+                   fSubstDecimal(FormatFloat('########0.00',CMPNFSTotGer.Value),15)+  // Valor Total dos produtos e serviï¿½os
                    fSubstDecimal(FormatFloat('########0.00',CMPNFSTotFrt.Value),15)+  // Valor Total do Frete
                    fSubstDecimal(FormatFloat('########0.00',CMPNFSTotSeg.Value),15)+  // Valor Total do Seguro
                    fSubstDecimal(FormatFloat('########0.00',CMPNFSTotDes.Value),15)+  // Valor Total do Desconto
@@ -2953,7 +2953,7 @@ cmpnfs.Post;
                    fSubstDecimal(FormatFloat('########0.00',CMPNFSTotIpi.Value),15)+  // Valor Total do IPI
                    fSubstDecimal(FormatFloat('########0.00',CMPNFSTotPis.Value),15)+  // Valor Total do PIS
                    fSubstDecimal(FormatFloat('########0.00',CMPNFSTotCof.Value),15)+  // Valor Total do COFINS
-                   fSubstDecimal(FormatFloat('########0.00',CMPNFSTotDes.Value),15)+  // Outras Despesas Acessórias
+                   fSubstDecimal(FormatFloat('########0.00',CMPNFSTotDes.Value),15)+  // Outras Despesas Acessï¿½rias
                    fSubstDecimal(FormatFloat('########0.00',CMPNFSTotGer.Value),15)); // Valor Total da NFe
 
     if CMPNFSTipFrt.Value = '2' then
@@ -3011,9 +3011,9 @@ cmpnfs.Post;
                    TipFrt+                                     // Modalidade do Frete
                    CgcTra+                                     // CNPJ
                    CpfTra+                                     // CPF
-                   NomTra+                                     // Razão social ou nome
+                   NomTra+                                     // Razï¿½o social ou nome
                    InsTra+                                     // IE
-                   EndTra+                                     // Endereço completo
+                   EndTra+                                     // Endereï¿½o completo
                    CidTra+                                     // Nome do Municipio
                    UfeTra+                                     // Sigla da UF
                    fNumZeros(IntToStr(CMPNFSAltVol.Value),15)+ // Quantidade de volumes
@@ -3026,7 +3026,7 @@ cmpnfs.Post;
       begin
       NroDoc := fSubstDecimal(IntToStr(CMPNFSNroNfs.Value),60);
       Writeln(ArqEnv,'EM0212'+                                                          // Uso interno do sistema
-                     NroDoc+                                                            // Número da fatura
+                     NroDoc+                                                            // Nï¿½mero da fatura
                      fSubstDecimal(FormatFloat('########0.00',CMPNFSTotGer.Value),15)+  // Valor Original
                      '           0.00'+                                                 // Valor do desconto
                      fSubstDecimal(FormatFloat('########0.00',CMPNFSTotGer.Value),15)); // Valor Original
@@ -3046,7 +3046,7 @@ cmpnfs.Post;
     ObsFat := copy(ObsFat,1,256);
     ObsFat := copy(Trim(ObsFat),1,256) + fReplicate(' ',256 - Length(copy(Trim(ObsFat),1,256)));
     Writeln(ArqEnv,'EM0214'+ // Uso interno do sistema
-                   ObsFat);  // Informações adicionais de interesse do Fisco
+                   ObsFat);  // Informaï¿½ï¿½es adicionais de interesse do Fisco
     CloseFile(ArqEnv);
     end;
 
@@ -3056,7 +3056,7 @@ cmpnfs.Post;
   IniFile:=ExtractFilePath(Application.ExeName)+'NFeEmerion.ini';
   if not FileExists(inifile) then
   begin
-      showmessage('Erro. Não foi possível localizar o arquivo de configuração da NF-e.');
+      showmessage('Erro. Nï¿½o foi possï¿½vel localizar o arquivo de configuraï¿½ï¿½o da NF-e.');
       sysutils.abort;
   end;
 
@@ -3127,10 +3127,9 @@ VNumNota:=EdNroNfs.Text;
         until EOF(Tarquivo);
         CloseFile(TArquivo);
         movefile(pchar(CaminhoRetorno+'\'+VNumNota+' - NF-e- Retorno.xml'), pchar(CaminhoRetorno+'\'+VNumNota+' - NF-e- '+chave+'.xml'));
-//        showmessage((CaminhoRetorno+'\'+VNumNota+' - NF-e- '+chave+'.xml'));
 
         CMPNFS.Post;
-        CMPNFS.ApplyUpdates; //Tenta aplicar as alterações
+        CMPNFS.ApplyUpdates; //Tenta aplicar as alteraï¿½ï¿½es
 
 
         FatArq.Active:=false;
@@ -3185,7 +3184,7 @@ VNumNota:=EdNroNfs.Text;
 
     if CMPNFSEnvNfe.Value = 'Sim' then
     begin
-       if fMsg('Confirma impressão do DANFE ?','O') then
+       if fMsg('Confirma impressï¿½o do DANFE ?','O') then
        begin
            with quSQL,SQL do
            begin
@@ -3302,12 +3301,12 @@ VNumNota:=EdNroNfs.Text;
               CmpNfsFLGIMP.Value := 'Sim';
               with CMPNFS do
               begin
-                   fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+                   fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
                    try
-                      ApplyUpdates; {Tenta aplicar as alterações};
-                      fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação};
+                      ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es};
+                      fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o};
                    except
-                      fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro};
+                      fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro};
                       if CMPNFS.State <> dsBrowse then CMPNFS.CancelUpdates;
                       CMPNFS.Close;
                       CMPNFS.Open;
@@ -3380,7 +3379,7 @@ TIdAttachment.create(idmessage1.MessageParts, TFileName(eAnexo));
 IdSMTP1.Connect;
 try
 IdSMTP1.Send(IdMessage1);
-Application.MessageBox('Email enviado com sucesso!', 'Confirmação', MB_ICONINFORMATION + MB_OK);
+Application.MessageBox('Email enviado com sucesso!', 'Confirmaï¿½ï¿½o', MB_ICONINFORMATION + MB_OK);
 finally
 IdSMTP1.Disconnect;
 end;

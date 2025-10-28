@@ -1631,8 +1631,6 @@ begin
         raise;
       end;
     end;
-    //      showmessage('Olha ai' + CMPNFSID_CMPNFS.asstring);
-////============================== Mandando E-mail Para o Cliente ==== ////
 
     ini := TIniFile.create(IniFile);
     try

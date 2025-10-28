@@ -2970,7 +2970,7 @@ begin
                             until not FileExists(CaminhoRetorno + '\LogErro-' + VNumNota + '.EP' + inttostr(i));
                             MoveFile(pchar(CaminhoRetorno + '\LogErro-' + VNumNota + '.txt'), pchar(CaminhoRetorno + '\LogErro-' + VNumNota + '.EP' +
                               inttostr(i)));
-                          end; //                                   else showmessage('//If FileExists');
+                          end; //                                  
 
                           fmManPri.Enabled := True;
                           fmManGr1_NFE.Enabled := True;
@@ -2998,14 +2998,14 @@ begin
                       fmManGr1_NFE.Enabled := True;
                       pnMensag.Visible := False;
                     end;
-                  end; // else showmessage(';//  if FatGerId_EstSip.Value > 0 then');
-                end; // else showmessage(';//      if Id_FinPai > 0 then');
-              end; // else showmessage('; //   if Id_FinCie > 0 then');
-            end; // else showmessage(';//  if Id_EmpUfe > 0 then');
-          end; // else showmessage(';//              if Finalizar = S then');
-        end; // else showmessage('; //    if fMsg(Confirma envio para emiss�o da NFe ?,O) then');
-      end; // else showmessage(';//     if FatGerId_FatGer.Value > 0 then');
-    end; //else showmessage(';//  if FatGerId_FatGer.Value > 0 then');
+                  end; 
+                end; 
+              end;
+            end; 
+          end;
+        end;
+      end;
+    end;
     fmManPri.Enabled := True;
     fmManGr1_NFE.Enabled := True;
     pnMensag.Visible := False;

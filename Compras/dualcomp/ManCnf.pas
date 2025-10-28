@@ -99,7 +99,7 @@ begin
     WaitForSingleObject(ProcessInfo.hProcess, Infinite);
     //GetExitCodeProcess (ProcessInfo.hProcess, Result);
   end;
-end; //Estado é o tipo de janela que aparecerá, que pode ser:
+end; //Estado ï¿½ o tipo de janela que aparecerï¿½, que pode ser:
 
 procedure TfmManCnf.bConfirmarClick(Sender: TObject);
 var
@@ -137,7 +137,7 @@ begin
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configuração para envio de NFe não encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configuraï¿½ï¿½o para envio de NFe nï¿½o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -161,7 +161,7 @@ begin
     begin
       sText := 'Deseja realmente cancelar a nota fiscal ?';
       if (Trim(sEstoque) <> '') or (Trim(sReceber) <> '') then
-        sText := sText + #10 + ' ' + #10 + ' Ao confirmar ocorrerão os seguintes lançamentos:';
+        sText := sText + #10 + ' ' + #10 + ' Ao confirmar ocorrerï¿½o os seguintes lanï¿½amentos:';
       sText := sText + #10 + ' ' + #10 + sEstoque + #10 + ' ' + #10 + sReceber;
       if fmsgConf(sText, 'E') = 'SIM' then
       begin
@@ -205,7 +205,6 @@ begin
                 Rewrite(ArqEnv);
                 vaux := CaminhoRetorno + '\' + (VNumNota) + ' - NF-e- ' + Vchave + '.xml';
                 vaux := vaux + fReplicate(' ', 401 - length(vaux));
-                // OK showmessage(inttostr(length( CaminhoXML)));
                 Writeln(ArqEnv, 'EMC' +
                   (vaux) +
                   obcfat);
@@ -294,7 +293,7 @@ begin
                     fmManLr3.cmpnfsARQNFECANC.LoadFromFile(CaminhoRetorno + '\' + (VNumNota) + ' Cancelamento - NF-e- ' + Vchave + '.xml');
 
                     fmManLr3.cmpnfs.post;
-                    fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alterações}
+                    fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
                     ;
                     fmManLr3.cmpnfs.CommitUpdates;
                     fmManCnF.Enabled := True;
@@ -336,7 +335,7 @@ begin
                   fmManLr3.cmpnfsNFETHCANC.Value := 1;
                   fmManLr3.cmpnfsHreCan.Value := TimeToStr(Time);
                   fmManLr3.cmpnfs.post;
-                  fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alterações}
+                  fmManLr3.cmpnfs.ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
                   ;
                   fmManLr3.cmpnfs.CommitUpdates;
                   fmManCnF.Enabled := True;
@@ -380,10 +379,10 @@ begin
         EdObcNfs.SetFocus;
     end //     if Length(Trim(ObcFat)) >= 15 then
     else
-      fmsgErro('Observações informadas tem que ter o minimo de 15 caracteres.', EdObcNfs);
+      fmsgErro('Observaï¿½ï¿½es informadas tem que ter o minimo de 15 caracteres.', EdObcNfs);
   end //  if Trim(ObcFat) <> '' then
   else
-    fmsgErro('Campo de Preenchimento Obrigatorio não Informado.', EdObcNfs);
+    fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.', EdObcNfs);
 end //complemento
 {var
 sText,sReceber,sEstoque : string;
@@ -393,14 +392,14 @@ begin
 
   if Trim( fmManLr3.CmpNfsObcNfs.Value ) <> '' then begin
 
-     sText := 'Deseja Realmente Cancelar a Operação ? ';
+     sText := 'Deseja Realmente Cancelar a Operaï¿½ï¿½o ? ';
 
-     if fmManLr3.CmpNfsAtuEst.Value = 'Sim' then sEstoque := ' . Devolução ao Estoque dos Itens da Operação;';
+     if fmManLr3.CmpNfsAtuEst.Value = 'Sim' then sEstoque := ' . Devoluï¿½ï¿½o ao Estoque dos Itens da Operaï¿½ï¿½o;';
 
-//   if fmManLr3.CmpNfsIntFin.Value = 'Sim' then sReceber := ' . Exclusão dos Titulos a Receber Decorrentes da Emissão da Nota Fiscal.';
+//   if fmManLr3.CmpNfsIntFin.Value = 'Sim' then sReceber := ' . Exclusï¿½o dos Titulos a Receber Decorrentes da Emissï¿½o da Nota Fiscal.';
 
      if (Trim( sEstoque ) <> '') or (Trim( sReceber ) <> '') then
-        sText := sText + #10 + ' ' + #10 + ' Ao Confirmar Ocorrerão os Seguintes Lançamentos :';
+        sText := sText + #10 + ' ' + #10 + ' Ao Confirmar Ocorrerï¿½o os Seguintes Lanï¿½amentos :';
 
      sText := sText + #10 + ' ' + #10 + sEstoque + #10 + ' ' + #10 + sReceber;
 
@@ -418,17 +417,17 @@ begin
 
         with fmManLr3.CmpNfs do begin
 
-             fmManGDB.dbMain.StartTransaction; {Inicia a Transação};
+             fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o};
 {
             try
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ApplyUpdates; {Tenta aplicar as alterações}//;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}//;
 
-{                fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+{                fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 {
             except
 
-               fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+               fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 {
                if fmManLr3.CmpNfs.State <> dsBrowse then fmManLr3.CmpNfs.CancelUpdates;
 
@@ -451,7 +450,7 @@ begin
 
     end
  else
-    fmsgErro('Campo de Preenchimento Obrigatorio não Informado.',EdObcNfs);}
+    fmsgErro('Campo de Preenchimento Obrigatorio nï¿½o Informado.',EdObcNfs);}
 //end;
 
 procedure TfmManCnf.FormClose(Sender: TObject; var Action: TCloseAction);

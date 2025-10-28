@@ -194,7 +194,7 @@ begin
                 Rewrite(ArqEnv);
                 vaux := CaminhoRetorno + '\' + (VNumNota) + ' - NF-e- ' + Vchave + '.xml';
                 vaux := vaux + fReplicate(' ', 401 - length(vaux));
-                             // OK showmessage(inttostr(length( CaminhoXML)));
+                             
                 Writeln(ArqEnv, 'EMC' +
                   (vaux) +
                   obcfat);

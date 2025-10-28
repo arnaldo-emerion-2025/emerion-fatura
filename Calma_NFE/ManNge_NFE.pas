@@ -5183,8 +5183,6 @@ begin
             qusql.sql.Text := 'INSERT INTO DIDET (ID_DIDET, ID_DI, NADICAO, NSEQADIC, CODFAB, VDESCDI, QTDE) VALUES (NULL, ' + inttostr(VGENID) + ', ' + SAdicao + ' ,' + SITEM + ' ,' + QuotedStr(SCODEXP) + ' , 0, NULL)';
             qusql.ExecSQL;
 
-            //====================================================================
-            //        showmessage(String(Excel.WorkBooks[1].Sheets[1].cells[1,1]));
             linha := linha + 1;
          end;
 

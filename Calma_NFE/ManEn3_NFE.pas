@@ -2166,7 +2166,6 @@ begin
     CloseFile(TArquivo);
     movefile(pchar(CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + chave + '.xml'), pchar(CaminhoRetorno + '\' + VNumNota + ' - NF-e- ' + chaven + '.xml'));
     chave := chaven;
-    //        showmessage((CaminhoRetorno+'\'+VNumNota+' - NF-e- '+chave+'.xml'));
 
     Fatdev.Post;
     Fatdev.ApplyUpdates; //Tenta aplicar as altera��es

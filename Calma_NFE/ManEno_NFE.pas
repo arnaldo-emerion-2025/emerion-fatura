@@ -456,7 +456,6 @@ end;
 
 procedure TfmManEno_NFE.bSelecionarClick(Sender: TObject);
 begin
-  //showmessage('Aqui');
   ActiveControl := nil;
 
   if GFlgAce <> 'Sim' then
