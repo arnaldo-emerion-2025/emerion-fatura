@@ -1380,7 +1380,7 @@ begin
       ideObj.Add('serie', putString('1'));
       ideObj.Add('nNF', putNumber(FatPedNroNfs.AsInteger));
       ideObj.Add('dataEmissao', putString(FormatDateTime('yyyy-mm-dd', FatPedDteFat.AsDateTime)));
-      ideObj.Add('dataEntradaSaidaMercadoria', putString('0000-00-00'));
+      ideObj.Add('dSaiEnt', putString('0000-00-00'));
       ideObj.Add('tpNF', putString('1'));
       ideObj.Add('cMunFG', putString(Id_EmpCie));
       ideObj.Add('tpImp', putString('1'));
@@ -1429,11 +1429,11 @@ begin
       emitEnderObj.Add('UF', putString(UfeEmp));
       emitEnderObj.Add('CEP', putString(CepEmp));
       emitEnderObj.Add('cPais', putString(NroPais_Emp));
-      emitEnderObj.Add('xPais', putString(NroPais_Emp));
+      emitEnderObj.Add('xPais', putString(NomPais_Emp));
       emitEnderObj.Add('fone', putString(FonEmp));
       emitObj.Add('enderEmit', emitEnderObj);
       emitObj.Add('ie', putString(InsEmp));
-      emitObj.Add('IEST', putString(InsEmp));
+      emitObj.Add('IEST', putString(copy(Trim(FatPedINSSUB.AsString), 1, 18) + fReplicate(' ', 18 - Length(copy(Trim(FatPedINSSUB.AsString), 1, 18)))));
       emitObj.Add('CRT', putString('SIMPLES OU NORMAL'));
 
       if FatPedTefCli.Value <> '' then
@@ -1875,6 +1875,11 @@ begin
           itemObj.Add('nItemPed', putString(NUMITEMCOMPRA));
           itemObj.Add('CEST', putString(CEST));
 
+          itemObj.Add('cProdANP', putString(CODANP));
+          itemObj.Add('descANP', putString(DESCANP));
+          itemObj.Add('CODIF', putString(CODIF));
+
+          productObj.Add('item', itemObj);
           impostoIIObj := TlkJSONobject.Create;
           impostoIIObj.Add('vBC', putStrToNumber(VLRBCII));
           impostoIIObj.Add('vII', putStrToNumber(VLRIMPII));
@@ -2064,7 +2069,6 @@ begin
           impostoIcmsObj.Add('orig', putString(CodSt1));
           impostoIcmsObj.Add('cst', putString(CodSt2));
           impostoIcmsObj.Add('modBCST', putString('3'));
-
           impostoIcmsObj.Add('pRedBC', putStrToNumber(RedIcm));
           impostoIcmsObj.Add('vBC', putStrToNumber(BasIcm));
           impostoIcmsObj.Add('pICMS', putStrToNumber(PerIcm));
@@ -2125,7 +2129,7 @@ begin
             impostoIpiObj.Add('vBC', putStrToNumber(BasIpi));
             impostoIpiObj.Add('pIPI', putStrToNumber(PerIpi));
             impostoIpiObj.Add('vIPI', putStrToNumber(TotIpi));
-            impostoIpiObj.Add('CST', putStrToNumber(CSTIPI));
+            impostoIpiObj.Add('CST', putString(CSTIPI));
             impostoObj.Add('ipi', impostoIpiObj);
           end;
 
@@ -2147,14 +2151,14 @@ begin
           impostoPisObj.Add('vBC', putStrToNumber(BasPis));
           impostoPisObj.Add('pIPI', putStrToNumber(PerPis));
           impostoPisObj.Add('vIPI', putStrToNumber(TotPis));
-          impostoPisObj.Add('CST', putStrToNumber(NfePis));
+          impostoPisObj.Add('CST', putString(NfePis));
           impostoObj.Add('pis', impostoPisObj);
 
           impostoCofinsObj := TlkJSONobject.Create;
           impostoCofinsObj.Add('vBC', putStrToNumber(BasCof));
           impostoCofinsObj.Add('pIPI', putStrToNumber(PerCof));
           impostoCofinsObj.Add('vIPI', putStrToNumber(TotCof));
-          impostoCofinsObj.Add('CST', putStrToNumber(NfeCof));
+          impostoCofinsObj.Add('CST', putString(NfeCof));
           impostoObj.Add('cofins', impostoCofinsObj);
 
           Application.ProcessMessages;
@@ -2369,6 +2373,9 @@ begin
           Application.ProcessMessages;
 
           pagamentoObj := TlkJSONobject.Create;
+          pagamentoObj.Add('numeroParcela', putNumber(quSQL.FieldbyName('NroPe3').AsInteger));
+          pagamentoObj.Add('nDup', putNumber(FatPedNroNfs.AsInteger));
+          pagamentoObj.Add('dVenc', putString(FormatDateTime('yyyy-mm-dd', quSQL.FieldbyName('DtvPe3').AsDateTime)));
           pagamentoObj.Add('vPag', putNumber(quSQL.FieldbyName('VlpPe3').AsFloat));
           pagamentoObjList.Add(pagamentoObj);
           quSQL.Next;
@@ -2401,7 +2408,7 @@ begin
       nfeObj.Add('ide', ideObj);
       nfeObj.Add('emit', emitObj);
       nfeObj.Add('dest', destObj);
-      nfeObj.Add('nfCOntingencia', contigenciaObj);
+      nfeObj.Add('nfContingencia', contigenciaObj);
       nfeObj.Add('inf', infNFe);
       nfeObj.Add('det', productObjList);
       nfeObj.Add('icmsTot', icmsTotObj);
