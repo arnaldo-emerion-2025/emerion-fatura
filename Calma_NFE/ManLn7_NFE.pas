@@ -1390,7 +1390,7 @@ begin
       ideObj.Add('finNFe', putString('1'));
       ideObj.Add('procEmi', putString('0'));
       ideObj.Add('verProc', putString('EMERION FATURA'));
-      ideObj.Add('idDest', putString(idDest));
+      ideObj.Add('idDest', putNumber(StrToInt(idDest)));
       ideObj.Add('indFinal', putNumber(FatPedINDIC_CF.AsInteger));
       ideObj.Add('indPres', putNumber(FatPedINDIC_PRESENCA.AsInteger));
 
@@ -1417,7 +1417,10 @@ begin
         '               ' + // IM inscri��o municipal
         '       '); // CNAE Fiscal
 
-      emitObj.Add('CNPJ', putString(Trim(CgcEmp) + Trim(CpfEmp)));
+      if( (Trim(CgcEmp) <> '') and (StrToFloat(Trim(CgcEmp)) > 0)) then
+        emitObj.Add('CNPJ', putString(CgcEmp))
+      else
+        emitObj.Add('CNPJ', putString(CpfEmp));
       emitObj.Add('xNome', putString(NomEmp));
       emitObj.Add('xFant', putString(ApeEmp));
       emitEnderObj.Add('xLgr', putString(EndEmp));
@@ -1481,7 +1484,11 @@ begin
         INSC_MUNICIPAL + // Identifica��o do IM//3.1
         emailRecepcaoXml); // Email de Recep��o do XML
 
-      destObj.Add('CPF_CNPJ', putString(Trim(CgcCli) + Trim(CpfCli)));
+      if( (Trim(CgcCli) <> '') and (StrToFloat(Trim(CgcCli)) > 0)) then
+        destObj.Add('CPF_CNPJ', putString(CgcCli))
+      else
+        destObj.Add('CPF_CNPJ', putString(CpfCli));
+
       destObj.Add('idEstrangeiro', putString(idEstrangeiro));
       destObj.Add('xNome', putString(NomCli));
       destEnderObj.Add('xLgr', putString(EndCli));
