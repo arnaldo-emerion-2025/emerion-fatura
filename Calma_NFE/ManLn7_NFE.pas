@@ -2114,10 +2114,11 @@ begin
 
           impostoIcmsUfDestObj := TlkJSONobject.Create;
           impostoIcmsUfDestObj.Add('vBCUFDest', putStrToNumber(BAS_UFDEST));
-          impostoIcmsUfDestObj.Add('vBCFCPUFDest', putStrToNumber(BAS_UFDEST));
+          impostoIcmsUfDestObj.Add('vBCFCPUFDest', putStrToNumber(ALIQ_FCPUFDEST));
           impostoIcmsUfDestObj.Add('pICMSUFDest', putStrToNumber(ALIQ_ICMSUFDEST));
           impostoIcmsUfDestObj.Add('pICMSInter', putStrToNumber(ALIQ_ICMSINTER));
           impostoIcmsUfDestObj.Add('pICMSInterPart', putStrToNumber(ALIQ_ICMSINTERPART));
+          impostoIcmsUfDestObj.Add('vFCPUFDest', putStrToNumber(TOT_FCPUFDEST));
           impostoIcmsUfDestObj.Add('vICMSUFDest', putStrToNumber(TOT_ICMSUFDEST));
           impostoIcmsUfDestObj.Add('vICMSUFRemet', putStrToNumber(TOT_ICMSUFREMET));
           impostoObj.Add('ICMSUFDest', impostoIcmsUfDestObj);
