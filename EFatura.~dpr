@@ -99,7 +99,7 @@ uses
   ManLr2 in 'Compras\DualComp\ManLr2.pas' {fmManLr2},
   ManLr3 in 'Compras\DualComp\ManLr3.pas' {fmManLr3},
   ManRo3 in 'Compras\DualComp\ManRo3.pas' {fmManRo3},
-  ManCol in 'Estoque\Emerion\ManCol.pas' {fmManCol},
+  ManCol in 'ManCol.pas' {fmManCol},
   ManNfp in 'ManNfp.pas' {fmManNfp},
   ManCdv_NFE in 'Calma_NFE\ManCdv_NFE.pas' {fmManCdv_NFE},
   ManCn1_NFE in 'Calma_NFE\ManCn1_NFE.pas' {fmManCn1_NFE},
