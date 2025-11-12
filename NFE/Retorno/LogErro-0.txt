@@ -1,3 +1,0 @@
-Falha na validação dos dados da nota 0
-'0' violates pattern constraint of '[1-9]{1}[0-9]{0,8}'.
-The element '{http://www.portalfiscal.inf.br/nfe}nNF' with value '0' failed to parse.
