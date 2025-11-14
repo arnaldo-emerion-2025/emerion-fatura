@@ -21,7 +21,6 @@ function getCodBar_BB(cConvcConvenio, cCart, cBanco, cAgencia, cConta, cDigCC, c
 var
    sTempBarras, LinhaDigitavel, nossoNumero, CodBarras, strFatorVenc, strCarteira: String;
    fatorVencimento: variant;
-   intValor, int2Valor : integer;
    dVal:real;
    iVal:integer;
    strValorFormatado, strZeros, strConvenio, strNossoNumero, bldocnufinal: string;

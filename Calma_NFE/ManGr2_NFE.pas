@@ -145,8 +145,7 @@ type
     procedure BitBtn2Click(Sender: TObject);
   private
     eAssunto, eAnexo, ePara, eUsuario, eSenha, eHost, EProtocolo, EPDF: string;
-    eAutomatico, ei, eposicao, ehomologacao, ePorta: integer;
-    ecorpo: string;
+    eAutomatico, ehomologacao, ePorta: integer;
     {Private declarations}
   public
     {Public declarations}
@@ -844,26 +843,12 @@ end;
 
 procedure TfmManGr2_NFE.bRecuperarClick(Sender: TObject);
 var
-  UfeEmp: string;
-  ArqRe1: string;
-  ArqRe2: string;
-  ArqRs1: string;
-  ArqRs2: string;
-  FlgRej: string;
-  LinArq: string;
-  EmaCli: string;
-  MSGNFE: string;
-  SeqEnc: integer;
-  SeqLin: integer;
-  SeqRet: Boolean;
   Handle: LongInt;
-  ArqEnv: TextFile;
-  ArqRet: TStringList;
   IniFile: string;
   Ini: TIniFile;
-  Snumeronf, sAssunto: string;
+  Snumeronf: string;
   vaux: string;
-  VCaminhoDanfe, VCGeraisCaminhoArquivoLeitura, VCGeraisCaminhoArquivoRetorno, vchave: string;
+  VCaminhoDanfe, VCGeraisCaminhoArquivoLeitura, VCGeraisCaminhoArquivoRetorno: string;
 begin
   inherited;
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
@@ -992,23 +977,11 @@ procedure TfmManGr2_NFE.bconsultarClick(Sender: TObject);
 var
   UfeEmp: string;
   ArqRe1: string;
-  ArqRe2: string;
-  ArqRs1: string;
-  ArqRs2: string;
-  FlgRej: string;
-  LinArq: string;
-  MSGNFE: string;
-  DTECNE: string;
-  HRECNE: string;
-  SeqEnc: integer;
-  SeqLin: integer;
-  SeqRet: Boolean;
   Handle: LongInt;
   ArqEnv: TextFile;
   ArqRet: TStringList;
   IniFile: string;
   Ini: TIniFile;
-  Ok: Boolean;
   VCGeraisCaminhoArquivoLeitura, VCGeraisCaminhoArquivoRetorno, vaux, vchave: string;
   vnumnota, i: integer;
 begin
@@ -1131,8 +1104,6 @@ var
   Vnumnota, IniFile, CaminhoLeitura, CaminhoRetorno, chaveN: string;
   ini: Tinifile;
   TDAnfe: TextFile;
-  NroReg: integer;
-  DscPro, sNumeroNF, NomEmp: string;
 begin
   inherited;
 
@@ -1260,11 +1231,7 @@ end;
 
 procedure TfmManGr2_NFE.Button1Click(Sender: TObject);
 var
-  xAnexo: Integer;
-  newtext: tidtext;
-  p: TidMessageParts;
   emailContabilidade: String;
-
   arq: TIniFile;
   tipoEmail: String;
 begin

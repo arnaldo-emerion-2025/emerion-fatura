@@ -715,9 +715,7 @@ end;
 
 procedure TfmManEn1_NFE.EdNumNfsExit(Sender: TObject);
 var
-  Pergunta, BPedido: string;
-
-  totItens, totDevolvido: Double;
+  BPedido: string;
 begin
   inherited;
   if (Tecla <> 'ESC') and (Tecla <> 'UP') then
@@ -1817,7 +1815,7 @@ end;
 
 procedure TfmManEn1_NFE.EdNumResExit(Sender: TObject);
 var
-  Pergunta, BPedido: string;
+  BPedido: string;
 begin
   inherited;
   if (Tecla <> 'ESC') and (Tecla <> 'UP') then

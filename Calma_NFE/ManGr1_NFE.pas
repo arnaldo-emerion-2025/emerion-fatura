@@ -274,8 +274,7 @@ type
     DteGer: TDateTime;
     NumGer: integer;
     eAssunto, eAnexo, ePara, eUsuario, eSenha, eHost, EProtocolo, ePDF: string;
-    eAutomatico, ei, eposicao, ehomologacao, Eporta: integer;
-    ecorpo: string;
+    eAutomatico, ehomologacao, Eporta: integer;
     {Private declarations}
 
     procedure EnvioNFe(TipoEnvio: integer = 3);
@@ -1168,13 +1167,7 @@ var
   MSGNFE: string;
   MSGANT: string;
   RECNFE: string;
-  PRONFE: string;
-  DTENFE: string;
-  HRENFE: string;
-  DTEPNF: string;
-  HREPNF: string;
   ArqEnv: TextFile;
-  ArqRet: TStringList;
   SeqRet: Boolean;
   Handle: LongInt;
   ApeEmp: string;
@@ -1190,7 +1183,6 @@ var
   CgcEmp: string;
   CpfEmp: string;
   InsEmp: string;
-  InsSub: string;
   CgcTra: string;
   CpfTra: string;
   InsTra: string;
@@ -3031,11 +3023,9 @@ end;
 
 procedure TfmManGr1_NFE.DPECSEFAZClick(Sender: TObject);
 var
-  Vnumnota, IniFile, CaminhoLeitura, CaminhoRetorno, chaveN: string;
+  Vnumnota, IniFile, CaminhoLeitura, CaminhoRetorno: string;
   ini: Tinifile;
   TDPECN: TextFile;
-  NroReg: integer;
-  DscPro, sNumeroNF, NomEmp: string;
   strNfe: string;
 begin
   inherited;
@@ -3178,7 +3168,6 @@ var
   ini: Tinifile;
   TDAnfe: TextFile;
   NroReg: integer;
-  DscPro, sNumeroNF, NomEmp: string;
 begin
   inherited;
 

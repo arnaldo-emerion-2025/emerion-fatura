@@ -1355,8 +1355,7 @@ end;
 
 function TfmManPri.EnviaEmailNovo(ePara, anexos: Variant): Boolean;
 var
-  strPDF: string;
-  strNomCli, strEmailCli, IdCli: string;
+  strNomCli, strEmailCli: string;
 begin
   strNomCli := 'Nome Cliente';
   strEmailCli := 'arnaldotecadm@hotmail.com';
