@@ -9,7 +9,7 @@ uses
   Wwquery, dxColorPickEdit, dxColorCurrencyEdit, dxColorEdit,
   dxColorDateEdit, dxDBELib, dxDBColorCurrencyEdit, dxDBColorPickEdit,
   dxfProgressBar, dxDBColorEdit, inifiles, IdComponent, IdTCPConnection,
-  IdTCPClient, IdMessageClient, IdSMTP, IdBaseComponent, IdMessage;
+  IdTCPClient, IdMessageClient, IdSMTP, IdBaseComponent, IdMessage, ulkJSON, uUtils;
 
 type
   TfmManGr1_NFE = class(TfmPadrao)
@@ -1312,8 +1312,35 @@ var
 
   emailRecepcaoXml : String;
   precoUnitario, valorIpi, valorMva, valorComMva, valorSemMva, quantidade, percentualIcm: Double;
+
+  nfeObj, infNFe, contigenciaObj, ideObj, emitObj, emitEnderObj, destObj, destEnderObj, icmsTotObj,
+  entregaObj, productObj, itemObj, productRastroObj, productMedObj, impostoIcmsUfDestObj, transportObj,
+  exportObj, pagamentoObj,
+  impostoObj, impostoIcmsObj, impostoIpiObj, impostoPisObj, impostoCofinsObj, impostoIIObj: TlkJSONobject;
+  productObjList, productRastroObjList, productMedObjList, pagamentoObjList: TlkJSONlist;
+  Json: string;
+  jsonText: TStringList;
 begin
   inherited;
+
+  nfeObj := TlkJSONobject.Create;
+  infNFe := TlkJSONobject.Create;
+  contigenciaObj := TlkJSONobject.Create;
+  ideObj := TlkJSONobject.Create;
+  emitObj := TlkJSONobject.Create;
+  emitEnderObj := TlkJSONobject.Create;
+  destObj := TlkJSONobject.Create;
+  destEnderObj := TlkJSONobject.Create;
+  entregaObj := TlkJSONobject.Create;
+  icmsTotObj := TlkJSONobject.Create;
+  transportObj := TlkJSONobject.Create;
+  exportObj := TlkJSONobject.Create;
+
+  productObjList := TlkJSONlist.Create;
+  productRastroObjList := TlkJSONlist.Create;
+  productMedObjList := TlkJSONlist.Create;
+  pagamentoObjList := TlkJSONlist.Create;
+
   if FatGerCodEmp.AsInteger > 0 then
   begin
     CodEmp := FatGerCodEmp.AsInteger;
@@ -1621,6 +1648,10 @@ begin
                           FatGerSeqNFe.AsString +
                           fNumZeros(IntToStr(FatGerLotNfe.AsInteger), 9));
 
+                        infNFe.Add('ufeEmp', putString(UfeEmp));
+                        infNFe.Add('SeqNFe', putString(FatGerSeqNFe.AsString));
+                        infNFe.Add('LotNfe', putNumber(FatGerLotNfe.AsInteger));
+
                         //Para CONTIGENCIA DPEC JUSTIFICATIVA
                         if TipoEnvio = 4 then
                         begin
@@ -1636,6 +1667,9 @@ begin
                           Writeln(ArqEnv, 'EM1201' + //6
                             FormatDateTime('yyyy-mm-dd hh:MM:ss', dtCont) + //19
                             copy(msgJust, 1, 255)); //255
+
+                          contigenciaObj.Add('dhCont', putString(FormatDateTime('yyyy-mm-dd hh:MM:ss', dtCont)));
+                          contigenciaObj.Add('xJust', putString(msgJust));
 
                           FatGer.Edit;
                           FatGerFlgAtu.AsString := 'F';
@@ -1779,6 +1813,27 @@ begin
                             formatFloat('00', FatGerINDIC_CF.AsInteger) + //indica Cosumidor final //3.1
                             formatFloat('00', FatGerINDIC_PRESENCA.AsInteger)); //Indica Presenca do Consumidor  //3.1
 
+                          ideObj.Add('cUF', putString(FormatFloat('00', Id_EmpUfe)));
+                          ideObj.Add('SeqNFE', putString(copy(FatGerSeqNFE.AsString, 35, 09)));
+                          ideObj.Add('natOp', putString(DesNat));
+                          ideObj.Add('TipCnd', putString(TipCnd));
+                          ideObj.Add('modelo', putString('55'));
+                          ideObj.Add('serie', putString('1'));
+                          ideObj.Add('nNF', putNumber(FatGerNroNfs.AsInteger));
+                          ideObj.Add('dataEmissao', putString(FormatDateTime('yyyy-mm-dd', FatGerDteFat.AsDateTime)));
+                          ideObj.Add('dSaiEnt', putString('0000-00-00'));
+                          ideObj.Add('tpNF', putString(TipNot));
+                          ideObj.Add('cMunFG', putString(Id_EmpCie));
+                          ideObj.Add('tpImp', putString('1'));
+                          ideObj.Add('tpEmis', putString('1'));
+                          ideObj.Add('cDV', putString(copy(FatGerSeqNFE.AsString, 44, 1)));
+                          ideObj.Add('tpAmb', putString('2'));
+                          ideObj.Add('finNFe', putString(Finalidade));
+                          ideObj.Add('procEmi', putString('0'));
+                          ideObj.Add('verProc', putString('EMERION FATURA'));
+                          ideObj.Add('idDest', putNumber(StrToInt(idDest)));
+                          ideObj.Add('indFinal', putNumber(FatGerINDIC_CF.AsInteger));
+                          ideObj.Add('indPres', putNumber(FatGerINDIC_PRESENCA.AsInteger));
                         end
                         else
                         begin
@@ -1807,6 +1862,28 @@ begin
                             idDest + //Identifica destino //3.1
                             formatFloat('00', FatGerINDIC_CF.AsInteger) + //indica Cosumidor final //3.1
                             formatFloat('00', FatGerINDIC_PRESENCA.AsInteger)); //Indica Presenca do Consumidor  //3.1
+
+                          ideObj.Add('cUF', putString(FormatFloat('00', Id_EmpUfe)));
+                          ideObj.Add('SeqNFE', putString(copy(FatGerSeqNFE.AsString, 35, 09)));
+                          ideObj.Add('natOp', putString(DesNat));
+                          ideObj.Add('TipCnd', putString(TipCnd));
+                          ideObj.Add('modelo', putString('55'));
+                          ideObj.Add('serie', putString('1'));
+                          ideObj.Add('nNF', putNumber(FatGerNroNfs.AsInteger));
+                          ideObj.Add('dataEmissao', putString(FormatDateTime('yyyy-mm-dd', FatGerDteFat.AsDateTime)));
+                          ideObj.Add('dSaiEnt', putString('0000-00-00'));
+                          ideObj.Add('tpNF', putString(TipNot));
+                          ideObj.Add('cMunFG', putString(Id_EmpCie));
+                          ideObj.Add('tpImp', putString('1'));
+                          ideObj.Add('tpEmis', putString('1'));
+                          ideObj.Add('cDV', putString(copy(FatGerSeqNFE.AsString, 44, 1)));
+                          ideObj.Add('tpAmb', putString('2'));
+                          ideObj.Add('finNFe', putString(Finalidade));
+                          ideObj.Add('procEmi', putString('0'));
+                          ideObj.Add('verProc', putString('EMERION FATURA'));
+                          ideObj.Add('idDest', putNumber(StrToInt(idDest)));
+                          ideObj.Add('indFinal', putNumber(FatGerINDIC_CF.AsInteger));
+                          ideObj.Add('indPres', putNumber(FatGerINDIC_PRESENCA.AsInteger));
                          
                         end; // Chave de acesso da NFe
                         VNumNota := FatGerNroNfs.AsString;
@@ -1869,6 +1946,28 @@ begin
                           copy(Trim(FatGERINSSUB.AsString), 1, 18) + fReplicate(' ', 18 - Length(copy(Trim(FatGERINSSUB.AsString), 1, 18))) +
                           // IE do Substituto tribut�rio
                           '       '); // CNAE Fiscal
+
+                        if( (Trim(CgcEmp) <> '') and (StrToFloat(Trim(CgcEmp)) > 0)) then
+                           emitObj.Add('CNPJ', putString(CgcEmp))
+                        else
+                           emitObj.Add('CNPJ', putString(CpfEmp));
+                        emitObj.Add('xNome', putString(NomEmp));
+                        emitObj.Add('xFant', putString(ApeEmp));
+                        emitEnderObj.Add('xLgr', putString(EndEmp));
+                        emitEnderObj.Add('nro', putString(NumEmp));
+                        emitEnderObj.Add('xCpl', putString(RefEmp));
+                        emitEnderObj.Add('xBairro', putString(BaiEmp));
+                        emitEnderObj.Add('cMun', putString(Id_EmpCie));
+                        emitEnderObj.Add('xMun', putString(CidEmp));
+                        emitEnderObj.Add('UF', putString(UfeEmp));
+                        emitEnderObj.Add('CEP', putString(CepEmp));
+                        emitEnderObj.Add('cPais', putString(NroPais_Emp));
+                        emitEnderObj.Add('xPais', putString(NomPais_Emp));
+                        emitEnderObj.Add('fone', putString(FonEmp));
+                        emitObj.Add('enderEmit', emitEnderObj);
+                        emitObj.Add('ie', putString(InsEmp));
+                        emitObj.Add('IEST', putString(copy(Trim(FatGERINSSUB.AsString), 1, 18) + fReplicate(' ', 18 - Length(copy(Trim(FatGERINSSUB.AsString), 1, 18)))));
+                        emitObj.Add('CRT', putString('SIMPLES OU NORMAL'));
 
                         if FatGerTefCli.Value <> '' then
                           EndCli := Trim(FatGerTefCli.Value) + ' ' + FatGerEnfCli.Value
