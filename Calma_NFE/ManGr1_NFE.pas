@@ -9,7 +9,8 @@ uses
   Wwquery, dxColorPickEdit, dxColorCurrencyEdit, dxColorEdit,
   dxColorDateEdit, dxDBELib, dxDBColorCurrencyEdit, dxDBColorPickEdit,
   dxfProgressBar, dxDBColorEdit, inifiles, IdComponent, IdTCPConnection,
-  IdTCPClient, IdMessageClient, IdSMTP, IdBaseComponent, IdMessage, ulkJSON, uUtils;
+  IdTCPClient, IdMessageClient, IdSMTP, IdBaseComponent, IdMessage, ulkJSON,
+  uUtils, clipbrd;
 
 type
   TfmManGr1_NFE = class(TfmPadrao)
@@ -1070,9 +1071,6 @@ end;
 
 procedure TfmManGr1_NFE.Button1Click(Sender: TObject);
 var
-  xAnexo: Integer;
-  newtext: tidtext;
-  p: TidMessageParts;
   emailContabilidade: String;
 
   arq: TIniFile;
@@ -1155,18 +1153,10 @@ var
   ini: Tinifile;
 
   SeqEnc: integer;
-  LinArq: string;
-  LinPro: string;
-  DscPro: string;
-  SeqLin: integer;
   ArqRe1: string;
   ArqRe2: string;
-  ArqRs1: string;
-  ArqRs2: string;
   FlgRej: string;
   MSGNFE: string;
-  MSGANT: string;
-  RECNFE: string;
   ArqEnv: TextFile;
   SeqRet: Boolean;
   Handle: LongInt;
@@ -1264,7 +1254,6 @@ var
   ObsFat: string;
   TipCnd: string;
   TipNot: string;
-  NomArq: string;
   sNumeroNF: string;
   NroPais_Cli: string;
   NomPais_Cli: string;
@@ -1276,8 +1265,6 @@ var
   Id_EstSip: string;
   CSTIPI: string;
   Finalidade: string;
-
-  NroReg: integer;
   Id_FinPai: integer;
   Id_EmpUfe: integer;
   Id_FinUfe: integer;
@@ -1315,9 +1302,10 @@ var
 
   nfeObj, infNFe, contigenciaObj, ideObj, emitObj, emitEnderObj, destObj, destEnderObj, icmsTotObj,
   entregaObj, productObj, itemObj, productRastroObj, productMedObj, impostoIcmsUfDestObj, transportObj,
-  exportObj, pagamentoObj,
+  exportObj, pagamentoObj, nfeRefObj, nfeDIObj, nfeADIObj,
   impostoObj, impostoIcmsObj, impostoIpiObj, impostoPisObj, impostoCofinsObj, impostoIIObj: TlkJSONobject;
-  productObjList, productRastroObjList, productMedObjList, pagamentoObjList: TlkJSONlist;
+  productObjList, productRastroObjList, productMedObjList, pagamentoObjList, nfeRefObjList,
+  nfeDIObjList, nfeADIObjList: TlkJSONlist;
   Json: string;
   jsonText: TStringList;
 begin
@@ -1340,6 +1328,9 @@ begin
   productRastroObjList := TlkJSONlist.Create;
   productMedObjList := TlkJSONlist.Create;
   pagamentoObjList := TlkJSONlist.Create;
+  nfeRefObjList := TlkJSONlist.Create;
+  nfeDIObjList := TlkJSONlist.Create;
+  nfeADIObjList := TlkJSONlist.Create;
 
   if FatGerCodEmp.AsInteger > 0 then
   begin
@@ -1921,6 +1912,13 @@ begin
                               quSQL.fieldByname('NUM_COO').AsString + // Nro COO           06
                               quSQL.fieldByname('TIPO_IMPRESSAO_ECF').AsString); // Tipo Impressao    01
 
+                            nfeRefObj := TlkJSONobject.Create();
+                            nfeRefObj.Add('refNFe', putString(quSQL.fieldByname('NFE_REF').AsString));
+                            nfeRefObj.Add('modelo', putString(quSQL.fieldByname('MODELO').AsString));
+                            nfeRefObj.Add('nECF', putString(quSQL.fieldByname('NUM_ECF').AsString));
+                            nfeRefObj.Add('nCOO', putString(quSQL.fieldByname('NUM_COO').AsString));
+                            nfeRefObjList.Add(nfeRefObj);
+
                             quSQL.Next;
                           end;
                         end;
@@ -2011,7 +2009,32 @@ begin
                           idEstrangeiro +               // Identifica��o de estrangeiro //3.1
                           INDIC_IE +                    // Identifica��o do IE //3.1
                           INSC_MUNICIPAL +              // Identifica��o do IM//3.1
-                          emailRecepcaoXml);            // Email para Recep��o dos XMLs     
+                          emailRecepcaoXml);            // Email para Recep��o dos XMLs
+
+                        if( (Trim(CgcCli) <> '') and (StrToFloat(Trim(CgcCli)) > 0)) then
+                          destObj.Add('CPF_CNPJ', putString(CgcCli))
+                        else
+                          destObj.Add('CPF_CNPJ', putString(CpfCli));
+
+                        destObj.Add('idEstrangeiro', putString(idEstrangeiro));
+                        destObj.Add('xNome', putString(NomCli));
+                        destEnderObj.Add('xLgr', putString(EndCli));
+                        destEnderObj.Add('nro', putString(NumCli));
+                        destEnderObj.Add('xCpl', putString(RefCli));
+                        destEnderObj.Add('xBairro', putString(BaiCli));
+                        destEnderObj.Add('cMun', putString(Id_CliNfe));
+                        destEnderObj.Add('xMun', putString(CidCli));
+                        destEnderObj.Add('UF', putString(UfeCli));
+                        destEnderObj.Add('CEP', putString(CepCli));
+                        destEnderObj.Add('cPais', putString(NroPais_Cli));
+                        destEnderObj.Add('xPais', putString(NomPais_Cli));
+                        destEnderObj.Add('fone', putString(FonCli));
+                        destObj.Add('enderDest', destEnderObj);
+                        destObj.Add('ie', putString(InsCli));
+                        destObj.Add('ISUF', putString(NroSuf));
+                        destObj.Add('email', putString(emailRecepcaoXml));
+                        destObj.Add('indIEDest', putString(INDIC_IE));
+                        destObj.Add('IM', putString(INSC_MUNICIPAL));
 
                         if (Trim(FatGerCepCli.Value) <> Trim(FatGerCefCli.Value)) or
                           (Trim(FatGerTenCli.Value) <> Trim(FatGerTefCli.Value)) or
@@ -2088,6 +2111,15 @@ begin
                               Id_CliNfe + // C�digo do Municipio
                               CidCli + // Nome do Municipio
                               UfeCli); // Sigla da UF
+
+                            entregaObj.Add('CPF_CNPJ', putString(CgcCli));
+                            entregaObj.Add('xLgr', putString(EndCli));
+                            entregaObj.Add('nro', putString(NumCli));
+                            entregaObj.Add('xCpl', putString(RefCli));
+                            entregaObj.Add('xBairro', putString(BaiCli));
+                            entregaObj.Add('cMun', putString(Id_CliNfe));
+                            entregaObj.Add('xMun', putString(CidCli));
+                            entregaObj.Add('UF', putString(UfeCli));
                           end;
 
                         end; //if Varios Trim
@@ -2346,6 +2378,48 @@ begin
                           //NUMPEDCOMPRA + //Numero do pedido de compra
                           //NUMITEMCOMPRA); //Numero do item do pedido de compra
 
+                        productObj := TlkJSONobject.Create;
+                        itemObj := TlkJSONobject.Create;
+                        impostoObj := TlkJSONobject.Create;
+
+                        itemObj.Add('nItem', putNumber(quSQL.FieldbyName('NroPe2').AsInteger));
+                        itemObj.Add('cProd', putString(CodPro));
+                        itemObj.Add('cEAN', putString(cEAN));
+                        itemObj.Add('xProd', putString(DesPro));
+                        itemObj.Add('NCM', putString(ClsIpi));
+                        itemObj.Add('EXTIPI', putString(''));
+                        itemObj.Add('CFOP', putString(CodCfo));
+                        itemObj.Add('uCom', putString(CodUnd));
+                        itemObj.Add('qCom', putStrToNumber(QtdPro));
+                        itemObj.Add('vUnCom', putStrToNumber(VluPro));
+                        itemObj.Add('vProd', putStrToNumber(TotPro));
+                        itemObj.Add('cEANTrib', putString(cEANTrib));
+                        itemObj.Add('uTrib', putString(CodUnd));
+                        itemObj.Add('qTrib', putStrToNumber(QtdPro));
+                        itemObj.Add('vUnTrib', putStrToNumber(VluPro));
+                        itemObj.Add('vFrete', putStrToNumber(TotFrt));
+                        itemObj.Add('vSeg', putStrToNumber(TotSeg));
+                        itemObj.Add('vOutro', putStrToNumber(TOTDES));
+                        itemObj.Add('vDesc', putStrToNumber(TotDsr));
+                        itemObj.Add('nFCI', putString(''));
+                        itemObj.Add('xPed', putString(''));
+                        itemObj.Add('nItemPed', putString(''));
+                        itemObj.Add('CEST', putString(''));
+
+                        itemObj.Add('cProdANP', putString(''));
+                        itemObj.Add('descANP', putString(''));
+                        itemObj.Add('CODIF', putString(''));
+
+                        productObj.Add('item', itemObj);
+                        impostoIIObj := TlkJSONobject.Create;
+                        impostoIIObj.Add('vBC', putStrToNumber(VLRBCII));
+                        impostoIIObj.Add('vII', putStrToNumber(VLRIMPII));
+                        impostoIIObj.Add('vDespAdu', putStrToNumber(VLRDESPATU));
+                        impostoIIObj.Add('vIOF', putStrToNumber(VLRIOF));
+                        impostoObj.Add('vTotTrib', putStrToNumber(TOTIBPT));
+
+                        impostoObj.Add('importoImportacao', impostoIIObj);
+
                         //========================== THIAGO OBS DO ITEM
                           strAux := '';
                           if Trim(quSQL.FieldbyName('REFGE2').AsString) <> '' then
@@ -2393,6 +2467,7 @@ begin
                           strAux := StringReplace(StringReplace(strAux, #13, ' ', [rfReplaceAll, rfIgnoreCase]), #10, '', [rfReplaceAll, rfIgnoreCase]);
                           // descricao de DI
                           Writeln(ArqENV, 'EM1206' + StrAux);
+                          productObj.Add('infAdProd', putString(StrAux));
 
                           //========================== THIAGO OBS DO ITEM
                           //========================== Inserindo os dados da DI
@@ -2417,6 +2492,14 @@ begin
                                 Length(copy(Trim(qusql1.fieldbyname('CODEXPORT').asstring), 1, 60)));
                               Writeln(ArqENV, 'EM1207' + StrAux);
 
+                              nfeDIObj := TlkJSONobject.Create();
+                              nfeDIObj.Add('nDi', putString(qusql1.fieldbyname('numdi').asstring));
+                              nfeDIObj.Add('dDi', putString(FormatDateTime('yyyy-mm-dd', qusql1.fieldbyname('datadi').AsDateTime)));
+                              nfeDIObj.Add('xLocDesemb', putString(qusql1.fieldbyname('LOCALDESEMB').asstring));
+                              nfeDIObj.Add('UFDesemb', putString(qusql1.fieldbyname('UFDESEMB').asstring));
+                              nfeDIObj.Add('dDesemb', putString(FormatDateTime('yyyy-mm-dd', qusql1.fieldbyname('datadesemb').AsDateTime)));
+                              nfeDIObj.Add('cExportador', putString(qusql1.fieldbyname('CODEXPORT').asstring));
+
                               qusql2.active := false;
                               qusql2.sql.text := 'Select  NSEQADIC, CODFAB, VDESCDI, NADICAO from DIDET where ID_DI = ' +
                                 QuotedStr(qusql1.fieldbyname('id_DI').asstring);
@@ -2432,13 +2515,26 @@ begin
                                     fReplicate(' ', 60 - Length(copy(Trim(qusql2.fieldbyname('CODFAB').asstring), 1, 60))) +
                                     fSubstDecimal(FormatFloat('########0.00', quSQL2.FieldbyName('VDESCDI').AsFloat), 15);
                                   Writeln(ArqENV, 'EM1208' + StrAux);
+
+                                  nfeADIObj := TlkJSONobject.Create();
+                                  nfeADIObj.Add('nSeqAdi', putString(qusql2.fieldbyname('NSEQADIC').asstring));
+                                  nfeADIObj.Add('nAdicao', putString(qusql2.fieldbyname('NADICAO').asstring));
+                                  nfeADIObj.Add('cFabricante', putString(qusql2.fieldbyname('CODFAB').asstring));
+                                  nfeADIObj.Add('vDescDI', putNumber(quSQL2.FieldbyName('VDESCDI').AsFloat));
+                                  nfeADIObjList.Add(nfeRefObj);
+
                                   qusql2.next;
                                 end;
+
+                              nfeDIObj.Add('adi', nfeADIObjList);
+                              nfeDIObjList.Add(nfeRefObj);
 
                               qusql1.next;
                             end;
                           end;
 
+                          productObj.Add('di', nfeDIObjList);
+                          
                           Writeln(ArqEnv, 'EM0207' + // Uso interno do sistema  1/6
                             '01' + // Tipo de opera��o  7/2
                             fNumZeros(IntToStr(quSQL.FieldbyName('NroGe2').AsInteger), 3) + // Nro. do item 9/3
@@ -2463,6 +2559,28 @@ begin
                             fSubstDecimal(FormatFloat('########0.00', percentualIcm), 15) // pST
                             );
 
+                          impostoIcmsObj := TlkJSONobject.Create;
+                          impostoIcmsObj.Add('orig', putString(CodSt1));
+                          impostoIcmsObj.Add('cst', putString(CodSt2));
+                          impostoIcmsObj.Add('modBCST', putString('3'));
+                          impostoIcmsObj.Add('pRedBC', putStrToNumber(RedIcm));
+                          impostoIcmsObj.Add('vBC', putStrToNumber(BasIcm));
+                          impostoIcmsObj.Add('pICMS', putStrToNumber(PerIcm));
+                          impostoIcmsObj.Add('vICMS', putStrToNumber(TotIcm));
+                          impostoIcmsObj.Add('vBCST', putStrToNumber(BasSub));
+                          impostoIcmsObj.Add('pICMSST', putStrToNumber(IcmSub));
+                          impostoIcmsObj.Add('pMVAST', putStrToNumber(MrgSub));
+                          impostoIcmsObj.Add('vICMSST', putStrToNumber(TotSub));
+                          impostoIcmsObj.Add('vICMSDeson', putStrToNumber(TOTDESONERADO));
+                          impostoIcmsObj.Add('motDesICMS', putString(CodDesoneracao));
+                          impostoIcmsObj.Add('pCredSN', putNumber(0));
+                          impostoIcmsObj.Add('vCredICMSSN', putNumber(0));
+                          impostoIcmsObj.Add('vBCSTRet', putStrToNumber(FormatFloat('########0.00', ((precoUnitario + valorIpi) * (1 + valorMva / 100)) * quantidade)));
+                          impostoIcmsObj.Add('vICMSSubstituto', putStrToNumber(FormatFloat('########0.00', valorSemMva)));
+                          impostoIcmsObj.Add('vICMSSTRet', putStrToNumber(FormatFloat('########0.00', valorComMva - valorSemMva)));
+                          impostoIcmsObj.Add('pST', putStrToNumber(FormatFloat('########0.00', percentualIcm)));
+                          impostoObj.Add('icms', impostoIcmsObj);
+
                           FlgDifal := fmManGDB.BuscaSimples('FATPAR', 'FLGDIFAL', ' 1 = 1 ');
 
                           if (FlgDifal <> 'N') then
@@ -2478,6 +2596,17 @@ begin
                                 TOT_FCPUFDEST + // Valor do ICMS relativo ao Fundo de Combate � Pobreza (FCP) da UF de destino
                                 TOT_ICMSUFDEST + // Valor do ICMS Interestadual para a UF de destino
                                 TOT_ICMSUFREMET); //Valor do ICMS Interestadual para a UF do remetente
+
+                              impostoIcmsUfDestObj := TlkJSONobject.Create;
+                              impostoIcmsUfDestObj.Add('vBCUFDest', putStrToNumber(BAS_UFDEST));
+                              impostoIcmsUfDestObj.Add('vBCFCPUFDest', putStrToNumber(ALIQ_FCPUFDEST));
+                              impostoIcmsUfDestObj.Add('pICMSUFDest', putStrToNumber(ALIQ_ICMSUFDEST));
+                              impostoIcmsUfDestObj.Add('pICMSInter', putStrToNumber(ALIQ_ICMSINTER));
+                              impostoIcmsUfDestObj.Add('pICMSInterPart', putStrToNumber(ALIQ_ICMSINTERPART));
+                              impostoIcmsUfDestObj.Add('vFCPUFDest', putStrToNumber(TOT_FCPUFDEST));
+                              impostoIcmsUfDestObj.Add('vICMSUFDest', putStrToNumber(TOT_ICMSUFDEST));
+                              impostoIcmsUfDestObj.Add('vICMSUFRemet', putStrToNumber(TOT_ICMSUFREMET));
+                              impostoObj.Add('ICMSUFDest', impostoIcmsUfDestObj);
                             end;
                           end;
 
@@ -2489,6 +2618,13 @@ begin
                               PerIpi + // Aliquota do imposto
                               TotIpi + // Valor do IPI
                               CSTIPI); // Situa��o tribut�ria do IPI
+
+                            impostoIpiObj := TlkJSONobject.Create;
+                            impostoIpiObj.Add('vBC', putStrToNumber(BasIpi));
+                            impostoIpiObj.Add('pIPI', putStrToNumber(PerIpi));
+                            impostoIpiObj.Add('vIPI', putStrToNumber(TotIpi));
+                            impostoIpiObj.Add('CST', putString(CSTIPI));
+                            impostoObj.Add('ipi', impostoIpiObj);
 
                           Writeln(ArqEnv, 'EM0209' + // Uso interno do sistema
                             '01' + // Tipo de opera��o
@@ -2503,6 +2639,21 @@ begin
                             BasCof + // BC COFINS
                             PerCof + // Percentual do COFINS
                             TotCof); // Valor do COFINS
+
+                          impostoPisObj := TlkJSONobject.Create;
+                          impostoPisObj.Add('vBC', putStrToNumber(BasPis));
+                          impostoPisObj.Add('pIPI', putStrToNumber(PerPis));
+                          impostoPisObj.Add('vIPI', putStrToNumber(TotPis));
+                          impostoPisObj.Add('CST', putString(NfePis));
+                          impostoObj.Add('pis', impostoPisObj);
+
+                          impostoCofinsObj := TlkJSONobject.Create;
+                          impostoCofinsObj.Add('vBC', putStrToNumber(BasCof));
+                          impostoCofinsObj.Add('pIPI', putStrToNumber(PerCof));
+                          impostoCofinsObj.Add('vIPI', putStrToNumber(TotCof));
+                          impostoCofinsObj.Add('CST', putString(NfeCof));
+                          impostoObj.Add('cofins', impostoCofinsObj);
+
                           Application.ProcessMessages;
                           quSQL.Next;
                         end; //while
@@ -2527,6 +2678,26 @@ begin
                           fSubstDecimal(FormatFloat('########0.00', FatGERTOT_ICMSUFDEST.AsFloat), 15)+ // Valor Total Partilha destino //3.1
                           fSubstDecimal(FormatFloat('########0.00', FatGERTOT_ICMSUFREMET.AsFloat), 15) // Valor Total Partilha emitente //3.1
                           );
+
+                        icmsTotObj.Add('vBC', putNumber(FatGerBasIc1.AsFloat));
+                        icmsTotObj.Add('vICMS', putNumber(FatGerTotIc1.AsFloat));
+                        icmsTotObj.Add('vBCST', putNumber(FatGerBasSu1.AsFloat));
+                        icmsTotObj.Add('vST', putNumber(FatGerTotSu1.AsFloat));
+                        icmsTotObj.Add('vProd', putNumber(FatGerTotIt1.AsFloat));
+                        icmsTotObj.Add('vFrete', putNumber(FatGerTotFrt.AsFloat));
+                        icmsTotObj.Add('vSeg', putNumber(FatGerTotSeg.AsFloat));
+                        icmsTotObj.Add('vDesc', putNumber(FatGerTotDescInc.AsFloat));
+                        icmsTotObj.Add('vII', putNumber(FatGerTotImpII.AsFloat));
+                        icmsTotObj.Add('vIPI', putNumber(FatGerTotIp1.AsFloat));
+                        icmsTotObj.Add('vPIS', putNumber(FatGerTotPis.AsFloat));
+                        icmsTotObj.Add('vCOFINS', putNumber(FatGerTotCof.AsFloat));
+                        icmsTotObj.Add('vOutro', putNumber(FatGerTotOutDesp.AsFloat));
+                        icmsTotObj.Add('vNF', putNumber(FatGerTotGe1.AsFloat));
+                        icmsTotObj.Add('vTotTrib', putNumber(FatGERTOTIBPT.AsFloat));
+                        icmsTotObj.Add('vICMSDeson', putNumber(FatGERTOTDESONERADO.AsFloat));
+                        icmsTotObj.Add('vFCPUFDest', putNumber(FatGERTOT_FCPUFDEST.AsFloat));
+                        icmsTotObj.Add('vICMSUFDest', putNumber(FatGERTOT_ICMSUFDEST.AsFloat));
+                        icmsTotObj.Add('vICMSUFRemet', putNumber(FatGERTOT_ICMSUFREMET.AsFloat));
 
                         TipFrt := inttostr(FatGerID_FRETE.AsInteger);
 
@@ -2604,6 +2775,22 @@ begin
                           ufPlaca
                           ); // Peso Bruto (em Kg)
 
+                        transportObj.Add('modFrete', putString(TipFrt));
+                        transportObj.Add('CNPJCPF', putString(CgcTra + CpfTra));
+                        transportObj.Add('xNome', putString(NomTra));
+                        transportObj.Add('ie', putString(InsTra));
+                        transportObj.Add('xEnder', putString(EndTra));
+                        transportObj.Add('xMun', putString(CidTra));
+                        transportObj.Add('uf', putString(UfeTra));
+                        transportObj.Add('qVol', putNumber(FatGerAltVol.AsInteger));
+                        transportObj.Add('esp', putString(EspFat));
+                        transportObj.Add('marca', putString(MarFat));
+                        transportObj.Add('pesoL', putString(PesLiq));
+                        transportObj.Add('pesoB', putString(PesBrt));
+                        transportObj.Add('nVol', putString(NROFAT));
+                        transportObj.Add('placa', putString(placa));
+                        transportObj.Add('ufPlaca', putString(ufPlaca));
+
                         if FatGerUFECLI.AsString = 'EX' then
                         begin
                           LOCEMB := fLimpaAcentos(FatgerLOCEMB.AsString);
@@ -2613,6 +2800,10 @@ begin
                           Writeln(ArqEnv, 'EM1211' +
                             UFEMB + //UF do Embarque
                             LOCEMB); //Local de Embarque
+
+                          exportObj.Add('UFSaidaPais', putString(UFEMB));
+                          exportObj.Add('xLocExporta', putString(LOCEMB));
+                          exportObj.Add('xLocDespacho', putString(LOCEMB));
                         end;
 
                         if FatGerIntFin.Value = 'Sim' then
@@ -2623,6 +2814,11 @@ begin
                             fSubstDecimal(FormatFloat('########0.00', FatGerTotGe1.Value), 15) + // Valor Original
                             '           0.00' + // Valor do desconto
                             fSubstDecimal(FormatFloat('########0.00', FatGerTotGe1.Value), 15)); // Valor Original
+
+                          nfeObj.Add('nfat', putString(NroDoc));
+                          nfeObj.Add('vliq', putNumber(FatGerTotGe1.AsFloat));
+                          nfeObj.Add('voriginal', putNumber(FatGerTotGe1.AsFloat));
+
                           with quSQL, SQL do
                           begin
                             Close;
@@ -2647,6 +2843,14 @@ begin
                               copy(FormatDateTime('dd/mm/yyyy', quSQL.FieldbyName('DtvGe3').AsDateTime), 4, 2) + '-' +
                               copy(FormatDateTime('dd/mm/yyyy', quSQL.FieldbyName('DtvGe3').AsDateTime), 1, 2) +
                               fSubstDecimal(FormatFloat('########0.00', quSQL.FieldbyName('VlpGe3').AsFloat), 15)); // Valor da duplicata
+
+                            pagamentoObj := TlkJSONobject.Create;
+                            pagamentoObj.Add('numeroParcela', putNumber(quSQL.FieldbyName('NroGe3').AsInteger));
+                            pagamentoObj.Add('nDup', putNumber(FatGerNroNfs.AsInteger));
+                            pagamentoObj.Add('dVenc', putString(FormatDateTime('yyyy-mm-dd', quSQL.FieldbyName('DtvGe3').AsDateTime)));
+                            pagamentoObj.Add('vPag', putNumber(quSQL.FieldbyName('VlpGe3').AsFloat));
+                            pagamentoObjList.Add(pagamentoObj);
+
                             Application.ProcessMessages;
                             quSQL.Next;
                           end;
@@ -2684,6 +2888,25 @@ begin
                         Writeln(ArqEnv, 'EM0214' + // Uso interno do sistema
                           ObsFat); // Informa��es adicionais de interesse do Fisco
 
+
+                        nfeObj.Add('ide', ideObj);
+                        nfeObj.Add('emit', emitObj);
+                        nfeObj.Add('dest', destObj);
+                        nfeObj.Add('nfContingencia', contigenciaObj);
+                        nfeObj.Add('inf', infNFe);
+                        nfeObj.Add('nfeRef', nfeRefObj);
+                        nfeObj.Add('det', productObjList);
+                        nfeObj.Add('icmsTot', icmsTotObj);
+                        nfeObj.Add('entrega', entregaObj);
+                        nfeObj.Add('transporte', transportObj);
+                        nfeObj.Add('export', exportObj);
+                        nfeObj.Add('pagamento', pagamentoObjList);
+                        nfeObj.Add('infCpl', putString(ObsFat));
+                        json := TlkJSON.GenerateText(nfeObj);
+                        Clipboard.astext := json;
+                        jsonText := TStringList.create;
+                        jsonText.Add(json);
+
                         CloseFile(ArqEnv);
 
                         //   movefile(PChar(ArqRe1),PChar(ArqRe2));
@@ -2720,6 +2943,8 @@ begin
                         end;
 
                         ReescreveChaveEnviada(Chave);
+
+                        jsonText.SaveToFile(CaminhoLeitura + '\EVNOTA' + VNumNota + '.json');
 
                         if TipoEnvio = 3 then
                         begin
@@ -3266,7 +3491,6 @@ var
   Vnumnota, IniFile, CaminhoLeitura, CaminhoRetorno, chaveN: string;
   ini: Tinifile;
   TDAnfe: TextFile;
-  NroReg: integer;
 begin
   inherited;
 
