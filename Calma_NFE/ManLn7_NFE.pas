@@ -2299,7 +2299,10 @@ begin
         ufPlaca);
 
       transportObj.Add('modFrete', putString(TipFrt));
-      transportObj.Add('CNPJCPF', putString(CgcTra + CpfTra));
+      if( (Trim(CgcTra) <> '') and (StrToFloat(Trim(CgcTra)) > 0)) then
+        transportObj.Add('CNPJCPF', putString(CgcCli))
+      else
+        transportObj.Add('CNPJCPF', putString(CpfTra));
       transportObj.Add('xNome', putString(NomTra));
       transportObj.Add('ie', putString(InsTra));
       transportObj.Add('xEnder', putString(EndTra));

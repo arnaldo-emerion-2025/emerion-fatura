@@ -2382,7 +2382,7 @@ begin
                         itemObj := TlkJSONobject.Create;
                         impostoObj := TlkJSONobject.Create;
 
-                        itemObj.Add('nItem', putNumber(quSQL.FieldbyName('NroPe2').AsInteger));
+                        itemObj.Add('nItem', putNumber(quSQL.FieldbyName('NroGe2').AsInteger));
                         itemObj.Add('cProd', putString(CodPro));
                         itemObj.Add('cEAN', putString(cEAN));
                         itemObj.Add('xProd', putString(DesPro));
@@ -2534,6 +2534,10 @@ begin
                           end;
 
                           productObj.Add('di', nfeDIObjList);
+                          productObj.Add('imposto', impostoObj);
+                          productObj.Add('rastro', productRastroObjList);
+                          productObj.Add('med', productMedObjList);
+                          productObjList.Add(productObj);
                           
                           Writeln(ArqEnv, 'EM0207' + // Uso interno do sistema  1/6
                             '01' + // Tipo de opera��o  7/2
@@ -2776,7 +2780,13 @@ begin
                           ); // Peso Bruto (em Kg)
 
                         transportObj.Add('modFrete', putString(TipFrt));
-                        transportObj.Add('CNPJCPF', putString(CgcTra + CpfTra));
+                        if( (Trim(CgcTra) <> '') and (StrToFloat(Trim(CgcTra)) > 0)) then
+                          transportObj.Add('CNPJCPF', putString(CgcCli))
+                        else
+                          if( (Trim(CpfTra) <> '') and (StrToFloat(Trim(CpfTra)) > 0)) then
+                            transportObj.Add('CNPJCPF', putString(CpfTra))
+                          else
+                            transportObj.Add('CNPJCPF', putString(''));
                         transportObj.Add('xNome', putString(NomTra));
                         transportObj.Add('ie', putString(InsTra));
                         transportObj.Add('xEnder', putString(EndTra));
