@@ -2521,13 +2521,13 @@ begin
                                   nfeADIObj.Add('nAdicao', putString(qusql2.fieldbyname('NADICAO').asstring));
                                   nfeADIObj.Add('cFabricante', putString(qusql2.fieldbyname('CODFAB').asstring));
                                   nfeADIObj.Add('vDescDI', putNumber(quSQL2.FieldbyName('VDESCDI').AsFloat));
-                                  nfeADIObjList.Add(nfeRefObj);
+                                  nfeADIObjList.Add(nfeADIObj);
 
                                   qusql2.next;
                                 end;
 
                               nfeDIObj.Add('adi', nfeADIObjList);
-                              nfeDIObjList.Add(nfeRefObj);
+                              nfeDIObjList.Add(nfeDIObj);
 
                               qusql1.next;
                             end;
