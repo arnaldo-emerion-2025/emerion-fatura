@@ -1329,8 +1329,6 @@ begin
   productMedObjList := TlkJSONlist.Create;
   pagamentoObjList := TlkJSONlist.Create;
   nfeRefObjList := TlkJSONlist.Create;
-  nfeDIObjList := TlkJSONlist.Create;
-  nfeADIObjList := TlkJSONlist.Create;
 
   if FatGerCodEmp.AsInteger > 0 then
   begin
@@ -2475,6 +2473,7 @@ begin
                           qusql1.sql.text := 'Select id_DI, NUMDI, DATADI, LOCALDESEMB, UFDESEMB, DATADESEMB, CODEXPORT from DI where  ID_CMPNF2 = ' +
                             quotedstr(qusql.fieldbyname('ID_FATGE2').asstring);
                           qusql1.active := true;
+                          nfeDIObjList := TlkJSONlist.Create;
                           if qusql1.IsEmpty = false then
                           begin
                             qusql1.First;
@@ -2505,25 +2504,28 @@ begin
                                 QuotedStr(qusql1.fieldbyname('id_DI').asstring);
                               qusql2.active := true;
                               if qusql2.IsEmpty = false then
-                                while not qusql2.eof do
                                 begin
-                                  strAux := copy(Trim(qusql2.fieldbyname('NSEQADIC').asstring), 1, 3) +
-                                    fReplicate(' ', 3 - Length(copy(Trim(qusql2.fieldbyname('NSEQADIC').asstring), 1, 3))) +
-                                    copy(Trim(qusql2.fieldbyname('NADICAO').asstring), 1, 3) +
-                                    fReplicate(' ', 3 - Length(copy(Trim(qusql2.fieldbyname('NADICAO').asstring), 1, 3))) +
-                                    copy(Trim(qusql2.fieldbyname('CODFAB').asstring), 1, 60) +
-                                    fReplicate(' ', 60 - Length(copy(Trim(qusql2.fieldbyname('CODFAB').asstring), 1, 60))) +
-                                    fSubstDecimal(FormatFloat('########0.00', quSQL2.FieldbyName('VDESCDI').AsFloat), 15);
-                                  Writeln(ArqENV, 'EM1208' + StrAux);
+                                  nfeADIObjList := TlkJSONlist.Create;
+                                  while not qusql2.eof do
+                                  begin
+                                    strAux := copy(Trim(qusql2.fieldbyname('NSEQADIC').asstring), 1, 3) +
+                                      fReplicate(' ', 3 - Length(copy(Trim(qusql2.fieldbyname('NSEQADIC').asstring), 1, 3))) +
+                                      copy(Trim(qusql2.fieldbyname('NADICAO').asstring), 1, 3) +
+                                      fReplicate(' ', 3 - Length(copy(Trim(qusql2.fieldbyname('NADICAO').asstring), 1, 3))) +
+                                      copy(Trim(qusql2.fieldbyname('CODFAB').asstring), 1, 60) +
+                                      fReplicate(' ', 60 - Length(copy(Trim(qusql2.fieldbyname('CODFAB').asstring), 1, 60))) +
+                                      fSubstDecimal(FormatFloat('########0.00', quSQL2.FieldbyName('VDESCDI').AsFloat), 15);
+                                    Writeln(ArqENV, 'EM1208' + StrAux);
 
-                                  nfeADIObj := TlkJSONobject.Create();
-                                  nfeADIObj.Add('nSeqAdi', putString(qusql2.fieldbyname('NSEQADIC').asstring));
-                                  nfeADIObj.Add('nAdicao', putString(qusql2.fieldbyname('NADICAO').asstring));
-                                  nfeADIObj.Add('cFabricante', putString(qusql2.fieldbyname('CODFAB').asstring));
-                                  nfeADIObj.Add('vDescDI', putNumber(quSQL2.FieldbyName('VDESCDI').AsFloat));
-                                  nfeADIObjList.Add(nfeADIObj);
+                                    nfeADIObj := TlkJSONobject.Create();
+                                    nfeADIObj.Add('nSeqAdi', putString(qusql2.fieldbyname('NSEQADIC').asstring));
+                                    nfeADIObj.Add('nAdicao', putString(qusql2.fieldbyname('NADICAO').asstring));
+                                    nfeADIObj.Add('cFabricante', putString(qusql2.fieldbyname('CODFAB').asstring));
+                                    nfeADIObj.Add('vDescDI', putNumber(quSQL2.FieldbyName('VDESCDI').AsFloat));
+                                    nfeADIObjList.Add(nfeADIObj);
 
-                                  qusql2.next;
+                                    qusql2.next;
+                                  end;
                                 end;
 
                               nfeDIObj.Add('adi', nfeADIObjList);
