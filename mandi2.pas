@@ -215,7 +215,7 @@ begin
   inherited;
   if SQLDIDET.State <> dsBrowse then
   begin
-    if messagebox(Handle, 'Adi��o da DI n�o conclu�da. Deseja Cancelar?', 'Inclu��o de DI', MB_ICONQUESTION + MB_YESNO) = IDYES then
+    if messagebox(Handle, 'Adicao da DI nao conclu�da. Deseja Cancelar?', 'Inclusao de DI', MB_ICONQUESTION + MB_YESNO) = IDYES then
       SQLDIDET.Cancel;
   end;
 
@@ -233,17 +233,17 @@ procedure TFMMANDI2.bIteRemoverClick(Sender: TObject);
 begin
   inherited;
     //Inicia processo de exclus�o
-  if messagebox(handle, 'Confirma Exclus�o dos Dados da Adi��o.', 'Dados da adi��o', MB_ICONQUESTION + MB_YESNO) = IDYES then
+  if messagebox(handle, 'Confirma Exclus�o dos Dados da Adicao.', 'Dados da adicao', MB_ICONQUESTION + MB_YESNO) = IDYES then
   begin
     SQLDIDET.Delete;
     with SQLDIDET do
     begin
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
       ;
       try
         ApplyUpdates; {Tenta aplicar as alteracoes}
         ;
-        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
         ;
       except
         fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
@@ -280,12 +280,12 @@ begin
   inherited;
   with sqldi do
   begin
-    fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
 
     try
       ApplyUpdates; {Tenta aplicar as alteracoes}
 
-      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 
     except
       fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
@@ -324,12 +324,12 @@ begin
   inherited;
   with SQLDIDET do
   begin
-    fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
 
     try
       ApplyUpdates; {Tenta aplicar as alteracoes}
 
-      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 
     except
       fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
@@ -390,12 +390,12 @@ begin
     sqldi.Delete;
     with sqldi do
     begin
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
       ;
       try
         ApplyUpdates; {Tenta aplicar as alteracoes}
         ;
-        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
         ;
       except
         fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
@@ -457,7 +457,7 @@ begin
   inherited;
   if (Trim(SQLDINUMDI.AsString) = '') then
   begin
-    messagebox(handle, 'Obrigat�rio informar n�mero da DI.', 'Informa��es da DI', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigat�rio informar numero da DI.', 'Informacoes da DI', MB_OK + MB_ICONINFORMATION);
     if edNumDI.CanFocus then
       edNumDI.SetFocus;
     abort;
@@ -465,7 +465,7 @@ begin
 
   if (Trim(SQLDILOCALDESEMB.AsString) = '') then
   begin
-    messagebox(handle, 'Obrigat�rio informar local de desembarque.', 'Informa��es da DI', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigat�rio informar local de desembarque.', 'Informacoes da DI', MB_OK + MB_ICONINFORMATION);
     if edLocalDesemb.CanFocus then
       edLocalDesemb.SetFocus;
     abort;
@@ -473,7 +473,7 @@ begin
 
   if (Trim(SQLDIUFDESEMB.AsString) = '') then
   begin
-    messagebox(handle, 'Obrigat�rio informar UF de desembarque.', 'Informa��es da DI', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigat�rio informar UF de desembarque.', 'Informacoes da DI', MB_OK + MB_ICONINFORMATION);
     if edUFDesemb.CanFocus then
       edUFDesemb.SetFocus;
     abort;
@@ -481,7 +481,7 @@ begin
 
   if (Trim(SQLDICODEXPORT.AsString) = '') then
   begin
-    messagebox(handle, 'Obrigat�rio informar c�digo de exportador.', 'Informa��es da DI', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigat�rio informar c�digo de exportador.', 'Informacoes da DI', MB_OK + MB_ICONINFORMATION);
     if edCodExport.CanFocus then
       edCodExport.SetFocus;
     abort;
@@ -494,7 +494,7 @@ begin
   inherited;
   if (Trim(SQLDIDETNADICAO.AsString) = '') then
   begin
-    messagebox(handle, 'Obrigat�rio informar n�mero da adi��o.', 'Informa��es da Adi��o da DI', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigat�rio informar numero da adicao.', 'Informacoes da Adicao da DI', MB_OK + MB_ICONINFORMATION);
     if edNumAdicao.CanFocus then
       edNumAdicao.SetFocus;
     abort;

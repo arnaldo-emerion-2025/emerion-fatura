@@ -109,7 +109,7 @@ begin
   Result.Add(CodBarras);                  //Codigo de Barras
   Result.Add(LinhaDigitavel);                  //Linha Digitavel
   Result.Add(nossoNumero);                  //Nosso Numero
-  Result.Add(Trim(IntToStr(dvNossoNumero)));//Digito Verificador Nosso N�mero
+  Result.Add(Trim(IntToStr(dvNossoNumero)));//Digito Verificador Nosso Numero
 
 end;
 
@@ -131,7 +131,7 @@ function Modulo11(Valor: string; Base: Integer = 9; Resto: boolean = false): str
    Se a base for 7, os pesos ser�o 2,3,4,5,6,7,2,3,4...
    Soma-se cada um dos subprodutos.
    Divide-se a soma por 11.
-   Faz-se a opera��o 11-Resto da divis�o e devolve-se o resultado dessa opera��o
+   Faz-se a operacao 11-Resto da divis�o e devolve-se o resultado dessa operacao
    como resultado da fun��o Modulo11.
    Obs.: Caso o resultado seja maior que 9, dever� ser substitu�do por 0 (ZERO).
 }

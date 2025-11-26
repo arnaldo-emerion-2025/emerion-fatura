@@ -624,7 +624,7 @@ begin
 
         EdPsqNomEmp.Text := '';
 
-        fmsgErro('Empresa Informada n�o Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nao Encontrada.', EdPsqCodEmp);
 
       end;
     end;
@@ -1191,10 +1191,10 @@ begin
         FatGer.Delete;
         with FatGer do
         begin
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
           try
             ApplyUpdates; {Tenta aplicar as alteracoes}
-            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
           except
             fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
             if FatGer.State <> dsBrowse then
@@ -1296,10 +1296,10 @@ begin
       begin
 
         if FatGerSitGer.Value = 'Nao Concluido' then
-          fMsg('Opera��o n�o Pode ser Realizada. Nota n�o Emitida', 'E')
+          fMsg('Operacao nao Pode ser Realizada. Nota nao Emitida', 'E')
 
         else if FatGerSitGer.Value = 'Cancelado' then
-          fMsg('Opera��o n�o Pode ser Realizada. Nota j� Cancelada', 'E');
+          fMsg('Operacao nao Pode ser Realizada. Nota j� Cancelada', 'E');
 
       end;
     end;
@@ -1410,7 +1410,7 @@ begin
   if psaida = 'Nao' then
   begin
 
-    if fMsg('Confirma Altera��o da Aliquota de ICMS ?', 'S') then
+    if fMsg('Confirma Alteracao da Aliquota de ICMS ?', 'S') then
     begin
 
       CodEmp := FatGe2CodEmp.Value;
@@ -1421,7 +1421,7 @@ begin
       with FatGe2 do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
         ;
 
         try
@@ -1429,7 +1429,7 @@ begin
           ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
           ;
 
         except
@@ -1483,7 +1483,7 @@ begin
       with FatGer do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
         ;
 
         try
@@ -1491,7 +1491,7 @@ begin
           ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
           ;
 
         except

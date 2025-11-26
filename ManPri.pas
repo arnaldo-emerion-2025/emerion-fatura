@@ -380,7 +380,7 @@ begin
   sNome := TMenuItem(Sender).Name;
 
   if Trim(fAcesso(sNome)) = '' then
-    fmsgErro('Usuario n�o Possui Acesso a Op��o', nil);
+    fmsgErro('Usuario nao Possui Acesso a Op��o', nil);
 
   PopMenu.AutoPopup := False;
 
@@ -1231,7 +1231,7 @@ begin
         msg := 'O Certificado ' + cert.GetInfo(CAPICOM_CERT_INFO_SUBJECT_SIMPLE_NAME) + #13 +
           'Vence/Venceu em: ' + FormatDateTime('dd/mm/yyy', cert.ValidToDate) + #13 + #13 +
           'Providencie um certificado do tipo A1';
-        Application.MessageBox(pChar(msg), 'Aten��o', mb_ok + MB_ICONWARNING);
+        Application.MessageBox(pChar(msg), 'Atencao', mb_ok + MB_ICONWARNING);
       end;
     end;
 
@@ -1316,7 +1316,7 @@ begin
 
     if strExecuta = 'FATPED_DENEGADA' then
     begin
-      showmessage('N�o programada Denegada');
+      showmessage('Nao programada Denegada');
     end;
 
     if strExecuta = 'ERRO' then

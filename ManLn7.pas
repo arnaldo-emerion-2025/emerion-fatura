@@ -275,13 +275,13 @@ begin
     1: sFiltro := sFiltro + ' and FinCrp.FlgBol = ' + QuotedStr('Nao');
   end;
 
-  fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+  fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
   try
     quSQL.Close;
     quSQL.SQL.Text := ' Delete From FatBol Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
     quSQL.ExecSQL;
 
-    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
   except
     on E: exception do
     begin
@@ -290,7 +290,7 @@ begin
     end;
   end;
 
-  fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+  fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
 
   try
     quSQL.Close;
@@ -331,7 +331,7 @@ begin
       if DebugHook > 0 then
         clipboard.asText := Text;
 
-    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
   except
     on E: exception do
     begin
@@ -412,7 +412,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada n�o Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nao Encontrada.', EdPsqCodEmp);
 
       end;
     end;
@@ -844,7 +844,7 @@ begin
       with FatBol do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
         ;
 
         try
@@ -852,7 +852,7 @@ begin
           ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
           ;
 
         except
@@ -944,26 +944,26 @@ begin
   else
     pnNomBan.Caption := ' Local de cobranca: ';
 
-  pnNosNum.Caption := ' N�mero banc�rio: ' + Trim(FatBolNosNum.Value);
+  pnNosNum.Caption := ' Numero bancario: ' + Trim(FatBolNosNum.Value);
 
 end;
 
 procedure TfmManLn7.bImprimirClick(Sender: TObject);
 var
-  Bol_NosNum: string; // Nosso N�mero
-  Bol_NosBol: string; // Sequencia utilizada para emiss�o do nosso n�mero
-  Bol_DigNum: string; // Digito do nosso n�mero
+  Bol_NosNum: string; // Nosso Numero
+  Bol_NosBol: string; // Sequencia utilizada para emiss�o do nosso numero
+  Bol_DigNum: string; // Digito do nosso numero
   Bol_CodBar: string; // C�digo de barras
   Bol_LinDig: string; // Linha digitavel
-  Bol_NumCre: string; // N�mero do documento/nota fiscal
+  Bol_NumCre: string; // Numero do documento/nota fiscal
   Bol_DteCre: string; // Data de emiss�o do documento
-  Bol_NumCrp: string; // N�mero da parcela
+  Bol_NumCrp: string; // Numero da parcela
   Bol_DtvCrp: string; // Data de vencto do titulo
   Bol_VlpCrp: string; // Valor do titulo
   Bol_CodBan: string; // Local de cobranca
   Bol_CodAgb: string; // Agencia sem o digito
   Bol_DigAgb: string; // Digito da agencia
-  Bol_CodCnb: string; // N�mero da conta bancaria sem o digito
+  Bol_CodCnb: string; // Numero da conta bancaria sem o digito
   Bol_DigCnb: string; // Digito da conta bancaria
   Bol_CodTco: string; // Codigo da carteira de cobranca cadastrada no modulo de cobranca
   Ger_Boleto: TStringList;
@@ -981,14 +981,14 @@ begin
       with quSQL, SQL do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
         try
 
           Close;
           Text := ' Update FatBol set FlgAlt = ' + QuotedStr('Sim') + ' Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
           ExecSQL;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 
         except
           on E: exception do
@@ -1076,7 +1076,7 @@ begin
 
                 with quSQL, SQL do
                 begin
-                  fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
                   ;
 
                   try
@@ -1109,7 +1109,7 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                     ;
                   except
                     on E: exception do
@@ -1158,7 +1158,7 @@ begin
 
                 with quSQL, SQL do
                 begin
-                  fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
                   ;
 
                   try
@@ -1191,7 +1191,7 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                     ;
                   except
                     on E: exception do
@@ -1232,7 +1232,7 @@ begin
 
                 with quSQL, SQL do
                 begin
-                  fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
                   ;
 
                   try
@@ -1265,7 +1265,7 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                     ;
                   except
                     on E: exception do
@@ -1308,7 +1308,7 @@ begin
               //if length(Bol_NosNum) > 8 then
                 //Bol_NosNum := copy(Bol_NosNum, (length(Bol_NosNum) - 6), length(Bol_NosNum));
 
-              //Bol_NosNum := Bol_NosNum + Bol_DigNum;//N�o � necess�rio enviar DAC para remessa
+              //Bol_NosNum := Bol_NosNum + Bol_DigNum;//Nao � necess�rio enviar DAC para remessa
             //end;
 
               if Trim(Bol_NosNum) <> '' then
@@ -1316,7 +1316,7 @@ begin
 
                 with quSQL, SQL do
                 begin
-                  fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
                   ;
 
                   try
@@ -1349,7 +1349,7 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                     ;
                   except
                     on E: exception do
@@ -1397,7 +1397,7 @@ begin
 
                 with quSQL, SQL do
                 begin
-                  fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
                   ;
 
                   try
@@ -1430,7 +1430,7 @@ begin
                     end;
                     ExecSQL;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                     ;
                   except
                     on E: exception do
@@ -1456,7 +1456,7 @@ begin
 
         with quSQL, SQL do
         begin
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
           ;
 
           try
@@ -1465,7 +1465,7 @@ begin
             Text := ' Update FatBol set FlgAlt = ' + QuotedStr('ENV') + ' Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
             ExecSQL;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
             ;
           except
             on E: exception do
@@ -1508,7 +1508,7 @@ begin
 
         with quSQL, SQL do
         begin
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
           ;
 
           try
@@ -1517,7 +1517,7 @@ begin
             Text := ' Delete From FatBol Where FatBol.SeqArq = ' + QuotedStr(SeqArq);
             ExecSQL;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
             ;
           except
             on E: exception do
@@ -1632,7 +1632,7 @@ end;
 procedure TfmManLn7.grBolEnter(Sender: TObject);
 begin
   inherited;
-  pnTexto.Caption := 'Barra de espa�o-Selecionar ou n�o um documento para emitir boleto';
+  pnTexto.Caption := 'Barra de espa�o-Selecionar ou nao um documento para emitir boleto';
 end;
 
 procedure TfmManLn7.EdPsqId_PedRes1Enter(Sender: TObject);
@@ -1705,20 +1705,20 @@ var
   SQLTEMP: TQuery;
   strAux: TStrings;
 
-  Bol_NosNum: string; // Nosso N�mero
-  Bol_NosBol: string; // Sequencia utilizada para emiss�o do nosso n�mero
-  Bol_DigNum: string; // Digito do nosso n�mero
+  Bol_NosNum: string; // Nosso Numero
+  Bol_NosBol: string; // Sequencia utilizada para emiss�o do nosso numero
+  Bol_DigNum: string; // Digito do nosso numero
   Bol_CodBar: string; // C�digo de barras
   Bol_LinDig: string; // Linha digitavel
-  Bol_NumCre: string; // N�mero do documento/nota fiscal
+  Bol_NumCre: string; // Numero do documento/nota fiscal
   Bol_DteCre: string; // Data de emiss�o do documento
-  Bol_NumCrp: string; // N�mero da parcela
+  Bol_NumCrp: string; // Numero da parcela
   Bol_DtvCrp: string; // Data de vencto do titulo
   Bol_VlpCrp: string; // Valor do titulo
   Bol_CodBan: string; // Local de cobranca
   Bol_CodAgb: string; // Agencia sem o digito
   Bol_DigAgb: string; // Digito da agencia
-  Bol_CodCnb: string; // N�mero da conta bancaria sem o digito
+  Bol_CodCnb: string; // Numero da conta bancaria sem o digito
   Bol_DigCnb: string; // Digito da conta bancaria
   Bol_CodTco: string; // Codigo da carteira de cobranca cadastrada no modulo de cobranca
   Ger_Boleto: TStringList;

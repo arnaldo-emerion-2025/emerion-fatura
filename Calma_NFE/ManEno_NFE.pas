@@ -657,7 +657,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada n�o Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nao Encontrada.', EdPsqCodEmp);
 
       end;
     end;
@@ -1045,7 +1045,7 @@ begin
             with FatDev do
             begin
 
-              fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+              fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
               ;
 
               try
@@ -1053,7 +1053,7 @@ begin
                 ApplyUpdates; {Tenta aplicar as alteracoes}
                 ;
 
-                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                 ;
 
               except
@@ -1093,7 +1093,7 @@ begin
 
     end
     else
-      fMsgErro('Usu�rio n�o possui acesso a opc�o.', nil);
+      fMsgErro('Usu�rio nao possui acesso a opc�o.', nil);
 
   end
   else
@@ -1145,7 +1145,7 @@ begin
 
     end
     else
-      fMsgErro('Usu�rio n�o possui acesso a opc�o.', nil);
+      fMsgErro('Usu�rio nao possui acesso a opc�o.', nil);
 
   end
   else
@@ -1198,10 +1198,10 @@ begin
                 FatDev.Delete;
                 with FatDev do
                 begin
-                  fmManGDB.dbMain.StartTransaction; //Inicia a Transa��o
+                  fmManGDB.dbMain.StartTransaction; //Inicia a Transacao
                   try
                     ApplyUpdates; //Tenta aplicar as alteracoes
-                    fmManGDB.dbMain.Commit; //confirma todas as alteracoes fechando a transa��o
+                    fmManGDB.dbMain.Commit; //confirma todas as alteracoes fechando a Transacao
                   except
                     fmManGDB.dbMain.Rollback; //desfaz as alteracoes se acontecer um erro
                     if FatDev.State <> dsBrowse then
@@ -1240,7 +1240,7 @@ begin
                 FatDev.Open;
               end
               else
-                fmsgErro('Opera��o n�o pode ser realizada. Devolu��o j� cancelada.', nil);
+                fmsgErro('Operacao nao pode ser realizada. Devolu��o j� cancelada.', nil);
             end;
           end;
         end;
@@ -1248,7 +1248,7 @@ begin
 
     end
     else
-      fMsgErro('Usu�rio n�o possui acesso a opc�o.', nil);
+      fMsgErro('Usu�rio nao possui acesso a opc�o.', nil);
 
   end
   else
@@ -1390,7 +1390,7 @@ begin
              fmManE03 := TfmManE03.Create(Self);
 
              fmManE03.FatDev.Close;
-             //fmManE03.FatDev.Params[0].AsInteger := StrToInt(inputBox('ATEN��O','Informe o ID_FATDEV','327'));
+             //fmManE03.FatDev.Params[0].AsInteger := StrToInt(inputBox('ATENCAO','Informe o ID_FATDEV','327'));
 
              //fmManE03.FatDev.Params[0].AsInteger := FatDv2ID_FATDEV.AsInteger;
              fmManE03.FatDev.Params[0].AsInteger := FatDv2CodEmp.AsInteger;
@@ -1432,7 +1432,7 @@ begin
   end;
 
   if Found >= 0 then
-    fmsgErro('Existem Devolu��es em Andamento. Por Favor Feche o Formulario.', nil)
+    fmsgErro('Existem Devolucoes em Andamento. Por Favor Feche o Formulario.', nil)
   else
     Action := CaFree;
 
@@ -1487,7 +1487,7 @@ begin
   if psaida = 'Nao' then
   begin
 
-    if fMsg('Confirma Altera��o da CFOP ?', 'S') then
+    if fMsg('Confirma Alteracao da CFOP ?', 'S') then
     begin
 
       CodEmp := FatDevCodEmp.Value;
@@ -1500,7 +1500,7 @@ begin
       with FatDev do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
         ;
 
         try
@@ -1508,7 +1508,7 @@ begin
           ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
           ;
 
         except
@@ -1612,7 +1612,7 @@ begin
   if psaida = 'Nao' then
   begin
 
-    if fMsg('Confirma Altera��o da Aliquota de ICMS ?', 'S') then
+    if fMsg('Confirma Alteracao da Aliquota de ICMS ?', 'S') then
     begin
 
       CodEmp := FatDv2CodEmp.Value;
@@ -1626,7 +1626,7 @@ begin
       with FatDv2 do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
         ;
 
         try
@@ -1634,7 +1634,7 @@ begin
           ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
           ;
 
         except

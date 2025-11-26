@@ -142,12 +142,12 @@ begin
   end;
 
   if Trim(EdPsqCodEmp.Text) = '' then
-    fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado.', EdPsqCodEmp);
+    fmsgErro('Campo de Preenchimento Obrigatorio nao Informado.', EdPsqCodEmp);
 
   if Trim(fLimpaStr(EdDteFat1.Text)) = '' then
-    fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado.', EdDteFat1);
+    fmsgErro('Campo de Preenchimento Obrigatorio nao Informado.', EdDteFat1);
   if Trim(fLimpaStr(EdDteFat2.Text)) = '' then
-    fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado.', EdDteFat2);
+    fmsgErro('Campo de Preenchimento Obrigatorio nao Informado.', EdDteFat2);
 
   sFiltro := '';
 
@@ -791,7 +791,7 @@ begin
   if FatGSINroNfs.Value > 0 then
     bCriarTexto.Enabled := True
   else
-    fmsgErro('Informa��es para Envio n�o Encontradas.', EdPsqCodEmp);
+    fmsgErro('Informacoes para Envio nao Encontradas.', EdPsqCodEmp);
 
   grGSI.SetFocus;
 
@@ -939,7 +939,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada n�o Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nao Encontrada.', EdPsqCodEmp);
 
       end;
     end;
@@ -1018,7 +1018,7 @@ begin
     if FatGSINroNfs.Value > 0 then
     begin
 
-      if fMsg('Confirma Envio das Informa��es', 'S') then
+      if fMsg('Confirma Envio das Informacoes', 'S') then
       begin
 
         NomArq := 'DC' + copy(DateToStr(EdDteFat1.Date), 7, 4) + copy(DateToStr(EdDteFat2.Date), 4, 2) + '.TXT';

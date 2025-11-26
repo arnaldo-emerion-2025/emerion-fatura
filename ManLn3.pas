@@ -426,7 +426,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada n�o localizada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nao localizada.', EdPsqCodEmp);
 
       end;
     end;
@@ -1005,12 +1005,12 @@ begin
 
           with FP do
           begin
-            fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
 
             try
               ApplyUpdates; {Tenta aplicar as alteracoes}
 
-              fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+              fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 
             except
               fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
@@ -1047,12 +1047,12 @@ begin
 
           with FG do
           begin
-            fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
 
             try
               ApplyUpdates; {Tenta aplicar as alteracoes}
 
-              fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+              fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 
             except
               fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
@@ -1090,12 +1090,12 @@ begin
 
           with FD do
           begin
-            fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
 
             try
               ApplyUpdates; {Tenta aplicar as alteracoes}
 
-              fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+              fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 
             except
               fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}

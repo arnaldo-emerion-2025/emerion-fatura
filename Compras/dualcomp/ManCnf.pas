@@ -137,7 +137,7 @@ begin
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe n�o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe nao encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -379,10 +379,10 @@ begin
         EdObcNfs.SetFocus;
     end //     if Length(Trim(ObcFat)) >= 15 then
     else
-      fmsgErro('Observa��es informadas tem que ter o minimo de 15 caracteres.', EdObcNfs);
+      fmsgErro('Observacoes informadas tem que ter o minimo de 15 caracteres.', EdObcNfs);
   end //  if Trim(ObcFat) <> '' then
   else
-    fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado.', EdObcNfs);
+    fmsgErro('Campo de Preenchimento Obrigatorio nao Informado.', EdObcNfs);
 end //complemento
 {var
 sText,sReceber,sEstoque : string;
@@ -392,9 +392,9 @@ begin
 
   if Trim( fmManLr3.CmpNfsObcNfs.Value ) <> '' then begin
 
-     sText := 'Deseja Realmente Cancelar a Opera��o ? ';
+     sText := 'Deseja Realmente Cancelar a Operacao ? ';
 
-     if fmManLr3.CmpNfsAtuEst.Value = 'Sim' then sEstoque := ' . Devolu��o ao Estoque dos Itens da Opera��o;';
+     if fmManLr3.CmpNfsAtuEst.Value = 'Sim' then sEstoque := ' . Devolu��o ao Estoque dos Itens da Operacao;';
 
 //   if fmManLr3.CmpNfsIntFin.Value = 'Sim' then sReceber := ' . Exclus�o dos Titulos a Receber Decorrentes da Emiss�o da Nota Fiscal.';
 
@@ -417,13 +417,13 @@ begin
 
         with fmManLr3.CmpNfs do begin
 
-             fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o};
+             fmManGDB.dbMain.StartTransaction; {Inicia a Transacao};
 {
             try
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ApplyUpdates; {Tenta aplicar as alteracoes}//;
 
-{                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+{                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 {
             except
 
@@ -450,7 +450,7 @@ begin
 
     end
  else
-    fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado.',EdObcNfs);}
+    fmsgErro('Campo de Preenchimento Obrigatorio nao Informado.',EdObcNfs);}
 //end;
 
 procedure TfmManCnf.FormClose(Sender: TObject; var Action: TCloseAction);

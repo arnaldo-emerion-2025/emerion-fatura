@@ -83,7 +83,7 @@ begin
       fmsgErro('No. de nota fiscal informado incorreto.', EdNroNfs);
   end
   else
-    fmsgErro('Campo de preenchimento obrigat�rio n�o informado.', EdNroNfs);
+    fmsgErro('Campo de preenchimento obrigat�rio nao informado.', EdNroNfs);
 end;
 
 procedure TfmConCno.EdNroNfsKeyPress(Sender: TObject; var Key: Char);

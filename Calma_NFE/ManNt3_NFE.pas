@@ -98,7 +98,7 @@ begin
   inherited;
 
   if key = 119 then
-  begin // Observa��es Sobre o Cliente
+  begin // Observacoes Sobre o Cliente
 
     if fmManNot_NFE.FatParLerObs.Value = 'Sim' then
     begin
@@ -160,7 +160,7 @@ begin
       with fmManNot_nfe.FatPed do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
         ;
 
         try
@@ -168,7 +168,7 @@ begin
           ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
           ;
 
         except
@@ -230,7 +230,7 @@ begin
     with fmManNot_nfe.FatPed do
     begin
 
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
       ;
 
       try
@@ -238,7 +238,7 @@ begin
         ApplyUpdates; {Tenta aplicar as alteracoes}
         ;
 
-        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
         ;
 
       except
@@ -335,14 +335,14 @@ begin
     if (Trim(ObsCli) <> '') then
        begin
           pnObsCli.Color   := clRed;
-          pnObsCli.Caption := 'F8 - LER OBSERVA��ES SOBRE O CLIENTE';
+          pnObsCli.Caption := 'F8 - LER Observacoes SOBRE O CLIENTE';
           pnObsCli.Visible := True;
        end
     else
       if (Trim(obsGerais) <> '') then
          begin
             pnObsCli.Color   := $00FAB689;
-            pnObsCli.Caption := 'F8 - LER OBSERVA��ES DO PEDIDO';
+            pnObsCli.Caption := 'F8 - LER Observacoes DO PEDIDO';
             pnObsCli.Visible := True;
          end;
   end;
@@ -384,7 +384,7 @@ begin
     begin
 
       if SeqObs = 0 then
-        fmsgErro('Por favor leia as observa��es sobre o cliente antes de prosseguir.', nil);
+        fmsgErro('Por favor leia as Observacoes sobre o cliente antes de prosseguir.', nil);
 
     end;
   end;
@@ -529,7 +529,7 @@ begin
     FinBan.Open;
 
     if FinBanCodBan.Value = 0 then
-      fmsgErro('Banco Informado n�o Encontrado', EdCodBan);
+      fmsgErro('Banco Informado nao Encontrado', EdCodBan);
 
   end;
 end;
@@ -573,7 +573,7 @@ begin
       with FatPe3 do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
         ;
 
         try
@@ -581,7 +581,7 @@ begin
           ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
           ;
 
         except
@@ -723,10 +723,10 @@ begin
       FinBan.Open;
 
       if FinBanCodBan.Value = 0 then
-        fmsgErro('Banco Informado n�o Encontrado', EdCodBan);
+        fmsgErro('Banco Informado nao Encontrado', EdCodBan);
 
       if FatPe3VlpPe3.Value = 0 then
-        fmsgErro('Valor da Parcela para o Vencimento n�o Informado', EdVlpPe3);
+        fmsgErro('Valor da Parcela para o Vencimento nao Informado', EdVlpPe3);
 
       if FatPe3DtvPe3.Value < fmManNot_NFE.FatPedDteFat.Value then
         fmsgErro('Data de Vencimento Informada Inferior a Data de Faturamento.', EdDtvPe3);
@@ -737,7 +737,7 @@ begin
         with FatPe3 do
         begin
 
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
           ;
 
           try
@@ -745,7 +745,7 @@ begin
             ApplyUpdates; {Tenta aplicar as alteracoes}
             ;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
             ;
 
           except
@@ -785,7 +785,7 @@ begin
         with FatPe3 do
         begin
 
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
           ;
 
           try
@@ -793,7 +793,7 @@ begin
             ApplyUpdates; {Tenta aplicar as alteracoes}
             ;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
             ;
 
           except

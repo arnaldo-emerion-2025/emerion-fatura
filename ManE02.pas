@@ -584,7 +584,7 @@ begin
     if FatBolCodBan.Value = 33 then
     begin
       RLLabel84.Caption := 'REAL';
-      RLLabel22.Caption := 'N�O';
+      RLLabel22.Caption := 'NAO';
     end;
 
     if (FieldbyName('QtdPro').AsInteger > 0) and ((StrToIntDef(Copy(FieldbyName('IN1CNB').AsString,1,2) ,0) <> 66) and
@@ -627,7 +627,7 @@ begin
       if FieldbyName('QtdPro').AsInteger > 0 then
         sDias:= IntToStr(FieldbyName('QtdPro').AsInteger)+' DIAS ';
 
-      ppMensa104.Caption := 'SUJEITO A NEGATIVA��O AP�S '+sDias+'CORRIDOS DO VENCIMENTO';
+      ppMensa104.Caption := 'SUJEITO A NEGATIVACAO AP�S '+sDias+'CORRIDOS DO VENCIMENTO';
     end;
     
     //ppMensa203.Caption := quSQL.FieldByName('MENSG1').AsString;
@@ -636,7 +636,7 @@ begin
 
     if ((StrToIntDef(Copy(FieldbyName('IN1CNB').AsString,1,2) ,0) = 66) or
         (StrToIntDef(Copy(FieldbyName('IN2CNB').AsString,1,2) ,0) = 66)) then
-      ppMensa204.Caption := 'SUJEITO A NEGATIVA��O AP�S '+sDias+'CORRIDOS DO VENCIMENTO';
+      ppMensa204.Caption := 'SUJEITO A NEGATIVACAO AP�S '+sDias+'CORRIDOS DO VENCIMENTO';
 
   end;
 

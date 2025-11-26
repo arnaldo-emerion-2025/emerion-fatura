@@ -1912,12 +1912,12 @@ begin
 
   if Self.ALT_VISU = 'VISU' then
   begin
-    Self.Caption := 'Emerion - Editar NFe         Modo: Visualiza��o';
+    Self.Caption := 'Emerion - Editar NFe         Modo: Visualizacao';
     setReadOnly;
   end
   else
   begin
-    Self.Caption := 'Emerion - Editar NFe        Modo: Altera��o';
+    Self.Caption := 'Emerion - Editar NFe        Modo: Alteracao';
   end;
 
   if ORIGTB = 'FP' then
@@ -2531,7 +2531,7 @@ end;
 
 procedure TFrmEditNfe.ratear;
 var
-  totfrt, totseg, totdesp, totdesc: real; {Vari�veis de totaliza��o para o rateio}
+  totfrt, totseg, totdesp, totdesc: real; {Vari�veis de totalizacao para o rateio}
 begin
   if (not (valFrt) or (valSeg) or (valOut) or (valDesc)) then
   begin
@@ -2774,7 +2774,7 @@ end;
 procedure TFrmEditNfe.ValidacaoProdutos;
 begin
 
-  //Valida��o do NCM
+  //Validacao do NCM
   if Length(trim(CDSPRODNCM.AsString)) <> 8 then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString + ' - NCM : ' +
@@ -2785,7 +2785,7 @@ begin
   if (pos(CDSPRODNCM.AsString, '.') > 0) or (pos(CDSPRODNCM.AsString, ' ') > 0) or (pos(CDSPRODNCM.AsString, '-') > 0) then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString + ' - NCM : ' +
-      QuotedStr(CDSPRODNCM.AsString) + ' - N�o pode possuir tra�os, pontos ou espa�os no NCM.');
+      QuotedStr(CDSPRODNCM.AsString) + ' - Nao pode possuir tra�os, pontos ou espa�os no NCM.');
     abort;
   end;
 
@@ -2797,39 +2797,39 @@ begin
     abort;
   end;
 
-  //situa��o Tribut�ria ICMS
+  //situacao Tribut�ria ICMS
   if (trim(CDSPRODCSTICMS.AsString) = '') then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString +
-      ' - Situa��o tribut�ria do ICMS : ' +
-      QuotedStr(CDSPRODCSTICMS.AsString) + ' - Obrigat�rio informar situa��o tribut�ria do ICMS do produto.');
+      ' - situacao tribut�ria do ICMS : ' +
+      QuotedStr(CDSPRODCSTICMS.AsString) + ' - Obrigat�rio informar situacao tribut�ria do ICMS do produto.');
     abort;
   end;
 
-  //situa��o Tribut�ria IPI
+  //situacao Tribut�ria IPI
   if (trim(CDSPRODCSTIPI.AsString) = '') then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString +
-      ' - Situa��o tribut�ria do IPI : ' +
-      QuotedStr(CDSPRODCSTIPI.AsString) + ' - Obrigat�rio informar situa��o tribut�ria do IPI do produto.');
+      ' - situacao tribut�ria do IPI : ' +
+      QuotedStr(CDSPRODCSTIPI.AsString) + ' - Obrigat�rio informar situacao tribut�ria do IPI do produto.');
     abort;
   end;
 
-  //situa��o Tribut�ria PIS
+  //situacao Tribut�ria PIS
   if (trim(CDSPRODCSTPIS.AsString) = '') then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString +
-      ' - Situa��o tribut�ria do PIS : ' +
-      QuotedStr(CDSPRODCSTPIS.AsString) + ' - Obrigat�rio informar situa��o tribut�ria do PIS do produto.');
+      ' - situacao tribut�ria do PIS : ' +
+      QuotedStr(CDSPRODCSTPIS.AsString) + ' - Obrigat�rio informar situacao tribut�ria do PIS do produto.');
     abort;
   end;
 
-  //situa��o Tribut�ria Cofins
+  //situacao Tribut�ria Cofins
   if (trim(CDSPRODCSTCOF.AsString) = '') then
   begin
     ShowMessage(CDSPRODCODCLP.AsString + '.' + CDSPRODCODGRU.AsString + '.' + CDSPRODCODSUB.AsString + '.' + CDSPRODCODPRO.AsString +
-      ' - Situa��o tribut�ria do Cofins : ' +
-      QuotedStr(CDSPRODCSTCOF.AsString) + ' - Obrigat�rio informar situa��o tribut�ria do Cofins do produto.');
+      ' - situacao tribut�ria do Cofins : ' +
+      QuotedStr(CDSPRODCSTCOF.AsString) + ' - Obrigat�rio informar situacao tribut�ria do Cofins do produto.');
     abort;
   end;
 

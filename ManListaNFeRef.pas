@@ -136,31 +136,31 @@ begin
       if SQLREFSerie.Asinteger <= -1 then
       begin
         //Regra de Neg�cio foi alterada. Agora � SIM poss�vel a s�rie ser "Zero", � estranho; mas existe.
-        messagebox(handle, 'S�rie � um campo obrigat�rio e deve ser maior ou igual a zero. Verifique e tente novamente.', 'Valida��o', mb_ok + MB_ICONWARNING);
+        messagebox(handle, 'S�rie � um campo obrigat�rio e deve ser maior ou igual a zero. Verifique e tente novamente.', 'Validacao', mb_ok + MB_ICONWARNING);
         Abort;
       end;
 
       if SQLREFModelo.Asinteger <= 0 then
       begin
-        messagebox(handle, 'Modelo � um campo obrigat�rio e deve ser maior que zero. Verifique e tente novamente.', 'Valida��o', mb_ok + MB_ICONWARNING);
+        messagebox(handle, 'Modelo � um campo obrigat�rio e deve ser maior que zero. Verifique e tente novamente.', 'Validacao', mb_ok + MB_ICONWARNING);
         Abort;
       end;
 
       if SQLREFCODUF.Asinteger <= 0 then
       begin
-        messagebox(handle, 'C�digo da UF � um campo obrigat�rio e deve ser maior que zero. Verifique e tente novamente.', 'Valida��o', mb_ok + MB_ICONWARNING);
+        messagebox(handle, 'C�digo da UF � um campo obrigat�rio e deve ser maior que zero. Verifique e tente novamente.', 'Validacao', mb_ok + MB_ICONWARNING);
         Abort;
       end;
 
       if length(trim(SQLREFSerie.AsString)) <= 0 then
       begin
-        messagebox(handle, 'CNPJ/CPF � um campo obrigat�rio. Verifique e tente novamente.', 'Valida��o', mb_ok + MB_ICONWARNING);
+        messagebox(handle, 'CNPJ/CPF � um campo obrigat�rio. Verifique e tente novamente.', 'Validacao', mb_ok + MB_ICONWARNING);
         Abort;
       end;
 
       if length(trim(SQLREFNFE_REF.AsString)) <> 44 then
       begin
-        messagebox(handle, 'Chave � um campo obrigat�rio e deve conter 44 caracteres. Verifique e tente novamente.', 'Valida��o', mb_ok + MB_ICONWARNING);
+        messagebox(handle, 'Chave � um campo obrigat�rio e deve conter 44 caracteres. Verifique e tente novamente.', 'Validacao', mb_ok + MB_ICONWARNING);
         Abort;
       end;
      end;
@@ -195,26 +195,26 @@ begin
            
         if trim(edModECF.Text) = '' then
            begin
-              messagebox(handle, 'O modelo do Documento Fiscal � de Preenchimento Obrigat�rio. Verifique e tente novamente.', 'Valida��o', mb_ok + MB_ICONWARNING);
+              messagebox(handle, 'O modelo do Documento Fiscal � de Preenchimento Obrigat�rio. Verifique e tente novamente.', 'Validacao', mb_ok + MB_ICONWARNING);
               Abort;
            end;
 
         if length(trim(edNroEcf.Text)) > 6 then
            begin
-              messagebox(handle, 'Nro do ECF � um campo obrigat�rio e deve conter no m�ximo 6 caracteres. Verifique e tente novamente.', 'Valida��o', mb_ok + MB_ICONWARNING);
+              messagebox(handle, 'Nro do ECF � um campo obrigat�rio e deve conter no m�ximo 6 caracteres. Verifique e tente novamente.', 'Validacao', mb_ok + MB_ICONWARNING);
               Abort;
            end;
 
         if length(trim(edNroCoo.Text)) <> 6 then
            begin
-              messagebox(handle, 'Nro do COO � um campo obrigat�rio e deve conter 6 caracteres. Verifique e tente novamente.', 'Valida��o', mb_ok + MB_ICONWARNING);
+              messagebox(handle, 'Nro do COO � um campo obrigat�rio e deve conter 6 caracteres. Verifique e tente novamente.', 'Validacao', mb_ok + MB_ICONWARNING);
               Abort;
            end;
      end;
 
   if not (validou) then
      begin
-        messagebox(handle, 'H� campos de Preenchimento Obrigat�rio n�o informados. Verifique e tente novamente.', 'Valida��o', mb_ok + MB_ICONWARNING);
+        messagebox(handle, 'H� campos de Preenchimento Obrigat�rio nao informados. Verifique e tente novamente.', 'Validacao', mb_ok + MB_ICONWARNING);
         Abort;
      end;
 
@@ -229,7 +229,7 @@ begin
     on E: Exception do
     begin
       fmManGDB.dbMain.Rollback;
-      messagebox(handle, pchar('Houve problemas ao gravar o registro. Erro: ' + E.Message), 'Confirma��o de processo', mb_ok + MB_ICONEXCLAMATION);
+      messagebox(handle, pchar('Houve problemas ao gravar o registro. Erro: ' + E.Message), 'Confirmacao de processo', mb_ok + MB_ICONEXCLAMATION);
     end;
   end;
 end;
@@ -260,7 +260,7 @@ begin
       SQLREF.Append;
     end
   else
-    messagebox(handle, 'H� um registro em processo de edi��o.', 'Valida��o', mb_ok + MB_ICONINFORMATION);
+    messagebox(handle, 'H� um registro em processo de edi��o.', 'Validacao', mb_ok + MB_ICONINFORMATION);
 
 end;
 
@@ -288,7 +288,7 @@ begin
     SQLREF.Cancel
   else
   begin
-    if messagebox(handle, 'Deseja realmente excluir esta refer�ncia?', 'Confirma��o de exclus�o', mb_YesNo + MB_ICONQUESTION) = IDYES then
+    if messagebox(handle, 'Deseja realmente excluir esta refer�ncia?', 'Confirmacao de exclus�o', mb_YesNo + MB_ICONQUESTION) = IDYES then
     begin
 
       fmManGDB.dbMain.StartTransaction;
@@ -302,7 +302,7 @@ begin
         on E: Exception do
         begin
           fmManGDB.dbMain.Rollback;
-          messagebox(handle, pchar('Houve problemas ao excluir o registro. Erro: ' + E.Message), 'Confirma��o de processo', mb_ok + MB_ICONEXCLAMATION);
+          messagebox(handle, pchar('Houve problemas ao excluir o registro. Erro: ' + E.Message), 'Confirmacao de processo', mb_ok + MB_ICONEXCLAMATION);
         end;
       end;
 

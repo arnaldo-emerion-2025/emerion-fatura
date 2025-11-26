@@ -277,11 +277,11 @@ begin
     begin
       if ((fmManLn3.FatPedSITFAT.Value <> 'Complemento') and (fmManLn3.FatPedSITFAT.Value <> 'Devolucao')) then
       begin
-        //Processo de confirma��o digitando Sim ou Nao
+        //Processo de confirmacao digitando Sim ou Nao
         if fmsgConf('Tem certeza que esta realmente cancelando a nota fiscal correta ?', 'E') = 'SIM' then
         begin
           sContinuar := 'N';
-          //Processo de confirma��o digitando o numero da NF
+          //Processo de confirmacao digitando o numero da NF
           try
             fmConCno := TfmConCno.Create(Self);
             fmConCno.ShowModal;
@@ -297,7 +297,7 @@ begin
             strIdUFE := fmmangdb.BuscaSimples('GerEmp', 'Id_FinUfe', fmManLn3.FatPedCODEMP.AsString);
             strIdCie := fmmangdb.BuscaSimples('GerEmp', 'Id_FinCie', fmManLn3.FatPedCODEMP.AsString);
 
-            //Por motivo de For�a maior irie interromper o novo cancelamento  e inutiliza��o de NFe
+            //Por motivo de For�a maior irie interromper o novo cancelamento  e inutilizacao de NFe
 
           end;
 
@@ -496,7 +496,7 @@ var
 
       sleep(500);
 
-      pnMensag.Caption := 'Aguarde. Enviando ao SeFaz Inutiliza��o.';
+      pnMensag.Caption := 'Aguarde. Enviando ao SeFaz Inutilizacao.';
       application.ProcessMessages;
 
       if (Trim(GNFeEnvia) = '') or (Trim(GNFeEnvia) = 'EXE') or (Trim(GNFeEnvia) = 'DEFAUT') then
@@ -644,13 +644,13 @@ begin
     end
     else //Valida Tamanho da Justificativa
     begin
-      messagebox(handle, 'Necess�rio observa��o com no m�nimo 15 caracteres. Verifique e tente novamente.', 'Valida��o da observa��o', MB_OK +
+      messagebox(handle, 'Necess�rio observacao com no m�nimo 15 caracteres. Verifique e tente novamente.', 'Validacao da observacao', MB_OK +
         MB_ICONINFORMATION);
     end;
   end
   else //Valida Tamanho da Justificativa
   begin
-    messagebox(handle, 'Obrigat�rio informar motivo do cancelamento. Informe e tente novamente.', 'Valida��o da observa��o', MB_OK + MB_ICONINFORMATION);
+    messagebox(handle, 'Obrigat�rio informar motivo do cancelamento. Informe e tente novamente.', 'Validacao da observacao', MB_OK + MB_ICONINFORMATION);
   end;
 end;
 
@@ -709,7 +709,7 @@ begin
 
     if SQLTEMP.RecordCount = 0 then
     begin
-      messagebox(handle, 'N�o foram encontradas NFe para cancelar.', 'Cancelamento de NFe', mb_ok + MB_ICONEXCLAMATION);
+      messagebox(handle, 'Nao foram encontradas NFe para cancelar.', 'Cancelamento de NFe', mb_ok + MB_ICONEXCLAMATION);
     end;
 
     VerificaArquivoNfeEmerionIni;
@@ -727,7 +727,7 @@ begin
     NFeXML := CaminhoRetorno + '\' + SQLTEMP.FieldByName('nronfs').AsString + ' - NF-e- ' + SQLTEMP.FieldByName('seqnfe').AsString + '.xml';
     if not fileExists(NFeXML) then
     begin
-      messagebox(handle, pchar('Arquivo ' + NFeXML + ' da NFe n�o encontrado. Verifique e tente novamente.'), 'Cancelamento NFe', mb_ok + MB_ICONEXCLAMATION);
+      messagebox(handle, pchar('Arquivo ' + NFeXML + ' da NFe nao encontrado. Verifique e tente novamente.'), 'Cancelamento NFe', mb_ok + MB_ICONEXCLAMATION);
       abort;
     end;
 
@@ -780,7 +780,7 @@ begin
                   try
                     SQLTSCR.DatabaseName := 'Isade';
 
-                    fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+                    fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
                     ;
 
                     try
@@ -833,7 +833,7 @@ begin
 
                       SQLTSCR.ExecSQL;
 
-                      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                       ;
                     except
                       fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
@@ -891,10 +891,10 @@ begin
             EdOb1Can.SetFocus;
         end //     if Length(Trim(ObcFat)) >= 15 then
         else
-          fmsgErro('Observa��es informadas tem que ter o minimo de 15 caracteres.', EdOb1Can);
+          fmsgErro('Observacoes informadas tem que ter o minimo de 15 caracteres.', EdOb1Can);
       end //  if Trim(ObcFat) <> '' then
       else
-        fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado.', EdOb1Can);
+        fmsgErro('Campo de Preenchimento Obrigatorio nao Informado.', EdOb1Can);
     end; //complemento
 
   finally

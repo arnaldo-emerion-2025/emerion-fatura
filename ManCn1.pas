@@ -356,10 +356,10 @@ begin
         EdObcNfs.SetFocus;
     end //     if Length(Trim(ObcFat)) >= 15 then
     else
-      fmsgErro('Observa��es informadas tem que ter o minimo de 15 caracteres.', EdObcNfs);
+      fmsgErro('Observacoes informadas tem que ter o minimo de 15 caracteres.', EdObcNfs);
   end //  if Trim(ObcFat) <> '' then
   else
-    fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado.', EdObcNfs);
+    fmsgErro('Campo de Preenchimento Obrigatorio nao Informado.', EdObcNfs);
 end //complemento
 
 procedure TfmManCn1.FormClose(Sender: TObject; var Action: TCloseAction);

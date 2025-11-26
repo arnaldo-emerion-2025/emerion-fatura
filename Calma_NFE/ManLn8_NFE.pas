@@ -372,7 +372,7 @@ begin
     end;
 
     if Trim(quSQL.FieldbyName('ApeEmp').AsString) = '' then
-      fmsgErro('Empresa informada n�o localizada.', EdPsqCodEmp);
+      fmsgErro('Empresa informada nao localizada.', EdPsqCodEmp);
 
   end
   else
@@ -764,7 +764,7 @@ begin
 
     pnSitImp.Color := clLime;
 
-    pnSitImp.Caption := 'Impress�o n�o confirmada';
+    pnSitImp.Caption := 'Impress�o nao confirmada';
 
   end;
 end;
@@ -930,7 +930,7 @@ begin
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe n�o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe nao encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -1085,7 +1085,7 @@ begin
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe n�o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe nao encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -1095,7 +1095,7 @@ begin
   IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
   if not FileExists(inifile) then
   begin
-    showmessage('Erro. N�o foi poss�vel localizar o arquivo de configura��o da NF-e.');
+    showmessage('Erro. Nao foi poss�vel localizar o arquivo de configura��o da NF-e.');
     sysutils.abort;
   end;
 
@@ -1294,7 +1294,7 @@ begin
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe n�o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe nao encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -1304,7 +1304,7 @@ begin
   IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
   if not FileExists(inifile) then
   begin
-    showmessage('Erro. N�o foi poss�vel localizar o arquivo de configura��o da NF-e.');
+    showmessage('Erro. Nao foi poss�vel localizar o arquivo de configura��o da NF-e.');
     sysutils.abort;
   end;
 
@@ -1382,7 +1382,7 @@ begin
 
     if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
     begin
-      if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe n�o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+      if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe nao encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
         then
       begin
         Abort;
@@ -1392,7 +1392,7 @@ begin
     IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
     if not FileExists(inifile) then
     begin
-      showmessage('Erro. N�o foi poss�vel localizar o arquivo de configura��o da NF-e.');
+      showmessage('Erro. Nao foi poss�vel localizar o arquivo de configura��o da NF-e.');
       sysutils.abort;
     end;
 
@@ -1456,12 +1456,12 @@ begin
 
               with FatPed do
               begin
-                fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+                fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
                 ;
                 try
                   ApplyUpdates; {Tenta aplicar as alteracoes}
                   ;
-                  fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                  fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                   ;
                 except
                   fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}

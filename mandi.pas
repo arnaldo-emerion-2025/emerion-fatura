@@ -199,10 +199,10 @@ begin
          sqldi.Delete;
          with sqldi do
             begin
-               fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o};
+               fmManGDB.dbMain.StartTransaction; {Inicia a Transacao};
                try
                   ApplyUpdates; {Tenta aplicar as alteracoes};
-                  fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o};
+                  fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao};
                except
                   fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro};
                end;
@@ -227,10 +227,10 @@ begin
    inherited;
    with sqldi do
       begin
-         fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o};
+         fmManGDB.dbMain.StartTransaction; {Inicia a Transacao};
          try
             ApplyUpdates; {Tenta aplicar as alteracoes};
-            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o};
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao};
          except
             fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro};
          end;
@@ -264,10 +264,10 @@ begin
    inherited;
    with SQLDIDET do
       begin
-         fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o};
+         fmManGDB.dbMain.StartTransaction; {Inicia a Transacao};
          try
             ApplyUpdates; {Tenta aplicar as alteracoes};
-            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o};
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao};
          except
             fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro};
          end;

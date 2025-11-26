@@ -408,7 +408,7 @@ begin
 
         EdPsqApeEmp.Text := '';
 
-        fmsgErro('Empresa Informada n�o Encontrada.', EdPsqCodEmp);
+        fmsgErro('Empresa Informada nao Encontrada.', EdPsqCodEmp);
 
       end;
     end;

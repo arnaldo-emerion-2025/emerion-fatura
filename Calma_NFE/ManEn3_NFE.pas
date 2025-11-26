@@ -720,7 +720,7 @@ begin
       Open;
 
       if FieldbyName('QtdReg').AsInteger = 0 then
-        fmsgErro('Situa��o tribut�ria informada n�o localizada.', EdCodSt1);
+        fmsgErro('situacao tribut�ria informada nao localizada.', EdCodSt1);
 
     end;
   end;
@@ -766,7 +766,7 @@ begin
       Open;
 
       if FieldbyName('QtdReg').AsInteger = 0 then
-        fmsgErro('Situa��o tribut�ria informada n�o localizada.', EdCodSt2);
+        fmsgErro('situacao tribut�ria informada nao localizada.', EdCodSt2);
 
     end;
   end;
@@ -812,7 +812,7 @@ begin
       Open;
 
       if FieldbyName('QtdReg').AsInteger = 0 then
-        fmsgErro('Unidade de medida informada n�o localizada.', EdCodUnd);
+        fmsgErro('Unidade de medida informada nao localizada.', EdCodUnd);
 
     end;
   end;
@@ -870,20 +870,20 @@ begin
     FatDv2ClsIpi.Value := Trim(FatDv2ClsIpi.Value);
 
     if Trim(FatDv2CodCfo.Value) = '' then
-      fmsgErro('Campo de preenchimento obrigat�rio n�o informado.', EdCodCfo);
+      fmsgErro('Campo de preenchimento obrigat�rio nao informado.', EdCodCfo);
     if Trim(FatDv2CodSt1.Value) = '' then
-      fmsgErro('Campo de preenchimento obrigat�rio n�o informado.', EdCodSt1);
+      fmsgErro('Campo de preenchimento obrigat�rio nao informado.', EdCodSt1);
     if Trim(FatDv2CodSt2.Value) = '' then
-      fmsgErro('Campo de preenchimento obrigat�rio n�o informado.', EdCodSt2);
+      fmsgErro('Campo de preenchimento obrigat�rio nao informado.', EdCodSt2);
     if Trim(FatDv2CodUnd.Value) = '' then
-      fmsgErro('Campo de preenchimento obrigat�rio n�o informado.', EdCodUnd);
+      fmsgErro('Campo de preenchimento obrigat�rio nao informado.', EdCodUnd);
 
     NroDv2 := FatDv2NroDv2.Value;
 
     with FatDv2 do
     begin
 
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
       ;
 
       try
@@ -891,7 +891,7 @@ begin
         ApplyUpdates; {Tenta aplicar as alteracoes}
         ;
 
-        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
         ;
 
       except
@@ -1071,9 +1071,9 @@ begin
   IdSMTP1.Connect;
   try
     IdSMTP1.Send(IdMessage1);
-    Application.MessageBox('Email enviado com sucesso!', 'Confirma��o', MB_ICONINFORMATION + MB_OK);
+    Application.MessageBox('Email enviado com sucesso!', 'Confirmacao', MB_ICONINFORMATION + MB_OK);
   except
-    Showmessage('N�o foi poss�vel enviar o e-mail para o cliente.');
+    Showmessage('Nao foi poss�vel enviar o e-mail para o cliente.');
   end;
   IdSMTP1.Disconnect;
   corpomail.Lines.text := memo1.lines.text;
@@ -1345,7 +1345,7 @@ begin
       fmManPri.Enabled := True;
       fmmanen3_nfe.Enabled := True;
       pnMensag.Visible := False;
-      fmsgErro('C�digo da UF para emiss�o de NFe n�o informado no cadastro da empresa.', nil);
+      fmsgErro('C�digo da UF para emiss�o de NFe nao informado no cadastro da empresa.', nil);
     end;
 
   if Finalizar = 'S' then
@@ -1355,7 +1355,7 @@ begin
       fmManPri.Enabled := True;
       fmmanen3_nfe.Enabled := True;
       pnMensag.Visible := False;
-      fmsgErro('C�digo de municipio para emiss�o de NFe n�o informado no cadastro da empresa.', nil);
+      fmsgErro('C�digo de municipio para emiss�o de NFe nao informado no cadastro da empresa.', nil);
     end;
 
   if Finalizar = 'S' then
@@ -1365,7 +1365,7 @@ begin
       fmManPri.Enabled := True;
       fmmanen3_nfe.Enabled := True;
       pnMensag.Visible := False;
-      fmsgErro('C�digo do pa�s para emiss�o de NFe n�o informado no cadastro da empresa.', nil);
+      fmsgErro('C�digo do pa�s para emiss�o de NFe nao informado no cadastro da empresa.', nil);
     end;
 
   if Finalizar = 'S' then
@@ -1455,7 +1455,7 @@ begin
         fmManPri.Enabled := True;
         fmmanen3_nfe.Enabled := True;
         pnMensag.Visible := False;
-        fmsgErro('C�digo do pa�s para emiss�o de NFe n�o informado no cadastro do cliente.', nil);
+        fmsgErro('C�digo do pa�s para emiss�o de NFe nao informado no cadastro do cliente.', nil);
       end
       else
         NroPais_Cli := fNumZeros(IntToStr(Id_FinPai), 4);
@@ -1496,9 +1496,9 @@ begin
       FatdevSeqNFe.Value := fMontaChaveAcessoNFe(Id_FinUfe, FatdevDteDEV.Value, CgcEmp, 55, 1, FatdevNroNfs.Value, 1);
       with Fatdev do
       try
-        fmManGDB.dbMain.StartTransaction; //Inicia a Transa��o
+        fmManGDB.dbMain.StartTransaction; //Inicia a Transacao
         ApplyUpdates; //Tenta aplicar as alteracoes
-        fmManGDB.dbMain.Commit; //confirma todas as alteracoes fechando a transa��o
+        fmManGDB.dbMain.Commit; //confirma todas as alteracoes fechando a Transacao
       except
         begin
           fmManGDB.dbMain.Rollback; //desfaz as alteracoes se acontecer um erro
@@ -1571,11 +1571,11 @@ begin
     Writeln(ArqEnv, 'EM0202' + // Uso interno do sistema
       IntToStr(Id_FinUfe) + // C�digo da UF do emitente do documento fiscal
       copy(FatdevSeqNFE.Value, 35, 09) + // C�digo n�merico que comp�e a chave de acesso
-      DesNat + // Descri��o da natureza de opera��o
+      DesNat + // Descri��o da natureza de operacao
       TipCnd + // Indicador da forma de pagamento 0-Pagamento � vista 1-Pagamento � prazo 2-Outros
       '55' + // C�digo do Modelo do documento fiscal
       '1' + // S�rie do documento fiscal
-      fNumZeros(IntToStr(FatdevNroNfs.Value), 9) + // N�mero do documento fiscal
+      fNumZeros(IntToStr(FatdevNroNfs.Value), 9) + // Numero do documento fiscal
       copy(FormatDateTime('dd/mm/yyyy', FatdevDtedev.Value), 7, 4) + '-' + // Data de emiss�o do documento fiscal
       copy(FormatDateTime('dd/mm/yyyy', FatdevDtedev.Value), 4, 2) + '-' +
       copy(FormatDateTime('dd/mm/yyyy', FatdevDtedev.Value), 1, 2) +
@@ -1598,7 +1598,7 @@ begin
       NomEmp + // Raz�o social ou Nome do emitente
       ApeEmp + // Nome fantasia
       EndEmp + // Logradouro
-      NumEmp + // N�mero
+      NumEmp + // Numero
       RefEmp + // Complemento
       BaiEmp + // Bairro
       Id_EmpCie + // C�digo do municipio
@@ -1635,7 +1635,7 @@ begin
       CpfCli + // CPF do destinatario
       NomCli + // Raz�o social ou nome do destinatario
       EndCli + // Logradouro
-      NumCli + // N�mero
+      NumCli + // Numero
       RefCli + // Complemento
       BaiCli + // Bairro
       Id_CliNfe + // C�digo do Municipio
@@ -1691,7 +1691,7 @@ begin
       Writeln(ArqEnv, 'EM0205' + // Uso interno do sistema
         CgcCli + // CNPJ do destinatario
         EndCli + // Logradouro
-        NumCli + // N�mero
+        NumCli + // Numero
         RefCli + // Complemento
         BaiCli + // Bairro
         Id_CliNfe + // C�digo do Municipio
@@ -1837,7 +1837,7 @@ begin
       DesPro := copy(Trim(DesPro), 1, 120) + fReplicate(' ', 120 - Length(copy(Trim(DesPro), 1, 120)));
 
       Writeln(ArqEnv, 'EM0206' + // Uso interno do sistema
-        '00' + // Tipo de opera��o
+        '00' + // Tipo de operacao
         fNumZeros(IntToStr(quSQL.FieldbyName('Nrodv2').AsInteger), 3) + // Nro. do item
         CodPro + // C�digo do Produto ou servi�o
         cEAN + // GTIN
@@ -1845,7 +1845,7 @@ begin
         ClsIpi + // C�digo NCM
         '   ' + // EX_TIPI
         '  ' + // G�nero do produto ou servi�o
-        CodCfo + // C�digo fiscal da opera��o
+        CodCfo + // C�digo fiscal da operacao
         CodUnd + // Unidade comercial
         QtdPro + // Quantidade comercial
         VluPro + // Valor unit�rio de comercializa��o
@@ -1898,7 +1898,7 @@ begin
       //========================== THIAGO OBS DO ITEM
 
       Writeln(ArqEnv, 'EM0207' + // Uso interno do sistema
-        '01' + // Tipo de opera��o
+        '01' + // Tipo de operacao
         fNumZeros(IntToStr(quSQL.FieldbyName('Nrodv2').AsInteger), 3) + // Nro. do item
         CodSt1 + // Origem da mercadoria
         CodSt2 + // Grupo de CST
@@ -1918,23 +1918,23 @@ begin
         );
 
       Writeln(ArqEnv, 'EM0208' + // Uso interno do sistema
-        '01' + // Tipo de opera��o
+        '01' + // Tipo de operacao
         fNumZeros(IntToStr(quSQL.FieldbyName('Nrodv2').AsInteger), 3) + // Nro. do item
         TrbIpi + // IPI tributado
         BasIpi + // Valor da BC do IPI
         PerIpi + // Aliquota do imposto
         TotIpi + // Valor do IPI
-        Id_EstSip); // Situa��o tribut�ria do IPI
+        Id_EstSip); // situacao tribut�ria do IPI
 
       Writeln(ArqEnv, 'EM0209' + // Uso interno do sistema
-        '01' + // Tipo de opera��o
+        '01' + // Tipo de operacao
         fNumZeros(IntToStr(quSQL.FieldbyName('Nrodv2').AsInteger), 3) + // Nro. do item
-        NfePis + // Situa��o Tributaria do PIS
+        NfePis + // situacao Tributaria do PIS
         TrbPis + // PIS tributado
         BasPis + // BC PIS
         PerPis + // Percentual do PIS
         TotPis + // Valor do PIS
-        NfeCof + // Situa��o Tributaria do COFINS
+        NfeCof + // situacao Tributaria do COFINS
         TrbCof + // COFINS tributado
         BasCof + // BC COFINS
         PerCof + // Percentual do COFINS
@@ -2031,7 +2031,7 @@ begin
     begin
       NroDoc := fSubstDecimal(IntToStr(FatdevNroNfs.Value), 60);
       Writeln(ArqEnv, 'EM0212' + // Uso interno do sistema
-        NroDoc + // N�mero da fatura
+        NroDoc + // Numero da fatura
         fSubstDecimal(FormatFloat('########0.00', FatdevTotGer.Value), 15) + // Valor Original
         '           0.00' + // Valor do desconto
         fSubstDecimal(FormatFloat('########0.00', FatdevTotGer.Value), 15)); // Valor Original
@@ -2058,14 +2058,14 @@ begin
     ObsFat := copy(ObsFat, 1, 2000);
     ObsFat := copy(Trim(ObsFat), 1, 2000) + fReplicate(' ', 2000 - Length(copy(Trim(ObsFat), 1, 2000)));
     Writeln(ArqEnv, 'EM0214' + // Uso interno do sistema
-      ObsFat); // Informa��es adicionais de interesse do Fisco
+      ObsFat); // Informacoes adicionais de interesse do Fisco
     CloseFile(ArqEnv);
   end;
 
   //Chamando o NFeEmerion
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe n�o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe nao encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -2075,7 +2075,7 @@ begin
   IniFile := ExtractFilePath(Application.ExeName) + 'NFeEmerion2.ini';
   if not FileExists(inifile) then
   begin
-    showmessage('Erro. N�o foi poss�vel localizar o arquivo de configura��o da NF-e.');
+    showmessage('Erro. Nao foi poss�vel localizar o arquivo de configura��o da NF-e.');
     sysutils.abort;
   end;
 
@@ -2187,12 +2187,12 @@ begin
     FatArq.Post;
     with Fatarq do
     begin
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
       ;
       try
         ApplyUpdates; {Tenta aplicar as alteracoes}
         ;
-        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
         ;
       except
         fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
@@ -2293,7 +2293,7 @@ begin
             with FatDev do
             begin
 
-              fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+              fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
               ;
 
               try
@@ -2301,7 +2301,7 @@ begin
                 ApplyUpdates; {Tenta aplicar as alteracoes}
                 ;
 
-                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                 ;
 
               except
@@ -2389,9 +2389,9 @@ begin
     fmmangdb.dbMain.Execute('UPDATE FATDEV SET JustDPEC = ' + QuotedStr(msgJust) + ' where id_fatdev = ' + (FatDevID_FATDEV.AsString));
 
     try
-      fmManGDB.dbMain.StartTransaction; //Inicia a Transa��o
+      fmManGDB.dbMain.StartTransaction; //Inicia a Transacao
       FatDev.ApplyUpdates; //Tenta aplicar as alteracoes
-      fmManGDB.dbMain.Commit; //confirma todas as alteracoes fechando a transa��o
+      fmManGDB.dbMain.Commit; //confirma todas as alteracoes fechando a Transacao
     except
       begin
         fmManGDB.dbMain.Rollback; //desfaz as alteracoes se acontecer um erro
@@ -2412,7 +2412,7 @@ begin
   end
   else
   begin
-    messagebox(handle, 'Tipo de envio n�o processado. Verifique se est� apto a utiliz�-lo.', 'Envio de NFe Vendas', mb_ok + mb_iconinformation);
+    messagebox(handle, 'Tipo de envio nao processado. Verifique se est� apto a utiliz�-lo.', 'Envio de NFe Vendas', mb_ok + mb_iconinformation);
     abort;
   end;
 

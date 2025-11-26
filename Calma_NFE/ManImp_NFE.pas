@@ -84,14 +84,14 @@ var
     with fmManNot_NFE.FatPed do
     begin
 
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
       fmManNot_NFE.FatPedNroNfs.Value := Null;
 
       try
 
         ApplyUpdates; {Tenta aplicar as alteracoes}
 
-        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 
       except
 
@@ -114,12 +114,12 @@ begin
   if ExisteNroNF(StrToInt(edNroNfs.Text), GEmp_Id) then
   begin
     if MessageBox(Handle, 'Deseja continuar com a emiss�o da NFe ciente que haver� duplicidade?',
-      'Valida��o de NFe', MB_YESNO + MB_ICONQUESTION + MB_NOFOCUS) = idYes then
+      'Validacao de NFe', MB_YESNO + MB_ICONQUESTION + MB_NOFOCUS) = idYes then
     begin
-      InformacaoObrigatoria('Continuar o processo de faturamento poder� causar duplicidade de envio de NFe e gerar informa��es n�o consistentes em relat�rios do faturamento. Al�m de duplicar titulos em contas a receber.', 'Valida��o de NFE');
+      InformacaoObrigatoria('Continuar o processo de faturamento poder� causar duplicidade de envio de NFe e gerar informacoes nao consistentes em relat�rios do faturamento. Al�m de duplicar titulos em contas a receber.', 'Validacao de NFE');
       if ExisteNroNF(StrToInt(EdNroNfs.Text), GEmp_Id) then
       begin
-        if messagebox(handle, 'Se est� certo e deseja continuar?', 'Valida��o NFe', MB_YESNO + MB_ICONQUESTION + MB_NOFOCUS) = idno then
+        if messagebox(handle, 'Se est� certo e deseja continuar?', 'Validacao NFe', MB_YESNO + MB_ICONQUESTION + MB_NOFOCUS) = idno then
         begin
 
           bretornar.Click;
@@ -147,7 +147,7 @@ begin
     if EdNroNfs.Value > qtdnfs then
     begin
 
-      if fMsgConf('N�mero de nota fiscal informado esta fora de sequ�ncia. Pr�ximo ' + Trim(IntToStr(QtdNfs)) + '. Confirma ?', 'E') = 'SIM' then
+      if fMsgConf('Numero de nota fiscal informado esta fora de sequ�ncia. Pr�ximo ' + Trim(IntToStr(QtdNfs)) + '. Confirma ?', 'E') = 'SIM' then
         sContinuar := 'S'
       else
       begin
@@ -165,7 +165,7 @@ begin
       if EdNroNfs.Value < qtdnfs then
       begin
 
-        if fMsgConf('N�mero de nota fiscal informado esta fora de sequ�ncia. Pr�ximo ' + Trim(IntToStr(QtdNfs)) + '. Confirma ?', 'E') = 'SIM' then
+        if fMsgConf('Numero de nota fiscal informado esta fora de sequ�ncia. Pr�ximo ' + Trim(IntToStr(QtdNfs)) + '. Confirma ?', 'E') = 'SIM' then
           sContinuar := 'S'
         else
           sContinuar := 'N';
@@ -196,7 +196,7 @@ begin
         with fmManNot_NFE.FatPed do
         begin
 
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
           ;
 
           //Rolando - 16/03/2010
@@ -209,7 +209,7 @@ begin
 
              ApplyUpdates; {Tenta aplicar as alteracoes};
 
-             fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o};
+             fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao};
 
           except
 
@@ -280,7 +280,7 @@ begin
                 ApplyUpdates; {Tenta aplicar as alteracoes}
                 ;
 
-                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                 ;
 
               except
@@ -406,7 +406,7 @@ begin
                 with fmManNot_NFE.FatPed do
                 begin
 
-                  fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+                  fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
                   ;
 
                   try
@@ -414,7 +414,7 @@ begin
                     ApplyUpdates; {Tenta aplicar as alteracoes}
                     ;
 
-                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                    fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                     ;
 
                   except
@@ -715,7 +715,7 @@ begin
                 begin
 
                   Nota01[i] := fNumZeros(IntToStr(fmManNot_NFE.FatPedNroNfs.Value), 6) + '/' + FNumZeros(IntToStr(quSQL.FieldbyName('NroPe3').AsInteger), 3);
-                  {N�mero}
+                  {Numero}
                   Nota02[i] := 'Comp12';
 
                   i := i + 1;
@@ -1194,7 +1194,7 @@ begin
                 Nota01[125] := copy(ValorExt, 101, 50); {Valor por Extenso 3}
                 Nota02[125] := 'Comp12';
 
-                Nota01[126] := fmManNot_NFE.FatPedDesReg.Value; {Observa��es Sobre Desconto}
+                Nota01[126] := fmManNot_NFE.FatPedDesReg.Value; {Observacoes Sobre Desconto}
                 Nota02[126] := 'Comp20';
 
                 {********************************************************************************************}
@@ -1219,7 +1219,7 @@ begin
 
                 qtdimpr := 0; {Quantidade de Linhas de Itens Impressas}
                 ;
-                qtitens := 0; {Indicador se Esta Sendo Impressos Itens ou N�o}
+                qtitens := 0; {Indicador se Esta Sendo Impressos Itens ou Nao}
 
                 SeqPe2 := 0; {sequencial dos Itens a Serem Impressos}
 
@@ -1621,7 +1621,7 @@ begin
                           begin
 
                             if (pos('#00040', Linha) = 0) and (qtitens = 0) then
-                            begin {A Linha que Esta Sendo Impressa n�o e a de Itens}
+                            begin {A Linha que Esta Sendo Impressa nao e a de Itens}
 
                               Inc := StrToInt(copy(Linha, pos('=', Linha) + 1, 3)); {Linha encontrada e de Incremento de Saltos de Linhas}
                               Col := StrToInt(copy(Linha, pos(',', Linha) + 1, 3));
@@ -1982,7 +1982,7 @@ begin
                                             if pos('Sim', Linha) > 0 then
                                             begin
 
-                                              {Verifica se a Linha que Esta Sendo Impressa n�o e a de Segunda Descri��o ou de Titulos de Descontos}
+                                              {Verifica se a Linha que Esta Sendo Impressa nao e a de Segunda Descri��o ou de Titulos de Descontos}
                                               if (Reg <> 52) and (Reg <> 126) and (Reg <> 127) and (Reg <> 128) then
                                               begin
 
@@ -2113,7 +2113,7 @@ begin
 
                                 end
                                 else
-                                begin {N�o Ha Mais Itens para Impress�o}
+                                begin {Nao Ha Mais Itens para Impress�o}
 
                                   SeqPe2 := SeqPe2 - 1;
 
@@ -2279,7 +2279,7 @@ begin
                   with fmManNot_NFE.FatPed do
                   begin
 
-                    fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+                    fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
                     ;
 
                     try
@@ -2287,7 +2287,7 @@ begin
                       ApplyUpdates; {Tenta aplicar as alteracoes}
                       ;
 
-                      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                       ;
 
                     except
@@ -2387,9 +2387,9 @@ begin
       begin
 
         if EdNroNfs.Enabled then
-          fmsgErro('Arquivo de configura��o da nota Fiscal n�o localizado. Consulte o administrador do sistema para maiores informa��es.', EdNroNfs)
+          fmsgErro('Arquivo de configura��o da nota Fiscal nao localizado. Consulte o administrador do sistema para maiores informacoes.', EdNroNfs)
         else
-          fmsgErro('Arquivo de configura��o da nota Fiscal n�o localizado. Consulte o administrador do sistema para maiores informa��es.', nil);
+          fmsgErro('Arquivo de configura��o da nota Fiscal nao localizado. Consulte o administrador do sistema para maiores informacoes.', nil);
 
       end;
 
@@ -2419,7 +2419,7 @@ begin
 
         EdNroNfs.Value := GerEmp.FieldbyName('QtdNfs').AsInteger + 1;
 
-        fmsgErro('N�mero da Nota Fiscal n�o Informado. Pr�ximo No. ' + Trim(FloatToStr(EdNroNfs.Value)), EdNroNfs);
+        fmsgErro('Numero da Nota Fiscal nao Informado. Pr�ximo No. ' + Trim(FloatToStr(EdNroNfs.Value)), EdNroNfs);
 
       end;
     end;

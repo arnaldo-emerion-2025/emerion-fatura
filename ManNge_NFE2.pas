@@ -1008,10 +1008,10 @@ begin
   begin
 
     if FatGerSitGer.Value = 'Faturado' then
-      fMsg('Opera��o n�o Pode ser Realizada. Nota j� Emitida.', 'E')
+      fMsg('Operacao nao Pode ser Realizada. Nota j� Emitida.', 'E')
 
     else if FatGerSitGer.Value = 'Cancelado' then
-      fMsg('Opera��o n�o Pode ser Realizada. Nota Cancelada.', 'E');
+      fMsg('Operacao nao Pode ser Realizada. Nota Cancelada.', 'E');
 
     Finalizar := 'S';
 
@@ -1127,7 +1127,7 @@ begin
   begin
 
     if FatGerDteFat.Value = 0 then
-      fmsgErro('Campo de preenchimento obrigatorio n�o informado.', EdDteFat);
+      fmsgErro('Campo de preenchimento obrigatorio nao informado.', EdDteFat);
 
     Status := 'dsEdit';
 
@@ -1137,10 +1137,10 @@ begin
       Status := 'dsInsert';
 
       if FatGerCodCli.Value = 0 then
-        fmsgErro('Campo de preenchimento obrigatorio n�o informado.', EdCodCli);
+        fmsgErro('Campo de preenchimento obrigatorio nao informado.', EdCodCli);
 
       if Trim(FatGerCodPfa.Value) = '' then
-        fmsgErro('Campo de preenchimento obrigatorio n�o informado.', EdCodPfa);
+        fmsgErro('Campo de preenchimento obrigatorio nao informado.', EdCodPfa);
 
       if Trim(FatGerUfeGer.Value) = '' then
         fmsgErro('Endere�o de faturamento do cliente esta incompleto.', EdCodCli);
@@ -1185,7 +1185,7 @@ begin
 
     if Trim(quSQL.FieldbyName('ModPfa').AsString) = 'Vendas' then
     begin
-      MessageBox(handle, 'N�o � permitido o uso de Padr�o de Faturamento de venda neste modulo. Verifique e tente novamente.', 'Outros tipo de nota', MB_OK +
+      MessageBox(handle, 'Nao � permitido o uso de Padr�o de Faturamento de venda neste modulo. Verifique e tente novamente.', 'Outros tipo de nota', MB_OK +
         MB_ICONINFORMATION);
       Abort;
     end;
@@ -1229,12 +1229,12 @@ begin
         begin
           post;
           ApplyUpdates;
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
 
           try
             ApplyUpdates; {Tenta aplicar as alteracoes}
 
-            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 
           except
             fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
@@ -1452,7 +1452,7 @@ begin
           end;
 
           if Trim(quSql.FieldbyName('ApeEmp').AsString) = '' then
-            fmsgErro('Empresa Informada n�o Encontrada', EdCodEmp)
+            fmsgErro('Empresa Informada nao Encontrada', EdCodEmp)
           else
             edNomEmp.Text := quSql.FieldbyName('ApeEmp').AsString;
 
@@ -1462,7 +1462,7 @@ begin
 
           edNomEmp.Text := '';
 
-          fmsgErro('Campo de Preenchimento Obrig�torio n�o Informado', EdCodEmp);
+          fmsgErro('Campo de Preenchimento Obrig�torio nao Informado', EdCodEmp);
 
         end;
       end;
@@ -1661,14 +1661,14 @@ begin
           end
           else
           begin
-            fmsgErro('Cliente Informado n�o Encontrado', EdCodCli);
+            fmsgErro('Cliente Informado nao Encontrado', EdCodCli);
           end;
 
         end
         else
         begin
 
-          fmsgErro('Campo de Preenchimento Obrig�torio n�o Informado', EdCodCli);
+          fmsgErro('Campo de Preenchimento Obrig�torio nao Informado', EdCodCli);
 
         end;
       end;
@@ -1800,7 +1800,7 @@ begin
           end;
 
           if Trim(quSql.FieldbyName('NomVen').AsString) = '' then
-            fmsgErro('Vendedor Informado n�o Encontrado', EdCodVen)
+            fmsgErro('Vendedor Informado nao Encontrado', EdCodVen)
           else
             edNomVen.Text := quSql.FieldbyName('NomVen').AsString;
 
@@ -1810,7 +1810,7 @@ begin
 
           edNomVen.Text := '';
 
-          fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado', EdCodVen);
+          fmsgErro('Campo de Preenchimento Obrigatorio nao Informado', EdCodVen);
 
         end;
 
@@ -1820,7 +1820,7 @@ begin
 
         edNomVen.Text := '';
 
-        fmsgErro('Vendedor Informado n�o Encontrado', EdCodVen);
+        fmsgErro('Vendedor Informado nao Encontrado', EdCodVen);
 
       end;
     end;
@@ -1963,7 +1963,7 @@ begin
 
           if Trim(quSql.FieldbyName('DscPfa').AsString) = '' then
           begin
-            fmsgErro('Padr�o de Faturamento Informado n�o Encontrado', EdCodPfa);
+            fmsgErro('Padr�o de Faturamento Informado nao Encontrado', EdCodPfa);
           end
           else
             edDescPfa.Text := quSql.FieldbyName('DscPfa').AsString;
@@ -1975,7 +1975,7 @@ begin
 
           edDescPfa.Text := '';
 
-          fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado', EdCodPfa);
+          fmsgErro('Campo de Preenchimento Obrigatorio nao Informado', EdCodPfa);
 
         end;
       end;
@@ -2276,7 +2276,7 @@ begin
 
             end
             else
-              fmsgErro('Classifica��o Informada n�o Encontrada.', EdCodClp);
+              fmsgErro('Classificacao Informada nao Encontrada.', EdCodClp);
 
           end
           else
@@ -2419,7 +2419,7 @@ begin
 
         end
         else
-          fmsgErro('Classifica��o Informada n�o Encontrada.', EdCodClp);
+          fmsgErro('Classificacao Informada nao Encontrada.', EdCodClp);
 
       end
       else
@@ -2429,7 +2429,7 @@ begin
         begin
 
           if Trim(FatGe2CodClp.AsString) = '' then
-            fmsgErro('Classifica��o Informada n�o Encontrada.', EdCodClp);
+            fmsgErro('Classificacao Informada nao Encontrada.', EdCodClp);
 
         end;
       end;
@@ -2737,13 +2737,13 @@ begin
             end;
 
             if quSql.FieldbyName('Reg').AsInteger = 0 then
-              fmsgErro('Grupo Informado n�o Encontrado.', EdCodGru);
+              fmsgErro('Grupo Informado nao Encontrado.', EdCodGru);
 
           end;
 
         end
         else
-          fmsgErro('Grupo Informado n�o Encontrado.', EdCodGru);
+          fmsgErro('Grupo Informado nao Encontrado.', EdCodGru);
 
       end
       else
@@ -2753,7 +2753,7 @@ begin
         begin
 
           if Trim(FatGe2CodGru.Value) = '' then
-            fmsgErro('Grupo Informado n�o Encontrado.', EdCodGru);
+            fmsgErro('Grupo Informado nao Encontrado.', EdCodGru);
 
         end;
       end;
@@ -2922,7 +2922,7 @@ begin
               Open;
 
               if quSql.FieldbyName('Reg').AsInteger = 0 then
-                fmsgErro('Grupo e Sub-Grupo n�o Encontrado.', EdCodGru);
+                fmsgErro('Grupo e Sub-Grupo nao Encontrado.', EdCodGru);
 
             end;
           end;
@@ -2935,14 +2935,14 @@ begin
           begin
 
             if Trim(FatGe2CodSub.Value) = '' then
-              fmsgErro('Sub-Grupo Informado n�o Encontrado.', EdCodSub);
+              fmsgErro('Sub-Grupo Informado nao Encontrado.', EdCodSub);
 
           end;
         end;
 
       end
       else
-        fmsgErro('Sub-Grupo Informado n�o Encontrado.', EdCodSub);
+        fmsgErro('Sub-Grupo Informado nao Encontrado.', EdCodSub);
     end;
   end;
 end;
@@ -3490,17 +3490,17 @@ begin
                   Open;
 
                   if FieldbyName('QtdReg').AsInteger = 0 then
-                    fmsgErro('Item Informado n�o Encontrado no Estoque da Empresa.', EdCodPro);
+                    fmsgErro('Item Informado nao Encontrado no Estoque da Empresa.', EdCodPro);
 
                 end;
 
               end
               else
-                fmsgErro('Item Informado n�o Encontrado na Empresa.', EdCodPro);
+                fmsgErro('Item Informado nao Encontrado na Empresa.', EdCodPro);
 
             end
             else
-              fmsgErro('Item Informado n�o Encontrado.', EdCodPro);
+              fmsgErro('Item Informado nao Encontrado.', EdCodPro);
 
           end;
 
@@ -3512,14 +3512,14 @@ begin
           begin
 
             if Trim(FatGe2CodPro.Value) = '' then
-              fmsgErro('Item Informado n�o Encontrado.', EdCodPro);
+              fmsgErro('Item Informado nao Encontrado.', EdCodPro);
 
           end;
         end;
 
       end
       else
-        fmsgErro('Item Informado n�o Encontrado.', EdCodPro);
+        fmsgErro('Item Informado nao Encontrado.', EdCodPro);
     end;
   end;
 end;
@@ -4483,7 +4483,7 @@ begin
       with FatGe2 do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
         ;
 
         try
@@ -4491,7 +4491,7 @@ begin
           ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
           ;
 
         except
@@ -4841,7 +4841,7 @@ begin
 
           if FatGe2VluGe2.AsFloat = 0 then
             if ((FatGerMODPfa.AsString <> 'Complemento')) then
-              fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado.', EdVluGe2);
+              fmsgErro('Campo de Preenchimento Obrigatorio nao Informado.', EdVluGe2);
           if FatGe2QtpGe2.AsFloat = 0 then
           begin
             if FatGe2CodCfo.Asstring <> '1.604' then
@@ -4856,7 +4856,7 @@ begin
                 Open;
               end;
               if (FatGerMODPfa.AsString <> 'Complemento') then
-                fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado.', EdQtpGe2);
+                fmsgErro('Campo de Preenchimento Obrigatorio nao Informado.', EdQtpGe2);
             end;
           end;
         end
@@ -4864,7 +4864,7 @@ begin
         begin
 
           if EdDesGe2.Enabled and (Trim(FatGe2DesGe2.Value) = '') then
-            fmsgErro('Campo de Preenchimento Obrigatorio n�o Informado.', EdDesGe2);
+            fmsgErro('Campo de Preenchimento Obrigatorio nao Informado.', EdDesGe2);
 
         end;
         try
@@ -4921,12 +4921,12 @@ begin
           with FatGe2 do
           begin
 
-            fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
 
             try
               ApplyUpdates; {Tenta aplicar as alteracoes}
 
-              fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+              fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 
             except
 
@@ -5125,13 +5125,13 @@ begin
     with FatGer do
     begin
 
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
 
       try
 
         ApplyUpdates; {Tenta aplicar as alteracoes}
 
-        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 
       except
 
@@ -5678,7 +5678,7 @@ begin
       FATGE2BASICM.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLBaseICMS];
       FATGE2TOTDES.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLSIscomex];
 
-      //Informa��es de II
+      //Informacoes de II
       FATGE2VLRIMPII.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLII];
       FATGE2VLRBCII.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLBCII];
       FATGE2PERIMPII.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLPERII];
@@ -5695,10 +5695,10 @@ begin
       NroGe2 := FatGe2NroGe2.Value;
       with FatGe2 do
       begin
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
         try
           ApplyUpdates; {Tenta aplicar as alteracoes}
-          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
         except
           fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
           raise;
@@ -5931,12 +5931,12 @@ begin
     with FatGe2 do
     begin
 
-      fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+      fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
 
       try
         ApplyUpdates; {Tenta aplicar as alteracoes}
 
-        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+        fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
 
       except
 
@@ -5992,7 +5992,7 @@ begin
       SQLTEMP.Last;
       SQLTEMP.First;
 
-      strMsg := 'H� itens sem DI ou sem adi��o da DI : ' + _BR;
+      strMsg := 'H� itens sem DI ou sem adicao da DI : ' + _BR;
 
       while not SQLTEMP.Eof do
       begin
@@ -6003,7 +6003,7 @@ begin
         SQLTEMP.Next;
       end;
 
-      Messagebox(Handle, pChar(strMsg), 'Valida��o de DI', mb_ok + MB_ICONSTOP);
+      Messagebox(Handle, pChar(strMsg), 'Validacao de DI', mb_ok + MB_ICONSTOP);
       Abort;
 
     end;
@@ -6116,7 +6116,7 @@ begin
           FATGE2BASICM.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLBaseICMS];
           FATGE2TOTOUTDESP.Value := Excel.WorkBooks[1].Sheets[1].cells[linha, COLSIscomex];
 
-          //Informa��es de II
+          //Informacoes de II
           FATGE2VLRIMPII.AsFloat := Excel.WorkBooks[1].Sheets[1].cells[linha, COLII];
           FATGE2VLRBCII.AsFloat := Excel.WorkBooks[1].Sheets[1].cells[linha, COLBCII];
           FATGE2PERIMPII.AsFloat := Excel.WorkBooks[1].Sheets[1].cells[linha, COLPERII];
@@ -6145,10 +6145,10 @@ begin
           NroGe2 := FatGe2NroGe2.Value;
           with FatGe2 do
           begin
-            fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+            fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
             try
               ApplyUpdates; {Tenta aplicar as alteracoes}
-              fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+              fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
             except
               fmManGDB.dbMain.Rollback; {desfaz as alteracoes se acontecer um erro}
               raise;
@@ -6270,7 +6270,7 @@ begin
     if SQLTEMP.FieldByName('NFE').AsInteger < 1 then
     begin
 
-      Messagebox(Handle, '� necess�rio informar a Danfe de refer�ncia. Verifique e tente novamente.', 'Valida��o de refer�ncia', mb_ok + MB_ICONSTOP);
+      Messagebox(Handle, '� necess�rio informar a Danfe de refer�ncia. Verifique e tente novamente.', 'Validacao de refer�ncia', mb_ok + MB_ICONSTOP);
       Abort;
 
     end;

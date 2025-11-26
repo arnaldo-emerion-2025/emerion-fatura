@@ -314,7 +314,7 @@ begin
       with FatPe4 do
       begin
 
-        fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+        fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
         ;
 
         try
@@ -322,7 +322,7 @@ begin
           ApplyUpdates; {Tenta aplicar as alteracoes}
           ;
 
-          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+          fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
           ;
 
         except
@@ -459,7 +459,7 @@ begin
     FinBan.Open;
 
     if FinBanCodBan.Value = 0 then
-      fmsgErro('Banco Informado n�o Encontrado', EdCodBan);
+      fmsgErro('Banco Informado nao Encontrado', EdCodBan);
 
   end;
 end;
@@ -507,7 +507,7 @@ begin
       FinBan.Open;
 
       if FinBanCodBan.Value = 0 then
-        fmsgErro('Banco Informado n�o Encontrado', EdCodBan);
+        fmsgErro('Banco Informado nao Encontrado', EdCodBan);
 
       if FatPe4DtvPe4.Value < fmManNot_NFE.FatPedDteFat.Value then
         fmsgErro('Data de Vencimento Informada Inferior a Data de Faturamento.', EdDtvPe4);
@@ -518,7 +518,7 @@ begin
         with FatPe4 do
         begin
 
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
           ;
 
           try
@@ -526,7 +526,7 @@ begin
             ApplyUpdates; {Tenta aplicar as alteracoes}
             ;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
             ;
 
           except
@@ -566,7 +566,7 @@ begin
         with FatPe4 do
         begin
 
-          fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+          fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
           ;
 
           try
@@ -574,7 +574,7 @@ begin
             ApplyUpdates; {Tenta aplicar as alteracoes}
             ;
 
-            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+            fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
             ;
 
           except

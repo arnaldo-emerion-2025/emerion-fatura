@@ -313,7 +313,7 @@ begin
     end;
 
     if Trim(quSQL.FieldbyName('ApeEmp').AsString) = '' then
-      fmsgErro('Empresa informada n�o localizada.', EdPsqCodEmp);
+      fmsgErro('Empresa informada nao localizada.', EdPsqCodEmp);
 
   end
   else
@@ -706,7 +706,7 @@ begin
 
     pnSitImp.Color := clLime;
 
-    pnSitImp.Caption := 'Impress�o n�o confirmada';
+    pnSitImp.Caption := 'Impress�o nao confirmada';
 
   end;
 end;
@@ -853,7 +853,7 @@ begin
   inherited;
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe n�o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe nao encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -988,7 +988,7 @@ begin
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe n�o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe nao encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -1056,7 +1056,7 @@ begin
           vaux);
         CloseFile(ArqEnv);
         Application.ProcessMessages;
-        pnMensag.Caption := 'Aguarde. Consultando informa��es da nota.';
+        pnMensag.Caption := 'Aguarde. Consultando informacoes da nota.';
         //chamar o Nfemerion aqui
 
         //if (Trim(GNFeEnvia) = '') or (Trim(GNFeEnvia) = 'EXE') or (Trim(GNFeEnvia) = 'DEFAUT') then
@@ -1109,7 +1109,7 @@ begin
 
   if not FileExists(ExtractFilePath(application.exename) + 'NFeEmerion2.ini') then
   begin
-    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe n�o encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
+    if MessageBox(Handle, 'Arquivo de configura��o para envio de NFe nao encontrado. Deseja continuar?', 'Enviando Nfe', MB_YESNO + MB_ICONQUESTION) = IDNO
       then
     begin
       Abort;
@@ -1175,7 +1175,7 @@ begin
             with FatGer do
             begin
 
-              fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+              fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
               ;
 
               try
@@ -1183,7 +1183,7 @@ begin
                 ApplyUpdates; {Tenta aplicar as alteracoes}
                 ;
 
-                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+                fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
                 ;
 
               except

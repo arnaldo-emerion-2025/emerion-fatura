@@ -285,7 +285,7 @@ begin
   with fmManNge_NFE2.FatGer do
   begin
 
-    fmManGDB.dbMain.StartTransaction; {Inicia a Transa��o}
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transacao}
     ;
 
     try
@@ -293,7 +293,7 @@ begin
       ApplyUpdates; {Tenta aplicar as alteracoes}
       ;
 
-      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a transa��o}
+      fmManGDB.dbMain.Commit; {confirma todas as alteracoes fechando a Transacao}
       ;
 
     except
@@ -929,7 +929,7 @@ begin
 
     end
     else
-      fmsgErro('C�digo para UF da NFe n�o informado.', EdId_TraCie);
+      fmsgErro('C�digo para UF da NFe nao informado.', EdId_TraCie);
 
   end;
 
@@ -968,7 +968,7 @@ begin
 
     end
     else
-      fmsgErro('C�digo para UF da NFe n�o informado.', EdId_TraCie);
+      fmsgErro('C�digo para UF da NFe nao informado.', EdId_TraCie);
 
   end;
 end;
@@ -1036,7 +1036,7 @@ begin
 
     end
     else
-      fmsgErro('C�digo para UF da NFe n�o informado.', EdId_FinCif);
+      fmsgErro('C�digo para UF da NFe nao informado.', EdId_FinCif);
 
   end;
 
@@ -1075,7 +1075,7 @@ begin
 
     end
     else
-      fmsgErro('C�digo para UF da NFe n�o informado.', EdId_FinCif);
+      fmsgErro('C�digo para UF da NFe nao informado.', EdId_FinCif);
 
   end;
 end;
@@ -1143,7 +1143,7 @@ begin
 
     end
     else
-      fmsgErro('C�digo para UF da NFe n�o informado.', EdId_FinCie);
+      fmsgErro('C�digo para UF da NFe nao informado.', EdId_FinCie);
 
   end;
 
@@ -1182,7 +1182,7 @@ begin
 
     end
     else
-      fmsgErro('C�digo para UF da NFe n�o informado.', EdId_FinCie);
+      fmsgErro('C�digo para UF da NFe nao informado.', EdId_FinCie);
 
   end;
 end;
@@ -1282,7 +1282,7 @@ begin
 
   end
   else
-    fmsgErro('C�digo para UF da NFe n�o informado.', EdId_FinCif);
+    fmsgErro('C�digo para UF da NFe nao informado.', EdId_FinCif);
 
 end;
 
@@ -1321,7 +1321,7 @@ begin
 
   end
   else
-    fmsgErro('C�digo para UF da NFe n�o informado.', EdId_FinCie);
+    fmsgErro('C�digo para UF da NFe nao informado.', EdId_FinCie);
 
 end;
 
@@ -1360,7 +1360,7 @@ begin
 
   end
   else
-    fmsgErro('C�digo para UF da NFe n�o informado.', EdId_TraCie);
+    fmsgErro('C�digo para UF da NFe nao informado.', EdId_TraCie);
 
 end;
 
